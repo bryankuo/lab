@@ -1,0 +1,27 @@
+ may need to be "root" or sudo to be able to write to I/O ports. Especially ioperm() requires admin privileges.
+
+outb
+ioctl
+The Linux Parallel Port Programming HOWTO
+
+可否先用bash測試port呢?
+
+For a kernel driver, the parallel port is accessed by calling on the kernel's parport functions.
+For a user-space program there are two options: use Tim Waugh's PPDEV generic parallel port driver via ioctl functions, or use direct low level port IO through the inb/outb family of macros provided with the GNU C library
+
+Using the parallel port for output with Linux
+http://bigasterisk.com/projects/parallel
+gcc parcon.c -o parcon -I/usr/include -Wall
+
+chown root parcon
+chmod u+s parcon
+
+The Linux Parallel Port Programming HOWTO
+(http://as6edriver.sourceforge.net/Parallel-Port-Programming-HOWTO/accessing.html)
+For a kernel driver, the parallel port is accessed by calling on the kernel's parport functions.
+For a user-space program there are two options:
+use Tim Waugh's PPDEV generic parallel port driver via ioctl functions
+or use direct low level port IO through the inb/outb family of macros provided with the GNU C library.
+
+
+
