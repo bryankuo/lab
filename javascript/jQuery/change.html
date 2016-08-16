@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 14 February 2006), see www.w3.org" />
+<title>A Small Hello</title>
+
+<script type="text/javascript" src=
+"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+</script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {  
+	$('#btnRun').click(function () {
+		$.ajax({
+			type: "POST",
+			url: "jj.php",
+			cache: false,
+			data: $('#f1').serialize(),
+			async: false,
+			dataType: "json",
+			success: function(json) {
+				alert(json.b);
+			},
+			error: function() {
+				alert("ERROR!!!");
+			}
+		});
+		//alert(html);
+	});
+  //$('.target').change(function() {
+  $('#aa').change(function() {
+    alert('Handler for .change() called.');
+  });  
+});
+//]]>
+</script>
+</head>
+<body>
+<h1>Hi</h1>
+<form id="f1">
+<input type="text" value="Say it!" id="button1" name="a1"/>
+<input type="text" value="testit!" id="text1" name="b1"/>
+<p>This is very minimal "hello world" HTML document.</p>
+<button id="btnRun">Run!</button>
+</form>
+<div id="msg"></div>
+</body>
+<form>
+  <input class="target" type="text" value="Field 1" />
+  <select id="aa" class="target">
+    <option value="option1" selected="selected">Option 1</option>
+    <option value="option2">Option 2</option>
+  </select>
+</form>
+<div id="other">
+  Trigger the handler
+</div>
+
+</html>
+
