@@ -3,7 +3,7 @@
 # development tools
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get --assume-yes install git libncurses5-dev default-jre fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-x libgstreamer0.10-0 vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2
+sudo apt-get --assume-yes install git libncurses5-dev default-jre fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-x libgstreamer0.10-0 vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2 mysql-workbench-community
 
 # wireshark
 # wireshark add non-root capture
@@ -29,5 +29,4 @@ sudo apt-get install openjdk-8-jdk
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ ./studio.sh
 
 # line chrome extension
-
 
