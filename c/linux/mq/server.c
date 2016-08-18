@@ -8,6 +8,9 @@
 
 #include "common.h"
 
+/*
+sudo mkdir -p /mnt/mqs; sudo mount -t mqueue none /mnt/mqs; ls -l /mnt/mqs/
+ */
 int main(int argc, char **argv)
 {
     mqd_t mq;
