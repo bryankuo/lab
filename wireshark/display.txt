@@ -1,0 +1,32 @@
+﻿=============================================================================
+display filter
+tcp.dstport == 50001 
+ip.addr == 114.45.109.139
+http and ( ip.addr == 192.168.66.212 || ip.addr == 192.168.66.183 )
+http and (( ip.dst == 192.168.1.1 and ip.src == 192.168.1.21 ) or ( ip.src == 192.168.1.1 and ip.dst == 192.168.1.21 ) )
+http and (( ip.dst == 192.168.1.183 and ip.src == 192.168.1.212 ) or ( ip.src == 192.168.1.212 and ip.dst == 192.168.1.183 ) )
+( http or xml ) and ip.addr  == 192.168.66.184 and http.response.code == 200
+( http or xml ) and ip.addr  == 192.168.66.184 and http.response.code == 200 and http contains "Response"
+( http or xml  ) and ip.addr  == 192.168.66.185 and http.response.code == 200 and http contains "Configuration"
+( http or xml  ) and ip.addr  == 192.168.66.185 and http.response.code == 200 and http contains "GetVideoSourceConfiguration"
+( http or xml  ) and ip.addr  == 192.168.66.185 and http contains "GetVideoSourceConfiguration"
+( http or xml ) and ip.addr  == 192.168.66.184 and http.response.code == 200 and http contains "Response" and http.request.method == POST ?
+( http or xml ) and ip.addr  == 192.168.66.184 and expert.message == "dns" ?
+=============================================================================
+display filter
+ip range:
+ip.src==192.168.0.0/16 and ip.dst==192.168.0.0/16
+specific ip:
+ip.src==192.168.66.113 or ip.dst==192.168.66.113
+start from packet number 1390000:
+ip.src==192.168.66.113 or ip.dst==192.168.66.113 and frame.number >= 1390000
+=============================================================================
+display filter
+ip traffic from/to 192.168.66.197
+ip.src == 192.168.66.197 || ip.dst == 192.168.66.197
+=============================================================================
+not rtp and not udp and ( http or xml )
+not rtp and not udp and ( http or xml ) and frame.marked == 1
+=============================================================================
+( ip.addr == 192.168.66.37 ) && ( ( sip.Method == INVITE && sip.CSeq.seq == 1 ) || sip.Method == BYE )
+sip.Request-Line contains SUBSCRIBE

@@ -1,0 +1,15 @@
+./LedControlNet
+
+client模擬GPRS module
+gcc -o client4 client4.c -g -Wall
+
+rxxx,1-3碼,起gprs id,目前對應section
+1報參數
+e報checksum error
+a1報alarm初始化error
+a2報運行中alarm
+q or Q離開
+
+<comment>
+需要先起daemon,不然simulator program會陷入無窮回圈
+</comment>

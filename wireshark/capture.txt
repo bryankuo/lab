@@ -1,0 +1,59 @@
+﻿( sip || rtp ) && (ip.src_host ==192.168.66.227 || ip.src_host ==192.168.66.223 || ip.src_host ==192.168.66.175)
+capture filter
+host apexx-ftp.dyndns.org
+src host 114.45.109.139 50001 or src host 192.168.66.207
+port 50001
+src host 114.45.109.139 or dst host 114.45.109.139
+(samba)
+port 137 or port 138 or port 139 or port 445
+
+src host 192.168.66.162 80
+src host 192.168.66.113 80
+
+下午 02:45 2011/2/21
+(wireshark display filter不靈光,why?)
+http and (( ip.dst == 192.168.1.183 and ip.src == 192.168.1.212 ) or ( ip.src == 192.168.1.183 and ip.dst == 192.168.1.212 ) )
+http and ( ip.dst == 192.168.1.183 and ip.src == 192.168.1.212 )
+http and ip.src == 192.168.1.183 and ip.dst == 192.168.1.212
+http and (( ip.src_host == 192.168.1.212 and ip.dst_host == 192.168.1.183 ) or ( ip.src_host == 192.168.1.183 and ip.dst_host == 192.168.1.212 ) )
+http and ( ip.src_host == 192.168.1.212 and ip.dst_host == 192.168.1.183 )
+ip.src_host == 192.168.1.183 and http
+=============================================================================
+Capture IPv6 based traffic only:
+ip6 
+Capture IPv6 based traffic only:
+ ip6 
+Capture only the IPv6 based traffic to or from host fe80::1:
+ host fe80::1 
+Capture IPv6-over-IPv4 tunneled traffic only:
+ ip proto 41 
+Capture native IPv6 traffic only:
+ ip6 and not ip proto 41 
+=============================================================================
+SSDP capture filter:
+udp port 1900
+=============================================================================
+capture filter for RTSP - RTSP Talks to and from IPNC:
+tcp port 554 and host 192.168.66.113
+=============================================================================
+IPNC RTSP Talks:
+tcp port 554 and host 192.168.66.113
+=============================================================================
+IPNC all traffics:
+host 192.168.66.113
+=============================================================================
+IPNC all traffics ( except udp port 5000 )
+host 192.168.66.113 and not udp port 5000
+=============================================================================
+ethernet address怎麼抓?
+Capture only the Ethernet-based traffic to and from Ethernet MAC address
+ether host 00:de:ad:01:be:ef
+ether host 00:de:ad:01:be:ef or host 192.168.66.113 and not udp port 5000
+=============================================================================
+上午 09:47 2011/9/22
+有沒辦法某個間隔抓一下RTP,不用全抓? 即以時間做為條件
+host 192.168.1.100 and tcp
+(host 192.168.1.100 or host 192.168.66.115 ) and tcp
+=============================================================================
+上午 09:50 2011/9/27
+如何使用wireshar計算某一段時間內的bitrate嗎?

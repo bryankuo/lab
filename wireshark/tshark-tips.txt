@@ -1,0 +1,39 @@
+install tshark:
+sudo yum install wireshark
+
+﻿simply capture:
+tshark -i eth0 -w /home/freeswitch/sip-aws.pcap
+
+capture for 3 minutes:
+tshark -i eth0 -a duration:180 -w /home/freeswitch/sip-aws.pcap
+tshark -i ppp0 -a duration:10 -w /home/freeswitch/silk-pkts.pcap
+
+tshark capture sip traffic example:
+tshark -i eth0 -r myFile -R "sip.CSeq.method eq MESSAGE" -w /home/freeswitch/sip-138.pcap
+port 5060
+( sip && sip.Method == MESSAGE || sip.Status-Code == 200 ) && ip.addr == 192.168.66.138
+tshark -i eth0 -f "" -w /home/freeswitch/sip-138.pcap
+tshark -i eth0 -a duration:60 -f "port 5060" -w /home/freeswitch/sip-138.pcap
+tshark -i eth0 -a duration:60 -d udp.port==5060,sip -f "port 5060" -w /home/freeswitch/sip-138.pcap
+
+tshark -i eth0 -a duration:180 -z "sip,stat,ip.addr==114.25.131.91" -w /home/freeswitch/sip-aws.pcap
+tshark -i eth0 -a duration:180 -z "rtp,streams,ip.addr==114.43.60.160" -w /home/freeswitch/sip-aws.pcap
+tshark -i eth0 -a duration:180 -z "io,stat,ip.addr==114.43.60.160" -w /home/freeswitch/sip-aws.pcap
+
+tshark -i eth0 -a duration:60 -d udp.port==5060,sip -w /home/freeswitch/sip-aws.pcap
+
+( ip.addr == 192.168.66.37 ) && ( ( sip.Method == INVITE && sip.CSeq.seq == 1 ) || sip.Method == BYE )
+sip.Request-Line contains SUBSCRIBE
+
+bypass server tshark capture to desktop wireshark(verified):
+wireshark -k -i <(sshpass -p 'apexx1234' ssh -i ./amazon/HantekTaxi.pem root@54.251.196.151 "tcpdump -s0 -U -n -w - -i eth0 'host 114.43.55.245 and not tcp port 22'")
+
+bypass server tshark capture to desktop wireshark(verified), with SIP filter:
+wireshark -k -i <(sshpass -p 'apexx1234' ssh -i ./amazon/HantekTaxi.pem root@175.41.183.104 "tcpdump -s0 -U -n -w - -i eth0 'host 49.219.11.100 and tcp port 5060 or udp port 5060 and not tcp port 22'")
+
+SIP:
+wireshark -k -i <(sshpass -p 'apexx1234' ssh -i ./amazon/HantekTaxi.pem root@175.41.183.104 "tcpdump -s0 -U -n -w - -i eth0 'host 111.81.18.192 and tcp port 5060 or udp port 5060 and not tcp port 22'")
+
+verify the packets flow from host '114.43.72.246':
+wireshark -k -i <(sshpass -p 'apexx1234' ssh -i ./amazon/HantekTaxi.pem root@175.41.183.104 "tcpdump -s0 -U -n -w - -i eth0 'host 114.43.72.246 and not tcp port 22'")
+wireshark -k -i <(sshpass -p 'apexx1234' ssh -i ./HantekTaxi.pem root@54.251.196.151 "tcpdump -s0 -U -n -w - -i eth0 'not tcp port 22'")
