@@ -12,6 +12,14 @@ sudo groupadd wireshark
 sudo usermod -a -G wireshark bryan
 sudo chmod 750 /usr/bin/dumpcap
 # need to restart to take effect
+# sudo apt-get install --assume-yes wireshark
+sudo groupadd wireshark
+sudo usermod -a -G wireshark $USER
+sudo chgrp wireshark /usr/bin/dumpcap
+sudo chmod 750 /usr/bin/dumpcap
+sudo setcap cap_net_raw,cap_net_admin=eip /usr/bin/dumpcap
+sudo getcap /usr/bin/dumpcap
+# need to restart to take effect
 
 # common access card utility
 # ( https://goo.gl/t6WwO )
@@ -23,10 +31,6 @@ sudo apt-get -y install gstreamer0.10-plugins-base gstreamer0.10-plugins-good gs
 wget http://download.xnview.com/XnViewMP-linux-x64.deb
 sudo dpkg -i XnViewMP-linux-x64.deb
 
-# beyond compare
-wget http://www.scootersoftware.com/bcompare-4.1.6.21095_amd64.deb
-sudo dpkg -i bcompare-4.1.6.21095_amd64.deb
-
 # jdk
 sudo apt-get install openjdk-8-jdk
 # wget? android studio
@@ -34,3 +38,7 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ ./studio.sh
 
 # line chrome extension
 
+# git configuration
+git config --global diff.external meld
+cp ~/github/git/git-meld.sh ~
+git config --global diff.external ~/git-meld.sh
