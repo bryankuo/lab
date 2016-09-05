@@ -5,7 +5,7 @@ set noexpandtab
 syn on se title
 set incsearch ignorecase hlsearch
 set cursorline
-set guifont=DejaVu\ Sans\ Mono\ 12
+set guifont=DejaVu\ Sans\ Mono\ 24
 " Press space to clear search highlighting and any message already displayed.
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 filetype plugin indent on
@@ -68,4 +68,5 @@ nmap <F4> :TrinityToggleTagList<CR>
 
 " Open and close the NERD Tree separately
 nmap <F11> :TrinityToggleNERDTree<CR>
-
+source $VIMRUNTIME/mswin.vim
+behave mswin
