@@ -1,6 +1,6 @@
-set guifont=DejaVu\ Sans\ Mono\ 10
+set guifont=DejaVu\ Sans\ Mono\ 16
 set nu
-set shiftwidth=4 softtabstop=4
+set shiftwidth=8 softtabstop=8
 set incsearch ignorecase hlsearch
 " Press space to clear search highlighting and any message already displayed.
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>

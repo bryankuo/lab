@@ -1,2 +1,2 @@
 #!/bin/bash
-brew install homebrew/gui/meld
+brew install homebrew/gui/meld tree ctags

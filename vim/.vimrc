@@ -5,7 +5,8 @@ set noexpandtab
 syn on se title
 set incsearch ignorecase hlsearch
 set cursorline
-set guifont=DejaVu\ Sans\ Mono\ 12
+set guifont=DejaVu\ Sans\ Mono\ 14
+set background=dark
 " Press space to clear search highlighting and any message already displayed.
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 filetype plugin indent on
