@@ -1,0 +1,23 @@
+create an Android (or java) application project (ex.PlayerUnitTest)
+Add external jars uiautomator, android
+Add JUnit4 Library
+extends from UiAutomatorTestCase
+export ANDROID_HOME=/home/bryan/android/adt/sdk/
+cd $ANDROID_HOME/tools
+./android create uitest-project -n PlayerUnitTest -t 1 -p /home/bryan/workspace-indoor/PlayerUnitTest/
+UI test projects can only target API 16 and above
+( -t actually wants is a target ) / (android list targets)
+./android create uitest-project -n PlayerUnitTest -t 4 -p /home/bryan/workspace-indoor/PlayerUnitTest/
+(output build.xml and local.properties)
+
+./android create uitest-project -n APlayerUnitTest -t 4 -p /home/bryan/workspace-indoor/APlayerUnitTest/
+(create java project works as well)
+
+cd ~/workspace-indoor/APlayerUnitTest/ ; ant build
+
+adb push /home/bryan/workspace-indoor/APlayerUnitTest/bin/APlayerUnitTest.jar /data/local/tmp/
+
+cd ~/android/adt/sdk/platform-tools/
+
+adb shell uiautomator runtest APlayerUnitTest.jar -c com.apexx.test.PlayAndBackTestCase
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MultipleActivity</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="display_video_here">Display Video Here</string>
+    <string name="preference">Preference</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+
+</resources>

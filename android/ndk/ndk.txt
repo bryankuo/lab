@@ -1,0 +1,17 @@
+export NDK=/cygdrive/e/android/ndk/r8c
+cd /cygdrive/e/indigo/workspace/FFmpegTest/jni/
+/cygdrive/e/android/ndk/r8c/ndk-build clean
+/cygdrive/e/android/ndk/r8c/ndk-build -B V=1
+/cygdrive/e/android/ndk/r8c/ndk-build
+/cygdrive/e/android/ndk/r8c/ndk-build -B V=1 2>&1 | tee log.txt
+/cygdrive/e/android/ndk/r8c/toolchains/arm-linux-androideabi-4.6/prebuilt/windows/bin/arm-linux-androideabi-ld ../libs/armeabi/libffmpeg.so
+
+cd /cygdrive/e/android/ffmpeg/ffmpeg-0.10.6/tools
+cd /cygdrive/e/ffmpeg-0.10.6/tools
+./build_libstagefright 2>&1 | tee log.txt
+
+
+export NDK=~/android/ndk/r8d/ndk
+ndk-build clean
+~/android/ndk/r8d/ndk-build clean 
+~/android/ndk/r8d/ndk-build -B V=1 2>&1 | tee log.txt

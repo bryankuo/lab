@@ -1,0 +1,30 @@
+bryan@orion:~$ mkdir android-5.0.0_r6.0.1
+bryan@orion:~$ cd android-5.0.0_r6.0.1/
+repo init -u https://android.googlesource.com/platform/manifest -b android-5.0.0_r6.0.1
+mkdir source/android-4.4.3_r1.1
+bryan@orion:~$ mkdir source/android-4.4.3_r1.1
+bryan@orion:~$ cd source/android-4.4.3_r1.1
+repo init -u https://android.googlesource.com/platform/manifest -b android-4.4.3_r1.1
+repo sync
+prebuilts/misc/linux-x86/ccache/ccache -M 100G
+export OUT_DIR_COMMON_BASE=/home/out
+sudo apt-get install oracle-java6-set-default
+make -j8
+/dev/sdc5        15G   40M   15G    1% /tmp
+/dev/sdc6       565G  747M  535G    1% /home/out
+
+bryan@orion:~/source/android-4.4.3_r1.1$ git clone https://android.googlesource.com/kernel/goldfish.git kernel
+$ export PATH=$(pwd)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin:$PATH
+sudo gedit /etc/colorgcc/colorgccrc.android
+/home/bryan/source/android-4.4.3_r1.1/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-g++
+ln -s /usr/bin/colorgcc ~/bin/arm-eabi-g++
+ln -s /usr/bin/colorgcc ~/bin/arm-eabi-gcc
+ make goldfish_defconfig
+  Kernel: arch/arm/boot/zImage is ready
+emulator -kernel ./kernel/arch/arm/boot/zImage ?
+make goldfish_armv7_defconfig
+
+initial system image / system.img / ramdisk.img / userdata.img / sdcard.img
+emulator -kernel ./kernel/arch/arm/boot/zImage &
+
+

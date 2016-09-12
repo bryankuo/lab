@@ -1,0 +1,58 @@
+adb logcat -v time -s 'DialerFragment:V' | tee logcat.log
+
+adb logcat -v time -s 'DialerFragment:V AudioMTKStreamIn:D' | tee logcat.log
+
+adb -d logcat -v time -s 'com.hantek.ui.dialpad.DialerFragment:V' | tee logcat.log
+
+adb -d logcat -v time -s 'com.hantek.service:V *:V' | tee logcat.log
+
+to be verified:
+adb -s W8GM6TEUJ74TWC4L -d logcat -v time -s 'DialerFragment:V' -f /storage/sdcard0/CSipSimple/logcat.log 
+
+adb logcat -c
+
+seperate logcat for 2 devices:
+adb -s W8GM6TEUJ74TWC4L -d logcat -v time -s 'DialerFragment:V' | tee -a logcat-0117.log ; ( exit ${PIPESTATUS} )
+adb -s W8GM6TEUJ74TWC4L -d logcat -v time -s 'DialerFragment:V *:S' | tee -a logcat-0117.log ; ( exit ${PIPESTATUS} )
+
+adb -s 344bf -d logcat -v time -s 'DialerFragment:V' | tee -a logcat-0112.log ; ( exit ${PIPESTATUS} )
+(all logs:)
+adb -s 344bf -d logcat -v time | tee -a logcat-0112.log ; ( exit ${PIPESTATUS} )
+
+adb -s emulator-5554 -d logcat -v time -s 'DialerFragment:V' | tee -a logcat-emu.log ; ( exit ${PIPESTATUS} )
+adb -s emulator-5554 -d logcat -v time -s 'ListActivity:V *:S' | tee -a logcat-emu.log ; ( exit ${PIPESTATUS} )
+adb -s emulator-5554 -d logcat -v time -s 'ListActivity:V PlayerActivity:V PlayerView:V *:S' | tee -a logcat-emu.log ; ( exit ${PIPESTATUS} )
+adb -s emulator-5554 -d logcat -v time 'com.apexx.mobile:V com.apexx.jni:V' -s 'SingleClientConnManager:S'
+adb -s emulator-5554 -d logcat -v time 'com.apexx:V'
+adb -s emulator-5554 -d logcat -v time 'ListActivity:V PlayerActivity:V PlayerView:V APlayer:V Preferences:V Utility:V' -s "*:S"
+adb -s emulator-5554 -d logcat -v time 'PlayerActivity:V APlayer:V Preferences:V' -s "*:S"
+adb -s emulator-5554 -d logcat -v time 'ListActivity:V SnapShotAdapter:V APlayer:V Preferences:V Utility:V' -s "*:S"
+adb -s 0123456789ABCDEF -d logcat -v time 'PlayerView:V MediaPlayer.cpp:V' -s '*:S' | tee -a logcat-hxa3.log ; ( exit ${PIPESTATUS} )
+adb -s 0123456789ABCDEF -d logcat -v time 'ListActivity:V SnapShotThread:V SnapShotTimerTask:V' -s '*:S' | tee -a logcat-hxa3.log ; ( exit ${PIPESTATUS} )
+adb -s 0123456789ABCDEF -d logcat -v time 'ListActivity:V SnapShotThread:V SnapShotTimerTask:V PlayerActivity:V EntryActivity:V' -s '*:S' | tee -a logcat-hxa3.log ; ( exit ${PIPESTATUS} )
+adb -s c0808eefc61645f -d logcat -v time | tee -a logcat-sam.log ; ( exit ${PIPESTATUS} )
+adb -s 015d25787c1ff80c -d logcat -v time 'MessageBoxActivity:V entry:V' -s '*:S' | tee -a logcat-n7.log ; ( exit ${PIPESTATUS} )
+adb -s 0123456789ABCDEF -d logcat -v time 'DialerFragment:V' -s '*:S' | tee -a logcat-hxa3.log ; ( exit ${PIPESTATUS} )
+
+adb devices
+adb -s 0123456789ABCDEF -d shell service list
+
+telent localhost 5554
+quit
+
+Show available disk space in the device:
+adb -s W8GM6TEUJ74TWC4L shell df
+adb -s emulator-5554 shell getprop | grep dns
+adb -s 0123456789ABCDEF shell setprop net.wlan0.dns1 8.8.4.4
+adb -s emulator-5554 shell stagefright -l
+
+install apk command line/adb install apk to device:
+adb install example.apk
+adb -s W8GM6TEUJ74TWC4L install CMSV6Baidu6.3.0.6_20130927.apk
+adb -s 0123456789ABCDEF install APlayer.apk
+adb -s emulator-5554 install Tonesky20130713.apk
+
+list all installed packages in android adb shell:
+adb shell 'pm list packages -f' | wc -l
+
+
