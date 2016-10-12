@@ -1,0 +1,19 @@
+audio quality test
+
+TCP:
+server:
+iperf -s
+client:
+iperf -c 175.41.183.104 -d
+
+UDP:
+server:
+iperf -s -u -i 1
+client:
+iperf -c 175.41.183.104 -u -b 10m
+iperf -c 175.41.183.104 -u -b 1m
+iperf -c 192.168.66.138 -u -b 10m
+
+network performance test tool survey / iperf
+
+field audio quality test?

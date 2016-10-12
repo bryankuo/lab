@@ -1,0 +1,2 @@
+tidy -mice –asxhtml ./admin/sip_variables.html
+
