@@ -41,6 +41,8 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ ./studio.sh
 # line chrome extension
 
 # git configuration
+git config --global user.name "Bryan Kuo"
+git config --global user.email bryan.kuo@apexx.com.tw
 git config --global diff.external meld
 cp ~/github/git/git-meld.sh ~
 git config --global diff.external ~/git-meld.sh
