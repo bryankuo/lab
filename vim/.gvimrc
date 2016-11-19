@@ -6,5 +6,6 @@ set incsearch ignorecase hlsearch
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 filetype plugin on
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+"let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 let Tlist_WinWidth = 50
 map <F4> :TlistToggle<cr>
