@@ -1,0 +1,5 @@
+How to List all functions in a *.so C library:
+nm -DC --defined-only mod_conference.so
+nm -o mod_conference.so
+nm -list mod_conference.so
+nm -DC mod_conference.so

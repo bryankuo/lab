@@ -1,0 +1,25 @@
+ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+ctags -R --c++-kinds=+p --fields=+iaS --extra=+q jni/MediaPlayer/
+ctags -R --c++-kinds=+p --fields=+iaS --extra=+q jni/MediaPlayer/ jni/ffmpeg-0.11.1/
+ctags -R --c++-kinds=+p --fields=+iaS --extra=+q jni/
+ctags -R --c++-kinds=+p --fields=+iaS --extra=+q jni/ /usr/include
+ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --recurse=yes --languages=c++ --tag-relative=yes jni/
+ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --recurse=yes --languages=C++ --tag-relative=yes --verbose=yes --totals=yes ~/aosp/frameworks/av/media/libstagefright ~/aosp/frameworks/av/media/libmediaplayerservice
+
+ctags -R --c++-kinds=+p --fields=+Stima --extra=+q --recurse=yes --languages=C,C++ --langmap=C:.c.h --langmap=C++:.C.h.c.cpp.hpp.c++.cc.cp.cxx.h++.hh.hp.hxx --tag-relative=yes --verbose=yes --totals=yes ./src ./src/include ./libs
+
+ctags -R --language-force=java --fields=+iaS --extra=+q SipHome
+
+ctags -R --c++-kinds=+p --fields=+Stima --extra=+q --recurse=yes --languages=C,C++,java --langmap=C:.c.h --langmap=C++:.C.h.c.cpp.hpp.c++.cc.cp.cxx.h++.hh.hp.hxx --tag-relative=yes --verbose=yes --totals=yes ./android-ngn-stack ./Tonesky
+
+ctags -R --c++-kinds=+p --fields=+Stima --extra=+q --recurse=yes --languages=C,C++,java --langmap=C:.c.h --langmap=C++:.C.h.c.cpp.hpp.c++.cc.cp.cxx.h++.hh.hp.hxx --tag-relative=yes --verbose=yes --totals=yes ./src ./jni
+
+ctags -R --fields=+Stima --extra=+q --recurse=yes --languages=C, --langmap=C:.c.h --tag-relative=yes --verbose=yes --totals=yes ./OSourceCode/FreeSWITCH/ccgi_source/cgic/ ./ClosedSourceCode/cgic ./rfid_data_cloud_src
+
+ctags -R --fields=+Stima --extra=+q --recurse=yes --languages=C, --langmap=C:.c.h --tag-relative=yes --verbose=yes --totals=yes ./src/mod/applications/mod_esl/ src/mod/applications/mod_hash libs/esl 
+
+ctags -R --fields=+Stima --extra=+q --recurse=yes --languages=C, --langmap=C:.c.h --tag-relative=yes --verbose=yes --totals=yes ./src
+
+ctags -R --fields=+Stima --extra=+q --recurse=yes --languages=C, --langmap=C:.c.h --tag-relative=yes --verbose=yes --totals=yes .
+
+ctags -R -h ".php" --exclude=".svn" --totals=yes --verbose=yes --tag-relative=yes --PHP-kinds=+cf --regex-PHP='/abstract class ([^ ]*)/\1/c/' --regex-PHP='/interface ([^ ]*)/\1/c/' --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/' .

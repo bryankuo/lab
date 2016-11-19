@@ -1,0 +1,9 @@
+/etc/init.d/samba restart
+status
+nmbd? smbd?
+where is samba log?
+
+samba
+/etc/samba/smb.conf
+³¾­ôªºdocument
+smbpasswd, ª`·NÅv­­

@@ -3,7 +3,7 @@
 # development tools
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get --assume-yes install git libncurses5-dev default-jre fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-x libgstreamer0.10-0 vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2 mysql-workbench-community btrfs-tools unrar-free p7zip-full gnome-panel sshpass tshark tcpdump libtool autoconf xclip net-tools gnome-nettool
+sudo apt-get --assume-yes install git libncurses5-dev default-jre fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-x libgstreamer0.10-0 vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2 mysql-workbench-community btrfs-tools unrar-free p7zip-full gnome-panel sshpass tshark tcpdump libtool autoconf xclip net-tools gnome-nettool mediainfo mysql-workbench tree openssh-server
 
 # ethtool for wake on lan
 
@@ -41,6 +41,8 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ ./studio.sh
 # line chrome extension
 
 # git configuration
+git config --global user.name "Bryan Kuo"
+git config --global user.email bryan.kuo@apexx.com.tw
 git config --global diff.external meld
 cp ~/github/git/git-meld.sh ~
 git config --global diff.external ~/git-meld.sh

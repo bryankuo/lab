@@ -1,0 +1,6 @@
+Turn on port display:
+iftop -P
+
+pick ppp0 interface:
+sudo iftop -i ppp0
+

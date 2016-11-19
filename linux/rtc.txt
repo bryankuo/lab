@@ -1,0 +1,59 @@
+Clock event device timer0_0 configured with caps set: 08
+Switched to high resolution mode on CPU 0
+S-35390A 0-0030: setting the system clock to 2012-01-16 11:16:04 (1326712564)
+
+S-35390A 0-0030: setting the system clock to 2012-01-17 11:21:57 (1326799317)
+"Time: timer0_1 clocksource has been installed."
+kernel
+  timer.c
+Clock event device timer0_0 configured with caps set: 08
+Switched to high resolution mode on CPU 0
+
+kernel/time
+/etc/rc0.d/S25save-rtc.sh
+/etc
+  timestamp2/timestamp
+code reading
+how linux update time with rtc?
+/drivers
+  /rtc
+    rtc-35390a.c
+keyword search 'CONFIG_RTC_HCTOSYS'
+    hctosys.c
+    rtc-test.c    
+每個會設定時間的點都印出來
+  boot
+    (hwclock -s)
+  shutdown
+    (hwclock -w)
+  period
+    (drifting)
+  interrupt
+    frequency  
+  web page沒有refresh嗎? (less likely)
+  archimedes如何存取得?
+彼此之間有什麼關聯? What is the relation?
+man 4 rtc
+/proc/sys/dev/rtc/max-user-freq
+/proc/driver/rtc
+study kernel/Documentation/rtc.txt
+  key - the user process should check the number of interrupts received since the last read to determine if there has been any interrupt "pileup"
+  (我覺得應該是這個)/如何驗證?/(有說,開一個stream很多天就會發生)
+  key - 開了ntp,可能會延遲,或減少interrupt的產生
+  test rtctest.c / porting
+  test 故意開過一次ntp,再關掉,再開始測試(not found)
+  
+code reading /etc/init.d
+./include/linux/rtc.h
+what is kernel hrtimer?
+/sbin/hwclock
+
+trace hwclock source
+place rtc check log at /media/log / how to access log?
+google search '+embedded +linux +rtc +slow'
+google search '+embedded +linux +rtc +accuracy +slow +latency'
+
+
+
+
+

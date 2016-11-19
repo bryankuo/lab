@@ -1,0 +1,41 @@
+quick way
+(http://loongtw.blogspot.com/2009/02/ubuntunfs.html)
+(https://help.ubuntu.com/8.04/serverguide/C/network-file-system.html)
+
+server/client
+(http://ithelp.ithome.com.tw/question/10031797)
+
+Start with: apt-get install nfs-kernel-server
+/etc/init.d/nfs-kernel-server restart
+warning does not support nfs export
+Have you tried renaming the folder to have an underscore and export that?
+switched to ext4 and I'm getting this error. Any ideas?
+i thought maybe /etc/hosts.allow was the issue, at first, but   nfsd: ALL  does nothing.
+mount -l
+
+(http://www.uluga.ubuntuforums.org/showthread.php?t=1312462)
+i thought maybe /etc/hosts.allow was the issue, at first, but
+cat /etc/hosts.allow
+
+Client Info: cat /etc/fstab
+mount -a
+
+NEWS.Debian.gz 裡有提到的 
+* Exports default to "sync", that is, synchronous writes. 
+This is safer but MUCH SLOWER than the old default of "async". 
+All exports should be marked as either "sync" or "async" to 
+avoid a warning from exportfs. 
+/ubuntu  *(ro,sync,no_root_squash)
+/home    *(rw,sync,no_root_squash)
+
+google exportfs: /etc/exports [1]: Neither 'subtree_check' or 'no_subtree_check" specified for export "*:/aaa"
+
+FUSE project - Filesystem in Userspace
+(http://fuse.sourceforge.net/)
+
+(http://ubuntuforums.org/showthread.php?t=597298)
+The Ubuntu kernel unfortunately doesn't support NFS exports of FUSE based file systems.
+
+(http://forums.debian.net/viewtopic.php?f=5&t=36951)
+Please consider the sshfs system, from the FUSE project.
+NFS and Samba are old and busted.
