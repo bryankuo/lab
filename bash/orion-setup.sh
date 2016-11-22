@@ -46,3 +46,8 @@ git config --global user.email bryan.kuo@apexx.com.tw
 git config --global diff.external meld
 cp ~/github/git/git-meld.sh ~
 git config --global diff.external ~/git-meld.sh
+
+# linphone binary
+sudo add-apt-repository ppa:linphone/release
+sudo apt-get update
+sudo apt-get install linphone -y
