@@ -51,3 +51,6 @@ git config --global diff.external ~/git-meld.sh
 sudo add-apt-repository ppa:linphone/release
 sudo apt-get update
 sudo apt-get install linphone -y
+
+# android studio
+sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
