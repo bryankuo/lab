@@ -1,0 +1,9 @@
+sudo apt-get install liblivemedia-utils
+openRTSP -u admin admin rtsp://192.168.66.181/default-0
+openRTSP -4 -w 1920 -h 1080 -f 30 -u admin admin rtsp://192.168.66.181/default-0 > default-0.mp4
+openRTSP -4 -w 640 -h 480 -f 30 -u admin admin rtsp://192.168.66.181/default-1 > default-1.avi
+
+ffplay rtsp://admin:admin@192.168.66.181/default-0
+
+//??
+ffmpeg -i rtsp://192.168.66.181/default-0 -y -vcodec copy -f avi out0.avi
