@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+   <HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <TITLE>
+         A Small Hello, My own invest tools 16.04 lts
+      </TITLE>
+
+<style type="text/css">
+object.chromium {
+	width: 800px;
+	height: 500px;
+}
+object.mozilla {
+	width: 800px;
+	height: 200px;
+}
+</style>
+	<link rel="stylesheet" type="text/css" href="tstyle.css">
+   </HEAD>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#showall').click(function () {
+		//
+		//alert($('a[href*="http"]').length);
+		//$('a[href*="http"]').each(function() {
+		$('a[class="stock"]').each(function() {
+//alert('hi');
+			//alert($(this).attr("href"));
+			window.open($(this).attr("href"), '_blank');
+			//    var clk = document.createEvent("MouseEvents");
+			//    clk.initMouseEvent("click", false, true, window, 0, 0, 0, 0, 0, true, false, false, true, 0, null);
+			//    this.dispatchEvent(clk);
+		})
+	});
+	$('#showMSCIlast10').click(function () {
+		// data source url
+		var url = '<object class="chromium" data="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=';
+		var symbol = '';
+		//alert( $(".site").length );
+		$( "div.site" ).each(function( index ) {
+			symbol = $(this).attr("symbol");
+			$(this).html(url+symbol+'&b=3">');
+		});
+
+	});
+	$('#timely').click(function () {
+		if ($(this).is(':checked')) {
+		    // Do stuff
+			//alert('start update!');
+			updateQuotes();
+		  }
+		else
+		{
+			//alert('stop update!');
+		}
+	});
+
+	function updateQuotes()
+	{
+		//alert('updateQuotes! '+$('#seconds').val());
+		//$( ".symbol" ).each(function( index ) {
+			//console.log( index + ": " + $( this ).attr('href') );
+		$.get( "latest_quotes.html", function( data ) {
+			$( ".result" ).html( data );
+		});
+		//});
+		if ($('#timely').is(':checked'))
+			window.setTimeout(updateQuotes, $('#seconds').val()*1000);
+	}
+	updateQuotes();
+});
+</script>
+<BODY>
+   <H1>My own investing tools</H1>
+   <P>This is very minimal "hello world" HTML document. </P>
+<p><h2> Info Of Interest </h2></p>
+<table class="ex1" id="tw">
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">XE Currency Charts (USD/TWD)</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://stock.wearn.com/taifexphoto.asp">台指期未平倉圖表</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://rate.bot.com.tw/xrt?Lang=zh-TW">台銀營業時間牌告匯率</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://tw.stock.yahoo.com/q/ta?s=00632R">00632R元大台灣50反1</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=5871&b=3">中租-KY(5871)法人持股走勢(近20日)</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://goo.gl/BGMFSq">MSCI台股指數成份股</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://goo.gl/WmuvKW">yam-MSCI台指成份股</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://goo.gl/w13tuK">台股權值前100名</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://www.stockq.org/">StockQ國際股市走勢</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://tinyurl.com/zgxs4sd">巴菲特班-同學討論區</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://www.msci.com/index-review">MSCI quaterly index review</a>
+		</td>
+		<td width="20%">
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+	</tr>
+</table>
+<p><h2> United States Stocks </h2></p>
+<table class="ex1" id="us">
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://www.schwab.com/public/schwab/client_home">charles & SCHWAB</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">XE Currency Charts (USD/TWD)</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://www.marketwatch.com/investing/stocks">Market Watch</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://rate.bot.com.tw/xrt?Lang=zh-TW">台銀營業時間牌告匯率</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://tinyurl.com/j9mnz4c">BNY MELLON</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="http://tinyurl.com/zgxs4sd">巴菲特班-同學討論區</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://www.msci.com/index-review">MSCI quaterly index review</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://finance.yahoo.com/quote/%5EVIX/news?p=%5EVIX">VIX Index</a>
+		</td>
+		<td width="20%">
+		</td>
+		<td width="20%">
+		</td>
+	</tr>
+</table>
+<p><h2> Worldwide Indexes </h2></p>
+<table>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="http://www.cnyes.com/futures/flashchart/BDI.html">波羅的海-乾散裝型(Dry)</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://chart.dramexchange.com/dxi2png.php">集邦DXI指數</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://tinyurl.com/zrk4aeu">NASDAQ Biotechnology Index</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://goo.gl/B9eWun">CRU國際鋼材指數</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://histock.tw/index/USDX">美元指數</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="http://tinyurl.com/jdxf9jx">google finance my portfolio</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://tinyurl.com/gl94b3r">Google Finance Stock Screener</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://finviz.com/">finviz</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://finviz.com/screener.ashx?v=111&ft=4">finviz stock screener</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://markets.ft.com/data/equities?expandedScreener=true">Financial Times Screener - Equities</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="http://financials.morningstar.com/">MorningStar</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="http://www.macromicro.me/etf">各國股市ETF</a>
+		</td>
+		<td width="20%">
+		</td>
+		<td width="20%">
+		</td>
+		<td width="20%">
+		</td>
+	</tr>
+</table>
+
+<P></P>
+<h2> My US Stock quote Ticker </h2>
+<input type="checkbox" id="timely" name="timely" value="">Update every <input type="text" id="seconds" value="300" style="width: 50px;"> seconds<br>
+      <div class="result">
+      </div>
+</div>
+   <P></P>
+   <h2> Research a Stock </h2>
+   Symbol: <input type="text" name="lname">
+   <button type="button" id="showall">Click to Research</button><BR>
+
+
+   <P></P>
+   <h2> Stocks </h2>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=9933">9933中鼎</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2448">2448晶電</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1704">1704榮化</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=4706">4706大恭</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=3030">3030德律</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1236">1236宏亞</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=5871">5871中租-KY</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2850">2850新產</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1535">1535中宇</a><BR>
+	<P></P>
+	<button type="button" id="showall">Show All</button><BR>
+
+	<h2> MSCI台股指數成份股-倒數10名-法人動態</h2>
+	<button type="button" id="showMSCIlast10">Show All</button><BR>
+	<!-- // data source url -->
+	090:<BR><div id="siteloader091" class="site" symbol="6121"></div><BR>
+	089:<BR><div id="siteloader092" class="site" symbol="5264"></div><BR>
+	093:<BR>
+	<div id="siteloader093"></div><BR>
+	094:<BR>
+	<div id="siteloader094"></div><BR>
+	095:<BR>
+	<div id="siteloader095"></div><BR>
+	096:<BR>
+	<div id="siteloader096"></div><BR>
+	097:<BR>
+	<div id="siteloader097"></div><BR>
+	098:<BR>
+	<div id="siteloader098"></div><BR>
+	099:<BR>
+	<div id="siteloader099"></div><BR>
+	100:<BR>
+	<div id="siteloader100"></div><BR>
+</BODY>
+</HTML>
