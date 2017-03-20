@@ -1,0 +1,11 @@
+/etc/init.d/apache2 restart
+apache httpd.conf file
+在裝好 Apache2 之後，Apache2 的設定檔會存放在 /etc/apache2，裡面有一個 apache2.conf 檔是整個 Apache2 的設定檔，
+一般來說是不用去動它的，如果要調設定的話，是要到 /etc/apache2/sites-available 裡去調的，
+預設的網站是調 /etc/apache2/sites-available/default 這個檔的，而這個檔就等同是 httpd.conf，只是命名方式不同而已哩 !!
+4個檔,是哪一個?
+
+備份 / default / 改default-ssl(猜) / ssl更接近, 先試 / + copy default回來 test
+網頁權限 755
+使用原來的default ok / 僅改/etc/apache2/sites-available/ssl檔案
+使用原來的default 其實不ok, 目前已知defaul, ssl, site-available, 跟site-enable都需要注意一下

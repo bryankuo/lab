@@ -1,0 +1,40 @@
+table {
+    border-collapse: separate;
+    width: 100%;
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
+}
+
+table.ex1 {
+    table-layout: auto;
+}
+
+table.ex2 {
+    table-layout: fixed;
+}
+
+#css_table {
+      display:table;
+  }
+.css_tr {
+      display: table-row;
+  }
+.css_td {
+      display: table-cell;
+     width: 100px;
+}
+
+.buy {
+	color: green;
+}
+
+.sale {
+	color: red;
+}
+
+.alert {
+	color: orange;
+}
