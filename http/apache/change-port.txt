@@ -1,3 +1,0 @@
-/etc/apache2/apache2.conf
-port.conf
-000-enable.conf д]нnзя
