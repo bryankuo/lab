@@ -72,4 +72,5 @@ nmap <F4> :TrinityToggleTagList<CR>
 " Open and close the NERD Tree separately
 nmap <F11> :TrinityToggleNERDTree<CR>
 source $VIMRUNTIME/mswin.vim
+set encoding=utf-8
 behave mswin
