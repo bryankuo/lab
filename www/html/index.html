@@ -9,7 +9,7 @@
 <style type="text/css">
 object.chromium {
 	width: 800px;
-	height: 500px;
+	height: 1600px;
 }
 object.mozilla {
 	width: 800px;
@@ -42,8 +42,13 @@ $(document).ready(function() {
 		//alert( $(".site").length );
 		$( "div.site" ).each(function( index ) {
 			symbol = $(this).attr("symbol");
-			$(this).html(url+symbol+'&b=3">');
+			$(this).html(url+symbol+'&b=4">');
 		});
+
+	});
+	$('#extract').click(function () {
+		var url = '<object class="chromium" data="http://tinyurl.com/mbgcmcg">';
+		$("#top500").html(url);
 
 	});
 	$('#timely').click(function () {
@@ -71,6 +76,7 @@ $(document).ready(function() {
 			window.setTimeout(updateQuotes, $('#seconds').val()*1000);
 	}
 	updateQuotes();
+	$("#showMSCIlast10").trigger("click");
 });
 </script>
 <BODY>
@@ -242,26 +248,18 @@ $(document).ready(function() {
 	<P></P>
 	<button type="button" id="showall">Show All</button><BR>
 
-	<h2> MSCI台股指數成份股-倒數10名-法人動態</h2>
+	<h2> MSCI台股指數成份股增刪候選名單-法人動態</h2>
 	<button type="button" id="showMSCIlast10">Show All</button><BR>
 	<!-- // data source url -->
-	090:<BR><div id="siteloader091" class="site" symbol="6121"></div><BR>
-	089:<BR><div id="siteloader092" class="site" symbol="5264"></div><BR>
-	093:<BR>
-	<div id="siteloader093"></div><BR>
-	094:<BR>
-	<div id="siteloader094"></div><BR>
-	095:<BR>
-	<div id="siteloader095"></div><BR>
-	096:<BR>
-	<div id="siteloader096"></div><BR>
-	097:<BR>
-	<div id="siteloader097"></div><BR>
-	098:<BR>
-	<div id="siteloader098"></div><BR>
-	099:<BR>
-	<div id="siteloader099"></div><BR>
-	100:<BR>
-	<div id="siteloader100"></div><BR>
+	01:<BR><div id="siteloader091" class="site" symbol="2888" style=""></div><BR>
+	<P>
+	02:<BR><div id="siteloader092" class="site" symbol="2707"></div><BR><P>
+	03:<BR><div id="siteloader093" class="site" symbol="2633"></div><BR><P>
+
+	<h2> test - extract 熱門排行 – 公司總市值最高</h2>
+	<button type="button" id="extract">Get Table</button><BR>
+	<!-- // data source url -->
+	01:<BR><div id="top500" class="" style="width: 800; height: 1600px;"></div><BR>
+	<P>
 </BODY>
 </HTML>

@@ -120,4 +120,7 @@ do
 done < "$INPUT_FILE"
 
 printf "</div>\n" >> $OUTPUT_F
+
+# sudo systemctl start apache2.service
+# bash launch browser
 exit 0;

@@ -20,15 +20,15 @@ http and ( ip.src_host == 192.168.1.212 and ip.dst_host == 192.168.1.183 )
 ip.src_host == 192.168.1.183 and http
 =============================================================================
 Capture IPv6 based traffic only:
-ip6 
+ip6
 Capture IPv6 based traffic only:
- ip6 
+ ip6
 Capture only the IPv6 based traffic to or from host fe80::1:
- host fe80::1 
+ host fe80::1
 Capture IPv6-over-IPv4 tunneled traffic only:
- ip proto 41 
+ ip proto 41
 Capture native IPv6 traffic only:
- ip6 and not ip proto 41 
+ ip6 and not ip proto 41
 =============================================================================
 SSDP capture filter:
 udp port 1900
@@ -57,3 +57,6 @@ host 192.168.1.100 and tcp
 =============================================================================
 上午 09:50 2011/9/27
 如何使用wireshar計算某一段時間內的bitrate嗎?
+
+ssh root@192.168.66.200 tcpdump -U -s0 -w - 'not port 22' | wireshark -k -i -
+
