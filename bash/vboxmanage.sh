@@ -1,7 +1,6 @@
-vboxmanage controlvm "<VM Name 1>" poweroff
 vboxmanage controlvm
 vboxmanage list runningvms
 vboxmanage list vms
-vboxmanage controlvm "tt-ha2" poweroff
 vboxmanage startvm "c67i386dev" --type headless
 vboxmanage controlvm "w7u32bitMpoll" poweroff
+vboxmanage export tt-ippbx2 -o ~/Documents/Centos68-x86/tatung/cluster/ippbx/tt-ippbx2.ova
