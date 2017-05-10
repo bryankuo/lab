@@ -6,7 +6,7 @@ vboxmanage list runningvms
 vboxmanage list vms
 vboxmanage startvm "c67i386dev" --type headless
 vboxmanage export tt-ippbx2 -o ~/Documents/Centos68-x86/tatung/cluster/ippbx/tt-ippbx2.ova
-
+vboxmanage export tt-ha1v tt-ha2v -o ~/Documents/Centos68-x86/tatung/cluster/ha/tt-ha12v.ova --ovf20 --manifest --vsys 2
 # vboxmanage list snapshot
 vboxmanage snapshot "tt-ha2v" list
 # vboxmanage restore snapshot
