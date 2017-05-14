@@ -1,0 +1,9 @@
+[user]
+	name = Bryan Kuo
+	email = bryan.kuo@apexx.com.tw
+[diff]
+	external = /home/bryan/git-meld.sh
+[log]
+  date = relative
+[format]
+  pretty = format:%h %Cblue%ad%Creset %Cgreen%s%Creset
