@@ -1,0 +1,15 @@
+curl -d @g.xml "http://192.168.66.100:80"
+curl --user admin:123456 -d @g.xml "http://192.168.66.100:80"
+curl -X POST --user admin:123456 -d @g.xml "http://192.168.66.100:80"
+//working
+curl -X POST --user admin:123456 -d @t.xml "http://192.168.66.100:80/onvif/device_service"
+//refine
+curl -X POST --user admin:123456 -d @t.xml -o r.xml "http://192.168.66.100:80/onvif/device_service"
+xmllint --format r.xml > r1.xml
+curl -X POST --user admin:123456 --digest -d @t.xml -o r3.xml "http://192.168.66.100:80/onvif/device_service"
+curl -X POST -H "Content-Type:application/soap+xml" --user admin:123456 @t.xml -o r5.xml --location "http://192.168.66.100:80/onvif/device_service"
+
+curl -X POST -H "Content-Type:application/soap+xml" --user admin:123456 -d @"./stub/devicemgmt/DeviceBinding.GetDeviceInformation.req.xml" -o "./curl/devicemgmt/DeviceBinding.GetDeviceInformation.res.unident.xml" --location "http://192.168.66.100:80/onvif/device_service"
+xmllint --format ./curl/devicemgmt/DeviceBinding.GetDeviceInformation.res.unident.xml > ./curl/devicemgmt/DeviceBinding.GetDeviceInformation.res.xml
+rm -f ./curl/devicemgmt/DeviceBinding.GetDeviceInformation.res.unident.xml
+curl -X GET http://192.168.66.182/rest/snapshot/Profile0  --digest --user admin:admin -o Profile0.jpg

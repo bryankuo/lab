@@ -1,0 +1,23 @@
+. 利用 PC / curl 來做測試，GET/POST/PUT/DELETE 都可以
+  curl --get http://192.168.66.186/rest/echo --user test:1234     (GET method)
+  curl -X GET http://192.168.66.186/rest/echo --user test:1234 (--digest)
+  curl -X POST http://192.168.66.186/rest/echo --user test:1234 --data "post test"    (post 需要 data)
+  curl -X POST http://192.168.66.114/rest/reboot --user admin:admin --data " "
+  curl -X PUT http://192.168.66.186/rest/echo --user test:1234
+  curl -X DELETE http://192.168.66.186/rest/echo --user test:1234
+
+  curl -X GET http://192.168.66.113/rest/sysinfo
+  curl -X POST http://192.168.66.113/rest/network --user test:1234 -data-ascii '{"ipv4":{"pppoe":false,"username":"","password":"","dhcp":false,"address":"192.168.66.113","netmask":"255.255.255.0","gateway":"192.168.66.20","primary_dns":"168.95.1.1","secondary_dns":"139.175.55.244"}}'
+  
+. config upload test，目前只接受這種傳法
+  curl --verbose -F "name=@ApexxCam368-0.5.1.img" http://192.168.66.184/rest/config
+  curl --verbose -F "name=@config.text" http://192.168.66.184/rest/config
+
+. /rest/talk get
+  curl --verbose -X GET http://192.168.66.180/rest/talk/query
+  curl --verbose -X GET http://192.168.66.180/rest/talk/create
+. /rest/talk post
+  curl --verbose -X POST http://192.168.66.180/rest/talk -data-ascii '{"talk":{"audio_codec":"mulaw","audio_port":0,"video_codec":"none","video_port":0,"token":"0x3cc50","timeout":15}}'
+  
+  curl -X GET http://192.168.66.210/rest/mjpg/stream1/stream
+  curl -X GET http://192.168.66.210/rest/config/binary  --digest --user admin:admin
