@@ -20,8 +20,12 @@ ssh-copy-id root@$DST_HOST
 ssh-copy-id $USER@$DST_HOST
 
 # destination
+# offline:
 chmod 755 /home/$USER
 chmod 700 /home/$USER/.ssh/
 chmod 700 /home/$USER/.ssh/authorized_keys
-
+# online ( partition changed ):
+cp -R .ssh/ /tmp/
+# cluster down,  then mount (up)
+mv /tmp/.ssh/ .
 exit 0;
