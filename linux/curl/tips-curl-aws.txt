@@ -1,0 +1,14 @@
+example: change user '0111' password to '0111s9001'
+
+to verify with browser:
+http://54.251.196.151:8081/txtapi/system?%20fspasswd%200111%200111s9001
+(username: operator, password: do*work9)
+
+to verify with curl:
+curl -X GET --location "http://54.251.196.151:8081/txtapi/system?%20fspasswd%200111%200111s9001" --user "operator:do*work9" -o req.out
+
+or to verify with curl:
+curl -X GET --location "http://54.251.196.151:8081/txtapi/system?%20fspasswd%200111%200111s9001" --user "operator:do*work9" -o req.out
+
+outcome:
+'+OK [Success]' for change password successfully, otherwise is failed.

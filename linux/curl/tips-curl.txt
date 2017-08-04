@@ -1,0 +1,30 @@
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00 list" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/license.txt" --user freeswitch:works
+curl -X GET --location "http://54.251.196.151:8080/webapi/status" --user freeswitch:works -o req.out
+curl -X GET --location "http://freeswitch:works@54.251.196.151:8080/webapi/status" -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/status" --user freeswitch:works -o req.out
+
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/api/conference" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?list" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/xmlapi/http://54.251.196.151:8080/webapi/conference?00%20list" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20list" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20kick%202" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20kick%201" --user freeswitch:works -o req.out
+
+recording(NG,freeswitch crash):
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20chkrecord" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20norecord%20/usr/local/freeswitch/recordings/00_2013-11-08-14-08-40.wav" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20norecord%20all" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20record%20start" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20record%20stop" --user freeswitch:works -o req.out
+
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20lock" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/conference?00%20unlock" --user freeswitch:works -o req.out
+
+curl -X GET --location "http://54.251.196.151:8080/txtapi/system?ls%20-lt" --user freeswitch:works -o req.out
+curl -X GET --location "http://54.251.196.151:8080/txtapi/system?ps" --user freeswitch:works -o req.out
+
+curl -X GET --location "http://54.251.196.151:8080/txtapi/system?sed%20stdout" --user freeswitch:works -o req.out
+
+

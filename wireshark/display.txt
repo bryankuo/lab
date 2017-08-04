@@ -34,3 +34,6 @@ sip.Request-Line contains SUBSCRIBE
 ( ip.src == 192.168.66.201 and ip.dst == 192.168.66.221 and tcp.dstport == 37899 ) or ( ip.src == 192.168.66.221 and ip.dst == 192.168.66.201 )
 =============================================================================
 ( TCP || TLSv1.2 ) && ( ip.src == 192.168.66.105 and ip.dst == star.c10r.facebook.com and tcp.dstport ==  ) or ( ip.src == star.c10r.facebook.com and ip.dst == 192.168.66.105 )
+
+http.request.uri contains ""
+http && ip.src_host == 192.168.66.201 && ip.dst_host == 192.168.66.33
