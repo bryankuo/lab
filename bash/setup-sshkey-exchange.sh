@@ -9,6 +9,8 @@ DST_HOST=tt-ha2
 cd ~
 # (all)
 ssh-keygen -t rsa
+# create another for drbd backed partition:
+# ssh-keygen -t 'rsa' -f .ssh/id_rsa_drbd
 # (enter)
 # (enter)
 
@@ -28,6 +30,8 @@ sudo service sshd restart
 # sudo -i
 ssh-copy-id root@$DST_HOST
 ssh-copy-id $USER@$DST_HOST
+# ssh-copy-id -i .ssh/id_rsa_drbd root@tt-ha2
+# ssh-copy-id -i .ssh/id_rsa_drbd apexx@tt-ha2
 
 # (offline, destination, user, directory, file):
 # ls -latr /home/
