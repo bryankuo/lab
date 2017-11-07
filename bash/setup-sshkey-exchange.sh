@@ -28,15 +28,21 @@ sudo service sshd restart
 # PermitRootLogin yes to allow login manually via ssh
 # sudo sed -i "42s/.*/PermitRootLogin yes/" /etc/ssh/sshd_config
 # sudo -i
+# copy public key
 ssh-copy-id root@$DST_HOST
 ssh-copy-id $USER@$DST_HOST
-# ssh-copy-id -i .ssh/id_rsa_drbd root@DST_HOST
-# ssh-copy-id -i .ssh/id_rsa_drbd $USER@DST_HOST
+# can not use this name, or you will have to specify the file like:
+# ssh -v -v -v -i .ssh/id_rsa_drbd tt-ippbx2 -- sudo shutdown -Fah now;
+# openssh is hardcoded with 'id_rsa'
+# ssh-copy-id -i .ssh/id_rsa_drbd.pub root@DST_HOST
+# ssh-copy-id -i .ssh/id_rsa_drbd.pub $USER@DST_HOST
 
 # (offline, destination, user, directory, file):
-# ls -latr /home/
+# ls -latr /home/ , 755
+# sudo chown apexx:apexx /home/apexx ?
 chmod 755 /home/$USER
-# ls -latr /home/apexx/
+# ls -latr /home/apexx/, (note the ownership)
+# sudo chown -R apexx:apexx /home/apexx/.ssh/ ?
 chmod 700 /home/$USER/.ssh/
 # ls -latr /home/apexx/.ssh/authorized_keys
 chmod 700 /home/$USER/.ssh/authorized_keys
