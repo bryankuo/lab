@@ -13,3 +13,4 @@ curl -X POST -H "Content-Type:application/soap+xml" --user admin:123456 -d @"./s
 xmllint --format ./curl/devicemgmt/DeviceBinding.GetDeviceInformation.res.unident.xml > ./curl/devicemgmt/DeviceBinding.GetDeviceInformation.res.xml
 rm -f ./curl/devicemgmt/DeviceBinding.GetDeviceInformation.res.unident.xml
 curl -X GET http://192.168.66.182/rest/snapshot/Profile0  --digest --user admin:admin -o Profile0.jpg
+curl --digest -u "admin:admin" --location "http://192.168.8.102/cgi-bin/admin/logisticsIF?op=mrd&type=doorphone&uid=abcd1234"
