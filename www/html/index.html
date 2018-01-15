@@ -15,6 +15,36 @@ object.mozilla {
 	width: 800px;
 	height: 200px;
 }
+		/* DivTable.com */
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
 </style>
 	<link rel="stylesheet" type="text/css" href="tstyle.css">
    </HEAD>
@@ -63,8 +93,7 @@ $(document).ready(function() {
 		}
 	});
 
-	function updateQuotes()
-	{
+	function updateQuotes() {
 		//alert('updateQuotes! '+$('#seconds').val());
 		//$( ".symbol" ).each(function( index ) {
 			//console.log( index + ": " + $( this ).attr('href') );
@@ -78,11 +107,27 @@ $(document).ready(function() {
 	updateQuotes();
 	$("#showMSCIlast10").trigger("click");
 });
+
+    $(function(){
+      $("#includeTWSE").load("twse.html");
+    });
+
+    $(function(){
+      $("#includeTWSE").load("us.html");
+    });
+
+function jump(h){
+/*    var url = location.href;               //Save down the URL without hash.
+    location.href = "#"+h;                 //Go to the target element.
+    history.replaceState(null,null,url);   //Don't like hashes. Changing it back.*/
+    var top = document.getElementById(h).offsetTop; //Getting Y of target element
+    window.scrollTo(0, top);
+}
 </script>
 <BODY>
    <H1>My own investing tools</H1>
    <P>This is very minimal "hello world" HTML document. </P>
-<p><h2> Info Of Interest </h2></p>
+<p><h2> Taiwan Stock Exhanges </h2></p>
 <table class="ex1" id="tw">
 	<tr>
 		<td width="20%">
@@ -92,10 +137,10 @@ $(document).ready(function() {
 			<a target="_blank" href="http://stock.wearn.com/taifexphoto.asp">台指期未平倉圖表</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="http://rate.bot.com.tw/xrt?Lang=zh-TW">台銀營業時間牌告匯率</a>
+			<a target="_blank" href="http://sod.nsc.com.tw/z/zm/zmd/zmdb.djhtm">台股權值100大排行榜</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="https://tw.stock.yahoo.com/q/ta?s=00632R">00632R元大台灣50反1</a>
+			<a target="_blank" href="http://sod.nsc.com.tw/z/zc/zck/zck_1815.djhtm">董監事經理人及大股東持股明細</a>
 		</td>
 		<td width="20%">
 			<a target="_blank" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=5871&b=3">中租-KY(5871)法人持股走勢(近20日)</a>
@@ -103,13 +148,13 @@ $(document).ready(function() {
 	</tr>
 	<tr>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/BGMFSq">MSCI台股指數成份股</a>
+			<a target="_blank" href="https://goo.gl/y8pg4F">MSCI台股指數成份股</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="http://goo.gl/WmuvKW">yam-MSCI台指成份股</a>
+			<a target="_blank" href="https://goo.gl/ClkEcE">元大中型100 成分股</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="http://goo.gl/w13tuK">台股權值前100名</a>
+			<a target="_blank" href="https://goo.gl/wtJjAx">熱門排行 – 公司總市值最高</a>
 		</td>
 		<td width="20%">
 			<a target="_blank" href="http://www.stockq.org/">StockQ國際股市走勢</a>
@@ -123,9 +168,27 @@ $(document).ready(function() {
 			<a target="_blank" href="https://www.msci.com/index-review">MSCI quaterly index review</a>
 		</td>
 		<td width="20%">
+			<a target="_blank" href="https://goo.gl/o3HwY">臺灣證交所加權股價指數成分股暨市值比重</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href=""></a>
+			<a target="_blank" href="https://goo.gl/DstXka">台股權值100大排行榜</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://goo.gl/MSLFgS">撿股讚</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://goo.gl/r1rr9m">MoneyDJ財經百科</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="">&nbsp;</a>
+		</td>
+		<td width="20%"> <!-- onclick="jumpto('twse'); -->
+			<a target="_blank" href="#includeTWSE">My TW Stock quote Ticker </a>
+		</td>
+		<td width="20%">
+
 		</td>
 		<td width="20%">
 			<a target="_blank" href=""></a>
@@ -165,6 +228,27 @@ $(document).ready(function() {
 			<a target="_blank" href="http://finance.yahoo.com/quote/%5EVIX/news?p=%5EVIX">VIX Index</a>
 		</td>
 		<td width="20%">
+			<a target="_blank" href="http://stockcharts.com/freecharts/seasonality.php">StockChart季節性圖表工具(Seasonality Chart)</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://client.schwab.com/Login/SignOn/CustomerCenterLogin.aspx">Charles Schwab Client Login</a>
+		</td>
+	</tr>
+
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://goo.gl/S1yoxf">MoneyDj美國股市個股基本資料</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://www.sec.gov/">U.S. Securities and Exchange Commission</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://goo.gl/xFPctz">The Motely Fool</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="#includeWorld">My World Stock Quotes</a>
+			<!-- format issue -->
+			<!-- <a target="_blank" href="http://localhost/us.html">My World Stock Quotes</a> -->
 		</td>
 		<td width="20%">
 		</td>
@@ -214,6 +298,7 @@ $(document).ready(function() {
 			<a target="_blank" href="http://www.macromicro.me/etf">各國股市ETF</a>
 		</td>
 		<td width="20%">
+			<a target="_blank" href="https://goo.gl/tXCzJV">Crude Oil Price</a>
 		</td>
 		<td width="20%">
 		</td>
@@ -261,5 +346,8 @@ $(document).ready(function() {
 	<!-- // data source url -->
 	01:<BR><div id="top500" class="" style="width: 800; height: 1600px;"></div><BR>
 	<P>
+	<div id="includeTWSE"></div>
+	<P>
+	<div id="includeWorld"></div>
 </BODY>
 </HTML>

@@ -1,0 +1,65 @@
+
+=== 備份 ===
+backup all db on 161:
+mysqldump -u root -pphpmysql -–all-databases > 161.sql
+
+backup db 'street_light_control' only:
+mysqldump -u root -pphpmysql street_light_control > street_light_control.sql
+
+backup db 'db_usr' only:
+mysqldump -u root -pphpmysql db_usr > db_usr.sql
+=== 備份 ===
+
+
+show database
+drop database street_light_control
+
+use mysql;
+select user from user;
+select user, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, File_priv, Alter_priv from user;
+select user, Select_priv, Insert_priv, Update_priv, Delete_priv, File_priv, Alter_priv from user;
+
+
+
+== 注意,別塞爆了! ==
+mysql -u root -pphpmysql street_light_control < street_light_control.sql
+
+
+mysql -u root -pphpmysql street_light_control < street_light_control.sql
+mysql -u root -pphpmysql -e "source ./street_light_control.sql" street_light_control
+mysql -u root -pphpmysql -e "source ./security.sql" security
+
+mysql -u root -pphpmysql db_usr < led.sql
+
+SHOW CREATE DATABASE db_usr\G;
+== 注意,別塞爆了! ==
+
+how to show grants?
+SHOW GRANTS FOR apexx@localhost
+grant as 'db_usr';
+GRANT SELECT, INSERT, UPDATE ON street_light_control.* TO apexx@localhost;
+
+=== 版本 === 
+what is mysql version? 5.1.37-1ubuntu5.1
+=== 版本 ===
+
+=== mysql server的啟動 ===
+# To install MySql database:
+sudo apt-get install mysql-server
+
+# To start MySql server:
+
+/etc/init.d/mysql start
+
+# To stop MySql server:
+
+/etc/init.d/mysql stop
+
+# To restart MySql server:
+
+/etc/init.d/mysql restart
+
+# To check the status of  MySql server:
+
+/etc/init.d/mysql status
+=== mysql server的啟動 ===
