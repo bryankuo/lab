@@ -1,0 +1,1 @@
+﻿sudo tcpdump -ni eth0 -U -s0 'not port 22' -c100 -v -w ~/provisioning.pcap
