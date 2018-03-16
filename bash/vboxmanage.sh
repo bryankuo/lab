@@ -6,7 +6,7 @@ vboxmanage list runningvms
 vboxmanage list vms
 vboxmanage startvm "c67i386dev" --type headless
 vboxmanage startvm "c67i386dev" --type gui
-vboxmanage export "c67i386dev" -o ~/Documents/Centos68-x86/c67i386dev-20170510-recovery-backup.ova --ovf20 --manifest --vsys 1
+vboxmanage export "c7disneyland" -o ~/Documents/CentOS7-evaluate-pacemaker-gui-the-only-one/disneyland/c7disneyland-20180316-backup.ova --ovf20 --manifest --vsys 1
 vboxmanage export tt-ha1v tt-ha2v -o ~/Documents/Centos68-x86/tatung/cluster/ha/tt-ha12v.ova --ovf20 --manifest --vsys 2
 # vboxmanage list snapshot
 vboxmanage snapshot "tt-ha2v" list
