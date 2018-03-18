@@ -107,8 +107,20 @@ $(document).ready(function() {
 	updateQuotes();
 	$("#showMSCIlast10").trigger("click");
 	$('#checkInstitution').click(function () {
+		//openBrokerage();
 		var url = $("#institution").attr("href")+$("#institution").val()+"&b=4";
-		//alert(url);
+		//window.open(url, '_blank');
+		//window.open(url);
+		var randomnumber = Math.floor((Math.random()*100)+1);
+ window.open(url,"_blank",'PopUp',randomnumber,'scrollbars=1,menubar=0,resizable=1,width=850,height=500');
+ 	var brokerage = "http://www.cmoney.tw/finance/f00039.aspx?s=";
+ var url = brokerage + $("#institution").val();
+ randomnumber = Math.floor((Math.random()*100)+1);
+ window.open(url,"_blank",'PopUp',randomnumber,'scrollbars=1,menubar=0,resizable=1,width=850,height=500');
+	});
+	$('#intro').click(function () {
+		var url = $("#usticker").attr("href")+$("#usticker").val();
+
 		window.open(url, '_blank');
 	});
 });
@@ -127,6 +139,15 @@ function jump(h){
     history.replaceState(null,null,url);   //Don't like hashes. Changing it back.*/
     var top = document.getElementById(h).offsetTop; //Getting Y of target element
     window.scrollTo(0, top);
+}
+function openBrokerage() {
+		var brokerage = "http://www.cmoney.tw/finance/f00039.aspx?s=";
+		var url = brokerage + $("#institution").val();
+		//alert(url);
+		//window.open(url, '_blank');
+		//window.open(url);
+		var randomnumber = Math.floor((Math.random()*100)+1);
+ window.open(url,"_blank",'PopUp',randomnumber,'scrollbars=1,menubar=0,resizable=1,width=850,height=500');
 }
 
 </script>
@@ -244,7 +265,8 @@ function jump(h){
 
 	<tr>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/iNSXci">MoneyDj美國股市個股基本資料</a>
+			<a target="_blank" href="https://goo.gl/iNSXci">MoneyDj美個股基本資料</a>
+			<input type="text" id="usticker" style="width:88;" href="https://money.moneydj.com/us/basic/basic0001/">&nbsp;<button type="button" id="intro">Check</button>
 		</td>
 		<td width="20%">
 			<a target="_blank" href="https://www.sec.gov/">U.S. Securities and Exchange Commission</a>
