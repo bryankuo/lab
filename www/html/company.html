@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+   <HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <TITLE>
+          Company Profile
+      </TITLE>
+</style>
+	<link rel="stylesheet" type="text/css" href="tstyle.css">
+   </HEAD>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+var ticker;
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+$(document).ready(function() {
+	//alert(window.location.href);
+	ticker = getParameterByName('ticker');
+	//alert(ticker);
+	$('#company_ticker').text(ticker);
+});
+</script>
+<BODY>
+   <H1><span id="company_ticker" style="/*color:blue*/"></span> Company Profile</H1>
+	<h2 name="company" id="company"></h2>
+</BODY>
+</HTML>
