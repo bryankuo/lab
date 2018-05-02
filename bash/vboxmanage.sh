@@ -17,3 +17,4 @@ vboxmanage snapshot "tt-ha2v" restore "Snapshot 4"
 vboxmanage snapshot "tt-ha2v" take "Snapshot 5"
 # discard snapshot
 vboxmanage snapshot "tt-ha2v" delete "Snapshot 3"
+vboxmanage unregistervm "eins" --delete
