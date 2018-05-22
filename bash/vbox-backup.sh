@@ -1,8 +1,9 @@
 #!/bin/bash
 CONFIG_DISNEYLAND_BK=n
-CONFIG_EINS_BK=n
+CONFIG_EINS_BK=y
 CONFIG_C7DEV_RL=n
-CONFIG_C6DEV_BK=y
+CONFIG_C6DEV_BK=n
+CONFIG_FOUNF_BK=n
 
 date
 BKDATE=`date +%Y%m%d%H%M`
@@ -29,6 +30,11 @@ fi
 if [ $CONFIG_C6DEV_BK = "y" ]; then
         echo "c6dev backup..."
 	vboxmanage export "c67i386dev" -o ~/Documents/Centos68-x86/c67i386dev/c67i386dev-$BKDATE-backup.ova --ovf20 --manifest --vsys 1
+fi
+
+if [ $CONFIG_FOUNF_BK = "y" ]; then
+	echo "founf backup..."
+	vboxmanage export "founf" -o ~/Documents/CentOS7-evaluate-pacemaker-gui-the-only-one/founf/founf-$BKDATE-backup.ova --ovf20 --manifest --vsys 1
 fi
 
 # vboxmanage export "tt-ippbx1v" "tt-ippbx2v" -o ~/Documents/Centos68-x86/tatung/cluster/ippbx/tt-ippbx12v/tt-ippbx12v-$BKDATE-backup.ova --ovf20 --manifest --vsys 2
