@@ -40,5 +40,5 @@ wireshark -k -i <(sshpass -p 'apexx1234' ssh -i ./HantekTaxi.pem root@54.251.196
 
 wireshark -k -i <(sshpass -p 'apexx' ssh apexx@192.168.66.131 "tcpdump -s0 -U -n -w - -i eth0 'host 192.168.66.131 and tcp port 502 and not tcp port 22'")
 
-ssh root@192.168.1.206 tcpdump -U -s0 -w - 'not port 22' | wireshark -k -i -
+ssh root@192.168.8.114 tcpdump -U -s0 -w - -ienp5s0 'not port 22' | wireshark -k -i -
 (enter password at console)
