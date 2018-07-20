@@ -3,8 +3,10 @@
 # development tools
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get --assume-yes install git libncurses5-dev default-jre fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-x libgstreamer0.10-0 vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2 mysql-workbench-community btrfs-tools unrar-free p7zip-full gnome-panel sshpass tshark tcpdump libtool autoconf xclip net-tools gnome-nettool mediainfo mysql-workbench tree openssh-server mysql-client-core
+sudo apt-get --assume-yes install git libncurses5-dev fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2 btrfs-tools unrar-free p7zip-full gnome-panel sshpass tshark tcpdump libtool autoconf xclip net-tools gnome-nettool mediainfo mysql-workbench tree openssh-server curl
 
+# bash ps1 ( https://superuser.com/a/60563 )
+# /etc/network/interfaces
 # ethtool for wake on lan
 
 # wireshark
@@ -41,11 +43,25 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ ./studio.sh
 # line chrome extension
 
 # git configuration
+sudo apt install git
 git config --global user.name "Bryan Kuo"
 git config --global user.email bryan.kuo@apexx.com.tw
 git config --global diff.external meld
 cp ~/github/git/git-meld.sh ~
 git config --global diff.external ~/git-meld.sh
+# github configuration
+mkdir -p /home/apexx/Documents/github
+cd /home/apexx/Documents/github
+git clone https://github.com/bryankuo/lab.git
+
+# tor browser
+sudo apt install torbrowser-launcher
+
+# vi customization
+cd ~/Documents/github/lab/vim/
+cp -rp ./vim ~
+cp -p .vimrc ~
+cp -p .gvimrc ~
 
 # linphone binary
 sudo add-apt-repository ppa:linphone/release
@@ -54,3 +70,7 @@ sudo apt-get install linphone -y
 
 # android studio
 sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+
+# pdftk on docker ( https://goo.gl/JmJyab )
+# to run on ubuntu 18.04
+sudo /usr/bin/pdftk

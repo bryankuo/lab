@@ -26,3 +26,5 @@ vboxmanage unregistervm "eins" --delete
 
 #clone VM with command
 vboxmanage clonevm "eins" --name "founf" --register
+# include all snapshots
+vboxmanage clonevm "eins" --mode all --name "c7ha" --register

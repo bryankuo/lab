@@ -59,4 +59,5 @@ host 192.168.1.100 and tcp
 如何使用wireshar計算某一段時間內的bitrate嗎?
 
 ssh root@192.168.66.200 tcpdump -U -s0 -w - 'not port 22' | wireshark -k -i -
+http && ( ip.addr == 192.168.66.170 || ip.addr == 192.168.66.135 |
 
