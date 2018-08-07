@@ -73,4 +73,10 @@ sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-
 
 # pdftk on docker ( https://goo.gl/JmJyab )
 # to run on ubuntu 18.04
-sudo /usr/bin/pdftk
+# sudo /usr/bin/pdftk
+# How can I install pdftk in Ubuntu 18.04 Bionic? ( https://goo.gl/DyNh8h )
+
+
+# teamviewer ( https://goo.gl/zuPXY2 )
+
+# install apache web on ubuntu 18.04 ( https://goo.gl/x9fHec )
