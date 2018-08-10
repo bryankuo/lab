@@ -3,7 +3,7 @@
 # development tools
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get --assume-yes install git libncurses5-dev fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2 btrfs-tools unrar-free p7zip-full gnome-panel sshpass tshark tcpdump libtool autoconf xclip net-tools gnome-nettool mediainfo mysql-workbench tree openssh-server curl
+sudo apt-get --assume-yes install git libncurses5-dev fcitx-chewing libpcsclite1 pcscd pcsc-tools nautilus-dropbox vim-gnome meld exuberant-ctags cscope ccache wireshark build-essential unity-tweak-tool libpcsclite1 pcscd pcsc-tools vlc gimp flashplugin-installer gcc-multilib g++-multilib cpufrequtils lvm2 unrar p7zip-full gnome-panel sshpass tshark tcpdump libtool autoconf xclip net-tools gnome-nettool mediainfo mysql-workbench tree openssh-server curl
 
 # bash ps1 ( https://superuser.com/a/60563 )
 # /etc/network/interfaces
@@ -75,8 +75,9 @@ sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-
 # to run on ubuntu 18.04
 # sudo /usr/bin/pdftk
 # How can I install pdftk in Ubuntu 18.04 Bionic? ( https://goo.gl/DyNh8h )
-
+# sudo snap install pdftk ( https://goo.gl/RosBhu )
 
 # teamviewer ( https://goo.gl/zuPXY2 )
 
 # install apache web on ubuntu 18.04 ( https://goo.gl/x9fHec )
+# Update Ubuntu via Command Line ( https://goo.gl/2sMmJk )

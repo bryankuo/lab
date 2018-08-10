@@ -3,11 +3,13 @@ CONFIG_DISNEYLAND_BK=n
 CONFIG_EINS_BK=n
 CONFIG_C7DEV_RL=n
 CONFIG_C7HA_RL=n
-CONFIG_ZWEI_BK=n
+CONFIG_ZWEI_BK=y
 CONFIG_DREI_BK=n
 CONFIG_VIER_BK=n
 CONFIG_C6DEV_BK=n
-CONFIG_FOUNF_BK=y
+CONFIG_FOUNF_BK=n
+CONFIG_SIPP6C_BK=y
+CONFIG_SIPP7S_BK=y
 
 date
 BKDATE=`date +%Y%m%d%H%M`
@@ -61,7 +63,15 @@ if [ $CONFIG_FOUNF_BK = "y" ]; then
 	vboxmanage export "founf" -o ~/Documents/CentOS7-evaluate-pacemaker-gui-the-only-one/founf/founf-$BKDATE-backup.ova --ovf20 --manifest --vsys 1
 fi
 
+if [ $CONFIG_SIPP6C_BK = "y" ]; then
+	echo "sipp6c backup..."
+	vboxmanage export "sipp6c" -o ~/Documents/CentOS7-evaluate-pacemaker-gui-the-only-one/sipp6c/sipp6c-$BKDATE-backup.ova --ovf20 --manifest --vsys 1
+fi
 
+if [ $CONFIG_SIPP7S_BK = "y" ]; then
+	echo "sipp7s backup..."
+	vboxmanage export "sipp6c" -o ~/Documents/CentOS7-evaluate-pacemaker-gui-the-only-one/sipp7s/sipp7s-$BKDATE-backup.ova --ovf20 --manifest --vsys 1
+fi
 
 # vboxmanage export "tt-ippbx1v" "tt-ippbx2v" -o ~/Documents/Centos68-x86/tatung/cluster/ippbx/tt-ippbx12v/tt-ippbx12v-$BKDATE-backup.ova --ovf20 --manifest --vsys 2
 # vboxmanage export "tt-ha1v" "tt-ha2v" -o ~/Documents/Centos68-x86/tatung/cluster/ha/tt-ha12v/tt-ha12v-$BKDATE-backup.ova --ovf20 --manifest --vsys 2
