@@ -1,5 +1,6 @@
 binutils
 interpreting: ( https://goo.gl/wqEmfC )
+How big that object is: "f6f000"
  base address and subtract it from the ip
 00007fc8e95dcf90 - 7fc8e9490000 = 0x14CF90
 addr2line -e /home/apexx/ippbx_run.tatung/lib/libfreeswitch.so.1.0.0 -fCi 0x14c934
