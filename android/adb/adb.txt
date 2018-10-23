@@ -7,7 +7,7 @@ adb -d logcat -v time -s 'com.hantek.ui.dialpad.DialerFragment:V' | tee logcat.l
 adb -d logcat -v time -s 'com.hantek.service:V *:V' | tee logcat.log
 
 to be verified:
-adb -s W8GM6TEUJ74TWC4L -d logcat -v time -s 'DialerFragment:V' -f /storage/sdcard0/CSipSimple/logcat.log 
+adb -s W8GM6TEUJ74TWC4L -d logcat -v time -s 'DialerFragment:V' -f /storage/sdcard0/CSipSimple/logcat.log
 
 adb logcat -c
 
@@ -55,4 +55,9 @@ adb -s emulator-5554 install Tonesky20130713.apk
 list all installed packages in android adb shell:
 adb shell 'pm list packages -f' | wc -l
 
-
+adb connect 192.168.66.205
+adb install EasyComm/app/build/outputs/apk/debug/app-debug.apk
+adb uninstall com.apexx.bryan.easycomm
+error: device not found ( https://goo.gl/boqpxs )
+adb forward tcp:5555 tcp:5555 ( https://goo.gl/ucPa8U )
+adb -s 192.168.66.205:5555 -d logcat -v time

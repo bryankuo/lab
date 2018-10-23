@@ -1,7 +1,7 @@
 install tshark:
 sudo yum install wireshark
 
-﻿simply capture:
+ capture:
 tshark -i eth0 -w /home/freeswitch/sip-aws.pcap
 
 capture for 3 minutes:
