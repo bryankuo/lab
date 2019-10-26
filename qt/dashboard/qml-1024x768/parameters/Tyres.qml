@@ -53,39 +53,38 @@ import QtQuick.Window 2.1 // needed for the Window component
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
-import "../style"
+import QtQuick.Extras 1.4
 
 Window {
-    id: systemLog
+    id: tyres
 
     // ( https://goo.gl/LWbdMG )
-    objectName: "sysLogWin"
+    objectName: "tyresWindow"
 
     // QML - main window position on start (screen center)
     // ( https://goo.gl/wLpvZD )
-    Styles { id: style }
-    width: style.resolutionWidth // application wide properties
-    height: style.resolutionHeight
-    x: 0
-    y: 0
+    width: 1280
+    height: 800
     maximumHeight: height
     maximumWidth: width
+    x: (Screen.width - width) / 2
+    y: (Screen.height - height) / 2
+
     minimumHeight: height
     minimumWidth: width
     color: "#161616"
-    property alias window: systemLog
+    property alias window: tyres
     flags: Qt.FramelessWindowHint
-    title: "System Log"
+    title: ""
 
     // Property names must begin with a lower case letter
     // and can only contain letters ( https://goo.gl/HzLQet )
     //
-    //property string batteryPackName
-    signal qmlSignal(string msg)
     signal qmlSignalActive(string msg)
 
     Rectangle {
-        id: rectanglesystemLog
+        id: rectangleEng
+
         color: "lightGrey"
         anchors.top: parent.top
         anchors.topMargin: 0
@@ -95,52 +94,51 @@ Window {
         anchors.leftMargin: 0
         anchors.right: parent.right
         anchors.rightMargin: 1280
+        MouseArea {
+            id: mouseAreaRectangleAll
+            z: 2
+            anchors.fill: parent
+            onClicked: {
+                engineering.hide();
+            }
+        }
     }
 
     Image {
-        id: imageBack
-        x: 0
-        width: style.backWidth
-        height: style.backHeight
+        id: imgBack
+        width: 100
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.topMargin: 0
         z: 1
         anchors.top: parent.top
-        MouseArea {
-            id: mouseArea
-            z: 2
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-        }
         source: "../../images/0-color/HMI-ICON-55.png"
         fillMode: Image.PreserveAspectFit
-    MouseArea {
-        id: maViBack
-        z: 2
-        anchors.fill: parent
-        onClicked: {
-        systemLog.hide();
+        MouseArea {
+            id: mouseAreaStatusBack
+            z: 2
+            anchors.fill: parent
+            onClicked: {
+                tyres.hide();
+            }
         }
-    }
     }
 
     Rectangle {
-        id: rowsystemLog
+        id: rowtyres
         x: 200
-        y: 30
+        y: 50
         width: 300
         height: 43
-	color: "#161616"
+        color: "#161616"
         anchors.leftMargin: 50
         Text {
-            id: txtsystemLog
+            id: txttyresWinCaption
             y: 0
-            width: 100
+            width: 250
             height: 43
             color: "#ffffff"
-            text: qsTr("System Log")
+            text: qsTr("TPMS Settings")
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: 25
             horizontalAlignment: Text.AlignLeft
@@ -161,170 +159,173 @@ Window {
         anchors.left: parent.left
     }
 
-    Button {
-    id: btnClearAlarmRecord
-    x: 1050
-    y: 30
-    //width: 100
-    //height: 43
-    text: qsTr("CLEAR")
-    anchors.leftMargin: 180
-        style: ButtonStyle {
-        background: Rectangle {
-        implicitWidth: 100
-        implicitHeight: 43
-        border.width: control.activeFocus ? 2 : 1
-        border.color: "#888"
-        radius: 4
-        gradient: Gradient {
-        GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
-        GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
-        }
-        }
-        }
-    }
-
-    Button {
-    id: btnRefreshAlarmRecord
-    x: 940
-    y: 30
-    //width: 100
-    //height: 43
-    text: qsTr("REFRESH")
-    anchors.leftMargin: 180
-        style: ButtonStyle {
-        background: Rectangle {
-        implicitWidth: 100
-        implicitHeight: 43
-        border.width: control.activeFocus ? 2 : 1
-        border.color: "#888"
-        radius: 4
-        gradient: Gradient {
-        GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
-        GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
-        }
-        }
-        }
-    }
-
-    TableView {
-	id: tableView
-	x: 0
-	width: 1280
-	height: 641
-	anchors.top: imageBack.bottom
-	anchors.topMargin: 0
-	anchors.horizontalCenter: parent.horizontalCenter
-
-	frameVisible: true
-	sortIndicatorVisible: false
-
-	Layout.minimumWidth: 400
-	Layout.minimumHeight: 240
-	Layout.preferredWidth: 600
-	Layout.preferredHeight: 400
-	horizontalScrollBarPolicy : Qt.ScrollBarAlwaysOn
-	verticalScrollBarPolicy : Qt.ScrollBarAlwaysOn
-	model: sourceModel
-
-	TableViewColumn {
-	id: dateColumn
-	title: "Date"
-	role: "date"
-	movable: false
-	resizable: false
-	width: 150 /*tableView.viewport.width - authorColumn.width*/
-	// elideMode: Text.ElideMiddle
-	horizontalAlignment: Text.AlignHCenter
-	delegate: Item {
-			Text {
-			  anchors.verticalCenter: parent.verticalCenter
-			  //color: "red"
-			  //elide: styleData.elideMode
-			  text: styleData.value
-			  font.pixelSize: 18
-			}
-		 }
-
-	}
-
-	// You can use itemDelegate in TableView
-	// for specific cells or all cells. ( https://is.gd/UCSqg0 )
-	itemDelegate: Item {
-			Text {
-			  anchors.verticalCenter: parent.verticalCenter
-			  // color: "green"
-			  elide: styleData.elideMode
-			  text: styleData.value
-			  font.pixelSize: 18
-			}
-		 }
-
-	TableViewColumn {
-	id: timeColumn
-	title: "Time"
-	role: "time"
-	horizontalAlignment: Text.AlignHCenter
-	movable: false
-	resizable: false
-	width: 120
-	}
-
-	TableViewColumn {
-	id: codeColumn
-	title: "Code"
-	role: "code"
-	horizontalAlignment: Text.AlignHCenter
-	movable: false
-	resizable: false
-	width: 120
-	}
-
-	TableViewColumn {
-	id: msgColumn
-	title: "Message"
-	role: "message"
-	horizontalAlignment: Text.AlignHCenter
-	movable: false
-	resizable: false
-	width: 400
-	}
-
-	ListModel {
-	    id: sourceModel
-	    ListElement {
-		date: "2019/06/10"
-		time: "19:10:15"
-		code: "663"
-		message: "PCU Fault No.64 B相欠相"
-	    }
-	}
-    }
-
-    Row {
-    id: rowInstantMessage
-    objectName: "instantMessage"
-    x: 152
-    width: 1280
-    height: 50
-    anchors.horizontalCenter: parent.horizontalCenter
-    anchors.bottom: parent.bottom
-    anchors.bottomMargin: 5
     Rectangle {
-        id: recMessage
-        x: 0
-        y: 0
-        width: 1280
-        height: 50
-        color: "#1f1f1f"
-        anchors.bottom: parent.bottom
-    }
+        id: rowButtons
+        x: 198
+        y: 259
+        width: 250
+        height: 40
+        color: "#161616"
+        anchors.topMargin: 24
+        anchors.top: rowtyres.bottom
+
+        Button {
+            id: btnAuto
+            y: 1
+            height: 40
+            text: qsTr("AUTO")
+            anchors.left: parent.left
+            style: ButtonStyle {
+                background: Rectangle {
+                    radius: 4
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0
+                            color: control.pressed ? "#ccc" : "#eee"
+                        }
+
+                        GradientStop {
+                            position: 1
+                            color: control.pressed ? "#aaa" : "#ccc"
+                        }
+                    }
+                    implicitHeight: 43
+                    border.color: "#888888"
+                    implicitWidth: 100
+                    border.width: control.activeFocus ? 2 : 1
+                }
+            }
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: 0
+        }
+        anchors.left: parent.left
+        anchors.leftMargin: 50
     }
 
     onActiveChanged : {
-    if ( true === systemLog.active ) {
-        systemLog.qmlSignalActive("SystemLog");
+        if ( true === tyres.active ) {
+        tyres.qmlSignalActive("TpmsSetting");
     }
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
