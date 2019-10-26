@@ -54,22 +54,20 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Extras 1.4
+import "../style"
 
 Window {
     id: tyres
 
     // ( https://goo.gl/LWbdMG )
     objectName: "tyresWindow"
-
-    // QML - main window position on start (screen center)
-    // ( https://goo.gl/wLpvZD )
-    width: 1280
-    height: 800
+    Styles { id: style }
+    width: style.resolutionWidth // application wide properties
+    height: style.resolutionHeight
     maximumHeight: height
     maximumWidth: width
-    x: (Screen.width - width) / 2
-    y: (Screen.height - height) / 2
-
+    x: 0
+    y: 0
     minimumHeight: height
     minimumWidth: width
     color: "#161616"
@@ -106,7 +104,8 @@ Window {
 
     Image {
         id: imgBack
-        width: 100
+        width: style.backWidth
+	height: style.backHeight
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.topMargin: 0
@@ -127,7 +126,7 @@ Window {
     Rectangle {
         id: rowtyres
         x: 200
-        y: 50
+        y: 30
         width: 300
         height: 43
         color: "#161616"
@@ -145,11 +144,8 @@ Window {
             anchors.leftMargin: 0
             anchors.verticalCenter: parent.verticalCenter
             MouseArea {
-                width: 70
-                height: 40
+                anchors.fill: parent
                 hoverEnabled: false
-                anchors.top: parent.top
-                anchors.left: parent.left
             }
             anchors.left: parent.left
             anchors.verticalCenterOffset: 0
@@ -329,3 +325,9 @@ Window {
 
 
 
+
+/*##^##
+Designer {
+    D{i:8;anchors_height:40;anchors_width:70}
+}
+##^##*/

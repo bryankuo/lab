@@ -54,6 +54,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Extras 1.4
+import "../style"
 
 Window {
     id: charge
@@ -63,13 +64,13 @@ Window {
 
     // QML - main window position on start (screen center)
     // ( https://goo.gl/wLpvZD )
-    width: 1280
-    height: 800
+    Styles { id: style }
+    width: style.resolutionWidth // application wide properties
+    height: style.resolutionHeight
     maximumHeight: height
     maximumWidth: width
-    x: (Screen.width - width) / 2
-    y: (Screen.height - height) / 2
-
+    x: 0
+    y: 0
     minimumHeight: height
     minimumWidth: width
     color: "#161616"
@@ -106,7 +107,8 @@ Window {
 
     Image {
         id: imgBack
-        width: 100
+        width: style.backWidth
+	height: style.backHeight
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.topMargin: 0
@@ -127,7 +129,7 @@ Window {
     Rectangle {
         id: rowCharge
         x: 200
-        y: 50
+        y: 30
         width: 300
         height: 43
         color: "#161616"
@@ -162,10 +164,10 @@ Window {
     Rectangle {
         id: rowChargingMaxOutput
         x: 202
-        width: 900
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         Text {
             id: txtChargingMaxOutputCap
             y: 0
@@ -231,12 +233,12 @@ Window {
     Rectangle {
         id: rowButtons
         x: 198
-        y: 259
+        y: 30
         width: 250
         height: 40
         color: "#161616"
-        anchors.topMargin: 50
-        anchors.top: rowCharge.bottom
+        anchors.right: imgBack.left
+        anchors.rightMargin: 10
 
         Button {
             id: btnSend
@@ -297,18 +299,16 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 0
         }
-        anchors.left: parent.left
-        anchors.leftMargin: 1000
     }
 
     Rectangle {
         id: rowFastChargeFunction
         x: 195
         y: 0
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.topMargin: 20
+        anchors.topMargin: 30
         anchors.top: rowTimerChargeFunction.bottom
         Text {
             id: txtTimerChargeFunctionCap
@@ -501,18 +501,18 @@ Window {
             anchors.leftMargin: 5
         }
         anchors.left: parent.left
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowTimerChargeFunction
         x: 199
         y: -8
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         radius: 5
-        anchors.topMargin: 20
+        anchors.topMargin: 30
         anchors.top: rowChargingMaxOutput.bottom
         Text {
             id: txtTimerChargeCap
@@ -705,17 +705,17 @@ Window {
             anchors.leftMargin: 5
         }
         anchors.left: parent.left
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowPulseChargeFunction
         x: 190
         y: 4
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.topMargin: 20
+        anchors.topMargin: 30
         anchors.top: rowFastChargeFunction.bottom
         anchors.left: parent.left
         Text {
@@ -849,49 +849,6 @@ Window {
         }
 
         Text {
-            id: txtPulseChargingVoltageCap
-            x: 7
-            y: 7
-            width: 90
-            height: 25
-            color: "#ffffff"
-            text: qsTr("Voltage :")
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            font.pixelSize: 19
-            anchors.leftMargin: 985
-            horizontalAlignment: Text.AlignLeft
-            anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Rectangle {
-            id: recPulseChargingVoltage
-            x: -2
-            y: 386
-            width: 60
-            height: 25
-            color: "#000000"
-            radius: 5
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: txtPulseChargingVoltageCap.right
-            Text {
-                id: txtPulseChargingVoltageVal
-                y: 0
-                width: 60
-                height: 25
-                color: "#ffffff"
-                text: qsTr("")
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 20
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-            anchors.leftMargin: 5
-            anchors.verticalCenterOffset: 0
-        }
-
-        Text {
             id: txtPulseOnSuffix
             y: 7
             width: 40
@@ -920,33 +877,18 @@ Window {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
-
-        Text {
-            id: txtPulseChargingVoltageSuffix
-            y: 4
-            width: 40
-            height: 25
-            color: "#ffffff"
-            text: qsTr("V")
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: recPulseChargingVoltage.right
-            font.pixelSize: 20
-            anchors.leftMargin: 5
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-        }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowLimitTimeChargeFunction
         x: 190
         y: 11
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.topMargin: 20
-        anchors.top: rowPulseChargeFunction.bottom
+        anchors.topMargin: 30
+        anchors.top: rowPulseChargeFunction1.bottom
         anchors.left: parent.left
         Text {
             id: txtLimitedTimeChargeCap
@@ -1050,17 +992,17 @@ Window {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowDcdcOutputFunction
         x: 199
         y: 15
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.topMargin: 20
+        anchors.topMargin: 30
         anchors.top: rowLimitTimeChargeFunction.bottom
         anchors.left: parent.left
         Text {
@@ -1152,91 +1094,6 @@ Window {
         }
 
         Text {
-            id: txtDcdcOutputCurrentLowCap
-            x: 8
-            y: 8
-            width: 160
-            height: 25
-            color: "#ffffff"
-            text: qsTr("Current ( Low ) :")
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            font.pixelSize: 19
-            anchors.leftMargin: 670
-            horizontalAlignment: Text.AlignLeft
-            anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Rectangle {
-            id: recOutputCurrentLowVal
-            x: -1
-            y: 387
-            width: 60
-            height: 25
-            color: "#000000"
-            radius: 5
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: txtDcdcOutputCurrentLowCap.right
-            Text {
-                id: txtOutputCurrentLowVal
-                y: 0
-                width: 60
-                height: 25
-                color: "#ffffff"
-                text: qsTr("00")
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 20
-                anchors.rightMargin: 0
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-            anchors.leftMargin: 5
-        }
-
-        Text {
-            id: txtDcdcOutputCurrentHighCap
-            y: 17
-            width: 150
-            height: 25
-            color: "#ffffff"
-            text: qsTr("Current ( High ) :")
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 945
-            font.pixelSize: 19
-            horizontalAlignment: Text.AlignLeft
-            anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Rectangle {
-            id: recOutputCurrentHighVal
-            x: 8
-            y: 380
-            width: 60
-            height: 25
-            color: "#000000"
-            radius: 5
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: txtDcdcOutputCurrentHighCap.right
-            Text {
-                id: txtOutputCurrentLowVal2
-                y: 0
-                width: 60
-                height: 25
-                color: "#ffffff"
-                text: qsTr("00")
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 20
-                anchors.rightMargin: 0
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-            anchors.leftMargin: 5
-        }
-
-        Text {
             id: txtDcdcOutputVoltageSuffix
             y: 7
             width: 20
@@ -1250,48 +1107,18 @@ Window {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
-
-        Text {
-            id: txtOutputCurrentLowSuffix
-            y: -1
-            width: 20
-            height: 25
-            color: "#ffffff"
-            text: qsTr("A")
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: 20
-            anchors.leftMargin: 5
-            anchors.left: recOutputCurrentLowVal.right
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-        }
-
-        Text {
-            id: txtOutputCurrentHighSuffix
-            y: 14
-            width: 20
-            height: 25
-            color: "#ffffff"
-            text: qsTr("A")
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: 20
-            anchors.leftMargin: 5
-            anchors.left: recOutputCurrentHighVal.right
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-        }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowDateOfManufacture
         x: 208
         y: 10
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.topMargin: 20
-        anchors.top: rowDcdcOutputFunction.bottom
+        anchors.topMargin: 30
+        anchors.top: rowDcdcOutputFunction1.bottom
         anchors.left: parent.left
         Text {
             id: txtDateOfManufacture
@@ -1380,7 +1207,201 @@ Window {
             }
             anchors.leftMargin: 5
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
+    }
+
+    Rectangle {
+        id: rowPulseChargeFunction1
+        x: 180
+        width: style.resolutionWidth - anchors.leftMargin
+        height: 30
+        color: "#161616"
+        anchors.topMargin: 10
+        anchors.top: rowPulseChargeFunction.bottom
+
+        Text {
+            id: txtPulseChargingVoltageCap1
+            x: 7
+            y: 7
+            width: 90
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Voltage :")
+            anchors.verticalCenterOffset: 0
+            font.pixelSize: 19
+            verticalAlignment: Text.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 350
+            horizontalAlignment: Text.AlignLeft
+        }
+
+        Rectangle {
+            id: recPulseChargingVoltage1
+            x: -2
+            y: 386
+            width: 60
+            height: 25
+            color: "#000000"
+            radius: 5
+            anchors.verticalCenterOffset: 0
+            Text {
+                id: txtPulseChargingVoltageVal1
+                color: "#ffffff"
+                text: qsTr("")
+                anchors.fill: parent
+                font.pixelSize: 20
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+            }
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 535
+        }
+
+        Text {
+            id: txtPulseChargingVoltageSuffix1
+            y: 4
+            width: 40
+            height: 25
+            color: "#ffffff"
+            text: qsTr("V")
+            font.pixelSize: 20
+            verticalAlignment: Text.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: recPulseChargingVoltage1.right
+            anchors.leftMargin: 5
+            horizontalAlignment: Text.AlignHCenter
+        }
+        anchors.left: parent.left
+        anchors.leftMargin: 30
+    }
+
+    Rectangle {
+        id: rowDcdcOutputFunction1
+        x: 201
+        width: style.resolutionWidth - anchors.leftMargin
+        height: 30
+        color: "#161616"
+        anchors.topMargin: 10
+        anchors.top: rowDcdcOutputFunction.bottom
+
+        Text {
+            id: txtDcdcOutputCurrentLowCap1
+            x: 8
+            y: 8
+            width: 160
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Current ( Low ) :")
+            anchors.verticalCenterOffset: 0
+            font.pixelSize: 19
+            verticalAlignment: Text.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 350
+            horizontalAlignment: Text.AlignLeft
+        }
+
+        Rectangle {
+            id: recOutputCurrentLowVal1
+            x: -1
+            y: 387
+            width: 60
+            height: 25
+            color: "#000000"
+            radius: 5
+            Text {
+                id: txtOutputCurrentLowVal1
+                y: 0
+                width: 60
+                height: 25
+                color: "#ffffff"
+                text: qsTr("00")
+                font.pixelSize: 20
+                verticalAlignment: Text.AlignVCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.rightMargin: 0
+                horizontalAlignment: Text.AlignHCenter
+            }
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: txtDcdcOutputCurrentLowCap1.right
+            anchors.leftMargin: 5
+        }
+
+        Text {
+            id: txtDcdcOutputCurrentHighCap1
+            y: 17
+            width: 150
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Current ( High ) :")
+            anchors.verticalCenterOffset: 0
+            font.pixelSize: 19
+            verticalAlignment: Text.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 670
+            horizontalAlignment: Text.AlignLeft
+        }
+
+        Rectangle {
+            id: recOutputCurrentHighVal1
+            x: 8
+            y: 380
+            width: 60
+            height: 25
+            color: "#000000"
+            radius: 5
+            Text {
+                id: txtOutputCurrentLowVal3
+                y: 0
+                width: 60
+                height: 25
+                color: "#ffffff"
+                text: qsTr("00")
+                font.pixelSize: 20
+                verticalAlignment: Text.AlignVCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.rightMargin: 0
+                horizontalAlignment: Text.AlignHCenter
+            }
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: txtDcdcOutputCurrentHighCap1.right
+            anchors.leftMargin: 5
+        }
+
+        Text {
+            id: txtOutputCurrentLowSuffix1
+            y: -1
+            width: 20
+            height: 25
+            color: "#ffffff"
+            text: qsTr("A")
+            font.pixelSize: 20
+            verticalAlignment: Text.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: recOutputCurrentLowVal1.right
+            anchors.leftMargin: 5
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Text {
+            id: txtOutputCurrentHighSuffix1
+            y: 14
+            width: 20
+            height: 25
+            color: "#ffffff"
+            text: qsTr("A")
+            font.pixelSize: 20
+            verticalAlignment: Text.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: recOutputCurrentHighVal1.right
+            anchors.leftMargin: 5
+            horizontalAlignment: Text.AlignHCenter
+        }
+        anchors.left: parent.left
+        anchors.leftMargin: 30
     }
 
     onActiveChanged : {
@@ -1663,7 +1684,9 @@ Window {
 
 
 
-/*##^## Designer {
-    D{i:8;anchors_y:161}D{i:28;anchors_x:9}D{i:47;anchors_x:7}
+/*##^##
+Designer {
+    D{i:0;height:768;width:1024}D{i:6;anchors_y:161}D{i:14;anchors_width:250}D{i:113;anchors_height:25;anchors_width:60;anchors_y:0}
+D{i:110;anchors_y:-4}D{i:115;anchors_y:22}
 }
- ##^##*/
+##^##*/

@@ -55,6 +55,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Extras 1.4
 import Backend 1.0
+import "../style"
 
 Window {
     id: alarm
@@ -64,13 +65,13 @@ Window {
 
     // QML - main window position on start (screen center)
     // ( https://goo.gl/wLpvZD )
-    width: 1280
-    height: 800
+    Styles { id: style }
+    width: style.resolutionWidth // application wide properties
+    height: style.resolutionHeight
+    x: 0
+    y: 0
     maximumHeight: height
     maximumWidth: width
-    x: (Screen.width - width) / 2
-    y: (Screen.height - height) / 2
-
     minimumHeight: height
     minimumWidth: width
     color: "#161616"
@@ -115,7 +116,8 @@ Window {
 
     Image {
         id: imgBack
-        width: 100
+        width: style.backWidth
+	height: style.backHeight
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.topMargin: 0
@@ -175,8 +177,10 @@ Window {
     //width: 100
     //height: 43
     text: qsTr("REFRESH")
+    anchors.right: btnSave.left
+    anchors.rightMargin: 10
     anchors.leftMargin: 180
-        style: ButtonStyle {
+    style: ButtonStyle {
         background: Rectangle {
         implicitWidth: 100
         implicitHeight: 43
@@ -197,6 +201,8 @@ Window {
         x: 1056
         y: 30
         text: qsTr("SAVE")
+        anchors.right: imgBack.left
+        anchors.rightMargin: 10
         enabled: false
         anchors.leftMargin: 180
         style: ButtonStyle {
@@ -225,7 +231,7 @@ Window {
     id: tableViewAlarmRecord
     objectName: "alarmParameterTablewView"
     x: 0
-    width: 1280
+    width: 1024
     height: 641
     anchors.top: imgBack.bottom
     anchors.topMargin: 0
@@ -449,7 +455,7 @@ Window {
         id: rowInstantMessage
         objectName: "instantMessage"
         x: 152
-        width: 1280
+        width: style.resolutionWidth
         height: 50
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -458,7 +464,7 @@ Window {
             id: recMessage
             x: 0
             y: 0
-            width: 1280
+            width: style.resolutionWidth
             height: 50
             color: "#1f1f1f"
             anchors.bottom: parent.bottom
@@ -471,3 +477,9 @@ Window {
     }
     }
 }
+
+/*##^##
+Designer {
+    D{i:0;height:768;width:1024}
+}
+##^##*/

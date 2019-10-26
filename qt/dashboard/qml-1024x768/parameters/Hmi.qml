@@ -54,22 +54,20 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Extras 1.4
+import "../style"
 
 Window {
     id: hmiSetting
 
     // ( https://goo.gl/LWbdMG )
     objectName: "hmiSettingWindow"
-
-    // QML - main window position on start (screen center)
-    // ( https://goo.gl/wLpvZD )
-    width: 1280
-    height: 800
+    Styles { id: style }
+    width: style.resolutionWidth // application wide properties
+    height: style.resolutionHeight
     maximumHeight: height
     maximumWidth: width
-    x: (Screen.width - width) / 2
-    y: (Screen.height - height) / 2
-
+    x: 0
+    y: 0
     minimumHeight: height
     minimumWidth: width
     color: "#161616"
@@ -106,7 +104,8 @@ Window {
 
     Image {
         id: imgBack
-        width: 100
+        width: style.backWidth
+	height: style.backHeight
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.topMargin: 0
@@ -127,7 +126,7 @@ Window {
     Rectangle {
         id: rowhmiSetting
         x: 200
-        y: 50
+        y: 30
         width: 300
         height: 43
         color: "#161616"
@@ -214,53 +213,10 @@ Window {
     }
 
     Rectangle {
-        id: rowButtons
-        x: 198
-        y: 259
-        width: 250
-        height: 40
-        color: "#161616"
-        anchors.topMargin: 50
-        anchors.top: rowhmiSetting.bottom
-
-        Button {
-            id: btnSave
-            y: 1
-            height: 40
-            text: qsTr("SAVE")
-            anchors.left: parent.left
-            style: ButtonStyle {
-                background: Rectangle {
-                    radius: 4
-                    gradient: Gradient {
-                        GradientStop {
-                            position: 0
-                            color: control.pressed ? "#ccc" : "#eee"
-                        }
-
-                        GradientStop {
-                            position: 1
-                            color: control.pressed ? "#aaa" : "#ccc"
-                        }
-                    }
-                    implicitHeight: 43
-                    border.color: "#888888"
-                    implicitWidth: 100
-                    border.width: control.activeFocus ? 2 : 1
-                }
-            }
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 120
-        }
-        anchors.left: parent.left
-        anchors.leftMargin: 1000
-    }
-
-    Rectangle {
         id: rowBusSpeed
         x: 195
         y: 0
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 10
@@ -297,7 +253,7 @@ Window {
         id: rowAlarmMessages
         x: 199
         y: -8
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 30
@@ -324,7 +280,7 @@ Window {
     Rectangle {
         id: rowVoiceSpeed
         x: 206
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 10
@@ -382,7 +338,7 @@ Window {
         id: rowDisplayPeriod
         x: 208
         y: 285
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -417,7 +373,7 @@ Window {
         id: rowInterface
         x: 206
         y: 109
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -444,7 +400,7 @@ Window {
         id: rowVehicleInfoRecord
         x: 209
         y: 439
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -472,7 +428,7 @@ Window {
         id: rowLogOnOff
         x: 213
         y: 467
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -530,7 +486,7 @@ Window {
         id: rowDataLogPeriod
         x: 221
         y: 498
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -565,7 +521,7 @@ Window {
         id: rowLanguage
         x: 214
         y: 505
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -623,7 +579,7 @@ Window {
         id: rowNetwork
         x: 222
         y: 509
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -715,7 +671,7 @@ Window {
         id: rowAbout
         x: 219
         y: 514
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -758,7 +714,7 @@ Window {
         id: rowVersion
         x: 222
         y: 537
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.leftMargin: 50
@@ -779,6 +735,35 @@ Window {
             anchors.left: parent.left
             font.pixelSize: 20
             anchors.verticalCenter: parent.verticalCenter
+        }
+    }
+
+    Button {
+        id: btnSave
+        y: 30
+        height: 40
+        text: qsTr("SAVE")
+        anchors.right: imgBack.left
+        anchors.rightMargin: 10
+        style: ButtonStyle {
+            background: Rectangle {
+                radius: 4
+                border.width: control.activeFocus ? 2 : 1
+                implicitWidth: 100
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? "#ccc" : "#eee"
+                    }
+
+                    GradientStop {
+                        position: 1
+                        color: control.pressed ? "#aaa" : "#ccc"
+                    }
+                }
+                implicitHeight: 43
+                border.color: "#888888"
+            }
         }
     }
 
@@ -976,7 +961,8 @@ Window {
 
 
 
-/*##^## Designer {
-    D{i:8;anchors_y:161}D{i:27;anchors_y:329}
+/*##^##
+Designer {
+    D{i:8;anchors_y:161}D{i:20;anchors_y:329}
 }
- ##^##*/
+##^##*/

@@ -54,6 +54,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Extras 1.4
+import "../style"
 
 Window {
     id: general
@@ -63,13 +64,13 @@ Window {
 
     // QML - main window position on start (screen center)
     // ( https://goo.gl/wLpvZD )
-    width: 1280
-    height: 800
+    Styles { id: style }
+    width: style.resolutionWidth // application wide properties
+    height: style.resolutionHeight
     maximumHeight: height
     maximumWidth: width
-    x: (Screen.width - width) / 2
-    y: (Screen.height - height) / 2
-
+    x: 0
+    y: 0
     minimumHeight: height
     minimumWidth: width
     color: "#161616"
@@ -106,7 +107,8 @@ Window {
 
     Image {
         id: imgBack
-        width: 100
+        width: style.backWidth
+	height: style.backHeight
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.topMargin: 0
@@ -127,7 +129,7 @@ Window {
     Rectangle {
         id: rowGeneral
         x: 200
-        y: 50
+        y: 30
         width: 300
         height: 43
         color: "#161616"
@@ -162,10 +164,10 @@ Window {
     Rectangle {
         id: rowChassisNo
         x: 202
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         Text {
             id: txtChassisNoCap
             y: 0
@@ -248,66 +250,6 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 400
         }
-
-        Button {
-            id: btnSend
-            y: 1
-            height: 40
-            text: qsTr("SEND")
-            style: ButtonStyle {
-                background: Rectangle {
-                    radius: 4
-                    border.color: "#888888"
-                    border.width: control.activeFocus ? 2 : 1
-                    implicitWidth: 100
-                    gradient: Gradient {
-                        GradientStop {
-                            position: 0
-                            color: control.pressed ? "#ccc" : "#eee"
-                        }
-
-                        GradientStop {
-                            position: 1
-                            color: control.pressed ? "#aaa" : "#ccc"
-                        }
-                    }
-                    implicitHeight: 43
-                }
-            }
-            anchors.leftMargin: 1110
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-        }
-
-        Button {
-            id: btnGet
-            y: 8
-            height: 40
-            text: qsTr("GET")
-            style: ButtonStyle {
-                background: Rectangle {
-                    radius: 4
-                    border.color: "#888888"
-                    border.width: control.activeFocus ? 2 : 1
-                    implicitWidth: 100
-                    gradient: Gradient {
-                        GradientStop {
-                            position: 0
-                            color: control.pressed ? "#ccc" : "#eee"
-                        }
-
-                        GradientStop {
-                            position: 1
-                            color: control.pressed ? "#aaa" : "#ccc"
-                        }
-                    }
-                    implicitHeight: 43
-                }
-            }
-            anchors.leftMargin: 982
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-        }
         anchors.topMargin: 50
         anchors.left: parent.left
         anchors.top: rowGeneral.bottom
@@ -317,7 +259,7 @@ Window {
         id: rowSPAN
         x: 195
         y: 0
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 20
@@ -468,14 +410,14 @@ Window {
             anchors.leftMargin: 875
         }
         anchors.left: parent.left
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowZERO
         x: 199
         y: -8
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 10
@@ -627,14 +569,14 @@ Window {
             anchors.leftMargin: 875
         }
         anchors.left: parent.left
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowRBK
         x: 200
         y: -6
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 10
@@ -767,14 +709,14 @@ Window {
             anchors.leftMargin: 130
         }
         anchors.left: parent.left
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowLeakage
         x: 206
         y: -4
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 10
@@ -882,14 +824,14 @@ Window {
             anchors.leftMargin: 626
         }
         anchors.left: parent.left
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowPressure0
         x: 206
         y: 3
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.topMargin: 10
@@ -1041,13 +983,13 @@ Window {
             anchors.leftMargin: 875
         }
         anchors.left: parent.left
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
     }
 
     Rectangle {
         id: rowPressure1
         x: 196
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.top: rowPressure0.bottom
@@ -1153,7 +1095,7 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         anchors.topMargin: 10
         anchors.left: parent.left
     }
@@ -1162,7 +1104,7 @@ Window {
         id: rowMotorTemp
         x: 196
         y: -2
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.top: rowPressure1.bottom
@@ -1312,7 +1254,7 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         anchors.topMargin: 10
         anchors.left: parent.left
     }
@@ -1321,7 +1263,7 @@ Window {
         id: rowWaterTemp
         x: 200
         y: -10
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.top: rowMotorTemp.bottom
@@ -1427,7 +1369,7 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         anchors.topMargin: 10
         anchors.left: parent.left
     }
@@ -1436,7 +1378,7 @@ Window {
         id: rowSmokeDTempThr
         x: 201
         y: -8
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.top: rowWaterTemp.bottom
@@ -1543,16 +1485,16 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         anchors.topMargin: 10
         anchors.left: parent.left
     }
 
     Rectangle {
-        id: rowMainVoltageThr
+        id: rowMainVoltageThr0
         x: 207
         y: -6
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
         anchors.top: rowSmokeDTempThr.bottom
@@ -1581,7 +1523,7 @@ Window {
             color: "#000000"
             radius: 10
             Text {
-                id: txtZeroSpeedVal8
+                id: txtMainVoltThresholdValWarningLow
                 y: 0
                 width: 70
                 height: 25
@@ -1594,95 +1536,6 @@ Window {
                 font.pixelSize: 20
             }
             anchors.leftMargin: 400
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-        }
-
-        Text {
-            id: txtZeroSpeedCap8
-            x: 9
-            y: 9
-            width: 120
-            height: 25
-            color: "#ffffff"
-            text: qsTr("Warning High :")
-            renderType: Text.QtRendering
-            fontSizeMode: Text.FixedSize
-            anchors.verticalCenterOffset: 0
-            anchors.leftMargin: 735
-            anchors.verticalCenter: parent.verticalCenter
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignLeft
-            anchors.left: parent.left
-            font.pixelSize: 19
-        }
-
-        Text {
-            id: txtSpanPressureCap9
-            x: 7
-            y: 7
-            width: 120
-            height: 25
-            color: "#ffffff"
-            text: qsTr("Severe High :")
-            anchors.verticalCenterOffset: 0
-            anchors.leftMargin: 982
-            anchors.verticalCenter: parent.verticalCenter
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignLeft
-            anchors.left: parent.left
-            font.pixelSize: 19
-        }
-
-        Rectangle {
-            id: recZeroPressureVal8
-            x: -2
-            y: 386
-            width: 100
-            height: 25
-            color: "#000000"
-            radius: 10
-            anchors.verticalCenterOffset: 0
-            Text {
-                id: txtZeroPressureVal8
-                y: 0
-                width: 70
-                height: 25
-                color: "#ffffff"
-                text: qsTr("")
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 20
-            }
-            anchors.leftMargin: 1110
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-        }
-
-        Rectangle {
-            id: recZeroSpeedVal11
-            x: 379
-            y: 388
-            width: 100
-            height: 25
-            color: "#000000"
-            radius: 10
-            Text {
-                id: txtZeroSpeedVal11
-                y: 0
-                width: 70
-                height: 25
-                color: "#ffffff"
-                text: qsTr("")
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 20
-            }
-            anchors.leftMargin: 875
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
@@ -1731,7 +1584,7 @@ Window {
             radius: 10
             anchors.verticalCenterOffset: 0
             Text {
-                id: txtZeroPressureVal11
+                id: txtMainVoltThresholdValSevereLow
                 y: 0
                 width: 70
                 height: 25
@@ -1747,19 +1600,19 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         anchors.topMargin: 10
         anchors.left: parent.left
     }
 
     Rectangle {
-        id: rowCellVoltageThr
+        id: rowCellVoltageThr0
         x: 207
         y: 1
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.top: rowMainVoltageThr.bottom
+        anchors.top: rowMainVoltageThr1.bottom
         Text {
             id: txtLeakageCurrent7
             y: 0
@@ -1862,94 +1715,7 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
-
-        Text {
-            id: txtZeroSpeedCap12
-            x: 5
-            y: 5
-            width: 120
-            height: 25
-            color: "#ffffff"
-            text: qsTr("Warning High :")
-            anchors.verticalCenterOffset: 0
-            anchors.leftMargin: 735
-            anchors.verticalCenter: parent.verticalCenter
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignLeft
-            anchors.left: parent.left
-            font.pixelSize: 19
-        }
-
-        Text {
-            id: txtSpanPressureCap13
-            x: 3
-            y: 3
-            width: 120
-            height: 25
-            color: "#ffffff"
-            text: qsTr("Severe High :")
-            anchors.verticalCenterOffset: 0
-            anchors.leftMargin: 982
-            anchors.verticalCenter: parent.verticalCenter
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignLeft
-            anchors.left: parent.left
-            font.pixelSize: 19
-        }
-
-        Rectangle {
-            id: recZeroPressureVal12
-            x: -6
-            y: 382
-            width: 100
-            height: 25
-            color: "#000000"
-            radius: 10
-            anchors.verticalCenterOffset: 0
-            Text {
-                id: txtZeroPressureVal12
-                y: 0
-                width: 70
-                height: 25
-                color: "#ffffff"
-                text: qsTr("")
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 20
-            }
-            anchors.leftMargin: 1110
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-        }
-
-        Rectangle {
-            id: recZeroSpeedVal12
-            x: 379
-            y: 388
-            width: 100
-            height: 25
-            color: "#000000"
-            radius: 10
-            Text {
-                id: txtZeroSpeedVal12
-                y: 0
-                width: 70
-                height: 25
-                color: "#ffffff"
-                text: qsTr("")
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 20
-            }
-            anchors.leftMargin: 875
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-        }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         anchors.topMargin: 10
         anchors.left: parent.left
     }
@@ -1958,10 +1724,10 @@ Window {
         id: rowCellDiffVoltageThr
         x: 216
         y: 5
-        width: 1200
+        width: style.resolutionWidth - anchors.leftMargin
         height: 30
         color: "#161616"
-        anchors.top: rowCellVoltageThr.bottom
+        anchors.top: rowCellVoltageThr1.bottom
         Text {
             id: txtLeakageCurrent8
             y: 0
@@ -2064,9 +1830,264 @@ Window {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
         }
-        anchors.leftMargin: 50
+        anchors.leftMargin: 30
         anchors.topMargin: 10
         anchors.left: parent.left
+    }
+
+    Button {
+        id: btnGet
+        y: 30
+        height: 40
+        text: qsTr("GET")
+        anchors.right: imgBack.left
+        anchors.rightMargin: 10
+        style: ButtonStyle {
+            background: Rectangle {
+                radius: 4
+                border.width: control.activeFocus ? 2 : 1
+                implicitWidth: 100
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? "#ccc" : "#eee"
+                    }
+
+                    GradientStop {
+                        position: 1
+                        color: control.pressed ? "#aaa" : "#ccc"
+                    }
+                }
+                implicitHeight: 43
+                border.color: "#888888"
+            }
+        }
+    }
+
+    Button {
+        id: btnSend
+        y: 30
+        height: 40
+        text: qsTr("SEND")
+        anchors.right: btnGet.left
+        anchors.rightMargin: 10
+        style: ButtonStyle {
+            background: Rectangle {
+                radius: 4
+                border.width: control.activeFocus ? 2 : 1
+                implicitWidth: 100
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? "#ccc" : "#eee"
+                    }
+
+                    GradientStop {
+                        position: 1
+                        color: control.pressed ? "#aaa" : "#ccc"
+                    }
+                }
+                implicitHeight: 43
+                border.color: "#888888"
+            }
+        }
+    }
+
+    Rectangle {
+        id: rowMainVoltageThr1
+        x: 209
+        width: style.resolutionWidth - anchors.leftMargin
+        height: 30
+        color: "#161616"
+        anchors.topMargin: 10
+        anchors.leftMargin: 30
+
+        Rectangle {
+            id: recZeroSpeedVal14
+            x: 370
+            y: 379
+            width: 100
+            height: 25
+            color: "#000000"
+            radius: 10
+            anchors.leftMargin: 400
+            Text {
+                id: txtMainVoltThresholdValWarningHigh
+                y: 0
+                width: 70
+                height: 25
+                color: "#ffffff"
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Text {
+            id: txtZeroSpeedCap15
+            x: 18
+            y: 18
+            width: 120
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Warning High :")
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: 20
+            anchors.leftMargin: 240
+            horizontalAlignment: Text.AlignLeft
+            anchors.left: parent.left
+            anchors.verticalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Text {
+            id: txtSpanPressureCap16
+            x: 16
+            y: 16
+            width: 120
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Severe High :")
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: 19
+            anchors.leftMargin: 506
+            horizontalAlignment: Text.AlignLeft
+            anchors.left: parent.left
+            anchors.verticalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Rectangle {
+            id: recZeroPressureVal15
+            x: 7
+            y: 395
+            width: 100
+            height: 25
+            color: "#000000"
+            radius: 10
+            anchors.leftMargin: 626
+            Text {
+                id: txtMainVoltThresholdValSevereHigh
+                y: 0
+                width: 70
+                height: 25
+                color: "#ffffff"
+                text: qsTr("")
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            anchors.left: parent.left
+            anchors.verticalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        anchors.left: parent.left
+        anchors.top: rowMainVoltageThr0.bottom
+    }
+
+    Rectangle {
+        id: rowCellVoltageThr1
+        x: 216
+        width: style.resolutionWidth - anchors.leftMargin
+        height: 30
+        color: "#161616"
+        anchors.topMargin: 10
+        anchors.leftMargin: 30
+
+        Rectangle {
+            id: recZeroSpeedVal11
+            x: 370
+            y: 379
+            width: 100
+            height: 25
+            color: "#000000"
+            radius: 10
+            anchors.leftMargin: 400
+            Text {
+                id: txtZeroSpeedVal11
+                y: 0
+                width: 70
+                height: 25
+                color: "#ffffff"
+                text: qsTr("")
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Text {
+            id: txtZeroSpeedCap13
+            x: 9
+            y: 9
+            width: 120
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Warning High :")
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: 20
+            anchors.leftMargin: 240
+            horizontalAlignment: Text.AlignLeft
+            anchors.left: parent.left
+            anchors.verticalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Text {
+            id: txtSpanPressureCap14
+            x: 7
+            y: 7
+            width: 120
+            height: 25
+            color: "#ffffff"
+            text: qsTr("Severe High :")
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: 19
+            anchors.leftMargin: 506
+            horizontalAlignment: Text.AlignLeft
+            anchors.left: parent.left
+            anchors.verticalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Rectangle {
+            id: recZeroPressureVal13
+            x: -2
+            y: 386
+            width: 100
+            height: 25
+            color: "#000000"
+            radius: 10
+            anchors.leftMargin: 626
+            Text {
+                id: txtZeroPressureVal11
+                y: 0
+                width: 70
+                height: 25
+                color: "#ffffff"
+                text: qsTr("")
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            anchors.left: parent.left
+            anchors.verticalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        anchors.left: parent.left
+        anchors.top: rowCellVoltageThr0.bottom
     }
 
     onActiveChanged : {
@@ -2211,11 +2232,17 @@ Window {
 
 
 
-/*##^## Designer {
-    D{i:8;anchors_y:161}D{i:67;anchors_x:1}D{i:73;anchors_x:3}D{i:84;anchors_x:3}D{i:79;anchors_y:"-5"}
-D{i:92;anchors_x:3}D{i:87;anchors_y:"-5"}D{i:103;anchors_x:3}D{i:98;anchors_y:"-5"}
-D{i:109;anchors_y:"-5"}D{i:117;anchors_y:"-5"}D{i:122;anchors_x:3}D{i:125;anchors_y:"-5"}
-D{i:114;anchors_x:3}D{i:130;anchors_x:3}D{i:133;anchors_y:"-5"}D{i:138;anchors_x:3}
-D{i:144;anchors_x:3}D{i:148;anchors_x:3}
+/*##^##
+Designer {
+    D{i:0;height:768;width:1024}D{i:8;anchors_y:161}D{i:6;anchors_y:161}D{i:55;anchors_x:1}
+D{i:54;anchors_x:3}D{i:48;anchors_x:1}D{i:57;anchors_y:"-5"}D{i:61;anchors_x:3}D{i:62;anchors_x:3}
+D{i:68;anchors_y:"-5"}D{i:72;anchors_x:3}D{i:73;anchors_x:3}D{i:67;anchors_y:"-5"}
+D{i:76;anchors_y:"-5"}D{i:80;anchors_x:3}D{i:81;anchors_x:3}D{i:75;anchors_y:"-5"}
+D{i:90;anchors_y:"-5"}D{i:91;anchors_x:3}D{i:86;anchors_y:"-5"}D{i:95;anchors_x:3}
+D{i:97;anchors_y:"-5"}D{i:98;anchors_y:"-5"}D{i:105;anchors_x:3;anchors_y:"-5"}D{i:107;anchors_y:"-5"}
+D{i:102;anchors_x:3}D{i:113;anchors_x:3}D{i:112;anchors_x:3}D{i:115;anchors_y:"-5"}
+D{i:117;anchors_x:3}D{i:120;anchors_x:3}D{i:124;anchors_x:3}D{i:140;anchors_x:3;anchors_y:"-5"}
+D{i:142;anchors_y:"-5"}D{i:138;anchors_x:3;anchors_y:1}D{i:147;anchors_x:3}D{i:146;anchors_x:3}
+D{i:149;anchors_y:"-5"}D{i:151;anchors_x:3}D{i:145;anchors_y:"-5"}
 }
- ##^##*/
+##^##*/
