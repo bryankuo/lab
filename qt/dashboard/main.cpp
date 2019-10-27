@@ -437,7 +437,7 @@ int main(int argc, char *argv[]) {
 #endif
     // place here to make sure later than pWorker initialization
     // before found any new placement
-    worker->setWindowActive(racev.m_pWinBoot);
+    racev.setActiveWindow(racev.m_pWinLogOn);
 
 #if defined ( GPS_THREAD_ )
     QObject::connect(
