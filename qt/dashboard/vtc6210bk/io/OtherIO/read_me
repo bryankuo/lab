@@ -1,0 +1,7 @@
+You can use "gcc" to compile demo program.
+For example:
+    #gcc demo_External_12V_Set.c OtherIO.c -o External_12V_Set
+    #gcc demo_Voltage_Get.c OtherIO.c -o Voltage_Get
+    --------------------------------------------
+Then other demo program and so on.
+      

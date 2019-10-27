@@ -1,0 +1,25 @@
+You need to insert the "NEXCOM_IO" driver when you want to use WDT function.
+The driver provide two API on WDT_IO.h for reading and writing WDT register after you open this device driver.Two API describption is as below.
+1. WDT_SetTimer(char) :
+	The "char" parameter is a character to select timer of WDT . 
+	The definition of "char" value is as below.
+	   	"0": disable WDT function.
+		"1": enable WDT function and set the timer to 1sec.
+	  	"2": enable WDT function and set the timer to 2sec.
+        	"3": enable WDT function and set the timer to 4sec.
+		"4": enable WDT function and set the timer to 8sec.
+		"5": enable WDT function and set the timer to 16sec.
+		"6": enable WDT function and set the timer to 32sec.
+		"7": enable WDT function and set the timer to 64sec.
+		"8": enable WDT function and set the timer to 128sec.
+	
+2. WDT_ClearTimer() :
+ 	The API can clear WDT timer
+There are two demo program on this directory. One is "demo_WDT.c" you can refer to this program to "disable" or "set" WDT function. Other is "demo_alive.c" you can refer to this program to clear WDT timer to response your system is alive.  
+
+3. You can use "gcc" to compile two demo program.
+	3.1) gcc demo_WDT.c WDT_set.c -o demo_WDT
+	3.2) gcc demo_alive.c WDT_set.c -o demo_alive
+
+PS: please make sure you have "root"authority when you execute demo program.
+      

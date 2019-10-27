@@ -1,0 +1,51 @@
+You need to insert the "NEXCOM_IO" driver when you want to use GPIO function.
+The driver provide four API on GPIO_IO.h for setting GPIO function after you open this device driver.Four API describption is as below.
+1. int GPIOType_Set(char,char) :
+	There are six GPIO pin on VTC1010, and you can program them to input(GPI) or output(GPO) independently. This API can provide you to set each pin for input or output type independently.
+	The first character of API is GPIO number, you can set it from 1 to 6 (GPIO1~GPIO6). The second one is GPIO type, you can set '0' for input(GPI) and '1' for output for GPO.
+	For example: If you want to set GPIO1~GPIO3 for input(GPI), and GPIO4~GPIO6 for output(GPO). Then you can set this API as below.
+			GPIOType_Set(1,0);    
+			GPIOType_Set(2,0);    
+			GPIOType_Set(3,0);    
+			GPIOType_Set(4,1);    
+			GPIOType_Set(5,1);    
+			GPIOType_Set(6,1);    
+
+	In GPIO folder, there is a reference code of demo_GPIOType.c. You can refer to this code to use this API. 
+2. int GPIOType_Get(void) :
+ 	If you want to know which type of GPIO is set on current system. You can use this API to get current seeting of GPIO.
+	You can know type seeting from return value of this API. The bit0 of "type" is GPIO1 type, bit1 of "type" is GPIO2 and so on. 
+        The type of GPIO is "input" type if bit of "type" is '0', and The type of GPIO is "output" type if bit of "type" is '1'.
+        For example, if return value of "type" is 0xf4 and GPIO type is as below.
+                GPIO1 : input 
+                GPIO2 : input
+                GPIO3 : Output
+                GPIO4 : input
+                GPIO5 : Output
+                GPIO6 : Outoput  
+	In GPIO folder, there is a reference code of  demo_GPIGet.c. You can refer to this code to use this API. 
+
+
+3. int GPO_Set(char,char) :
+	You can set GPIO output to "low" or "high" level if you set this pin to output type(GPO). You can use this API to set GPO to "low" or "high" level.  
+	The first character of API is GPIO number, you can set it from 1 to 6 (GPIO1~GPIO6). The second one is output level, you can set '0' for low level and '1' for output for high level.
+	For example: If you set GPIO1~GPIO3 for input(GPI), and GPIO4~GPIO6 for output(GPO). Then you want to set GPIO4 and GPIO5 to "high", GPIO6 to "low". You can set this API as below.
+			GPO_Set(4,1);    
+			GPO_Set(5,1); 
+			GPO_Set(6,0); 
+	In GPIO folder, there is a reference code of  demo_GPOSet.c. You can refer to this code to use this API. 
+
+4. int GPI_Get(void) :
+	You can use this API to get current status of GPIO if you set this pin to input type(GPI).You can use this API to know currnt level of GPIO.
+	You can know input level of GPIO from return value of this API. The bit0 of return value is GPIO1 level, bit1 of return value is GPIO2 and so on. 
+        The level of GPIO is "low" level if bit of return value is '0', and the level of GPIO is "high" level if bit of return value is '1'.
+        For example,  If you set GPIO1~GPIO3 for input(GPI), and GPIO4~GPIO6 for output(GPO). Then return value of this API is 0xf4, the input level of GPIO is as below.
+                GPIO1 : low level
+                GPIO2 : low level
+                GPIO3 : high level
+                GPIO4 : don't care ( set to GPO)
+                GPIO5 : don't care ( set to GPO)
+                GPIO6 : don't care ( set to GPO)
+	In GPIO folder, there is a reference code of  demo_GPIGet.c. You can refer to this code to use this API. 
+
+	

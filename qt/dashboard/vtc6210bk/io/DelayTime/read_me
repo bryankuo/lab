@@ -1,0 +1,35 @@
+You need to insert the "NEXCOM_IO" driver when you want to use Delay ON/OFF function.
+The driver provide two API on Delay_IO.h for setting Delay ON/OFF function after you open this device driver.Two API describption is as below.
+1. DelayON_Set(char) :
+	The "char" parameter is a character to set time of Delay ON. 
+	The definition of "char" value is as below.
+	   	(0) Set time of Delay ON to 0 sec
+        	(1) Set time of Delay ON to 10 sec        	
+		(2) Set time of Delay ON to 30 sec
+        	(3) Set time of Delay ON to 1 min
+        	(4) Set time of Delay ON to 5 min
+        	(5) Set time of Delay ON to 10 min
+        	(6) Set time of Delay ON to 15 min
+        	(7) Set time of Delay ON to 30 min
+        	(8) Set time of Delay ON to 1 hour
+
+	
+2. DelayOFF_Set(char) :
+ 	The "char" parameter is a character to set time of Delay OFF. 
+	The definition of "char" value is as below.
+	   	(0) Set time of Delay ON to 0 sec
+        	(1) Set time of Delay ON to 20 sec        	
+		(2) Set time of Delay ON to 1 min
+        	(3) Set time of Delay ON to 5 min
+        	(4) Set time of Delay ON to 10 min
+        	(5) Set time of Delay ON to 30 min
+        	(6) Set time of Delay ON to 1 hour
+        	(7) Set time of Delay ON to 6 hour
+        	(8) Set time of Delay ON to 18 hour
+
+3. You can use "gcc" to compile two demo program.
+	3.1) gcc demo_DelayON.c Delay_Set.c -o demo_DelayON
+	3.2) gcc demo_DelayOFF.c Delay_Set.c -o demo_DelayOFF
+
+PS: please make sure you have "root"authority when you execute demo program.
+      

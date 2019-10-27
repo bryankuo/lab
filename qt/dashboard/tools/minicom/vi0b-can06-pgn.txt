@@ -1,0 +1,10 @@
+verbose off
+# send "\n"
+# send "\n"
+send "ATI"
+send "ATDP"
+send "ATH0"
+send "ATS0"
+# sleep 1
+#send "exit"
+send "00FF00"

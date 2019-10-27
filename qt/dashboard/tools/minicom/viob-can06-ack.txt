@@ -1,0 +1,23 @@
+# minicom -b 115200 -D /dev/ttyUSB0 -S script.txt -C output.txt # apt-get install psmisc to run 'killall'
+verbose off
+send "ATZ"
+sleep 1
+send "STP 42"
+send "ATL1"
+send "ATE0"
+send "ATH 1"
+send "STFAC"
+
+#buffer full
+#send "AT MA"
+
+#send "AT MP FF00" 
+
+# send "STFPGA FF00,00"
+# send "STFPGA FF01"
+# send "STFPGA FF02"
+# send "STFPGA FF91"
+# send "STM"
+# sleep 1
+# send "\r"
+# ! kill -9 $(pidof minicom)

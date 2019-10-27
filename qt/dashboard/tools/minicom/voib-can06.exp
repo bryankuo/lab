@@ -1,0 +1,12 @@
+#!/usr/bin/expect -f
+set timeout 3
+spawn minicom -b 115200 -D /dev/ttyUSB0
+# send contrl + c
+# send \x03
+
+# send control + a, then z
+send -- "\x01"; send -- "Z"; send -- "W\r"
+send -- "\x01"; send -- "Z"; send -- "A\r"
+
+send -- "ATI\r"
+expect eof
