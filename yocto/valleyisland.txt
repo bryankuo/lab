@@ -1,0 +1,85 @@
+Jethro 2.0 – Valley Island
+
+Intel® Atom® Processor E3800 with Open Source Graphics (Valley Island)
+@see https://tinyurl.com/yyoro5em
+
+Intel® Atom™ Processor E3800 Product Family
+User Guide for Yocto Project* Board Support Package (BSP)
+Graphics Driver July 2014 Document Number: 330810-001US
+
+Document Number: 330693-001US
+Building Intel® Atom™ E3800 Processor Development Kit
+Yocto Project* Board Support Package (BSP)
+
+1.host building machine:
+(hwinfo/dmidecode)
+
+2.host building OS:
+uname -a / hostnamectl
+
+3.tools && versions used to compile:
+3.1.gcc version:
+3.2.check poky / yocto version:
+The easiest way to know your Yocto Project version is to check it on the poky.conf file which is located on the following path:
+/<BSP-DIR>/sources/poky/meta-yocto/conf/distro/poky.conf
+You will find the Yocto Project version under DISTRO_VERSION
+@see https://tinyurl.com/swayh2s
+bryan@waltz:/media/bryan/Hitachi/poky$ find . -type f -name "poky.conf" | xargs grep -rn --color="auto" -e "DISTRO_VERSION"
+3:DISTRO_VERSION = "2.0.3"
+
+
+
+4.yocto commands:
+4.1.Useful bitbake commands
+( @see https://tinyurl.com/jejbeq4 )
+4.1.List recipes of a image?
+4.2.Execute a specific recipe?
+
+oe-init-env.sh
+source oe-init-build-env valleyisland
+
+~/poky/yocto_build$ source ../oe-init-build-env valleyisland
+
+/media/bryan/Hitachi/poky/yocto_build/valleyisland$
+
+/media/bryan/Hitachi/poky/yocto_build/valleyisland$ gvim conf/bblayers.conf
+
+3.2.3: local.conf
+find ./ -type f -name 'valleyisland-64.conf'
+./meta-intel/meta-isg/meta-valleyisland/conf/machine/valleyisland-64.conf
+
+5.notes on building progress:
+bryan@waltz:/media/bryan/Hitachi/poky/yocto_build/valleyisland$ bitbake meta-toolchain
+
+5.1.building automake-1.15:
+| help2man: can't get `--help' info from automake-1.15
+| Try `--no-discard-stderr' if option outputs to stderr
+solution:
+1.downgrade perl or upgrade automake
+(@see https://tinyurl.com/ygndxvr7 )
+2.modify make file ( solved by patching )
+(@see https://tinyurl.com/yzbqjhqx )
+( automake is less likey changed, and less impact, comparing
+to perl )
+
+5.2.configuring libtool: ( solved by patching )
+Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/\${ <-- HERE ([^ \t=:+{}]+)}/ at /media/bryan/Hitachi/poky/yocto_build/valleyisland/tmp/sysroots/x86_64-linux/usr/bin/automake line 3936.
+WARNING: exit code 255 from a shell command.
+ERROR: Function failed: do_configure (log file is located at /media/bryan/Hitachi/poky/yocto_build/valleyisland/tmp/work/x86_64-linux/libtool-native/2.4.6-r0/temp/log.do_configure.25667)
+search:
+@see https://tinyurl.com/yx686ae9
+solution:
+@see https://tinyurl.com/vmy7dsg
+
+5.3.compiling pkgconfig: ( solved by patching )
+| ERROR: Function failed: do_compile (log file is located at /media/bryan/Hitachi/poky/yocto_build/valleyisland/tmp/work/x86_64-linux/pkgconfig-native/0.28+gitAUTOINC+40342dd0ea-r0/temp/log.do_compile.4840)
+/media/bryan/Hitachi/poky/yocto_build/valleyisland/tmp/work/x86_64-linux/pkgconfig-native/0.28+gitAUTOINC+40342dd0ea-r0/git/glib/glib/gdate.c:2497:7: error: format not a string literal, format string not checked [-Werror=format-nonliteral]
+       tmplen = strftime (tmpbuf, tmpbufsize, locale_format, &tm);
+       ^~~~~~
+This will be resolved by the upgrade to Yocto 2.2
+We're at Yocto 2.4 now and i haven't seen any such issues. Closing
+As a nasty hack I did this:
+Patches are provided in the linked bug as a work-around.
+( @see https://tinyurl.com/yx3mm24w )
+gdate: Suppress string format literal warning
+( @see https://tinyurl.com/rrd8bck )
