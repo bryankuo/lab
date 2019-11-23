@@ -83,3 +83,14 @@ Patches are provided in the linked bug as a work-around.
 ( @see https://tinyurl.com/yx3mm24w )
 gdate: Suppress string format literal warning
 ( @see https://tinyurl.com/rrd8bck )
+
+5.4.configuring openssl ( solved by patching host file )
+Can't locate find.pl in @INC (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at perlpath.pl line 7.
+( @see )
+
+5.5.compiling elfutils ( solved by guarding curly bracket )
+( @see https://tinyurl.com/u2sty4o )
+nonnull argument 'ebl' compared to NULL [-Werror=nonnull-compare]
+( @see https://tinyurl.com/vlxf7dv )
+( solved by delete   __nonnull_attribute__ (1); , and so forth )
+
