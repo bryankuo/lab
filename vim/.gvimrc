@@ -7,13 +7,15 @@ color evening  " Same as :colorscheme evening
 hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
 hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
 set guifont=DejaVu\ Sans\ Mono\ 16
+" if MacOS
+" set guifont=DejaVu\ Sans\ Mono:h36
 set nu
 set shiftwidth=4 softtabstop=4
 set incsearch ignorecase hlsearch
 set lines=24 columns=80
 set cursorline
 set cursorcolumn
-set list
+set no list
 let g:indentLine_color_gui = '#A4E57E'
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline

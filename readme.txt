@@ -38,4 +38,10 @@ Android sample bluetooth code to send a simple string via bluetooth
 
 
 預期效益(Effect):
+1.質化效益:
+藉由行動診斷裝置的使用,
+縮短技工的檢測時間
+提高售服人員反應系統狀態的效率
 
+2.量化效益/評估指標:
+售服人員處理系統檢測的現行作業方式.
