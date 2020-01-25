@@ -99,10 +99,10 @@ ADAS_DMI_Msg // 0x18FECAE8
 // Alarm Record ( in sequence )
 #define ALM_MSG_00 0x18FF0422    // alarm index 0
 #define ALM_MSG_01 0x18FF0522    // alarm index 1
-#define ALM_MSG_02 0x18FF0622    // and so on...
-#define ALM_MSG_03 0x18FF0722
-// #define ALM_MSG_04 0x18FF5051 // DCDC_MSG00
-// #define ALM_MSG_05 0x18FF93F4 // BCU_ER_MSG01
+#define ALM_MSG_02 0x18FF0622    // alarm index 2
+#define ALM_MSG_03 0x18FF0722    // alarm index 3
+#define ALM_MSG_04 DCDC_MSG00    // alarm index 4
+#define ALM_MSG_05 BCU_ER_MSG01  // alarm index 5
 // #define ALM_MSG_06 0x18FF94F4 // BMS_CMUERR_MSG01
 // #define ALM_MSG_07 0x14FF4326 // PCU_ST_SYS_3
 // #define ALM_MSG_08 0x14FF4426 // PCU_ST_SYS_4
@@ -270,6 +270,69 @@ public:
     // B5[0:7] 105 - 112
     // B6[0:7] 113 - 120
     // B7[0:7] 121 - 128
+
+    // ALM_MSG_02
+    // B0[0:7] 129 - 136
+    // B1[0:7] 137 - 144
+    // B2[0:7] 145 - 152
+    // B3[0:7] 153 - 160
+    // B4[0:7] 161 - 168
+    // B5[0:7] 169 - 176
+    // B6[0:7] 177 - 184
+    // B7[0:7] 185 - 192
+
+    // ALM_MSG_03
+    // B0[0:7] 193 - 200
+    // B1[0:7] 201 - 208
+    // B2[0:7] 209 - 216
+    // B3[0:7] 217 - 224
+    // B4[0:7] 225 - 232
+    // B5[0:7] 233 - 240
+    // B6[0:7] 241 - 248
+    // B7[0:7] 249 - 256
+
+    // ALM_MSG_04 / DCDC_MSG00
+    // B0[0:7] 257 - 264
+    int is_DCDC_under_o_voltage;
+    int is_DCDC_over_o_voltage;
+    int is_DCDC_under_i_voltage;
+    int is_DCDC_under_i_voltage;
+    int is_DCDC_hwfault;
+    // B0[5] 262 TBD
+    int is_DCDC_derating;
+    int is_DCDC_over_i_current;
+
+    // B1[0:7] 265 - 272
+    int is_DCDC_over_temperature;
+    int is_DCDC_over_o_current;
+
+    // B2[0:7] 273 - 280
+    // B3[0:7] 281 - 288
+    // B4[0:7] 289 - 296
+    // B5[0:7] 297 - 299
+    // B6[0:7] TBD
+    // B7[0:7] TBD
+
+    // ALM_MSG_05 / BCU_ER_MSG01
+    // B5[0] & B0[0:5] 300 - 305
+    int is_pk1_severe_high_voltage_in_charging;
+    int is_pk1_severe_high_voltage_in_driving_stop;
+    int is_pk1_warning_high_voltage_in_charging;
+    int is_pk1_warning_high_voltage_in_driving_stop;
+    int is_pk1_severe_low_voltage_in_driving_stop;
+    int is_pk1_warning_low_voltage_in_driving_stop;
+    //         B0[6:7] TBD
+
+    // B5[0] & B1[0:7] 306 - 313
+    int is_pk1_severe_high_temperature_in_charging;
+    int is_pk1_severe_high_temperature_in_driving_stop;
+    int is_pk1_warning_high_temperature_in_charging;
+    int is_pk1_warning_high_temperature_in_driving_stop;
+    int is_pk1_severe_low_temperature_in_charging;
+    int is_pk1_severe_low_temperature_in_driving_stop;
+    int is_pk1_warning_low_temperature_in_charging;
+    int is_pk1_warning_low_temperature_in_driving_stop;
+
 
     uint8_t charger_enable; // B7.[67]
     uint8_t charging_state; // BVM04,B0[0-7]***

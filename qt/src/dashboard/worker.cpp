@@ -1323,6 +1323,18 @@ void Worker::onSignalCANFrame(quint32 can_addr, QCanBusFrame* pframe) {
 		m_pRacev->m_pALM_MSG_01->updateMsg(
 		    &p_info->FrameALM_MSG_01, nullptr);
 	    break;
+	    case ALM_MSG_02:
+		m_pRacev->m_pALM_MSG_02->updateMsg(
+		    &p_info->FrameALM_MSG_02, nullptr);
+	    break;
+	    case ALM_MSG_03:
+		m_pRacev->m_pALM_MSG_03->updateMsg(
+		    &p_info->FrameALM_MSG_03, nullptr);
+	    break;
+	    case DCDC_MSG00: // ALM_MSG_04
+		m_pRacev->m_pDCDC_MSG00->updateMsg(
+		    &p_info->FrameDCDC_MSG00, nullptr);
+	    break;
 
 	    // case VCU_HMI_Msg_1: // B4.3 ??
 	    //	payload = p_info->FrameVCU_HMI_MSG01.payload();
@@ -1777,10 +1789,12 @@ void Worker::onSignalCANFrame(quint32 can_addr, QCanBusFrame* pframe) {
 	}
 	else if ( m_pRacev->isActiveWindow(m_pRacev->m_pWinDcdc) ) {
 	    switch ( can_addr ) {
-		case DCDC_MSG00:
-		    m_pRacev->m_pDCDC_MSG00->updateMsg(
-			&p_info->FrameDCDC_MSG00, m_pRacev->m_pWinDcdc);
-		break;
+		// note: some of the alarms here,
+		// therefore is categorized as 'core message'
+		// case DCDC_MSG00:
+		//    m_pRacev->m_pDCDC_MSG00->updateMsg(
+		//	&p_info->FrameDCDC_MSG00, m_pRacev->m_pWinDcdc);
+		// break;
 		//case BMS_VCU_Msg01:
 		 //   m_pRacev->m_pBMS_VCU_MSG01->updateMsg(
 		//	    &p_info->FrameBMS_VCU_MSG01, m_pRacev->m_pWinDcdc);

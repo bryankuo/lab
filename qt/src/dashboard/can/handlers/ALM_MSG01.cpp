@@ -25,7 +25,7 @@ Handler_ALM_MSG01::~Handler_ALM_MSG01() {
 }
 
 void Handler_ALM_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
-    QVariant returnedValue; QByteArray payload;
+    QVariant returnedValue; QByteArray prev_payload, payload;
     Racev *p_racev = qobject_cast<Racev*>(m_pRacev);
     QObject* pCurrentWindow = nullptr;
 
@@ -56,7 +56,7 @@ void Handler_ALM_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
 	// B5[0:7] 105 - 112
 	// B6[0:7] 113 - 120
 	// B7[0:7] 121 - 128
-
+	m_prevFrame = m_Frame; // keep for next compare
     } catch (const std::exception& ex) {
 	cout << __FILE__ << ":" << __LINE__ << " exception " << ex.what() << endl;
     }

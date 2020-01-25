@@ -124,6 +124,85 @@ Info::Info():
     //
     //
 
+    // TODO: to be defined
+    // ALM_MSG_01
+    // B0[0:7]  65 - 72
+    // B1[0:7]  73 - 80
+    // B2[0:7]  81 - 88
+    // B3[0:7]  89 - 96
+    // B4[0:7]  97 - 104
+    // B5[0:7] 105 - 112
+    // B6[0:7] 113 - 120
+    // B7[0:7] 121 - 128
+
+    // TODO: to be defined
+    // ALM_MSG_02
+    // B0[0:7] 129 - 136
+    // B1[0:7] 137 - 144
+    // B2[0:7] 145 - 152
+    // B3[0:7] 153 - 160
+    // B4[0:7] 161 - 168
+    // B5[0:7] 169 - 176
+    // B6[0:7] 177 - 184
+    // B7[0:7] 185 - 192
+
+    // TODO: to be defined
+    // ALM_MSG_03
+    // B0[0:7] 193 - 200
+    // B1[0:7] 201 - 208
+    // B2[0:7] 209 - 216
+    // B3[0:7] 217 - 224
+    // B4[0:7] 225 - 232
+    // B5[0:7] 233 - 240
+    // B6[0:7] 241 - 248
+    // B7[0:7] 249 - 256
+
+    // ALM_MSG_04 / DCDC_MSG00
+    // B0[0:7] 257 - 264
+    is_DCDC_under_o_voltage(0),
+    is_DCDC_over_o_voltage(0),
+    is_DCDC_under_i_voltage(0),
+    is_DCDC_under_i_voltage(0),
+    is_DCDC_hwfault(0),
+    // B0[5] 262 TBD
+    is_DCDC_derating(0),
+    is_DCDC_over_i_current(0),
+
+    // B1[0:7] 265 - 272
+    is_DCDC_over_temperature(0),
+    is_DCDC_over_o_current(0),
+    // B1[2:7] TBD
+
+    // B2[0:7] 273 - 280
+    // B3[0:7] 281 - 288
+    // B4[0:7] 289 - 296
+    // B5[0:7] 297 - 299
+    // B6[0:7] TBD
+    // B7[0:7] TBD
+
+
+
+    // ALM_MSG_05 / BCU_ER_MSG01
+    // B5[0] & B0[0:5] 300 - 305
+    is_pk1_severe_high_voltage_in_charging(0),
+    is_pk1_severe_high_voltage_in_driving_stop(0),
+    is_pk1_warning_high_voltage_in_charging(0),
+    is_pk1_warning_high_voltage_in_driving_stop(0),
+    is_pk1_severe_low_voltage_in_driving_stop(0),
+    is_pk1_warning_low_voltage_in_driving_stop(0),
+    //         B0[6:7] TBD
+    // B5[0] & B1[0:7] 306 - 313
+    is_pk1_severe_high_temperature_in_charging(0),
+    is_pk1_severe_high_temperature_in_driving_stop(0),
+    is_pk1_warning_high_temperature_in_charging(0),
+    is_pk1_warning_high_temperature_in_driving_stop(0),
+    is_pk1_severe_low_temperature_in_charging(0),
+    is_pk1_severe_low_temperature_in_driving_stop(0),
+    is_pk1_warning_low_temperature_in_charging(0),
+    is_pk1_warning_low_temperature_in_driving_stop(0),
+
+
+
     charger_enable(0),
     charging_state(0),
     vehicle_state(0), m_fSlope(double{0.0}), inclination(double{0.0}),

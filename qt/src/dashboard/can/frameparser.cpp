@@ -477,10 +477,6 @@ int FrameParser::parse(QCanBusFrame* pframe) {
 		m_pInfo->FrameBCU_VCU_SMD = *pframe;
 		emit canSignalFrame(fid, pframe);
 	    break;
-	    case BCU_ER_MSG01:
-		m_pInfo->FrameBCU_ER_MSG01 = *pframe;
-		emit canSignalFrame(fid, pframe);
-	    break;
 
 	    // PCU
 	    case PCU_ST_MOT_1:
@@ -537,6 +533,7 @@ int FrameParser::parse(QCanBusFrame* pframe) {
 	    break;
 
 	    // DCDC
+	    // ALM_MSG_04
 	    case DCDC_MSG00:
 		m_pInfo->FrameDCDC_MSG00 = *pframe;
 		emit canSignalFrame(fid, pframe);
@@ -571,6 +568,13 @@ int FrameParser::parse(QCanBusFrame* pframe) {
 		m_pInfo->FrameALM_MSG_03 = *pframe;
 		emit canSignalFrame(fid, pframe);
 	    break;
+	    // case ALM_MSG_04: // DCDC_MSG00
+	    // break;
+	    case ALM_MSG05: // BCU_ER_MSG01
+		m_pInfo->FrameBCU_ER_MSG01 = *pframe;
+		emit canSignalFrame(fid, pframe);
+	    break;
+
 	    default:
 #if 0 //defined ( QT_DEBUG )
 		cout << __FILE__ << ":" << __LINE__ << " " << __func__ << " "

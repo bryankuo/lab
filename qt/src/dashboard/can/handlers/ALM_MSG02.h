@@ -21,6 +21,7 @@ private:
     QObject* m_pRacev;
     // a placeholder for signaled frame
     QCanBusFrame m_Frame;
+    QCanBusFrame m_prevFrame;
 };
 
 #endif // ALM_MSG02_H

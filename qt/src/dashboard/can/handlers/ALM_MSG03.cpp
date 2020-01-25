@@ -25,7 +25,7 @@ Handler_ALM_MSG03::~Handler_ALM_MSG03() {
 }
 
 void Handler_ALM_MSG03::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
-    QVariant returnedValue; QByteArray payload;
+    QVariant returnedValue; QByteArray prev_payload, payload;
     Racev *p_racev = qobject_cast<Racev*>(m_pRacev);
     QObject* pCurrentWindow = nullptr;
 
@@ -58,7 +58,7 @@ void Handler_ALM_MSG03::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
 	// B7[0:7] 249 - 256
 
 #if 0
-	p_info->handleAlarmBits(3, 7, prev_payload, payload,
+	p_info->handleAlarmBits(3, 0, prev_payload, payload,
 	    &p_info->is_cooling_water_olet_temp_sensor_abnormal,
 	    NULL,
 	    NULL,
@@ -66,7 +66,7 @@ void Handler_ALM_MSG03::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
 	    NULL,
 	    NULL, NULL, NULL);
 #endif
-
+	m_prevFrame = m_Frame; // keep for next compare
     } catch (const std::exception& ex) {
 	cout << __FILE__ << ":" << __LINE__ << " exception " << ex.what() << endl;
     }
