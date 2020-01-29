@@ -1,4 +1,5 @@
 #include <iostream>
+#include <bitset>
 
 #include <QDebug>
 #include <QCanBusFrame>
@@ -24,6 +25,9 @@ Handler_BCU_ER_MSG01::~Handler_BCU_ER_MSG01() {
     //qDebug() << "Handler_BCU_ER_MSG01() ~";
 }
 
+/*
+ * Assume for each pack, there is only one flag bit set
+ */
 void Handler_BCU_ER_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
     QVariant returnedValue; QByteArray payload;
     int bcu_alarm_lcounter = 0, bms_ierr = 0, vsam_err = 0,
@@ -37,9 +41,10 @@ void Handler_BCU_ER_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
     int oc_ch = 0, oc_ds = 0;
     int issl_ch, issl_ds, iswl_ch, iswl_ds, hvil_ch, hvil_ds = 0;
     int c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,chg,bms;
+    int pack = 0;
     Racev *p_racev = qobject_cast<Racev*>(m_pRacev);
+    Info* p_info = p_racev->m_pInfo;
     QObject* pCurrentWindow = nullptr;
-
 #if 0 //defined ( QT_DEBUG )
     cout << __FILE__ << ":" << __LINE__ << " " << __func__ << " + " << endl;
 #endif
@@ -64,6 +69,18 @@ void Handler_BCU_ER_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
 	ds_wlv = ((payload[0]&0x20)>>5);
 	ds_hdv = ((payload[0]&0x40)>>6);
 	ds_lsoc = ((payload[0]&0x80)>>7);
+
+	// TODO: combine bit handling as one
+	// B0[6:7] 500 - 501
+	p_info->handleAlarmBits(5, 0, prev_payload, payload,
+	    NULL,
+	    NULL,
+	    NULL,
+	    NULL,
+	    NULL,
+	    NULL,
+	    &p_info->is_warning_high_voltage_diff_in_driving_stop,
+	    &p_info->is_warning_low_SOC_in_driving_stop);
 
 	sht_ch = (payload[1]&0x01);
 	sht_ds = ((payload[1]&0x02)>>1);
@@ -113,6 +130,32 @@ void Handler_BCU_ER_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
 
 	bcu_alarm_lcounter = (payload[7]&0xFF);
 	s_bcu_alarm_lcounter = QString("%1").arg(bcu_alarm_lcounter, 2, 16, QChar('0')).toUpper();
+
+	// ALM_MSG_05 / BCU_ER_MSG01
+	// assume there is only one pack info being carried.
+	if ( (payload[5]&0xFF) || (payload[6]&0x0F) ) {
+	    // if any flagBit set
+	    bitset<NUM_PACKS>
+		battery_pak(payload[5]+((payload[6]&0xFF)<<8));
+#if 1
+	    cout << __FILE__ << ":" << __LINE__ << " bitmap "
+		<< battery_pak << endl;
+#endif
+	    for ( int i = 0; i<battery_pak.size(); i++ ) { // or NUM_PACKS
+		if ( battery_pak.test(i) ) {
+		    // assume only one pack info being carried
+		    pack = i; break;
+		}
+	    }
+#if 1
+	    cout << __FILE__ << ":" << __LINE__ << " pk is "
+		<< pack << endl;
+#endif
+	    p_info->handleAlarmPackBits( pack, prev_payload, payload );
+	    // and so on ...
+	    // assume for each frame, there is only one pack info
+	    // being carried
+	}
 
 	pCurrentWindow = p_racev->getActiveWindow();
 	if ( pCurrentWindow == p_racev->m_pWinBmsAnalog

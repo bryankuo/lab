@@ -180,28 +180,51 @@ Info::Info():
     // B6[0:7] TBD
     // B7[0:7] TBD
 
+    // ALM_MSG_05 / BCU_ER_MSG01
+    // PACK 1
+    // B5[0] & B0[0:5] 300 - 305
+    // B0[6:7] TBD
+    // B5[0] & B1[0:7] 306 - 313
 
+    // PACK 2
+    // B5[1] & B0[0:5] 314 - 319
+    // B0[6:7] TBD
+    // B5[1] & B1[0:7] 320 - 327
+
+    // PACK 3
+    // B5[2] & B0[0:5] 328 - 333
+    // B0[6:7] TBD
+    // B5[2] & B1[0:7] 334 - 341
+
+    // PACK 4
+    // B5[3] & B0[0:5] 342 - 347
+    // B0[6:7] TBD
+    // B5[3] & B1[0:7] 348 - 355
+
+    // PACK 5
+    // B5[4] & B0[0:5] 356 - 361
+    // B5[6:7] TBD
+    // B5[4] & B1[0:7] 362 - 369
+
+    // PACK 6
+    // B5[5] & B0[0:5] 370 - 375
+    // B5[6:7] TBD
+    // B5[5] & B1[0:7] 376 - 383
+
+    // and so on ...
+
+    // PACK 12
+    // B6[3] & B0[0:5] 454 - 459
+    // B6[3] & B0[6:7] TBD
+    // B6[3] & B1[0:7] 460 - 467
+    packs({0}),
+
+    // TODO: to be defined 468 - 499
 
     // ALM_MSG_05 / BCU_ER_MSG01
-    // B5[0] & B0[0:5] 300 - 305
-    is_pk1_severe_high_voltage_in_charging(0),
-    is_pk1_severe_high_voltage_in_driving_stop(0),
-    is_pk1_warning_high_voltage_in_charging(0),
-    is_pk1_warning_high_voltage_in_driving_stop(0),
-    is_pk1_severe_low_voltage_in_driving_stop(0),
-    is_pk1_warning_low_voltage_in_driving_stop(0),
-    //         B0[6:7] TBD
-    // B5[0] & B1[0:7] 306 - 313
-    is_pk1_severe_high_temperature_in_charging(0),
-    is_pk1_severe_high_temperature_in_driving_stop(0),
-    is_pk1_warning_high_temperature_in_charging(0),
-    is_pk1_warning_high_temperature_in_driving_stop(0),
-    is_pk1_severe_low_temperature_in_charging(0),
-    is_pk1_severe_low_temperature_in_driving_stop(0),
-    is_pk1_warning_low_temperature_in_charging(0),
-    is_pk1_warning_low_temperature_in_driving_stop(0),
-
-
+    // B0[6:7] 500 - 501
+    is_warning_high_voltage_diff_in_driving_stop(0),
+    is_warning_low_SOC_in_driving_stop(0),
 
     charger_enable(0),
     charging_state(0),
@@ -648,4 +671,333 @@ void Info::handleAlarmBits(
 	else
 	    m_AlarmTrigger[alarmIndex*NUM_BYTE_ALARM+byteIndex] &= ~(1U<<7);
     }
+}
+
+#if 0
+void Info::handleAlarmBitsWithFlag(
+    int alarmIndex, int byteIndex,
+    int flagByte, int flagBit,
+    QByteArray prevPayload, QByteArray currentPayload,
+    int* pBit0, int* pBit1, int* pBit2, int* pBit3,
+    int* pBit4, int* pBit5, int* pBit6, int* pBit7 ) {
+    int pack = 0; int entry = 0;
+
+#if defined ( QT_DEBUG )
+    cout << __FILE__ << ":" << __LINE__ << " +"
+	<< " alarmIndex " << alarmIndex
+	<< " byteIndex " << byteIndex
+	<< " flagByte " << flagByte
+	<< " flagBit " << flagBit
+	<< endl;
+#endif
+
+#if defined ( _ENHANCED_CHECK_ )
+    if ( flagByte != 5 && flagByte != 6 ) {
+	cout << __FILE__ << ":" << __LINE__ << " flagByte "
+	    << flagByte << endl;
+	return;
+    }
+
+    if ( flagByte == 5 && ( flagBit < 0 || 7 < flagBit ) ) {
+	cout << __FILE__ << ":" << __LINE__ << " flagByte "
+	    << flagByte << " flagBit " << flagBit << endl;
+	return;
+    }
+
+    if ( flagByte == 6 && ( flagBit < 0 || 3 < flagBit ) ) {
+	cout << __FILE__ << ":" << __LINE__ << " flagByte "
+	    << flagByte << " flagBit " << flagBit << endl;
+	return;
+    }
+#endif
+
+    pack = (flagByte - 5 ) * NUM_BYTE_ALARM + flagBit;
+    // locate the entry for the pack in alarm bitmaps
+    entry = ( alarmIndex*NUM_BYTE_ALARM )
+	+ ( pack * ALARM_BYTE_PER_PACK ) + byteIndex ;
+
+    if ( pBit0 ) {
+	*pBit0 = (currentPayload[byteIndex]&1U)>>0;
+	if ( (currentPayload[byteIndex]&0x01) )
+	    m_Alarm[entry] |= (1U<<0);
+	else
+	    m_Alarm[entry] &= ~(1U<<0);
+	if ( (prevPayload[byteIndex]&0x01)^(currentPayload[byteIndex]&0x01) )
+	    m_AlarmTrigger[entry] |= (1U<<0);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<0);
+    }
+#if 0
+    cout << __FILE__ << ":" << __LINE__ << " " << __func__
+	<< " prev " << hex
+	<< setfill('0') << setw(2) << (prevPayload[byteIndex]&0xFF) << " "
+	<< " curr "
+	<< setfill('0') << setw(2) << (currentPayload[byteIndex]&0xFF) << " "
+	<< " trigger "
+	<< setfill('0') << setw(2)
+	<< ((prevPayload[0]&0x01)^(currentPayload[byteIndex]&0x01)) << " "
+	<< dec
+	<< endl;
+#endif
+
+    if ( pBit1 ) {
+	*pBit1 = (currentPayload[byteIndex]&0x02)>>1;
+	if ( (currentPayload[byteIndex]&0x02) )
+	    m_Alarm[entry] |= (1U<<1);
+	else
+	    m_Alarm[entry] &= ~(1U<<1);
+	if ( (prevPayload[byteIndex]&0x02)^(currentPayload[byteIndex]&0x02) )
+	    m_AlarmTrigger[entry] |= (1U<<1);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<1);
+    }
+
+    if ( pBit2 ) {
+	*pBit2 = (currentPayload[byteIndex]&0x04)>>2;
+	if ( (currentPayload[byteIndex]&0x04) )
+	    m_Alarm[entry] |= (1U<<2);
+	else
+	    m_Alarm[entry] &= ~(1U<<2);
+	if ( ((prevPayload[byteIndex]&0x04)^(currentPayload[byteIndex]&0x04)) )
+	    m_AlarmTrigger[entry] |= (1U<<2);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<2);
+    }
+
+    if ( pBit3 ) {
+	*pBit3 = (currentPayload[byteIndex]&0x08)>>3;
+	if ( (currentPayload[byteIndex]&0x08) )
+	    m_Alarm[entry] |= (1U<<3);
+	else
+	    m_Alarm[entry] &= ~(1U<<3);
+	if ( ((prevPayload[byteIndex]&0x08)^(currentPayload[byteIndex]&0x08)) )
+	    m_AlarmTrigger[entry] |= (1U<<3);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<3);
+    }
+
+    if ( pBit4 ) {
+	*pBit4 = (currentPayload[byteIndex]&0x10)>>4;
+	if ( (currentPayload[byteIndex]&0x10) )
+	    m_Alarm[entry] |= (1U<<4);
+	else
+	    m_Alarm[entry] &= ~(1U<<4);
+	if ( ((prevPayload[byteIndex]&0x10)^(currentPayload[byteIndex]&0x10)) )
+	    m_AlarmTrigger[entry] ^= (1U<<4);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<4);
+    }
+
+    if ( pBit5 ) {
+	*pBit5 = (currentPayload[byteIndex]&0x20)>>5;
+	if ( (currentPayload[byteIndex]&0x20) )
+	    m_Alarm[entry] |= (1U<<5);
+	else
+	    m_Alarm[entry] &= ~(1U<<5);
+	if ( ((prevPayload[byteIndex]&0x20)^(currentPayload[byteIndex]&0x20)) )
+	    m_AlarmTrigger[entry] ^= (1U<<5);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<5);
+    }
+
+    if ( pBit6 ) {
+    *pBit6 = (currentPayload[byteIndex]&0x40)>>6;
+	if ( (currentPayload[byteIndex]&0x40) )
+	    m_Alarm[entry] |= (1U<<6);
+	else
+	    m_Alarm[entry] &= ~(1U<<6);
+	if ( ((prevPayload[byteIndex]&0x40)^(currentPayload[byteIndex]&0x40)) )
+	    m_AlarmTrigger[entry] |= (1U<<6);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<6);
+    }
+
+    if ( pBit7 ) {
+	*pBit7 = (currentPayload[byteIndex]&0x80)>>7;
+	if ( (currentPayload[byteIndex]&0x80) )
+	    m_Alarm[entry] |= (1U<<7);
+	else
+	    m_Alarm[entry] &= ~(1U<<7);
+	if ( ((prevPayload[byteIndex]&0x80)^(currentPayload[byteIndex]&0x80)) )
+	    m_AlarmTrigger[entry] |= (1U<<7);
+	else
+	    m_AlarmTrigger[entry] &= ~(1U<<7);
+    }
+}
+#endif
+
+// for each set there is 14 bits, that occupies 2 bytes
+#define ALARM_BYTE_PER_PACK 2
+// 2 bits version, bit and flag bit
+// assume there is only one bit flag for the whole bits
+// and within the same byte
+// design for alarm id, from 300 to 467
+// flag bit is from B5[0] to B6[3], 12 bits (sets)
+
+
+// revised for battery pack bits exclusively
+void handleAlarmPackBits(int index,
+    QByteArray prevPayload, QByteArray currentPayload) {
+    int entry = 0;
+    // locate the entry for the pack in alarm bitmaps
+    // alarmIndex
+    entry = ( 5*NUM_BYTE_ALARM )+( index * ALARM_BYTE_PER_PACK );
+
+    // B5[0] & B0[0:5]
+    packs[index].is_severe_high_voltage_in_charging
+	= (currentPayload[5]&1U)>>0;
+    if ( (currentPayload[5]&0x01) )
+	m_Alarm[entry] |= (1U<<0);
+    else
+	m_Alarm[entry] &= ~(1U<<0);
+    if ( (prevPayload[5]&0x01)^(currentPayload[5]&0x01) )
+	m_AlarmTrigger[entry] |= (1U<<0);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<0);
+
+    packs[index].is_severe_high_voltage_in_driving_stop
+	= (currentPayload[0]&0x02)>>1;
+    if ( (currentPayload[0]&0x02) )
+	m_Alarm[entry] |= (1U<<1);
+    else
+	m_Alarm[entry] &= ~(1U<<1);
+    if ( (prevPayload[0]&0x02)^(currentPayload[0]&0x02) )
+	m_AlarmTrigger[entry] |= (1U<<1);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<1);
+
+
+    packs[index].is_warning_high_voltage_in_charging
+	= (currentPayload[0]&0x04)>>2;
+    if ( (currentPayload[0]&0x04) )
+	m_Alarm[entry] |= (1U<<2);
+    else
+	m_Alarm[entry] &= ~(1U<<2);
+    if ( ((prevPayload[0]&0x04)^(currentPayload[0]&0x04)) )
+	m_AlarmTrigger[entry] |= (1U<<2);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<2);
+
+    packs[index].is_warning_high_voltage_in_driving_stop
+	= (currentPayload[0]&0x08)>>3;
+    if ( (currentPayload[0]&0x08) )
+	m_Alarm[entry] |= (1U<<3);
+    else
+	m_Alarm[entry] &= ~(1U<<3);
+    if ( ((prevPayload[0]&0x08)^(currentPayload[0]&0x08)) )
+	m_AlarmTrigger[entry] |= (1U<<3);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<3);
+
+    packs[index].is_severe_low_voltage_in_charging
+	= (currentPayload[0]&0x10)>>4;
+    if ( (currentPayload[0]&0x10) )
+	m_Alarm[entry] |= (1U<<4);
+    else
+	m_Alarm[entry] &= ~(1U<<4);
+    if ( ((prevPayload[0]&0x10)^(currentPayload[0]&0x10)) )
+	m_AlarmTrigger[entry] ^= (1U<<4);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<4);
+
+    packs[index].is_warning_low_voltage_in_driving_stop
+	= (currentPayload[0]&0x20)>>5;
+    if ( (currentPayload[0]&0x20) )
+	m_Alarm[entry] |= (1U<<5);
+    else
+	m_Alarm[entry] &= ~(1U<<5);
+    if ( ((prevPayload[0]&0x20)^(currentPayload[0]&0x20)) )
+	m_AlarmTrigger[entry] ^= (1U<<5);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<5);
+    // B5[0] & B5[6:7] TBD
+
+    // B5[0] & B1[0:7]
+    packs[index].is_severe_high_temperature_in_charging
+	= (currentPayload[1]&1U)>>0;
+    if ( (currentPayload[1]&0x01) )
+	m_Alarm[entry] |= (1U<<0);
+    else
+	m_Alarm[entry] &= ~(1U<<0);
+    if ( (prevPayload[1]&0x01)^(currentPayload[1]&0x01) )
+	m_AlarmTrigger[entry] |= (1U<<0);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<0);
+
+    packs[index].is_severe_high_temperature_in_driving_stop
+	= (currentPayload[1]&0x02)>>1;
+    if ( (currentPayload[1]&0x02) )
+	m_Alarm[entry] |= (1U<<1);
+    else
+	m_Alarm[entry] &= ~(1U<<1);
+    if ( (prevPayload[1]&0x02)^(currentPayload[1]&0x02) )
+	m_AlarmTrigger[entry] |= (1U<<1);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<1);
+
+    packs[index].is_warning_high_temperature_in_charging
+	= (currentPayload[1]&0x04)>>2;
+    if ( (currentPayload[1]&0x04) )
+	m_Alarm[entry] |= (1U<<2);
+    else
+	m_Alarm[entry] &= ~(1U<<2);
+    if ( ((prevPayload[1]&0x04)^(currentPayload[1]&0x04)) )
+	m_AlarmTrigger[entry] |= (1U<<2);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<2);
+
+    packs[index].is_warning_high_temperature_in_driving_stop
+	= (currentPayload[1]&0x08)>>3;
+    if ( (currentPayload[1]&0x08) )
+	m_Alarm[entry] |= (1U<<3);
+    else
+	m_Alarm[entry] &= ~(1U<<3);
+    if ( ((prevPayload[1]&0x08)^(currentPayload[1]&0x08)) )
+	m_AlarmTrigger[entry] |= (1U<<3);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<3);
+
+    packs[index].is_severe_low_temperature_in_charging
+	= (currentPayload[1]&0x10)>>4;
+    if ( (currentPayload[1]&0x10) )
+	m_Alarm[entry] |= (1U<<4);
+    else
+	m_Alarm[entry] &= ~(1U<<4);
+    if ( ((prevPayload[1]&0x10)^(currentPayload[1]&0x10)) )
+	m_AlarmTrigger[entry] ^= (1U<<4);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<4);
+
+    packs[index].is_severe_low_temperature_in_driving_stop
+	= (currentPayload[1]&0x20)>>5;
+    if ( (currentPayload[1]&0x20) )
+	m_Alarm[entry] |= (1U<<5);
+    else
+	m_Alarm[entry] &= ~(1U<<5);
+    if ( ((prevPayload[1]&0x20)^(currentPayload[1]&0x20)) )
+	m_AlarmTrigger[entry] ^= (1U<<5);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<5);
+
+    packs[index].is_warning_low_temperature_in_charging
+	= (currentPayload[1]&0x40)>>6;
+    if ( (currentPayload[1]&0x40) )
+	m_Alarm[entry] |= (1U<<6);
+    else
+	m_Alarm[entry] &= ~(1U<<6);
+    if ( ((prevPayload[1]&0x40)^(currentPayload[1]&0x40)) )
+	m_AlarmTrigger[entry] |= (1U<<6);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<6);
+
+    packs[index].is_warning_low_temperature_in_driving_stop
+	= (currentPayload[1]&0x80)>>7;
+    if ( (currentPayload[1]&0x80) )
+	m_Alarm[entry] |= (1U<<7);
+    else
+	m_Alarm[entry] &= ~(1U<<7);
+    if ( ((prevPayload[1]&0x80)^(currentPayload[1]&0x80)) )
+	m_AlarmTrigger[entry] |= (1U<<7);
+    else
+	m_AlarmTrigger[entry] &= ~(1U<<7);
 }

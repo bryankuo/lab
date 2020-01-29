@@ -109,6 +109,26 @@ ADAS_DMI_Msg // 0x18FECAE8
 
 using namespace std;
 
+typedef struct battery_pack_bits {
+    // B5[1] & B0[0:5] 314 - 319
+    int is_severe_high_voltage_in_charging;
+    int is_severe_high_voltage_in_driving_stop;
+    int is_warning_high_voltage_in_charging;
+    int is_warning_high_voltage_in_driving_stop;
+    int is_severe_low_voltage_in_charging;
+    int is_warning_low_voltage_in_driving_stop;
+    // B5[6:7] TBD
+    // B5[1] & B1[0:7] 320 - 327
+    int is_severe_high_temperature_in_charging;
+    int is_severe_high_temperature_in_driving_stop;
+    int is_warning_high_temperature_in_charging;
+    int is_warning_high_temperature_in_driving_stop;
+    int is_severe_low_temperature_in_charging;
+    int is_severe_low_temperature_in_driving_stop;
+    int is_warning_low_temperature_in_charging;
+    int is_warning_low_temperature_in_driving_stop;
+} BATTERY_PACK_BITS;
+
 // Q: how to signal main application slot? using GObject?
 class Info : public QObject {
     Q_OBJECT
@@ -314,25 +334,9 @@ public:
     // B7[0:7] TBD
 
     // ALM_MSG_05 / BCU_ER_MSG01
-    // B5[0] & B0[0:5] 300 - 305
-    int is_pk1_severe_high_voltage_in_charging;
-    int is_pk1_severe_high_voltage_in_driving_stop;
-    int is_pk1_warning_high_voltage_in_charging;
-    int is_pk1_warning_high_voltage_in_driving_stop;
-    int is_pk1_severe_low_voltage_in_driving_stop;
-    int is_pk1_warning_low_voltage_in_driving_stop;
-    //         B0[6:7] TBD
-
-    // B5[0] & B1[0:7] 306 - 313
-    int is_pk1_severe_high_temperature_in_charging;
-    int is_pk1_severe_high_temperature_in_driving_stop;
-    int is_pk1_warning_high_temperature_in_charging;
-    int is_pk1_warning_high_temperature_in_driving_stop;
-    int is_pk1_severe_low_temperature_in_charging;
-    int is_pk1_severe_low_temperature_in_driving_stop;
-    int is_pk1_warning_low_temperature_in_charging;
-    int is_pk1_warning_low_temperature_in_driving_stop;
-
+    BATTERY_PACK_BITS packs[NUM_PACKS];
+    int is_warning_high_voltage_diff_in_driving_stop;
+    int is_warning_low_SOC_in_driving_stop;
 
     uint8_t charger_enable; // B7.[67]
     uint8_t charging_state; // BVM04,B0[0-7]***
@@ -478,13 +482,28 @@ public:
     IOWrapper* m_pIOWrapper;
     uint8_t m_AlarmTrigger[NUM_BYTE_ALARM*NUM_ALARM_ID];
     uint8_t m_Alarm[NUM_BYTE_ALARM*NUM_ALARM_ID];
+
     // assume there is one bit to one alarm
     void handleAlarmBits(
 	int alarmIndex, int byteIndex,
 	QByteArray prevPayload, QByteArray currentPayload,
 	int* pBit0, int* pBit1, int* pBit2, int* pBit3,
 	int* pBit4, int* pBit5, int* pBit6, int* pBit7 );
-    // TODO: 2 bits version
+
+    // 2 bits version, bit and flag bit
+    // assume there is only one bit flag for the whole bits
+    // and within the same byte
+#if 0
+    void handleAlarmBitsWithFlag(
+	int alarmIndex, int byteIndex,
+	int flagByte, int flagBit,
+	QByteArray prevPayload, QByteArray currentPayload,
+	int* pBit0, int* pBit1, int* pBit2, int* pBit3,
+	int* pBit4, int* pBit5, int* pBit6, int* pBit7 );
+#endif
+    // revised for battery pack bits exclusively
+    void handleAlarmPackBits(int index,
+	QByteArray prevPayload, QByteArray currentPayload);
 
 public slots:
     void onLogVehicleInfo(void);
