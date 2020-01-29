@@ -570,7 +570,7 @@ int FrameParser::parse(QCanBusFrame* pframe) {
 	    break;
 	    // case ALM_MSG_04: // DCDC_MSG00
 	    // break;
-	    case ALM_MSG05: // BCU_ER_MSG01
+	    case BCU_ER_MSG01: // ALM_MSG05
 		m_pInfo->FrameBCU_ER_MSG01 = *pframe;
 		emit canSignalFrame(fid, pframe);
 	    break;

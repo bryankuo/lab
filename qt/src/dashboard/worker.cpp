@@ -1335,6 +1335,10 @@ void Worker::onSignalCANFrame(quint32 can_addr, QCanBusFrame* pframe) {
 		m_pRacev->m_pDCDC_MSG00->updateMsg(
 		    &p_info->FrameDCDC_MSG00, nullptr);
 	    break;
+	    case ALM_MSG_05: // BCU_ER_MSG01
+		m_pRacev->m_pBCU_ER_MSG01->updateMsg(
+		    &p_info->FrameBCU_ER_MSG01, nullptr);
+	    break;
 
 	    // case VCU_HMI_Msg_1: // B4.3 ??
 	    //	payload = p_info->FrameVCU_HMI_MSG01.payload();
@@ -1703,10 +1707,12 @@ void Worker::onSignalCANFrame(quint32 can_addr, QCanBusFrame* pframe) {
 		  //  m_pRacev->m_pBMS_VCU_MSG01->updateMsg(
 		//	&p_info->FrameBMS_VCU_MSG01, m_pRacev->m_pWinBmsAnalog);
 		// break;
-		case BCU_ER_MSG01:
-		    m_pRacev->m_pBCU_ER_MSG01->updateMsg(
-			&p_info->FrameBCU_ER_MSG01, m_pRacev->m_pWinBmsAnalog);
-		break;
+		// note: some of the alarms here,
+		// therefore is categorized as 'core message'
+		//case BCU_ER_MSG01:
+		//    m_pRacev->m_pBCU_ER_MSG01->updateMsg(
+		//	&p_info->FrameBCU_ER_MSG01, m_pRacev->m_pWinBmsAnalog);
+		//break;
 		case BMS_CMUERR_MSG01:
 		    m_pRacev->m_pBMS_CMUERR_MSG01->updateMsg(
 			&p_info->FrameBMS_CMUERR_MSG01, m_pRacev->m_pWinBmsAnalog);
@@ -1767,10 +1773,10 @@ void Worker::onSignalCANFrame(quint32 can_addr, QCanBusFrame* pframe) {
 	}
 	else if ( m_pRacev->isActiveWindow(m_pRacev->m_pWinBmsDigital) ) {
 	    switch ( can_addr ) {
-		case BCU_ER_MSG01:
-		    m_pRacev->m_pBCU_ER_MSG01->updateMsg(
-			&p_info->FrameBCU_ER_MSG01, m_pRacev->m_pWinBmsDigital);
-		break;
+		// case BCU_ER_MSG01:
+		//  m_pRacev->m_pBCU_ER_MSG01->updateMsg(
+		//	&p_info->FrameBCU_ER_MSG01, m_pRacev->m_pWinBmsDigital);
+		// break;
 		//case BMS_VCU_Msg04:
 		 //   m_pRacev->m_pBMS_VCU_MSG04->updateMsg(
 		//	    &p_info->FrameBMS_VCU_MSG04, m_pRacev->m_pWinBmsDigital);
@@ -1825,10 +1831,10 @@ void Worker::onSignalCANFrame(quint32 can_addr, QCanBusFrame* pframe) {
 		    m_pRacev->m_pBCU_VCU_MSG0->updateMsg(
 			&p_info->FrameBCU_VCU_MSG0, m_pRacev->m_pWinDiagnose);
 		break;
-		case BCU_ER_MSG01:
-		    m_pRacev->m_pBCU_ER_MSG01->updateMsg(
-			&p_info->FrameBCU_ER_MSG01, m_pRacev->m_pWinDiagnose);
-		break;
+		// case BCU_ER_MSG01:
+		//    m_pRacev->m_pBCU_ER_MSG01->updateMsg(
+		//	&p_info->FrameBCU_ER_MSG01, m_pRacev->m_pWinDiagnose);
+		// break;
 		default:// assume there are CANBus frame ids
 #if defined ( PRINT_UNIDENTIFIED_ADDR_ )
 		    str_can_addr = QString::number( can_addr, 16 );

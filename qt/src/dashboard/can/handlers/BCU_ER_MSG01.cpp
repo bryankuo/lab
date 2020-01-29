@@ -29,7 +29,8 @@ Handler_BCU_ER_MSG01::~Handler_BCU_ER_MSG01() {
  * Assume for each pack, there is only one flag bit set
  */
 void Handler_BCU_ER_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
-    QVariant returnedValue; QByteArray payload;
+    QVariant returnedValue;
+    QByteArray prev_payload, payload;
     int bcu_alarm_lcounter = 0, bms_ierr = 0, vsam_err = 0,
 	tsam_err = 0, ccom_err = 0, cer_err = 0, chot = 0, ch_scerr = 0, ch_wcerr = 0;
     QString s_bcu_alarm_lcounter;
@@ -73,7 +74,7 @@ void Handler_BCU_ER_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
 	// TODO: combine bit handling as one
 	// B0[6:7] 500 - 501
 	p_info->handleAlarmBits(5, 0, prev_payload, payload,
-	    NULL,
+	    nullptr, // TODO: use nullptr
 	    NULL,
 	    NULL,
 	    NULL,
@@ -93,6 +94,16 @@ void Handler_BCU_ER_MSG01::updateMsg(QCanBusFrame* pframe, QObject* pDstVw) {
 
 	oc_ch = (payload[2]&0x01);
 	oc_ds = ((payload[2]&0x02)>>1);
+	// B2[0:1] 502 - 503
+	p_info->handleAlarmBits(5, 0, prev_payload, payload,
+	    nullptr,
+	    NULL,
+	    NULL,
+	    NULL,
+	    NULL,
+	    NULL,
+	    &p_info->is_warning_discharge_over_current,
+	    &p_info->is_warning_charge_over_current);
 
 	ccom_err = ((payload[3]&0x01));
 	cer_err = ((payload[3]&0x02)>>1); // 3.1

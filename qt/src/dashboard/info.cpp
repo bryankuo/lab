@@ -162,7 +162,7 @@ Info::Info():
     is_DCDC_under_o_voltage(0),
     is_DCDC_over_o_voltage(0),
     is_DCDC_under_i_voltage(0),
-    is_DCDC_under_i_voltage(0),
+    is_DCDC_over_i_voltage(0),
     is_DCDC_hwfault(0),
     // B0[5] 262 TBD
     is_DCDC_derating(0),
@@ -217,7 +217,7 @@ Info::Info():
     // B6[3] & B0[0:5] 454 - 459
     // B6[3] & B0[6:7] TBD
     // B6[3] & B1[0:7] 460 - 467
-    packs({0}),
+    packs(),
 
     // TODO: to be defined 468 - 499
 
@@ -267,8 +267,8 @@ Info::Info():
     probe_temperature(),cell_voltage(),
     m_pGSensor(nullptr),
     m_pIOWrapper(nullptr),
-    m_AlarmTrigger({0}),
-    m_Alarm({0})
+    m_AlarmTrigger(),
+    m_Alarm()
 {
 #if defined ( QT_DEBUG )
     cout << __func__ <<":"<< __LINE__ << "+" << endl;
@@ -836,7 +836,7 @@ void Info::handleAlarmBitsWithFlag(
 
 
 // revised for battery pack bits exclusively
-void handleAlarmPackBits(int index,
+void Info::handleAlarmPackBits(int index,
     QByteArray prevPayload, QByteArray currentPayload) {
     int entry = 0;
     // locate the entry for the pack in alarm bitmaps

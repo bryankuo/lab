@@ -316,7 +316,7 @@ public:
     int is_DCDC_under_o_voltage;
     int is_DCDC_over_o_voltage;
     int is_DCDC_under_i_voltage;
-    int is_DCDC_under_i_voltage;
+    int is_DCDC_over_i_voltage;
     int is_DCDC_hwfault;
     // B0[5] 262 TBD
     int is_DCDC_derating;
@@ -337,6 +337,9 @@ public:
     BATTERY_PACK_BITS packs[NUM_PACKS];
     int is_warning_high_voltage_diff_in_driving_stop;
     int is_warning_low_SOC_in_driving_stop;
+    // B2[0:1] 502 - 503
+    int is_warning_discharge_over_current;
+    int is_warning_charge_over_current;
 
     uint8_t charger_enable; // B7.[67]
     uint8_t charging_state; // BVM04,B0[0-7]***
