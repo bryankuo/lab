@@ -1,6 +1,17 @@
+Booting faster - Stewart Smith, Linux Conference Australia 2019
+ ( ref: YouTube video:https://tinyurl.com/y8kevyqs )
+ ( blog: https://tinyurl.com/ybc3ekaq )
 What are those available operating systems for Qt?
 Will Qt on RPi be of help on boot-time performance?
 Mike's Software Blog - 14 seconds with no extra configuration.
 How to boot Debian in 4 seconds ( ref: https://shorturl.at/kntU1 )
  ( ref: Booting Debian in 14 seconds ref: https://shorturl.at/epyV4 )
  systemd Optimizations ( ref: https://bit.ly/3c0zbW6 )
+A Pragmatic Guide to Boot-Time Optimization - Chris Simmonds, Consultant
+ ( ref: YouTube video:https://tinyurl.com/yasel8mp )
+single user mode
+linux + petitboot / BMC? / IStep? / network / disk / quiet kernel
+unxz initramfs 4.8 -> 2.5 / PCIe takes 3 seconds
+林上智,系統調校 / linux fast boot / XPUD / Wrap2 / yocto / QtQuick compiler
+SquashFS /
+
