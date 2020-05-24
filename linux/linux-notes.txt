@@ -1,0 +1,27 @@
+fast boot linux
+
+AGL automotive grade linux / members
+
+ux/ui Automotive Grade Linux - AGL - Raspberry Pi Demo
+( https://www.youtube.com/watch?v=TvzcnwP9jzI )
+
+Booting Automotive Grade Linux on Raspberry pi 3
+it takes more than 60 secs to boot
+( https://www.youtube.com/watch?v=Fmu6OnDii_A )
+
+conclusion:
+1.it is interesting to survey the status of AGL
+
+boot time comparison tables:
+out-of-the-box Linux boot performance compares
+for 11 different distributions
+( https://www.phoronix.com/scan.php?page=article&item=11-linux-boot&num=1 )
+summary: The out-of-the-box details on the different Linux distributions
+on the same system...
+( https://www.phoronix.com/scan.php?page=article&item=11-linux-boot&num=2 )
+
+conclusion:
+1.total boot time:
+it takes more than 11 seconds in general, for out-of-the-box linux distribution, while application boot time not included.
+2.it is interesting to survey the Clear Linux distribution
+
