@@ -1,0 +1,93 @@
+<map version="1.0.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1503108497012" ID="ID_57099039" LINK="centos.mm" MODIFIED="1507860477495" TEXT="7">
+<node CREATED="1503108504014" LINK="https://goo.gl/fgtMtt" MODIFIED="1503108520474" POSITION="left" TEXT="&#x7db2;&#x5361;&#x7684;&#x9810;&#x8a2d;&#x540d;&#x7a31;&#x7531;&#x4ee5;&#x5f80;&#x7684; Ethx &#x6539;&#x6210; Enox, &#x4ee5;&#x4e0b;&#x6587;&#x7ae0;&#x6703;&#x4ecb;&#x7d39;&#x5c07; CentOS 7 &#x7db2;&#x5361;&#x540d;&#x7a31;&#x4fee;&#x6539;"/>
+<node CREATED="1509440211574" ID="ID_479263611" LINK="https://goo.gl/BlaVOy" MODIFIED="1509440229163" POSITION="left" TEXT="How to configure a static IP address on CentOS 7"/>
+<node CREATED="1503994751226" ID="ID_825843521" LINK="https://goo.gl/3cJwqp" MODIFIED="1503995023797" POSITION="left" TEXT="yum install teamviewer centos"/>
+<node CREATED="1507860554390" ID="ID_1782053589" MODIFIED="1507860557979" POSITION="left" TEXT="mysql">
+<node CREATED="1507860558829" ID="ID_1911815504" MODIFIED="1507860562877" TEXT="installation">
+<node CREATED="1507860564045" ID="ID_451058075" LINK="https://goo.gl/41TpKm" MODIFIED="1507860586311" TEXT="setting mysql root password in CentOS 7"/>
+<node CREATED="1507860661397" ID="ID_123942443" LINK="https://goo.gl/o2hyhD" MODIFIED="1507860916100" TEXT="Reset the MySQL Root Password"/>
+<node CREATED="1507863852282" FOLDED="true" ID="ID_1304646523" LINK="https://goo.gl/oNqk2B" MODIFIED="1508399412472" TEXT="security policy">
+<node CREATED="1507863508834" ID="ID_403381100" MODIFIED="1507863509654" TEXT="How do I turn off the mysql password validation?  "/>
+<node CREATED="1507863450572" ID="ID_940757292" MODIFIED="1507863451608" TEXT="validate_password_policy"/>
+<node CREATED="1507863116271" ID="ID_643312189" LINK="https://goo.gl/RuDhNo" MODIFIED="1507863371072" TEXT="Your password does not satisfy the current policy requirements"/>
+</node>
+</node>
+<node CREATED="1507863339295" ID="ID_363006865" MODIFIED="1507863341356" TEXT="version">
+<node CREATED="1507863354486" ID="ID_1747483931" MODIFIED="1507863356298" TEXT="5.7"/>
+<node CREATED="1509436045758" ID="ID_1638991860" LINK="https://goo.gl/DBbxyV" MODIFIED="1509436054870" TEXT="devel"/>
+</node>
+</node>
+<node CREATED="1508142457241" ID="ID_718090836" MODIFIED="1508142459166" POSITION="left" TEXT="httpd">
+<node CREATED="1508142459989" ID="ID_368614906" LINK="https://goo.gl/gQDT4n" MODIFIED="1508142483388" TEXT="CentOS 7&#x2019;s built-in firewall is set to block web traffic by default."/>
+<node CREATED="1508142855716" ID="ID_1937480175" LINK="https://goo.gl/Agfvpk" MODIFIED="1508142962689" TEXT="Step 3: Configure Apache to Start on Boot"/>
+</node>
+<node CREATED="1508399418640" ID="ID_44283189" MODIFIED="1508399421940" POSITION="left" TEXT="DRBD">
+<node CREATED="1508399402456" ID="ID_1863419993" LINK="yum install -y pacemaker pcs fence-agents-all psmisc policycoreutils-python" MODIFIED="1508399410012" TEXT="Integrate DRBD with Pacemaker Clusters on RHEL7 / CentOS7"/>
+</node>
+<node CREATED="1509440171238" ID="ID_1208011526" LINK="https://goo.gl/rzvNYm" MODIFIED="1509440188923" POSITION="left" TEXT="change locale">
+<node CREATED="1509440433990" ID="ID_1891001008" LINK="https://goo.gl/y59Gog" MODIFIED="1509440452578" TEXT="change system keyboard keymap layout"/>
+</node>
+<node CREATED="1510019719977" FOLDED="true" ID="ID_7799989" MODIFIED="1510125674954" POSITION="left" TEXT="/etc/rc.local">
+<node CREATED="1510019764390" ID="ID_272482797" LINK="https://goo.gl/vtLrSe" MODIFIED="1510019776366" TEXT="edhat &#x5efa;&#x8b70;&#x9084;&#x662f;&#x81ea;&#x884c;&#x5efa;&#x7acb; systemd &#x670d;&#x52d9;&#x6216;&#x8005; udev rules &#x8f03;&#x597d;"/>
+<node CREATED="1510019726032" ID="ID_797459347" LINK="https://goo.gl/vtLrSe" MODIFIED="1510019744103" TEXT="&#x5982;&#x679c;&#x771f;&#x7684;&#x9700;&#x8981;&#x4f7f;&#x7528; rc.local, &#x53ea;&#x8981;&#x57f7;&#x884c; chmod &#x7d66;&#x4e88; rc.local &#x53ef;&#x57f7;&#x884c;&#x6b0a;&#x9650;&#x5373;&#x53ef;"/>
+</node>
+<node CREATED="1510122344524" FOLDED="true" ID="ID_167294370" MODIFIED="1512540678717" POSITION="left" TEXT="systemd">
+<node CREATED="1510122410602" ID="ID_660401332" LINK="https://goo.gl/DMwUyz" MODIFIED="1510122425193" TEXT="How To Create a systemd Service in Linux"/>
+<node CREATED="1510122662168" ID="ID_502494798" LINK="https://goo.gl/8JPhY6" MODIFIED="1510123414198" TEXT="create a custom script">
+<node CREATED="1510123587228" ID="ID_1102240340" MODIFIED="1510123592051" TEXT="troubleshooting"/>
+<node CREATED="1510123866014" ID="ID_1728231521" MODIFIED="1510123881185" TEXT="ExecStart">
+<node CREATED="1510123901141" ID="ID_1097615199" MODIFIED="1510123902178" TEXT="How to use a parameter in ExecStart command line?  "/>
+</node>
+</node>
+<node CREATED="1510123743734" ID="ID_1199335764" LINK="https://goo.gl/wf8cUq" MODIFIED="1510123757384" TEXT="How to debug Systemd problems"/>
+<node CREATED="1510125659928" ID="ID_828516355" LINK="https://goo.gl/lR7iv" MODIFIED="1510125672000" TEXT="systemd for Administrators, Part X"/>
+<node CREATED="1510135204066" ID="ID_923713408" MODIFIED="1510135205407" TEXT="CREATING AND MODIFYING SYSTEMD UNIT FILES"/>
+<node CREATED="1510135206995" ID="ID_694676392" LINK="https://goo.gl/m6eyrH" MODIFIED="1510135231612" TEXT="unit files"/>
+<node CREATED="1510135942050" ID="ID_1045572518" LINK="https://goo.gl/NYUB1P" MODIFIED="1510135951024" TEXT="man 5 systemd.unit"/>
+<node CREATED="1510136412344" ID="ID_801684375" LINK="https://goo.gl/tclfcy" MODIFIED="1510136430874" TEXT="Running a Go binary as a systemd service on Ubuntu 16.04"/>
+<node CREATED="1510222184130" ID="ID_1383475760" MODIFIED="1510222190443" TEXT="respawn equivlent"/>
+</node>
+<node CREATED="1512541384050" ID="ID_557447734" MODIFIED="1512541388064" POSITION="left" TEXT="networking">
+<node CREATED="1515372201172" FOLDED="true" ID="ID_1378082134" MODIFIED="1515372235098" TEXT="address">
+<node CREATED="1512540700201" ID="ID_1801452582" LINK="https://goo.gl/oErlm9" MODIFIED="1512540717340" TEXT="Configure Additional IP Addresses on CentOS 7.x or Redhat 7.x">
+<node CREATED="1512540780380" ID="ID_1822207469" MODIFIED="1512540808321" TEXT="Range File"/>
+</node>
+</node>
+<node CREATED="1515372194753" ID="ID_1147402232" MODIFIED="1518592110638" TEXT="route">
+<node CREATED="1512544884794" ID="ID_153287802" LINK="https://goo.gl/3dF8SC" MODIFIED="1512544899568" TEXT="Add Route Command"/>
+</node>
+<node CREATED="1515370883810" FOLDED="true" ID="ID_1097032650" MODIFIED="1515372237357" TEXT="dns">
+<node CREATED="1512541405130" ID="ID_145118732" LINK="https://goo.gl/kL6A77" MODIFIED="1512541416745" TEXT="configure static DNS on CentOS or Fedora"/>
+<node CREATED="1515370897570" ID="ID_921648636" MODIFIED="1515370898834" TEXT="RHEL / CentOS 7 &#x4fee;&#x6539; DNS &#x4f3a;&#x670d;&#x5668;">
+<node CREATED="1515370919426" ID="ID_630913484" MODIFIED="1515370920368" TEXT="&#x4f7f;&#x7528; nmcli"/>
+<node CREATED="1515370955242" ID="ID_469326062" MODIFIED="1515370956115" TEXT="&#x624b;&#x52d5;&#x4fee;&#x6539;"/>
+</node>
+<node CREATED="1515372036396" ID="ID_68768896" LINK="http://www.pubyun.com/blog/?p=417" MODIFIED="1515372050070" TEXT="&#x5982;&#x4f55;&#x8bbe;&#x7f6e;DNS&#x670d;&#x52a1;&#x5668;"/>
+</node>
+<node CREATED="1515372210873" ID="ID_842306570" MODIFIED="1516457649231" TEXT="share">
+<node CREATED="1514383308429" ID="ID_93814839" MODIFIED="1514383311101" TEXT="samba">
+<node CREATED="1514383314584" ID="ID_1096104491" LINK="https://www.liberiangeek.net/?p=30383" MODIFIED="1514383340904" TEXT="Create And Configure Samba Shares In CentOS 7"/>
+<node CREATED="1515293346327" ID="ID_1044580636" LINK="https://www.phpini.com/?p=1052" MODIFIED="1515293364797" TEXT="CentOS 7 &#x5b89;&#x88dd;&#x8a2d;&#x5b9a; Samba"/>
+<node CREATED="1515372117429" ID="ID_293082857" LINK="http://www.pubyun.com/blog/?p=417" MODIFIED="1515372119252" TEXT=""/>
+</node>
+<node CREATED="1515372219425" ID="ID_1975049639" MODIFIED="1515372223681" TEXT="sftp"/>
+</node>
+</node>
+<node CREATED="1515369773505" ID="ID_848281235" MODIFIED="1515369777311" POSITION="left" TEXT="ntpd">
+<node CREATED="1515372165111" ID="ID_1232626138" MODIFIED="1515372167259" TEXT="client"/>
+<node CREATED="1515372167591" ID="ID_1788161624" MODIFIED="1515372169277" TEXT="server"/>
+</node>
+<node CREATED="1508398204891" ID="ID_219531706" MODIFIED="1508398209062" POSITION="left" TEXT="pacemaker">
+<node CREATED="1508398211521" ID="ID_458524513" LINK="yum install -y pacemaker pcs fence-agents-all psmisc policycoreutils-python" MODIFIED="1508399407852" TEXT="installation"/>
+<node CREATED="1510207010767" ID="ID_375022229" LINK="https://goo.gl/9kMrzt" MODIFIED="1510207022294" TEXT="Clustering cron daemon with pacemaker on Cent OS 7"/>
+<node CREATED="1521428129067" ID="ID_92867972" LINK="https://goo.gl/kJ9TJi" MODIFIED="1521428877997" TEXT="Configure High-Avaliablity Cluster on CentOS 7 / RHEL 7"/>
+<node CREATED="1521446777956" ID="ID_574764360" LINK="https://goo.gl/DAz4Vf" MODIFIED="1521446789637" TEXT="HIGH AVAILABILITY ADD-ON REFERENCE"/>
+</node>
+<node CREATED="1522031898939" ID="ID_1780459654" MODIFIED="1522031910309" POSITION="left" TEXT="turn off / disable auto update">
+<node CREATED="1522032191607" ID="ID_404833148" MODIFIED="1522032194299" TEXT="kernel"/>
+<node CREATED="1522032194679" ID="ID_1995670387" MODIFIED="1522032197460" TEXT="packages"/>
+</node>
+</node>
+</map>

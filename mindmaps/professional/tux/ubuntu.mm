@@ -1,0 +1,303 @@
+<map version="1.0.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node COLOR="#000000" CREATED="1387020450942" ID="ID_1044565956" LINK="../os.mm" MODIFIED="1430730796656" STYLE="fork" TEXT="ubuntu">
+<edge COLOR="#b2b2fe"/>
+<node COLOR="#000000" CREATED="1387020450942" LINK="http://www.brighthub.com/computing/linux/articles/40293.aspx" MODIFIED="1387020450942" POSITION="right" STYLE="fork" TEXT="Converting Ogg to MP3 in Ubuntu">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450942" FOLDED="true" MODIFIED="1418884242586" POSITION="right" STYLE="fork" TEXT="install to USB">
+<edge COLOR="#b2b2fe"/>
+<node COLOR="#000000" CREATED="1387020450943" LINK="http://askubuntu.com/questions/55984/full-install-ubuntu-on-4gb-usb-drive" MODIFIED="1387020450943" STYLE="fork" TEXT=" liveUSB bootable drive">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" MODIFIED="1387020450943" STYLE="fork" TEXT="How can I run Ubuntu without a hard drive?">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" FOLDED="true" MODIFIED="1414548492068" STYLE="fork" TEXT=" UNetbootiN">
+<edge COLOR="#b2b2fe"/>
+<node COLOR="#000000" CREATED="1387020450943" LINK="http://unetbootin.sourceforge.net/" MODIFIED="1387020450943" STYLE="fork" TEXT="How does UNetbootin work, and what does it do?">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" FOLDED="true" LINK="http://www.azofreeware.com/2012/04/unetbootin-v568-isousb.html" MODIFIED="1414548492067" STYLE="fork" TEXT="&#x628a;ISO&#x6a94;&#x8f49;&#x6210;&#x53ef;&#x958b;&#x6a5f;&#x7684;USB">
+<edge COLOR="#b2b2fe"/>
+<node COLOR="#000000" CREATED="1387020450943" MODIFIED="1387020450943" STYLE="fork" TEXT="&#x5b83;&#x4e5f;&#x662f;Linux&#x5b89;&#x88dd;USB&#x88fd;&#x4f5c;&#x5de5;&#x5177;">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" MODIFIED="1387020450943" STYLE="fork" TEXT="&#x53ef;&#x4ee5;&#x7dda;&#x4e0a;&#x4e0b;&#x8f09;&#x8a31;&#x591a;Linux&#x4f5c;&#x696d;&#x7cfb;&#x7d71;&#x8ddf;&#x7cfb;&#x7d71;&#x5de5;&#x5177;">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" MODIFIED="1387020450943" STYLE="fork" TEXT="&#x4f46;&#x6e2c;&#x8a66;Windows XP&#x5b89;&#x88dd;&#x5149;&#x789f;&#x3001;Partition Wizard&#x7686;&#x5931;&#x6557;">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" MODIFIED="1387020450943" STYLE="fork" TEXT="&#x88fd;&#x4f5c;Windows&#x7cfb;&#x7d71;&#x5b89;&#x88dd;USB&#x9084;&#x662f;&#x63a8;&#x85a6;&#x4f7f;&#x7528;&#x300c;WinToFlash&#x300d;">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" MODIFIED="1387020450943" STYLE="fork" TEXT="v583&#x5df2;&#x6709;&#x7e41;&#x9ad4;&#x4e2d;&#x6587;&#x4ecb;&#x9762;&#x3002;">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" MODIFIED="1387020450943" STYLE="fork" TEXT="&#x90e8;&#x5206;Linux&#x5149;&#x789f;&#x4e2d;&#x542b;&#x6709;cfg&#x6a94;&#x7684;&#xff0c;&#x8f49;&#x51fa;&#x6210;usb HD&#x5f8c;&#x6703;&#x9020;&#x6210;cfg&#x6a94;&#x7121;&#x6cd5;&#x8b80;&#x53d6;&#x554f;&#x984c;">
+<edge COLOR="#b2b2fe"/>
+<icon BUILTIN="help"/>
+</node>
+</node>
+<node COLOR="#000000" CREATED="1387020450943" LINK="http://www.openfoundry.org/en/component/content/article/2278-" MODIFIED="1387020450943" STYLE="fork" TEXT="&#x8981;&#x5b89;&#x88dd;&#x3001;&#x958b;&#x6a5f;&#x61c9;&#x7528;&#x9084;&#x662f;&#x6383;&#x6bd2;&#x6551;&#x63f4;&#x96a8;&#x8eab;&#x789f;&#xff1f;&#x4e00;&#x500b; Unetbootin &#x5168;&#x641e;&#x5b9a;&#xff01;">
+<edge COLOR="#b2b2fe"/>
+</node>
+</node>
+<node COLOR="#000000" CREATED="1387020450944" LINK="http://suite101.com/article/best-linux-distro-for-usb-flash-pen-drives-a191617" MODIFIED="1387020450944" STYLE="fork" TEXT="Best Linux Distro for USB Flash Pen Drives">
+<edge COLOR="#b2b2fe"/>
+</node>
+</node>
+<node COLOR="#000000" CREATED="1387020450944" FOLDED="true" MODIFIED="1414548492069" POSITION="right" STYLE="fork" TEXT="13.04 samba">
+<edge COLOR="#b2b2fe"/>
+<node COLOR="#000000" CREATED="1387020450944" FOLDED="true" LINK="http://askubuntu.com/questions/302159/ubuntu-13-04-will-not-connect-to-share-network-drive" MODIFIED="1414548492068" STYLE="fork" TEXT="not connect to share network drive">
+<edge COLOR="#b2b2fe"/>
+<node COLOR="#000000" CREATED="1387020450944" MODIFIED="1387020450944" STYLE="fork" TEXT="smb.conf">
+<edge COLOR="#b2b2fe"/>
+</node>
+<node COLOR="#000000" CREATED="1387020450944" MODIFIED="1387020450944" STYLE="fork" TEXT="nsswitch.conf">
+<edge COLOR="#b2b2fe"/>
+</node>
+</node>
+<node COLOR="#000000" CREATED="1387020450944" LINK="http://askubuntu.com/questions/289705/ubuntu-13-04-any-way-to-restore-connect-to-windows-share-as-a-different-user" MODIFIED="1387020450944" STYLE="fork" TEXT="any way to restore connect to windows share as a different user?">
+<edge COLOR="#b2b2fe"/>
+</node>
+</node>
+<node CREATED="1470060275280" ID="ID_80041187" MODIFIED="1470060276632" POSITION="right" TEXT="Starting with Ubuntu 15.04, Upstart will be deprecated in favor of Systemd."/>
+<node CREATED="1462064789121" FOLDED="true" ID="ID_1030885668" MODIFIED="1531901573800" POSITION="right" TEXT="16.04 lts">
+<node CREATED="1462064771648" ID="ID_830997198" LINK="https://goo.gl/PNCbGO" MODIFIED="1462064788507" TEXT=" looks like Ubuntu 16.04 comes with Nginx 1.9.15"/>
+<node CREATED="1462064811511" ID="ID_316120800" LINK="#ID_1030885668" MODIFIED="1462064817906" TEXT="16.04 lts"/>
+<node CREATED="1462064991549" ID="ID_257853018" LINK="https://goo.gl/vAzRbk" MODIFIED="1462065008599" TEXT=" nvidia drivers from the graphics-drivers PPA,"/>
+<node CREATED="1462065064424" ID="ID_1935679024" LINK="https://goo.gl/6GWXoK" MODIFIED="1462065081545" TEXT="LXC+Linux 4.4 seems to be very broken"/>
+<node CREATED="1462673850228" ID="ID_1496564123" LINK="http://goo.gl/o0CZXR" MODIFIED="1462673865697" TEXT="ubuntu 16.04. &#x597d;&#x6a23;&#x7684;&#xff01;"/>
+</node>
+<node CREATED="1414479167243" ID="ID_547123530" LINK="http://goo.gl/x1fF8" MODIFIED="1414479202466" POSITION="right" TEXT="find out my motherboard model?"/>
+<node CREATED="1418884167392" ID="ID_346760347" LINK="http://goo.gl/Y7D0md" MODIFIED="1418884185088" POSITION="right" TEXT="selinux is not installed or enabled by default."/>
+<node CREATED="1419040780032" LINK="http://goo.gl/vrqDqI" MODIFIED="1419040796930" POSITION="right" TEXT=" Add Swap on Ubuntu 14.04">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1419040883627" LINK="http://goo.gl/PbHXAe" MODIFIED="1419040898035" POSITION="right" TEXT="Setting Up Swap Space"/>
+<node CREATED="1457417016790" FOLDED="true" ID="ID_833134384" LINK="http://goo.gl/HQCy7r" MODIFIED="1457420989318" POSITION="right" TEXT="set proxy exceptions">
+<node CREATED="1457417103038" ID="ID_183595385" LINK="https://goo.gl/fO7X" MODIFIED="1457417115411" TEXT="EnvironmentVariables"/>
+<node CREATED="1457417308838" ID="ID_304143620" LINK="http://goo.gl/y77l9a" MODIFIED="1457417312318" TEXT="http://goo.gl/y77l9a"/>
+<node CREATED="1457417392566" ID="ID_654101860" MODIFIED="1457417394851" TEXT="subnet"/>
+<node CREATED="1457417410534" ID="ID_1926371218" LINK="http://goo.gl/OZ6sUS" MODIFIED="1457417416577" TEXT="no_proxy"/>
+<node CREATED="1457418864533" ID="ID_1230702584" LINK="https://goo.gl/BI4kLs" MODIFIED="1457418878825" TEXT="see what proxy settings chrome is really using">
+<node CREATED="1457420703055" ID="ID_325952" MODIFIED="1457420703899" TEXT="chrome://net-internals/#proxy"/>
+</node>
+<node CREATED="1457419636907" ID="ID_19090768" MODIFIED="1457419640525" TEXT="chromium">
+<node CREATED="1457419641230" ID="ID_960797654" LINK="https://goo.gl/yOWMwx" MODIFIED="1457419653298" TEXT="--proxy-bypass-list">
+<node CREATED="1457419875338" ID="ID_267187626" LINK="https://goo.gl/5HGLRW" MODIFIED="1457419881044" TEXT="format"/>
+</node>
+<node CREATED="1457419688134" ID="ID_1496033321" LINK="http://goo.gl/8JIXuS" MODIFIED="1457420984756" TEXT="howto">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1457420556702" ID="ID_1185013199" LINK="http://goo.gl/Mi8zDS" MODIFIED="1457420567529" TEXT="List of Chromium Command Line Switches"/>
+</node>
+</node>
+<node CREATED="1462026280221" ID="ID_9552440" MODIFIED="1462026282876" POSITION="right" TEXT="locale">
+<node CREATED="1428330799863" ID="ID_1355300461" LINK="http://goo.gl/Zk0MB0" MODIFIED="1428330813995" TEXT="&#x5728;Ubuntu&#x4e2d;&#x6709;&#x5982;&#x4e0b;&#x51e0;&#x4e2a;&#x6587;&#x4ef6;&#x53ef;&#x4ee5;&#x8bbe;&#x7f6e;&#x73af;&#x5883;&#x53d8;&#x91cf; "/>
+<node CREATED="1461622195686" ID="ID_1911849877" LINK="http://goo.gl/eNJ6vL" MODIFIED="1461622208942" TEXT="supports most Nvidia and Intel graphics hardware out of the box"/>
+<node CREATED="1462024244544" ID="ID_865570945" LINK="http://goo.gl/EeZdL0" MODIFIED="1462024298304" TEXT="change desktop chinese display"/>
+</node>
+<node CREATED="1463100658482" ID="ID_1002996518" MODIFIED="1463100664719" POSITION="right" TEXT="remove old kernel">
+<node CREATED="1463100665485" ID="ID_1401453703" MODIFIED="1463100668013" TEXT="CLI">
+<node CREATED="1463100690562" ID="ID_831896972" LINK="http://goo.gl/Z6TnI8" MODIFIED="1463100709930" TEXT="Ubuntu &#x79fb;&#x9664;&#x820a;&#x7248;&#x672c; Linux &#x6838;&#x5fc3;"/>
+</node>
+<node CREATED="1463100668365" ID="ID_1227370298" LINK="http://goo.gl/KztPrN" MODIFIED="1463100742331" TEXT="GUI"/>
+</node>
+<node CREATED="1530609077126" ID="ID_1025873953" MODIFIED="1530609081713" POSITION="right" TEXT="18.04 lts">
+<node CREATED="1530609082668" ID="ID_1204355911" LINK="https://goo.gl/Z7pkJA" MODIFIED="1530610639885" TEXT="netplan"/>
+</node>
+<node CREATED="1531901519940" ID="ID_1869398248" MODIFIED="1531901523752" POSITION="right" TEXT="snapd">
+<node CREATED="1531901485863" ID="ID_1369063060" LINK="https://goo.gl/P2quPQ" MODIFIED="1531901537309" TEXT="Canonical &#x8bf4;">
+<node CREATED="1531901506138" ID="ID_1327742674" MODIFIED="1531901513427" TEXT="&#x4ed6;&#x4eec;&#x4e0e;&#x5404;&#x4e2a;&#x4e3b;&#x8981;&#x7684; GNU/Linux &#x53d1;&#x884c;&#x7248;&#x7684;&#x5f00;&#x53d1;&#x8005;&#x4eec;"/>
+<node CREATED="1531901514388" ID="ID_1778061976" MODIFIED="1531901515545" TEXT="&#x6b63;&#x5728;&#x4e00;&#x8d77;&#x52aa;&#x529b;&#x5c06; Snap &#x8f6f;&#x4ef6;&#x5305;&#x683c;&#x5f0f;&#x53d8;&#x6210;&#x901a;&#x7528;&#x4e8c;&#x8fdb;&#x5236;&#x8f6f;&#x4ef6;&#x5305;&#x683c;&#x5f0f;&#x3002;"/>
+</node>
+<node CREATED="1531901551893" ID="ID_1112350509" LINK="https://goo.gl/qp3Cgs" MODIFIED="1531901587206" TEXT="Snap &#x4e3b;&#x8981;&#x4e0d;&#x662f;&#x8981;&#x53d6;&#x4ee3;&#x539f;&#x672c;&#x7684;&#x5957;&#x4ef6;&#x7ba1;&#x7406;&#x7cfb;&#x7d71;&#xff0c;">
+<node CREATED="1531901562657" ID="ID_209839556" LINK="https://goo.gl/qp3Cgs" MODIFIED="1531901590779" TEXT="&#x800c;&#x662f;&#x7528;&#x4f86;&#x767c;&#x4f48;&#x3001;&#x7ba1;&#x7406;&#x7b2c;&#x4e09;&#x65b9;&#x5957;&#x4ef6;(&#x4e0d;&#x7ba1;&#x6709;&#x6c92;&#x6709; Open Source)&#xff0c;"/>
+<node CREATED="1531901569224" ID="ID_368352406" MODIFIED="1531901571509" TEXT="&#x76ee;&#x524d;&#x7684;&#x4e3b;&#x8981;&#x7528;&#x9014;&#x5728;&#x9019;&#x7a2e;&#x5730;&#x65b9;"/>
+</node>
+</node>
+<node CREATED="1443813760030" ID="ID_1502820802" MODIFIED="1443813761112" POSITION="left" TEXT="display manager">
+<node CREATED="1443813766767" ID="ID_1491964060" LINK="https://goo.gl/wq1dC" MODIFIED="1443813784047" TEXT="light DM"/>
+</node>
+<node CREATED="1443813867880" ID="ID_811157187" MODIFIED="1443813870479" POSITION="left" TEXT="desktop">
+<node CREATED="1443813861397" ID="ID_1769314879" MODIFIED="1443813862266" TEXT="Unity &#x4ecb;&#x9762;&#x4ee5;Gnome &#x70ba;&#x57fa;&#x790e;"/>
+</node>
+<node CREATED="1443865694842" FOLDED="true" ID="ID_1535924778" MODIFIED="1450876370929" POSITION="left" TEXT="Unity">
+<node CREATED="1443865698452" ID="ID_855940111" LINK="https://goo.gl/3tGztL" MODIFIED="1443865718445" TEXT="has builtin support for 2, 3, and 4-fingers drags and tap">
+<node CREATED="1443865777684" ID="ID_1001820906" LINK="https://goo.gl/3tGztL" MODIFIED="1443865787869" TEXT="OS X-like multitouch gestures for Macbook Pro running Ubuntu">
+<node CREATED="1443865868648" ID="ID_970116557" LINK="#ID_1272716226" MODIFIED="1443865898694" TEXT="sourcecode"/>
+</node>
+</node>
+<node CREATED="1443865822285" ID="ID_961857786" MODIFIED="1443865826556" TEXT="virtual desktops">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1443865610525" FOLDED="true" ID="ID_1956787763" MODIFIED="1447289723811" TEXT="multi touch gestures">
+<node CREATED="1443856787447" ID="ID_1054429098" LINK="http://askubuntu.com/a/463003" MODIFIED="1443865622677" TEXT="how to achieve">
+<node CREATED="1443860002181" ID="ID_523902972" LINK="https://goo.gl/APnT4T" MODIFIED="1443860016648" TEXT="Mac Basics: Multi-Touch gestures"/>
+<node CREATED="1443856812067" ID="ID_459383557" MODIFIED="1443856816786" TEXT="it is possible"/>
+<node CREATED="1443856809960" ID="ID_363744995" MODIFIED="1443856811192" TEXT="install touchegg"/>
+<node CREATED="1443860048988" ID="ID_1309276691" LINK="https://goo.gl/HVaK9" MODIFIED="1443860066054" TEXT="Touch&#xe9;gg - Multitouch gesture recognizer"/>
+<node CREATED="1443859944081" ID="ID_1336265773" MODIFIED="1443859944808" TEXT="Raffarti/Touchegg-gce">
+<node CREATED="1443859472665" ID="ID_30061641" LINK="https://goo.gl/1DRJI" MODIFIED="1443859495047" TEXT="touchegg"/>
+</node>
+<node CREATED="1443859550236" ID="ID_710654386" LINK="https://goo.gl/wDNPtr" MODIFIED="1443859974640" TEXT="Touchegg-gce"/>
+</node>
+<node CREATED="1443865623592" ID="ID_457652562" MODIFIED="1443865634797" TEXT="2 finger swipe window"/>
+</node>
+<node CREATED="1443865868648" ID="ID_1272716226" MODIFIED="1443865894214" TEXT="sourcecode"/>
+<node CREATED="1447289711472" ID="ID_974078080" LINK="http://goo.gl/mxLJSY" MODIFIED="1447289728185" TEXT="Reset Unity"/>
+</node>
+<node CREATED="1448157182057" ID="ID_1504712283" LINK="http://goo.gl/VkfEOA" MODIFIED="1448157249273" POSITION="left" TEXT="Executing a script at startup and shutdown"/>
+<node CREATED="1449653178067" ID="ID_1606868555" LINK="http://goo.gl/0QJmS5" MODIFIED="1449653187699" POSITION="left" TEXT="shutdown process">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1450876377214" ID="ID_131181688" LINK="http://tinyurl.com/2bfmnyq" MODIFIED="1450876385225" POSITION="left" TEXT="locale"/>
+<node CREATED="1450880787778" ID="ID_929400057" LINK="http://tinyurl.com/j3uyu6c" MODIFIED="1450880801730" POSITION="left" TEXT="Missing System Settings"/>
+<node CREATED="1456281701486" ID="ID_409397318" LINK="applications.mm" MODIFIED="1456281722436" POSITION="left" TEXT="linux application cron"/>
+<node CREATED="1456281795094" ID="ID_602618123" LINK="applications.mm" MODIFIED="1462585103566" POSITION="left" TEXT="application">
+<node CREATED="1456280462543" FOLDED="true" ID="ID_1131119587" MODIFIED="1467758052998" TEXT="get source">
+<node CREATED="1456280485773" ID="ID_1350252791" MODIFIED="1456280487617" TEXT="how">
+<node CREATED="1456280569333" ID="ID_482171131" LINK="http://goo.gl/fyihwl" MODIFIED="1456280582827" TEXT="c - Where can I download the source for cron utility?"/>
+<node CREATED="1456280609581" ID="ID_466920313" LINK="http://goo.gl/L9zqgj" MODIFIED="1456280627338" TEXT="apt-get source cron"/>
+</node>
+<node CREATED="1456280482126" ID="ID_1346686725" LINK="http://goo.gl/O2tTX8" MODIFIED="1456280538700" TEXT="Where is apt-get source downloaded to">
+<node CREATED="1456280520030" ID="ID_1121770284" MODIFIED="1456280520794" TEXT="From man apt-get"/>
+<node CREATED="1456280509623" ID="ID_179652256" MODIFIED="1456280510452" TEXT="exist only in the current directory and are similar to downloading source tar balls"/>
+</node>
+</node>
+<node CREATED="1427350799532" FOLDED="true" ID="ID_606111912" MODIFIED="1457420992818" TEXT="apt-get">
+<node CREATED="1427350819356" ID="ID_481118318" MODIFIED="1427350821133" TEXT="list installed package"/>
+<node CREATED="1427350828780" ID="ID_1179107413" MODIFIED="1427350830820" TEXT="see if a package is installed"/>
+<node CREATED="1427350848307" FOLDED="true" ID="ID_1618122437" MODIFIED="1428906014473" TEXT="dry run">
+<node CREATED="1427350845083" ID="ID_661389096" MODIFIED="1427350846507" TEXT="apt-get build-dep --dry-run &lt;package&gt;"/>
+</node>
+<node CREATED="1427350876396" FOLDED="true" ID="ID_1722284213" MODIFIED="1428906014474" TEXT="Find out all the Debian package which can be used for Intrusion Detection">
+<node CREATED="1427350886148" ID="ID_884168370" MODIFIED="1427350886780" TEXT="apt-cache search &quot;Intrusion Detection&quot;"/>
+</node>
+<node CREATED="1427351027108" FOLDED="true" ID="ID_644461069" MODIFIED="1428906014474" TEXT="build-dep">
+<node CREATED="1428393413772" ID="ID_1967927565" LINK="http://goo.gl/gT9DO7" MODIFIED="1428393427056" TEXT="apt-get build-dep &quot;app&quot;&#x6703;&#x66ff;&#x4f60;&#x5b89;&#x88dd;build &#x6240;&#x9700;&#x8981;&#x7684;package"/>
+</node>
+<node CREATED="1456281747038" ID="ID_1083414612" MODIFIED="1456281750333" TEXT="source"/>
+<node CREATED="1456280609581" ID="ID_302186538" LINK="http://goo.gl/L9zqgj" MODIFIED="1456280627338" TEXT="apt-get source cron"/>
+</node>
+<node CREATED="1456281864479" FOLDED="true" ID="ID_1252890876" MODIFIED="1457417005815" TEXT="cron">
+<node CREATED="1456281885517" ID="ID_1543574244" MODIFIED="1456281888228" TEXT="crontab">
+<node CREATED="1456281877934" ID="ID_736811172" MODIFIED="1456281883269" TEXT="format"/>
+<node CREATED="1456307366113" ID="ID_1200834189" LINK="https://goo.gl/6m3IHH" MODIFIED="1456307383310" TEXT="Cron and Crontab usage and examples">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1456282045422" ID="ID_1880499502" MODIFIED="1456282046600" TEXT="needs">
+<node CREATED="1456282059430" ID="ID_60393522" MODIFIED="1456282125356" TEXT="getopt(3)">
+<node CREATED="1456282126405" ID="ID_305145208" MODIFIED="1456282127263" TEXT="Parse command-line options"/>
+</node>
+<node CREATED="1456282071326" ID="ID_920860769" LINK="http://goo.gl/SravBU" MODIFIED="1456292527712" TEXT="bitstring(3)">
+<node CREATED="1456282262806" ID="ID_993427186" LINK="http://goo.gl/zqkKCG" MODIFIED="1456282305930" TEXT="bit-string manipulation macros"/>
+<node CREATED="1456292815860" ID="ID_1754773046" LINK="../programming.mm#ID_725788835" MODIFIED="1456307591144" TEXT="programming"/>
+</node>
+<node CREATED="1456282083414" ID="ID_1987998640" MODIFIED="1456282084688" TEXT="install">
+<node CREATED="1456282413510" ID="ID_1455029895" LINK="http://goo.gl/fpU7ax" MODIFIED="1456282425697" TEXT="copy files and set attributes"/>
+</node>
+</node>
+<node CREATED="1456281871434" ID="ID_949959479" MODIFIED="1456281875270" TEXT="Makefile">
+<node CREATED="1456283951063" ID="ID_941969070" MODIFIED="1456283953056" TEXT="all">
+<node CREATED="1456283955326" ID="ID_1977971016" MODIFIED="1456283956959" TEXT="cron">
+<node CREATED="1456285524119" ID="ID_1789213684" MODIFIED="1456285527932" TEXT="cron.c">
+<node CREATED="1456285528728" ID="ID_37786568" MODIFIED="1456285530392" TEXT="main">
+<node CREATED="1456285531151" ID="ID_1679380181" LINK="#ID_229969942" MODIFIED="1456285540585" TEXT="load_database"/>
+<node CREATED="1456286205016" ID="ID_1987149299" LINK="#ID_338036984" MODIFIED="1456286229215" TEXT="find_jobs "/>
+</node>
+<node CREATED="1456286139488" ID="ID_338036984" MODIFIED="1456286141198" TEXT="find_jobs">
+<node CREATED="1456286297168" ID="ID_1100915220" MODIFIED="1456286307118" TEXT="wildcard characters"/>
+<node CREATED="1456292315682" ID="ID_250296161" LINK="#ID_496471055" MODIFIED="1456292661158" TEXT="entry"/>
+<node CREATED="1456292958507" ID="ID_1790225321" LINK="#ID_41554616" MODIFIED="1456293010179" TEXT="job_add"/>
+</node>
+</node>
+<node CREATED="1456292386563" ID="ID_1305123046" MODIFIED="1456292387812" TEXT="cron.h">
+<node CREATED="1456292654425" ID="ID_496471055" MODIFIED="1456292654425" TEXT="entry">
+<node CREATED="1456292722627" ID="ID_1043577851" MODIFIED="1456292723762" TEXT="cmd"/>
+<node CREATED="1456292759027" ID="ID_523315131" LINK="#ID_1754773046" MODIFIED="1456307618767" TEXT="bitstr_t"/>
+</node>
+</node>
+<node CREATED="1456285501527" ID="ID_775471553" MODIFIED="1456285502908" TEXT="database.c">
+<node CREATED="1456285534903" ID="ID_229969942" MODIFIED="1456285535767" TEXT="load_database">
+<node CREATED="1456285737023" ID="ID_1274512336" LINK="#ID_1514543085" MODIFIED="1456285776037" TEXT="process_crontab"/>
+</node>
+<node CREATED="1456285737023" ID="ID_1514543085" MODIFIED="1456285738872" TEXT="process_crontab"/>
+</node>
+<node CREATED="1456292994635" ID="ID_183793791" MODIFIED="1456292998177" TEXT="job.c">
+<node CREATED="1456292958507" ID="ID_41554616" MODIFIED="1456292959952" TEXT="job_add"/>
+</node>
+<node CREATED="1456307483570" ID="ID_29265033" MODIFIED="1456307487567" TEXT="entry.c">
+<node CREATED="1456307695521" ID="ID_528513440" MODIFIED="1456307696583" TEXT="load_entry">
+<node CREATED="1456307488721" ID="ID_1150246781" MODIFIED="1456307492307" TEXT="monthly"/>
+</node>
+</node>
+</node>
+<node CREATED="1456283957311" ID="ID_738953300" MODIFIED="1456283960468" TEXT="crontab">
+<node CREATED="1456284289870" ID="ID_1167047255" MODIFIED="1456284295279" TEXT="crontab.c">
+<node CREATED="1456284296463" ID="ID_641090219" MODIFIED="1456284298404" TEXT="main">
+<node CREATED="1456284460783" ID="ID_876005729" LINK="#ID_1054597127" MODIFIED="1456284466771" TEXT="parse_args"/>
+<node CREATED="1456284499798" ID="ID_978296848" LINK="#ID_1220669475" MODIFIED="1456284505412" TEXT="edit_cmd()"/>
+</node>
+<node CREATED="1456284456167" ID="ID_1054597127" MODIFIED="1456284457773" TEXT="parse_args"/>
+<node CREATED="1456284493207" ID="ID_1220669475" MODIFIED="1456284496548" TEXT="edit_cmd()"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1456285919463" ID="ID_1437392858" MODIFIED="1456285928957" TEXT="README"/>
+</node>
+<node CREATED="1442113947964" ID="ID_376120011" MODIFIED="1496734367542" TEXT="openssh">
+<node CREATED="1442113951220" ID="ID_1510482305" MODIFIED="1442113952321" TEXT="apt-get install openssh-server"/>
+</node>
+<node CREATED="1496734368464" ID="ID_1139640793" MODIFIED="1496734374741" TEXT="parallel ssh">
+<node CREATED="1496734394488" ID="ID_1820997035" LINK="https://goo.gl/zaQnZa" MODIFIED="1496734408006" TEXT="Why pssh command is not working?"/>
+<node CREATED="1496735144884" ID="ID_1279055724" LINK="https://goo.gl/ztSY0m" MODIFIED="1496735168461" TEXT="How To Install pssh On Ubuntu 16.04 LTS"/>
+</node>
+</node>
+<node CREATED="1467471155238" FOLDED="true" ID="ID_1200318397" LINK="../mysql.mm" MODIFIED="1467758061960" POSITION="left" TEXT="mysql">
+<node CREATED="1467471158378" ID="ID_1934523871" LINK="https://goo.gl/KNYaRs" MODIFIED="1467471204734" TEXT="Linking of MYSQL Database with C++ on Linux Machine"/>
+<node CREATED="1467520149781" ID="ID_1696042735" LINK="http://goo.gl/Zqr4J0" MODIFIED="1467520201943" TEXT="MySQL comes with a special script called mysql_config">
+<node CREATED="1467520183096" ID="ID_677600542" MODIFIED="1467520183938" TEXT="provides you with useful information for compiling your MySQL client"/>
+<node CREATED="1467520168880" ID="ID_493254968" MODIFIED="1467520181074" TEXT=" and connecting it to MySQL database server."/>
+</node>
+</node>
+<node CREATED="1467757994719" FOLDED="true" ID="ID_558443306" MODIFIED="1475567624276" POSITION="left" TEXT="apache">
+<node CREATED="1427163347692" ID="ID_1359720422" MODIFIED="1427163352642" TEXT="check the presence of php and apache">
+<node CREATED="1427163470821" LINK="http://goo.gl/Ey6cLg" MODIFIED="1427163484668" TEXT="aptitude"/>
+</node>
+<node CREATED="1427164670359" ID="ID_1149642941" LINK="http://goo.gl/8avd66" MODIFIED="1427164685347" TEXT="Attach bash script to apache start"/>
+<node CREATED="1444014615355" ID="ID_1995982078" LINK="http://goo.gl/de1ps" MODIFIED="1444014636352" TEXT="Enabling Apache Digest User Authentication"/>
+<node CREATED="1467758038071" ID="ID_923400663" LINK="http://goo.gl/OuxuYv" MODIFIED="1467758048025" TEXT="index.html"/>
+<node CREATED="1467758703060" ID="ID_1845279573" LINK="http://goo.gl/NGnFpp" MODIFIED="1467758708238" TEXT="find version"/>
+<node CREATED="1474723816746" ID="ID_1144078988" LINK="http://tinyurl.com/gphrfjk" MODIFIED="1474723841426" TEXT="change DocumentRoot"/>
+<node CREATED="1474723859096" ID="ID_1874932519" LINK="http://tinyurl.com/j4r4n5y" MODIFIED="1474723862819" TEXT="restart"/>
+</node>
+<node CREATED="1475136840002" ID="ID_519103670" LINK="https://goo.gl/MX46Fp" MODIFIED="1475136854241" POSITION="left" TEXT="firewall">
+<node CREATED="1475136989514" ID="ID_1220166738" LINK="https://goo.gl/Zqv32W" MODIFIED="1475136994892" TEXT="ufw">
+<node CREATED="1490161681114" ID="ID_1606897670" LINK="https://goo.gl/cfwsvS" MODIFIED="1490161741052" TEXT="allow ssh">
+<node CREATED="1490161821141" ID="ID_115767369" MODIFIED="1490161821848" TEXT="allow sftp"/>
+<node CREATED="1490161915732" ID="ID_576413374" MODIFIED="1490161918153" TEXT="the same"/>
+</node>
+</node>
+</node>
+<node CREATED="1513765236303" ID="ID_500064751" MODIFIED="1513765238315" POSITION="left" TEXT="update">
+<node CREATED="1513765199791" ID="ID_1167319347" MODIFIED="1513765201700" TEXT="check">
+<node CREATED="1513764636048" ID="ID_333104114" LINK="https://goo.gl/J37bTf" MODIFIED="1513764657675" TEXT="run-parts /etc/update-motd.d/"/>
+<node CREATED="1513764616830" ID="ID_613876415" LINK="https://goo.gl/J37bTf" MODIFIED="1513764654691" TEXT="Thats the message of the day (motd)"/>
+</node>
+<node CREATED="1513765156297" ID="ID_1531831588" MODIFIED="1513765165496" TEXT="security-update">
+<node CREATED="1513765175952" ID="ID_1415386925" LINK="https://goo.gl/udTG2k" MODIFIED="1513765188399" TEXT="sudo unattended-upgrades"/>
+</node>
+<node CREATED="1513765228327" ID="ID_874088870" LINK="https://goo.gl/9XoVYz" MODIFIED="1513765263910" TEXT="package update">
+<node CREATED="1513765275926" ID="ID_1831654355" MODIFIED="1513765283921" TEXT="sudo apt-get dist-upgrade"/>
+<node CREATED="1513765284541" ID="ID_1445697418" MODIFIED="1513765290408" TEXT=" sudo apt-get update"/>
+<node CREATED="1513765290900" ID="ID_1034160596" MODIFIED="1513765291888" TEXT=" sudo apt-get upgrade"/>
+</node>
+</node>
+</node>
+</map>

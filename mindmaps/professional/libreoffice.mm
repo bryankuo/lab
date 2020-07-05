@@ -1,0 +1,199 @@
+<map version="1.1.0">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1409244219099" ID="ID_120590548" LINK="professional.mm" MODIFIED="1467952113518" TEXT="libreoffice">
+<node CREATED="1410654253259" FOLDED="true" MODIFIED="1428476471578" POSITION="right" TEXT="/usr/bin/libreoffice">
+<node CREATED="1410654257298" LINK="http://goo.gl/r3GYX9" MODIFIED="1410661701201" TEXT="--calc"/>
+</node>
+<node CREATED="1409244321958" ID="ID_480621721" MODIFIED="1409244323439" POSITION="right" TEXT="Accessing URL in Calc cell"/>
+<node CREATED="1409245464779" ID="ID_1607097147" MODIFIED="1409245465653" POSITION="right" TEXT="one can use Basic, Python, Java and JavaScript."/>
+<node CREATED="1409610777594" MODIFIED="1409617858593" POSITION="right" TEXT="locate sheet/cell, set value"/>
+<node CREATED="1409617859038" MODIFIED="1409617914351" POSITION="right" TEXT="filter content / set value"/>
+<node CREATED="1409244277324" MODIFIED="1446293824770" POSITION="right" TEXT="open url">
+<node CREATED="1409245154803" MODIFIED="1409245155638" TEXT="HYPERLINK"/>
+<node CREATED="1409712515329" MODIFIED="1409712525386" TEXT="libreoffice calc macro basic examples get webpage">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1410650961278" FOLDED="true" MODIFIED="1428476471579" TEXT="curl">
+<node CREATED="1410665412620" MODIFIED="1410665414318" TEXT="get"/>
+<node CREATED="1410665414747" FOLDED="true" MODIFIED="1428476471578" TEXT="post">
+<node CREATED="1412939003678" MODIFIED="1412939011878" TEXT="include special characters"/>
+<node CREATED="1412982202897" FOLDED="true" MODIFIED="1428476471578" TEXT="test">
+<node CREATED="1412982198999" FOLDED="true" MODIFIED="1428476471578" TEXT="mops">
+<node CREATED="1413021330027" LINK="http://goo.gl/3vB04" MODIFIED="1413021784921" TEXT="grep"/>
+<node CREATED="1413021346855" LINK="#ID_980542966" MODIFIED="1413021353175" TEXT="xclip"/>
+</node>
+<node CREATED="1412982208976" MODIFIED="1412982210884" TEXT="yahoo"/>
+</node>
+</node>
+<node CREATED="1412942468339" FOLDED="true" MODIFIED="1428476471578" TEXT="ajax">
+<node CREATED="1412943236443" MODIFIED="1412943237870" TEXT="XMLHttpRequest"/>
+<node CREATED="1412945574415" LINK="http://goo.gl/RvE1dl" MODIFIED="1412945589196" TEXT="A Few cURL Tips for Daily Use"/>
+</node>
+<node CREATED="1412936854032" FOLDED="true" MODIFIED="1428476471579" TEXT="scripting">
+<node CREATED="1412937012870" MODIFIED="1412937013831" TEXT="interactive"/>
+<node CREATED="1412982673607" FOLDED="true" MODIFIED="1428476471579" TEXT="Cookies">
+<node CREATED="1412982689885" LINK="http://goo.gl/7lMVdY" MODIFIED="1412982707060" TEXT="with Cookies and Headers"/>
+</node>
+<node CREATED="1412983693831" MODIFIED="1412983696637" TEXT="encoding"/>
+</node>
+</node>
+<node CREATED="1412937218450" MODIFIED="1412937220277" TEXT="wget"/>
+<node CREATED="1412937308960" LINK="http://goo.gl/3iWx" MODIFIED="1412937327835" TEXT="curl vs. wget"/>
+</node>
+<node CREATED="1410654824341" FOLDED="true" MODIFIED="1428476471580" POSITION="right" TEXT="shell">
+<node CREATED="1410654827081" FOLDED="true" MODIFIED="1428476471580" TEXT="gnome-terminal">
+<node CREATED="1410659047168" LINK="http://goo.gl/wqz2Qj" MODIFIED="1410661008063" TEXT="passing parameter"/>
+<node CREATED="1411426941335" FOLDED="true" MODIFIED="1428476471580" TEXT="get return value">
+<node CREATED="1411427340112" FOLDED="true" LINK="http://goo.gl/KS29TT" MODIFIED="1428476471580" TEXT="Run shell command and return output as result of custom function">
+<node CREATED="1411427378197" MODIFIED="1411427380039" TEXT="file"/>
+<node CREATED="1411427380489" MODIFIED="1411427388098" TEXT="clipboard">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1411427472845" MODIFIED="1411427476057" TEXT="xclip">
+<icon BUILTIN="help"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1410612142998" FOLDED="true" ID="ID_1314602288" MODIFIED="1467952344013" POSITION="right" TEXT="open browser">
+<node CREATED="1410614434066" MODIFIED="1410614435635" TEXT="libreoffice vba http post parameters"/>
+<node CREATED="1410650927046" MODIFIED="1451094039108" TEXT="HTTP POST">
+<node CREATED="1410650917743" MODIFIED="1451094040692" TEXT="solution 1">
+<node CREATED="1410614522290" LINK="http://goo.gl/C7mtDe" MODIFIED="1410650015124" TEXT="http post">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1455332958679" MODIFIED="1455332961824" TEXT="call curl">
+<node CREATED="1455332948921" LINK="http://goo.gl/QmdlMk" MODIFIED="1455332973732" TEXT="extracting &lt;table&gt; from html with sed magic"/>
+<node CREATED="1455333066882" MODIFIED="1455333073970" TEXT="sed multiple patterns"/>
+</node>
+</node>
+<node CREATED="1410650939808" MODIFIED="1410650950630" TEXT="shell"/>
+</node>
+</node>
+<node CREATED="1411519689204" FOLDED="true" ID="ID_623930982" MODIFIED="1428476471583" POSITION="right" TEXT="extract table">
+<node CREATED="1411519734420" FOLDED="true" MODIFIED="1428476471582" TEXT="from html">
+<node CREATED="1410663864147" MODIFIED="1411650213873" TEXT="fetch html table cell">
+<icon BUILTIN="help"/>
+</node>
+</node>
+<node CREATED="1411520732268" FOLDED="true" MODIFIED="1428476471582" TEXT="html parser">
+<node CREATED="1411520791344" LINK="http://goo.gl/5rpPJm" MODIFIED="1411520823386" TEXT="should never parse html with regular expressions"/>
+</node>
+<node CREATED="1410663934279" FOLDED="true" LINK="http://goo.gl/WefxvB" MODIFIED="1428476471582" TEXT="xmllint">
+<node CREATED="1411433777212" LINK="http://goo.gl/pfaPHl" MODIFIED="1411433794013" TEXT="libxml2-utils"/>
+</node>
+<node CREATED="1410664798065" FOLDED="true" MODIFIED="1428476471582" TEXT="xpath">
+<icon BUILTIN="help"/>
+<node CREATED="1411433661672" LINK="http://goo.gl/pfaPHl" MODIFIED="1411433675964" TEXT="How to execute XPath one-liners from shell?"/>
+</node>
+<node CREATED="1410664844147" MODIFIED="1410665440473" TEXT="grep">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1410664847223" MODIFIED="1410665443129" TEXT="regex">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1410663895551" FOLDED="true" LINK="http://goo.gl/WefxvB" MODIFIED="1428476471582" TEXT="xmlstarlet">
+<node CREATED="1411604809435" LINK="http://goo.gl/0ezVBk" MODIFIED="1411604825030" TEXT="xmlstarlet parser error : Entity &apos;*&apos; not defined"/>
+</node>
+<node CREATED="1411575382148" LINK="http://goo.gl/3x5jRP" MODIFIED="1411575393713" TEXT="html-xml-utils"/>
+<node CREATED="1411603250326" MODIFIED="1411604836392" TEXT="perl"/>
+<node CREATED="1411604764402" FOLDED="true" LINK="http://goo.gl/9va5KE" MODIFIED="1428476471583" TEXT="Command line tool to query HTML elements (linux)">
+<icon BUILTIN="help"/>
+<node CREATED="1411604858737" FOLDED="true" LINK="http://goo.gl/RVvSrs" MODIFIED="1428476471583" TEXT="Xidel">
+<icon BUILTIN="help"/>
+<node CREATED="1411604983081" MODIFIED="1411604984015" TEXT="HTML/XML data extraction tool"/>
+</node>
+</node>
+<node CREATED="1411650242756" LINK="http://goo.gl/WPo4sV" MODIFIED="1411650261440" TEXT="jsoup - Java HTML Parser"/>
+<node CREATED="1411650746696" FOLDED="true" MODIFIED="1428476471583" TEXT="python">
+<node CREATED="1411650754973" LINK="http://goo.gl/CG0dL" MODIFIED="1411650766933" TEXT="BeautifulSoup"/>
+</node>
+</node>
+<node CREATED="1410665458732" FOLDED="true" MODIFIED="1428476471584" POSITION="right" TEXT="open browser / grep content at the same time">
+<node CREATED="1411519152267" FOLDED="true" MODIFIED="1428476471584" TEXT="xclip">
+<node CREATED="1411519170026" LINK="http://goo.gl/DRomzk" MODIFIED="1411519184236" TEXT="&#x597d;&#x7528;&#x7684;terminal file&#x526a;&#x8cbc;&#x5de5;&#x5177;"/>
+</node>
+</node>
+<node CREATED="1411433266937" MODIFIED="1411433269825" POSITION="right" TEXT="notes"/>
+<node CREATED="1468033066733" ID="ID_361504470" MODIFIED="1468033069587" POSITION="right" TEXT="books">
+<node CREATED="1468033070750" ID="ID_1934843965" LINK="http://tinyurl.com/hcxdwub" MODIFIED="1468033084480" TEXT="OpenOffice.org Macros Explained - Andrew Pitonyak"/>
+</node>
+<node CREATED="1410649980865" ID="ID_1396798878" MODIFIED="1410650007161" POSITION="right" TEXT="how to backup basic code when reinstall linux">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1411606321744" LINK="http://goo.gl/KS29TT" MODIFIED="1411606332519" POSITION="right" TEXT="Run shell command and return output as result of custom function"/>
+<node CREATED="1428276105522" MODIFIED="1428276258823" POSITION="right" TEXT="how to start kimo pages of a company, from all aspect, at the same time">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1451094216854" LINK="#ID_1931812089" MODIFIED="1451094223706" POSITION="right" TEXT="libreoffice"/>
+<node CREATED="1453994561118" ID="ID_13072706" MODIFIED="1453994562310" POSITION="right" TEXT="Basic Macro">
+<node CREATED="1446295410967" LINK="https://goo.gl/IKwCOM" MODIFIED="1446295425721" TEXT="Where are LO Basic macros stored?"/>
+</node>
+<node CREATED="1467952306242" ID="ID_636322090" MODIFIED="1467952310404" POSITION="left" TEXT="calc">
+<node CREATED="1467952240264" ID="ID_1700913222" MODIFIED="1467952246547" TEXT="Workbook">
+<node CREATED="1467952246549" ID="ID_1258880713" MODIFIED="1467952254631" TEXT="Worksheet">
+<node CREATED="1467952258809" ID="ID_1110357615" MODIFIED="1467952262972" TEXT="Cell">
+<node CREATED="1410613338951" ID="ID_1333729592" MODIFIED="1410613340070" TEXT="get cell value"/>
+<node CREATED="1411519722709" ID="ID_1637769678" MODIFIED="1411519726866" TEXT="set cell value"/>
+</node>
+<node CREATED="1468033878060" ID="ID_1208125323" MODIFIED="1468033883230" TEXT="Range">
+<node CREATED="1468034794489" ID="ID_795674063" LINK="http://tinyurl.com/jkpmdgw" MODIFIED="1468034806345" TEXT="Range Processing using Macro in LibreOffice Calc"/>
+<node CREATED="1468055832409" ID="ID_1876309721" LINK="http://tinyurl.com/z6j5sqd" MODIFIED="1468055835957" TEXT="copy">
+<node CREATED="1468059120799" ID="ID_1461720732" MODIFIED="1468059125240" TEXT="VBA macro"/>
+<node CREATED="1468059125651" ID="ID_519648851" LINK="http://tinyurl.com/hapycyh" MODIFIED="1468059168552" TEXT="You can also use dispatcher calls"/>
+</node>
+</node>
+</node>
+<node CREATED="1410612148169" ID="ID_1193769981" MODIFIED="1467952336469" TEXT="get current sheet">
+<node CREATED="1410612261940" MODIFIED="1410612263273" TEXT="get current sheet name"/>
+<node CREATED="1410613186341" MODIFIED="1410613187436" TEXT="get sheet by name"/>
+</node>
+<node CREATED="1468076620566" ID="ID_455120027" MODIFIED="1468076629384" TEXT="change active"/>
+</node>
+<node CREATED="1453941804058" ID="ID_1979873801" LINK="https://goo.gl/Qwp4JA" MODIFIED="1453941819502" TEXT="How do I find the bottom value in a column?">
+<node CREATED="1453994181207" LINK="http://goo.gl/eAk45q" MODIFIED="1453994196645" TEXT="get the last cell with data in column">
+<node CREATED="1453994576898" LINK="http://goo.gl/KTE0yM" MODIFIED="1453994602720" TEXT="array-formula">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1453994882616" MODIFIED="1453994902506" TEXT="CTRL+SHIFT+ENTER">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1453994217337" LINK="https://goo.gl/LH8HnA" MODIFIED="1453994235267" TEXT="Reference to cell address from value in other cell">
+<node CREATED="1453994647899" MODIFIED="1453994652724" TEXT="indirect"/>
+</node>
+<node CREATED="1453994777477" MODIFIED="1453994788637" TEXT="update all the calc file"/>
+</node>
+</node>
+<node CREATED="1409244461020" ID="ID_1950979745" MODIFIED="1409244461845" POSITION="left" TEXT="Macro programming">
+<node CREATED="1409245248132" MODIFIED="1409245253483" TEXT="hello world"/>
+</node>
+<node CREATED="1467978276849" ID="ID_30957127" MODIFIED="1467978280092" POSITION="left" TEXT="VBA">
+<node CREATED="1467978274511" ID="ID_689200823" LINK="http://tinyurl.com/hkua9l8" MODIFIED="1467978296785" TEXT="ThisComponent">
+<node CREATED="1467978424614" ID="ID_983758195" MODIFIED="1467978439751" TEXT="&#x81ea;&#x52d5;&#x586b;&#x5165;&#x7684;&#x53c3;&#x8003;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1409244224588" ID="ID_730663403" MODIFIED="1468055402784" TEXT="import data from webpage">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
+<node CREATED="1468032163286" ID="ID_1264702130" MODIFIED="1468032168047" POSITION="left" TEXT="UNO">
+<node CREATED="1468032168989" ID="ID_504530431" LINK="http://tinyurl.com/cgpg2k4" MODIFIED="1468032239851" TEXT="Universal Network Objects"/>
+<node CREATED="1468032748779" ID="ID_811484921" MODIFIED="1468032749760" TEXT="createUnoService"/>
+<node CREATED="1468059186102" ID="ID_898044294" MODIFIED="1468059186822" TEXT="dispatcher calls">
+<node CREATED="1468032764137" ID="ID_526231375" MODIFIED="1468032764992" TEXT="executeDispatch"/>
+</node>
+</node>
+<node CREATED="1468055366862" ID="ID_407647851" MODIFIED="1468055367969" POSITION="left" TEXT="StarDesktop">
+<node CREATED="1468055569291" ID="ID_1844859890" MODIFIED="1468055577894" TEXT="loadComponentFromUrl">
+<icon BUILTIN="help"/>
+</node>
+</node>
+<node CREATED="1468036112753" ID="ID_789293919" MODIFIED="1468036115158" POSITION="left" TEXT="recorder">
+<node CREATED="1468036126489" ID="ID_189678930" LINK="http://tinyurl.com/htfzpbw" MODIFIED="1468036146227" TEXT="in Writer and Calc only"/>
+<node CREATED="1468036108675" ID="ID_750380640" LINK="http://tinyurl.com/htfzpbw" MODIFIED="1468036143657" TEXT="recorder produces a series of UNO dispatch calls"/>
+</node>
+</node>
+</map>
