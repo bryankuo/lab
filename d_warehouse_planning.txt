@@ -1,0 +1,14 @@
+in-house planning:
+in terms of Taiwan e-Bus market:
+status:
+https://t.ly/2osh
+total number of bus to replace: 16000
+market share: 50%
+
+current throughput of data: 30 buses, 1.5 GB/day
+for each bus: 1500/30 => 50 MB/day
+50 MB * 8000 = 400 GB/day
+if staging half a year, 73.2 TB is required.
+
+AWS planning:
+
