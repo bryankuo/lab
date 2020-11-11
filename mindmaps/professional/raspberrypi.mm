@@ -7,7 +7,7 @@
 <node CREATED="1429778837973" ID="ID_208781906" LINK="http://goo.gl/wkzVHT" MODIFIED="1429779976975" POSITION="left" TEXT="Raspberry Pi&#x306e;&#x8cc7;&#x6599;&#x30ea;&#x30f3;&#x30af;&#x96c6;">
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1427794295180" FOLDED="true" ID="ID_233104909" MODIFIED="1433110056458" POSITION="left" TEXT="architecture">
+<node CREATED="1427794295180" FOLDED="true" ID="ID_233104909" MODIFIED="1604759726382" POSITION="left" TEXT="architecture">
 <icon BUILTIN="help"/>
 <node CREATED="1430105143997" ID="ID_336809352" MODIFIED="1430105145035" TEXT="Broadcom BCM2708"/>
 <node CREATED="1427794511387" ID="ID_1649718928" LINK="embedded.mm#ID_148475703" MODIFIED="1432891182613" TEXT="bcm2708"/>
@@ -24,6 +24,8 @@
 </node>
 </node>
 <node CREATED="1429785772353" ID="ID_808751105" MODIFIED="1429785773569" TEXT="boot process"/>
+<node CREATED="1604759172041" ID="ID_1060654628" MODIFIED="1604759174899" TEXT="model 3"/>
+<node CREATED="1604759175397" ID="ID_1144172981" MODIFIED="1604759177352" TEXT="model 4"/>
 </node>
 <node CREATED="1401787236917" FOLDED="true" ID="ID_911379364" LINK="https://www.google.com.tw/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=0CDMQFjAB&amp;url=http%3A%2F%2Fcomments.gmane.org%2Fgmane.linux.kernel.kernelnewbies%2F47119&amp;ei=ZpONU4TcMIOBkQXM84Fg&amp;usg=AFQjCNF8RE6OobrtXaXWd2jYHLR0R2bAPA&amp;sig2=SGULJ2_Cgw0TtSPWMZsgkA" MODIFIED="1433119176588" POSITION="left" TEXT="but it&apos;s firmware &quot;start.elf&quot; is not open source. ">
 <node CREATED="1401787222157" ID="ID_1347572838" LINK="https://www.google.com.tw/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=0CDMQFjAB&amp;url=http%3A%2F%2Fcomments.gmane.org%2Fgmane.linux.kernel.kernelnewbies%2F47119&amp;ei=ZpONU4TcMIOBkQXM84Fg&amp;usg=AFQjCNF8RE6OobrtXaXWd2jYHLR0R2bAPA&amp;sig2=SGULJ2_Cgw0TtSPWMZsgkA" MODIFIED="1401787262300" TEXT="I listened about Raspberry pi but it&apos;s firmware &quot;start.elf&quot;"/>
@@ -36,7 +38,7 @@
 <node CREATED="1433116637762" ID="ID_590447597" MODIFIED="1433116638585" TEXT="But it has some fusebits"/>
 </node>
 </node>
-<node CREATED="1433116861399" ID="ID_1358417384" MODIFIED="1433116866062" POSITION="left" TEXT="platform">
+<node CREATED="1433116861399" FOLDED="true" ID="ID_1358417384" MODIFIED="1604754739180" POSITION="left" TEXT="platform">
 <node CREATED="1418264863176" ID="ID_1631643792" LINK="http://goo.gl/4Tmgbu" MODIFIED="1462174341951" TEXT="Implementation of Linux GPIO Device Driver on Raspberry Pi Platform">
 <icon BUILTIN="info"/>
 <node CREATED="1418264888696" MODIFIED="1418264892613" TEXT="toolchain">
@@ -129,7 +131,7 @@
 </node>
 </node>
 <node CREATED="1420610788966" ID="ID_448056536" MODIFIED="1420610790096" POSITION="left" TEXT="need to copy the entire /liband /usr directory to this newly created folder."/>
-<node CREATED="1426498158660" ID="ID_584964121" LINK="qemu.mm" MODIFIED="1432620273579" POSITION="right" TEXT="qemu">
+<node CREATED="1426498158660" FOLDED="true" ID="ID_584964121" LINK="qemu.mm" MODIFIED="1604754744265" POSITION="right" TEXT="qemu">
 <node CREATED="1415243539994" FOLDED="true" ID="ID_357101019" LINK="https://www.google.com.tw/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CB4QFjAA&amp;url=http%3A%2F%2Fxecdesign.com%2Fqemu-emulating-raspberry-pi-the-easy-way%2F&amp;ei=0eZaVJyOCNfv8gWgjYHQAQ&amp;usg=AFQjCNEO_36olvzsYICP0QoqvCtqPczYtQ&amp;sig2=JT4lEwpj6qJSKLUsg0y-XA" MODIFIED="1432541456468" TEXT="QEMU - Emulating Raspberry Pi the easy way">
 <node CREATED="1415330248912" FOLDED="true" ID="ID_1589501384" MODIFIED="1426928347658" TEXT="Make sure you have">
 <node CREATED="1415858649628" MODIFIED="1415858651297" TEXT="kernel-qemu"/>
@@ -204,7 +206,7 @@
 <node CREATED="1428224576170" ID="ID_586711899" MODIFIED="1428224584216" POSITION="right" TEXT="root file system"/>
 <node CREATED="1428224587003" ID="ID_1799197496" MODIFIED="1428224590261" POSITION="right" TEXT="root fs"/>
 <node CREATED="1428224620753" ID="ID_1581827968" LINK="tux/applications.mm#ID_1530617079" MODIFIED="1453643079768" POSITION="right" TEXT="shell / busybox"/>
-<node CREATED="1429432041095" ID="ID_1344733764" MODIFIED="1429432045653" POSITION="right" TEXT="kernel">
+<node CREATED="1429432041095" FOLDED="true" ID="ID_1344733764" MODIFIED="1604754745997" POSITION="right" TEXT="kernel">
 <node CREATED="1433109299162" ID="ID_1612067503" LINK="http://goo.gl/QRjduZ" MODIFIED="1433109336255" TEXT=" The raspbian project provides source packages for all their binary packages">
 <node CREATED="1433109317657" ID="ID_688306949" LINK="http://goo.gl/QRjduZ" MODIFIED="1433109339552" TEXT=" but unfortunately the raspberry pi foundation does not."/>
 </node>
@@ -259,6 +261,14 @@
 <node CREATED="1429435874385" ID="ID_1214486705" LINK="http://goo.gl/zwZwh1" MODIFIED="1429435888194" TEXT="To speed up compilation "/>
 </node>
 <node CREATED="1432981982465" ID="ID_421508737" LINK="https://goo.gl/e1I1RN" MODIFIED="1432982000662" TEXT="https://github.com/johnlane/rpi-utils/blob/master/kernel/build-kernel-qemu"/>
+</node>
+<node CREATED="1604759189479" ID="ID_884832413" MODIFIED="1604759194129" POSITION="right" TEXT="tutorial">
+<node CREATED="1604759159173" ID="ID_520154965" MODIFIED="1604759161850" TEXT="Qt on Raspberry Pi : Deployment and Auto-Startup when Boot "/>
+</node>
+<node CREATED="1604759109457" ID="ID_1481217636" MODIFIED="1604759117187" POSITION="right" TEXT="automotive">
+<node CREATED="1604759704030" ID="ID_1437481055" MODIFIED="1604759709080" TEXT="carberry"/>
+<node CREATED="1604759710142" ID="ID_907282873" MODIFIED="1604759719686" TEXT="autopi.io"/>
+<node CREATED="1604759912241" ID="ID_935182906" LINK="https://www.raspberrypi.org/forums/viewtopic.php?p=1544633&amp;sid=0ce74ea130573048ce2e47fef4ecaa92#p1544633" MODIFIED="1604759934897" TEXT="12 sec boot on PiCore"/>
 </node>
 <node CREATED="1431506987819" ID="ID_1778131882" LINK="http://goo.gl/IlJ0xI" MODIFIED="1431506998105" POSITION="left" TEXT="FreeSWITCH on the Raspberry Pi + Skype"/>
 <node CREATED="1446460089856" ID="ID_1188627147" MODIFIED="1446460094477" POSITION="left" TEXT="fpga">
