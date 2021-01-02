@@ -1,0 +1,8 @@
+// to install
+sudo apt-get install screen
+
+// @see https://tinyurl.com/ybnykogp
+sudo adduser bryan dialout
+
+// logon
+sudo screen /dev/ttyACM0 115200
