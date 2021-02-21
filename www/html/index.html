@@ -3,7 +3,7 @@
    <HEAD>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <TITLE>
-         A Small Hello, My own invest tools on 16.04 lts
+         A Small Hello, My own invest tools 16.04 lts
       </TITLE>
 
 <style type="text/css">
@@ -66,20 +66,18 @@ $(document).ready(function() {
 		})
 	});
 	$('#showMSCIlast10').click(function () {
-		// data source url
-		var url = '<object class="chromium" data="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=';
+		// data source url 1
+		var url =
+		    '<object class="chromium" data="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=';
 		var symbol = '';
 		//alert( $(".site").length );
 		$( "div.site" ).each(function( index ) {
 			symbol = $(this).attr("symbol");
 			$(this).html(url+symbol+'&b=4">');
 		});
-
 	});
 	$('#extract').click(function () {
-		var url = '<object class="chromium" data="http://tinyurl.com/mbgcmcg">';
-		$("#top500").html(url);
-
+		// var url = '<object class="chromium" data="http://tinyurl.com/mbgcmcg">';
 	});
 	$('#timely').click(function () {
 		if ($(this).is(':checked')) {
@@ -93,7 +91,8 @@ $(document).ready(function() {
 		}
 	});
 
-	function updateQuotes() {
+	function updateQuotes()
+	{
 		//alert('updateQuotes! '+$('#seconds').val());
 		//$( ".symbol" ).each(function( index ) {
 			//console.log( index + ": " + $( this ).attr('href') );
@@ -106,23 +105,7 @@ $(document).ready(function() {
 	}
 	updateQuotes();
 	$("#showMSCIlast10").trigger("click");
-	$('#checkInstitution').click(function () {
-		var url = $("#ticker").attr("href")+$("#ticker").val()+"&b=4";
-		window.open(url, '_blank');
-	});
-	$('#intro').click(function () {
-		var url = $("#usticker").attr("href")+$("#usticker").val();
-		window.open(url, '_blank');
-	});
 });
-
-    $(function(){
-      $("#includeTWSE").load("twse.html");
-    });
-
-    $(function(){
-      $("#includeTWSE").load("us.html");
-    });
 
 function jump(h){
 /*    var url = location.href;               //Save down the URL without hash.
@@ -131,21 +114,11 @@ function jump(h){
     var top = document.getElementById(h).offsetTop; //Getting Y of target element
     window.scrollTo(0, top);
 }
-function openBrokerage() {
-		var brokerage = "http://www.cmoney.tw/finance/f00039.aspx?s=";
-		var url = brokerage + $("#institution").val();
-		//alert(url);
-		//window.open(url, '_blank');
-		//window.open(url);
-		var randomnumber = Math.floor((Math.random()*100)+1);
- window.open(url,"_blank",'PopUp',randomnumber,'scrollbars=1,menubar=0,resizable=1,width=850,height=500');
-}
 
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>This is very minimal "hello world" HTML document. </P>
-   <P>Last Update: 2018-05-01 17:36:15</P>
+   <P>This is very minimal "hello world" HTML document. on 2021/02/21</P>
 <p><h2> Taiwan Stock Exhanges </h2></p>
 <table class="ex1" id="tw">
 	<tr>
@@ -159,11 +132,9 @@ function openBrokerage() {
 			<a target="_blank" href="http://sod.nsc.com.tw/z/zm/zmd/zmdb.djhtm">台股權值100大排行榜</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="http://sod.nsc.com.tw/z/zc/zck/zck_1815.djhtm">董監事經理人及大股東持股明細</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?">法人持股走勢</a>
-			(近40日):<input type="text" id="ticker" style="width:88;" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=">&nbsp;<button type="button" id="checkInstitution">Check</button>
+			<a target="_blank" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=5871&b=3">中租-KY(5871)法人持股走勢(近20日)</a>
 		</td>
 	</tr>
 	<tr>
@@ -205,10 +176,10 @@ function openBrokerage() {
 			<a target="_blank" href="">&nbsp;</a>
 		</td>
 		<td width="20%"> <!-- onclick="jumpto('twse'); -->
-			<a target="_blank" href="#includeTWSE">My TW Stock quote Ticker </a>
+			<a target="_blank" href="#twse">My TW Stock quote Ticker </a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/aZz8aj">券商買賣超排行</a>
+			<a target="_blank" href=""></a>
 		</td>
 		<td width="20%">
 			<a target="_blank" href=""></a>
@@ -257,19 +228,14 @@ function openBrokerage() {
 
 	<tr>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/iNSXci">MoneyDj美個股基本資料</a>
-			<input type="text" id="usticker" style="width:88;" href="https://money.moneydj.com/us/basic/basic0001/">&nbsp;<button type="button" id="intro">Check</button>
+			<a target="_blank" href="https://goo.gl/S1yoxf">MoneyDj美國股市個股基本資料</a>
 		</td>
 		<td width="20%">
 			<a target="_blank" href="https://www.sec.gov/">U.S. Securities and Exchange Commission</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/xFPctz">The Motely Fool</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="#includeWorld">My World Stock Quotes</a>
-			<!-- format issue -->
-			<!-- <a target="_blank" href="http://localhost/us.html">My World Stock Quotes</a> -->
 		</td>
 		<td width="20%">
 		</td>
@@ -319,12 +285,31 @@ function openBrokerage() {
 			<a target="_blank" href="http://www.macromicro.me/etf">各國股市ETF</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/tXCzJV">Crude Oil Price</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/Homj5Q">Major World Indices</a>
 		</td>
 		<td width="20%">
+		</td>
+	</tr>
+</table>
+
+<p><h2> Commodities </h2></p>
+<table>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://finance.yahoo.com/quote/NG%3DF?p=NG%3DF">天然氣NG(yahoo)</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""> data source 2</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
 		</td>
 	</tr>
 </table>
@@ -343,8 +328,19 @@ function openBrokerage() {
 
    <P></P>
    <h2> Stocks </h2>
-	<a class="stock1" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=9933">9933中鼎</a><BR>
-	<a class="stock1" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2448">2448晶電</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=9933">9933中鼎</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2448">2448晶電</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1704">1704榮化</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=4706">4706大恭</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=3030">3030德律</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1236">1236宏亞</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=5871">5871中租-KY</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2850">2850新產</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1535">1535中宇</a><BR>
+<BR><div id="top500" class="" style="width: 800; height: 1600px;">
+<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=3008" style="width: 570px; height: 430px; border-width: 0;"></iframe>
+	</div><BR>
+
 	<P></P>
 	<button type="button" id="showall">Show All</button><BR>
 
@@ -359,10 +355,44 @@ function openBrokerage() {
 	<h2> test - extract 熱門排行 – 公司總市值最高</h2>
 	<button type="button" id="extract">Get Table</button><BR>
 	<!-- // data source url -->
-	01:<BR><div id="top500" class="" style="width: 800; height: 1600px;"></div><BR>
+	01:<BR><div id="top500" class="" style="width: 800; height: 1600px;">
+<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=1535" style="width: 570px; height: 430px; border-width: 0;"></iframe>
+	</div><BR>
 	<P>
-	<div id="includeTWSE"></div>
-	<P>
-	<div id="includeWorld"></div>
+<h2 name="twse" id="twse"> My TW Stock quote Ticker </h2>
+<div class="divTable" id="test1">
+<div class="divTableBody">
+<div class="divTableRow">
+<div class="divTableCell">Ticker&nbsp;</div>
+<div class="divTableCell">ROE&nbsp;</div>
+<div class="divTableCell">盈再率%&nbsp;</div>
+<div class="divTableCell">配息%&nbsp;</div>
+<div class="divTableCell">貴&nbsp;</div>
+<div class="divTableCell">淑&nbsp;</div>
+<div class="divTableCell">Last&nbsp;</div>
+<div class="divTableCell">DayLow&nbsp;</div>
+<div class="divTableCell">DayHigh&nbsp;</div>
+<div class="divTableCell">Volume&nbsp;</div>
+<div class="divTableCell">52WkLow&nbsp;</div>
+<div class="divTableCell">52WkHigh&nbsp;</div>
+<div class="divTableCell">Position&nbsp;</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+</div>
+</div>
+</div>
 </BODY>
 </HTML>
