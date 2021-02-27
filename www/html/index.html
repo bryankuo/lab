@@ -45,6 +45,7 @@ object.mozilla {
 .divTableBody {
 	display: table-row-group;
 }
+
 </style>
 	<link rel="stylesheet" type="text/css" href="tstyle.css">
    </HEAD>
@@ -175,11 +176,13 @@ function jump(h){
 		<td width="20%">
 			<a target="_blank" href="">&nbsp;</a>
 		</td>
-		<td width="20%"> <!-- onclick="jumpto('twse'); -->
-			<a target="_blank" href="#twse">My TW Stock quote Ticker </a>
+		<td width="20%">
+			<!-- onclick="jumpto('twse'); -->
+			<!-- // TODO: use url instead of section -->
+			<!-- <a target="_blank" href="#twse">My TW Stock quote Ticker </a> -->
 		</td>
 		<td width="20%">
-			<a target="_blank" href=""></a>
+			<a target="_blank" href="./highlight.html">近期關注個股</a>
 		</td>
 		<td width="20%">
 			<a target="_blank" href=""></a>
@@ -328,7 +331,7 @@ function jump(h){
 
    <P></P>
    <h2> Stocks </h2>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=9933">9933中鼎</a><BR>
+	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1227">1227佳格</a><BR>
 	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2448">2448晶電</a><BR>
 	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1704">1704榮化</a><BR>
 	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=4706">4706大恭</a><BR>
@@ -337,8 +340,12 @@ function jump(h){
 	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=5871">5871中租-KY</a><BR>
 	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2850">2850新產</a><BR>
 	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1535">1535中宇</a><BR>
-<BR><div id="top500" class="" style="width: 800; height: 1600px;">
-<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=3008" style="width: 570px; height: 430px; border-width: 0;"></iframe>
+
+<BR><div id="top1227" class="" style="width: 800; height: 600px;">
+<div id="top1227" class="" style="width: 800; height: 600px;">
+<iframe src="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=1227&b=4" style="width: 570px; height: 430px; border-width: 0;">
+</iframe>
+	</div>
 	</div><BR>
 
 	<P></P>
@@ -347,16 +354,19 @@ function jump(h){
 	<h2> MSCI台股指數成份股增刪候選名單-法人動態</h2>
 	<button type="button" id="showMSCIlast10">Show All</button><BR>
 	<!-- // data source url -->
-	01:<BR><div id="siteloader091" class="site" symbol="2888" style=""></div><BR>
+	01:<BR>
+	    <div id="siteloader091" class="site" symbol="1227"></div>
+	    <div id="#DIV2" class="site" symbol="1227" style="width: 800; height: 600px;"></div>
+	<BR>
 	<P>
-	02:<BR><div id="siteloader092" class="site" symbol="2707"></div><BR><P>
+	02:<BR><div id="siteloader092" class="site" symbol="2883"></div><BR><P>
 	03:<BR><div id="siteloader093" class="site" symbol="2633"></div><BR><P>
 
 	<h2> test - extract 熱門排行 – 公司總市值最高</h2>
 	<button type="button" id="extract">Get Table</button><BR>
 	<!-- // data source url -->
-	01:<BR><div id="top500" class="" style="width: 800; height: 1600px;">
-<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=1535" style="width: 570px; height: 430px; border-width: 0;"></iframe>
+	01:<BR><div id="top500" class="" style="width: 800; height: 600px;">
+<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=2883" style="width: 570px; height: 430px; border-width: 0;"></iframe>
 	</div><BR>
 	<P>
 <h2 name="twse" id="twse"> My TW Stock quote Ticker </h2>
