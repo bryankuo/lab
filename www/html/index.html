@@ -58,12 +58,12 @@ $(document).ready(function() {
 		//alert($('a[href*="http"]').length);
 		//$('a[href*="http"]').each(function() {
 		$('a[class="stock"]').each(function() {
-//alert('hi');
-			//alert($(this).attr("href"));
-			window.open($(this).attr("href"), '_blank');
-			//    var clk = document.createEvent("MouseEvents");
-			//    clk.initMouseEvent("click", false, true, window, 0, 0, 0, 0, 0, true, false, false, true, 0, null);
-			//    this.dispatchEvent(clk);
+		    //alert($(this).attr("href"));
+		    var w = window.open($(this).attr("href"), '_blank');
+		})
+		// TODO: click and research symbol
+		$('a[class="stock"]').each(function() {
+		    var w = window.open($(this).attr("href")+"", '_blank');
 		})
 	});
 	$('#showMSCIlast10').click(function () {
@@ -120,9 +120,44 @@ function jump(h){
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>This is very minimal "hello world" HTML document. on 2021/02/21</P>
+   <P>This is very minimal "hello world" HTML document. on 2021/03/05</P>
 <p><h2> Taiwan Stock Exhanges </h2></p>
 <table class="ex1" id="tw">
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://www.taifex.com.tw/file/taifex/CHINESE/4/2021Calendar_cv1.pdf">台灣期貨交易所2021年行事曆</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+		    	<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://www.yuantaetfs.com/#/FundWeights/1066">元大台灣50成份股</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://pchome.megatime.com.tw/rank/sto2/ock31.html">PChome台股市值排行</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="https://www.taifex.com.tw/cht/9/futuresQADetail">證交所發行量加權股價指數成分股暨市值比重</a>
+		</td>
+		<td width="20%">
+		    	<a target="_blank" href=""></a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href=""></a>
+		</td>
+	</tr>
+
 	<tr>
 		<td width="20%">
 			<a target="_blank" href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">XE Currency Charts (USD/TWD)</a>
@@ -227,20 +262,22 @@ function jump(h){
 			<a target="_blank" href="http://stockcharts.com/freecharts/seasonality.php">StockChart季節性圖表工具(Seasonality Chart)</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="https://client.schwab.com/Login/SignOn/CustomerCenterLogin.aspx">Charles Schwab Client Login</a>
+			<a target="_blank" href=""></a>
 		</td>
 	</tr>
 
 	<tr>
 		<td width="20%">
-			<a target="_blank" href="https://goo.gl/S1yoxf">MoneyDj美國股市個股基本資料</a>
+			<a target="_blank" href="https://money.moneydj.com/us/basic/basic0001/">MoneyDj美國股市個股基本資料</a>
 		</td>
 		<td width="20%">
 			<a target="_blank" href="https://www.sec.gov/">U.S. Securities and Exchange Commission</a>
 		</td>
 		<td width="20%">
+			<a target="_blank" href="https://www.barchart.com/stocks/performance/gap/gap-up">All US Exchanges Gap Up</a>
 		</td>
 		<td width="20%">
+		    <a target="_blank" href="https://www.marketwatch.com/tools/screener/premarket">Premarket Scanner</a>
 		</td>
 		<td width="20%">
 		</td>
@@ -248,6 +285,21 @@ function jump(h){
 </table>
 <p><h2> Worldwide Indexes </h2></p>
 <table>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://www.cnyes.com/economy/indicator/EconomicsCalendar/Calendar.aspx">
+			聚亨財經月曆</a>
+		</td>
+		<td width="20%">
+			<a target="_blank" href="">各國股市ETF</a>
+		</td>
+		<td width="20%">
+		</td>
+		<td width="20%">
+		</td>
+		<td width="20%">
+		</td>
+	</tr>
 	<tr>
 		<td width="20%">
 			<a target="_blank" href="http://www.cnyes.com/futures/flashchart/BDI.html">波羅的海-乾散裝型(Dry)</a>
@@ -262,12 +314,12 @@ function jump(h){
 			<a target="_blank" href="http://goo.gl/B9eWun">CRU國際鋼材指數</a>
 		</td>
 		<td width="20%">
-			<a target="_blank" href="http://histock.tw/index/USDX">美元指數</a>
+		    <a target="_blank" href="https://histock.tw/index">重點股市即時報價</a>
 		</td>
 	</tr>
 	<tr>
 		<td width="20%">
-			<a target="_blank" href="http://tinyurl.com/jdxf9jx">google finance my portfolio</a>
+			<a target="_blank" href=""></a>
 		</td>
 		<td width="20%">
 			<a target="_blank" href="http://tinyurl.com/gl94b3r">Google Finance Stock Screener</a>
@@ -333,15 +385,8 @@ function jump(h){
 
    <P></P>
    <h2> Stocks </h2>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1227">1227佳格</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2448">2448晶電</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1704">1704榮化</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=4706">4706大恭</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=3030">3030德律</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1236">1236宏亞</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=5871">5871中租-KY</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=2850">2850新產</a><BR>
-	<a class="stock" target="_blank" href="https://tw.stock.yahoo.com/q/bc?s=1535">1535中宇</a><BR>
+    <!-- href="https://www.google.com/search?channel=fs&client=ubuntu&q=%E8%A3%95%E5%85%83%E9%9B%86%E5%9C%98%E8%82%A1%E5%83%B9"-->
+	<a class="stock" target="_blank" href="highlight.html">裕元集團港股</a><BR>
 
 <BR><div id="top1227" class="" style="width: 800; height: 600px;">
 <div id="top1227" class="" style="width: 800; height: 600px;">
@@ -362,7 +407,6 @@ function jump(h){
 	<BR>
 	<P>
 	02:<BR><div id="siteloader092" class="site" symbol="2883"></div><BR><P>
-	03:<BR><div id="siteloader093" class="site" symbol="2633"></div><BR><P>
 
 	<h2> test - extract 熱門排行 – 公司總市值最高</h2>
 	<button type="button" id="extract">Get Table</button><BR>
