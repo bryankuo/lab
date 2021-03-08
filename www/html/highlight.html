@@ -25,9 +25,15 @@ overflow:hidden;
 
 </style>
 <link rel="stylesheet" type="text/css" href="tstyle.css">
-   </HEAD>
+</HEAD>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+});
+
+</script>
+<BODY>
 
 <h2 name="highlight" id="highlight"> 近期關注個股 </h2>
 
@@ -46,21 +52,21 @@ overflow:hidden;
     <a target="_blank" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=1227&b=4">機構投資人動態</a>
     <iframe src="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=1227&b=4"
 	style="width: 800px; height: 1800px; border:2px blue solid;">
-	</iframe>
-    </div>
+    </iframe>
+</div>
 
 <div id="right" class="" style="width: 800; height: 600px;">
     <a target="_blank"
 	href="https://tw.stock.yahoo.com/q/ta?s=1227">技術分析</a>
-    <a target="_blank" href="https://www.google.com/search?q=%E4%BD%B3%E6%A0%BC&client=ubuntu&channel=fs&sxsrf=ALeKk01CJCiRAyPKCOMqm7SXQ3YNwyhWdQ:1614468696143&source=lnms&tbm=nws&tbs=qdr:m&sa=X&ved=2ahUKEwjdvInJnIvvAhU9L6YKHcjDBq4Q_AUoAXoECAUQAw&biw=1853&bih=974">近月新聞</a>
-    <a target="_blank"
-	href="https://goodinfo.tw/StockInfo/StockDetail.asp?STOCK_ID=1227">最新訊息</a>
-    <a target="_blank"
-	href="https://www.twse.com.tw/zh/page/trading/exchange/STOCK_DAY.html">各日成交資訊</a>
-    <iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=1227"
-	style="width: 800px; height: 800px; border:2px blue solid;">
-	</iframe>
+    <div id="mylocaldiv" style="width: 800; height: 600px;">
     </div>
+    <!-- success -->
+    <!--
+    <iframe src="https://pchome.megatime.com.tw/market/sto0"
+	style="width: 800px; height: 1800px; border:2px blue solid;">
+    </iframe>
+    -->
+</div>
 </div>
 </div>
 
@@ -196,3 +202,4 @@ overflow:hidden;
 </div>
 
 </div>
+</BODY>
