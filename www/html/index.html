@@ -88,6 +88,16 @@ $(document).ready(function() {
 	    var url1 = "https://pchome.megatime.com.tw/stock/sto0/ock0/sid"+ticker+".html";
 	    var w1 = window.open(url1, "_blank", "");
 	});
+	$('#subsidiary').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://pchome.megatime.com.tw/stock/sto3/ock4/sid"+ticker+".html";
+	    var w1 = window.open(url1, "_blank", "");
+	});
+	$('#announce').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://mops.twse.com.tw/mops/web/t146sb05";
+	    var w1 = window.open(url1, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -191,6 +201,38 @@ function click_return() {
 			    id = "volume"
 			    href="https://pchome.megatime.com.tw/stock/sto0/ock0/sid2464.html"
 			    onclick="return click_return();" >價量走勢圖</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank"
+			    id = "subsidiary"
+			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
+			    onclick="return click_return();" >轉投資項目</a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "announce"
+			    href="https://mops.twse.com.tw/mops/web/t146sb05"
+			    onclick="return click_return();" >公開資訊觀測站</a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "subsidiary"
+			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
+			    onclick="return click_return();" ></a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "subsidiary"
+			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
+			    onclick="return click_return();" ></a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "subsidiary"
+			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
+			    onclick="return click_return();" ></a>
 		</td>
 	</tr>
 	<tr>
