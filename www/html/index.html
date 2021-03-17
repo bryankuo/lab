@@ -98,6 +98,18 @@ $(document).ready(function() {
 	    var url1 = "https://mops.twse.com.tw/mops/web/t146sb05";
 	    var w1 = window.open(url1, "_blank", "");
 	});
+	$('#segments').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm";
+	    var w1 = window.open(url1, "_blank", "");
+	});
+	$('#calendar').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://www.yuanta.com.tw/eYuanta/securities/Node/Index?" +
+		    "MainId=00412&C1=2018040404541005&ID=2018040404541005&Level=1&rnd=83717";
+	    var w1 = window.open(url1, "_blank", "");
+	});
+
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -213,20 +225,22 @@ function click_return() {
 		<td width="20%">
 			<a target="_blank"
 			    id = "announce"
-			    href="https://mops.twse.com.tw/mops/web/t146sb05"
+			    href="https://mops.twse.com.tw/"
+				  "mops/web/t146sb05"
 			    onclick="return click_return();" >公開資訊觀測站</a>
 		</td>
 		<td width="20%">
 			<a target="_blank"
-			    id = "subsidiary"
-			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
-			    onclick="return click_return();" ></a>
+			    id = "segments"
+			    href="https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm"
+			    onclick="return click_return();" >分價圖</a>
 		</td>
 		<td width="20%">
 			<a target="_blank"
-			    id = "subsidiary"
-			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
-			    onclick="return click_return();" ></a>
+			    id = "calendar"
+			    href="https://www.yuanta.com.tw/eYuanta/securities/Node/Index?"
+				  "MainId=00412&C1=2018040404541005&ID=2018040404541005&Level=1&rnd=83717"
+			    onclick="return click_return();" >重大行事曆</a>
 		</td>
 		<td width="20%">
 			<a target="_blank"
@@ -549,8 +563,6 @@ function click_return() {
 
 <BR><div id="top1227" class="" style="width: 800; height: 600px;">
 <div id="top1227" class="" style="width: 800; height: 600px;">
-<iframe src="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=1227&b=4" style="width: 570px; height: 430px; border-width: 0;">
-</iframe>
 	</div>
 	</div><BR>
 
@@ -571,8 +583,14 @@ function click_return() {
 	<button type="button" id="extract">Get Table</button><BR>
 	<!-- // data source url -->
 	01:<BR><div id="top500" class="" style="width: 800; height: 600px;">
-<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=2883" style="width: 570px; height: 430px; border-width: 0;"></iframe>
+<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=2464" style="width: 570px; height: 430px; border-width: 0;"></iframe>
+
 	</div><BR>
+	01:<BR><div id="top500" class="" style="width: 800; height: 600px;">
+<iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=2330" style="width: 570px; height: 430px; border-width: 0;"></iframe>
+
+	</div><BR>
+	<!-- // TODO: create division dynamically -->
 	<P>
 <h2 name="twse" id="twse"> My TW Stock quote Ticker </h2>
 <div class="divTable" id="test1">
