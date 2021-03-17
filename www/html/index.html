@@ -73,7 +73,16 @@ $(document).ready(function() {
 	    // institutional holdings
 	    var url1 = "https://stock.cnyes.com/market/TWS:"+ticker+":STOCK";
 	    var w1 = window.open(url1, "_blank", "");
-	    // return false;
+	});
+	$('#technical1').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://goodinfo.tw/StockInfo/ShowK_Chart.asp?STOCK_ID="+ticker+"&CHT_CAT2=DATE";
+	    var w1 = window.open(url1, "_blank", "");
+	});
+	$('#technical2').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://www.wantgoo.com/stock/"+ticker+"/technical-chart";
+	    var w1 = window.open(url1, "_blank", "");
 	});
 	$('#info').click(function () {
 	    var ticker = $('#ticker').val();
@@ -244,9 +253,40 @@ function click_return() {
 		</td>
 		<td width="20%">
 			<a target="_blank"
-			    id = "subsidiary"
-			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
+			    id = "technical1"
+			    href="https://goodinfo.tw/StockInfo/ShowK_Chart.asp?STOCK_ID=2330&CHT_CAT2=DATE"
+			    onclick="return click_return();" >GoodInfo日線圖</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank"
+			    id = "technical2"
+			    href="https://www.wantgoo.com/stock/1102/technical-chart"
+			    onclick="return click_return();" >玩股網技術線圖</a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "announce"
+			    href=""
 			    onclick="return click_return();" ></a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = ""
+			    onclick="return click_return();" ></a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "calendar"
+			    href=""
+			    onclick="return click_return();" ></a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "technical1"
+			    href=""
+			    onclick="return click_return();" >日線圖</a>
 		</td>
 	</tr>
 	<tr>
