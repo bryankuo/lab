@@ -118,7 +118,16 @@ $(document).ready(function() {
 		    "MainId=00412&C1=2018040404541005&ID=2018040404541005&Level=1&rnd=83717";
 	    var w1 = window.open(url1, "_blank", "");
 	});
-
+	$('#branch').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://histock.tw/stock/branch.aspx?no="+ticker;
+	    var w1 = window.open(url1, "_blank", "");
+	});
+	$('#day_volume').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://www.twse.com.tw/zh/page/trading/exchange/STOCK_DAY.html";
+	    var w1 = window.open(url1, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -265,22 +274,23 @@ function click_return() {
 			    href="https://www.wantgoo.com/stock/1102/technical-chart"
 			    onclick="return click_return();" >玩股網技術線圖</a>
 		</td>
-		<td width="20%">
+		<td width="20%">同業比較
 			<a target="_blank"
 			    id = "announce"
 			    href=""
-			    onclick="return click_return();" >同業比較</a>
-		</td>
-		<td width="20%">
-			<a target="_blank"
-			    id = ""
 			    onclick="return click_return();" ></a>
 		</td>
 		<td width="20%">
 			<a target="_blank"
-			    id = "calendar"
-			    href=""
-			    onclick="return click_return();" ></a>
+			    id = "branch"
+			    href="https://histock.tw/stock/branch.aspx?no=1236"
+			    onclick="return click_return();" >券商分點買賣日報</a>
+		</td>
+		<td width="20%">
+			<a target="_blank"
+			    id = "day_volume"
+			    href="https://www.twse.com.tw/zh/page/trading/exchange/STOCK_DAY.html"
+			    onclick="return click_return();" >各日成交資訊</a>
 		</td>
 		<td width="20%">
 			<a target="_blank"
