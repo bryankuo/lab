@@ -125,7 +125,15 @@ $(document).ready(function() {
 	});
 	$('#day_volume').click(function () {
 	    var ticker = $('#ticker').val();
-	    var url1 = "https://www.twse.com.tw/zh/page/trading/exchange/STOCK_DAY.html";
+	    var today = new Date();
+	    var dd = String(today.getDate()).padStart(2, '0');
+	    var mm = String(today.getMonth() + 1).padStart(2, '0');
+	    //January is 0!
+	    var yyyy = today.getFullYear();
+	    today = yyyy+mm+dd;
+	    var url1 = "https://www.twse.com.tw/exchangeReport/STOCK_DAY?"+
+		    "response=html&date="+today+
+		    "&stockNo="+ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
 	$('#showMSCIlast10').click(function () {
