@@ -136,6 +136,11 @@ $(document).ready(function() {
 		    "&stockNo="+ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
+	$('#weighting').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://www.taifex.com.tw/cht/9/futuresQADetail";
+	    var w1 = window.open(url1, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -196,7 +201,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>This is a very minimal "hello world" HTML document. on 2021/03/17</P>
+   <P>This is a very minimal "hello world" HTML document. on 2021/03/22</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw">
@@ -328,9 +333,9 @@ function click_return() {
 		</td>
 		<td width="20%">
 			<a target="_blank"
-			    id = ""
-			    href=""
-			    onclick="return click_return();" ></a>
+			    id = "weighting"
+			    href="https://www.taifex.com.tw/cht/9/futuresQADetail"
+			    onclick="return click_return();" >市值比重</a>
 		</td>
 		<td width="20%">
 		    <a target="_blank"
