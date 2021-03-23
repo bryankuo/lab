@@ -11,14 +11,16 @@
 margin:0;
 }
 #left{
-float:left;
-width:75%;
-overflow:hidden;
-/* border:2px blue solid; */
+width:10%;
+}
+#center{
+width:30%;
 }
 #right{
+width:59%;
+}
+#left,#center,#right{
 float:left;
-width:25%;
 overflow:hidden;
 /* border:2px green solid; */
 }
@@ -29,7 +31,54 @@ overflow:hidden;
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script type="text/javascript">
+var myTimer;
+var number_ticker = 0;
+var current_ticker = 0;
+
+// disable original link ( ref: t.ly/gQko )
+function click_return() {
+    // alert('click_return');
+    return false;
+}
+
 $(document).ready(function() {
+    $("li a").click(function () {
+	// alert($(this).attr('ticker')+$(this).text());
+	// @see t.ly/fGsQ
+	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid="+$(this).attr('ticker');
+	  $("#mainFrame").attr("src", url1);
+	var url2 ="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="+
+	    $(this).attr('ticker')+"&b=4";
+	  $("#secondFrame").attr("src", url2);
+    });
+    $('#timely').click(function () {
+	    if ($(this).is(':checked')) {
+		number_ticker = ("#tickers li").length;
+		// alert("#ticker "+number_ticker);
+		updateQuotes();
+	    }
+	    else {
+		clearTimeout(myTimer);
+		// alert('stop update!');
+	    }
+    // TODO: make use of 每5秒委託成交統計
+    });
+    function updateQuotes() {
+	var i = current_ticker+1;
+	$( "#tickers li:nth-child("+i+") a" ).click();
+	console.debug(
+	    current_ticker+","+number_ticker+": "+
+	    $( "#tickers li:nth-child("+i+") a" ).attr('ticker'));
+	// alert("#ticker "+current_ticker++);
+	if ( current_ticker < number_ticker-1 )
+	    current_ticker++;
+	else
+	    current_ticker = 0;
+	if ($('#timely').is(':checked')) {
+	    myTimer =
+		window.setTimeout(updateQuotes, $('#seconds').val()*1000);
+	}
+    }
 });
 
 </script>
@@ -37,66 +86,47 @@ $(document).ready(function() {
 
 <h2 name="highlight" id="highlight"> 近期關注個股 </h2>
 
-<div class="divTable" id="test1">
+<div class="divTable" id="mainTable">
 <div class="divTableBody">
-
-<!-- 1227 -->
-<div class="divTableRow">
-<div class="divTableCell">
-<!--
-<div id="left">這是並排在左邊的 DIV 區塊</div>
-<div id="right">這是並排在右邊的 DIV 區塊</div>
--->
-
-<div id="left" class="" style="width: 800; height: 600px;">
-    <a target="_blank" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=1227&b=4">機構投資人動態</a>
-    <iframe src="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=1227&b=4"
-	style="width: 800px; height: 1800px; border:2px blue solid;">
-    </iframe>
-</div>
-
-<div id="right" class="" style="width: 800; height: 600px;">
-    <a target="_blank"
-	href="https://tw.stock.yahoo.com/q/ta?s=1227">技術分析</a>
-
-    <!-- success -->
-    <iframe src="https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid=1227"
-	style="width: 800px; height: 800px; border:2px blue solid;">
-    </iframe>
-
-    <!-- trying -->
-    <!--
-    <iframe data-src="https://mis.twse.com.tw/stock/twse_chart.html" scrolling="no" style="margin-top: 10px;" src="https://mis.twse.com.tw/stock/twse_chart.html" width="100%" height="200" frameborder="no">
-    </iframe>
-    -->
-</div>
-</div>
-</div>
-
-<!-- 2883 -->
-<div class="divTableRow">
-<div class="divTableCell">
-<!--
-<div id="left">這是並排在左邊的 DIV 區塊</div>
-<div id="right">這是並排在右邊的 DIV 區塊</div>
--->
-
-<div id="left" class="" style="width: 800; height: 600px;">
-    <a target="_blank" href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=2883&b=4">資料來源</a>
-    <iframe src="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=2883&b=4"
-	style="width: 800px; height: 600px; border:2px blue solid;">
-	</iframe>
+    <div class="divTableRow">
+	<div class="divTableCell">
+	    <div id="left" class="" style="">
+		<ul id="tickers">
+		    <li><a href="#" ticker="2330">2330台積電</a></li>
+		    <li><a href="#" ticker="2454">2454聯發科</a></li>
+		    <li><a href="#" ticker="2317">2317鴻海</a></li>
+		    <li><a href="#" ticker="2912">2912統一超</a></li>
+		    <li><a href="#" ticker="1437">1437勤益控</a></li>
+		    <li><a href="#" ticker="1227">1227佳格</a></li>
+		    <li><a href="#" ticker="2464">2464盟立</a></li>
+		    <li><a href="#" ticker="2409">2409友達</a></li>
+		    <li><a href="#" ticker="2489">2489瑞軒</a></li>
+		    <li><a href="#" ticker="3481">3481群創</a></li>
+		    <li><a href="#" ticker="9904">9904寶成</a></li>
+		</ul>
+		<input type="checkbox" id="timely" name="timely" value="">
+		Every
+		<input type="text" id="seconds"
+		    value="5" style="width: 30px;">seconds
+	    </div>
+	    <div id="center" class="" style="">
+		<iframe src="" frameborder="0"
+		    id="mainFrame" name="mainFrame"
+		    style="width: 620px; height: 900px; border:2px blue solid;">
+		</iframe>
+	    </div>
+	    <div id="right" class="" style="">
+		<iframe src="" frameborder="0"
+		    id="secondFrame" name="secondFrame"
+		    style="width: 900px; height: 900px; border:2px blue solid;">
+		</iframe>
+	    </div>
+	</div>
+    </div>
     </div>
 
-<div id="right" class="" style="width: 800; height: 600px;">
-    <a target="_blank"
-	href="https://tw.stock.yahoo.com/q/ta?s=2883">技術分析</a>
-    <iframe src="https://www.google.com/search?q=%E4%BD%B3%E6%A0%BC&client=ubuntu&channel=fs&sxsrf=ALeKk01CJCiRAyPKCOMqm7SXQ3YNwyhWdQ:1614468696143&source=lnms&tbm=nws&tbs=qdr:m&sa=X&ved=2ahUKEwjdvInJnIvvAhU9L6YKHcjDBq4Q_AUoAXoECAUQAw&biw=1853&bih=974"
-	style="width: 800px; height: 600px; border:2px blue solid;">
-	</iframe>
-    </div>
+
 </div>
 </div>
 
-</div>
 </BODY>
