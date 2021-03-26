@@ -142,6 +142,12 @@ $(document).ready(function() {
 	    var url1 = "https://www.taifex.com.tw/cht/9/futuresQADetail";
 	    var w1 = window.open(url1, "_blank", "");
 	});
+	$('#relations').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_12?ticker="+ticker;
+	    var w1 = window.open(url1, "_blank", "");
+	});
+
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -202,7 +208,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>"hello world" HTML document modified on 2021/03/23</P>
+   <P>"hello world" HTML document modified on 2021/03/26</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw">
@@ -319,9 +325,9 @@ function click_return() {
 			href=""
 			onclick="return click_return();" ></a>
 	    </td>
-	    <td width="20%">
+	    <td width="20%">產業淡旺季
 		    <a target="_blank"
-			id = "peers"
+			id = ""
 			href=""
 			onclick="return click_return();" ></a>
 	    </td>
@@ -343,35 +349,38 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
-		<td width="20%">產業淡旺季
-			<a target="_blank"
-			    id = ""
-			    href=""
-			    onclick="return click_return();" ></a>
-		</td>
-		<td width="20%">
-			<a target="_blank"
-			    id = "subsidiary"
-			    href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
-			    onclick="return click_return();" >轉投資項目</a>
-		</td>
-		<td width="20%">上下游供應鏈
-			<a target="_blank"
-			    id = ""
-			    href=""
-			    onclick="return click_return();" ></a>
-		</td>
-		<td width="20%">同業比較
-			<a target="_blank"
-			    id = "weighting"
-			    href=""
-			    onclick="return click_return();" ></a>
-		</td>
-		<td width="20%">
+	    <td width="20%">
+		    <a target="_blank"
+			id = "subsidiary"
+			href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
+			onclick="return click_return();" >轉投資項目</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "relations"
+		    href="https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_12?ticker=2330"
+		    onclick="return click_return();">產業關係</a>
+		<!-- https://moneydj.emega.com.tw/z/zn/zng/zng.djhtm?a=AVGO.US&b=E -->
+		<!-- http://fubon-ebrokerdj.fbs.com.tw/Z/ZC/ZC0/ZC00/ZC00_6004.djhtm -->
+		<!-- https://concords.moneydj.com/Z/ZC/ZC0/ZC00/ZC00_2329.djhtm -->
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""></a>
+	    </td>
+	    <td width="20%">上下游供應鏈
 		    <a target="_blank"
 			id = ""
-			href=""></a>
-		</td>
+			href=""
+			onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">同業比較
+		    <a target="_blank"
+			id = "weighting"
+			href=""
+			onclick="return click_return();" ></a>
+	    </td>
 	</tr>
 	<tr>
 	    <td colspan="5" width="20%">&nbsp;</td>

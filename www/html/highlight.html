@@ -46,10 +46,14 @@ $(document).ready(function() {
 	// alert($(this).attr('ticker')+$(this).text());
 	// @see t.ly/fGsQ
 	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid="+$(this).attr('ticker');
-	  $("#mainFrame").attr("src", url1);
+	$("#mainFrame").attr("src", url1);
 	var url2 ="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="+
 	    $(this).attr('ticker')+"&b=4";
-	  $("#secondFrame").attr("src", url2);
+	var url3 ="https://pchome.megatime.com.tw/stock/sto0/ock0/sid" +
+	    $(this).attr('ticker') +".html";
+	$("#secondFrame").attr("src", url2);
+	// $("#secondFrame").load(url3);
+
     });
     $('#timely').click(function () {
 	    if ($(this).is(':checked')) {
