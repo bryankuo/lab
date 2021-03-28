@@ -152,7 +152,13 @@ $(document).ready(function() {
 	    var url1 = "https://ic.tpex.org.tw/company_chain.php?stk_code="+ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
-
+	$('#beta').click(function () {
+	    var ticker = $('#ticker').val();
+	    // var url1 = "https://fubon-ebrokerdj.fbs.com.tw/Z/ZC/ZCX/ZCX_"+ticker+".djhtm";
+	    // var url1 = "http://jsjustweb.jihsun.com.tw/z/zc/zcx/zcx_"+ticker+".djhtm“;
+	    var url1 = "https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_2?ticker="+ticker;
+	    var w1 = window.open(url1, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -324,11 +330,11 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
-	    <td width="20%">Beta值
+	    <td width="20%">
 		    <a target="_blank"
 			id = "beta"
-			href=""
-			onclick="return click_return();" ></a>
+			href="https://fubon-ebrokerdj.fbs.com.tw/Z/ZC/ZCX/ZCX_2330.djhtm"
+			onclick="return click_return();" >Beta值</a>
 	    </td>
 	    <td width="20%">產業淡旺季
 		    <a target="_blank"
