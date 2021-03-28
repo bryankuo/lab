@@ -147,6 +147,11 @@ $(document).ready(function() {
 	    var url1 = "https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_12?ticker="+ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
+	$('#chain').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://ic.tpex.org.tw/company_chain.php?stk_code="+ticker;
+	    var w1 = window.open(url1, "_blank", "");
+	});
 
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
@@ -369,11 +374,11 @@ function click_return() {
 		    id = ""
 		    href=""></a>
 	    </td>
-	    <td width="20%">上下游供應鏈
+	    <td width="20%">
 		    <a target="_blank"
-			id = ""
-			href=""
-			onclick="return click_return();" ></a>
+			id = "chain"
+			href="https://ic.tpex.org.tw/company_chain.php?stk_code=2330"
+			onclick="return click_return();" >所屬產業鏈</a>
 	    </td>
 	    <td width="20%">同業比較
 		    <a target="_blank"
