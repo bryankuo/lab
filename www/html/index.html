@@ -159,6 +159,23 @@ $(document).ready(function() {
 	    var url1 = "https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_2?ticker="+ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
+	$('#volume_daily').click(function () {
+	    // alert("hi!");
+	    var ticker = $('#ticker').val();
+	    var today = new Date();
+	    var dd = today.getDate();
+	    var mm = today.getMonth()+1;
+	    var yyyy = today.getFullYear();
+	    if(dd<10) {
+		dd='0'+dd;
+	    }
+	    if(mm<10) {
+		mm='0'+mm;
+	    }
+	    var today_s = yyyy+mm+dd;
+	    var url1 = "https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=" + today_s + "&stockNo="+ticker;
+	    var w1 = window.open(url1, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -295,6 +312,38 @@ function click_return() {
 			id = "volume"
 			href="https://pchome.megatime.com.tw/stock/sto0/ock0/sid2464.html"
 			onclick="return click_return();" >價量走勢圖</a>
+	    </td>
+	</tr>
+	<tr>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "volume_daily"
+		    href="https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=20210331&stockNo=1103"
+		    onclick="return click_return();" >各日成交資訊</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
 	</tr>
 	<tr>
