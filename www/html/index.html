@@ -101,6 +101,7 @@ $(document).ready(function() {
 	$('#subsidiary').click(function () {
 	    var ticker = $('#ticker').val();
 	    var url1 = "https://pchome.megatime.com.tw/stock/sto3/ock4/sid"+ticker+".html";
+	    // https://www.cmoney.tw/finance/f00031.aspx?s=2451
 	    var w1 = window.open(url1, "_blank", "");
 	});
 	$('#announce').click(function () {
@@ -175,6 +176,7 @@ $(document).ready(function() {
 	    var today_s = yyyy+mm+dd;
 	    var url1 = "https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=" + today_s + "&stockNo="+ticker;
 	    var w1 = window.open(url1, "_blank", "");
+	    // TODO: identify otc
 	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
@@ -236,7 +238,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/03/30</P>
+   <P>modified on 2021/04/05</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw">
@@ -288,7 +290,7 @@ function click_return() {
 			href=""
 			onclick="return click_return();" ></a>
 	    </td>
-	    <td width="20%">
+	    <td width="20%">上市上櫃興櫃
 		    <a target="_blank"
 			id = "announce"
 			href="https://mops.twse.com.tw/"
@@ -391,7 +393,7 @@ function click_return() {
 			href=""
 			onclick="return click_return();" ></a>
 	    </td>
-	    <td width="20%">
+	    <td width="20%">52wk Range
 		    <a target="_blank"
 			id = "high_season"
 			href=""
@@ -467,7 +469,10 @@ function click_return() {
 	</tr>
 	<tr>
 	    <td width="20%">
-		<a target="_blank" href="https://www.taifex.com.tw/file/taifex/CHINESE/4/2021Calendar_cv1.pdf">台灣期貨交易所2021年行事曆</a>
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank" href="https://goodinfo.tw/StockInfo/MarginPauseScheduleList.asp?MARKET_CAT=%E5%85%A8%E9%83%A8&INDUSTRY_CAT=%E5%85%A8%E9%83%A8&YEAR=%E5%8D%B3%E5%B0%87%E7%99%BC%E7%94%9F">暫停融資融券日程</a>
@@ -484,9 +489,12 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
-		<td width="20%">
-			<a target="_blank" href="https://www.yuantaetfs.com/#/FundWeights/1066">元大台灣50成份股</a>
-		</td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
 		<td width="20%">
 			<a target="_blank" href="https://pchome.megatime.com.tw/rank/sto2/ock31.html">PChome台股市值排行</a>
 		</td>
@@ -504,9 +512,12 @@ function click_return() {
 		<td width="20%">
 			<a target="_blank" href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">XE Currency Charts (USD/TWD)</a>
 		</td>
-		<td width="20%">
-			<a target="_blank" href="http://stock.wearn.com/taifexphoto.asp">台指期未平倉圖表</a>
-		</td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
 		<td width="20%">
 			<a target="_blank" href="http://sod.nsc.com.tw/z/zm/zmd/zmdb.djhtm">台股權值100大排行榜</a>
 		</td>
@@ -521,9 +532,12 @@ function click_return() {
 		<td width="20%">
 			<a target="_blank" href="https://goo.gl/y8pg4F">MSCI台股指數成份股</a>
 		</td>
-		<td width="20%">
-			<a target="_blank" href="https://goo.gl/ClkEcE">元大中型100 成分股</a>
-		</td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
 		<td width="20%">
 			<a target="_blank" href="https://goo.gl/wtJjAx">熱門排行 – 公司總市值最高</a>
 		</td>
@@ -550,6 +564,64 @@ function click_return() {
 		<td width="20%">
 			<a target="_blank" href="https://goo.gl/r1rr9m">MoneyDJ財經百科</a>
 		</td>
+	</tr>
+	<tr>
+	    <td colspan="5" width="20%"><h3>Indexes<h3> </td>
+	</tr>
+	<tr>
+		<td width="20%">
+			<a target="_blank" href="https://www.yuantaetfs.com/#/FundWeights/1066">元大台灣50成份股</a>
+		</td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href="https://www.tpex.org.tw/web/stock/iNdex_info/gretai50/introduction.php?l=zh-tw"
+		    onclick="">富櫃50指數</a>
+	    </td>
+		<td width="20%">
+			<a target="_blank" href="https://goo.gl/ClkEcE">元大中型100 成分股</a>
+		</td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	</tr>
+	<tr>
+	    <td colspan="5" width="20%"><h3>Futures<h3> </td>
+	</tr>
+	<tr>
+	    <td width="20%">
+		<a target="_blank" href="https://www.taifex.com.tw/file/taifex/CHINESE/4/2021Calendar_cv1.pdf">台灣期貨交易所2021年行事曆</a>
+	    </td>
+	    <td width="20%">
+		    <a target="_blank" href="http://stock.wearn.com/taifexphoto.asp">台指期未平倉圖表</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
 	</tr>
 	<tr>
 		<td width="20%">
