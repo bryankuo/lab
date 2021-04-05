@@ -43,37 +43,33 @@ function click_return() {
 
 $(document).ready(function() {
     $("li a").click(function () {
-	// alert($(this).attr('ticker')+$(this).text());
-	// @see t.ly/fGsQ
-	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid="+$(this).attr('ticker');
+	var ticker = $(this).attr('ticker');
+	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid="+ticker;
 	$("#mainFrame").attr("src", url1);
 	var url2 ="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="+
-	    $(this).attr('ticker')+"&b=4";
-	var url3 ="https://pchome.megatime.com.tw/stock/sto0/ock0/sid" +
-	    $(this).attr('ticker') +".html";
+	    ticker+"&b=4";
 	$("#secondFrame").attr("src", url2);
+	// TODO:
+	// var url3 ="https://pchome.megatime.com.tw/stock/sto0/ock0/sid" +
+	//    ticker +".html";
 	// $("#secondFrame").load(url3);
 
     });
     $('#timely').click(function () {
-	    if ($(this).is(':checked')) {
-		number_ticker = ("#tickers li").length;
-		// alert("#ticker "+number_ticker);
-		updateQuotes();
-	    }
-	    else {
-		clearTimeout(myTimer);
-		// alert('stop update!');
-	    }
+	if ($(this).is(':checked')) {
+	    number_ticker = ("#tickers li").length;
+	    // alert("#ticker "+number_ticker);
+	    updateQuotes();
+	}
+	else {
+	    clearTimeout(myTimer);
+	    // alert('stop update!');
+	}
     // TODO: make use of 每5秒委託成交統計
     });
     function updateQuotes() {
 	var i = current_ticker+1;
 	$( "#tickers li:nth-child("+i+") a" ).click();
-	console.debug(
-	    current_ticker+","+number_ticker+": "+
-	    $( "#tickers li:nth-child("+i+") a" ).attr('ticker'));
-	// alert("#ticker "+current_ticker++);
 	if ( current_ticker < number_ticker-1 )
 	    current_ticker++;
 	else
@@ -83,6 +79,14 @@ $(document).ready(function() {
 		window.setTimeout(updateQuotes, $('#seconds').val()*1000);
 	}
     }
+    $('#query').click(function () {
+	var ticker = $('#symbol').val();
+	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid="+ticker;
+	$("#mainFrame").attr("src", url1);
+	var url2 ="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="+
+	    ticker+"&b=4";
+	$("#secondFrame").attr("src", url2);
+    });
 });
 
 </script>
@@ -104,21 +108,17 @@ $(document).ready(function() {
 		    <li><a href="#" ticker="1227">1227佳格</a></li>
 		    <li><a href="#" ticker="2464">2464盟立</a></li>
 		    <li><a href="#" ticker="2409">2409友達</a></li>
-		    <li><a href="#" ticker="2489">2489瑞軒</a></li>
 		    <li><a href="#" ticker="3481">3481群創</a></li>
-		    <li><a href="#" ticker="2227">2227裕日車</a></li>
-		    <li><a href="#" ticker="9904">9904寶成</a></li>
 		    <li><a href="#" ticker="2313">2313華通</a></li>
 		    <li><a href="#" ticker="3105">3105穩懋</a></li>
-		    <li><a href="#" ticker="2603">2603長榮</a></li>
-		    <li><a href="#" ticker="1102">1102亞泥</a></li>
-		    <li><a href="#" ticker="9910">9910豐泰</a></li>
-		    <li><a href="#" ticker="2633">2633台灣高鐵</a></li>
 		</ul>
 		<input type="checkbox" id="timely" name="timely" value="">
 		Every
 		<input type="text" id="seconds"
 		    value="5" style="width: 30px;">seconds
+		ticker:<input type="text" id="symbol"
+		    value="" style="width: 50px;">
+		<button type="button" id="query">Query</button>
 	    </div>
 	    <div id="center" class="" style="">
 		<iframe src="" frameborder="0"
