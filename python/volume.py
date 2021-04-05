@@ -45,7 +45,7 @@ for i in range(0,12):
     shares /= n_rows; avg_shares.append(int(shares))
     print( "daily avg# shares for " + months[i] + " is: " + "{:>10,}".format(avg_shares[i]))
     time.sleep(2)
-
+# // TODO: handle newly listed case, for example: 3413, prompt newly listed
 print("----- for the past year :")
 print( "daily avg# shares of " + sys.argv[1] + " is: "
     + "{:>10,}".format(int(sum(avg_shares)/len(avg_shares))))

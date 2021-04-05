@@ -116,8 +116,8 @@ $(document).ready(function() {
 	});
 	$('#calendar').click(function () {
 	    var ticker = $('#ticker').val();
-	    var url1 = "https://www.yuanta.com.tw/eYuanta/securities/Node/Index?" +
-		    "MainId=00412&C1=2018040404541005&ID=2018040404541005&Level=1&rnd=83717";
+	    var url1 = "https://www.cmoney.tw/finance/f00028.aspx?s="
+		+ ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
 	$('#branch').click(function () {
@@ -177,6 +177,16 @@ $(document).ready(function() {
 	    var url1 = "https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=" + today_s + "&stockNo="+ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	    // TODO: identify otc
+	});
+	$('#monthly_revenue').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID="+ticker;
+	    var w1 = window.open(url, "_blank", "");
+	});
+	$('#breaking_news').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_"+ticker+".djhtm";
+	    var w1 = window.open(url, "_blank", "");
 	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
@@ -284,11 +294,11 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
-	    <td width="20%">每月營收
-		    <a target="_blank"
-			id = ""
-			href=""
-			onclick="return click_return();" ></a>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "monthly_revenue"
+		    href="https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID=6196"
+		    onclick="return click_return();" >每月營收</a>
 	    </td>
 	    <td width="20%">上市上櫃興櫃
 		    <a target="_blank"
@@ -304,10 +314,10 @@ function click_return() {
 			onclick="return click_return();" >分價圖</a>
 	    </td>
 	    <td width="20%">
-		    <a target="_blank"
-			id = "calendar"
-			href="https://www.yuanta.com.tw/eYuanta/securities/Node/Index?MainId=00412&C1=2018040404541005&ID=2018040404541005&Level=1&rnd=83717"
-			onclick="return click_return();" >重大行事曆</a>
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
 	    <td width="20%">
 		    <a target="_blank"
@@ -357,9 +367,9 @@ function click_return() {
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
-			id = "announce"
-			href=""
-			onclick="return click_return();" >重大訊息</a>
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
 	    <td width="20%">
 		    <a target="_blank"
@@ -445,6 +455,38 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
+	    <td width="20%">
+		<a target="_blank"
+			id = "announce"
+			href=""
+			onclick="return click_return();" >重大訊息</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "calendar"
+		    href="https://www.cmoney.tw/finance/f00028.aspx?s=1218"
+		    onclick="return click_return();" >重大行事曆</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "breaking_news"
+		    href="http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_3105.djhtm"
+		    onclick="return click_return();" >個股動態報導</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	</tr>
+	<tr>
 	    <td colspan="5" width="20%">&nbsp;</td>
 	</tr>
 	<tr>
@@ -470,9 +512,9 @@ function click_return() {
 	<tr>
 	    <td width="20%">
 		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    id = "market_calendar"
+		    href="https://histock.tw/stock/stockskd.aspx"
+		    onclick="" >近期交易行事曆</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank" href="https://goodinfo.tw/StockInfo/MarginPauseScheduleList.asp?MARKET_CAT=%E5%85%A8%E9%83%A8&INDUSTRY_CAT=%E5%85%A8%E9%83%A8&YEAR=%E5%8D%B3%E5%B0%87%E7%99%BC%E7%94%9F">暫停融資融券日程</a>
