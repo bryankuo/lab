@@ -42,18 +42,20 @@ function click_return() {
 }
 
 $(document).ready(function() {
-    $("li a").click(function () {
-	var ticker = $(this).attr('ticker');
-	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid="+ticker;
+    function updateCharts(ticker) {
+	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/" +
+	    "TaChart/tachart.3de240ea9a.html?sid="+ticker;
 	$("#mainFrame").attr("src", url1);
-	var url2 ="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="+
-	    ticker+"&b=4";
+	var url2 = "https://concords.moneydj.com/z/zc/zcl/zcl_"
+	    + ticker + ".djhtm";
 	$("#secondFrame").attr("src", url2);
 	// TODO:
 	// var url3 ="https://pchome.megatime.com.tw/stock/sto0/ock0/sid" +
 	//    ticker +".html";
 	// $("#secondFrame").load(url3);
-
+    }
+    $("li a").click(function () {
+	updateCharts( $(this).attr('ticker') );
     });
     $('#timely').click(function () {
 	if ($(this).is(':checked')) {
@@ -80,12 +82,7 @@ $(document).ready(function() {
 	}
     }
     $('#query').click(function () {
-	var ticker = $('#symbol').val();
-	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/TaChart/tachart.3de240ea9a.html?sid="+ticker;
-	$("#mainFrame").attr("src", url1);
-	var url2 ="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="+
-	    ticker+"&b=4";
-	$("#secondFrame").attr("src", url2);
+	updateCharts( $('#symbol').val() );
     });
 });
 

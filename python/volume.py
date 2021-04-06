@@ -11,7 +11,8 @@ from bs4 import BeautifulSoup
 
 # last 12 months
 today = datetime.today()
-last_day = ""; first_day = ""; months = []; avg_shares = [];
+last_day = ""; first_day = "";
+n_rows = [None] * 12; months = []; avg_shares = [];
 
 for i in range(0,12):
     if ( i == 0 ):
@@ -33,7 +34,7 @@ if ( len(rows) <= 0 ):
     sys.exit(2)
 
 for i in range(0,12):
-    n_rows = 0; shares = 0
+    n_rows[i] = 0; shares = 0
     url = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=' + months[i] + '&stockNo=' + sys.argv[1]
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -41,10 +42,17 @@ for i in range(0,12):
     for tr in soup.findAll('tr')[2:]:
         tds = tr.findAll('td')
         shares += int(tds[1].text.replace(',', ''))
-        n_rows += 1
-    shares /= n_rows; avg_shares.append(int(shares))
-    print( "daily avg# shares for " + months[i] + " is: " + "{:>10,}".format(avg_shares[i]))
-    time.sleep(2)
+        n_rows[i] += 1
+    if ( 0 < n_rows[i] ):
+        shares /= n_rows[i];
+        avg_shares.append(int(shares))
+        print( "daily avg# shares for " + months[i] + \
+                " is: " + "{:>10,}".format(avg_shares[i]))
+    else:
+        # possibly end of calculations
+        print("no data for " + months[i])
+        break
+    time.sleep(3)
 # // TODO: handle newly listed case, for example: 3413, prompt newly listed
 print("----- for the past year :")
 print( "daily avg# shares of " + sys.argv[1] + " is: "
