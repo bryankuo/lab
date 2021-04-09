@@ -9,8 +9,8 @@ import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
-# url = 'https://tw.screener.finance.yahoo.net/screener/check.html?cps0=' + sys.argv[1]
-url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + sys.argv[1];
+ticker = sys.argv[1]
+url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 rows = soup.select('table .t01 tr')
@@ -18,7 +18,7 @@ tds = rows[2].select('td')
 low52 = float(tds[5].renderContents())
 high52 = float(tds[3].renderContents())
 
-url1 = "https://tw.stock.yahoo.com/q/q?s=" + sys.argv[1];
+url1 = "https://tw.stock.yahoo.com/q/q?s=" + ticker
 response = requests.get(url1)
 soup = BeautifulSoup(response.text, 'html.parser')
 table = soup.find("table", {"border": 2, "width": 750})
@@ -29,9 +29,11 @@ quote = float(tds[0].renderContents())
 
 p_low52 = ( low52 - quote ) * 100 / quote
 p_high52 = ( high52 - quote ) * 100 / quote
-print( "current: " + str(quote) + \
+print( ticker + " quote: " + "{:>7.02f}".format(quote) + \
     ", 52 week range: " + \
-    str(low52) + " (" + "{:02.02f}".format(p_low52) + "%) " + \
+    "{:>7.02f}".format(low52) + \
+        " (" + "{:>5.02f}".format(p_low52) + "%) " + \
     " - " + \
-    str(high52)+ " (" + "{:02.02f}".format(p_high52) + "%) ")
+    "{:>7.02f}".format(high52)+ \
+        " (" + "{:>5.02f}".format(p_high52) + "%) ")
 sys.exit(0)
