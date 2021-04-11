@@ -54,27 +54,70 @@ object.mozilla {
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#showall').click(function () {
-	    // $( "#overview" ).trigger( "click" );
-	    // $( "#institute" ).trigger( "click" );
-	});
-	$('#overview').click(function () {
-	    var ticker = $('#ticker').val();
-	    var url2 = "https://invest.cnyes.com/twstock/TWS/"+ticker+"/overview";
-	    var w2 = window.open(url2, "_blank", "");
-	});
-	$('#institute').click(function () {
-	    var ticker = $('#ticker').val();
-	    var url1 = "http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="+ticker+"&b=4";
-	    var w1 = window.open(url1, "_blank", "");
-	    // return false;
-	});
-	$('#technical').click(function () {
-	    var ticker = $('#ticker').val();
-	    // institutional holdings
-	    var url1 = "https://stock.cnyes.com/market/TWS:"+ticker+":STOCK";
-	    var w1 = window.open(url1, "_blank", "");
-	});
+    function openSummaryPage(ticker) {
+	url = "http://localhost/summary.html?ticker="+ticker;
+	var w = window.open(url, "_blank", "");
+    }
+    function openSummaryWindows(ticker) {
+	$("#overview").trigger("click");
+
+	setTimeout(function() {
+	    $("#institute").trigger("click");
+	}, 1020);
+
+	setTimeout(function() {
+	    $("#technical").trigger("click");
+	}, 2013);
+
+	setTimeout(function() {
+	    $("#individual").trigger("click");
+	}, 2052);
+
+	setTimeout(function() {
+	    $("#calendar").trigger("click");
+	}, 2052);
+
+	setTimeout(function() {
+	    $("#breaking_news").trigger("click");
+	}, 2001);
+
+	setTimeout(function() {
+	    $("#volume_daily").trigger("click");
+	}, 1942);
+
+    }
+    $('#summary').click(function () {
+	var ticker = $('#ticker').val();
+	// openSummaryPage(ticker);
+	openSummaryWindows(ticker);
+    });
+    $('#overview').click(function () {
+	var ticker = $('#ticker').val();
+	var url2 = "https://invest.cnyes.com/twstock/TWS/"
+	    + ticker+"/overview";
+	var w2 = window.open(url2, "_blank", "");
+    });
+    $('#institute').click(function () {
+	var ticker = $('#ticker').val();
+	var url1 = "http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="
+	    +ticker+"&b=4";
+	var w1 = window.open(url1, "_blank", "");
+	// return false;
+    });
+    $('#technical').click(function () {
+	var ticker = $('#ticker').val();
+	// institutional holdings
+	var url1 = "https://stock.cnyes.com/market/TWS:"+ticker+":STOCK";
+	var w1 = window.open(url1, "_blank", "");
+    });
+    $('#individual').click(function () {
+	var ticker = $('#ticker').val();
+	// individual margin
+	var url = "http://sod.nsc.com.tw/z/zc/zcn/zcn.djhtm"
+	    + "?a=" + ticker + "&b=3";
+	var w = window.open(url, "_blank", "");
+    });
+
 	$('#technical1').click(function () {
 	    var ticker = $('#ticker').val();
 	    var url1 = "https://goodinfo.tw/StockInfo/ShowK_Chart.asp?STOCK_ID="+ticker+"&CHT_CAT2=DATE";
@@ -100,8 +143,8 @@ $(document).ready(function() {
 	});
 	$('#subsidiary').click(function () {
 	    var ticker = $('#ticker').val();
-	    var url1 = "https://pchome.megatime.com.tw/stock/sto3/ock4/sid"+ticker+".html";
-	    // https://www.cmoney.tw/finance/f00031.aspx?s=2451
+	    var url1
+		= "https://www.cmoney.tw/finance/f00031.aspx?s=" + ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
 	$('#announce').click(function () {
@@ -114,12 +157,12 @@ $(document).ready(function() {
 	    var url1 = "https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm";
 	    var w1 = window.open(url1, "_blank", "");
 	});
-	$('#calendar').click(function () {
-	    var ticker = $('#ticker').val();
-	    var url1 = "https://www.cmoney.tw/finance/f00028.aspx?s="
-		+ ticker;
-	    var w1 = window.open(url1, "_blank", "");
-	});
+    $('#calendar').click(function () {
+	var ticker = $('#ticker').val();
+	var url1 = "https://www.cmoney.tw/finance/f00028.aspx?s="
+	    + ticker;
+	var w1 = window.open(url1, "_blank", "");
+    });
 	$('#branch').click(function () {
 	    var ticker = $('#ticker').val();
 	    var url1 = "https://histock.tw/stock/branch.aspx?no="+ticker;
@@ -185,7 +228,8 @@ $(document).ready(function() {
 	});
 	$('#breaking_news').click(function () {
 	    var ticker = $('#ticker').val();
-	    var url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_"+ticker+".djhtm";
+	    var url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_"
+		+ticker+".djhtm";
 	    var w1 = window.open(url, "_blank", "");
 	});
 	$('#showMSCIlast10').click(function () {
@@ -248,7 +292,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/04/08</P>
+   <P>modified on 2021/04/11</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw">
@@ -257,12 +301,12 @@ function click_return() {
 	</tr>
 	<tr>
 	    <td colspan="5" width="20%">
-		<input type="text" name="lname" id="ticker" value="2464">
-		<button type="button" id="showall">Show All</button>
+		<input type="text" name="lname" id="ticker" value="">
+		<button type="button" id="summary">Summary</button>
 	    </td>
 	</tr>
 	<tr>
-	    <td colspan="5" width="20%"><b>基本面<h3></b>
+	    <td colspan="5" width="20%"><b>基本面</b></td>
 	</tr>
 	<tr>
 	    <td width="20%">
@@ -272,11 +316,10 @@ function click_return() {
 		    onclick="return click_return();" >聚亨總覽</a>
 	    </td>
 	    <td width="20%">
-		<!--
 		<a target="_blank"
-		    id = "institute"
-		    href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=2464&b=4"
-		    onclick="return click_return();" >法人持股明細</a> -->
+		    id = "subsidiary"
+		    href="https://www.cmoney.tw/finance/f00031.aspx?s=3105"
+		    onclick="return click_return();" >轉投資項目</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -307,9 +350,8 @@ function click_return() {
 	    <td width="20%">
 		<a target="_blank"
 		    id = "announce"
-		    href="https://mops.twse.com.tw/"
-			  "mops/web/t146sb05"
-		    onclick="return click_return();" >公開資訊觀測站</a>
+		    href="https://mops.twse.com.tw/mops/web/t57sb01_q5"
+		    onclick="return click_return();" >公開資訊觀測站年報</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -339,19 +381,22 @@ function click_return() {
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    id = "relations"
+		    href="https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_12?ticker=2330"
+		    onclick="return click_return();">產業關係</a>
+		<!-- https://moneydj.emega.com.tw/z/zn/zng/zng.djhtm?a=AVGO.US&b=E -->
+		<!-- http://fubon-ebrokerdj.fbs.com.tw/Z/ZC/ZC0/ZC00/ZC00_6004.djhtm -->
+		<!-- https://concords.moneydj.com/Z/ZC/ZC0/ZC00/ZC00_2329.djhtm -->
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    id = "chain"
+		    href="https://ic.tpex.org.tw/company_chain.php?stk_code=2330"
+		    onclick="return click_return();" >所屬產業鏈</a>
 	    </td>
-	    <td width="20%">
+	    <td width="20%">同業比較
 		<a target="_blank"
-		    id = ""
+		    id = "weighting"
 		    href=""
 		    onclick="return click_return();" ></a>
 	    </td>
@@ -362,10 +407,8 @@ function click_return() {
 		    onclick="return click_return();" ></a>
 	    </td>
 	</tr>
-
-
 	<tr>
-	    <td colspan="5" width="20%"><b>技術面<h3> </b>
+	    <td colspan="5" width="20%"><b>技術面</b></td>
 	</tr>
 	<tr>
 	    <td width="20%">
@@ -444,14 +487,14 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
-	    <td colspan="5" width="20%"><b>籌碼面<h3> </b>
+	    <td colspan="5" width="20%"><b>籌碼面</b></td>
 	</tr>
 	<tr>
 	    <td width="20%">
-		    <a target="_blank"
-			id = "technical2"
-			href="https://www.wantgoo.com/stock/1102/technical-chart"
-			onclick="return click_return();" >玩股網技術線圖</a>
+		<a target="_blank"
+		    id = "technical2"
+		    href="https://www.wantgoo.com/stock/1102/technical-chart"
+		    onclick="return click_return();" >玩股網技術線圖</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -483,14 +526,16 @@ function click_return() {
 	    <td width="10%">
 		<a target="_blank"
 		    id = "institute"
-		    href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a=2464&b=4"
+		    href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm"
+			"?a=2464&b=4"
 		    onclick="return click_return();" >法人持股明細</a>
 	    </td>
 	    <td width="10%">
 		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    id = "individual"
+		    href="http://sod.nsc.com.tw/z/zc/zcn/zcn.djhtm"
+			"?a=2464&b=3"
+		    onclick="return click_return();" >融資融券</a>
 	    </td>
 	    <td width="10%">
 		<a target="_blank"
@@ -512,23 +557,13 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
-	    <td colspan="5" width="20%"><b>消息面<h3> </b>
+	    <td colspan="5" width="20%">
+		<span style="font-weight: 900;">消息面</span></td>
 	</tr>
 	<tr>
 	    <td width="20%">
-		    <a target="_blank"
-			id = "subsidiary"
-			href="https://pchome.megatime.com.tw/stock/sto3/ock4/sid2464.html"
-			onclick="return click_return();" >轉投資項目</a>
 	    </td>
 	    <td width="20%">
-		<a target="_blank"
-		    id = "relations"
-		    href="https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_12?ticker=2330"
-		    onclick="return click_return();">產業關係</a>
-		<!-- https://moneydj.emega.com.tw/z/zn/zng/zng.djhtm?a=AVGO.US&b=E -->
-		<!-- http://fubon-ebrokerdj.fbs.com.tw/Z/ZC/ZC0/ZC00/ZC00_6004.djhtm -->
-		<!-- https://concords.moneydj.com/Z/ZC/ZC0/ZC00/ZC00_2329.djhtm -->
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -536,16 +571,16 @@ function click_return() {
 		    href=""></a>
 	    </td>
 	    <td width="20%">
-		    <a target="_blank"
-			id = "chain"
-			href="https://ic.tpex.org.tw/company_chain.php?stk_code=2330"
-			onclick="return click_return();" >所屬產業鏈</a>
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
-	    <td width="20%">同業比較
-		    <a target="_blank"
-			id = "weighting"
-			href=""
-			onclick="return click_return();" ></a>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
 	</tr>
 	<tr>
@@ -564,7 +599,8 @@ function click_return() {
 	    <td width="20%">
 		<a target="_blank"
 		    id = "breaking_news"
-		    href="http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_3105.djhtm"
+		    href="http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/"
+			"ZCV_3105.djhtm"
 		    onclick="return click_return();" >個股動態報導</a>
 	    </td>
 	    <td width="20%">除權息日期

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+   <HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <TITLE>
+    Summary
+    </TITLE>
+<style type="text/css">
+
+#sides{
+margin:0;
+}
+#left{
+width:10%;
+}
+#center{
+width:30%;
+}
+#right{
+width:59%;
+}
+#left,#center,#right{
+float:left;
+overflow:hidden;
+/* border:2px green solid; */
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="tstyle.css">
+</HEAD>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+var myTimer;
+var number_ticker = 0;
+var current_ticker = 0;
+
+// disable original link ( ref: t.ly/gQko )
+function click_return() {
+    // alert('click_return');
+    return false;
+}
+
+$(document).ready(function() {
+    function updateCharts(ticker) {
+	var url1 = "https://s.yimg.com/nb/tw_stock_frontend/scripts/" +
+	    "TaChart/tachart.3de240ea9a.html?sid="+ticker;
+	$("#mainFrame").attr("src", url1);
+	var url2 = "https://concords.moneydj.com/z/zc/zcl/zcl_"
+	    + ticker + ".djhtm";
+	$("#secondFrame").attr("src", url2);
+	var url3 = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_"
+	    + ticker + ".djhtm";
+	$("#frame3").attr("src", url3);
+    }
+    $('#timely').click(function () {
+	if ($(this).is(':checked')) {
+	    number_ticker = ("#tickers li").length;
+	    // alert("#ticker "+number_ticker);
+	    updateQuotes();
+	}
+	else {
+	    clearTimeout(myTimer);
+	    // alert('stop update!');
+	}
+    // TODO: make use of 每5秒委託成交統計
+    });
+    function updateQuotes() {
+	var i = current_ticker+1;
+	$( "#tickers li:nth-child("+i+") a" ).click();
+	if ( current_ticker < number_ticker-1 )
+	    current_ticker++;
+	else
+	    current_ticker = 0;
+	if ($('#timely').is(':checked')) {
+	    myTimer =
+		window.setTimeout(updateQuotes, $('#seconds').val()*1000);
+	}
+    }
+    $('#query').click(function () {
+	updateCharts( $('#symbol').val() );
+    });
+    $.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results==null) {
+	   return null;
+	}
+	return decodeURI(results[1]) || 0;
+    }
+    var ticker = $.urlParam('ticker');
+    document.title += "-" + ticker;
+    updateCharts(ticker);
+});
+
+</script>
+<BODY>
+
+<h2 name="highlight" id="highlight"> Summary </h2>
+
+<div class="divTable" id="mainTable">
+<div class="divTableBody">
+    <div class="divTableRow">
+	<div class="divTableCell">
+	    <iframe src="" frameborder="0"
+		id="mainFrame" name="mainFrame"
+		style="width: 900px; height: 450px;
+		    border:2px blue solid;">
+	    </iframe>
+	</div>
+    </div>
+    <div class="divTableRow">
+	<div class="divTableCell">
+	    <iframe src="" frameborder="0"
+		id="secondFrame" name="secondFrame"
+		style="width: 900px; height: 900px; border:2px blue solid;">
+	    </iframe>
+	</div>
+    </div>
+    <div class="divTableRow">
+	<div class="divTableCell">
+	    <iframe src="" frameborder="0"
+		id="frame3" name="frame3"
+		style="width: 900px; height: 700px; border:2px blue solid;">
+	    </iframe>
+	</div>
+    </div>
+</div>
+</div>
+</BODY>

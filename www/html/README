@@ -1,0 +1,7 @@
+Note: have to create symbolic link.
+ ( mba: /Library/WebServer/Documents )
+ ( ubuntu: TBD )
+
+index.html: a portal.
+highlight.html: a collection of observing ticker recently.
+summary.html: an aggregation of info for a specific ticker.

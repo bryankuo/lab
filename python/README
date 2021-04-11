@@ -1,0 +1,9 @@
+hello.py: a simple example.
+ofile.py: another example.
+web.py: scraping web example.
+volume.sh: caller of volume*.py file.
+volume.py: scrap listed volume.
+volume_otc.py: scrap otc volume.
+overview.sh: overview of a ticker.
+range52week.py: get 52 week range.
+range52week_cmp.sh: compare 52 week range between tickers.
