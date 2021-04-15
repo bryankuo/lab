@@ -7,3 +7,6 @@ volume_otc.py: scrap otc volume.
 overview.sh: overview of a ticker.
 range52week.py: get 52 week range.
 range52week_cmp.sh: compare 52 week range between tickers.
+t50_component.py: scrap T50 component,
+margin_ratio.py: get margin ratio for a ticker.
+margin_ratio_cmp.sh: compare margin ration between tickers.
