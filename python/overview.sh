@@ -1,15 +1,10 @@
 #!/bin/bash
-
-echo "check price range ..."
+python3 capital.py $1
+python3 beta.py $1
 python3 range52week.py $1
-echo " "
-
-echo "check margin ratio ..."
 python3 margin_ratio.py $1
-echo " "
 
-echo "check average volume ..."
-echo "check listed ..."
+echo $1 " daily average volume for the past year:"
 python3 volume.py $1
 if [[ $? -ne 0 ]]
 then
