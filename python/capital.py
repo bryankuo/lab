@@ -17,5 +17,7 @@ rows = soup.findAll('tr')[12]
 if ( rows is None ):
     sys.exit(1)
 td = rows.findAll('td')[1]
+if ( td is None ):
+    sys.exit(2)
 print(ticker + " capital: " + td.text)
 sys.exit(0)

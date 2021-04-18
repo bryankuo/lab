@@ -226,6 +226,11 @@ $(document).ready(function() {
 	    var url = "https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID="+ticker;
 	    var w1 = window.open(url, "_blank", "");
 	});
+	$('#f_statements').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://histock.tw/stock/" + ticker + "/財務報表";
+	    var w1 = window.open(url, "_blank", "");
+	});
 	$('#breaking_news').click(function () {
 	    var ticker = $('#ticker').val();
 	    var url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_"
@@ -345,25 +350,19 @@ function click_return() {
 		<a target="_blank"
 		    id = "monthly_revenue"
 		    href="https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID=6196"
-		    onclick="return click_return();" >每月營收</a>
+		    onclick="return click_return();" >每月營收(Goodinfo)</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "f_statements"
+		    href="https://histock.tw/stock/3105/財務報表"
+		    onclick="return click_return();" >財務報表(Histock)</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
 		    id = "announce"
 		    href="https://mops.twse.com.tw/mops/web/t57sb01_q5"
 		    onclick="return click_return();" >公開資訊觀測站年報</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -468,13 +467,13 @@ function click_return() {
 		<a target="_blank"
 		    id = "technical"
 		    href="https://stock.cnyes.com/market/TWS:2464:STOCK"
-		    onclick="return click_return();" >聚亨技術分析</a>
+		    onclick="return click_return();" >聚亨技術分析(即時)</a>
 	    </td>
-	    <td width="10%">
+	    <td width="20%">
 		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    id = "technical2"
+		    href="https://www.wantgoo.com/stock/1102/technical-chart"
+		    onclick="return click_return();" >玩股網技術分析</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -496,12 +495,6 @@ function click_return() {
 	    <td colspan="5" width="20%"><b>籌碼面</b></td>
 	</tr>
 	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "technical2"
-		    href="https://www.wantgoo.com/stock/1102/technical-chart"
-		    onclick="return click_return();" >玩股網技術線圖</a>
-	    </td>
 	    <td width="20%">
 		<a target="_blank"
 		    id = ""
@@ -1011,21 +1004,25 @@ function click_return() {
 <p><h2> Commodities </h2></p>
 <table>
 	<tr>
-		<td width="20%">
-			<a target="_blank" href="https://finance.yahoo.com/quote/NG%3DF?p=NG%3DF">天然氣NG(yahoo)</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""> data source 2</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""></a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""></a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""></a>
-		</td>
+	    <td width="20%">
+		    <a target="_blank" href="https://finance.yahoo.com/quote/NG%3DF?p=NG%3DF">天然氣NG(yahoo)</a>
+	    </td>
+	    <td width="20%">
+		    <a target="_blank" href=""> data source 2</a>
+	    </td>
+	    <td width="15%">
+		<a target="_blank"
+		    href="https://ycharts.com/indicators/norway_salmon_price">Norway Salmon</a>
+	    </td>
+	    <td width="15%">Lobsters
+		    <a target="_blank" href=""></a>
+	    </td>
+	    <td width="15%">
+		    <a target="_blank" href=""></a>
+	    </td>
+	    <td width="15%">
+		    <a target="_blank" href=""></a>
+	    </td>
 	</tr>
 </table>
 

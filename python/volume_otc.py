@@ -9,6 +9,8 @@ import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
+print(sys.argv[1] + " daily average volume for the past year:")
+
 # last 12 months
 today = datetime.today()
 last_day = ""; first_day = "";
@@ -56,12 +58,10 @@ for i in range(0,12):
             shares += int(tds[1].text.replace(',', ''))
         n_rows += 1
     shares /= n_rows; avg_shares.append(int(shares))
-    print( "daily avg# shares for " + months[i] + " is: " \
+    print( "     " + months[i] + "  : " \
             + "{:>6,}".format(avg_shares[i]) + " lots")
     time.sleep(2)
-
-print("----- for the past year :")
-print("daily avg# shares of " + sys.argv[1] + " is: " \
+print("     --------")
+print("     average : " \
     + "{:>6,}".format(int(sum(avg_shares)/len(avg_shares))) + " lots")
-
 sys.exit(0)

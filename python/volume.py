@@ -9,6 +9,8 @@ import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
+print(sys.argv[1] + " daily average volume for the past year:")
+
 # last 12 months
 today = datetime.today()
 last_day = ""; first_day = "";
@@ -28,9 +30,11 @@ response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 table_body = soup.find('tbody')
 if ( table_body is None ):
+    print("check if otc 1 ...")
     sys.exit(1)
 rows = table_body.findAll('tr')
 if ( len(rows) <= 0 ):
+    print("check if otc 2 ...")
     sys.exit(2)
 
 for i in range(0,12):
@@ -46,16 +50,14 @@ for i in range(0,12):
     if ( 0 < n_rows[i] ):
         shares /= n_rows[i];
         avg_shares.append(int(shares))
-        print( "daily avg# shares for " + months[i] + \
-                " is: " + "{:>10,}".format(avg_shares[i]))
+        print( "     " + months[i] + ": " \
+            + "{:>10,}".format(avg_shares[i]))
     else:
         # possibly end of calculations
         print("no data for " + months[i])
         break
     time.sleep(3)
-# // TODO: handle newly listed case, for example: 3413, prompt newly listed
-print("----- for the past year :")
-print( "daily avg# shares of " + sys.argv[1] + " is: "
+print("     --------")
+print("     average : " \
     + "{:>10,}".format(int(sum(avg_shares)/len(avg_shares))))
-
 sys.exit(0)
