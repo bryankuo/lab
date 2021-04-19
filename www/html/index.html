@@ -99,9 +99,9 @@ $(document).ready(function() {
     });
     $('#institute').click(function () {
 	var ticker = $('#ticker').val();
-	var url1 = "http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm?a="
-	    +ticker+"&b=4";
-	var w1 = window.open(url1, "_blank", "");
+	var url = "https://concords.moneydj.com/z/zc/zcl/zcl_"
+	    + ticker + ".djhtm";
+	var w1 = window.open(url, "_blank", "");
 	// return false;
     });
     $('#technical').click(function () {
@@ -297,7 +297,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/04/18</P>
+   <P>modified on 2021/04/19</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw">
@@ -525,8 +525,7 @@ function click_return() {
 	    <td width="10%">
 		<a target="_blank"
 		    id = "institute"
-		    href="http://sod.nsc.com.tw/z/zc/zcl/zcl.djhtm"
-			"?a=2464&b=4"
+		    href="https://concords.moneydj.com/z/zc/zcl/zcl_2464.djhtm"
 		    onclick="return click_return();" >法人持股明細</a>
 	    </td>
 	    <td width="10%">
