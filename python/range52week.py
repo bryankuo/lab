@@ -14,10 +14,12 @@ url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 rows = soup.select('table .t01 tr')
+opn = float(rows[1].select('td')[1].renderContents())
 tds = rows[2].select('td')
 low52 = float(tds[5].renderContents())
 high52 = float(tds[3].renderContents())
-
+spans= tds[1].select('span')
+change = float(spans[0].renderContents()) / opn
 url1 = "https://tw.stock.yahoo.com/q/q?s=" + ticker
 response = requests.get(url1)
 soup = BeautifulSoup(response.text, 'html.parser')
@@ -29,11 +31,12 @@ quote = float(tds[0].renderContents())
 
 p_low52 = ( low52 - quote ) * 100 / quote
 p_high52 = ( high52 - quote ) * 100 / quote
-print( ticker + " quote: " + "{:>7.02f}".format(quote) + \
+print( ticker + " quote: " + "{:>5.02f}".format(quote) + \
+        ", chg: " + "{:>5.02f}".format(change*100) + "%" + \
     ", 52 week range: " + \
-    "{:>7.02f}".format(low52) + \
+    "{:>5.02f}".format(low52) + \
         " (" + "{:>5.02f}".format(p_low52) + "%) " + \
     " - " + \
-    "{:>7.02f}".format(high52)+ \
+    "{:>5.02f}".format(high52)+ \
         " (" + "{:>5.02f}".format(p_high52) + "%) ")
 sys.exit(0)
