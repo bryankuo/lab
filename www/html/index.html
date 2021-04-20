@@ -105,7 +105,7 @@ $(document).ready(function() {
     });
     $('#institute').click(function () {
 	var ticker = $('#ticker').val();
-	var url = "https://concords.moneydj.com/z/zc/zcn/zcn_"
+	var url = "https://concords.moneydj.com/z/zc/zcl/zcl_"
 	    + ticker + ".djhtm";
 	var w1 = window.open(url, "_blank", "");
 	// return false;
@@ -118,9 +118,8 @@ $(document).ready(function() {
     });
     $('#individual').click(function () {
 	var ticker = $('#ticker').val();
-	// individual margin
-	var url = "http://sod.nsc.com.tw/z/zc/zcn/zcn.djhtm"
-	    + "?a=" + ticker + "&b=3";
+	var url = "https://concords.moneydj.com/z/zc/zcn/zcn_"
+	    + ticker + ".djhtm";
 	var w = window.open(url, "_blank", "");
     });
 
@@ -303,7 +302,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/04/19</P>
+   <P>modified on 2021/04/20</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
