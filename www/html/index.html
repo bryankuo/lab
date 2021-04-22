@@ -242,6 +242,17 @@ $(document).ready(function() {
 		+ticker+".djhtm";
 	    var w1 = window.open(url, "_blank", "");
 	});
+	$('#issue_cb').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://www.wantgoo.com/stock/" + ticker +
+		"/company-profile#financeInfo";
+	    var w1 = window.open(url, "_blank", "");
+	});
+	$('#es_overview').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://www.esunsec.com.tw/tw-stock/z/zc/zca/zca.djhtm?id=" + ticker;
+	    var w1 = window.open(url, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -302,7 +313,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/04/20</P>
+   <P>modified on 2021/04/22</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -333,15 +344,15 @@ function click_return() {
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    id = "es_overview"
+		    href="https://www.esunsec.com.tw/tw-stock/z/zc/zca/zca.djhtm?id=2330"
+		    onclick="return click_return();" >基本資料(玉山)</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
 		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    href="https://mops.twse.com.tw/mops/web/t05st03"
+		    onclick="" >基本資料查詢</a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -378,10 +389,10 @@ function click_return() {
 	</tr>
 	<tr>
 	    <td width="20%">產業淡旺季
-		    <a target="_blank"
-			id = ""
-			href=""
-			onclick="return click_return();" ></a>
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
@@ -409,6 +420,32 @@ function click_return() {
 		    id = ""
 		    href=""
 		    onclick="return click_return();" ></a>
+	    </td>
+	</tr>
+	<tr>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href="https://mops.twse.com.tw/mops/web/t120sb02_q9"
+		    onclick="" >債券發行資訊查詢</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href="https://www.tpex.org.tw/web/bond/publish/convertible_bond_search/memo.php?l=zh-tw"
+		    onclick="" >上櫃轉(交)換公司債</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = ""
+		    href="https://thefew.tw/quote/20067"
+		    onclick="" >可轉債詳細資訊</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "issue_cb"
+		    href="https://www.wantgoo.com/stock/3346/company-profile"
+		    onclick="return click_return();" >可轉債發行</a>
 	    </td>
 	</tr>
 	<tr>
@@ -508,10 +545,16 @@ function click_return() {
 			onclick="return click_return();" >各日成交資訊</a>
 	    </td>
 	    <td width="20%">籌碼分佈
-		    <a target="_blank"
-			id = "chips"
-			href=""
-			onclick="return click_return();" ></a>
+		<a target="_blank"
+		    id = "chips"
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "chips"
+		    href="https://bsr.twse.com.tw/bshtm/"
+		    onclick="" >TWSE買賣日報查詢</a>
 	    </td>
 	</tr>
 	<tr>
@@ -544,6 +587,14 @@ function click_return() {
 		    id = ""
 		    href="https://www.sitca.org.tw/ROC/Industry/IN2630.aspx?pid=IN22601_05"
 		    onclick="">(反查)基金投資明細</a>
+	    </td>
+	</tr>
+	<tr>
+	    <td width="10%">
+		<a target="_blank"
+		    id = ""
+		    href="https://www.twse.com.tw/zh/page/trading/exchange/BFI84U.html"
+		    onclick="">停資停券預告表</a>
 	    </td>
 	</tr>
 	<tr>
