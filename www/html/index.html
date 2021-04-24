@@ -263,6 +263,12 @@ $(document).ready(function() {
 	    var url1 = "https://www.tpex.org.tw/web/regular_emerging/corporateInfo/regular/regular_stock_detail.php?l=zh-tw&stk_code=" + ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
+	$('#us_technical').click(function () {
+	    var ticker = $('#us_ticker').val();
+	    var url = "https://invest.cnyes.com/usstock/detail/" +
+		ticker + "/transaction/interactivechart";
+	    var w = window.open(url, "_blank", "");
+	});
 
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
@@ -914,70 +920,123 @@ function click_return() {
 		</td>
 	</tr>
 </table>
-<p><h2> United States Stocks </h2></p>
+<p><h2> US Stocks </h2></p>
 <table class="ex1" id="us" border="1">
 	<tr>
-	    <td width="20%">
-		    <a target="_blank" href="https://www.schwab.com/public/schwab/client_home">charles & SCHWAB</a>
+	    <td width="10%">
+		Ticker: <input type="text" name="lname" id="us_ticker" size="6" value="">
+		<a target="_blank"
+		    id="us_technical"
+		    href="https://invest.cnyes.com/usstock/detail/AMD/transaction/interactivechart"
+		    onclick="return click_return();">
+		    技術分析(聚亨)</a>
 	    </td>
 	    <td width="20%">
-		    <a target="_blank" href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">XE Currency Charts (USD/TWD)</a>
 	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="http://www.marketwatch.com/investing/stocks">Market Watch</a>
+	    <td width="0%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="http://rate.bot.com.tw/xrt?Lang=zh-TW">台銀營業時間牌告匯率</a>
+	    <td width="15%">
 	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="https://finance.yahoo.com/chart/TSLA">Tesla Chart</a>
+	    <td width="10%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank"
+		    id = ""
+		    href=""
+		    onclick="return click_return();" ></a>
 	    </td>
 	</tr>
 	<tr>
-		<td width="20%">
-			<a target="_blank" href="http://tinyurl.com/zgxs4sd">巴菲特班-同學討論區</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="https://www.msci.com/index-review">MSCI quaterly index review</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="http://finance.yahoo.com/quote/%5EVIX/news?p=%5EVIX">VIX Index</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="http://stockcharts.com/freecharts/seasonality.php">StockChart季節性圖表工具(Seasonality Chart)</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""></a>
-		</td>
-	</tr>
-
-	<tr>
-		<td width="20%">
-			<a target="_blank" href="https://money.moneydj.com/us/basic/basic0001/">MoneyDj美國股市個股基本資料</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="https://www.sec.gov/">U.S. Securities and Exchange Commission</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="https://www.barchart.com/stocks/performance/gap/gap-up">All US Exchanges Gap Up</a>
-		</td>
-		<td width="20%">
-		</td>
+	    <td width="10%">
+		<a target="_blank"
+		    id=""
+		    href="http://mikeon88.freebbs.tw/forumdisplay.php?fid=52">
+		    巴菲特班-同學討論區(舊)</a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank"
+		    id=""
+		    href="http://mikeon88.imotor.com/forumdisplay.php?fid=2">
+		    巴菲特班-同學討論區(新)</a>
+	    </td>
+	    <td width="15%">
+		    <a target="_blank" href="https://www.msci.com/index-review">MSCI quaterly index review</a>
+	    </td>
+	    <td width="10%">
+		    <a target="_blank" href="http://finance.yahoo.com/quote/%5EVIX/news?p=%5EVIX">VIX Index</a>
+	    </td>
+	    <td width="25%">
+		<a target="_blank"
+		    id=""
+		    href="http://stockcharts.com/freecharts/seasonality.php">
+		    StockChart季節性圖表工具(Seasonality Chart)</a>
+	    </td>
+	    <td width="0%">
+	    </td>
 	</tr>
 	<tr>
-		<td width="20%">
+	    <td width="20%">
+		<a target="_blank"
+		    id="us_info"
+		    href="https://money.moneydj.com/us/basic/basic0001/SKLZ"
+		    onclick="return click_return();">
+		    MoneyDj美國股市個股基本資料</a>
+	    </td>
+	    <td width="10%">
+		    <a target="_blank" href="https://www.sec.gov/">U.S. Securities and Exchange Commission</a>
+	    </td>
+	    <td width="10%">
+		    <a target="_blank" href="https://www.barchart.com/stocks/performance/gap/gap-up">All US Exchanges Gap Up</a>
+	    </td>
+	    <td width="10%">
+	    </td>
+	</tr>
+	<tr>
+		<td width="10%">
 		    <a target="_blank" href="https://www.marketwatch.com/tools/screener/premarket">Premarket Scanner</a>
 		</td>
-		<td width="20%">
+		<td width="10%">
 			<a target="_blank" href="https://www.barchart.com/stocks/performance/gap/gap-up">All US Exchanges Gap Up</a>
 		</td>
-		<td width="20%">
+		<td width="10%">
 		    <a target="_blank" href="">富途牛牛APP</a>
 		</td>
-		<td width="20%">
+		<td width="10%">
 		    <a target="_blank" href="https://marketchameleon.com/Reports/PremarketTrading">Premarket Movers</a>
 		</td>
-		<td width="20%">
+		<td width="10%">
 		    <a target="_blank"
 		    href="https://www.cnyes.com/usastock/hotprice.aspx?page=adr">ADR與原股即時報價套利表</a>
 		</td>
@@ -1093,6 +1152,18 @@ function click_return() {
 	    </td>
 	</tr>
 </table>
+
+<p><h2>Currencies</h2></p>
+<ul>
+    <li>
+	<a target="_blank" href="http://rate.bot.com.tw/xrt?Lang=zh-TW">台銀營業時間牌告匯率</a></li>
+    <li>
+	<a target="_blank" id = ""
+	    href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">
+	    XE Currency Charts (USD/TWD)</a>
+    </li>
+    <li>Milk</li>
+</ul>
 
 <P></P>
 <h2> My US Stock quote Ticker </h2>
