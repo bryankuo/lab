@@ -253,6 +253,17 @@ $(document).ready(function() {
 	    var url = "https://www.esunsec.com.tw/tw-stock/z/zc/zca/zca.djhtm?id=" + ticker;
 	    var w1 = window.open(url, "_blank", "");
 	});
+	$('#list_info').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url0 = "https://www.twse.com.tw/zh/listed/listingProfile?stockNo=" + ticker;
+	    var w0 = window.open(url0, "_blank", "");
+	});
+	$('#otc_info').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url1 = "https://www.tpex.org.tw/web/regular_emerging/corporateInfo/regular/regular_stock_detail.php?l=zh-tw&stk_code=" + ticker;
+	    var w1 = window.open(url1, "_blank", "");
+	});
+
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -356,9 +367,9 @@ function click_return() {
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    id = "list_info"
+		    href="https://www.twse.com.tw/zh/listed/listingProfile?stockNo=2303"
+		    onclick="return click_return();" >證交所整合資訊</a>
 	    </td>
 	</tr>
 	<tr>
@@ -385,6 +396,12 @@ function click_return() {
 		    id = ""
 		    href=""
 		    onclick="return click_return();" ></a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank"
+		    id = "otc_info"
+		    href="https://www.tpex.org.tw/web/regular_emerging/corporateInfo/regular/regular_stock_detail.php?l=zh-tw&stk_code=8042"
+		    onclick="return click_return();" >櫃買中心整合資訊</a>
 	    </td>
 	</tr>
 	<tr>
