@@ -279,7 +279,14 @@ $(document).ready(function() {
 	    var url = "https://finance.yahoo.com/quote/" + ticker + "/";
 	    var w = window.open(url, "_blank", "");
 	});
-
+	$('#ticker').bind('input', function () {
+	    $('#cbid').val($(this).val());
+	});
+	$('#cb_detail').click(function () {
+	    var cbid = $('#cbid').val();
+	    var url = "https://thefew.tw/quote/"+cbid;
+	    var w = window.open(url, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -470,9 +477,10 @@ function click_return() {
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
-		    id = ""
+		    id = "cb_detail"
 		    href="https://thefew.tw/quote/20067"
-		    onclick="" >可轉債詳細資訊</a>
+		    onclick="return click_return();" >可轉債詳細資訊</a>
+		<input type="text" name="cb_d" id="cbid" value="">
 	    </td>
 	    <td width="20%">
 		<a target="_blank"
