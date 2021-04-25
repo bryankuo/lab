@@ -269,6 +269,16 @@ $(document).ready(function() {
 		ticker + "/transaction/interactivechart";
 	    var w = window.open(url, "_blank", "");
 	});
+	$('#stockchart_technical').click(function () {
+	    var ticker = $('#us_ticker').val();
+	    var url = "https://stockcharts.com/h-sc/ui?s=" + ticker;
+	    var w = window.open(url, "_blank", "");
+	});
+	$('#yahoo_quote').click(function () {
+	    var ticker = $('#us_ticker').val();
+	    var url = "https://finance.yahoo.com/quote/" + ticker + "/";
+	    var w = window.open(url, "_blank", "");
+	});
 
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
@@ -931,13 +941,17 @@ function click_return() {
 		    onclick="return click_return();">
 		    技術分析(聚亨)</a>
 	    </td>
-	    <td width="20%">
+	    <td width="25%">
+		<a target="_blank"
+		    id="stockchart_technical"
+		    href="https://stockcharts.com/h-sc/ui?s=sypr"
+		    onclick="return click_return();">StockChart</a>
+		<a target="_blank"
+		    id = "yahoo_quote"
+		    href="https://finance.yahoo.com/quote/ARNC/"
+		    onclick="return click_return();" >Yahoo!</a>
 	    </td>
 	    <td width="0%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
 	    </td>
 	    <td width="15%">
 	    </td>
@@ -997,12 +1011,6 @@ function click_return() {
 	    <td width="10%">
 		    <a target="_blank" href="http://finance.yahoo.com/quote/%5EVIX/news?p=%5EVIX">VIX Index</a>
 	    </td>
-	    <td width="25%">
-		<a target="_blank"
-		    id=""
-		    href="http://stockcharts.com/freecharts/seasonality.php">
-		    StockChart季節性圖表工具(Seasonality Chart)</a>
-	    </td>
 	    <td width="0%">
 	    </td>
 	</tr>
@@ -1024,22 +1032,22 @@ function click_return() {
 	    </td>
 	</tr>
 	<tr>
-		<td width="10%">
-		    <a target="_blank" href="https://www.marketwatch.com/tools/screener/premarket">Premarket Scanner</a>
-		</td>
-		<td width="10%">
-			<a target="_blank" href="https://www.barchart.com/stocks/performance/gap/gap-up">All US Exchanges Gap Up</a>
-		</td>
-		<td width="10%">
-		    <a target="_blank" href="">富途牛牛APP</a>
-		</td>
-		<td width="10%">
-		    <a target="_blank" href="https://marketchameleon.com/Reports/PremarketTrading">Premarket Movers</a>
-		</td>
-		<td width="10%">
-		    <a target="_blank"
-		    href="https://www.cnyes.com/usastock/hotprice.aspx?page=adr">ADR與原股即時報價套利表</a>
-		</td>
+	    <td width="10%">
+		<a target="_blank" href="https://www.marketwatch.com/tools/screener/premarket">Premarket Scanner</a>
+	    </td>
+	    <td width="10%">
+		    <a target="_blank" href="https://www.barchart.com/stocks/performance/gap/gap-up">All US Exchanges Gap Up</a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank" href="">富途牛牛APP</a>
+	    </td>
+	    <td width="10%">
+		<a target="_blank" href="https://marketchameleon.com/Reports/PremarketTrading">Premarket Movers</a>
+	    </td>
+	    <td width="15%">
+		<a target="_blank"
+		href="https://www.cnyes.com/usastock/hotprice.aspx?page=adr">ADR與原股即時報價套利表</a>
+	    </td>
 	</tr>
 </table>
 <p><h2> Worldwide Indexes </h2></p>
@@ -1129,28 +1137,34 @@ function click_return() {
 
 <p><h2> Commodities </h2></p>
 <table id="commodities" border="1">
-	<tr>
-	    <td width="10%">
-		    <a target="_blank" href="https://finance.yahoo.com/quote/NG%3DF?p=NG%3DF">天然氣NG(yahoo)</a>
-	    </td>
-	    <td width="10%">
-		    <a target="_blank" href=""> data source 2</a>
-	    </td>
-	    <td width="10%">
-		<a target="_blank"
-		    href="https://ycharts.com/indicators/norway_salmon_price">Norway Salmon</a>
-	    </td>
-	    <td width="10%">Lobsters
-		<a target="_blank" href=""></a>
-	    </td>
-	    <td width="15%">
-		<a target="_blank" href="http://www.usmef.org.tw/trade/library.asp">
-		    美國牛肉交易行情</a>
-	    </td>
-	    <td width="15%">
-		    <a target="_blank" href=""></a>
-	    </td>
-	</tr>
+    <tr>
+	<td width="5%">
+	    <a target="_blank"
+		href="https://finance.yahoo.com/quote/NG%3DF?p=NG%3DF">天然氣NG(yahoo)</a>
+	</td>
+	<td width="10%">
+		<a target="_blank" href=""> data source 2</a>
+	</td>
+	<td width="10%">
+	    <a target="_blank"
+		href="https://ycharts.com/indicators/norway_salmon_price">Norway Salmon</a>
+	</td>
+	<td width="5%">Lobsters
+	    <a target="_blank" href=""></a>
+	</td>
+	<td width="5%">
+	    <a target="_blank" href="http://www.usmef.org.tw/trade/library.asp">
+		美國牛肉</a>
+	</td>
+	<td width="5%">
+	    <a target="_blank"
+		href="https://agmetalminer.com/metal-prices/aluminum/">
+		鋁</a>
+	    <a target="_blank"
+		href="https://www.world-aluminium.org/statistics/">
+		statistics</a>
+	</td>
+    </tr>
 </table>
 
 <p><h2>Currencies</h2></p>
