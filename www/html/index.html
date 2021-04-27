@@ -357,596 +357,600 @@ function click_return() {
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
-	<tr>
-	    <td colspan="5" width="20%"><h3> Ticker Symbol<h3> </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">
-		<input type="text" name="lname" id="ticker" value="">
-		<button type="button" id="summary">Summary</button>
-	    </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%"><b>基本面</b></td>
-	</tr>
-	<tr>
-	    <td width="20%">
+    <tr>
+	<td colspan="5" width="20%"><h3> Ticker Symbol<h3> </td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">
+	    <input type="text" name="lname" id="ticker" value="">
+	    <button type="button" id="summary">Summary</button>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%"><b>基本面</b></td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = "overview"
+		href="https://invest.cnyes.com/twstock/TWS/2464/overview"
+		onclick="return click_return();" >聚亨總覽</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "subsidiary"
+		href="https://www.cmoney.tw/finance/f00031.aspx?s=3105"
+		onclick="return click_return();" >轉投資項目</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "es_overview"
+		href="https://www.esunsec.com.tw/tw-stock/z/zc/zca/zca.djhtm?id=2330"
+		onclick="return click_return();" >基本資料(玉山)</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href="https://mops.twse.com.tw/mops/web/t05st03"
+		onclick="" >基本資料查詢</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "list_info"
+		href="https://www.twse.com.tw/zh/listed/listingProfile?stockNo=2303"
+		onclick="return click_return();" >證交所整合資訊</a>
+	</td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = "monthly_revenue"
+		href="https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID=6196"
+		onclick="return click_return();" >每月營收(Goodinfo)</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "f_statements"
+		href="https://histock.tw/stock/3105/財務報表"
+		onclick="return click_return();" >財務報表(Histock)</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "announce"
+		href="https://mops.twse.com.tw/mops/web/t57sb01_q5"
+		onclick="return click_return();" >公開資訊觀測站年報</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "otc_info"
+		href="https://www.tpex.org.tw/web/regular_emerging/corporateInfo/regular/regular_stock_detail.php?l=zh-tw&stk_code=8042"
+		onclick="return click_return();" >櫃買中心整合資訊</a>
+	</td>
+    </tr>
+    <tr>
+	<td width="20%">產業淡旺季
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "relations"
+		href="https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_12?ticker=2330"
+		onclick="return click_return();">產業關係</a>
+	    <!-- https://moneydj.emega.com.tw/z/zn/zng/zng.djhtm?a=AVGO.US&b=E -->
+	    <!-- http://fubon-ebrokerdj.fbs.com.tw/Z/ZC/ZC0/ZC00/ZC00_6004.djhtm -->
+	    <!-- https://concords.moneydj.com/Z/ZC/ZC0/ZC00/ZC00_2329.djhtm -->
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "chain"
+		href="https://ic.tpex.org.tw/company_chain.php?stk_code=2330"
+		onclick="return click_return();" >所屬產業鏈</a>
+	    <a target="_blank"
+		id = ""
+		href="https://www.capital.com.tw/rank/index3.asp?l=zha.djhtm&xy=1&xt=1"
+		onclick="" >產業景氣循環分類</a>
+	</td>
+	<td width="20%">同業比較
+	    <a target="_blank"
+		id = "weighting"
+		href=""
+		onclick="return click_return();" ></a>
+	    <a target="_blank"
+		id = "f_comparison"
+		href="https://mopsfin.twse.com.tw/"
+		onclick="" >財務比較</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href="https://mops.twse.com.tw/mops/web/t120sb02_q9"
+		onclick="" >債券發行資訊查詢</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href="https://www.tpex.org.tw/web/bond/publish/convertible_bond_search/memo.php?l=zh-tw"
+		onclick="" >上櫃轉(交)換公司債</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "cb_detail"
+		href="https://thefew.tw/quote/20067"
+		onclick="return click_return();" >可轉債詳細資訊</a>
+	    <input type="text" name="cb_d" id="cbid" value="">
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "issue_cb"
+		href="https://www.wantgoo.com/stock/3346/company-profile"
+		onclick="return click_return();" >可轉債發行</a>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%"><b>技術面</b></td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = "info"
+		href="https://goodinfo.tw/StockInfo/StockDetail.asp?STOCK_ID=2464"
+		onclick="return click_return();" >個股市況</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "volume_daily"
+		href="https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=20210331&stockNo=1103"
+		onclick="return click_return();" >各日成交資訊</a>
+	</td>
+	<td width="10%">52 week Range
+	    <a target="_blank"
+		id = "high_season"
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "volume"
+		href="https://pchome.megatime.com.tw/stock/sto0/ock0/sid2464.html"
+		onclick="return click_return();" >價量走勢圖</a>
+	</td>
+	<td width="10%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = "segments"
+		href="https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm"
+		onclick="return click_return();" >分價圖</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "technical1"
+		href="https://goodinfo.tw/StockInfo/ShowK_Chart.asp?STOCK_ID=2330&CHT_CAT2=DATE"
+		onclick="return click_return();" >GoodInfo日線圖</a>
+	</td>
+	<td width="10%">
+	    <a target="_blank"
+		id = "technical"
+		href="https://stock.cnyes.com/market/TWS:2464:STOCK"
+		onclick="return click_return();" >聚亨技術分析(即時)</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "technical2"
+		href="https://www.wantgoo.com/stock/1102/technical-chart"
+		onclick="return click_return();" >玩股網技術分析</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%"><b>籌碼面</b></td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "branch"
+		href="https://histock.tw/stock/branch.aspx?no=1236"
+		onclick="return click_return();" >券商分點買賣日報</a>
+	    <!-- https://histock.tw/stock/branch.aspx?no=2464 -->
+	</td>
+	<td width="20%">
 		<a target="_blank"
-		    id = "overview"
-		    href="https://invest.cnyes.com/twstock/TWS/2464/overview"
-		    onclick="return click_return();" >聚亨總覽</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "subsidiary"
-		    href="https://www.cmoney.tw/finance/f00031.aspx?s=3105"
-		    onclick="return click_return();" >轉投資項目</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "es_overview"
-		    href="https://www.esunsec.com.tw/tw-stock/z/zc/zca/zca.djhtm?id=2330"
-		    onclick="return click_return();" >基本資料(玉山)</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href="https://mops.twse.com.tw/mops/web/t05st03"
-		    onclick="" >基本資料查詢</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "list_info"
-		    href="https://www.twse.com.tw/zh/listed/listingProfile?stockNo=2303"
-		    onclick="return click_return();" >證交所整合資訊</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "monthly_revenue"
-		    href="https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID=6196"
-		    onclick="return click_return();" >每月營收(Goodinfo)</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "f_statements"
-		    href="https://histock.tw/stock/3105/財務報表"
-		    onclick="return click_return();" >財務報表(Histock)</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "announce"
-		    href="https://mops.twse.com.tw/mops/web/t57sb01_q5"
-		    onclick="return click_return();" >公開資訊觀測站年報</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "otc_info"
-		    href="https://www.tpex.org.tw/web/regular_emerging/corporateInfo/regular/regular_stock_detail.php?l=zh-tw&stk_code=8042"
-		    onclick="return click_return();" >櫃買中心整合資訊</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="20%">產業淡旺季
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "relations"
-		    href="https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_12?ticker=2330"
-		    onclick="return click_return();">產業關係</a>
-		<!-- https://moneydj.emega.com.tw/z/zn/zng/zng.djhtm?a=AVGO.US&b=E -->
-		<!-- http://fubon-ebrokerdj.fbs.com.tw/Z/ZC/ZC0/ZC00/ZC00_6004.djhtm -->
-		<!-- https://concords.moneydj.com/Z/ZC/ZC0/ZC00/ZC00_2329.djhtm -->
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "chain"
-		    href="https://ic.tpex.org.tw/company_chain.php?stk_code=2330"
-		    onclick="return click_return();" >所屬產業鏈</a>
-	    </td>
-	    <td width="20%">同業比較
-		<a target="_blank"
-		    id = "weighting"
-		    href=""
-		    onclick="return click_return();" ></a>
-		<a target="_blank"
-		    id = "f_comparison"
-		    href="https://mopsfin.twse.com.tw/"
-		    onclick="" >財務比較</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href="https://mops.twse.com.tw/mops/web/t120sb02_q9"
-		    onclick="" >債券發行資訊查詢</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href="https://www.tpex.org.tw/web/bond/publish/convertible_bond_search/memo.php?l=zh-tw"
-		    onclick="" >上櫃轉(交)換公司債</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "cb_detail"
-		    href="https://thefew.tw/quote/20067"
-		    onclick="return click_return();" >可轉債詳細資訊</a>
-		<input type="text" name="cb_d" id="cbid" value="">
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "issue_cb"
-		    href="https://www.wantgoo.com/stock/3346/company-profile"
-		    onclick="return click_return();" >可轉債發行</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">&nbsp;</td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%"><b>技術面</b></td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "info"
-		    href="https://goodinfo.tw/StockInfo/StockDetail.asp?STOCK_ID=2464"
-		    onclick="return click_return();" >個股市況</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "volume_daily"
-		    href="https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=20210331&stockNo=1103"
+		    id = "day_volume"
+		    href="https://www.twse.com.tw/zh/page/trading/exchange/STOCK_DAY.html"
 		    onclick="return click_return();" >各日成交資訊</a>
-	    </td>
-	    <td width="10%">52 week Range
-		<a target="_blank"
-		    id = "high_season"
+	</td>
+	<td width="20%">籌碼分佈
+	    <a target="_blank"
+		id = "chips"
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "chips"
+		href="https://bsr.twse.com.tw/bshtm/"
+		onclick="" >TWSE買賣日報查詢</a>
+	</td>
+    </tr>
+    <tr>
+	<td width="10%">
+	    <a target="_blank"
+		id = "institute"
+		href="https://concords.moneydj.com/z/zc/zcl/zcl_2464.djhtm"
+		onclick="return click_return();" >法人持股明細</a>
+	</td>
+	<td width="10%">
+	    <a target="_blank"
+		id = "individual"
+		href="https://concords.moneydj.com/z/zc/zcn/zcn_2464.djhtm"
+		onclick="return click_return();" >融資融券</a>
+	</td>
+	<td width="10%">
+	    <a target="_blank"
+		id = "margin"
+		href="https://www.twse.com.tw/exchangeReport/TWT93U?response=html&date=20210414"
+		onclick="" >融券借券賣出餘額</a>
+	</td>
+	<td width="10%">
+	    <a target="_blank"
+		id = "weighting"
+		href="https://www.taifex.com.tw/cht/9/futuresQADetail"
+		onclick="return click_return();" >市值比重</a>
+	</td>
+	<td width="10%">
+	    <a target="_blank"
+		id = ""
+		href="https://www.sitca.org.tw/ROC/Industry/IN2630.aspx?pid=IN22601_05"
+		onclick="">(反查)基金投資明細</a>
+	</td>
+    </tr>
+    <tr>
+	<td width="10%">
+	    <a target="_blank"
+		id = ""
+		href="https://www.twse.com.tw/zh/page/trading/exchange/BFI84U.html"
+		onclick="">停資停券預告表</a>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">
+	    <span style="font-weight: 900;">消息面</span></td>
+    </tr>
+    <tr>
+	<td width="20%">
+	</td>
+	<td width="20%">
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		    id = "announce"
 		    href=""
-		    onclick="return click_return();" ></a>
+		    onclick="return click_return();" >重大訊息</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "calendar"
+		href="https://www.cmoney.tw/finance/f00028.aspx?s=1218"
+		onclick="return click_return();" >重大行事曆</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "breaking_news"
+		href="http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/"
+		    "ZCV_3105.djhtm"
+		onclick="return click_return();" >個股動態報導</a>
+	</td>
+	<td width="20%">除權息日期
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href="https://news.cnyes.com/tag/台鋼集團?exp=a"
+		onclick="return click_return();" >集團相關新聞</a>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%"><h3>Market Info<h3> </td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank" href="./highlight.html">
+		近期關注個股</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href="https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=自訂篩選&INDUSTRY_CAT=我的條件&FILTER_ITEM0=年度–ROE%28%25%29&FILTER_VAL_S0=30&FILTER_VAL_E0=&FILTER_SHEET=年獲利能力&WITH_ROTC=F&FILTER_QUERY=查++詢"
+		onclick="" >概念股</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+    <tr>
+	<td width="20%">
+		<a target="_blank" href="https://stock.cnyes.com/market/TSE:TSE01:INDEX">台灣加權指數</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="https://pchome.megatime.com.tw/market/sto0">上市類股漲跌幅</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="https://pchome.megatime.com.tw/tse/">pchome</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E5%BC%B5%E6%95%B8+%28%E9%AB%98%E2%86%92%E4%BD%8E%29%40%40%E6%88%90%E4%BA%A4%E5%BC%B5%E6%95%B8%40%40%E7%94%B1%E9%AB%98%E2%86%92%E4%BD%8E">走勢圖表列</a>
+	</td>
+	<td width="20%">上市上櫃興櫃ㄧ覽表
+		<a target="_blank" href=""></a>
+	    </td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = "market_calendar"
+		href="https://histock.tw/stock/stockskd.aspx"
+		onclick="" >近期交易行事曆</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank" href="https://goodinfo.tw/StockInfo/MarginPauseScheduleList.asp?MARKET_CAT=%E5%85%A8%E9%83%A8&INDUSTRY_CAT=%E5%85%A8%E9%83%A8&YEAR=%E5%8D%B3%E5%B0%87%E7%99%BC%E7%94%9F">暫停融資融券日程</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="http://jsjustweb.jihsun.com.tw/z/ze/zev/zev.djhtm">注意股</a>
+		<!-- https://www.twse.com.tw/announcement/notice?response=html&startDate=20210301&endDate=20210329&stockNo=&sortKind=STKNO&querytype=1&selectType= -->
+	</td>
+	<td width="20%">
+		<a target="_blank" href=""></a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href=""></a>
+	</td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	    <td width="20%">
+		    <a target="_blank" href="https://pchome.megatime.com.tw/rank/sto2/ock31.html">PChome台股市值排行</a>
 	    </td>
 	    <td width="20%">
-		<a target="_blank"
-		    id = "volume"
-		    href="https://pchome.megatime.com.tw/stock/sto0/ock0/sid2464.html"
-		    onclick="return click_return();" >價量走勢圖</a>
-	    </td>
-	    <td width="10%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "segments"
-		    href="https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm"
-		    onclick="return click_return();" >分價圖</a>
+		    <a target="_blank" href="https://histock.tw/stock/taiexproportion.aspx">證交所發行量加權股價指數成分股暨市值比重(HiStock,每日更新嗎?)</a>
 	    </td>
 	    <td width="20%">
-		<a target="_blank"
-		    id = "technical1"
-		    href="https://goodinfo.tw/StockInfo/ShowK_Chart.asp?STOCK_ID=2330&CHT_CAT2=DATE"
-		    onclick="return click_return();" >GoodInfo日線圖</a>
-	    </td>
-	    <td width="10%">
-		<a target="_blank"
-		    id = "technical"
-		    href="https://stock.cnyes.com/market/TWS:2464:STOCK"
-		    onclick="return click_return();" >聚亨技術分析(即時)</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "technical2"
-		    href="https://www.wantgoo.com/stock/1102/technical-chart"
-		    onclick="return click_return();" >玩股網技術分析</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">&nbsp;</td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%"><b>籌碼面</b></td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "branch"
-		    href="https://histock.tw/stock/branch.aspx?no=1236"
-		    onclick="return click_return();" >券商分點買賣日報</a>
-		<!-- https://histock.tw/stock/branch.aspx?no=2464 -->
-	    </td>
-	    <td width="20%">
-		    <a target="_blank"
-			id = "day_volume"
-			href="https://www.twse.com.tw/zh/page/trading/exchange/STOCK_DAY.html"
-			onclick="return click_return();" >各日成交資訊</a>
-	    </td>
-	    <td width="20%">籌碼分佈
-		<a target="_blank"
-		    id = "chips"
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "chips"
-		    href="https://bsr.twse.com.tw/bshtm/"
-		    onclick="" >TWSE買賣日報查詢</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="10%">
-		<a target="_blank"
-		    id = "institute"
-		    href="https://concords.moneydj.com/z/zc/zcl/zcl_2464.djhtm"
-		    onclick="return click_return();" >法人持股明細</a>
-	    </td>
-	    <td width="10%">
-		<a target="_blank"
-		    id = "individual"
-		    href="https://concords.moneydj.com/z/zc/zcn/zcn_2464.djhtm"
-		    onclick="return click_return();" >融資融券</a>
-	    </td>
-	    <td width="10%">
-		<a target="_blank"
-		    id = "margin"
-		    href="https://www.twse.com.tw/exchangeReport/TWT93U?response=html&date=20210414"
-		    onclick="" >融券借券賣出餘額</a>
-	    </td>
-	    <td width="10%">
-		<a target="_blank"
-		    id = "weighting"
-		    href="https://www.taifex.com.tw/cht/9/futuresQADetail"
-		    onclick="return click_return();" >市值比重</a>
-	    </td>
-	    <td width="10%">
-		<a target="_blank"
-		    id = ""
-		    href="https://www.sitca.org.tw/ROC/Industry/IN2630.aspx?pid=IN22601_05"
-		    onclick="">(反查)基金投資明細</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="10%">
-		<a target="_blank"
-		    id = ""
-		    href="https://www.twse.com.tw/zh/page/trading/exchange/BFI84U.html"
-		    onclick="">停資停券預告表</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">&nbsp;</td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">
-		<span style="font-weight: 900;">消息面</span></td>
-	</tr>
-	<tr>
-	    <td width="20%">
-	    </td>
-	    <td width="20%">
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-			id = "announce"
-			href=""
-			onclick="return click_return();" >重大訊息</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "calendar"
-		    href="https://www.cmoney.tw/finance/f00028.aspx?s=1218"
-		    onclick="return click_return();" >重大行事曆</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "breaking_news"
-		    href="http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/"
-			"ZCV_3105.djhtm"
-		    onclick="return click_return();" >個股動態報導</a>
-	    </td>
-	    <td width="20%">除權息日期
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href="https://news.cnyes.com/tag/台鋼集團?exp=a"
-		    onclick="return click_return();" >集團相關新聞</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">&nbsp;</td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%"><h3>Market Info<h3> </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank" href="./highlight.html">
-		    近期關注個股</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href="https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=自訂篩選&INDUSTRY_CAT=我的條件&FILTER_ITEM0=年度–ROE%28%25%29&FILTER_VAL_S0=30&FILTER_VAL_E0=&FILTER_SHEET=年獲利能力&WITH_ROTC=F&FILTER_QUERY=查++詢"
-		    onclick="" >概念股</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		    <a target="_blank" href="https://stock.cnyes.com/market/TSE:TSE01:INDEX">台灣加權指數</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="https://pchome.megatime.com.tw/market/sto0">上市類股漲跌幅</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="https://pchome.megatime.com.tw/tse/">pchome</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E5%BC%B5%E6%95%B8+%28%E9%AB%98%E2%86%92%E4%BD%8E%29%40%40%E6%88%90%E4%BA%A4%E5%BC%B5%E6%95%B8%40%40%E7%94%B1%E9%AB%98%E2%86%92%E4%BD%8E">走勢圖表列</a>
-	    </td>
-	    <td width="20%">上市上櫃興櫃ㄧ覽表
-		    <a target="_blank" href=""></a>
-		</td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = "market_calendar"
-		    href="https://histock.tw/stock/stockskd.aspx"
-		    onclick="" >近期交易行事曆</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank" href="https://goodinfo.tw/StockInfo/MarginPauseScheduleList.asp?MARKET_CAT=%E5%85%A8%E9%83%A8&INDUSTRY_CAT=%E5%85%A8%E9%83%A8&YEAR=%E5%8D%B3%E5%B0%87%E7%99%BC%E7%94%9F">暫停融資融券日程</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="http://jsjustweb.jihsun.com.tw/z/ze/zev/zev.djhtm">注意股</a>
-		    <!-- https://www.twse.com.tw/announcement/notice?response=html&startDate=20210301&endDate=20210329&stockNo=&sortKind=STKNO&querytype=1&selectType= -->
 	    </td>
 	    <td width="20%">
 		    <a target="_blank" href=""></a>
 	    </td>
-	    <td width="20%">
-		    <a target="_blank" href=""></a>
-	    </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-		<td width="20%">
-			<a target="_blank" href="https://pchome.megatime.com.tw/rank/sto2/ock31.html">PChome台股市值排行</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="https://histock.tw/stock/taiexproportion.aspx">證交所發行量加權股價指數成分股暨市值比重(HiStock,每日更新嗎?)</a>
-		</td>
-		<td width="20%">
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""></a>
-		</td>
-	</tr>
+    </tr>
 
-	<tr>
-		<td width="20%">
-			<a target="_blank" href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">XE Currency Charts (USD/TWD)</a>
-		</td>
+    <tr>
 	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    <a target="_blank" href="http://www.xe.com/currencycharts/?from=USD&to=TWD&view=1M">XE Currency Charts (USD/TWD)</a>
 	    </td>
-		<td width="20%">
-			<a target="_blank" href="http://sod.nsc.com.tw/z/zm/zmd/zmdb.djhtm">台股權值100大排行榜</a>
-		</td>
-		<td width="20%">
-		    	<a target="_blank" href="https://mops.twse.com.tw/mops/web/t05sr01_1">公開資訊觀測站-重訊</a>
-		</td>
-		<td width="20%">
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	    <td width="20%">
+		    <a target="_blank" href="http://sod.nsc.com.tw/z/zm/zmd/zmdb.djhtm">台股權值100大排行榜</a>
+	    </td>
+	    <td width="20%">
+		    <a target="_blank" href="https://mops.twse.com.tw/mops/web/t05sr01_1">公開資訊觀測站-重訊</a>
+	    </td>
+	    <td width="20%">
+		<a target="_blank" href=""></a>
+	    </td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank" href="https://goo.gl/y8pg4F">MSCI台股指數成份股</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	    <td width="20%">
+		    <a target="_blank" href="https://goo.gl/wtJjAx">熱門排行 – 公司總市值最高</a>
+	    </td>
+	    <td width="20%">
+		    <a target="_blank" href="http://www.stockq.org/">StockQ國際股市走勢</a>
+	    </td>
+	    <td width="20%">
+		    <a target="_blank" href="http://tinyurl.com/zgxs4sd">巴菲特班-同學討論區</a>
+	    </td>
+    </tr>
+    <tr>
+	<td width="20%">
+		<a target="_blank" href="https://www.msci.com/index-review">MSCI quaterly index review</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		href="https://www.taifex.com.tw/cht/9/futuresQADetail">
+		證交所指數成分股暨市值比重(每月更新)</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="https://goo.gl/DstXka">台股權值100大排行榜</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="https://goo.gl/MSLFgS">撿股讚</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="https://goo.gl/r1rr9m">MoneyDJ財經百科</a>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%"><h3>Indexes<h3> </td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank" href="https://www.yuantaetfs.com/#/FundWeights/1066">元大台灣50成份股</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href="https://www.tpex.org.tw/web/stock/iNdex_info/gretai50/introduction.php?l=zh-tw"
+		onclick="">富櫃50指數</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		href="https://goo.gl/ClkEcE">元大中型100 成分股</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href="https://www.wantgoo.com/stock/twstock/classlist?group=8"
+		onclick="" >指數成份股</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+	<td colspan="5" width="20%"><h3>Futures<h3> </td>
+    </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank" href="https://www.taifex.com.tw/file/taifex/CHINESE/4/2021Calendar_cv1.pdf">台灣期貨交易所2021年行事曆</a>
+	</td>
+	<td width="20%">
+		<a target="_blank" href="http://stock.wearn.com/taifexphoto.asp">台指期未平倉圖表</a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+    <tr>
+	    <td width="20%">
+		    <a target="_blank" href="">&nbsp;</a>
+	    </td>
+	    <td width="20%">
+		    <!-- onclick="jumpto('twse'); -->
+		    <!-- // TODO: use url instead of section -->
+		    <!-- <a target="_blank" href="#twse">My TW Stock quote Ticker </a> -->
+	    </td>
+	    <td width="20%">
+	    </td>
+	    <td width="20%">
 		    <a target="_blank" href=""></a>
-		</td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank" href="https://goo.gl/y8pg4F">MSCI台股指數成份股</a>
 	    </td>
 	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
+		    <a target="_blank" href=""></a>
 	    </td>
-		<td width="20%">
-			<a target="_blank" href="https://goo.gl/wtJjAx">熱門排行 – 公司總市值最高</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="http://www.stockq.org/">StockQ國際股市走勢</a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href="http://tinyurl.com/zgxs4sd">巴菲特班-同學討論區</a>
-		</td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		    <a target="_blank" href="https://www.msci.com/index-review">MSCI quaterly index review</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    href="https://www.taifex.com.tw/cht/9/futuresQADetail">
-		    證交所指數成分股暨市值比重(每月更新)</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="https://goo.gl/DstXka">台股權值100大排行榜</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="https://goo.gl/MSLFgS">撿股讚</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="https://goo.gl/r1rr9m">MoneyDJ財經百科</a>
-	    </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">&nbsp;</td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%"><h3>Indexes<h3> </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank" href="https://www.yuantaetfs.com/#/FundWeights/1066">元大台灣50成份股</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href="https://www.tpex.org.tw/web/stock/iNdex_info/gretai50/introduction.php?l=zh-tw"
-		    onclick="">富櫃50指數</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    href="https://goo.gl/ClkEcE">元大中型100 成分股</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href="https://www.wantgoo.com/stock/twstock/classlist?group=8"
-		    onclick="" >指數成份股</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%">&nbsp;</td>
-	</tr>
-	<tr>
-	    <td colspan="5" width="20%"><h3>Futures<h3> </td>
-	</tr>
-	<tr>
-	    <td width="20%">
-		<a target="_blank" href="https://www.taifex.com.tw/file/taifex/CHINESE/4/2021Calendar_cv1.pdf">台灣期貨交易所2021年行事曆</a>
-	    </td>
-	    <td width="20%">
-		    <a target="_blank" href="http://stock.wearn.com/taifexphoto.asp">台指期未平倉圖表</a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	    <td width="20%">
-		<a target="_blank"
-		    id = ""
-		    href=""
-		    onclick="return click_return();" ></a>
-	    </td>
-	</tr>
-	<tr>
-		<td width="20%">
-			<a target="_blank" href="">&nbsp;</a>
-		</td>
-		<td width="20%">
-			<!-- onclick="jumpto('twse'); -->
-			<!-- // TODO: use url instead of section -->
-			<!-- <a target="_blank" href="#twse">My TW Stock quote Ticker </a> -->
-		</td>
-		<td width="20%">
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""></a>
-		</td>
-		<td width="20%">
-			<a target="_blank" href=""></a>
-		</td>
-	</tr>
+    </tr>
 </table>
 <p><h2> US Stocks </h2></p>
 <table class="ex1" id="us" border="1">
