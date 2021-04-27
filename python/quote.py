@@ -14,14 +14,15 @@ ticker = sys.argv[1]
 # https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_9904.tw%7C&json=1&d=20210422&delay=0&_=1432626332924
 url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?' + \
     'ex_ch=tse_' + ticker + '.tw%7C' + \
-    '&json=1' + '&d=20210423&delay=0&_=1432626332924'
+    '&json=1' + '&d=20210427&delay=0&_=1432626332924'
 frame = requests.get(url).json()
 # print(json.dumps(frame, indent=1))
 yesterday = float(frame["msgArray"][0]["y"])
 opn = float(frame["msgArray"][0]["o"])
 high = float(frame["msgArray"][0]["h"])
 low = float(frame["msgArray"][0]["l"])
-close = float(frame["msgArray"][0]["z"])
+# close = float(frame["msgArray"][0]["z"])
+close = frame["msgArray"][0]["z"]
 volume = frame["msgArray"][0]["v"]
 h_limit = float(frame["msgArray"][0]["u"])
 l_limit = float(frame["msgArray"][0]["w"])
@@ -36,7 +37,8 @@ print( \
     "     open  : " + "{:<7.2f}".format(opn)+ \
     "     high  : " + "{:<.2f}".format(high)+ \
     "     low   : " + "{:<7.2f}".format(low) + \
-    "     close : " + "{:<7.2f}".format(close))
+    "     close : " + close)
+#    "     close : " + "{:<7.2f}".format(close))
 print( \
     "     h_lmt : " + "{:<7.2f}".format(h_limit) + \
     "     l_lmt : " + "{:<7.2f}".format(l_limit) + \
