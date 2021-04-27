@@ -287,6 +287,12 @@ $(document).ready(function() {
 	    var url = "https://thefew.tw/quote/"+cbid;
 	    var w = window.open(url, "_blank", "");
 	});
+	$('#finviz_technical').click(function () {
+	    var ticker = $('#us_ticker').val();
+	    var url = "https://finviz.com/quote.ashx?t=" + ticker;
+	    var w = window.open(url, "_blank", "");
+	});
+
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -347,7 +353,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/04/24</P>
+   <P>modified on 2021/04/27</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -951,9 +957,14 @@ function click_return() {
 	    </td>
 	    <td width="25%">
 		<a target="_blank"
+		    id="finviz_technical"
+		    href="https://finviz.com/quote.ashx?t=UMC"
+		    onclick="return click_return();">finviz</a>
+		<a target="_blank"
 		    id="stockchart_technical"
 		    href="https://stockcharts.com/h-sc/ui?s=sypr"
 		    onclick="return click_return();">StockChart</a>
+
 		<a target="_blank"
 		    id = "yahoo_quote"
 		    href="https://finance.yahoo.com/quote/ARNC/"
@@ -1171,6 +1182,14 @@ function click_return() {
 	    <a target="_blank"
 		href="https://www.world-aluminium.org/statistics/">
 		statistics</a>
+	</td>
+
+    </tr>
+    <tr>
+	<td>
+	<a target="_blank"
+	    href="https://hq.smm.cn/data/futures/rb2105?exchange=shfe&category=螺纹">
+	    鋼鐵期貨</a>
 	</td>
     </tr>
 </table>
