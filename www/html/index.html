@@ -105,10 +105,9 @@ $(document).ready(function() {
     });
     $('#institute').click(function () {
 	var ticker = $('#ticker').val();
-	var url = "https://concords.moneydj.com/z/zc/zcl/zcl_"
-	    + ticker + ".djhtm";
-	var w1 = window.open(url, "_blank", "");
-	// return false;
+	var url = "https://www.wantgoo.com/stock/" + ticker +
+	    "/institutional-investors/trend";
+	var w = window.open(url, "_blank", "");
     });
     $('#technical').click(function () {
 	var ticker = $('#ticker').val();
@@ -353,7 +352,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/04/27</P>
+   <P>modified on 2021/04/28</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -487,7 +486,7 @@ function click_return() {
 	    <a target="_blank"
 		id = ""
 		href="https://www.tpex.org.tw/web/bond/publish/convertible_bond_search/memo.php?l=zh-tw"
-		onclick="" >上櫃轉(交)換公司債</a>
+		onclick="" >上櫃轉(交)換公司債列表</a>
 	</td>
 	<td width="20%">
 	    <a target="_blank"
@@ -537,8 +536,8 @@ function click_return() {
 	<td width="10%">
 	    <a target="_blank"
 		id = ""
-		href=""
-		onclick="return click_return();" ></a>
+		href="https://www.moneydj.com/z/zh/zha/ZH00.djhtm?A=C023321"
+		onclick="" >同業股價表現</a>
 	</td>
     </tr>
     <tr>
@@ -616,7 +615,7 @@ function click_return() {
 	<td width="10%">
 	    <a target="_blank"
 		id = "institute"
-		href="https://concords.moneydj.com/z/zc/zcl/zcl_2464.djhtm"
+		href="https://www.wantgoo.com/stock/9904/institutional-investors/trend"
 		onclick="return click_return();" >法人持股明細</a>
 	</td>
 	<td width="10%">
@@ -747,8 +746,8 @@ function click_return() {
 	<td width="20%">
 	    <a target="_blank"
 		id = ""
-		href=""
-		onclick="return click_return();" ></a>
+		href="https://www.tpex.org.tw/web/link/index.php?l=zh-tw&t=1&t2=16&s=4"
+		onclick="" >三大法人買賣資訊(櫃買)</a>
 	</td>
     </tr>
     <tr>
