@@ -31,6 +31,9 @@ soup = BeautifulSoup(response.text, 'html.parser')
 table_body = soup.find('tbody')
 if ( table_body is None ):
     print("check if otc 1 ...")
+    print(url)
+    # no data for this month
+    # check one month earilier
     sys.exit(1)
 rows = table_body.findAll('tr')
 if ( len(rows) <= 0 ):
