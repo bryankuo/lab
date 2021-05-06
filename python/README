@@ -20,3 +20,4 @@ instant_quote.sh: get OHLC data frame periodically.
 board.py: get board holdings.
 basic.py: check if CB issued by scraping POST reply.
 get_mrkt_value.py: scrap ticker market values.
+vprice.py: browse volme price distribution.

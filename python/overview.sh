@@ -23,4 +23,5 @@ fi
 
 # python3 cb.py $1
 python3 board.py $1
+python3 vprice.py $1
 exit 0
