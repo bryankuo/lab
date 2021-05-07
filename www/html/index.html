@@ -167,11 +167,21 @@ $(document).ready(function() {
 	    + ticker;
 	var w1 = window.open(url1, "_blank", "");
     });
-	$('#branch').click(function () {
-	    var ticker = $('#ticker').val();
-	    var url1 = "https://histock.tw/stock/branch.aspx?no="+ticker;
-	    var w1 = window.open(url1, "_blank", "");
-	});
+    $('#branch1').click(function () {
+	var ticker = $('#ticker').val();
+	var url1 = "https://histock.tw/stock/branch.aspx?no="+ticker;
+	var w1 = window.open(url1, "_blank", "");
+    });
+    $('#branch2').click(function () {
+	var ticker = $('#ticker').val();
+	var url1 = "https://moneydj.emega.com.tw/z/zc/zco/zco0/zco0.djhtm?a="+ticker;
+	var w1 = window.open(url1, "_blank", "");
+    });
+    $('#branch3').click(function () {
+	var ticker = $('#ticker').val();
+	var url1 = "http://5850web.moneydj.com/z/zc/zco/zco.djhtm?a="+ticker;
+	var w1 = window.open(url1, "_blank", "");
+    });
 	$('#day_volume').click(function () {
 	    var ticker = $('#ticker').val();
 	    var today = new Date();
@@ -297,6 +307,12 @@ $(document).ready(function() {
 		"?stock=" + ticker;
 	    var w = window.open(url, "_blank", "");
 	});
+	$('#holdings').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://norway.twsthr.info/StockHolders.aspx" +
+		"?stock=" + ticker;
+	    var w = window.open(url, "_blank", "");
+	});
 
 
 	$('#showMSCIlast10').click(function () {
@@ -359,7 +375,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/05/05</P>
+   <P>modified on 2021/05/07</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -593,11 +609,6 @@ function click_return() {
 		onclick="return click_return();" ></a>
 	</td>
 	<td width="20%">
-	    <a target="_blank"
-		id = "branch"
-		href="https://histock.tw/stock/branch.aspx?no=1236"
-		onclick="return click_return();" >券商分點買賣日報</a>
-	    <!-- https://histock.tw/stock/branch.aspx?no=2464 -->
 	</td>
 	<td width="20%">
 		<a target="_blank"
@@ -612,10 +623,6 @@ function click_return() {
 		onclick="return click_return();" ></a>
 	</td>
 	<td width="20%">
-	    <a target="_blank"
-		id = "chips"
-		href="https://bsr.twse.com.tw/bshtm/"
-		onclick="" >TWSE買賣日報查詢</a>
 	</td>
     </tr>
     <tr>
@@ -664,16 +671,23 @@ function click_return() {
 		onclick="return click_return();">股權變動表</a>
 	</td>
 
-	<td width="10%">
+	<td colspan="3" width="10%">
 	    <a target="_blank"
-		id = ""
+		id = "branch1"
+		href="https://histock.tw/stock/branch.aspx?no=1236"
+		onclick="return click_return();" >券商分點買賣日報</a>
+	    <a target="_blank"
+		id = "branch2"
 		href="https://moneydj.emega.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2886&BHID=5460&b=5460"
 		onclick="return click_return();">個股主力券商</a>
 	    <a target="_blank"
-		id = ""
+		id = "branch3"
 		href="http://5850web.moneydj.com/z/zc/zco/zco.djhtm?a=2382"
 		onclick="return click_return();">主力進出比較圖</a>
-
+	    <a target="_blank"
+		id = "chips"
+		href="https://bsr.twse.com.tw/bshtm/"
+		onclick="" >TWSE買賣日報查詢</a>
 	</td>
     </tr>
     <tr>
@@ -807,8 +821,11 @@ function click_return() {
 	    <a target="_blank" href="https://goodinfo.tw/StockInfo/MarginPauseScheduleList.asp?MARKET_CAT=%E5%85%A8%E9%83%A8&INDUSTRY_CAT=%E5%85%A8%E9%83%A8&YEAR=%E5%8D%B3%E5%B0%87%E7%99%BC%E7%94%9F">暫停融資融券日程</a>
 	</td>
 	<td width="20%">
-		<a target="_blank" href="http://jsjustweb.jihsun.com.tw/z/ze/zev/zev.djhtm">注意股</a>
-		<!-- https://www.twse.com.tw/announcement/notice?response=html&startDate=20210301&endDate=20210329&stockNo=&sortKind=STKNO&querytype=1&selectType= -->
+	    <a target="_blank" href="http://jsjustweb.jihsun.com.tw/z/ze/zev/zev.djhtm">注意股</a>
+	    <!-- https://www.twse.com.tw/announcement/notice?response=html&startDate=20210301&endDate=20210329&stockNo=&sortKind=STKNO&querytype=1&selectType= -->
+	    <a target="_blank"
+		href="https://www.tpex.org.tw/web/bulletin/announcement/default.php?l=zh-tw">
+		證券商申報違約公告(櫃買)</a>
 	</td>
 	<td width="20%">
 		<a target="_blank" href=""></a>
@@ -1314,10 +1331,13 @@ function click_return() {
 </ul>
 
 <P></P>
-<h2> My US Stock quote Ticker </h2>
-<input type="checkbox" id="timely" name="timely" value="">Update every <input type="text" id="seconds" value="300" style="width: 50px;"> seconds<br>
-      <div class="result">
-      </div>
-</div>
+<h2> Others </h2>
+<ul>
+    <li>
+	<a target="_blank"
+	href="https://www.forextime.com/zh-tw/education/forex-glossary">
+	交易術語詞匯表</a></li>
+</ul>
+
 </BODY>
 </HTML>

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 vprice.py 2330
+# python3 vprice.py ticker
 # return 0 success
 
 import sys, requests, time, webbrowser
