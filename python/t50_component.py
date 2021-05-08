@@ -17,8 +17,10 @@ n_rows = [None] * 12; months = []; avg_shares = [];
 # url_ftse50 = 'https://www.tpex.org.tw/web/stock/iNdex_info/gretai50/ingrid/r50cnstnt_result.php?l=zh-tw&d=110/04/16&s=0,asc,0&o=htm'
 # url = 'https://www.taifex.com.tw/cht/9/futuresQADetail'
 # url = 'https://www.yuantaetfs.com/#/FundWeights/1066'
-# url = 'https://histock.tw/stock/taiexproportion.aspx'
-url = "https://histock.tw/stock/taiexproportion.aspx"
+
+# good to scrap
+# url = "https://histock.tw/stock/taiexproportion.aspx"
+url = "https://histock.tw/stock/mscitaiwan.aspx"
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 print(soup.prettify())
