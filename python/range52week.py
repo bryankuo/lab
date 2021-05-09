@@ -14,6 +14,7 @@ url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 rows = soup.select('table .t01 tr')
+per = float(rows[3].select('td')[1].renderContents())
 opn = float(rows[1].select('td')[1].renderContents())
 tds = rows[2].select('td')
 low52 = float(tds[5].renderContents())
@@ -28,12 +29,12 @@ rows = table.select('tr')
 row = rows[1]
 tds = row.select('b')
 quote = float(tds[0].renderContents())
-
 p_low52 = ( low52 - quote ) * 100 / quote
 p_high52 = ( high52 - quote ) * 100 / quote
+print( ticker + " per: " + "{:>4.02f}".format(per) )
 print( ticker + " quote: " + "{:>5.02f}".format(quote) + \
-        ", chg: " + "{:>5.02f}".format(change*100) + "%" + \
-    ", 52 week range: " + \
+        ", chg: " + "{:>4.02f}".format(change*100) + "%" + \
+    ", 52w range: " + \
     "{:>5.02f}".format(low52) + \
         " (" + "{:>5.02f}".format(p_low52) + "%) " + \
     " - " + \

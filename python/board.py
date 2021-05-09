@@ -30,4 +30,13 @@ url = "https://mops.twse.com.tw/mops/web/ajax_stapap1" + \
     "&co_id=" + ticker + "&TYPEK=sii&step=0"
 webbrowser.open(url)
 
+url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
+webbrowser.open(url)
+
+url = "https://stock.cnyes.com/market/TWS:"+ticker+":STOCK"
+webbrowser.open(url)
+
+url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
+webbrowser.open(url)
+
 sys.exit(0)
