@@ -39,4 +39,6 @@ webbrowser.open(url)
 url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
 webbrowser.open(url)
 
+# url = "https://mops.twse.com.tw/mops/web/t51sb10_q1"
+# "https://mops.twse.com.tw/mops/web/t05sr01_1#"
 sys.exit(0)
