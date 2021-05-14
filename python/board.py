@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 board.py 2330
-# return 0: not found, assume otc
+# return 0: success
 
 import sys, requests, time, webbrowser
 import urllib.request
@@ -29,16 +29,6 @@ url = "https://mops.twse.com.tw/mops/web/ajax_stapap1" + \
     "?firstin=true&year=" + yr + "&month=" + month + \
     "&co_id=" + ticker + "&TYPEK=sii&step=0"
 webbrowser.open(url)
-
-url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
-webbrowser.open(url)
-
-url = "https://stock.cnyes.com/market/TWS:"+ticker+":STOCK"
-webbrowser.open(url)
-
-url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
-webbrowser.open(url)
-
 # url = "https://mops.twse.com.tw/mops/web/t51sb10_q1"
 # "https://mops.twse.com.tw/mops/web/t05sr01_1#"
 sys.exit(0)

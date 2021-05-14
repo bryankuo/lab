@@ -22,3 +22,7 @@ basic.py: check if CB issued by scraping POST reply.
 get_mrkt_value.py: scrap ticker market values.
 vprice.py: browse volme price distribution.
 transaction.py: parsing daily transaction by ticker symbol.
+fundamental.py: browsing fundamental.
+gossip.py: browsing gossip.
+news.py: browsing ticker news.
+realtime_technical.py: browsing technical analysis with VWAP support.

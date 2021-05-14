@@ -313,8 +313,12 @@ $(document).ready(function() {
 		"?stock=" + ticker;
 	    var w = window.open(url, "_blank", "");
 	});
-
-
+	$('#gossip').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://www.cmoney.tw/follow/channel/stock-" +
+		ticker + "?chart=d&type=Personal";
+	    var w = window.open(url, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -705,30 +709,7 @@ function click_return() {
 	<td colspan="5" width="20%">
 	    <span style="font-weight: 900;">消息面</span></td>
     </tr>
-    <tr>
-	<td width="20%">
-	</td>
-	<td width="20%">
-	</td>
-	<td width="20%">
-	    <a target="_blank"
-		id = ""
-		href=""></a>
-	</td>
-	<td width="20%">
-	    <a target="_blank"
-		id = ""
-		href=""
-		onclick="return click_return();" ></a>
-	</td>
-	<td width="20%">
-	    <a target="_blank"
-		id = ""
-		href=""
-		onclick="return click_return();" ></a>
-	</td>
-    </tr>
-    <tr>
+   <tr>
 	<td width="20%">
 	    <a target="_blank"
 		    id = "announce"
@@ -761,6 +742,34 @@ function click_return() {
 		onclick="return click_return();" >集團相關新聞</a>
 	</td>
     </tr>
+    <tr>
+	<td width="20%">
+	    <a target="_blank"
+		id = "gossip"
+		href="https://www.cmoney.tw/follow/channel/stock-1228?chart=d&type=Personal"
+		onclick="return click_return();" >爆料同學會</a>
+	</td>
+	<td width="20%">
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = ""
+		href=""
+		onclick="return click_return();" ></a>
+	</td>
+    </tr>
+
     <tr>
 	<td colspan="5" width="20%">&nbsp;</td>
     </tr>
