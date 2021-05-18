@@ -22,9 +22,9 @@ then
 fi
 
 python3 fundamental.py $1
-python3 board.py $1
-python3 vprice.py $1
-python3 realtime_technical.py $1
+# python3 board.py $1
+# python3 vprice.py $1
+# python3 realtime_technical.py $1
 python3 news.py $1
 python3 gossip.py $1
 exit 0
