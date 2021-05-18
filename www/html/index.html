@@ -319,6 +319,13 @@ $(document).ready(function() {
 		ticker + "?chart=d&type=Personal";
 	    var w = window.open(url, "_blank", "");
 	});
+		href="https://www.wantgoo.com/stock/1312/news"
+	$('#news_wg').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://www.wantgoo.com/stock/" + ticker + "/news";
+	    var w = window.open(url, "_blank", "");
+	});
+
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -750,6 +757,10 @@ function click_return() {
 		onclick="return click_return();" >爆料同學會</a>
 	</td>
 	<td width="20%">
+	    <a target="_blank"
+		id = "news_wg"
+		href="https://www.wantgoo.com/stock/1312/news"
+		onclick="return click_return();" >相關新聞(玩股網)</a>
 	</td>
 	<td width="20%">
 	    <a target="_blank"
