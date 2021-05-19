@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-# python3 volume.py 2330
-# get listed daily average volume for one year
-# return 0: success, otherwise NG
+# python3 range52week.py 2330
+# get per, quote, chage, 52 week range
+# return 0: success
 
 import sys, requests, time
 import urllib.request
@@ -14,7 +14,7 @@ url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 rows = soup.select('table .t01 tr')
-per = float(rows[3].select('td')[1].renderContents())
+per = rows[3].select('td')[1].renderContents().decode("utf-8")
 opn = float(rows[1].select('td')[1].renderContents())
 tds = rows[2].select('td')
 low52 = float(tds[5].renderContents())
@@ -31,7 +31,8 @@ tds = row.select('b')
 quote = float(tds[0].renderContents())
 p_low52 = ( low52 - quote ) * 100 / quote
 p_high52 = ( high52 - quote ) * 100 / quote
-print( ticker + " per: " + "{:>4.02f}".format(per) )
+per_string = ticker + " per: " + per
+print( per_string )
 print( ticker + " quote: " + "{:>5.02f}".format(quote) + \
         ", chg: " + "{:>4.02f}".format(change*100) + "%" + \
     ", 52w range: " + \
