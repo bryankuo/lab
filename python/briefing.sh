@@ -37,10 +37,13 @@ then
     python3 fundamental.py $1
     python3 board.py $1
     python3 vprice.py $1
+    python3 reinvestments.py $1
+    python3 revenue.py $1
     python3 realtime_technical.py $1
     python3 institution_holdings.py $1
     python3 retail_traders.py $1
     python3 technical.py $1
+    python3 branch.py $1
     python3 news.py $1
     python3 gossip.py $1
 fi

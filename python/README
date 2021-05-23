@@ -26,3 +26,6 @@ fundamental.py: browsing fundamental.
 gossip.py: browsing gossip.
 news.py: browsing ticker news.
 realtime_technical.py: browsing technical analysis with VWAP support.
+branch.py: browsing broker branch transactions.
+reinvestments.py: browse reinvestments.
+revenue.py: browse revenue.

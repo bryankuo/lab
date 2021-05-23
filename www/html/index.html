@@ -325,7 +325,18 @@ $(document).ready(function() {
 	    var url = "https://www.wantgoo.com/stock/" + ticker + "/news";
 	    var w = window.open(url, "_blank", "");
 	});
-
+	$('#annual_report').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url =
+	    "https://mops.twse.com.tw/mops/web/t57sb01_q5?co_id="+ticker;
+	    var w = window.open(url, "_blank", "");
+	});
+	$('#fiscal').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url =
+	    "https://mops.twse.com.tw/mops/web/t57sb01_q1?co_id="+ticker;
+	    var w = window.open(url, "_blank", "");
+	});
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -386,7 +397,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/05/19</P>
+   <P>modified on 2021/05/23</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -449,9 +460,13 @@ function click_return() {
 	</td>
 	<td width="20%">
 	    <a target="_blank"
-		id = "announce"
+		id = "annual_report"
 		href="https://mops.twse.com.tw/mops/web/t57sb01_q5"
 		onclick="return click_return();" >公開資訊觀測站年報</a>
+	    <a target="_blank"
+		id = "fiscal"
+		href="https://mops.twse.com.tw/mops/web/t57sb01_q1"
+		onclick="return click_return();">財務報告書</a>
 	</td>
 	<td width="20%">
 	    <a target="_blank"
