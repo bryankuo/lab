@@ -10,6 +10,7 @@ from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
-url = "https://stock.cnyes.com/market/TWS:"+ticker+":STOCK"
+# url = "https://stock.cnyes.com/market/TWS:"+ticker+":STOCK"
+url = "https://invest.cnyes.com/twstock/TWS/" + ticker + "/technical"
 webbrowser.open(url)
 sys.exit(0)
