@@ -29,3 +29,4 @@ realtime_technical.py: browsing technical analysis with VWAP support.
 branch.py: browsing broker branch transactions.
 reinvestments.py: browse reinvestments.
 revenue.py: browse revenue.
+launch.py: launch libreoffice.
