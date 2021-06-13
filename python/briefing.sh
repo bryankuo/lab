@@ -47,5 +47,7 @@ then
     python3 news.py $1
     python3 gossip.py $1
     python3 float_trend.py $1
+    python3 profile.py $1
+    python3 gossip_search.py $1
 fi
 exit 0

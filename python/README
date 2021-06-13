@@ -30,3 +30,9 @@ branch.py: browsing broker branch transactions.
 reinvestments.py: browse reinvestments.
 revenue.py: browse revenue.
 launch.py: launch libreoffice.
+briefing.sh: redirect overview.sh output to datafiles.
+float_trend.py: launch trend of floating shares.
+money_flow.sh: trigger get_weighted_index.py
+get_weighted_index.py: parse sector performance from pchome stock.
+profile.py: launch google search result of the ticker.
+gossip_search.py: launch google recent year gossip search result.
