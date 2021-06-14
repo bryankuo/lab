@@ -3,12 +3,14 @@
 # python3 transaction.py filename
 # return 0: success
 # listed only
+# input bsContent_9904.html
+# output 9904.txt colon seperated file for soffice input
+# launch by soffice calc
 
 import sys
 from bs4 import BeautifulSoup
 
 filename = sys.argv[1]
-
 with open(filename, 'r') as f:
     contents = f.read()
     soup = BeautifulSoup(contents, 'html.parser')
@@ -27,21 +29,28 @@ for table in tables:
             new_table.extend(tmp_table)
         n_table += 1
     counter += 1
+
+print( \
+    'seq:', \
+    'broker:', \
+    'price:', \
+    '#buy:', \
+    '#sell' )
+
 for tr in new_table:
     tds    = tr.find_all('td')
     seq    = int(tds[0].text.strip())
     broker = tds[1].text.strip()
     if ( 4 < len(broker) ):
         broker_full = broker
-    else:
-        broker = broker_full
+    broker = broker_full
     price  = float(tds[2].text.strip())
     bid    = tds[3].text.strip()
     ask    = tds[4].text.strip()
     print( \
-        format(seq, '04d'), \
-        format(broker, '10s'), \
-        format(price, '>4.2f'), \
-        format(bid, '>10s'), \
+        format(seq, '04d'), ':', \
+        format(broker), ':', \
+        format(price, '>4.2f'), ':', \
+        format(bid, '>10s'), ':', \
         format(ask, '>10s') )
 sys.exit(0)

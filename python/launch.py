@@ -16,6 +16,6 @@ import os, sys, subprocess
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc 9904.txt
 # utf-8
-subprocess.Popen(["/Applications/LibreOffice.app/Contents/MacOS/soffice", "9904.txt"])
+subprocess.Popen(["/Applications/LibreOffice.app/Contents/MacOS/soffice", "--calc", "9904.txt"])
 
 sys.exit(0)
