@@ -5,6 +5,7 @@
 
 import os, sys, subprocess
 
+
 # subprocess.call(['soffice', '--headless', '--convert-to', 'txt:Text', 'document_to_convert.doc'])
 
 # print(os.getcwd())
@@ -16,6 +17,8 @@ import os, sys, subprocess
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc 9904.txt
 # utf-8
-subprocess.Popen(["/Applications/LibreOffice.app/Contents/MacOS/soffice", "--calc", "9904.txt"])
+filename = sys.argv[1]
+# subprocess.Popen(["/Applications/LibreOffice.app/Contents/MacOS/soffice", "--calc", "9904.txt"])
+subprocess.Popen(["/Applications/LibreOffice.app/Contents/MacOS/soffice", "--calc", filename])
 
 sys.exit(0)

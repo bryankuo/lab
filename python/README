@@ -7,7 +7,7 @@ volume_otc.py: scrap otc volume.
 overview.sh: overview of a ticker.
 range52week.py: get 52 week range.
 range52week_cmp.sh: compare 52 week range between tickers.
-t50_component.py: scrap T50 component,
+t50_component.py: scrap T50 components,
 margin_ratio.py: get margin ratio for a ticker.
 margin_ratio_cmp.sh: compare margin ration between tickers.
 capital.py: get capital of a ticker.
@@ -36,3 +36,5 @@ money_flow.sh: trigger get_weighted_index.py
 get_weighted_index.py: parse sector performance from pchome stock.
 profile.py: launch google search result of the ticker.
 gossip_search.py: launch google recent year gossip search result.
+msci_components.py: scrap MSCI TAIEX components from histock.
+msci_components.sh: scrap and launch libreoffice.
