@@ -337,6 +337,27 @@ $(document).ready(function() {
 	    "https://mops.twse.com.tw/mops/web/t57sb01_q1?co_id="+ticker;
 	    var w = window.open(url, "_blank", "");
 	});
+	$('#fund').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://fubon-ebrokerdj.fbs.com.tw" +
+		"/z/zc/zc0/zc07/zc07_" + ticker + ".djhtm";
+	    var w = window.open(url, "_blank", "");
+	});
+	$('#qfiis').click(function () {
+	    var ticker = $('#ticker').val();
+	    var today = new Date();
+	    var dd = today.getDate();
+	    var mm = today.getMonth()+1;
+	    var yyyy = today.getFullYear();
+	    var today_s = yyyy.toString() +
+		mm.toLocaleString('en-US',
+		    {minimumIntegerDigits: 2, useGrouping:false}) +
+		dd.toString();
+	    var url = "https://www.twse.com.tw/fund/MI_QFIIS?" +
+		"response=html&date=" + today_s + "&selectType=ALLBUT0999";
+	    var w = window.open(url, "_blank", "");
+	});
+
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
 		var url =
@@ -397,7 +418,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/06/26</P>
+   <P>modified on 2021/06/27</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -659,11 +680,20 @@ function click_return() {
 	</td>
     </tr>
     <tr>
-	<td width="10%">
+	<td colspan="2" width="20%">
 	    <a target="_blank"
 		id = "institute"
 		href="https://www.wantgoo.com/stock/9904/institutional-investors/trend"
 		onclick="return click_return();" >法人持股明細</a>
+	    <a target="_blank"
+		id = "qfiis"
+		href="https://www.twse.com.tw/fund/MI_QFIIS?response=html&date=20210625&selectType=ALLBUT0999"
+		onclick="return click_return();">外資持股明細</a>
+	    <a target="_blank"
+		id = "fund"
+		href="https://fubon-ebrokerdj.fbs.com.tw/z/zc/zc0/zc07/zc07_2303.djhtm"
+		onclick="return click_return();">(投信)基金持股明細</a>
+	    自營商持股明細
 	</td>
 	<td width="10%">
 	    <a target="_blank"
@@ -682,12 +712,6 @@ function click_return() {
 		id = "weighting"
 		href="https://www.taifex.com.tw/cht/9/futuresQADetail"
 		onclick="return click_return();" >市值比重</a>
-	</td>
-	<td width="10%">
-	    <a target="_blank"
-		id = ""
-		href="https://www.sitca.org.tw/ROC/Industry/IN2630.aspx?pid=IN22601_05"
-		onclick="">(反查)基金投資明細</a>
 	</td>
     </tr>
     <tr>
