@@ -245,6 +245,11 @@ $(document).ready(function() {
 	    var url = "https://histock.tw/stock/" + ticker + "/財務報表";
 	    var w1 = window.open(url, "_blank", "");
 	});
+	$('#f_ratio').click(function () {
+	    var ticker = $('#ticker').val();
+	    var url = "https://goodinfo.tw/StockInfo/StockFinDetail.asp?RPT_CAT=XX_M_QUAR_ACC&STOCK_ID="+ticker;
+	    var w1 = window.open(url, "_blank", "");
+	});
 	$('#breaking_news').click(function () {
 	    var ticker = $('#ticker').val();
 	    var url = "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_"
@@ -418,7 +423,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/07/02</P>
+   <P>modified on 2021/07/05</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -478,6 +483,11 @@ function click_return() {
 		id = "f_statements"
 		href="https://histock.tw/stock/3105/財務報表"
 		onclick="return click_return();" >財務報表(Histock)</a>
+	    <a target="_blank"
+		id = "f_ratio"
+		href="https://goodinfo.tw/StockInfo/StockFinDetail.asp?RPT_CAT=XX_M_QUAR_ACC&STOCK_ID=6214"
+		onclick="return click_return();" >財務比率表</a>
+
 	</td>
 	<td width="20%">
 	    <a target="_blank"
