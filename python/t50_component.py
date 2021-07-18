@@ -18,6 +18,9 @@ from selenium import webdriver
 # from selenium.webdriver.support import expected_conditions as EC
 
 browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
+if ( browser is None ):
+    print("make sure safari automation enabled")
+    sys.exit(3)
 browser.get("https://www.yuantaetfs.com/#/FundWeights/1066")
 time.sleep(10) # wait until page fully loaded
 # stockweights
@@ -33,13 +36,11 @@ if ( len(rows) <= 0 ):
 for row in rows:
     tds = row.select('td')
     if ( 0 < len(tds) ):
-        ticker = tds[0].text.strip()
-        name = tds[1].text.strip()
+        tkr_name = tds[0].text.strip() + tds[1].text.strip()
         weight = tds[2].text.strip()
         shares = tds[3].text.strip()
     print( \
-        ticker, ":", \
-        name, ":", \
+        tkr_name, ":", \
         weight, ":", \
         shares )
 
