@@ -39,4 +39,4 @@ gossip_search.py: launch google recent year gossip search result.
 msci_components.py: scrap MSCI TAIEX components from histock.
 msci_components.sh: scrap and launch libreoffice.
 rank.sh: gather market value, t50, and msci rank together.
-merge.py: mix 3 output files.
+merge.py: mix 3 output files then open libreoffice.
