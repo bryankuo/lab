@@ -11,5 +11,9 @@ python3 merge.py \
     datafiles/t50.txt datafiles/msci.txt \
     > datafiles/merge.txt
 echo "open..."
+# python3 merge.py \
+#    datafiles/top100_market_value.txt \
+#    datafiles/t50.txt datafiles/msci.txt \
+#    datafiles/merge.txt > datafiles/merge.txt;\
 python3 launch.py datafiles/merge.txt
 exit 0

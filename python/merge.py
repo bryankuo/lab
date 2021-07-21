@@ -13,10 +13,12 @@ def open_and_parse(lines, fname):
     return 0
 
 title = \
-    ['市值排名', '代號', '資本', '台股權值', '台灣50排名', 'MSCI排名']
+    ['代號', '資本', '台股權值', '市值排名', '台灣50排名', \
+    'MSCI排名', '中100排名']
 market_values = []
 t50_components  = []
 msci_components = []
+m100_components = []
 
 def main():
     open_and_parse(market_values, sys.argv[1])
@@ -52,12 +54,21 @@ def main():
                 break
             index += 1
         x.append(msci_rank)
-    for i in range(len(title)):
-        print(title[i], end=':')
-    print("")
+
+    print(title[0], end=":")
+    print(title[1], end=":")
+    print(title[2], end=":")
+    print(title[3], end=":")
+    print(title[4], end=":")
+    print(title[5], end=":")
+    print(title[6], end="\n")
+
     for i in range(len(market_values)):
-        for j in range(len(market_values[i])):
-            print(market_values[i][j], end=':')
-        print("")
+        print(market_values[i][1], end=':')
+        print(market_values[i][2], end=':')
+        print(market_values[i][3], end=':')
+        print(market_values[i][0], end=':')
+        print(market_values[i][4], end=':')
+        print(market_values[i][5], end='\n')
 if __name__ == "__main__":
 	main()
