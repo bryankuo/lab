@@ -18,11 +18,17 @@ from bs4 import BeautifulSoup
 # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcr/zcr_3105.djhtm
 
 ticker = sys.argv[1]
-url = 'http://5850web.moneydj.com/z/zc/zcx/zcxNew_' + ticker + '.djhtm'
+url = 'https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcr/zcr_' + ticker + '.djhtm'
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
-answer = soup.findAll('table')[3].find_all('tr')[7].find_all('td')[5].text
-if ( answer is None ):
+table = soup.find("table", {"id": "oMainTable"})
+if ( table is None ):
+    print('table not found')
     sys.exit(1)
-print(ticker + " beta: " + answer)
+# print(table.prettify())
+quarters = table.find_all('tr')[2].text
+print(quarters)
+'''
+answer = soup.findAll('table')[3].find_all('tr')[7].find_all('td')[5].text
+'''
 sys.exit(0)

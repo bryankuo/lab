@@ -40,6 +40,7 @@ msci_components.py: scrap MSCI TAIEX components from histock.
 msci_components.sh: scrap and launch libreoffice.
 rank.sh: gather market value, t50, and msci rank together.
 merge.py: mix 3 output files then open libreoffice.
+gpm.py: scrap GPM/OPM from pages,
 gpm_cmp.sh: compare ticker Gross Profit Margin with competiors.
 get_listed.py: get listed tickers from TAIEX to file.
 get_listed.sh: get 3 types of listed tickers.
