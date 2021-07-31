@@ -45,3 +45,5 @@ gpm_cmp.sh: compare ticker Gross Profit Margin with competiors.
 get_listed.py: get listed tickers from TAIEX to file.
 get_listed.sh: get 3 types of listed tickers.
 annual_report.py: browse latest annual report.
+simple_plot.py: simple matplotlib example.
+correlation.py: correlating 2 or more US tickers
