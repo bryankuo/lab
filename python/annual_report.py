@@ -20,3 +20,6 @@ url = "https://doc.twse.com.tw/server-java/t57sb01?" + \
     "step=1&colorchg=1&co_id="+ticker+"&year="+yr+"&mtype=F&"
 webbrowser.open(url)
 sys.exit(0)
+
+# quarterly report:
+# https://doc.twse.com.tw/server-java/t57sb01?step=1&colorchg=1&co_id=6189&year=109&seamon=2&mtype=A&
