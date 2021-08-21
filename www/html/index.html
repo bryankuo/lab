@@ -151,11 +151,11 @@ $(document).ready(function() {
 		= "https://www.cmoney.tw/finance/f00031.aspx?s=" + ticker;
 	    var w1 = window.open(url1, "_blank", "");
 	});
-	$('#announce').click(function () {
+	/*$('#announce').click(function () {
 	    var ticker = $('#ticker').val();
 	    var url1 = "https://mops.twse.com.tw/mops/web/t146sb05";
 	    var w1 = window.open(url1, "_blank", "");
-	});
+	});*/
 	$('#segments').click(function () {
 	    var ticker = $('#ticker').val();
 	    var url1 = "https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm";
@@ -423,7 +423,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/08/12</P>
+   <P>modified on 2021/08/21</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -784,10 +784,11 @@ function click_return() {
     </tr>
    <tr>
 	<td width="20%">
+	    <!-- // TODO: python POST -->
 	    <a target="_blank"
-		    id = "announce"
-		    href=""
-		    onclick="return click_return();" >重大訊息</a>
+		id = "announce"
+		href="https://mops.twse.com.tw/mops/web/t146sb10"
+		onclick="" >公開資訊觀測站公告查詢</a>
 	</td>
 	<td width="20%">
 	    <a target="_blank"
