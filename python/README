@@ -52,3 +52,4 @@ looping.sh: looping listed companies, ditch inefficient shell looping.
 looping.py: looping listed companies,
 looping_activity.py: looping listed companies, fetch activity.
 looping_activity.sh: looping company activity by type.
+announcement.py: launch TSEC announcement,
