@@ -53,3 +53,8 @@ looping.py: looping listed companies,
 looping_activity.py: looping listed companies, fetch activity.
 looping_activity.sh: looping company activity by type.
 announcement.py: launch TSEC announcement,
+datafiles/clusters: a cluster of tickers for further comparison,
+datafiles/[ticker].txt: output of overview.sh,
+datafiles/listed_2.txt: TAIEX tickers,
+datafiles/listed_4.txt: TPEX tickers,
+datafiles/listed_5.txt: TPEX otc tickers,
