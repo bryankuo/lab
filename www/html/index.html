@@ -291,6 +291,8 @@ $(document).ready(function() {
 	$('#yahoo_quote').click(function () {
 	    var ticker = $('#us_ticker').val();
 	    var url = "https://finance.yahoo.com/quote/" + ticker + "/";
+	    if ( !ticker || ticker.length === 0 )
+		var url = https://finance.yahoo.com/lookup";
 	    var w = window.open(url, "_blank", "");
 	});
 	$('#ticker').bind('input', function () {
