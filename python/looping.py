@@ -8,7 +8,7 @@ from activity import print_header, print_body
 
 # print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 if len(sys.argv) < 3:
-    print("illegal # of arguments")
+    print("looping.py [list_type] [task]")
     sys.exit(-1)
 
 list_type = sys.argv[1]
