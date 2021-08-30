@@ -11,12 +11,12 @@ def print_body(ticker):
     from bs4 import BeautifulSoup
     # source 1
     # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcl/zcl.djhtm?a=2303&b=2
-    # url = 'https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcl/zcl.djhtm?' + \
-    #    'a=' + ticker + '&b=2'
+    url = 'https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcl/zcl.djhtm?' + \
+        'a=' + ticker + '&b=2'
     # source 2 ( interchangable )
     # http://jsjustweb.jihsun.com.tw/z/zc/zcl/zcl.djhtm?a=5820&b=2
-    url = 'http://jsjustweb.jihsun.com.tw/z/zc/zcl/zcl.djhtm?a=' + \
-        ticker + '&b=2'
+    # url = 'http://jsjustweb.jihsun.com.tw/z/zc/zcl/zcl.djhtm?a=' + \
+    #     ticker + '&b=2'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     amounts = soup.find_all("tr", {"id": "oScrollFoot"})[0].find_all('td')

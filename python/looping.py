@@ -5,12 +5,13 @@
 
 import sys, datetime
 from activity import print_header, print_body
+# from pe import print_header1, print_body1
 
 # print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 if len(sys.argv) < 3:
     print("looping.py [list_type] [task]")
     sys.exit(-1)
-
+# // TODO: support type 5
 list_type = sys.argv[1]
 task = sys.argv[2]
 
@@ -27,11 +28,19 @@ fname = "datafiles/listed_" + list_type + ".txt"
 def do_operation(ticker):
     if task == "activity":
         print_body(ticker)
+    elif task == "pe":
+        # from pe import print_header, print_body
+        # pe.print_body1(ticker)
+        print("TBD")
     else:
         print(ticker+", "+task)
 
 if task == "activity":
     print_header()
+
+if task == "pe":
+    # pe.print_header1()
+    print("TBD")
 
 line_count = 0
 i = 0
