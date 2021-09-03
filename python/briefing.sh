@@ -43,7 +43,6 @@ then
     python3 revenue.py $1
     python3 realtime_technical.py $1
     python3 institution_holdings.py $1
-    python3 retail_traders.py $1
     python3 technical.py $1
     python3 branch.py $1
     python3 news.py $1
@@ -51,5 +50,6 @@ then
     python3 float_trend.py $1
     python3 profile.py $1
     python3 gossip_search.py $1
+    python3 announcement.py $1
 fi
 exit 0
