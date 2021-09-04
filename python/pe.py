@@ -3,10 +3,10 @@
 # python3 pe.py [ticker]
 # return 0: success
 
-def print_header1():
-    print("代號:PE:52w高:52w低:同業平均")
+def print_header():
+    print("代號:PER:52w高:52w低:同業平均")
 
-def print_body1(ticker):
+def print_body(ticker):
     import requests
     from bs4 import BeautifulSoup
     url = 'http://5850web.moneydj.com/z/zc/zcx/zcxNew_' + ticker + '.djhtm'
@@ -34,5 +34,5 @@ if __name__ == "__main__":
     import sys, requests
     from bs4 import BeautifulSoup
     ticker = sys.argv[1]
-    print_header1()
-    print_body1(ticker)
+    print_header()
+    print_body(ticker)

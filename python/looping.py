@@ -4,8 +4,10 @@
 # return 0: success
 
 import sys, datetime
+
 from activity import print_header, print_body
-# from pe import print_header1, print_body1
+from pe import print_header as print_header_per, \
+    print_body as print_body_per
 
 # print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 if len(sys.argv) < 3:
@@ -28,20 +30,21 @@ fname = "datafiles/listed_" + list_type + ".txt"
 def do_operation(ticker):
     if task == "activity":
         print_body(ticker)
-    elif task == "pe":
-        # from pe import print_header, print_body
-        # pe.print_body1(ticker)
-        print("TBD")
+    elif task == "per":
+        print_body_per(ticker)
     else:
         print(ticker+", "+task)
 
-if task == "activity":
-    print_header()
+def print_task_header():
+    if task == "activity":
+        print_header()
+    elif task == "per":
+        print_header_per()
+        # // TODO: polymorphizm
+    else:
+        print("ph TBD 2")
 
-if task == "pe":
-    # pe.print_header1()
-    print("TBD")
-
+print_task_header()
 line_count = 0
 i = 0
 myfile = open(fname, "r")
