@@ -5,7 +5,7 @@ volume.sh: caller of volume*.py file.
 volume.py: scrap listed volume.
 volume_otc.py: scrap otc volume.
 overview.sh: overview of a ticker.
-range52week.py: get 52 week range.
+range52week.py: get 52 week range,
 range52week_cmp.sh: compare 52 week range between tickers.
 t50_component.py: scrap T50 components via selenium.
 margin_ratio.py: get margin ratio for a ticker.
@@ -42,8 +42,8 @@ rank.sh: gather market value, t50, and msci rank together.
 merge.py: mix 3 output files then open libreoffice.
 gpm.py: scrap GPM/OPM from pages,
 gpm_cmp.sh: compare ticker Gross Profit Margin with competiors.
-get_listed.py: get listed tickers from TAIEX to file.
-get_listed.sh: get 3 types of listed tickers.
+get_listed.py: get listed tickers from TAIEX to file,
+get_listed.sh: get 3 types of listed tickers,
 annual_report.py: browse latest annual report.
 simple_plot.py: simple matplotlib example.
 correlation.py: correlating 2 or more US tickers,
@@ -57,4 +57,6 @@ datafiles/[ticker].txt: output of overview.sh,
 datafiles/listed_2.txt: TAIEX tickers.
 datafiles/listed_4.txt: TPEX tickers.
 datafiles/listed_5.txt: TPEX otc tickers.
-pe.py: get PER of a ticker,
+pe.py: get PER of a ticker.
+range52w.py: get quote, name, 52w range, and percent% of a ticker.
+status.sh: generate activity, per, range52w by listed type.

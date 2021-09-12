@@ -34,9 +34,20 @@ file_name = 'datafiles/listed_' + mode + '.txt'
 with open(file_name, 'w') as the_file:
     for tr in rows:
         symbol = tr.find_all('td')[0].text.split()[0]
+        # name = tr.find_all('td')[0].text.split()[1]
+        # array = tr.find_all('td')[0].text.strip().split(' ')[0]
+            # .split(' ')[0]
+            # .split(' ')
+            # .renderContents()
+            # .decode("Big5")
+            #.split(' ')
+        # print(name)
+        # symbol = tr.find_all('td')[0].text.split(' ')[0]
+        # name = array[1]
         if len(symbol) == 4 and symbol.isdigit():
             # print(symbol)
             the_file.write(symbol+'\n')
+            # the_file.write(symbol+":"+name+'\n')
             count += 1
 the_file.close()
 n_rows = str(count)

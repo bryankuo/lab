@@ -30,6 +30,7 @@ month = the_day.strftime("%m")
 # https://mops.twse.com.tw/mops/web/t05st01
 # https://mops.twse.com.tw/mops/web/t51sb10_q1
 # https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id=1101&step=1&firstin=false&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year=110&month1=0&begin_day=1&end_day=1;
+# https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id=8478&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year=110&month1=0&begin_day=1&end_day=1
 url = 'https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id='+ticker+'&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year='+yr+'&month1=0&begin_day=1&end_day=1';
 # print(url)
 # form1.action='/mops/web/ajax_t51sb10';ajax1(this.form,'table01');

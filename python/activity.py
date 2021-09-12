@@ -4,7 +4,7 @@
 # return 0: success
 
 def print_header():
-    print("代號:外資:投信:自營商:合計")
+    print("代號:外資:投信:自營商:近10日合計")
 
 def print_body(ticker):
     import requests
