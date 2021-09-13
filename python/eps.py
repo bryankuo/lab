@@ -54,9 +54,10 @@ def print_header(ticker, soup, ofile):
             quarter = ths[i].text
             ofile.write(':' + quarter)
         ofile.write('\n')
+        ofile.flush()
     return name
 
-def print_body(ticker, name, soup):
+def print_body(ticker, name, soup, ofile):
     num_q_available = 10
     tds = soup.find("div", {"id": "divFinDetail"}) \
         .find_all('tr')[7] \
@@ -64,14 +65,23 @@ def print_body(ticker, name, soup):
     if ( name is None ):
         title = soup.find("meta",  {"name":"description"})
         name = title["content"].split(' ')[0].split(')')[1].strip()
-    print(ticker, end=':')
-    print(name, end=':')
-    for i in range(1, len(tds)):
-        eps = float(tds[i].text)
-        if ( i < num_q_available ):
-            print("{:>.02f}".format(eps), end=':')
-        else:
-            print("{:>.02f}".format(eps), end='\n')
+    if ( ofile is None ):
+        print(ticker, end=':')
+        print(name, end=':')
+        for i in range(1, len(tds)):
+            eps = float(tds[i].text)
+            if ( i < num_q_available ):
+                print("{:>.02f}".format(eps), end=':')
+            else:
+                print("{:>.02f}".format(eps), end='\n')
+    else:
+        ofile.write(ticker)
+        ofile.write(':' + name)
+        for i in range(1, len(tds)):
+            eps = tds[i].text
+            ofile.write(':' + eps)
+        ofile.write('\n')
+        ofile.flush()
 
 if __name__ == "__main__":
     import sys, requests

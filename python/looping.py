@@ -3,7 +3,7 @@
 # python3 looping.py [list_type] [task] [input_file] [output_file]
 # return 0: success
 
-import sys, datetime
+import sys, datetime, random, time
 
 from selenium import webdriver
 from activity import print_header, print_body
@@ -41,7 +41,7 @@ in_fname = sys.argv[3]
 if ( in_fname is None ):
     in_fname = "datafiles/listed_" + list_type + ".txt"
 
-def do_operation(ticker):
+def do_operation(ticker, ofile):
     if task == "activity":
         print_body(ticker)
     elif task == "per":
@@ -49,13 +49,17 @@ def do_operation(ticker):
     elif task == "range52w":
         print_body_range52w(ticker)
     elif task == "eps":
-        # // TODO: frequency tuning
-        time_wait_sec = andom.randrange(10, 120)
-        print("wait " + time_wait_sec)
+        # frequency tuning
+        # low profile, don't do this at night,
+        # cover by market trading hours
+        time_wait_sec = random.randint(-60, 60) + 60 * 5
+        print("wait " + str(time_wait_sec) + " seconds,")
         time.sleep(time_wait_sec)
         soup = get_from_source_eps(ticker)
         name = None
-        print_body_eps(ticker, name, soup)
+        print_body_eps(ticker, name, soup, ofile)
+        print('Timestamp: {:%Y-%m-%d %H:%M:%S}' \
+            .format(datetime.datetime.now()))
     else:
         print(ticker+", "+task)
 
@@ -68,7 +72,7 @@ def print_task_header(ofile):
     elif task == "range52w":
         print_header_range52w()
     elif task == "eps":
-        mockup_ticker = "1101"
+        mockup_ticker = "2481"
         soup = get_from_source_eps(mockup_ticker)
         print_header_eps(mockup_ticker, soup, ofile)
     else:
@@ -86,11 +90,11 @@ i = 0
 myfile = open(in_fname, "r")
 ticker = myfile.readline()
 while ticker:
-    do_operation(ticker.strip())
+    do_operation(ticker.strip(), ofile)
     line_count += 1
     i += 1
     ticker = myfile.readline()
 myfile.close()
 ofile.close()
-# print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
+print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 sys.exit(0)
