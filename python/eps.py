@@ -92,4 +92,4 @@ if __name__ == "__main__":
     ticker = sys.argv[1]
     soup = get_from_source(ticker)
     name = print_header(ticker, soup, None)
-    print_body(ticker, name, soup)
+    print_body(ticker, name, soup, None)

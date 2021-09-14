@@ -12,6 +12,7 @@ python3 beta.py $1
 python3 range52week.py $1
 python3 margin_ratio.py $1
 python3 activity.py $1
+python3 eps.py $1
 
 echo "checking volume..."
 if [[ $CO_TYPE -eq 0 ]]
