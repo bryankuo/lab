@@ -3,10 +3,14 @@
 # python3 range52w.py [ticker]
 # return 0: success
 
-def print_header():
+def print_header(ticker, ofile):
     print("代號:價格:52w低價:低距％:52w高價:高距％")
+    if ( ofile ):
+        ofile.write("代號:價格:52w低價:低距％:52w高價:高距％")
+        ofile.write('\n')
+        ofile.flush()
 
-def print_body(ticker):
+def print_body(ticker, ofile):
     import requests
     from bs4 import BeautifulSoup
     # source 1
@@ -38,10 +42,19 @@ def print_body(ticker):
     print("{:>5.02f}".format(p_low52)+"%", end=':')
     print("{:>5.02f}".format(high52), end=':')
     print("{:>5.02f}".format(p_high52)+"%", end='\n')
+    if ( ofile ):
+        ofile.write(ticker)
+        ofile.write(':' + "{:>5.02f}".format(quote))
+        ofile.write(':' + "{:>5.02f}".format(low52))
+        ofile.write(':' + "{:>5.02f}".format(p_low52)+"%")
+        ofile.write(':' + "{:>5.02f}".format(high52))
+        ofile.write(':' + "{:>5.02f}".format(p_high52)+"%")
+        ofile.write('\n')
+        ofile.flush()
 
 if __name__ == "__main__":
     import sys, requests
     from bs4 import BeautifulSoup
     ticker = sys.argv[1]
-    print_header()
-    print_body(ticker)
+    print_header(ticker, None)
+    print_body(ticker, None)

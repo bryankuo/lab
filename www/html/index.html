@@ -60,10 +60,6 @@ table, th, td {
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    function openSummaryPage(ticker) {
-	url = "http://localhost/summary.html?ticker="+ticker;
-	var w = window.open(url, "_blank", "");
-    }
     function openSummaryWindows(ticker) {
 	$("#overview").trigger("click");
 
@@ -94,7 +90,6 @@ $(document).ready(function() {
     }
     $('#summary').click(function () {
 	var ticker = $('#ticker').val();
-	// openSummaryPage(ticker);
 	openSummaryWindows(ticker);
     });
     $('#overview').click(function () {
@@ -364,6 +359,13 @@ $(document).ready(function() {
 		"response=html&date=" + today_s + "&selectType=ALLBUT0999";
 	    var w = window.open(url, "_blank", "");
 	});
+	$('#etfcomp').click(function () {
+	    var etfid = $('#eftid').val();
+		alert(etfid);
+	    var url = "https://www.moneydj.com/ETF/X/Basic/" +
+		"Basic0007A.xdjhtm?etfid=" + etfid + ".TW";
+	    var w = window.open(url, "_blank", "");
+	});
 
 	$('#showMSCIlast10').click(function () {
 		// data source url 1
@@ -425,7 +427,7 @@ function click_return() {
 </script>
 <BODY>
    <H1>My own investing tools</H1>
-   <P>modified on 2021/09/12</P>
+   <P>modified on 2021/09/17</P>
    <p><h2> Taiwan Stock Exhanges </h2></p>
 
 <table class="ex1" id="tw" border="1">
@@ -1058,6 +1060,15 @@ function click_return() {
 	    <a target="_blank"
 		href="https://goo.gl/ClkEcE">
 		元大中型100 成分股</a>
+	    	    <input type="text" name="lname" id="ticker" value="">
+
+	</td>
+	<td width="20%">
+	    <a target="_blank"
+		id = "etfcomp"
+		href=""
+		onclick="return click_return();" >ETF</a>
+	    <input type="text" id="etfid" value="" size="5">
 	</td>
     </tr>
     <tr>
@@ -1220,6 +1231,11 @@ function click_return() {
 		onclick="" >全球龍頭股(鉅亨)</a>
 	</td>
 	<td width="15%">
+	    <a target="_blank"
+		id = ""
+		href="https://invest.cnyes.com/usstock/detail/nvax/information/profile"
+		onclick="" >基本資料</a>
+
 	</td>
 	<td width="10%">
 	    <a target="_blank"
