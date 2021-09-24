@@ -4,14 +4,17 @@
 # return 0: success
 
 import sys, datetime, random, time
-
 from selenium import webdriver
+
 from activity import print_header, print_body
+
 from pe import print_header as print_header_per, \
     print_body as print_body_per
+
 from range52w import \
     print_header as print_header_range52w, \
     print_body   as print_body_range52w
+
 from eps import \
     get_from_source as get_from_source_eps, \
     print_header as print_header_eps, \
@@ -35,7 +38,7 @@ if ( task not in task_available ):
     sys.exit(-2)
 
 def do_operation(ticker, ofile):
-    print("ticker " + ticker)
+    print("ticker " + ticker + " " + task)
     if task == "activity":
         print_body(ticker, ofile)
     elif task == "per":
@@ -46,7 +49,7 @@ def do_operation(ticker, ofile):
         # frequency tuning
         # low profile, don't do this at night,
         # cover by market trading hours
-        time_wait_sec = random.randint(-60, 60) + 60 * 4
+        time_wait_sec = random.randint(-60, 60) + 60 * 2
         print("wait " + str(time_wait_sec) + " seconds,")
         time.sleep(time_wait_sec)
         soup = get_from_source_eps(ticker)
@@ -75,7 +78,7 @@ out_fname = sys.argv[3]
 if ( out_fname is None ):
     print("output filename not specified.")
 else:
-    ofile = open(out_fname, "a")
+    ofile = open(out_fname, "w")
 
 print_task_header(ofile)
 line_count = 0

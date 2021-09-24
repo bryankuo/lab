@@ -4,11 +4,9 @@
 # return 0: success
 
 def print_header(ticker, ofile):
-    if ( ofile is None ):
-        print("代號:外資:投信:自營商:近5日合計")
-    else:
-        ofile.write("代號:外資:投信:自營商:近5日合計")
-        ofile.write('\n')
+    print("代號:外資:投信:自營商:近5日合計")
+    if ( ofile ):
+        ofile.write("代號:外資:投信:自營商:近5日合計" + "\n")
         ofile.flush()
 
 def print_body(ticker, ofile):
@@ -32,14 +30,12 @@ def print_body(ticker, ofile):
     fund = amounts[2].text.strip()
     retail = amounts[3].text.strip()
     total = amounts[4].text.strip()
-
-    if ( ofile is None ):
-        print(ticker, end=':')
-        print(qdi, end=':')
-        print(fund, end=':')
-        print(retail, end=':')
-        print(total, end='\n')
-    else:
+    print(ticker, end=':')
+    print(qdi, end=':')
+    print(fund, end=':')
+    print(retail, end=':')
+    print(total, end='\n')
+    if ( ofile ):
         ofile.write(ticker)
         ofile.write(':' + qdi)
         ofile.write(':' + fund)

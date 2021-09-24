@@ -60,3 +60,4 @@ datafiles/listed_5.txt: TPEX otc tickers.
 pe.py: get PER of a ticker.
 range52w.py: get quote, name, 52w range, and percent% of a ticker.
 status.sh: generate activity, per, range52w by listed type.
+uno.py: libreoffice integration.

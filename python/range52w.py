@@ -6,8 +6,7 @@
 def print_header(ticker, ofile):
     print("代號:價格:52w低價:低距％:52w高價:高距％")
     if ( ofile ):
-        ofile.write("代號:價格:52w低價:低距％:52w高價:高距％")
-        ofile.write('\n')
+        ofile.write("代號:價格:52w低價:低距％:52w高價:高距％" + "\n")
         ofile.flush()
 
 def print_body(ticker, ofile):

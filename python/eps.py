@@ -38,16 +38,15 @@ def print_header(ticker, soup, ofile):
     ths = soup.find("div", {"id": "divFinDetail"}) \
         .find_all('tr')[0] \
         .find_all('th')
-    if ( ofile is None ):
-        print("代號", end=':')
-        print("公司", end=':')
-        for i in range(1, len(ths)):
-            quarter = ths[i].text
-            if ( i < num_q_available ):
-                print(quarter, end=':')
-            else:
-                print(quarter, end='\n')
-    else:
+    print("代號", end=':')
+    print("公司", end=':')
+    for i in range(1, len(ths)):
+        quarter = ths[i].text
+        if ( i < num_q_available ):
+            print(quarter, end=':')
+        else:
+            print(quarter, end='\n')
+    if ( ofile ):
         ofile.write("代號")
         ofile.write(':' + "公司")
         for i in range(1, len(ths)):
@@ -65,16 +64,15 @@ def print_body(ticker, name, soup, ofile):
     if ( name is None ):
         title = soup.find("meta",  {"name":"description"})
         name = title["content"].split(' ')[0].split(')')[1].strip()
-    if ( ofile is None ):
-        print(ticker, end=':')
-        print(name, end=':')
-        for i in range(1, len(tds)):
-            eps = float(tds[i].text)
-            if ( i < num_q_available ):
-                print("{:>.02f}".format(eps), end=':')
-            else:
-                print("{:>.02f}".format(eps), end='\n')
-    else:
+    print(ticker, end=':')
+    print(name, end=':')
+    for i in range(1, len(tds)):
+        eps = float(tds[i].text)
+        if ( i < num_q_available ):
+            print("{:>.02f}".format(eps), end=':')
+        else:
+            print("{:>.02f}".format(eps), end='\n')
+    if ( ofile ):
         ofile.write(ticker)
         ofile.write(':' + name)
         for i in range(1, len(tds)):

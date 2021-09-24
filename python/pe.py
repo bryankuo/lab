@@ -7,8 +7,7 @@ def print_header(ticker, ofile):
     if ( ofile is None ):
         print("代號:PER:52w高:52w低:同業平均")
     else:
-        ofile.write("代號:PER:52w高:52w低:同業平均")
-        ofile.write('\n')
+        ofile.write("代號:PER:52w高:52w低:同業平均" + "\n")
         ofile.flush()
 
 def print_body(ticker, ofile):
