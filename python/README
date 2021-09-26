@@ -37,7 +37,6 @@ get_weighted_index.py: parse sector performance from pchome stock.
 profile.py: launch google search result of the ticker.
 gossip_search.py: launch google recent year gossip search result.
 msci_components.py: scrap MSCI TAIEX components from histock.
-msci_components.sh: scrap and launch libreoffice.
 rank.sh: gather market value, t50, and msci rank together.
 merge.py: mix 3 output files then open libreoffice.
 gpm.py: scrap GPM/OPM from pages,

@@ -24,7 +24,7 @@ python3 launch.py $OUTF1
 python3 launch.py $OUTF2
 
 EPS=0
-if [[ $EPS-eq 1 ]]
+if [[ $EPS -eq 1 ]]
 then
     python3 looping.py $INPATH eps $OUTF3
     python3 launch.py $OUTF3

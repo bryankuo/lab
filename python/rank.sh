@@ -10,6 +10,8 @@ python3 merge.py \
     datafiles/top100_market_value.txt \
     datafiles/t50.txt datafiles/msci.txt \
     > datafiles/merge.txt
+DATE=`date '+%Y%m%d'`
+cp datafiles/merge.txt datafiles/merge.txt.$DATE
 echo "open..."
 # python3 merge.py \
 #    datafiles/top100_market_value.txt \
