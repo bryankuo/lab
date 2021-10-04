@@ -2,11 +2,11 @@
 python3 basic.py $1
 CO_TYPE=$?
 
-python3 capital.py $1
-if [[ $? -ne 0 ]]
-then
-    exit 0
-fi
+# python3 capital.py $1
+# if [[ $? -ne 0 ]]
+# then
+#    exit 0
+# fi
 
 python3 beta.py $1
 python3 range52week.py $1
