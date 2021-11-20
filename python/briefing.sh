@@ -51,6 +51,7 @@ then
     python3 float_trend.py $1
     python3 profile.py $1
     python3 gossip_search.py $1
+    python3 104_search.py $1
     python3 announcement.py $1
 fi
 exit 0

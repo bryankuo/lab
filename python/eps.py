@@ -15,7 +15,8 @@ def get_from_source(ticker):
     # url = "https://stock.wespai.com/p/21988"
     # source 3
     # https://goodinfo.tw/StockInfo/StockFinDetail.asp?RPT_CAT=XX_M_QUAR&QRY_TIME=20212&STOCK_ID=1227
-    url = "https://goodinfo.tw/StockInfo/StockFinDetail.asp?RPT_CAT=XX_M_QUAR&QRY_TIME=20212&STOCK_ID="+ticker
+    url = "https://goodinfo.tw/StockInfo/StockFinDetail.asp?" + \
+        "RPT_CAT=XX_M_QUAR&QRY_TIME=20213&STOCK_ID="+ticker
     browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
     if ( browser is None ):
         print("make sure safari automation enabled")
