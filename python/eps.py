@@ -16,13 +16,14 @@ def get_from_source(ticker):
     # source 3
     # https://goodinfo.tw/StockInfo/StockFinDetail.asp?RPT_CAT=XX_M_QUAR&QRY_TIME=20212&STOCK_ID=1227
     url = "https://goodinfo.tw/StockInfo/StockFinDetail.asp?" + \
-        "RPT_CAT=XX_M_QUAR&QRY_TIME=20213&STOCK_ID="+ticker
+        "RPT_CAT=XX_M_QUAR&QRY_TIME=20213" + \
+        "&STOCK_ID="+ticker
     browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
     if ( browser is None ):
         print("make sure safari automation enabled")
         sys.exit(3)
     browser.get(url)
-    time.sleep(7) # wait until page fully loaded
+    time.sleep(5) # wait until page fully loaded
     page = browser.page_source
     soup = BeautifulSoup(page, 'html.parser')
     browser.close()

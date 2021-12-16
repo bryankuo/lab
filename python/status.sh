@@ -31,6 +31,7 @@ fi
 EPS=0
 if [[ $EPS -eq 1 ]]
 then
+    echo "make sure safari dev. remote automation is on..."
     python3 looping.py $INPATH eps $OUTF3
     python3 launch.py $OUTF3
     ln -sf eps_$INFILE.$DATE eps_$INFILE

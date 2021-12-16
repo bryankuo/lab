@@ -31,4 +31,6 @@ url = "https://mops.twse.com.tw/mops/web/ajax_stapap1" + \
 webbrowser.open(url)
 # url = "https://mops.twse.com.tw/mops/web/t51sb10_q1"
 # "https://mops.twse.com.tw/mops/web/t05sr01_1#"
+
+# https://www.iqvalue.com/Frontend/stock/shareholding?stockId=1519
 sys.exit(0)

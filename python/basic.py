@@ -19,11 +19,12 @@ data = { \
     "co_id": ticker }
 response = requests.post(url, data)
 soup = BeautifulSoup(response.text, 'html.parser')
-answer = soup.findAll('span')[0].text
-if ( answer is None ):
+corp_name = soup.findAll('span')[0].text
+if ( corp_name is None ):
     sys.exit(1)
-co_type = re.search('\(([^)]+)', answer).group(1)
-print( ticker + ": " + answer)
+co_type = re.search('\(([^)]+)', corp_name).group(1)
+corp_name = corp_name.split('\n',1)[1]
+print( ticker + corp_name + ": " + co_type)
 if ( co_type == "上市公司" ):
     ticker_type = 0
 elif ( co_type == "上櫃公司" ):

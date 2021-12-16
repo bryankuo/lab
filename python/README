@@ -24,7 +24,7 @@ vprice.py: browse volme price distribution.
 transaction.py: parsing daily transaction by ticker symbol.
 fundamental.py: browsing fundamental.
 gossip.py: browsing gossip.
-news.py: browsing ticker news.
+news.py: browsing ticker news with keyword search.
 realtime_technical.py: browsing technical analysis with VWAP support.
 branch.py: browsing broker branch transactions.
 reinvestments.py: browse reinvestments.
@@ -60,3 +60,4 @@ pe.py: get PER of a ticker.
 range52w.py: get quote, name, 52w range, and percent% of a ticker.
 status.sh: generate activity, per, range52w by listed type.
 uno.py: libreoffice integration.
+revenue_yoy.py: launch revenue YoY.

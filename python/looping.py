@@ -49,7 +49,7 @@ def do_operation(ticker, ofile):
         # frequency tuning
         # low profile, don't do this at night,
         # cover by market trading hours
-        time_wait_sec = random.randint(-60, 60) + 60 * 2
+        time_wait_sec = random.randint(-30, 20) + 60 * 1
         print("wait " + str(time_wait_sec) + " seconds,")
         time.sleep(time_wait_sec)
         soup = get_from_source_eps(ticker)
