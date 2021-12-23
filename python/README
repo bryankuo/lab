@@ -61,3 +61,4 @@ range52w.py: get quote, name, 52w range, and percent% of a ticker.
 status.sh: generate activity, per, range52w by listed type.
 uno.py: libreoffice integration.
 revenue_yoy.py: launch revenue YoY.
+broker.py: launch 8 government bank brokerage.
