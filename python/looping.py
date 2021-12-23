@@ -37,8 +37,8 @@ if ( task not in task_available ):
     print("invalid task")
     sys.exit(-2)
 
-def do_operation(ticker, ofile):
-    print("ticker " + ticker + " " + task)
+def do_operation(ln, ticker, ofile):
+    print(f'{ln:04}' + " ticker " + ticker + " " + task)
     if task == "activity":
         print_body(ticker, ofile)
     elif task == "per":
@@ -80,17 +80,25 @@ if ( out_fname is None ):
 else:
     ofile = open(out_fname, "w")
 
-print_task_header(ofile)
-line_count = 0
-i = 0
-myfile = open(in_fname, "r")
-ticker = myfile.readline()
-while ticker:
-    do_operation(ticker.strip(), ofile)
-    line_count += 1
-    i += 1
+try:
+    print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
+    start_time = time.time()
+
+    print_task_header(ofile)
+    line_count = 0
+    i = 0
+    myfile = open(in_fname, "r")
     ticker = myfile.readline()
-myfile.close()
-ofile.close()
-print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
+    while ticker:
+        do_operation(line_count, ticker.strip(), ofile)
+        line_count += 1
+        i += 1
+        ticker = myfile.readline()
+finally:
+    myfile.close()
+    ofile.close()
+    print('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
+    elapsed_time = time.time() - start_time
+    print('It takes '+"{}".format(elapsed_time)+' seconds')
+
 sys.exit(0)
