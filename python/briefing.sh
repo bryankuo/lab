@@ -1,6 +1,11 @@
 #!/bin/bash
-python3 basic.py $1
-CO_TYPE=$?
+OUTPUT=($(python3 basic.py $1 | tr -d '[],'))
+echo ${OUTPUT[@]}
+CO_TYPE=${OUTPUT[2]}
+# trim prefix and suffix ( https://bit.ly/32vLLgj )
+CO_NAME=${OUTPUT[1]%\'}
+CO_NAME=${CO_NAME#\'}
+# // TODO: CO_NAME for keyword search
 
 # python3 capital.py $1
 # if [[ $? -ne 0 ]]
