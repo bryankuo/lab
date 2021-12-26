@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 news.py 2330
+# python3 web_search.py 2330
 # return 0: success
 
 import sys, requests, time, webbrowser

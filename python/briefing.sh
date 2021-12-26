@@ -41,7 +41,6 @@ echo "last update:" $TIMESTAMP
 BROWSING=1
 if [[ $BROWSING -eq 1 ]]
 then
-    python3 fundamental.py $1
     python3 annual_report.py $1
     python3 board.py $1
     python3 vprice.py $1
