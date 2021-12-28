@@ -43,6 +43,17 @@ cmoney_gossip = "https://www.cmoney.tw/follow/channel/stock-" + \
 share_outstanding = \
     "https://norway.twsthr.info/StockHolders.aspx?stock="+ticker
 
+moneydj_profile = \
+    "https://www.google.com/search?client=safari" + \
+    "&rls=en&q=moneydj+"+quote("財經百科")+"+"+ticker+"&ie=UTF-8&oe=UTF-8"
+
+pttstock_gossip = "https://www.google.com/search?q="+ticker+"+ptt+stock&client=safari&sxsrf=ALeKk02tz2-BrxlgznV37pUb3jBhfWDw8A:1623571437756&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwi1i8L2kpTxAhWrzIsBHeciAhQQpwV6BAgBECQ&biw=1440&bih=709"
+
+hr104_search = "https://www.google.com/search?q="+ticker+"+104&client=safari&rls=en&sxsrf=AOaemvJQ_3UVNBgOgvmw8LgOPjMQ6ukDmw%3A1637394407406&ei=56eYYZ__F-DR2roPua-g6A4&ved=0ahUKEwjfjorAuab0AhXgqFYBHbkXCO0Q4dUDCA0&uact=5&oq=6152+104&gs_lcp=Cgdnd3Mtd2l6EAM6CAgAEAcQChAeOgQIABAeOgYIABAIEB46CAgAEAgQBxAeOgIIJjoGCAAQBxAeOgUIABCRAjoFCAAQgAQ6CwguEIAEEMcBEK8BOggIABAHEAUQHkoECEEYAVD-BFiPKGC1KmgCcAB4AIABcYgBkwWSAQM3LjKYAQCgAQHAAQE&sclient=gws-wiz"
+
+revenue_yoy = \
+    "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_" + ticker + ".djhtm"
+
 management = ""
 urls = [ \
     fundamental, \
@@ -51,12 +62,16 @@ urls = [ \
     subsidiary, \
     ticker_news, \
     volume_profile, \
+    revenue_yoy, \
     google_news, \
     tech_chart, \
     institution_holdings, \
     hinet_technicals, \
     cmoney_gossip, \
+    pttstock_gossip, \
+    hr104_search, \
     share_outstanding, \
+    moneydj_profile, \
     management ]
 
 for url in urls:

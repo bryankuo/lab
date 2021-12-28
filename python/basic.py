@@ -19,7 +19,6 @@ data = { \
     "co_id": ticker }
 response = requests.post(url, data)
 soup = BeautifulSoup(response.text, 'html.parser')
-print(soup)
 corp_name = soup.findAll('span')[0].text
 if ( corp_name is None ):
     print('not listed.')
