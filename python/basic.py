@@ -19,8 +19,10 @@ data = { \
     "co_id": ticker }
 response = requests.post(url, data)
 soup = BeautifulSoup(response.text, 'html.parser')
+print(soup)
 corp_name = soup.findAll('span')[0].text
 if ( corp_name is None ):
+    print('not listed.')
     sys.exit(1)
 co_type = re.search('\(([^)]+)', corp_name).group(1)
 corp_name = corp_name.split('\n',1)[1]
