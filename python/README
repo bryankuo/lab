@@ -26,7 +26,6 @@ gossip.py: browsing gossip.
 news.py: browsing ticker news with keyword search.
 realtime_technical.py: browsing technical analysis with VWAP support.
 branch.py: browsing broker branch transactions.
-revenue.py: browse revenue.
 launch.py: launch libreoffice.
 briefing.sh: redirect overview.sh output to datafiles.
 float_trend.py: launch trend of floating shares.

@@ -10,4 +10,5 @@ do
     n_ticker=$(( $count + $n_ticker ))
 done
 echo $n_ticker "in total."
+ls -lt datafiles/listed_*.txt
 exit 0

@@ -45,9 +45,11 @@ def print_body(ticker, ofile):
         ofile.write(ticker)
         ofile.write(':' + "{:>5.02f}".format(quote))
         ofile.write(':' + "{:>5.02f}".format(low52))
-        ofile.write(':' + "{:>5.02f}".format(p_low52)+"%")
+        # ofile.write(':' + "{:>5.02f}".format(p_low52)+"%")
+        ofile.write(':' + "{:>5.02f}".format(p_low52))
         ofile.write(':' + "{:>5.02f}".format(high52))
-        ofile.write(':' + "{:>5.02f}".format(p_high52)+"%")
+        # ofile.write(':' + "{:>5.02f}".format(p_high52)+"%")
+        ofile.write(':' + "{:>5.02f}".format(p_high52))
         ofile.write('\n')
         ofile.flush()
 

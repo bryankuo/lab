@@ -18,9 +18,16 @@ google_news = "https://www.google.com/search?q="+ticker+"+新聞&client=safari&r
 
 subsidiary = "https://www.cmoney.tw/finance/f00031.aspx?s="+ticker
 
+revenue_mom = \
+    "https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID="+ticker
+
+groups = "https://thaubing.gcaa.org.tw/group/name/G"+ticker
+
 management = ""
 urls = [ \
     fundamental, \
+    revenue_mom, \
+    groups, \
     subsidiary, \
     ticker_news, \
     google_news, \
