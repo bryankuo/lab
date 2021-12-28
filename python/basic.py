@@ -17,27 +17,32 @@ data = { \
     "TYPEK2": "", "checkbtn": "", "queryName": "co_id", \
     "inputType": "co_id", "TYPEK": "all", \
     "co_id": ticker }
-response = requests.post(url, data)
-soup = BeautifulSoup(response.text, 'html.parser')
-corp_name = soup.findAll('span')[0].text
-if ( corp_name is None ):
+try:
+    response = requests.post(url, data)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    corp_name = soup.findAll('span')[0].text
+    # if ( corp_name is None ):
+    #     print('not listed.')
+    #    sys.exit(1)
+    co_type = re.search('\(([^)]+)', corp_name).group(1)
+    corp_name = corp_name.split('\n',1)[1]
+    if ( co_type == "上市公司" ):
+        ticker_type = 0
+    elif ( co_type == "上櫃公司" ):
+        ticker_type = 1
+    elif ( co_type == "興櫃公司" ):
+        ticker_type = 2
+    else:
+        ticker_type =3
+    has_cb = soup.findAll('table')[1] \
+        .find_all('tr')[1].find_all('td')[30].text
+    cb_issue = soup.findAll('table')[1] \
+        .find_all('tr')[1].find_all('th')[32].text
+    cb = has_cb + cb_issue
+    olist = [ ticker, corp_name, ticker_type, co_type, cb ]
+    print(olist)
+
+except (IndexError):
     print('not listed.')
-    sys.exit(1)
-co_type = re.search('\(([^)]+)', corp_name).group(1)
-corp_name = corp_name.split('\n',1)[1]
-if ( co_type == "上市公司" ):
-    ticker_type = 0
-elif ( co_type == "上櫃公司" ):
-    ticker_type = 1
-elif ( co_type == "興櫃公司" ):
-    ticker_type = 2
-else:
-    ticker_type =3
-has_cb = soup.findAll('table')[1] \
-    .find_all('tr')[1].find_all('td')[30].text
-cb_issue = soup.findAll('table')[1] \
-    .find_all('tr')[1].find_all('th')[32].text
-cb = has_cb + cb_issue
-olist = [ ticker, corp_name, ticker_type, co_type, cb ]
-print(olist)
+
 sys.exit(0)

@@ -54,7 +54,16 @@ hr104_search = "https://www.google.com/search?q="+ticker+"+104&client=safari&rls
 revenue_yoy = \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_" + ticker + ".djhtm"
 
+google_gm_image = \
+    "https://www.google.com/search?q=%22"+ \
+    ticker + "*%22+%22" + quote("總經理") + "%22&client=safari&rls=en&sxsrf=AOaemvJXeaXjO0UbVWkuEdDa9LoCtKikwA:1640721761933&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjl3q3upIf1AhU2yosBHTRcByMQ_AUoA3oECAEQBQ&biw=1440&bih=709&dpr=1"
+
+google_chairman_image = \
+    "https://www.google.com/search?q=%22"+ \
+    ticker + "*%22+%22" + quote("董事長") + "%22&client=safari&rls=en&sxsrf=AOaemvJXeaXjO0UbVWkuEdDa9LoCtKikwA:1640721761933&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjl3q3upIf1AhU2yosBHTRcByMQ_AUoA3oECAEQBQ&biw=1440&bih=709&dpr=1"
+
 management = ""
+
 urls = [ \
     fundamental, \
     revenue_mom, \
@@ -72,6 +81,8 @@ urls = [ \
     hr104_search, \
     share_outstanding, \
     moneydj_profile, \
+    google_gm_image, \
+    google_chairman_image, \
     management ]
 
 for url in urls:
