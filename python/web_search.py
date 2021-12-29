@@ -19,6 +19,9 @@ fundamental = \
 # unicode encoding ( https://bit.ly/3syqeyC )
 google_news = "https://www.google.com/search?q="+ticker+"+"+quote("新聞")+"&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWCJaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
 
+# mops news and hq address
+mops_news = 'http://mops.twse.com.tw/mops/web/ajax_t146sb05?TYPEK=all&step=1&firstin=1&off=1&queryName=co_id&co_id=' + ticker
+
 subsidiary = "https://www.cmoney.tw/finance/f00031.aspx?s="+ticker
 
 revenue_mom = \
@@ -73,6 +76,7 @@ urls = [ \
     volume_profile, \
     revenue_yoy, \
     google_news, \
+    mops_news, \
     tech_chart, \
     institution_holdings, \
     hinet_technicals, \

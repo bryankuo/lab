@@ -39,6 +39,7 @@ try:
     cb_issue = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('th')[32].text
     cb = has_cb + cb_issue
+    #//TODO: hq_location
     olist = [ ticker, corp_name, ticker_type, co_type, cb ]
     print(olist)
 
