@@ -10,5 +10,8 @@ do
     n_ticker=$(( $count + $n_ticker ))
 done
 echo $n_ticker "in total."
+cat datafiles/listed_2.txt >  datafiles/listed_taiex.txt
+cat datafiles/listed_4.txt >> datafiles/listed_taiex.txt
+cat datafiles/listed_5.txt >> datafiles/listed_taiex.txt
 ls -lt datafiles/listed_*.txt
 exit 0

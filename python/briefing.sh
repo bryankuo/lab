@@ -5,7 +5,29 @@ CO_TYPE=${OUTPUT[2]}
 # trim prefix and suffix ( https://bit.ly/32vLLgj )
 CO_NAME=${OUTPUT[1]%\'}
 CO_NAME=${CO_NAME#\'}
-# // TODO: CO_NAME for keyword search
+
+CO_TITLE=${OUTPUT[5]%\'}
+CO_TITLE=${CO_TITLE#\'}
+
+CO_ADDR=${OUTPUT[6]%\'}
+CO_ADDR=${CO_ADDR#\'}
+
+CO_CHAIRMAN=${OUTPUT[7]%\'}
+CO_CHAIRMAN=${CO_CHAIRMAN#\'}
+
+CO_GM=${OUTPUT[8]%\'}
+CO_GM=${CO_GM#\'}
+
+BROWSING=1
+if [[ $BROWSING -eq 1 ]]
+then
+    python3 web_search.py $1 $CO_TITLE $CO_ADDR $CO_CHAIRMAN $CO_GM
+    python3 annual_report.py $1
+    python3 board.py $1
+    python3 branch.py $1
+    python3 broker.py $1
+    python3 announcement.py $1
+fi
 
 # python3 capital.py $1
 # if [[ $? -ne 0 ]]
@@ -38,14 +60,4 @@ fi
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "last update:" $TIMESTAMP
 
-BROWSING=1
-if [[ $BROWSING -eq 1 ]]
-then
-    python3 web_search.py $1
-    python3 annual_report.py $1
-    python3 board.py $1
-    python3 branch.py $1
-    python3 broker.py $1
-    python3 announcement.py $1
-fi
 exit 0

@@ -20,6 +20,8 @@ data = { \
 try:
     response = requests.post(url, data)
     soup = BeautifulSoup(response.text, 'html.parser')
+    # print(soup.prettify())
+    # sys.exit(0)
     corp_name = soup.findAll('span')[0].text
     # if ( corp_name is None ):
     #     print('not listed.')
@@ -39,8 +41,24 @@ try:
     cb_issue = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('th')[32].text
     cb = has_cb + cb_issue
-    #//TODO: hq_location
-    olist = [ ticker, corp_name, ticker_type, co_type, cb ]
+
+    corp_title = soup.findAll('table')[1] \
+        .find_all('tr')[1].find_all('td')[0].text
+
+    hq_address = soup.findAll('table')[1] \
+        .find_all('tr')[1] \
+        .find_all('tr')[0].find_all('td')[0].text
+
+    chairman = soup.findAll('table')[1] \
+        .find_all('tr')[1] \
+        .find_all('tr')[1].find_all('td')[0].text
+
+    gm = soup.findAll('table')[1] \
+        .find_all('tr')[1] \
+        .find_all('tr')[1].find_all('td')[1].text
+
+    olist = [ ticker, corp_name, ticker_type, co_type, cb, \
+        corp_title, hq_address, chairman, gm ]
     print(olist)
 
 except (IndexError):

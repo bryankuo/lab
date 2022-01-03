@@ -26,6 +26,9 @@ google_dr = "https://www.google.com/search?q=%22" + \
         ticker+"*%22+%22"+quote("存託憑證")+ \
         "%22&client=safari&rls=en&sxsrf=AOaemvKtRrhOd7f-DKEPVkGBeowA3PVEIg%3A1640718936202&ei=WGLLYe3TC9aGoATM4obwCQ&ved=0ahUKEwjt3_iqmof1AhVWA4gKHUyxAZ4Q4dUDCA0&uact=5&oq=%226150*%22+%22債%22&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIFCCEQoAE6BwgAEEcQsAM6BwgjEK4CECdKBAhBGABKBAhGGABQ9OUFWLj1BWC2hAZoAnACeACAAVaIAewEkgECMTGYAQCgAQHIAQbAAQE&sclient=gws-wiz-serp"
 
+# //TODO:
+cb_detail = "https://mops.twse.com.tw/mops/web/t120sg01?TYPEK=&bond_id=66683&bond_kind=5&bond_subn=%24M00000001&bond_yrn=3&come=2&encodeURIComponent=1&firstin=ture&issuer_stock_code=6668&monyr_reg=202112&pg=&step=0&tg="
+
 urls = [ \
     mops_cb, \
     google_cb, \

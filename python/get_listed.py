@@ -21,6 +21,7 @@ mode = sys.argv[1]
 if mode not in ['2', '4', '5']:
     print('invlid option')
     sys.exit(-1)
+# // TODO: 7 is trust
 
 url = 'https://isin.twse.com.tw/isin/C_public.jsp?strMode=' + mode
 response = requests.get(url)

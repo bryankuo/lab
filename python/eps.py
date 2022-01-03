@@ -69,7 +69,10 @@ def print_body(ticker, name, soup, ofile):
     print(ticker, end=':')
     print(name, end=':')
     for i in range(1, len(tds)):
-        eps = float(tds[i].text)
+        if ( tds[i].text == '-' ):
+            eps = 0
+        else:
+            eps = float(tds[i].text)
         if ( i < num_q_available ):
             print("{:>.02f}".format(eps), end=':')
         else:
@@ -78,7 +81,10 @@ def print_body(ticker, name, soup, ofile):
         ofile.write(ticker)
         ofile.write(':' + name)
         for i in range(1, len(tds)):
-            eps = tds[i].text
+            if ( tds[i].text == '-' ):
+                eps = 0
+            else:
+                eps = float(tds[i].text)
             ofile.write(':' + eps)
         ofile.write('\n')
         ofile.flush()

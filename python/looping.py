@@ -61,7 +61,7 @@ def do_operation(ln, ticker, ofile):
         print(ticker+", "+task)
 
 def print_task_header(ofile):
-    mockup_ticker = "2481"
+    mockup_ticker = "5704" # //TODO: random seed generator
     if task == "activity":
         print_header(mockup_ticker, ofile)
     elif task == "per":

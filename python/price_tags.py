@@ -16,12 +16,25 @@ corn = "https://futures.tradingcharts.com/chart/ZC/"
 uranium = "https://tradingeconomics.com/commodity/uranium"
 bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
 
+# //TODO:
+daytrade = "https://stock.wearn.com/finquitsp.asp"
+hinet_dt = "https://histock.tw/stock/rank.aspx?m=11&d=1&t=dt"
+good_info = "https://goodinfo.tw/tw/StockList.asp?SHEET=現股當沖&MARKET_CAT=熱門排行&INDUSTRY_CAT=現股當沖率"
+# one day behind
+fubon = "https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_EJ.djhtm"
+# one day behind
+tpex = "https://www.tpex.org.tw/web/stock/trading/intraday_stat/intraday_trading_stat.php?l=zh-tw"
+
+# institutional buying and selling
+fbs = "http://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=D&B=0&C=5"
+
 urls = [ \
     soybean, \
     us_wheat, \
     corn, \
     uranium, \
-    bitcoin ]
+    bitcoin, \
+    fbs ]
 
 for url in urls:
     webbrowser.open(url)
