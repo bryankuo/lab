@@ -17,6 +17,8 @@ url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?' + \
     '&json=1' + '&d=20210427&delay=0&_=1432626332924'
 frame = requests.get(url).json()
 # print(json.dumps(frame, indent=1))
+# //TODO: find quote API for OTC and otcbb
+strike = float(frame["msgArray"][0]["pz"])
 yesterday = float(frame["msgArray"][0]["y"])
 opn = float(frame["msgArray"][0]["o"])
 high = float(frame["msgArray"][0]["h"])
@@ -30,7 +32,7 @@ asks = frame["msgArray"][0]["a"].split("_")
 n_asks = frame["msgArray"][0]["f"].split("_")
 bids = frame["msgArray"][0]["b"].split("_")
 n_bids = frame["msgArray"][0]["g"].split("_")
-print(ticker + " latest quote:")
+print(ticker + " latest quote: " + "{:<04.2f}".format(strike))
 print( \
     "     ystday: " + "{:<7.2f}".format(yesterday))
 print( \
