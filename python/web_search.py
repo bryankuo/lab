@@ -30,7 +30,11 @@ fundamental = \
 
 # google news search
 # unicode encoding ( https://bit.ly/3syqeyC )
-google_news = "https://www.google.com/search?q="+ticker+"+"+quote("新聞")+"&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWCJaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+google_news_past_year = "https://www.google.com/search?q="+ticker+"+"+quote("新聞")+"&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWCJaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+
+google_news_past_month = "https://www.google.com/search?q=6152+ptt+stock&client=safari&sxsrf=AOaemvL0avYEloIhMAK972aGGrvD8Q2uRA:1641678179089&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwiRnczlj6P1AhWLHXAKHa7EAJ8QpwV6BAgBEBg&biw=1396&bih=708&dpr=1"
+
+google_news_past_week = "https://www.google.com/search?q=2303+ptt+stock&client=safari&rls=en&sxsrf=AOaemvJsxUJoN92AaqXX-OrtFeeDwiKuyg:1641688213276&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwj8z6KWtaP1AhWRGaYKHQOgDgUQpwV6BAgBEBc&biw=1396&bih=708&dpr=1"
 
 # mops news and hq address
 mops_news = 'http://mops.twse.com.tw/mops/web/ajax_t146sb05?TYPEK=all&step=1&firstin=1&off=1&queryName=co_id&co_id=' + ticker
@@ -91,6 +95,12 @@ trust = \
 # http://just2.entrust.com.tw/w/wr/wr04.djhtm?a=ACII01-A22004
 # https://www.sitca.org.tw/ROC/Industry/IN2105.aspx?pid=IN2212_02
 
+government_banks = "https://histock.tw/stock/broker.aspx?no="+ticker
+# scrap gbank_activities.py
+
+major_holders_bs = \
+    "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zck/zck_"+ticker+".djhtm"
+
 management = ""
 
 urls = [ \
@@ -102,7 +112,8 @@ urls = [ \
     ticker_news, \
     volume_profile, \
     revenue_yoy, \
-    google_news, \
+    google_news_past_year, \
+    google_news_past_month, \
     mops_news, \
 
     # technical
@@ -110,9 +121,11 @@ urls = [ \
     hinet_technicals, \
 
     # chips
+    major_holders_bs, \
+    share_outstanding, \
     institution_holdings, \
     trust, \
-    share_outstanding, \
+    government_banks, \
 
     # news, information, PR, gossips
     cmoney_gossip, \

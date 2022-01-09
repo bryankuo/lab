@@ -18,6 +18,8 @@ def get_from_source(ticker):
     url = "https://goodinfo.tw/StockInfo/StockFinDetail.asp?" + \
         "RPT_CAT=XX_M_QUAR&QRY_TIME=20213" + \
         "&STOCK_ID="+ticker
+    # site is under maintenance at 10 o'clock in the morning.
+
     browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
     if ( browser is None ):
         print("make sure safari automation enabled")
@@ -85,7 +87,7 @@ def print_body(ticker, name, soup, ofile):
                 eps = 0
             else:
                 eps = float(tds[i].text)
-            ofile.write(':' + eps)
+            ofile.write(':' + "{:>.02f}".format(eps))
         ofile.write('\n')
         ofile.flush()
 

@@ -25,7 +25,6 @@ then
     python3 annual_report.py $1
     python3 board.py $1
     python3 branch.py $1
-    python3 broker.py $1
     python3 announcement.py $1
 fi
 

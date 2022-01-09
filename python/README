@@ -50,5 +50,4 @@ pe.py: get PER of a ticker.
 range52w.py: get quote, name, 52w range, and percent% of a ticker.
 status.sh: generate activity, per, range52w by listed type.
 uno.py: libreoffice integration.
-broker.py: launch 8 government bank brokerage.
 web_search.py: launch all web page search.
