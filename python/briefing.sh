@@ -18,6 +18,11 @@ CO_CHAIRMAN=${CO_CHAIRMAN#\'}
 CO_GM=${OUTPUT[8]%\'}
 CO_GM=${CO_GM#\'}
 
+OUTPUT_ID=($(python3 taxid.py $1 $CO_TITLE | tr -d '[],'))
+TID=${OUTPUT_ID[0]%\'}
+TID=${TID#\'}
+# echo $TID
+
 BROWSING=1
 if [[ $BROWSING -eq 1 ]]
 then

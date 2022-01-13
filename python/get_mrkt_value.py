@@ -8,6 +8,7 @@ import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
+#
 url = "https://stock.capital.com.tw/z/zm/zmd/zmdb.djhtm?MSCI=0"
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')

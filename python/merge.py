@@ -16,9 +16,23 @@ title = \
     ['代號', '資本', '台股權值', '市值排名', '台灣50排名', \
     'MSCI排名', '中100排名']
 market_values = []
+
 t50_components  = []
+# alternative source
+# https://histock.tw/global/globalclass.aspx?mid=0&id=2
+# https://histock.tw/global/globalclass.aspx?mid=0&id=0
+# https://www.wantgoo.com/index/%5E539/stocks
+# https://histock.tw/twclass/A901
 msci_components = []
+
 m100_components = []
+# which one is the most updated?
+# https://histock.tw/global/globalclass.aspx?mid=0&id=3
+# most updated ( with printed date )
+# https://www.wantgoo.com/index/%5E543/stocks
+# https://histock.tw/twclass/A905
+
+# A902 https://histock.tw/twclass/A902
 
 def main():
     open_and_parse(market_values, sys.argv[1])

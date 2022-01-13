@@ -28,13 +28,30 @@ tpex = "https://www.tpex.org.tw/web/stock/trading/intraday_stat/intraday_trading
 # institutional buying and selling
 fbs = "http://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=D&B=0&C=5"
 
+b8 = "https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx"
+marginal_buying = "https://goodinfo.tw/tw/ShowBearishChart.asp?STOCK_ID=加權指數&CHT_CAT=DATE"
+
+nickel_lme = "https://www.lme.com/Metals/Non-ferrous/LME-Nickel#Trading+day+summary"
+
+aluminum = "https://markets.businessinsider.com/commodities/aluminum-price"
+
+iron_ore = "https://www.marketindex.com.au/iron-ore"
+
 urls = [ \
     soybean, \
     us_wheat, \
     corn, \
+
     uranium, \
+
+    nickel_lme, \
+    aluminum, \
+    iron_ore, \
+
     bitcoin, \
-    fbs ]
+    fbs, \
+    marginal_buying, \
+    b8 ]
 
 for url in urls:
     webbrowser.open(url)
