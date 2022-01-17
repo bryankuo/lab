@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 url = "https://stock.capital.com.tw/z/zm/zmd/zmdb.djhtm"
 response = requests.get(url)
+response.encoding = 'cp950'
 soup = BeautifulSoup(response.text, 'html.parser')
 # print(soup.prettify())
 rows = soup.find_all("table", {"class": "t01"})[0] \

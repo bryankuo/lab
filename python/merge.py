@@ -13,7 +13,7 @@ def open_and_parse(lines, fname):
     return 0
 
 title = \
-    ['代號', '資本', '台股權值', '市值排名', '台灣50排名', \
+    ['代號', '市值', '台股權值', '市值排名', '台灣50排名', \
     'MSCI排名', '中100排名']
 market_values = []
 
@@ -84,5 +84,6 @@ def main():
         print(market_values[i][0], end=':')
         print(market_values[i][4], end=':')
         print(market_values[i][5], end='\n')
+
 if __name__ == "__main__":
 	main()

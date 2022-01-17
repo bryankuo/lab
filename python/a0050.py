@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 t50_component.py
+# python3 a0050.py
 # get TAIEX 50 components
 # return 0: success
 
@@ -22,13 +22,38 @@ from slimit import ast
 from slimit.parser import Parser
 from slimit.visitors import nodevisitor
 
-'''
 browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
 if ( browser is None ):
     print("make sure safari automation enabled")
     sys.exit(3)
+
+# source 1 a0050.txt, rank, name weight, shares*
 # url = 'https://www.yuantaetfs.com/product/detail/0050/ratio'
-url = 'https://www.cmoney.tw/etf/e210.aspx?key=0050'
+
+# source 2 key0050.txt, weight rank, name only
+# url = 'https://www.cmoney.tw/etf/e210.aspx?key=0050'
+
+# source 3, update monthly, weight rank only, official*
+# https://www.taifex.com.tw/cht/2/weightedPropertion
+
+# source 4, from 1 to 300*, selenium
+# https://goodinfo.tw/tw/StockList.asp?SHEET=公司基本資料&MARKET_CAT=熱門排行&INDUSTRY_CAT=公司總市值
+
+# source 5, top 30
+# https://www.cnyes.com/twstock/ranking9.aspx
+
+# source 6, weight top 100, update on daily basis
+# https://stock.capital.com.tw/z/zm/zmd/zmdb.djhtm
+
+# source 7, tpex only, full list, update everyday
+# https://www.tpex.org.tw/web/stock/aftertrading/daily_mktval/mkt_result.php?l=zh-tw&d=111/01/14&s=0,asc,0&o=htm
+
+# source 8, 5 pages, top 150, update everyday, market value, rank
+url = 'https://pchome.megatime.com.tw/rank/sto2/ock31_5.html'
+
+# //TODO: check if get_market_capital.py is redundant.
+# //TODO: check if get_mrkt_value.py.histock redundant.
+
 browser.get(url)
 time.sleep(5) # wait until page fully loaded
 
@@ -37,51 +62,13 @@ page = browser.page_source
 soup = BeautifulSoup(page, 'html.parser')
 browser.quit()
 # print(soup.prettify())
-'''
 
-# component_list = "datafiles/t50.txt.20211109"
+'''
 component_list = "datafiles/t50.components.20211016"
 with open(component_list) as fp:
     soup = BeautifulSoup(fp, 'html.parser')
-'''
-scripts = soup.find_all("script", {})
-# pprint(scripts[8]); print(len(scripts))
-pattern = re.compile(r"window.__NUXT__=((.*?)\{.*?\}(.*?));")
-script = soup.find("script", text=pattern)
-pattern1 = re.compile(r"StockWeights:\[.*?\]")
-w = re.search(pattern1, str(script)).group(0)
-# print(type(w))
-# print(len(w))
-# print(w[14:len(w)-1])
-sw = w[14:len(w)-1].split(',{')
-# print(len(sw))
-# pprint(sw)
-for weight in sw:
-    print(weight)
-    # pattern2 = re.compile(r"weights:(.*?)")
-    # print(re.search(pattern2, weight))
-'''
 table = soup.find_all("table", {"class": "tb tb1"})
 pprint(table)
-
-
-
-sys.exit(3)
-table = soup.find_all("table", {"id": "stockweights"})
-if ( table is None ):
-    sys.exit(1)
-rows = table[0].select('tr')
-if ( len(rows) <= 0 ):
-    sys.exit(2)
-for row in rows:
-    tds = row.select('td')
-    if ( 0 < len(tds) ):
-        tkr_name = tds[0].text.strip() + tds[1].text.strip()
-        weight = tds[2].text.strip()
-        shares = tds[3].text.strip()
-    print( \
-        tkr_name, ":", \
-        weight, ":", \
-        shares )
-
+'''
+# 'selenium.common.exceptions.SessionNotCreatedException'
 sys.exit(0)

@@ -1,22 +1,35 @@
 #!/usr/bin/python3
 
-# python3 range52week.py 2330
-# get per, quote, chage, 52 week range
+# python3 gbank_activities.py [today|5|20|60|YTD]
+# get government bank activities
 # return 0: success
 
 import sys, requests, time
 import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
+from pprint import pprint
 
 ticker = sys.argv[1]
 # source 1
-url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
-# source 2
-# https://concords.moneydj.com/z/zc/zca/zca_1101.djhtm
-url = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
+# http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app=
+url = "http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app="
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
+table = soup.find_all("table", {})
+# pprint(table)
+row1 = soup.find_all("th", {"id": "HEAD1"})[2].renderContents().strip().decode("utf-8")
+print(row1)
+
+row0 = soup.findAll('tr')[24].text
+print(row0)
+
+row2 = soup.find_all("th", {"id": "HEAD1"})[2].text
+pprint(row2)
+row3 = soup.findAll('tr')[33].text #.renderContents().strip()
+# .find_all('tr')[4].text
+pprint(row3)
+sys.exit(0)
 rows = soup.select('table .t01 tr')
 # per = rows[3].select('td')[1].renderContents().decode("utf-8")
 opn = float(rows[1].select('td')[1].renderContents())
@@ -46,4 +59,13 @@ print( ticker + " quote: " + "{:>5.02f}".format(quote) + \
     " - " + \
     "{:>5.02f}".format(high52)+ \
         " (" + "{:>5.02f}".format(p_high52) + "%) ")
+
+'''
+https://histock.tw/stock/broker.aspx?no=1217
+broker8 = 'https://histock.tw/stock/broker8.aspx'
+https://www.wantgoo.com/stock/public-bank/buy-sell
+https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx
+https://www.nta.gov.tw/singlehtml/67?cntId=nta_956_67
+'''
+
 sys.exit(0)

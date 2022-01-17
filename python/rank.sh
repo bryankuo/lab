@@ -4,9 +4,13 @@ OUTF0=datafiles/top100_market_value.$DATE.txt
 OUTF1=datafiles/msci.$DATE.txt
 OUTF2=datafiles/t50.$DATE.txt
 OUTF3=datafiles/rank.$DATE.txt
+# OUTF4=datafiles/top150_market_value.$DATE.txt
 
-echo "scrap market value..."
+echo "scrap top 100 market value and weight..."
 python3 get_mrkt_value.py > $OUTF0
+
+echo "scrap top 150 market value and weight..."
+# python3 get_top150.py > $OUTF4
 
 echo "scrap msci components..."
 python3 msci_components.py > $OUTF1
