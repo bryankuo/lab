@@ -27,11 +27,14 @@ tpex = "https://www.tpex.org.tw/web/stock/trading/intraday_stat/intraday_trading
 
 # institutional buying and selling
 fbs = "http://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=D&B=0&C=5"
-
 b8 = "https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx"
+
+# because URIs can't contain non-ASCII characters.
+# https://stackoverflow.com/a/6938893
+# //TODO: search for urllib for tips
 marginal_buying = "https://goodinfo.tw/tw/ShowBearishChart.asp?STOCK_ID=加權指數&CHT_CAT=DATE"
 
-nickel_lme = "https://www.lme.com/Metals/Non-ferrous/LME-Nickel#Trading+day+summary"
+nickel = "https://www.investing.com/commodities/nickel-candlestick"
 
 aluminum = "https://markets.businessinsider.com/commodities/aluminum-price"
 
@@ -44,14 +47,15 @@ urls = [ \
 
     uranium, \
 
-    nickel_lme, \
+    nickel, \
     aluminum, \
     iron_ore, \
 
     bitcoin, \
+
     fbs, \
-    marginal_buying, \
-    b8 ]
+    b8, \
+    marginal_buying]
 
 for url in urls:
     webbrowser.open(url)

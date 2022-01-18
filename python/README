@@ -54,3 +54,4 @@ web_search.py: launch all web page search.
 a905_component.py: get all A905 index components.
 price_tags.py: show price tags on daily base.
 taxid.py: find tax id by ticker and title.
+top150.py: get top 150 market value.

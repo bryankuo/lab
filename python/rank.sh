@@ -10,7 +10,7 @@ echo "scrap top 100 market value and weight..."
 python3 get_mrkt_value.py > $OUTF0
 
 echo "scrap top 150 market value and weight..."
-# python3 get_top150.py > $OUTF4
+# python3 top150.py > $OUTF4
 
 echo "scrap msci components..."
 python3 msci_components.py > $OUTF1
