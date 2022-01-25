@@ -13,6 +13,8 @@ from bs4 import BeautifulSoup
 soybean = "https://www.barchart.com/futures/quotes/ZS*0/technical-chart"
 us_wheat = "https://www.investing.com/commodities/us-wheat-candlestick"
 corn = "https://futures.tradingcharts.com/chart/ZC/"
+oats = "https://www.investing.com/commodities/oats-candlestick"
+
 uranium = "https://tradingeconomics.com/commodity/uranium"
 bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
 
@@ -27,6 +29,8 @@ tpex = "https://www.tpex.org.tw/web/stock/trading/intraday_stat/intraday_trading
 
 # institutional buying and selling
 fbs = "http://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=D&B=0&C=5"
+fund = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_DD.djhtm"
+retail = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZEF/ZEF.djhtm"
 b8 = "https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx"
 
 # because URIs can't contain non-ASCII characters.
@@ -39,13 +43,17 @@ nickel = "https://www.investing.com/commodities/nickel-candlestick"
 aluminum = "https://markets.businessinsider.com/commodities/aluminum-price"
 
 iron_ore = "https://www.marketindex.com.au/iron-ore"
+brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
+cnn_greedy_fear_meter = "https://money.cnn.com/data/fear-and-greed/"
 
 urls = [ \
     soybean, \
     us_wheat, \
     corn, \
+    oats, \
 
     uranium, \
+    brent_crude, \
 
     nickel, \
     aluminum, \
@@ -54,8 +62,12 @@ urls = [ \
     bitcoin, \
 
     fbs, \
+    fund, \
+    retail, \
     b8, \
-    marginal_buying]
+    marginal_buying, \
+
+    cnn_greedy_fear_meter ]
 
 for url in urls:
     webbrowser.open(url)

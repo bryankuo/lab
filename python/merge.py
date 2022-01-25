@@ -34,10 +34,14 @@ m100_components = []
 
 # A902 https://histock.tw/twclass/A902
 
+top150_market_values = []
+
 def main():
     open_and_parse(market_values, sys.argv[1])
     open_and_parse(t50_components, sys.argv[2])
     open_and_parse(msci_components, sys.argv[3])
+    # // TODO:
+    # open_and_parse(top150_market_values, sys.argv[4])
 
     '''
     print(*market_values)

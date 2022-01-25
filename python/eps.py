@@ -19,7 +19,7 @@ def get_from_source(ticker):
         "RPT_CAT=XX_M_QUAR&QRY_TIME=20213" + \
         "&STOCK_ID="+ticker
     # site is under maintenance at 10 o'clock in the morning.
-
+    # // TODO: inside function try:
     browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
     if ( browser is None ):
         print("make sure safari automation enabled")
@@ -29,10 +29,6 @@ def get_from_source(ticker):
     page = browser.page_source
     soup = BeautifulSoup(page, 'html.parser')
     browser.close()
-    '''
-    with open("eps.txt.2") as fp:
-        soup = BeautifulSoup(fp, 'html.parser')
-    '''
     return soup
 
 def print_header(ticker, soup, ofile):
@@ -62,7 +58,9 @@ def print_header(ticker, soup, ofile):
 
 def print_body(ticker, name, soup, ofile):
     num_q_available = 10
-    tds = soup.find("div", {"id": "divFinDetail"}) \
+    # print(soup.prettify())
+    # tds = soup.find("div", {"id": "divFinDetail"}) \
+    tds = soup.find("table", {"class": "b1 p4_4 r0_10 row_mouse_over"}) \
         .find_all('tr')[7] \
         .find_all('td')
     if ( name is None ):

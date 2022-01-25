@@ -21,6 +21,7 @@ if ( len(sys.argv) > 2 ):
     print(gm)
     sys.exit(0)
     '''
+    co_type = sys.argv[6]
 
 ticker_news = \
     "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
@@ -102,6 +103,13 @@ major_holders_bs = \
     "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zck/zck_"+ticker+".djhtm"
 
 management = ""
+
+if ( co_type == 1 or co_type == 2 ):
+    tpex_info = "https://www.tpex.org.tw/web/regular_emerging/" \
+    "corporateInfo/regular/regular_stock_detail.php?" \
+    "l=zh-tw&stk_code=" + ticker
+    webbrowser.open(tpex_info)
+    time.sleep(1)
 
 urls = [ \
     # fundamental

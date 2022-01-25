@@ -26,7 +26,7 @@ TID=${TID#\'}
 BROWSING=1
 if [[ $BROWSING -eq 1 ]]
 then
-    python3 web_search.py $1 $CO_TITLE $CO_ADDR $CO_CHAIRMAN $CO_GM
+    python3 web_search.py $1 $CO_TITLE $CO_ADDR $CO_CHAIRMAN $CO_GM $CO_TYPE
     python3 annual_report.py $1
     python3 board.py $1
     python3 branch.py $1
