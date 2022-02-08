@@ -37,6 +37,8 @@ google_news_past_month = "https://www.google.com/search?q=6152+ptt+stock&client=
 
 google_news_past_week = "https://www.google.com/search?q=2303+ptt+stock&client=safari&rls=en&sxsrf=AOaemvJsxUJoN92AaqXX-OrtFeeDwiKuyg:1641688213276&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwj8z6KWtaP1AhWRGaYKHQOgDgUQpwV6BAgBEBc&biw=1396&bih=708&dpr=1"
 
+google_news_custom_date = "https://www.google.com/search?q=力山工業+天下&client=safari&rls=en&biw=1440&bih=709&sxsrf=APq-WBum_3tpXoRWy8R-7OrqTzxyIR5hbQ%3A1643968325345&source=lnt&tbs=cdr%3A1%2Ccd_min%3A12%2F1%2F2019%2Ccd_max%3A1%2F31%2F2020&tbm="
+
 # mops news and hq address
 mops_news = 'http://mops.twse.com.tw/mops/web/ajax_t146sb05?TYPEK=all&step=1&firstin=1&off=1&queryName=co_id&co_id=' + ticker
 # //TODO: https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id=1514&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year=110&month1=0&begin_day=1&end_day=1

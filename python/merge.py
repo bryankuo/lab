@@ -13,9 +13,9 @@ def open_and_parse(lines, fname):
     return 0
 
 title = \
-    ['代號', '市值', '台股權值', '市值排名', '台灣50排名', \
+    ['代號', '市值(E)', '台股權值', '市值排名', '台灣50排名', \
     'MSCI排名', '中100排名']
-market_values = []
+top100_market_values = []
 
 t50_components  = []
 # alternative source
@@ -36,12 +36,15 @@ m100_components = []
 
 top150_market_values = []
 
+merged_tab = []
+
 def main():
-    open_and_parse(market_values, sys.argv[1])
+    open_and_parse(top100_market_values, sys.argv[1])
     open_and_parse(t50_components, sys.argv[2])
     open_and_parse(msci_components, sys.argv[3])
+    open_and_parse(top150_market_values, sys.argv[4])
     # // TODO:
-    # open_and_parse(top150_market_values, sys.argv[4])
+    # open_and_parse(m100_components, sys.argv[5])
 
     '''
     print(*market_values)
@@ -51,7 +54,45 @@ def main():
     print(*msci_components)
     '''
 
-    for x in market_values:
+    for i in range(1, len(top150_market_values)):
+        top150 = top150_market_values[i]
+        rank = top150[0]
+        tkr_name = top150[1]
+        mkt_val = top150[2]
+        if ( i < len(top100_market_values) ):
+            weight = top100_market_values[3]
+        else:
+            weight = 0
+
+        index = 1
+        msci_rank = 0
+        for z in msci_components:
+            if tkr_name == z[1]:
+                msci_rank = index
+                break
+            index += 1
+        x.append(msci_rank)
+
+        t50_rank = 0
+        index = 0
+        for y in t50_components:
+            # print( tkr_name, y[0] )
+            if tkr_name == y[0].strip():
+                t50_rank = index
+                break
+            index += 1
+
+        m100_rank = 0
+
+        merged_tab.append(tkr_name)
+        merged_tab.append(mkt_val)
+        merged_tab.append(weight)
+        merged_tab.append(rank)
+        merged_tab.append(t50_rank)
+
+
+    '''
+    for x in top100_market_values:
         tkr_name = x[1]
 
         t50_rank = 0
@@ -72,6 +113,7 @@ def main():
                 break
             index += 1
         x.append(msci_rank)
+    '''
 
     print(title[0], end=":")
     print(title[1], end=":")

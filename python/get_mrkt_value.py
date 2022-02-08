@@ -20,6 +20,7 @@ try:
     soup = BeautifulSoup(response.text, 'html.parser')
     rows = soup.find_all("table", {})[2] \
             .find_all("tr")
+    print( "排行:代號公司:總市值(M):權重" )
     index = 1
     for i in range(3, len(rows)):
         rank      = str(index)
