@@ -1,6 +1,6 @@
-# make sure python3-uno installed
-# /Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9 -m pip install --upgrade pip
-# python3 -m pip install uno
+#!/usr/bin/python3
+
+# python3 uno_kicks.py [ticker] [quote]
 
 # reference doc:
 # http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
@@ -9,11 +9,17 @@
 # import socket  # only needed on win32-OOo3.0.0
 import uno
 import sys
+from datetime import datetime
+import time
+import json
 
-# /Applications/LibreOffice.app/Contents/Resources/python uno_kicks.py
+# /Applications/LibreOffice.app/Contents/Resources/python \
+#   uno_kicks.py 2305
 ticker = sys.argv[1]
 quote = sys.argv[2]
+print( ticker + ", " + quote )
 
+'''
 raw_list = []
 list2 = []
 list4 = []
@@ -37,14 +43,18 @@ for element in raw_list:
     list5.append(element.strip())
 
 if ticker in list2:
-    print("tse_")
+    # print("tse_")
+    list_type = "tse_"
 elif ticker in list4:
-    print("otc_")
+    # print("otc_")
+    list_type = "otc_"
 elif ticker in list5:
-    print("otcbb")
+    print("otcbb not support")
+    sys.exit(0) # // TODO:
 else:
     print("not listed")
     sys.exit(0)
+'''
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -61,6 +71,8 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 
 # access the current writer document
 model = desktop.getCurrentComponent()
+#cursor = desktop.getCurrentComponent() \
+#    .getCurrentController().getViewCursor()
 
 # access the active sheet
 active_sheet = model.CurrentController.ActiveSheet
@@ -82,14 +94,23 @@ cursor = active_sheet.createCursor()
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
 # print(len(cursor.Rows))
+addr_q = "J1" # initial
+cellq = active_sheet.getCellRangeByName(addr_q)
 for i in range(1, len(cursor.Rows)):
     addr_x = "A"+str(i+1)
     cellx = active_sheet.getCellRangeByName(addr_x)
     if ( cellx.String == ticker ):
         addr_q = "J"+str(i+1)
-        cellq = active_sheet.getCellRangeByName(addr_q)
-        cellq.String = quote
-        cellq.CellBackColor = 0xFF0000
         break
 #   print(row)
+# assume found
+cellq = active_sheet.getCellRangeByName(addr_q)
+cellq.String = quote
+cellq.CellBackColor = 0xFFFF00
+time.sleep(.6)
+cellq.CellBackColor = 0xFFFFFF
+# vC = document.CurrentController.getViewCursor
+# cursor.goDown(1,False)
+
 # //TODO: multithreading
+sys.exit(0)

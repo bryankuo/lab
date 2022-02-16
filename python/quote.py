@@ -8,7 +8,7 @@ import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
-os.system('cls' if os.name == 'nt' else 'clear')
+
 ticker = sys.argv[1]
 
 
@@ -55,11 +55,6 @@ url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?' + \
 # print(url)
 frame = requests.get(url).json()
 # print(json.dumps(frame, indent=1))
-if ( frame["msgArray"][0]["pz"] == '-' ):
-    strike_s = frame["msgArray"][0]["pz"]
-else:
-    strike = float(frame["msgArray"][0]["pz"])
-    strike_s = "{:<04.2f}".format(strike)
 yesterday = float(frame["msgArray"][0]["y"])
 opn = float(frame["msgArray"][0]["o"])
 high = float(frame["msgArray"][0]["h"])
@@ -73,30 +68,41 @@ asks = frame["msgArray"][0]["a"].split("_")
 n_asks = frame["msgArray"][0]["f"].split("_")
 bids = frame["msgArray"][0]["b"].split("_")
 n_bids = frame["msgArray"][0]["g"].split("_")
-print(ticker + " latest quote: " + strike_s )
-print( \
-    "     ystday: " + "{:<7.2f}".format(yesterday))
-print( \
-    "     open  : " + "{:<7.2f}".format(opn)+ \
-    "     high  : " + "{:<.2f}".format(high)+ \
-    "     low   : " + "{:<7.2f}".format(low) + \
-    "     close : " + close)
-#    "     close : " + "{:<7.2f}".format(close))
-print( \
-    "     h_lmt : " + "{:<7.2f}".format(h_limit) + \
-    "     l_lmt : " + "{:<7.2f}".format(l_limit) + \
-    "   vol   : " + volume + " lots")
-print("     market depth:")
-print("                 bid      ask" )
-row = 0
-for q in asks:
-    print( "     " + \
-    " " + "{:>7.0f}".format(float(n_bids[row])) + \
-    " " + "{:>7.2f}".format(float(bids[row])) + \
-    "    " + \
-    "{:<7.2f}".format(float(q)) + \
-    " " + "{:<7.0f}".format(float(n_asks[row])))
-    row += 1
-    if ( 5 <= row ):
-        break
+if ( frame["msgArray"][0]["pz"] == '-' ):
+    strike_s = frame["msgArray"][0]["pz"]
+    strike_s = "{:<04.2f}".format(float(asks[0]))
+else:
+    strike = float(frame["msgArray"][0]["pz"])
+    strike_s = "{:<04.2f}".format(strike)
+if ( False ):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(ticker + " latest quote: " + strike_s )
+    print( \
+        "     ystday: " + "{:<7.2f}".format(yesterday))
+    print( \
+        "     open  : " + "{:<7.2f}".format(opn)+ \
+        "     high  : " + "{:<.2f}".format(high)+ \
+        "     low   : " + "{:<7.2f}".format(low) + \
+        "     close : " + close)
+    #    "     close : " + "{:<7.2f}".format(close))
+    print( \
+        "     h_lmt : " + "{:<7.2f}".format(h_limit) + \
+        "     l_lmt : " + "{:<7.2f}".format(l_limit) + \
+        "   vol   : " + volume + " lots")
+    print("     market depth:")
+    print("                 bid      ask" )
+    row = 0
+    for q in asks:
+        print( "     " + \
+        " " + "{:>7.0f}".format(float(n_bids[row])) + \
+        " " + "{:>7.2f}".format(float(bids[row])) + \
+        "    " + \
+        "{:<7.2f}".format(float(q)) + \
+        " " + "{:<7.0f}".format(float(n_asks[row])))
+        row += 1
+        if ( 5 <= row ):
+            break
+else:
+    olist = [ strike_s ]
+    print(olist)
 sys.exit(0)
