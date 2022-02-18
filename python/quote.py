@@ -11,7 +11,6 @@ from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
 
-
 raw_list = []
 list2 = []
 list4 = []

@@ -19,14 +19,31 @@ sleep 3
 done
 END
 
+# make sure running uno.sh
+
+: <<'END'
+index=0
 while read p; do
     # echo "$p"
+    index=$(($index+1))
     OUTPUT=($(python3 quote.py $p | tr -d '[],'))
     DEAL=${OUTPUT[0]%\'}
     DEAL=${DEAL#\'}
+    MSG=$(printf "%04d %04d %04.2f" $index $p $DEAL)
+    echo $MSG
     /Applications/LibreOffice.app/Contents/Resources/python \
 	uno_kicks.py $p $DEAL
     sleep 3
 done < datafiles/watchlist.txt
+END
+
+# update a ticker
+OUTPUT=($(python3 quote.py $1 | tr -d '[],'))
+DEAL=${OUTPUT[0]%\'}
+DEAL=${DEAL#\'}
+MSG=$(printf "%04d %04.2f" $1 $DEAL)
+echo $MSG
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno_kicks.py $1 $DEAL
 
 exit 0

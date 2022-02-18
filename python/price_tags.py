@@ -15,9 +15,12 @@ us_wheat = "https://www.investing.com/commodities/us-wheat-candlestick"
 corn = "https://futures.tradingcharts.com/chart/ZC/"
 oats = "https://www.investing.com/commodities/oats-candlestick"
 palmolive_oil = "http://quote.eastmoney.com/qihuo/pm.html"
+coffee = "https://www.barchart.com/futures/quotes/KC*0/interactive-chart"
 
 uranium = "https://tradingeconomics.com/commodity/uranium"
 bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
+gold = "https://www.tradingview.com/symbols/TVC-GOLD/"
+us10y = "https://www.marketwatch.com/investing/bond/tmubmusd10y/charts?countrycode=bx"
 
 # //TODO:
 daytrade = "https://stock.wearn.com/finquitsp.asp"
@@ -41,13 +44,13 @@ marginal_buying = "https://goodinfo.tw/tw/ShowBearishChart.asp?STOCK_ID=加權�
 
 copper = "https://www.investing.com/commodities/copper-candlestick"
 nickel = "https://www.investing.com/commodities/nickel-candlestick"
-
 aluminum = "https://markets.businessinsider.com/commodities/aluminum-price"
 
 iron_ore = "https://www.marketindex.com.au/iron-ore"
 brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
 cnn_greedy_fear_meter = "https://money.cnn.com/data/fear-and-greed/"
 natural_gas = "https://www.tradingview.com/symbols/NYMEX-NG1%21/"
+fertilizers = "https://ycharts.com/indicators/fertilizers_index_world_bank"
 
 emerging_market = "https://stockscan.io/stocks/EEM"
 worldwide_index = "https://finance.yahoo.com/world-indices/"
@@ -72,6 +75,8 @@ urls = [ \
     twd_forex, \
     jpy_forex, \
     bitcoin, \
+    gold, \
+    us10y, \
 
     # commodities
     soybean, \
@@ -79,10 +84,12 @@ urls = [ \
     corn, \
     oats, \
     palmolive_oil, \
+    coffee, \
 
     uranium, \
     brent_crude, \
     natural_gas, \
+    fertilizers, \
 
     copper, \
     nickel, \
