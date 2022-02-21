@@ -39,6 +39,8 @@ if ticker in list2:
 elif ticker in list4:
     # print("otc_")
     list_type = "otc_"
+    # // TODO: TPEX
+    # https://www.tpex.org.tw/web/emergingstock/lateststats/new.htm?l=zh-tw
 elif ticker in list5:
     print("not support") # // TODO: find quote API
 else:
@@ -69,7 +71,10 @@ bids = frame["msgArray"][0]["b"].split("_")
 n_bids = frame["msgArray"][0]["g"].split("_")
 if ( frame["msgArray"][0]["pz"] == '-' ):
     strike_s = frame["msgArray"][0]["pz"]
-    strike_s = "{:<04.2f}".format(float(asks[0]))
+    if ( len(asks) > 0 ):
+        strike_s = "{:<04.2f}".format(float(asks[0]))
+    else:
+        print(len(bids))
 else:
     strike = float(frame["msgArray"][0]["pz"])
     strike_s = "{:<04.2f}".format(strike)

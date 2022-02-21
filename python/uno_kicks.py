@@ -80,7 +80,7 @@ active_sheet = model.CurrentController.ActiveSheet
 cursor = active_sheet.createCursor()
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-# print(len(cursor.Rows))
+last_row = len(cursor.Rows)
 addr_q = "J1" # initial
 addr_resist = "G1"
 addr_support = "H1"
@@ -101,9 +101,16 @@ for i in range(1, len(cursor.Rows)):
         break
 
 if ( addr_q == "J1" ):
-    print(ticker + " not found in calc")
-    sys.exit(1)
-# found.
+    print(ticker + " not found in sheet, add entry,")
+    addr_x = "A" + str( last_row + 1 )
+    addr_q = "J" + str( last_row + 1 )
+    addr_resist = "G" + str( last_row + 1 )
+    addr_support = "H" + str( last_row + 1 )
+    addr_cheap = "I" + str( last_row + 1 )
+    addr_52lo = "K" + str( last_row + 1 )
+    addr_52hi = "M" + str( last_row + 1 )
+    cell_ticker = active_sheet.getCellRangeByName(addr_x)
+    cell_ticker.String = ticker
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 cellq.String = quote
@@ -111,8 +118,12 @@ cellq.CellBackColor = 0xFFFF00
 time.sleep(.6)
 cellq.CellBackColor = 0xFFFFFF
 cell = active_sheet.getCellRangeByName(addr_cheap)
-if ( cell.Value <= float(quote) ):
-    cell = active_sheet.getCellRangeByName(addr_cheap)
-    cell.CellBackColor = 0xFFFF00
+if ( cell.Value is not None and cell.String != "n/a" ):
+    if ( cell.Value >= float(quote) ):
+        cell = active_sheet.getCellRangeByName(addr_cheap)
+        cell.CellBackColor = 0xFFFF00
+    else:
+        cell.CellBackColor = 0xFFFFFF
+
 # //TODO: multithreading
 sys.exit(0)
