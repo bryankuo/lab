@@ -24,7 +24,7 @@ then
 	echo $MSG
 	/Applications/LibreOffice.app/Contents/Resources/python \
 	    uno_kicks.py $p $DEAL
-	sleep 3
+	sleep 2
     done < datafiles/watchlist.txt
 else
     # update a single ticker

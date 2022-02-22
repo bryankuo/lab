@@ -33,9 +33,7 @@ def print_body(ticker, ofile):
             '?a=' + ticker + '&b=2'
 
     # random source selection
-    # print(n)
-    # sys.exit(0)
-
+    # print(url)
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     amounts = soup.find_all("tr", {"id": "oScrollFoot"})[0].find_all('td')
