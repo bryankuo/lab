@@ -7,10 +7,8 @@
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
 
 # import socket  # only needed on win32-OOo3.0.0
-import uno
-import sys
+import uno, sys, time
 from datetime import datetime
-import time
 
 # https://bit.ly/3sQRR4C
 # import msgbox
@@ -20,22 +18,8 @@ import time
 #   uno_kicks.py 1101 45.05
 ticker = sys.argv[1]
 quote = sys.argv[2]
-
-'''
-list2 = []
-f = open("datafiles/listed_2.txt", "r")
-raw_list = f.readlines()
-for element in raw_list:
-    list2.append(element.strip())
-'''
-
-def msg_box(text):
-    # myBox = msgbox.MsgBox(XSCRIPTCONTEXT.getComponentContext())
-    # myBox = msgbox.MsgBox(uno.getComponentContext())
-    myBox.addButton("OK")
-    myBox.renderFromButtonSize()
-    myBox.numberOflines = 2
-    myBox.show(text,0,"Not in the List")
+if ( len(sys.argv) >= 4 ):
+    corp_name = sys.argv[3]
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -87,6 +71,8 @@ addr_support = "H1"
 addr_cheap = "I1"
 addr_52lo = "K1"
 addr_52hi = "M1"
+addr_n = "B1"
+
 cellq = active_sheet.getCellRangeByName(addr_q)
 for i in range(1, len(cursor.Rows)):
     addr_x = "A"+str(i+1)
@@ -98,11 +84,13 @@ for i in range(1, len(cursor.Rows)):
         addr_cheap = "I"+str(i+1)
         addr_52lo = "K"+str(i+1)
         addr_52hi = "M"+str(i+1)
+        addr_n = "B" + str(i+1)
         break
 
 if ( addr_q == "J1" ):
-    print(ticker + " not found in sheet, add entry,")
+    print(ticker + corp_name + " not found in sheet, add entry,")
     addr_x = "A" + str( last_row + 1 )
+    addr_n = "B" + str( last_row + 1 )
     addr_q = "J" + str( last_row + 1 )
     addr_resist = "G" + str( last_row + 1 )
     addr_support = "H" + str( last_row + 1 )
@@ -111,16 +99,57 @@ if ( addr_q == "J1" ):
     addr_52hi = "M" + str( last_row + 1 )
     cell_ticker = active_sheet.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
+    if ( len(sys.argv) >= 4 ):
+        cell_ticker = active_sheet.getCellRangeByName(addr_n)
+        cell_ticker.String = corp_name
+
+if ( len(sys.argv) >= 4 ):
+    cell_ticker = active_sheet.getCellRangeByName(addr_n)
+    cell_ticker.String = corp_name
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 cellq.String = quote
 cellq.CellBackColor = 0xFFFF00
 time.sleep(.6)
 cellq.CellBackColor = 0xFFFFFF
-cell = active_sheet.getCellRangeByName(addr_cheap)
-if ( cell.Value is not None and cell.String != "n/a" ):
+
+cell = active_sheet.getCellRangeByName(addr_support)
+# @see https://stackoverflow.com/a/9573283
+if ( cell.String and cell.String != "n/a" ):
     if ( cell.Value >= float(quote) ):
+        cell = active_sheet.getCellRangeByName(addr_support)
+        cell.CellBackColor = 0xFFFF00
+    else:
+        cell.CellBackColor = 0xFFFFFF
+
+cell = active_sheet.getCellRangeByName(addr_52lo)
+if ( cell.String and cell.String != "n/a" ):
+    if ( cell.Value > float(quote) ):
+        cell = active_sheet.getCellRangeByName(addr_52lo)
+        cell.CellBackColor = 0xFFFF00
+    else:
+        cell.CellBackColor = 0xFFFFFF
+
+cell = active_sheet.getCellRangeByName(addr_cheap)
+if ( cell.String and cell.String != "n/a" ):
+    if ( cell.Value > float(quote) ):
         cell = active_sheet.getCellRangeByName(addr_cheap)
+        cell.CellBackColor = 0xFFFF00
+    else:
+        cell.CellBackColor = 0xFFFFFF
+
+cell = active_sheet.getCellRangeByName(addr_resist)
+if ( cell.String and cell.String != "n/a" ):
+    if ( cell.Value < float(quote) ):
+        cell = active_sheet.getCellRangeByName(addr_resist)
+        cell.CellBackColor = 0xFFFF00
+    else:
+        cell.CellBackColor = 0xFFFFFF
+
+cell = active_sheet.getCellRangeByName(addr_52hi)
+if ( cell.String and cell.String != "n/a" ):
+    if ( cell.Value < float(quote) ):
+        cell = active_sheet.getCellRangeByName(addr_52hi)
         cell.CellBackColor = 0xFFFF00
     else:
         cell.CellBackColor = 0xFFFFFF

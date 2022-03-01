@@ -41,15 +41,21 @@ def do_operation(ln, ticker, ofile):
     print(f'{ln:04}' + " ticker " + ticker + " " + task)
     if task == "activity":
         print_body(ticker, ofile)
+        time_wait_sec = random.randint(-10, 5) + 11 * 1
+        time.sleep(time_wait_sec)
     elif task == "per":
         print_body_per(ticker, ofile)
+        time_wait_sec = random.randint(-10, 5) + 11 * 1
+        time.sleep(time_wait_sec)
     elif task == "range52w":
         print_body_range52w(ticker, ofile)
+        time_wait_sec = random.randint(-10, 5) + 11 * 1
+        time.sleep(time_wait_sec)
     elif task == "eps":
         # frequency tuning
         # low profile, don't do this at night,
         # cover by market trading hours
-        time_wait_sec = random.randint(-30, 20) + 32 * 1
+        time_wait_sec = random.randint(-10, 5) + 32 * 1
         print("wait " + str(time_wait_sec) + " seconds,")
         time.sleep(time_wait_sec)
         soup = get_from_source_eps(ticker)
@@ -61,7 +67,7 @@ def do_operation(ln, ticker, ofile):
         print(ticker+", "+task)
 
 def print_task_header(ofile):
-    mockup_ticker = "3041" # //TODO: random seed generator
+    mockup_ticker = "2834" # //TODO: random seed generator
     if task == "activity":
         print_header(mockup_ticker, ofile)
     elif task == "per":

@@ -39,12 +39,11 @@ b8 = "https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx"
 
 # because URIs can't contain non-ASCII characters.
 # https://stackoverflow.com/a/6938893
-# //TODO: search for urllib for tips
-marginal_buying = "https://goodinfo.tw/tw/ShowBearishChart.asp?STOCK_ID=加權指數&CHT_CAT=DATE"
 
 copper = "https://www.investing.com/commodities/copper-candlestick"
 nickel = "https://www.investing.com/commodities/nickel-candlestick"
 aluminum = "https://markets.businessinsider.com/commodities/aluminum-price"
+platinum = "https://www.cmegroup.com/markets/metals/precious/platinum.html"
 
 iron_ore = "https://www.marketindex.com.au/iron-ore"
 brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
@@ -57,6 +56,7 @@ worldwide_index = "https://finance.yahoo.com/world-indices/"
 finviz = "https://finviz.com"
 twd_forex = "https://forex.tradingcharts.com/chart/US%20Dollar_New%20Taiwan%20Dollar.html?tz=CST&chartpair=US%2520Dollar_New%2520Taiwan%2520Dollar&ctype=b&movAvg1=&movAvg2=&per=1d"
 jpy_forex = "https://www.dailyfx.com/usd-jpy"
+major_futures = "https://www.cnyes.com/futures/indexftr.aspx"
 
 urls = [ \
     # regional
@@ -64,13 +64,13 @@ urls = [ \
     fund, \
     retail, \
     b8, \
-    marginal_buying, \
 
     # worldwide
+    finviz, \
+    major_futures, \
     emerging_market, \
     worldwide_index, \
     cnn_greedy_fear_meter, \
-    finviz, \
 
     twd_forex, \
     jpy_forex, \
@@ -93,11 +93,16 @@ urls = [ \
 
     copper, \
     nickel, \
+    platinum, \
     aluminum, \
     iron_ore ]
 
+i = 0
 for url in urls:
     webbrowser.open(url)
     time.sleep(1)
+    i += 1
+    if ( i % 5 == 4 ):
+        input("Press Enter to continue...")
 
 sys.exit(0)
