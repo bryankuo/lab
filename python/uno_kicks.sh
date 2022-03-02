@@ -10,7 +10,8 @@
 # idea 2: glue 2 scripts by bash
 # make sure running uno.sh
 
-LOOPING=0
+LOOPING=$1
+
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP " looping " $LOOPING
 if [[ $LOOPING -eq 1 ]]
@@ -24,7 +25,7 @@ then
 	# echo "$p"
 	index=$(($index+1))
 	OUTPUT=($(python3 quote.py $p | tr -d '[],'))
-	echo ${OUTPUT[@]}
+	# echo ${OUTPUT[@]}
 	DEAL=${OUTPUT[0]%\'}
 	DEAL=${DEAL#\'}
 	MSG=$(printf "%04d %04d %04.2f" $index $p $DEAL)
@@ -34,17 +35,18 @@ then
 	sleep 2
     done < datafiles/watchlist.txt
 else
+    TICKER=$2
     # update a single ticker
-    OUTPUT=($(python3 quote.py $1 | tr -d '[],'))
+    OUTPUT=($(python3 quote.py $2 | tr -d '[],'))
     DEAL=${OUTPUT[0]%\'}
     DEAL=${DEAL#\'}
-    MSG=$(printf "%04d %04.2f" $1 $DEAL)
-    OUTPUT=($(python3 basic.py $1 | tr -d '[],'))
+    MSG=$(printf "%04d %04.2f" $2 $DEAL)
+    OUTPUT=($(python3 basic.py $2 | tr -d '[],'))
     CO_NAME=${OUTPUT[1]%\'}
     CO_NAME=${CO_NAME#\'}
     echo $MSG $OUTPUT
     /Applications/LibreOffice.app/Contents/Resources/python \
-	uno_kicks.py $1 $DEAL $CO_NAME
+	uno_kicks.py $2 $DEAL $CO_NAME
 fi
 
 echo "done."

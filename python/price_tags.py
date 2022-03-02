@@ -102,7 +102,7 @@ for url in urls:
     webbrowser.open(url)
     time.sleep(1)
     i += 1
-    if ( i % 5 == 4 ):
+    if ( i % 7 == 6 ):
         input("Press Enter to continue...")
 
 sys.exit(0)
