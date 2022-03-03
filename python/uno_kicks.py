@@ -127,6 +127,7 @@ if ( cell.String and cell.String != "n/a" ):
     if ( cell.Value > float(quote) ):
         cell = active_sheet.getCellRangeByName(addr_52lo)
         cell.CellBackColor = 0xFFFF00
+        cell.String = quote
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -151,6 +152,7 @@ if ( cell.String and cell.String != "n/a" ):
     if ( cell.Value < float(quote) ):
         cell = active_sheet.getCellRangeByName(addr_52hi)
         cell.CellBackColor = 0xFFFF00
+        cell.String = quote
     else:
         cell.CellBackColor = 0xFFFFFF
 

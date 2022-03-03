@@ -9,7 +9,11 @@
 
 # idea 2: glue 2 scripts by bash
 # make sure running uno.sh
-
+if [ "$#" -le 1 ]; then
+    echo "./uno_kicks.sh [looping] [ticker]"
+    # @see https://stackoverflow.com/a/1535733
+    exit 64
+fi
 LOOPING=$1
 
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
