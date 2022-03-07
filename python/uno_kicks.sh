@@ -9,10 +9,12 @@
 
 # idea 2: glue 2 scripts by bash
 # make sure running uno.sh
-if [ "$#" -le 1 ]; then
+# echo "$#"
+if [ "$#" -lt 1 ]; then
     echo "./uno_kicks.sh [looping] [ticker]"
     # @see https://stackoverflow.com/a/1535733
     exit 64
+    # echo "./uno_kicks.sh [looping] [position] [length]"
 fi
 LOOPING=$1
 
@@ -44,10 +46,11 @@ else
     OUTPUT=($(python3 quote.py $2 | tr -d '[],'))
     DEAL=${OUTPUT[0]%\'}
     DEAL=${DEAL#\'}
-    MSG=$(printf "%04d %04.2f" $2 $DEAL)
     OUTPUT=($(python3 basic.py $2 | tr -d '[],'))
     CO_NAME=${OUTPUT[1]%\'}
     CO_NAME=${CO_NAME#\'}
+    MSG=$(printf "%04d %04.2f" $2 $DEAL)
+    # OUTPUT=($(python3 briefing.py $2 | tr -d '[],'))
     echo $MSG $OUTPUT
     /Applications/LibreOffice.app/Contents/Resources/python \
 	uno_kicks.py $2 $DEAL $CO_NAME

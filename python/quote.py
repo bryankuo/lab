@@ -60,25 +60,34 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     opn = float(frame["msgArray"][0]["o"])
     high = float(frame["msgArray"][0]["h"])
     low = float(frame["msgArray"][0]["l"])
-    # close = float(frame["msgArray"][0]["z"])
-    close = frame["msgArray"][0]["z"]
+    close_s = frame["msgArray"][0]["z"]
     volume = frame["msgArray"][0]["v"]
-    h_limit = float(frame["msgArray"][0]["u"])
-    l_limit = float(frame["msgArray"][0]["w"])
+    limit_h = float(frame["msgArray"][0]["u"])
+    limit_l = float(frame["msgArray"][0]["w"])
     asks = frame["msgArray"][0]["a"].split("_")
     n_asks = frame["msgArray"][0]["f"].split("_")
     bids = frame["msgArray"][0]["b"].split("_")
     n_bids = frame["msgArray"][0]["g"].split("_")
 
-    if ( frame["msgArray"][0]["pz"] == '-' ):
+    if ( frame["msgArray"][0]["pz"] != '-' ):
+        # normal
+        strike = float(frame["msgArray"][0]["z"])
+        strike_s = "{:<04.2f}".format(strike)
+    else:
         strike_s = frame["msgArray"][0]["pz"]
-        if ( len(asks) > 0 ):
+        # print(str(len(bids))+','+str(len(asks)))
+        if ( len(bids) <= 0 ):
+            strike_s = "{:<04.2f}".format(float(asks[0]))
+        elif ( len(asks) <= 0 ):
+            strike_s = "{:<04.2f}".format(float(bids[0]))
+        elif ( frame["msgArray"][0]["z"] != '-' ):
+            strike_s = "{:<04.2f}".format(float(frame["msgArray"][0]["z"]))
+        elif ( len(bids) > len(asks) ):
+            strike_s = "{:<04.2f}".format(float(bids[0]))
+        elif ( len(bids) < len(asks) ):
             strike_s = "{:<04.2f}".format(float(asks[0]))
         else:
-            print(len(bids))
-    else:
-        strike = float(frame["msgArray"][0]["pz"])
-        strike_s = "{:<04.2f}".format(strike)
+            strike_s = "{:<04.2f}".format(opn)
 elif ( list_type == "tpex_" ):
     # // TODO: TPEX
     # url = "https://www.tpex.org.tw/web/emergingstock/lateststats/new.htm?l=zh-tw"

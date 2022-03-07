@@ -52,6 +52,8 @@ natural_gas = "https://www.tradingview.com/symbols/NYMEX-NG1%21/"
 fertilizers = "https://ycharts.com/indicators/fertilizers_index_world_bank"
 
 emerging_market = "https://stockscan.io/stocks/EEM"
+# ETF price and volume https://etfdb.com/etf/IJR/#price-and-volume
+
 worldwide_index = "https://finance.yahoo.com/world-indices/"
 finviz = "https://finviz.com"
 twd_forex = "https://forex.tradingcharts.com/chart/US%20Dollar_New%20Taiwan%20Dollar.html?tz=CST&chartpair=US%2520Dollar_New%2520Taiwan%2520Dollar&ctype=b&movAvg1=&movAvg2=&per=1d"
