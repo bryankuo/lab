@@ -29,13 +29,14 @@ try:
     co_type = re.search('\(([^)]+)', corp_name).group(1)
     corp_name = corp_name.split('\n',1)[1]
     if ( co_type == "上市公司" ):
-        ticker_type = 0
-    elif ( co_type == "上櫃公司" ):
-        ticker_type = 1
-    elif ( co_type == "興櫃公司" ):
         ticker_type = 2
+    elif ( co_type == "上櫃公司" ):
+        ticker_type = 4
+    elif ( co_type == "興櫃公司" ):
+        ticker_type = 5
     else:
-        ticker_type =3
+        # // TODO: others
+        ticker_type = 3
     has_cb = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('td')[30].text
     cb_issue = soup.findAll('table')[1] \

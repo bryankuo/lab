@@ -106,7 +106,7 @@ major_holders_bs = \
 
 management = ""
 
-if ( co_type == 1 or co_type == 2 ):
+if ( co_type == 4 or co_type == 5 ):
     tpex_info = "https://www.tpex.org.tw/web/regular_emerging/" \
     "corporateInfo/regular/regular_stock_detail.php?" \
     "l=zh-tw&stk_code=" + ticker

@@ -46,14 +46,14 @@ python3 activity.py $1
 python3 eps.py $1
 
 echo "checking volume..."
-if [[ $CO_TYPE -eq 0 ]]
+if [[ $CO_TYPE -eq 2 ]]
 then
     python3 volume.py $1
-elif [[ $CO_TYPE -eq 1 ]]
+elif [[ $CO_TYPE -eq 4 ]]
 then
     python3 volume_otc.py $1
 
-elif [[ $CO_TYPE -eq 2 ]]
+elif [[ $CO_TYPE -eq 5 ]]
 then
     echo "otcbb volume is TBD..."
     # python3 volume_otcbb.py $1
