@@ -61,8 +61,16 @@ then
 	# MSG=$(printf "%04d %04d %04.2f %s" $index $TICKER $DEAL $CO_NAME)
 	MSG=$(printf "%04d %04d %04.2f %s" $index $TICKER $DEAL )
 	echo $MSG
-	/Applications/LibreOffice.app/Contents/Resources/python \
-	    uno_kicks.py $TICKER $DEAL
+	# /Applications/LibreOffice.app/Contents/Resources/python \
+	#    uno_kicks.py $TICKER $DEAL
+	RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
+	    uno_kicks.py $TICKER $DEAL | tr -d '[],' ) )
+	O_SPEC=${RETURN[0]%\'}
+	O_SPEC=${O_SPEC#\'}
+	# echo $OPUT # test return from calc
+	if [ "$O_SPEC" == "1" ]; then
+	    echo -ne '\007'
+	fi
 	index=$(($index+1))
 	count=$(($count+1))
 	if [[ $count -ge $LEN ]]; then
@@ -109,9 +117,12 @@ else
     RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
 	uno_kicks.py $TICKER $DEAL $CO_NAME \
 	$QDI $FUND $RETAIL $TOTAL  | tr -d '[],' ) )
-    OPUT=${RETURN[0]%\'}
-    OPUT=${OPUT#\'}
+    O_SPEC=${RETURN[0]%\'}
+    O_SPEC=${O_SPEC#\'}
     # echo $OPUT # test return from calc
+    if [ "$O_SPEC" == "1" ]; then
+	echo -ne '\007'
+    fi
 fi
 
 exit 0

@@ -145,6 +145,7 @@ cellq.String = quote
 cellq.CellBackColor = 0xFFFF00
 time.sleep(.7)
 cellq.CellBackColor = 0xFFFFFF
+out_of_spec = 0
 
 cell = active_sheet.getCellRangeByName(addr_support)
 # @see https://stackoverflow.com/a/9573283
@@ -152,6 +153,7 @@ if ( cell.String and cell.String != "n/a" ):
     if ( cell.Value >= float(quote) ):
         cell = active_sheet.getCellRangeByName(addr_support)
         cell.CellBackColor = 0xFFFF00
+        out_of_spec = 1
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -161,6 +163,7 @@ if ( cell.String and cell.String != "n/a" ):
         cell = active_sheet.getCellRangeByName(addr_52lo)
         cell.CellBackColor = 0xFFFF00
         cell.String = quote
+        out_of_spec = 1
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -169,6 +172,7 @@ if ( cell.String and cell.String != "n/a" ):
     if ( cell.Value > float(quote) ):
         cell = active_sheet.getCellRangeByName(addr_cheap)
         cell.CellBackColor = 0xFFFF00
+        out_of_spec = 1
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -177,6 +181,7 @@ if ( cell.String and cell.String != "n/a" ):
     if ( cell.Value < float(quote) ):
         cell = active_sheet.getCellRangeByName(addr_resist)
         cell.CellBackColor = 0xFFFF00
+        out_of_spec = 1
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -186,12 +191,13 @@ if ( cell.String and cell.String != "n/a" ):
         cell = active_sheet.getCellRangeByName(addr_52hi)
         cell.CellBackColor = 0xFFFF00
         cell.String = quote
+        out_of_spec = 1
     else:
         cell.CellBackColor = 0xFFFFFF
 
-if ( len(sys.argv) >= 4 ):
-    olist = [ ticker ]
-    print(olist)
+# if ( len(sys.argv) >= 4 ):
+olist = [ out_of_spec ]
+print(olist)
 
 # //TODO: multithreading
 

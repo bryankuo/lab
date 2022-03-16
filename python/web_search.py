@@ -106,6 +106,15 @@ major_holders_bs = \
 
 management = ""
 
+g_trend =""
+# https://trends.google.com/trends/explore
+# ?q=宏達電&geo=TW
+# ?date=today%201-m&geo=TW&q=台電
+# ?date=today%201-m&geo=TW&q=2498,2330
+# ?date=now%207-d&geo=TW&q=2498,2330
+# ?date=today%205-y&q=2498,2330
+# ?date=now%204-H&q=2498,2330
+
 if ( co_type == 4 or co_type == 5 ):
     tpex_info = "https://www.tpex.org.tw/web/regular_emerging/" \
     "corporateInfo/regular/regular_stock_detail.php?" \

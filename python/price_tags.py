@@ -102,6 +102,7 @@ urls = [ \
 i = 0
 for url in urls:
     webbrowser.open(url)
+    # print('\a') # beep
     time.sleep(1)
     i += 1
     if ( i % 7 == 6 ):
