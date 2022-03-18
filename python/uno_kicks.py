@@ -101,7 +101,7 @@ for i in range(1, len(cursor.Rows)):
         break
 
 if ( addr_q == "J1" ):
-    print(ticker + corp_name + " not found in sheet, add entry,")
+    # print(ticker + corp_name + " not found in sheet, add entry,")
     addr_x = "A" + str( last_row + 1 )
     addr_n = "B" + str( last_row + 1 )
     addr_qdi = "C" + str( last_row + 1 )

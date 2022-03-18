@@ -1,5 +1,5 @@
 #!/bin/bash
-
+rm -f datafiles/listed_taiex.txt
 declare -a arr=(2 4 5)
 echo "get all the tickers..."
 n_ticker=0;
