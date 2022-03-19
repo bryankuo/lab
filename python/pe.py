@@ -46,9 +46,54 @@ def print_body(ticker, ofile):
         ofile.write('\n')
         ofile.flush()
 
+def get_per(ticker):
+    # print("get_activity " + ticker)
+    import requests, random
+    from bs4 import BeautifulSoup
+
+    n = random.randint(1,3)
+    if ( n == 1 ):
+        url = "https://concords.moneydj.com/z/zc/zca/zca_" + \
+            ticker + ".djhtm"
+    elif ( n == 2 ):
+        url = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + \
+            ticker + ".djhtm"
+    else: # 3
+        url = 'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + \
+            ticker + '.djhtm'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    pe = soup.findAll('table')[0] \
+        .find_all('table')[0] \
+        .find_all('tr')[4] \
+        .find_all('td')[1].text.strip()
+    pe_peer = soup.findAll('table')[0] \
+        .find_all('table')[0] \
+        .find_all('tr')[5] \
+        .find_all('td')[1].text.strip()
+    pe_hi52 = soup.findAll('table')[0] \
+        .find_all('table')[0] \
+        .find_all('tr')[5] \
+        .find_all('td')[3].text.strip()
+    pe_lo52 = soup.findAll('table')[0] \
+        .find_all('table')[0] \
+        .find_all('tr')[5] \
+        .find_all('td')[5].text.strip()
+    if ( pe is None ):
+        print('not found')
+        sys.exit(1)
+    olist = [ pe, pe_hi52, pe_lo52, pe_peer ]
+    print(olist)
+
 if __name__ == "__main__":
     import sys, requests
     from bs4 import BeautifulSoup
+
     ticker = sys.argv[1]
-    print_header(ticker, None)
-    print_body(ticker, None)
+    if ( 2 == len(sys.argv) ):
+        print_header(ticker, None)
+        print_body(ticker, None)
+    elif ( 3 == len(sys.argv) ):
+        get_per(ticker)
+    else:
+        print("not support. " + str(len(sys.argv)))

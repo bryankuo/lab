@@ -56,3 +56,6 @@ price_tags.py: show price tags on daily base.
 taxid.py: find tax id by ticker and title.
 top150.py: get top 150 market value.
 m100_components.py: get m100 components.
+uno_kicks.py: update libreoffice calc.
+uno_kicks.sh: scripting update quote.
+uno_status.sh: update quote, activity, per of a ticker to calc.

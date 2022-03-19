@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
+# looping:
 # python3 uno_kicks.py [ticker] [quote]
-
+#
 # reference doc:
 # http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
@@ -16,15 +17,24 @@ from datetime import datetime
 
 # /Applications/LibreOffice.app/Contents/Resources/python \
 #   uno_kicks.py 1101 45.05
-ticker = sys.argv[1]
-quote = sys.argv[2]
-if ( len(sys.argv) >= 4 ):
-    # assume loop mode 0
+
+# /Applications/LibreOffice.app/Contents/Resources/python \
+#   uno_kicks.py 1101 45.05 name qdi fund retail total
+#                per ph52 pl52 peer
+
+if ( len(sys.argv) >= 3 ):
+    ticker = sys.argv[1]
+    quote = sys.argv[2]
+if ( len(sys.argv) >= 11 ):
     corp_name = sys.argv[3]
     qdi       = sys.argv[4]
     fund      = sys.argv[5]
     retail    = sys.argv[6]
     d5total     = sys.argv[7]
+    per         = sys.argv[8]
+    per_hi52    = sys.argv[9]
+    per_lo52    = sys.argv[10]
+    per_peer    = sys.argv[11]
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -81,6 +91,7 @@ addr_qdi = "C1"
 addr_fund = "D1"
 addr_retail = "E1"
 addr_5dtotal = "F1"
+addr_per = "O1"
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 for i in range(1, len(cursor.Rows)):
@@ -98,6 +109,7 @@ for i in range(1, len(cursor.Rows)):
         addr_fund = "D" + str(i+1)
         addr_retail = "E" + str(i+1)
         addr_5dtotal = "F" + str(i+1)
+        addr_per = "O" + str(i+1)
         break
 
 if ( addr_q == "J1" ):
@@ -114,9 +126,10 @@ if ( addr_q == "J1" ):
     addr_cheap = "I" + str( last_row + 1 )
     addr_52lo = "K" + str( last_row + 1 )
     addr_52hi = "M" + str( last_row + 1 )
+    addr_per = "O" + str( last_row + 1 )
     cell_ticker = active_sheet.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
-    if ( len(sys.argv) >= 4 ):
+    if ( len(sys.argv) >= 11 ):
         cell_ticker = active_sheet.getCellRangeByName(addr_n)
         cell_ticker.String = corp_name
         cell_ticker = active_sheet.getCellRangeByName(addr_qdi)
@@ -127,8 +140,10 @@ if ( addr_q == "J1" ):
         cell_ticker.String = retail
         cell_ticker = active_sheet.getCellRangeByName(addr_5dtotal)
         cell_ticker.String = d5total
+        cell_ticker = active_sheet.getCellRangeByName(addr_per)
+        cell_ticker.String = per
 
-if ( len(sys.argv) >= 4 ):
+if ( len(sys.argv) >= 11 ):
     cell_ticker = active_sheet.getCellRangeByName(addr_n)
     cell_ticker.String = corp_name
     cell_ticker = active_sheet.getCellRangeByName(addr_qdi)
@@ -139,6 +154,8 @@ if ( len(sys.argv) >= 4 ):
     cell_ticker.String = retail
     cell_ticker = active_sheet.getCellRangeByName(addr_5dtotal)
     cell_ticker.String = d5total
+    cell_ticker = active_sheet.getCellRangeByName(addr_per)
+    cell_ticker.String = per
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 cellq.String = quote
@@ -195,7 +212,6 @@ if ( cell.String and cell.String != "n/a" ):
     else:
         cell.CellBackColor = 0xFFFFFF
 
-# if ( len(sys.argv) >= 4 ):
 olist = [ out_of_spec ]
 print(olist)
 
