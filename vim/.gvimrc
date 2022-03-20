@@ -33,3 +33,5 @@ set number
 autocmd BufWritePre * :%s/\s\+$//e
 " highlight Normal guifg=white guibg=black
 set tags=/usr/include/tags,/usr/include/c++/tags,/home/bryan/Qt/5.12.0/Src;
+highlight ColorColumn ctermbg=green guibg=orange
+set textwidth=80

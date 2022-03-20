@@ -22,10 +22,9 @@ from datetime import datetime
 #   uno_kicks.py 1101 45.05 name qdi fund retail total
 #                per ph52 pl52 peer
 
-if ( len(sys.argv) >= 3 ):
+if ( len(sys.argv) >= 11 ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
-if ( len(sys.argv) >= 11 ):
     corp_name = sys.argv[3]
     qdi       = sys.argv[4]
     fund      = sys.argv[5]
@@ -35,6 +34,12 @@ if ( len(sys.argv) >= 11 ):
     per_hi52    = sys.argv[9]
     per_lo52    = sys.argv[10]
     per_peer    = sys.argv[11]
+elif ( len(sys.argv) < 11 and len(sys.argv) >= 3 ):
+    ticker = sys.argv[1]
+    quote = sys.argv[2]
+else:
+    printf('illegal #')
+    sys.exit(0)
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()

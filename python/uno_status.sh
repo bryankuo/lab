@@ -8,10 +8,10 @@ OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
 DEAL=${OUTPUT[0]%\'}
 DEAL=${DEAL#\'}
 OUTPUT=($(python3 basic.py $TICKER | tr -d '[],'))
-CO_NAME=${OUTPUT[2]%\'}
-CO_NAME=${CO_NAME#\'}
-CO_TYPE=${OUTPUT[3]%\'}
+CO_TYPE=${OUTPUT[2]%\'}
 CO_TYPE=${CO_TYPE#\'}
+CO_NAME=${OUTPUT[1]%\'}
+CO_NAME=${CO_NAME#\'}
 if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     ACTIVITY=($(python3 activity.py $TICKER 1 | tr -d '[],'))
     QDI=${ACTIVITY[0]%\'}
@@ -31,6 +31,10 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     PER_L52=${PER_L52#\'}
     PER_PEER=${OUTPUT[3]%\'}
     PER_PEER=${PER_PEER#\'}
+    MSG=$(printf \
+	"%04d %s %d %04.2f activity:%7d %7d %7d %7d pe:%04.2f %04.2f %04.2f %04.2f\n" \
+	$TICKER $CO_NAME $CO_TYPE $DEAL $QDI $FUND $RETAIL $TOTAL \
+	$PER $PER_H52 $PER_L52 $PER_PEER)
 else
     # // TODO:
     QDI=0
@@ -41,11 +45,11 @@ else
     PER_H52="n/a"
     PER_L52="n/a"
     PER_PEER="n/a"
+    MSG=$(printf \
+	"%04d %s %d %04.2f activity:%7d %7d %7d %7d pe:%s %s %s %s\n" \
+	$TICKER $CO_NAME $CO_TYPE $DEAL $QDI $FUND $RETAIL $TOTAL \
+	$PER $PER_H52 $PER_L52 $PER_PEER)
 fi
-MSG=$(printf \
-    "%04d %s %04.2f activity:%7d %7d %7d %7d pe:%04.2f %04.2f %04.2f %04.2f\n" \
-    $TICKER $CO_NAME $DEAL $QDI $FUND $RETAIL $TOTAL \
-    $PER $PER_H52 $PER_L52 $PER_PEER)
 echo $MSG
 RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     uno_kicks.py $TICKER $DEAL $CO_NAME \
