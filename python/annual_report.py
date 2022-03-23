@@ -13,9 +13,14 @@ ticker = sys.argv[1]
 # https://mops.twse.com.tw/mops/web/stapap1_all
 # board holdings, got valid data, 2 months earlier
 the_day = datetime.today() + relativedelta(months=-2)
-yr = str(int(the_day.strftime("%Y")) - 1911)
+t0, t1 = datetime(2022,3,31), datetime.today()
+if ( t0 > t1 ):
+    # https://goodideamin.com.tw/blog/post/stockfinancialreport
+    offset = -1
+else:
+    offset = 0
+yr = str(int(the_day.strftime("%Y")) - 1911 + offset)
 month = the_day.strftime("%m")
-
 url = "https://doc.twse.com.tw/server-java/t57sb01?" + \
     "step=1&colorchg=1&co_id="+ticker+"&year="+yr+"&mtype=F&"
 webbrowser.open(url)

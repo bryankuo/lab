@@ -91,12 +91,14 @@ addr_support = "H1"
 addr_cheap = "I1"
 addr_52lo = "K1"
 addr_52hi = "M1"
+addr_x = "A1"
 addr_n = "B1"
 addr_qdi = "C1"
 addr_fund = "D1"
 addr_retail = "E1"
 addr_5dtotal = "F1"
 addr_per = "O1"
+addr_stalk = "AE1"
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 for i in range(1, len(cursor.Rows)):
@@ -109,12 +111,14 @@ for i in range(1, len(cursor.Rows)):
         addr_cheap = "I"+str(i+1)
         addr_52lo = "K"+str(i+1)
         addr_52hi = "M"+str(i+1)
+        addr_ticker = "A" + str(i+1)
         addr_n = "B" + str(i+1)
         addr_qdi = "C" + str(i+1)
         addr_fund = "D" + str(i+1)
         addr_retail = "E" + str(i+1)
         addr_5dtotal = "F" + str(i+1)
         addr_per = "O" + str(i+1)
+        addr_stalk = "AE" + str(i+1)
         break
 
 if ( addr_q == "J1" ):
@@ -132,6 +136,7 @@ if ( addr_q == "J1" ):
     addr_52lo = "K" + str( last_row + 1 )
     addr_52hi = "M" + str( last_row + 1 )
     addr_per = "O" + str( last_row + 1 )
+    addr_stalk = "AE" + str( last_row + 1 )
     cell_ticker = active_sheet.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
     if ( len(sys.argv) >= 11 ):
@@ -217,7 +222,20 @@ if ( cell.String and cell.String != "n/a" ):
     else:
         cell.CellBackColor = 0xFFFFFF
 
-olist = [ out_of_spec ]
+cell_name   = active_sheet.getCellRangeByName(addr_n)
+color_name = cell_name.CellBackColor
+cell_ticker = active_sheet.getCellRangeByName(addr_x)
+color_ticker = cell_ticker.CellBackColor
+'''
+// TODO:
+cell_stalk = active_sheet.getCellRangeByName(addr_stalk)
+cell_stalk.String = ""
+if ( color_name != 0xFFFFFF ):
+    cell_stalk.Value= 1
+# @see https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf
+'''
+
+olist = [ out_of_spec, color_name, color_ticker ]
 print(olist)
 
 # //TODO: multithreading

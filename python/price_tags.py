@@ -50,6 +50,10 @@ brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
 cnn_greedy_fear_meter = "https://money.cnn.com/data/fear-and-greed/"
 natural_gas = "https://www.tradingview.com/symbols/NYMEX-NG1%21/"
 fertilizers = "https://ycharts.com/indicators/fertilizers_index_world_bank"
+rubber = "https://economictimes.indiatimes.com/commoditysummary/symbol-RUBBER.cms"
+
+nand_flash = "https://www.trendforce.com/price"
+ddr = "https://www.dramexchange.com"
 
 emerging_market = "https://stockscan.io/stocks/EEM"
 # ETF price and volume https://etfdb.com/etf/IJR/#price-and-volume
@@ -87,6 +91,7 @@ urls = [ \
     oats, \
     palmolive_oil, \
     coffee, \
+    rubber, \
 
     uranium, \
     brent_crude, \
@@ -97,15 +102,18 @@ urls = [ \
     nickel, \
     platinum, \
     aluminum, \
-    iron_ore ]
+    iron_ore, \
+
+    nand_flash, \
+    ddr ]
 
 i = 0
 for url in urls:
     webbrowser.open(url)
-    # print('\a') # beep
     time.sleep(1)
     i += 1
-    if ( i % 7 == 6 ):
+    if ( i % 10 == 9 ):
+        print('\a') # beep
         input("Press Enter to continue...")
 
 sys.exit(0)

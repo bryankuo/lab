@@ -31,6 +31,7 @@ then
     python3 board.py $1
     python3 branch.py $1
     python3 announcement.py $1
+    python3 gtrend.py $1
 fi
 
 # python3 capital.py $1

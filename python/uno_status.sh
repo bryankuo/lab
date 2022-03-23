@@ -58,7 +58,11 @@ RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     | tr -d '[],' ) )
 O_SPEC=${RETURN[0]%\'}
 O_SPEC=${O_SPEC#\'}
-# echo $OPUT # test return from calc
+# O_SPEC1=${RETURN[1]%\'}
+# O_SPEC1=${O_SPEC1#\'}
+# O_SPEC2=${RETURN[2]%\'}
+# O_SPEC2=${O_SPEC2#\'}
+# echo $O_SPEC1" "$O_SPEC2
 if [ "$O_SPEC" == "1" ]; then
     echo -ne '\007'
 fi

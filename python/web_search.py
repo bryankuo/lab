@@ -155,8 +155,12 @@ urls = [ \
     google_chairman_image, \
     management ]
 
+i = 0
 for url in urls:
     webbrowser.open(url)
-    time.sleep(1)
+    i += 1
+    if ( i % 10 == 9 ):
+        print('\a') # beep
+        input("Press Enter to continue...")
 
 sys.exit(0)
