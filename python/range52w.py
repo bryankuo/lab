@@ -53,9 +53,53 @@ def print_body(ticker, ofile):
         ofile.write('\n')
         ofile.flush()
 
+def get_range52w(ticker):
+    # print("get_activity " + ticker)
+    import requests, random
+    from bs4 import BeautifulSoup
+
+    n = random.randint(1,3)
+    if ( n == 1 ):
+        url = "https://concords.moneydj.com/z/zc/zca/zca_" + \
+            ticker + ".djhtm"
+    elif ( n == 2 ):
+        url = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + \
+            ticker + ".djhtm"
+    else: # 3
+        url = 'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + \
+            ticker + '.djhtm'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    rows = soup.select('table .t01 tr')
+    opn = float(rows[1].select('td')[1].renderContents())
+    quote = float(rows[1].select('td')[7].renderContents())
+    tds = rows[2].select('td')
+    low52 = float(tds[5].renderContents())
+    if ( low52 is None ):
+        print('not found')
+        sys.exit(1)
+    high52 = float(tds[3].renderContents())
+    spans= tds[1].select('span')
+    change = float(spans[0].renderContents()) / opn
+    p_low52 = ( low52 - quote ) * 100 / quote
+    p_high52 = ( high52 - quote ) * 100 / quote
+    olist = [                              \
+        "{:>5.02f}".format(low52),         \
+        "{:>5.02f}".format(p_low52) + "%", \
+        "{:>5.02f}".format(high52),        \
+        "{:>5.02f}".format(p_high52) + "%" \
+    ]
+    print(olist)
+
 if __name__ == "__main__":
     import sys, requests
     from bs4 import BeautifulSoup
+
     ticker = sys.argv[1]
-    print_header(ticker, None)
-    print_body(ticker, None)
+    if ( 2 == len(sys.argv) ):
+        print_header(ticker, None)
+        print_body(ticker, None)
+    elif ( 3 == len(sys.argv) ):
+        get_range52w(ticker)
+    else:
+        print("not support. " + str(len(sys.argv)))

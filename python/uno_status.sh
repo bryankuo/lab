@@ -22,6 +22,7 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     RETAIL=${RETAIL#\'}
     TOTAL=${ACTIVITY[3]%\'}
     TOTAL=${TOTAL#\'}
+
     OUTPUT=($(python3 pe.py $TICKER 1 | tr -d '[],'))
     PER=${OUTPUT[0]%\'}
     PER=${PER#\'}
@@ -31,10 +32,17 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     PER_L52=${PER_L52#\'}
     PER_PEER=${OUTPUT[3]%\'}
     PER_PEER=${PER_PEER#\'}
-    MSG=$(printf \
-	"%04d %s %d %04.2f activity:%7d %7d %7d %7d pe:%04.2f %04.2f %04.2f %04.2f\n" \
-	$TICKER $CO_NAME $CO_TYPE $DEAL $QDI $FUND $RETAIL $TOTAL \
-	$PER $PER_H52 $PER_L52 $PER_PEER)
+
+    RANGE=($(python3 range52w.py $TICKER 1 | tr -d '[],'))
+    RL52=${RANGE[0]%\'}
+    RL52=${RL52#\'}
+    RL52P=${RANGE[1]%\'}
+    RL52P=${RL52P#\'}
+    RH52=${RANGE[2]%\'}
+    RH52=${RH52#\'}
+    RH52P=${RANGE[3]%\'}
+    RH52P=${RH52P#\'}
+
 else
     # // TODO:
     QDI=0
@@ -45,16 +53,24 @@ else
     PER_H52="n/a"
     PER_L52="n/a"
     PER_PEER="n/a"
-    MSG=$(printf \
-	"%04d %s %d %04.2f activity:%7d %7d %7d %7d pe:%s %s %s %s\n" \
-	$TICKER $CO_NAME $CO_TYPE $DEAL $QDI $FUND $RETAIL $TOTAL \
-	$PER $PER_H52 $PER_L52 $PER_PEER)
+    RL52="n/a"
+    RL52P="n/a"
+    RH52="n/a"
+    RH52P="n/a"
 fi
+MSG=$(printf \
+    "%04d %s %d %04.2f activity:%7d %7d %7d %7d pe:%04.2f %04.2f %04.2f %04.2f
+    range: %04.2f %s %04.2f %s\n" \
+    $TICKER $CO_NAME $CO_TYPE $DEAL $QDI $FUND $RETAIL $TOTAL \
+    $PER $PER_H52 $PER_L52 $PER_PEER \
+    $RL52 $RL52P $RH52 $RH52P )
+
 echo $MSG
 RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     uno_kicks.py $TICKER $DEAL $CO_NAME \
     $QDI $FUND $RETAIL $TOTAL \
     $PER $PER_H52 $PER_L52 $PER_PEER \
+    $RL52 $RL52P $RH52 $RH52P \
     | tr -d '[],' ) )
 O_SPEC=${RETURN[0]%\'}
 O_SPEC=${O_SPEC#\'}

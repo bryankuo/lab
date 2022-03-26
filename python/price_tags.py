@@ -47,7 +47,7 @@ platinum = "https://www.cmegroup.com/markets/metals/precious/platinum.html"
 
 iron_ore = "https://www.marketindex.com.au/iron-ore"
 brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
-cnn_greedy_fear_meter = "https://money.cnn.com/data/fear-and-greed/"
+fear_n_greed_sentiment = "https://pyinvesting.com/fear-and-greed/"
 natural_gas = "https://www.tradingview.com/symbols/NYMEX-NG1%21/"
 fertilizers = "https://ycharts.com/indicators/fertilizers_index_world_bank"
 rubber = "https://economictimes.indiatimes.com/commoditysummary/symbol-RUBBER.cms"
@@ -76,7 +76,7 @@ urls = [ \
     major_futures, \
     emerging_market, \
     worldwide_index, \
-    cnn_greedy_fear_meter, \
+    fear_n_greed_sentiment, \
 
     twd_forex, \
     jpy_forex, \
