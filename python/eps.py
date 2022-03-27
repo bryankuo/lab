@@ -24,6 +24,7 @@ def get_from_source(ticker):
     if ( browser is None ):
         print("make sure safari automation enabled")
         sys.exit(3)
+    # print(url)
     browser.get(url)
     time.sleep(5) # wait until page fully loaded
     page = browser.page_source
@@ -91,11 +92,14 @@ def print_body(ticker, name, soup, ofile):
 
 if __name__ == "__main__":
     import sys, requests
-    # from bs4 import BeautifulSoup
     from pprint import pprint
-    # from selenium import webdriver
 
     ticker = sys.argv[1]
-    soup = get_from_source(ticker)
-    name = print_header(ticker, soup, None)
-    print_body(ticker, name, soup, None)
+    if ( 2 == len(sys.argv) ):
+        soup = get_from_source(ticker)
+        name = print_header(ticker, soup, None)
+        print_body(ticker, name, soup, None)
+    elif ( 3 == len(sys.argv) ):
+        get_eps(ticker)
+    else:
+        print("not support. " + str(len(sys.argv)))

@@ -29,6 +29,8 @@ ticker_news = \
 fundamental = \
     "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
 
+comparison = "https://mopsfin.twse.com.tw"
+
 # google news search
 # unicode encoding ( https://bit.ly/3syqeyC )
 google_news_past_year = "https://www.google.com/search?q="+ticker+"+"+quote("新聞")+"&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWCJaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
@@ -79,6 +81,9 @@ hr104_search = "https://www.google.com/search?q="+ticker+"+104&client=safari&rls
 revenue_yoy = \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_" + ticker + ".djhtm"
 
+eps_table = "https://goodinfo.tw/tw/StockFinDetail.asp"+ \
+    "?RPT_CAT=XX_M_QUAR&QRY_TIME=20214&STOCK_ID=" + ticker
+
 google_gm_image = \
     "https://www.google.com/search?q=%22"+ \
     ticker + "*%22+%22" + quote("總經理") + "%22&client=safari&rls=en&sxsrf=AOaemvJXeaXjO0UbVWkuEdDa9LoCtKikwA:1640721761933&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjl3q3upIf1AhU2yosBHTRcByMQ_AUoA3oECAEQBQ&biw=1440&bih=709&dpr=1"
@@ -123,14 +128,15 @@ if ( co_type == 4 or co_type == 5 ):
     time.sleep(1)
 
 urls = [ \
-    # fundamental
     fundamental, \
+    comparison, \
     revenue_mom, \
     groups, \
     subsidiary, \
     ticker_news, \
     volume_profile, \
     revenue_yoy, \
+    eps_table, \
     google_news_past_year, \
     google_news_past_month, \
     mops_news, \

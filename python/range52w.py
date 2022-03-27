@@ -68,6 +68,7 @@ def get_range52w(ticker):
     else: # 3
         url = 'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + \
             ticker + '.djhtm'
+    # print(url)
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     rows = soup.select('table .t01 tr')
@@ -83,12 +84,11 @@ def get_range52w(ticker):
     change = float(spans[0].renderContents()) / opn
     p_low52 = ( low52 - quote ) * 100 / quote
     p_high52 = ( high52 - quote ) * 100 / quote
-    olist = [                              \
-        "{:>5.02f}".format(low52),         \
-        "{:>5.02f}".format(p_low52) + "%", \
-        "{:>5.02f}".format(high52),        \
-        "{:>5.02f}".format(p_high52) + "%" \
-    ]
+    olist = [                       \
+        "{:>.02f}".format(low52),   \
+        "{:>.02f}".format(p_low52), \
+        "{:>.02f}".format(high52),  \
+        "{:>.02f}".format(p_high52) ]
     print(olist)
 
 if __name__ == "__main__":
