@@ -11,7 +11,8 @@ pytrends = TrendReq(hl='en-US', tz=360)
 # build payload, list of keywords to get data
 # at most 5?
 # kw_list = ['1455', '3025', '1909', '1312', '5483']
-kw_list = [ ticker, '2330', '2603' ]
+# kw_list = [ ticker, '2330', '2603' ]
+kw_list = [ ticker ]
 pytrends.build_payload(kw_list, cat=0, timeframe='today 1-m', geo='TW', \
      gprop='')
 #1 Interest over Time

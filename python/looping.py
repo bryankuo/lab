@@ -55,7 +55,9 @@ def do_operation(ln, ticker, ofile):
         # frequency tuning
         # low profile, don't do this at night,
         # cover by market trading hours
-        time_wait_sec = random.randint(-10, 5) + 32 * 1
+        # seems can not exceed consequtive N times,
+        # try other extraction instead
+        time_wait_sec = random.randint(-10, 5) + 11 * 1
         print("wait " + str(time_wait_sec) + " seconds,")
         time.sleep(time_wait_sec)
         soup = get_from_source_eps(ticker)

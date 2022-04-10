@@ -64,6 +64,8 @@ twd_forex = "https://forex.tradingcharts.com/chart/US%20Dollar_New%20Taiwan%20Do
 jpy_forex = "https://www.dailyfx.com/usd-jpy"
 major_futures = "https://www.cnyes.com/futures/indexftr.aspx"
 
+glass = "https://quote.eastmoney.com/qihuo/FGM.html"
+
 urls = [ \
     # regional
     fbs, \
@@ -97,6 +99,7 @@ urls = [ \
     brent_crude, \
     natural_gas, \
     fertilizers, \
+    glass, \
 
     copper, \
     nickel, \

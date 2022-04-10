@@ -1,14 +1,29 @@
 #!/usr/bin/python3
 
-# python3 branch.py 2330
-# return 0: success
+# python3 br.py [address]
+# return 0: list
 
 import sys, requests, time, re, os, webbrowser
 import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
+import difflib
 
-ticker = sys.argv[1]
+# @see https://www.twse.com.tw/zh/brokerService/brokerServiceAudit
+geo_group = ['台北市', '基隆市', '新北市', '桃園市',   \
+    '新竹縣', '新竹市', '苗栗縣', '台中市', '南投縣',  \
+    '彰化市', '彰化縣', '雲林縣', '嘉義市', '嘉義縣',  \
+    '台南市', '台南縣', \
+    '高雄市', '鳳山市', '屏東市', '屏東縣', '宜蘭縣',  \
+    '花蓮縣', '花連市', '澎湖縣', \
+    '金門縣' ]
+
+#
+
+addr = sys.argv[1]
+print(difflib.get_close_matches(addr, geo_group))
+sys.exit(0)
+
 url = "https://histock.tw/stock/branch.aspx?no="+ticker
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
@@ -34,13 +49,5 @@ print(rows)
 # 買賣日報表查詢系統 https://bsr.twse.com.tw/bshtm/
 # or download csv file
 
-# @see https://www.twse.com.tw/zh/brokerService/brokerServiceAudit
-geo_group = ['台北市', '基隆市', '新北市', '桃園市',   \
-    '新竹縣', '新竹市', '苗栗縣', '台中市', '南投縣',  \
-    '彰化市', '彰化縣', '雲林縣', '嘉義市', '嘉義縣',  \
-    '台南市', '台南縣', \
-    '高雄市', '鳳山市', '屏東市', '屏東縣', '宜蘭縣',  \
-    '花蓮縣', '花連市', '澎湖縣', \
-    '金門縣' ]
-webbrowser.open(url)
+# webbrowser.open(url)
 sys.exit(0)

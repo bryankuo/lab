@@ -3,7 +3,9 @@
 # python3 transaction.py filename
 # return 0: success
 # listed only
+# input 買賣日報表查詢系統 https://bsr.twse.com.tw/bshtm/
 # input bsContent_9904.html
+# python3 transaction.py ~/Downloads/bsContent2006.html
 # output 9904.txt colon seperated file for soffice input
 # launch by soffice calc
 

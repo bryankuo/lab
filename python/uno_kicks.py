@@ -34,7 +34,7 @@ def context():
     # access the active sheet
     active_sheet = model.CurrentController.ActiveSheet
 
-MAX_ARG_LEN = 15
+MAX_ARG_LEN = 25
 if ( len(sys.argv) >= MAX_ARG_LEN ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
@@ -51,6 +51,18 @@ if ( len(sys.argv) >= MAX_ARG_LEN ):
     r52l_p    = sys.argv[13]
     r52h      = sys.argv[14]
     r52h_p    = sys.argv[15]
+
+    eps21q4   = sys.argv[16]
+    eps21q3   = sys.argv[17]
+    eps21q2   = sys.argv[18]
+    eps21q1   = sys.argv[19]
+    eps20q4   = sys.argv[20]
+    eps20q3   = sys.argv[21]
+    eps20q2   = sys.argv[22]
+    eps20q1   = sys.argv[23]
+    eps19q4   = sys.argv[24]
+    eps19q3   = sys.argv[25]
+
 elif ( len(sys.argv) < MAX_ARG_LEN and len(sys.argv) >= 3 ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
@@ -149,20 +161,25 @@ addr_fund = "D1"
 addr_retail = "E1"
 addr_5dtotal = "F1"
 addr_per = "O1"
+addr_per_h52 = "P1"
+addr_per_l52 = "Q1"
+addr_per_peer = "R1"
+
+addr_2021q4 = "S1"
+addr_2021q3 = "T1"
+addr_2021q2 = "U1"
+addr_2021q1 = "V1"
+
+addr_2020q4 = "W1"
+addr_2020q3 = "X1"
+addr_2020q2 = "Y1"
+addr_2020q1 = "Z1"
+
+addr_2019q4 = "AA1"
+addr_2019q3 = "AB1"
+addr_2019q2 = "AC1"
+
 addr_stalk = "AE1"
-addr_2021q3 = "S1"
-addr_2021q2 = "T1"
-addr_2021q1 = "U1"
-
-addr_2020q4 = "V1"
-addr_2020q3 = "W1"
-addr_2020q2 = "X1"
-addr_2020q1 = "Y1"
-
-addr_2019q4 = "Z1"
-addr_2019q3 = "AA1"
-addr_2019q2 = "AB1"
-addr_2019q1 = "AC1"
 
 def set_value():
     if ( len(sys.argv) >= MAX_ARG_LEN ):
@@ -178,6 +195,12 @@ def set_value():
         cell_ticker.String = d5total
         cell_ticker = active_sheet.getCellRangeByName(addr_per)
         cell_ticker.String = per
+        cell_ticker = active_sheet.getCellRangeByName(addr_per_h52)
+        cell_ticker.String = per_hi52
+        cell_ticker = active_sheet.getCellRangeByName(addr_per_l52)
+        cell_ticker.String = per_lo52
+        cell_ticker = active_sheet.getCellRangeByName(addr_per_peer)
+        cell_ticker.String = per_peer
         cell_ticker = active_sheet.getCellRangeByName(addr_52lo)
         cell_ticker.String = r52l
         cell_ticker = active_sheet.getCellRangeByName(addr_r52lp)
@@ -186,6 +209,29 @@ def set_value():
         cell_ticker.String = r52h
         cell_ticker = active_sheet.getCellRangeByName(addr_r52hp)
         cell_ticker.String = r52h_p
+
+        cell_ticker = active_sheet.getCellRangeByName(addr_2021q4)
+        cell_ticker.String = eps21q4
+        cell_ticker = active_sheet.getCellRangeByName(addr_2021q3)
+        cell_ticker.String = eps21q3
+        cell_ticker = active_sheet.getCellRangeByName(addr_2021q2)
+        cell_ticker.String = eps21q2
+        cell_ticker = active_sheet.getCellRangeByName(addr_2021q1)
+        cell_ticker.String = eps21q1
+
+        cell_ticker = active_sheet.getCellRangeByName(addr_2020q4)
+        cell_ticker.String = eps20q4
+        cell_ticker = active_sheet.getCellRangeByName(addr_2020q3)
+        cell_ticker.String = eps20q3
+        cell_ticker = active_sheet.getCellRangeByName(addr_2020q2)
+        cell_ticker.String = eps20q2
+        cell_ticker = active_sheet.getCellRangeByName(addr_2020q1)
+        cell_ticker.String = eps20q1
+
+        cell_ticker = active_sheet.getCellRangeByName(addr_2019q4)
+        cell_ticker.String = eps19q4
+        cell_ticker = active_sheet.getCellRangeByName(addr_2019q3)
+        cell_ticker.String = eps19q3
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 for i in range(2, last_row):
@@ -207,6 +253,24 @@ for i in range(2, last_row):
         addr_retail = "E" + str(i)
         addr_5dtotal = "F" + str(i)
         addr_per = "O" + str(i)
+        addr_per_h52 = "P" + str(i)
+        addr_per_l52 = "Q" + str(i)
+        addr_per_peer = "R" + str(i)
+
+        addr_2021q4 = "S" + str(i)
+        addr_2021q3 = "T" + str(i)
+        addr_2021q2 = "U" + str(i)
+        addr_2021q1 = "V" + str(i)
+
+        addr_2020q4 = "W" + str(i)
+        addr_2020q3 = "X" + str(i)
+        addr_2020q2 = "Y" + str(i)
+        addr_2020q1 = "Z" + str(i)
+
+        addr_2019q4 = "AA" + str(i)
+        addr_2019q3 = "AB" + str(i)
+        addr_2019q2 = "AC" + str(i)
+
         addr_stalk = "AE" + str(i)
         break
 
@@ -227,6 +291,24 @@ if ( addr_q == "J1" ):
     addr_52hi = "M" + str( last_row + 1 )
     addr_r52hp = "N" + str( last_row + 1 )
     addr_per = "O" + str( last_row + 1 )
+    addr_per_h52 = "P" + str( last_row + 1 )
+    addr_per_l52 = "Q" + str( last_row + 1 )
+    addr_per_peer = "R" + str( last_row + 1 )
+
+    addr_2021q4 = "S" + str( last_row + 1 )
+    addr_2021q3 = "T" + str( last_row + 1 )
+    addr_2021q2 = "U" + str( last_row + 1 )
+    addr_2021q1 = "V" + str( last_row + 1 )
+
+    addr_2020q4 = "W" + str( last_row + 1 )
+    addr_2020q3 = "X" + str( last_row + 1 )
+    addr_2020q2 = "Y" + str( last_row + 1 )
+    addr_2020q1 = "Z" + str( last_row + 1 )
+
+    addr_2019q4 = "AA" + str( last_row + 1 )
+    addr_2019q3 = "AB" + str( last_row + 1 )
+    addr_2019q2 = "AC" + str( last_row + 1 )
+
     addr_stalk = "AE" + str( last_row + 1 )
     cell_ticker = active_sheet.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
@@ -281,6 +363,23 @@ if ( cell.String and cell.String != "n/a" ):
     else:
         cell.CellBackColor = 0xFFFFFF
 
+if ( float(eps21q3) <= float(eps21q4) and
+    float(eps21q2) <= float(eps21q3) ):
+    out_of_spec = 1
+    cell = active_sheet.getCellRangeByName(addr_2021q4)
+    cell.CellBackColor = 0xFFFF00
+    cell = active_sheet.getCellRangeByName(addr_2021q3)
+    cell.CellBackColor = 0xFFFF00
+    cell = active_sheet.getCellRangeByName(addr_2021q2)
+    cell.CellBackColor = 0xFFFF00
+else:
+    cell = active_sheet.getCellRangeByName(addr_2021q4)
+    cell.CellBackColor = 0xFFFFFF
+    cell = active_sheet.getCellRangeByName(addr_2021q3)
+    cell.CellBackColor = 0xFFFFFF
+    cell = active_sheet.getCellRangeByName(addr_2021q2)
+    cell.CellBackColor = 0xFFFFFF
+
 # cell_name   = active_sheet.getCellRangeByName(addr_n)
 # color_name = cell_name.CellBackColor
 # cell_ticker = active_sheet.getCellRangeByName(addr_x)
@@ -295,7 +394,6 @@ if ( out_of_spec ):
     cell_stalk.Value = 1
 else:
     cell_stalk.String = ""
-
 # @see ref: shorturl.at/lsuHT
 
 olist = [ out_of_spec ]
