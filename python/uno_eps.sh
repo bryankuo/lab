@@ -82,7 +82,7 @@ while read p; do
 	echo "finish $count items."
 	break
     fi
-    sleep 1
+    sleep 13
 done < datafiles/watchlist.txt
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP " looping end"

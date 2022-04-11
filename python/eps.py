@@ -39,7 +39,7 @@ def get_from_source(ticker):
         print("make sure safari automation enabled")
         sys.exit(3)
     browser.get(url)
-    time.sleep(5) # wait until page fully loaded
+    time.sleep(6) # wait until page fully loaded
     page = browser.page_source
     soup = BeautifulSoup(page, 'html.parser')
     browser.close()
