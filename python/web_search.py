@@ -57,6 +57,8 @@ volume_profile = \
     + ticker
 
 tech_chart = "https://invest.cnyes.com/twstock/TWS/" + ticker + "/technical"
+# support 2,4 but 5
+# https://invest.cnyes.com/twstock/TWS/6278/technical#fixed
 
 institution_holdings = "https://www.wantgoo.com/stock/" + ticker \
     + "/institutional-investors/trend"

@@ -43,39 +43,10 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     RH52=${RH52#\'}
     RH52P=${RANGE[3]%\'}
     RH52P=${RH52P#\'}
-
-    EPS=($(python3 eps.py $TICKER 1 | tr -d '[],'))
-    # echo ${EPS[@]}
-    # assume EPS support type 2 and 4
-    EPS2021Q4=${EPS[0]%\'}
-    EPS2021Q4=${EPS2021Q4#\'}
-    EPS2021Q3=${EPS[1]%\'}
-    EPS2021Q3=${EPS2021Q3#\'}
-    EPS2021Q2=${EPS[2]%\'}
-    EPS2021Q2=${EPS2021Q2#\'}
-    EPS2021Q1=${EPS[3]%\'}
-    EPS2021Q1=${EPS2021Q1#\'}
-    EPS2020Q4=${EPS[4]%\'}
-    EPS2020Q4=${EPS2020Q4#\'}
-    EPS2020Q3=${EPS[5]%\'}
-    EPS2020Q3=${EPS2020Q3#\'}
-    EPS2020Q2=${EPS[6]%\'}
-    EPS2020Q2=${EPS2020Q2#\'}
-    EPS2020Q1=${EPS[7]%\'}
-    EPS2020Q1=${EPS2020Q1#\'}
-    EPS2019Q4=${EPS[8]%\'}
-    EPS2019Q4=${EPS2019Q4#\'}
-    EPS2019Q3=${EPS[9]%\'}
-    EPS2019Q3=${EPS2019Q3#\'}
-
     printf "ticker: %04d %s %d %04.2f\n" $TICKER $CO_NAME $CO_TYPE $DEAL
     printf "activity: %d %d %d %d\n" $QDI $FUND $RETAIL $TOTAL
     printf "pe: %04.2f %04.2f %04.2f %04.2f\n" $PER $PER_H52 $PER_L52 $PER_PEER
     printf "range: %.2f %.2f %.2f %.2f\n" $RL52 $RL52P $RH52 $RH52P
-    printf "e21: %.2f %.2f %.2f %.2f\n" $EPS2021Q4 $EPS2021Q3 $EPS2021Q2 $EPS2021Q1
-    printf "e20: %.2f %.2f %.2f %.2f\n" $EPS2020Q4 $EPS2020Q3 $EPS2020Q2 $EPS2020Q1
-    printf "e19: %.2f %.2f\n" $EPS2019Q4 $EPS2019Q3
-
 else
     # // TODO:
     QDI=0

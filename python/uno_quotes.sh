@@ -1,13 +1,4 @@
 #!/bin/bash
-
-# idea 1: import module in LO (WIP)
-# PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages
-# PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages
-# (WIP) make sure python3-uno installed ( in LO maybe? )
-# /Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9 -m pip install --upgrade pip
-# python3 -m pip install uno
-
-# idea 2: glue 2 scripts by bash
 # make sure running uno.sh
 # echo "$#"
 if [ "$#" -lt 1 ]; then

@@ -66,12 +66,15 @@ major_futures = "https://www.cnyes.com/futures/indexftr.aspx"
 
 glass = "https://quote.eastmoney.com/qihuo/FGM.html"
 
+jlp_watchlist = "https://jlprudentmenu.blogspot.com"
+
 urls = [ \
     # regional
     fbs, \
     fund, \
     retail, \
     b8, \
+    jlp_watchlist, \
 
     # worldwide
     finviz, \
