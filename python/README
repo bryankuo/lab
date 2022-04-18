@@ -21,6 +21,8 @@ board.py: get board holdings.
 basic.py: check if CB issued by scraping POST reply.
 get_mrkt_value.py: scrap ticker market values.
 transaction.py: parsing daily transaction by ticker symbol.
+transaction.sh: streamline type 2 to calc.
+workbench.py: keep current workbench.
 branch.py: browsing broker branch transactions.
 launch.py: launch libreoffice.
 briefing.sh: redirect overview.sh output to datafiles.

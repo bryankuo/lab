@@ -63,6 +63,9 @@ tech_chart = "https://invest.cnyes.com/twstock/TWS/" + ticker + "/technical"
 institution_holdings = "https://www.wantgoo.com/stock/" + ticker \
     + "/institutional-investors/trend"
 
+holdings = "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcj/zcj_" \
+    + ticker + ".djhtm"
+
 hinet_technicals = "https://histock.tw/stock/"+ticker
 
 cmoney_gossip = "https://www.cmoney.tw/follow/channel/stock-" + \
@@ -151,6 +154,7 @@ urls = [ \
     major_holders_bs, \
     share_outstanding, \
     institution_holdings, \
+    holdings, \
     trust, \
     government_banks, \
 

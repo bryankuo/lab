@@ -1,13 +1,62 @@
 #!/usr/bin/python3
 
 # python3 transaction.py filename
+# output: sort by broker,price,buy,sell
 # return 0: success
-# listed only
+
+# source 1:
+# listed only ( type 2 ) one cert one query, save frame as html
 # input 買賣日報表查詢系統 https://bsr.twse.com.tw/bshtm/
 # input bsContent_9904.html
 # python3 transaction.py ~/Downloads/bsContent2006.html
 # output 9904.txt colon seperated file for soffice input
 # launch by soffice calc
+# source 1.1:
+# ( type 4 ) utf8 csv 5483_1110415.CSV one cert many query
+# https://www.tpex.org.tw/web/stock/aftertrading/broker_trading/brokerBS.php?l=zh-tw
+
+# source 2: hinet ( branch.py )
+# https://histock.tw/stock/branch.aspx?no=2330
+#  by ticker symbol
+#  date is available, at most 14 days in range
+#  https://histock.tw/stock/branch.aspx?no=1514&from=20210713&to=20210713
+
+# source 3: moneyDJ*
+# https://www.moneydj.com/Z/ZG/ZGB/ZGB0/ZGB0.djhtm
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&b=9200&c=E&e=2022-4-13&f=2022-4-13
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&b=0039003200300046
+# a: broker major id
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&b=9208
+# b: broker minor id
+
+# source 4: fubon* ( identical input parameters )
+# https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm
+#  by broker
+# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=1380&b=1380&c=B&e=2021-12-1&f=2021-12-3
+# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=9200&b=9208&c=B&e=2022-4-14&f=2022-4-15
+
+# source 5: *
+# http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9800&b=9875
+
+# enumerate 10 minor id of interest
+# ref: https://cutt.ly/GFZrjFd
+
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&9268
+# 9217
+# 9875
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9600&b=9658
+# a=9600&b=9697
+
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9100&b=0039003100380065
+# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8880&b=8880
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=8450&b=0038003400350042
+# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
+# http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
+
+# how to parse? what do they offer?
+# what is this? type2, type4, how about type5?
+# who they are?
+# what ticker has something todo with major buyer/seller?
 
 import sys
 from bs4 import BeautifulSoup
