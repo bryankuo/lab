@@ -61,3 +61,5 @@ uno_kicks.py: update libreoffice calc, as well as testbed.
 uno_kicks.sh: scripting update quote.
 uno_status.sh: update quote, activity, per of a ticker to calc.
 uno_quotes.sh: batch updating quote.
+uno_eps.sh: looping eps.
+uno_activity.sh: looping activity.

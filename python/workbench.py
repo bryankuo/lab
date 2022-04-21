@@ -10,7 +10,7 @@ from urllib.request import urlopen
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
-ticker = 2330
+ticker = "2330"
 if ( len(sys.argv) >= 2 ):
     ticker = sys.argv[1]
 
@@ -26,10 +26,8 @@ src5 ="http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440"
 
 
 technical ="https://invest.cnyes.com/twstock/TWS/2015/technical"
-yh
-="https://tw.stock.yahoo.com/news/籌碼達人1-3步驟抓出-關鍵券商-他跟著大戶下單賺飆股-215910545.html"
 
-urls = [ typ2, typ4, src2, src3, src4, src5, technical, yh ]
+urls = [ typ2, typ4, src2, src3, src4, src5, technical ]
 
 i = 0
 for url in urls:

@@ -17,8 +17,8 @@ else
     START=$index
     LEN=$NLINES
 fi
-TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: "$TIMESTAMP " start "$START " len "$LEN " #line "$NLINES
+TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: "$TIMESTAMP0 " start "$START " len "$LEN " #line "$NLINES
 
 while read p; do
     TICKER=$p
@@ -59,7 +59,8 @@ while read p; do
     fi
     sleep 2
 done < datafiles/watchlist.txt
-TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: " $TIMESTAMP " looping end"
+TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: " $TIMESTAMP0 " looping start"
+echo "time: " $TIMESTAMP1 " looping end"
 
 exit 0
