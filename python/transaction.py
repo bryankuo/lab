@@ -16,6 +16,7 @@
 # https://www.tpex.org.tw/web/stock/aftertrading/broker_trading/brokerBS.php?l=zh-tw
 
 # source 2: hinet ( branch.py )
+# type 2, 4 applies, type 5 not included ( verified )
 # https://histock.tw/stock/branch.aspx?no=2330
 #  by ticker symbol
 #  date is available, at most 14 days in range
@@ -38,20 +39,10 @@
 # source 5: *
 # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9800&b=9875
 
-# enumerate 10 minor id of interest
-# ref: https://cutt.ly/GFZrjFd
-
-# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&9268
-# 9217
-# 9875
-# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9600&b=9658
-# a=9600&b=9697
-
-# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9100&b=0039003100380065
-# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8880&b=8880
-# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=8450&b=0038003400350042
-# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
-# http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
+# source 6, for each broker, for each ticker,
+#  display positions in time period
+# https://histock.tw/stock/brokertrace.aspx?bno=1560&no=3008
+# // TODO: there are exact daily numbers in wangoo
 
 # how to parse? what do they offer?
 # what is this? type2, type4, how about type5?

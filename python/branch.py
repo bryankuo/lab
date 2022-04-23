@@ -9,19 +9,51 @@ from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
+
+# trades = "b.txt" # download html
+# with open(trades) as fp:
+#    soup = BeautifulSoup(fp, 'html.parser')
+
 url = "https://histock.tw/stock/branch.aspx?no="+ticker
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
-# rows = soup.findAll('table')[1].find_all('tr')
-"""
-rows= soup \
-    .find_all("table", {"class": "tbChip"})[0] \
-    .find_all('tr')[1]
-if ( rows is None ):
-    print("not found")
+
+table = soup \
+    .find_all("table", {"class": "tb-stock tbChip tbHide"})[0]
+if ( table is None ):
+    print("table not found")
     sys.exit(-2)
-print(rows)
-"""
+# print(table.prettify())
+
+rows = table.find_all('tr')
+
+ths = rows[0].find_all('th')
+for th in ths:
+    print(th.text.strip(), end=':')
+print("\r")
+
+tds = rows[0].find_all('td')
+for i in range(1, len(rows)):
+    tds = rows[i].find_all('td')
+    col = 0
+    for td in tds:
+        if col in [0, 5] :
+            # broker = td.find_all("a")[0].text.strip()
+            # bs documentation @see https://tinyurl.com/satpd5rk
+            url = td.find_all('a')[0].get('href').strip()
+            mark1 = 'bno='; start = url.find(mark1)
+            mark2 = '&'   ; end   = url.find(mark2)
+            bno = url[start+len(mark1):end]
+        text = td.text.strip()
+        if col in [1, 2, 3, 6, 7, 8] and len(text) <= 0 :
+            text = "0"
+        if col in [0, 5] :
+            text = bno + text
+        print(text, end=":")
+        col += 1
+    print("\r")
+
+sys.exit(0)
 
 # by ticker symbol
 # date is available, at most 14 days in range
@@ -42,5 +74,25 @@ geo_group = ['台北市', '基隆市', '新北市', '桃園市',   \
     '高雄市', '鳳山市', '屏東市', '屏東縣', '宜蘭縣',  \
     '花蓮縣', '花連市', '澎湖縣', \
     '金門縣' ]
+
+# enumerate 10 minor id of interest
+# ref: https://cutt.ly/GFZrjFd
+
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&9268
+# 9217
+# 9875
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9600&b=9658
+# a=9600&b=9697
+
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9100&b=0039003100380065
+# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8880&b=8880
+# https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=8450&b=0038003400350042
+# https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
+# http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
+broker_group = [ \
+    9200, 9268, 9217, 9875, 9658, \
+    9697, 9100, 8880, 8450, 8440, \
+]
+
 webbrowser.open(url)
 sys.exit(0)
