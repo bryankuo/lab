@@ -75,6 +75,16 @@ geo_group = ['台北市', '基隆市', '新北市', '桃園市',   \
     '花蓮縣', '花連市', '澎湖縣', \
     '金門縣' ]
 
+# pygmap package to draw plot
+# pip install pygmaps
+# python3 -m pip install pygmaps
+# mac seems not working
+# open street map?
+# google earth
+# https://earth.google.com/web/@44.54109221,-65.63571745,8615.44979582a,22243136.74901247d,35y,0h,0t,0r
+# trying open 2 maps in webbrowser, input coordinates
+# ref gmap.py
+
 # enumerate 10 minor id of interest
 # ref: https://cutt.ly/GFZrjFd
 
