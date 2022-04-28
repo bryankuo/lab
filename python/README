@@ -63,5 +63,5 @@ uno_status.sh: update quote, activity, per of a ticker to calc.
 uno_quotes.sh: batch updating quote.
 uno_eps.sh: looping eps.
 uno_activity.sh: looping activity.
-gmap.py:
+gmap.py: trigger jsfiddle show plots.
 gtrend.py:
