@@ -75,16 +75,6 @@ geo_group = ['台北市', '基隆市', '新北市', '桃園市',   \
     '花蓮縣', '花連市', '澎湖縣', \
     '金門縣' ]
 
-# pygmap package to draw plot
-# pip install pygmaps
-# python3 -m pip install pygmaps
-# mac seems not working
-# open street map?
-# google earth
-# https://earth.google.com/web/@44.54109221,-65.63571745,8615.44979582a,22243136.74901247d,35y,0h,0t,0r
-# trying open 2 maps in webbrowser, input coordinates
-# ref gmap.py
-
 # enumerate 10 minor id of interest
 # ref: https://cutt.ly/GFZrjFd
 
@@ -104,5 +94,26 @@ broker_group = [ \
     9697, 9100, 8880, 8450, 8440, \
 ]
 
+ticker_group = [ 6182, 3008, 5011, 2441, 2618 ]
+
 webbrowser.open(url)
+
+'''
+# given address, get latlng, then open browser
+# address = 'Shivaji Nagar, Bangalore, KA 560001'
+# address = '南投縣埔里鎮南昌街231號'
+# address = 'No. 231, Nanchang St, Puli Township, Nantou County, 545, Taiwan'
+# address = '320桃園市中壢區中和路'
+# address = 'Zhonghe Rd, Zhongli District, Taoyuan City, 320'
+address = 'No. 23, Jiucheng N Rd, Yilan City, Yilan County, 260, Taiwan'
+# traditional chinese to english
+url = 'https://nominatim.openstreetmap.org/search/' + \
+    urllib.parse.quote(address) +'?format=json'
+response = requests.get(url).json()
+print(response[0]["lat"]+","+response[0]["lon"])
+url = "https://www.google.com/search?client=safari&rls=en&q=" + \
+    response[0]["lat"] + "," + response[0]["lon"] + "&ie=UTF-8&oe=UTF-8"
+webbrowser.open(url)
+'''
+
 sys.exit(0)

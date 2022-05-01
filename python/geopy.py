@@ -23,60 +23,107 @@ mymap1 = pygmaps.maps(30.3164945, 78.03219179999999, 15)
 mymap1.draw('pygmap1.html')
 '''
 
-# https://www.latlong.net
-import sys, requests
-import urllib.parse
-from bs4 import BeautifulSoup
-
 # Open Street Map database
 # @see https://stackoverflow.com/a/62069773
 import sys, requests
 import urllib.parse
 import webbrowser, os
+from pprint import pprint
 
-# address = 'Shivaji Nagar, Bangalore, KA 560001'
-# address = '南投縣埔里鎮南昌街231號'
-# address = 'No. 231, Nanchang St, Puli Township, Nantou County, 545, Taiwan'
 # address = '320桃園市中壢區中和路'
+# traditional chinese to english
 # address = 'Zhonghe Rd, Zhongli District, Taoyuan City, 320'
 address = 'No. 23, Jiucheng N Rd, Yilan City, Yilan County, 260, Taiwan'
-# traditional chinese to english
 url = 'https://nominatim.openstreetmap.org/search/' + \
     urllib.parse.quote(address) +'?format=json'
 response = requests.get(url).json()
-print(response[0]["lat"]+","+response[0]["lon"])
+# pprint(response)
+# print(response[0]["lat"]+","+response[0]["lon"])
 
-# folium
 import folium
+# from folium.plugins import MarkerCluster
 # myMap = folium.Map([22.73444963475145, 120.28458595275877], zoom_start=14)
-myMap = folium.Map([response[0]["lat"], response[0]["lon"]], zoom_start=14)
+# myMap = folium.Map([response[0]["lat"], response[0]["lon"]], zoom_start=14)
+# center of map, suitable size
+myMap = folium.Map([23.97421357476865, 120.97979067775111], zoom_start=8)
+# marker_cluster = MarkerCluster().add_to(myMap)
 
+# @see shorturl.at/hpvyU
 # Import the pandas library
 import pandas as pd
-
 # Make a data frame with dots to show on the map
+'''
 data = pd.DataFrame({
    'lon':['120.29', response[0]["lon"]],
    'lat':['22.75', response[0]["lat"]],
    'name':['Buenos Aires', 'Paris'],
    'value':[10, 12]
 }, dtype=str)
+'''
 
-# print(len(data))
+bkr = pd.DataFrame({
+   'lon':[
+       '121.551510', '121.535080', '121.576460', '121.442000', '121.536594',
+       '120.432934', '121.547735', '121.549190', '121.565080', '121.567021' ],
+   'lat':[
+       '25.084880', '25.052340', '25.049880', '24.978716', '25.060288',
+       '23.709612', '25.057556', '25.022218', '25.042985', '25.032741' ],
+   'name':[
+       '凱基', '凱基-台北', '凱基-松山', '元大-土城永寧', '富邦-建國',
+       '富邦-虎尾', '群益金鼎', '國泰', '康和', '摩根大通' ],
+   'value':[
+       1, 2, 3, 4, 5,
+       6, 7, 8, 9, 10 ],
+   'bno': [
+       9200, 9268, 9217, 9875, 9658,
+       9697, 9100, 8880, 8450, 8440 ],
+   'addr': [
+       "No. 698, Mingshui Rd, Zhongshan District Taipei City, 10491, Taiwan",
+       "No. 137, Section 2, Nanjing E Rd, Zhongshan District Taipei City, 10491, Taiwan",
+       "No. 678, Section 4, Bade Rd, Songshan DistrictTaipei City, 105, Taiwan",
+       "No. 8, Yuanfu St, Tucheng District New Taipei City, 236, Taiwan",
+       "No. 196a, Section 2, Jianguo N Rd, Zhongshan District Taipei City, 10491, Taiwan",
+       "No. 133, Gong'an Rd, Huwei Township, 632, Taiwan",
+       "14, No. 156, Section 3, Minsheng E Rd, Songshan District, Taipei City, 105, Taiwan",
+       "No. 335, Section 2, Dunhua S Rd, Da’an District, Taipei City, 106, Taiwan",
+       "No. 176-1, Section 1, Keelung Rd, Xinyi District, Taipei City, 110 Taiwan",
+       "3, No. 106, Section 5, Xinyi Rd, Xinyi District, Taipei City, 110, Taiwan" ]
+}, dtype=str)
+
+tkr = pd.DataFrame({
+   'lon': ['121.187423', '120.604278', '120.283691', '120.882676', '121.297149' ],
+   'lat': ['24.885206', '24.147509', '22.764811', '24.696713', '25.040364' ],
+   'name':['合晶科技', '大立光電', '久陽精密', '超豐電子', '長榮航空'],
+   'value':[ 6182, 3008, 5011, 2441, 2618 ],
+   'addr': [
+       "No. 100, Longyuan 1st Rd, Longtan District, Taoyuan City, 325, Taiwan",
+       "No. 11, Jingke Rd, Nantun District, Taichung City, 408 Taiwan",
+       "No. 299, Yulin Rd, Qiaotou District, Kaohsiung City, 825 Taiwan",
+       "No. 136, Gongyi Rd, Zhunan Township, Miaoli County, 350 Taiwan",
+       "No. 376, Section 1, Xinnan Rd, Luzhu District, Taoyuan City, 338 Taiwan" ]
+}, dtype=str)
 
 # add marker one by one on the map
-for i in range(0,len(data)):
+for i in range(0,len(bkr)):
    folium.Marker(
-      location=[data.iloc[i]['lat'], data.iloc[i]['lon']],
-      popup=data.iloc[i]['name'],
+      location=[bkr.iloc[i]['lat'], bkr.iloc[i]['lon']],
+      popup=bkr.iloc[i]['name'],
+   ).add_to(myMap)
+
+# @see https://bit.ly/3OQloFu
+for i in range(0,len(tkr)):
+   folium.Marker(
+      location=[tkr.iloc[i]['lat'], tkr.iloc[i]['lon']],
+      color='orange',
+      clustered_marker=True,
+      popup=tkr.iloc[i]['name'],
+      icon=folium.Icon(color='green', icon='info-sign'),
    ).add_to(myMap)
 
 filename = 'myMap.html'
 myMap.save(filename)
-# url = "file:///Users/chengchihkuo/github/python/myMap.html"
 url = 'file://' + os.path.realpath(filename)
-print("generate file: " + url)
-# url = 'file:///Users/chengchihkuo/github/python/myMap.html'
+# print("generate file: " + url)
 webbrowser.open(url)
 sys.exit(0)
 
