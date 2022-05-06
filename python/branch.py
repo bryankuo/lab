@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
-# python3 branch.py 2330
+# python3 branch.py [ticker]
 # return 0: success
 
 import sys, requests, time, re, os, webbrowser
 import urllib.request
-from datetime import timedelta,datetime
+from datetime import timedelta, datetime
+from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
@@ -15,43 +16,86 @@ ticker = sys.argv[1]
 #    soup = BeautifulSoup(fp, 'html.parser')
 
 url = "https://histock.tw/stock/branch.aspx?no="+ticker
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'html.parser')
+# previous day ( @see transaction.py )
+# https://histock.tw/stock/branch.aspx?no=2015&from=20220502&to=20220502
+# day off
+# https://histock.tw/stock/branch.aspx?no=2015&from=20220501&to=20220501
+present = datetime.today()
+# present = datetime.today() + relativedelta(months=-2)
+tday = present.strftime("%Y") + present.strftime("%m") + present.strftime("%d")
+dates = []; wkdys = []
+MAX_RANGE_AVAILABLE = 9
+for i in range( 1, MAX_RANGE_AVAILABLE ):
+    before = present + relativedelta(days=-i)
+    w = before.weekday()
+    d = before.strftime("%Y") + before.strftime("%m") + before.strftime("%d")
+    dates.append(d)
+    wkdys.append(w)
+# print("present: " + tday )
+# print( "dates: " + str(dates)[1:-1] )
+# print( "wkdys: " + str(wkdys)[1:-1] )
 
-table = soup \
-    .find_all("table", {"class": "tb-stock tbChip tbHide"})[0]
-if ( table is None ):
-    print("table not found")
-    sys.exit(-2)
-# print(table.prettify())
-
-rows = table.find_all('tr')
-
-ths = rows[0].find_all('th')
-for th in ths:
-    print(th.text.strip(), end=':')
-print("\r")
-
-tds = rows[0].find_all('td')
-for i in range(1, len(rows)):
-    tds = rows[i].find_all('td')
-    col = 0
-    for td in tds:
-        if col in [0, 5] :
-            # broker = td.find_all("a")[0].text.strip()
-            # bs documentation @see https://tinyurl.com/satpd5rk
-            url = td.find_all('a')[0].get('href').strip()
-            mark1 = 'bno='; start = url.find(mark1)
-            mark2 = '&'   ; end   = url.find(mark2)
-            bno = url[start+len(mark1):end]
-        text = td.text.strip()
-        if col in [1, 2, 3, 6, 7, 8] and len(text) <= 0 :
-            text = "0"
-        if col in [0, 5] :
-            text = bno + text
-        print(text, end=":")
-        col += 1
+for i in range( 0, len(dates) ):
+    time.sleep(5)
+    print( "\ndates: " + str(dates[i]) + " is " + str(wkdys[i]) )
+    url = "https://histock.tw/stock/branch.aspx?" + \
+        "no="+ticker+"&from="+str(dates[i])+"&to="+str(dates[i])
+    print(url)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    if ( soup is None ):
+        continue
+    # print(soup.prettify()) # logon required.
+    divs = soup \
+        .find_all("div", {"class": "row-stock txtC"})[0].text.strip()
+    # dt = divs.split("\xa0\xa0\xa0\xa0")[1]
+    # tokens = dt.split('/')
+    # year = tokens[0]
+    # month = tokens[1]
+    # day = tokens[2]
+    # stamp = year+month+day
+    table = soup \
+        .find_all("table", {"class": "tb-stock tbChip tbHide"})[0]
+    if ( table is None ):
+        print("table not found")
+        continue
+    rows = table.find_all('tr')
+    if ( len(rows) <= 1 ):
+        print(str(dates[i])+" is "+str(wkdys[i]))
+        continue
+    # backup for later usage
+    path = 'datafiles/' + ticker
+    isExist = os.path.exists(path)
+    if not isExist:
+      os.makedirs(path)
+    file_name = 'datafiles/' + ticker + '/' + dates[i] + '.txt'
+    with open(file_name, 'w') as the_file:
+        the_file.write(table.prettify())
+    the_file.close()
+    ths = rows[0].find_all('th')
+    for th in ths:
+        print(th.text.strip(), end=':')
     print("\r")
+    tds = rows[0].find_all('td')
+    for i in range(1, len(rows)):
+        tds = rows[i].find_all('td')
+        col = 0
+        for td in tds:
+            if col in [0, 5] :
+                # broker = td.find_all("a")[0].text.strip()
+                # bs documentation @see https://tinyurl.com/satpd5rk
+                url = td.find_all('a')[0].get('href').strip()
+                mark1 = 'bno='; start = url.find(mark1)
+                mark2 = '&'   ; end   = url.find(mark2)
+                bno = url[start+len(mark1):end]
+            text = td.text.strip()
+            if col in [1, 2, 3, 6, 7, 8] and len(text) <= 0 :
+                text = "0"
+            if col in [0, 5] :
+                text = bno + text
+            print(text, end=":")
+            col += 1
+        print("\r")
 
 sys.exit(0)
 

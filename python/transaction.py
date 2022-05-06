@@ -15,7 +15,7 @@
 # ( type 4 ) utf8 csv 5483_1110415.CSV one cert many query
 # https://www.tpex.org.tw/web/stock/aftertrading/broker_trading/brokerBS.php?l=zh-tw
 
-# source 2: hinet ( branch.py )
+# source 2: hinet ( branch.py ), logon required.
 # type 2, 4 applies, type 5 not included ( verified )
 # https://histock.tw/stock/branch.aspx?no=2330
 #  by ticker symbol
@@ -52,13 +52,16 @@
 import sys
 from bs4 import BeautifulSoup
 
-filename = sys.argv[1]
+ticker   = sys.argv[1]
+stamp    = sys.argv[2]
+filename = sys.argv[3]
+
 with open(filename, 'r') as f:
     contents = f.read()
     soup = BeautifulSoup(contents, 'html.parser')
 tables = soup.find_all("table", {"width": "100%"})
 counter = 0
-n_table = 0; tmp_table = []; new_table = []
+n_table = 0; tmp_table = []; new_table = [];
 for table in tables:
     if ( counter % 3 != 0 ):
         rows = table.select('tr[class*="column_value_price_"]')
@@ -72,27 +75,43 @@ for table in tables:
         n_table += 1
     counter += 1
 
-print( \
-    'seq:', \
-    'broker:', \
-    'price:', \
-    '#buy:', \
-    '#sell' )
+n_trans = 0; bdes = ''
+file_name = 'datafiles/' + ticker + '/' + stamp + '.txt'
+with open(file_name, 'w') as the_file:
+    the_file.write( 'seq :broker:price:#buy:#sell\n' )
+    for tr in new_table:
+        tds    = tr.find_all('td')
+        pattern = "\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20"
+        # print( str(n_trans) + ": " + tds[0].text.replace(pattern,'').encode("utf-8").hex() )
+        txt = tds[0].text.replace(pattern,'').strip()
+        if not txt.isnumeric():
+            continue # exclude last line
+        seq    = int( txt )
+        bno    = tds[1].text.strip()[0:4]
+        broker = tds[1].text.strip()
+        # for type 2, no redundant desc, therefore keep it for next round
+        if ( 4 < len(broker) ):
+            # pattern1 = "\xe3\x80\x80\xe3\x80\x80"
+            bdes   = tds[1].text.strip()[4:].replace(' ','')
+            # bdes   = bdes.replace(pattern1, '')
+            # print(bdes.encode("utf-8").hex())
+            # print(bdes)
+            broker = bno + '-' + bdes
+            broker_full = broker
+        broker = broker_full
+        price  = float(tds[2].text.strip().replace(',',''))
+        # float(tds[2].text.strip())
+        bid    = int(tds[3].text.strip().replace(',',''))
+        ask    = int(tds[4].text.strip().replace(',',''))
+        row    = format(seq, '04d') + ':' + \
+                 format(broker) + ':' + \
+                 format(price, '>4.2f') + ':' + \
+                 format(bid, '>10d') + ':' + \
+                 format(ask, '>10d') + '\n'
+        the_file.write( row )
+        n_trans = n_trans + 1
 
-for tr in new_table:
-    tds    = tr.find_all('td')
-    seq    = int(tds[0].text.strip())
-    broker = tds[1].text.strip()
-    if ( 4 < len(broker) ):
-        broker_full = broker
-    broker = broker_full
-    price  = float(tds[2].text.strip())
-    bid    = tds[3].text.strip()
-    ask    = tds[4].text.strip()
-    print( \
-        format(seq, '04d'), ':', \
-        format(broker), ':', \
-        format(price, '>4.2f'), ':', \
-        format(bid, '>10s'), ':', \
-        format(ask, '>10s') )
+print( ticker + " " + stamp + " " + \
+    str(len(new_table)-1) + " transactions." )
+
 sys.exit(0)

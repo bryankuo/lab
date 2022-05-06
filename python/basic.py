@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 basic.py 2330
-# return 0: listed, 1 otc, 2 otcbb, 3 public offering company
+# return 0: listed 2,  otc 4, otcbb 5
 
 import sys, requests, time, re
 import urllib.request
@@ -20,8 +20,6 @@ data = { \
 try:
     response = requests.post(url, data)
     soup = BeautifulSoup(response.text, 'html.parser')
-    # print(soup.prettify())
-    # sys.exit(0)
     corp_name = soup.findAll('span')[0].text
     # if ( corp_name is None ):
     #     print('not listed.')
@@ -63,6 +61,6 @@ try:
     print(olist)
 
 except (IndexError):
-    print('not listed.')
+    print('not listed.') # // TODO: grep listed file instead
 
 sys.exit(0)

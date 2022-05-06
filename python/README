@@ -20,10 +20,10 @@ instant_quote.sh: get OHLC data frame periodically.
 board.py: get board holdings.
 basic.py: check if CB issued by scraping POST reply.
 get_mrkt_value.py: scrap ticker market values.
-transaction.py: parsing daily transaction by ticker symbol.
+transaction.py: parsing type 2 daily transaction by ticker symbol from bsr.
 transaction.sh: streamline type 2 to calc.
 workbench.py: keep current workbench.
-branch.py: browsing broker branch transactions.
+branch.py: browsing major broker transactions by ticker and date.
 launch.py: launch libreoffice.
 briefing.sh: redirect overview.sh output to datafiles.
 money_flow.sh: trigger get_weighted_index.py
@@ -65,3 +65,8 @@ uno_eps.sh: looping eps.
 uno_activity.sh: looping activity.
 gmap.py: trigger jsfiddle show plots.
 gtrend.py:
+geopy.py:
+br.py: fetch major transactions by (broker, date)
+br_ticker.py: trial tetch transactions from bsr.
+br.sh:
+transotc.py: parsing type 4 transactions from tpex.
