@@ -70,3 +70,4 @@ br.py: fetch major transactions by (broker, date)
 br_ticker.py: trial tetch transactions from bsr.
 br.sh:
 transotc.py: parsing type 4 transactions from tpex.
+position3.py:

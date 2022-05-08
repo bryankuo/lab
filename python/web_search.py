@@ -9,13 +9,12 @@ from urllib.request import urlopen
 
 ticker = sys.argv[1]
 if ( len(sys.argv) > 2 ):
-    co_title = sys.argv[2]
+    co_name = sys.argv[2]
     co_addr = sys.argv[3]
     chairman = sys.argv[4]
     gm = sys.argv[5]
     #//TODO: pass as search parameter
     '''
-    print(co_title)
     print(co_addr)
     print(chairman)
     print(gm)
@@ -33,11 +32,15 @@ comparison = "https://mopsfin.twse.com.tw"
 
 # google news search
 # unicode encoding ( https://bit.ly/3syqeyC )
-google_news_past_year = "https://www.google.com/search?q="+ticker+"+"+quote("新聞")+"&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWCJaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+google_news_past_year = "https://www.google.com/search?q=" + \
+    ticker+"+"+quote(co_name)+"+"+quote("新聞")+ \
+    "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
+    "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
+    "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
 
-google_news_past_month = "https://www.google.com/search?q="+ticker+"+ptt+stock&client=safari&sxsrf=AOaemvL0avYEloIhMAK972aGGrvD8Q2uRA:1641678179089&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwiRnczlj6P1AhWLHXAKHa7EAJ8QpwV6BAgBEBg&biw=1396&bih=708&dpr=1"
+google_news_past_month = "https://www.google.com/search?q="+ticker+"+"+quote(co_name)+"+ptt+stock&client=safari&sxsrf=AOaemvL0avYEloIhMAK972aGGrvD8Q2uRA:1641678179089&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwiRnczlj6P1AhWLHXAKHa7EAJ8QpwV6BAgBEBg&biw=1396&bih=708&dpr=1"
 
-google_news_past_week = "https://www.google.com/search?q="+ticker+"+ptt+stock&client=safari&rls=en&sxsrf=AOaemvJsxUJoN92AaqXX-OrtFeeDwiKuyg:1641688213276&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwj8z6KWtaP1AhWRGaYKHQOgDgUQpwV6BAgBEBc&biw=1396&bih=708&dpr=1"
+google_news_past_week = "https://www.google.com/search?q="+ticker+"+"+quote(co_name)+"+ptt+stock&client=safari&rls=en&sxsrf=AOaemvJsxUJoN92AaqXX-OrtFeeDwiKuyg:1641688213276&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwj8z6KWtaP1AhWRGaYKHQOgDgUQpwV6BAgBEBc&biw=1396&bih=708&dpr=1"
 
 google_news_custom_date = "https://www.google.com/search?q=力山工業+天下&client=safari&rls=en&biw=1440&bih=709&sxsrf=APq-WBum_3tpXoRWy8R-7OrqTzxyIR5hbQ%3A1643968325345&source=lnt&tbs=cdr%3A1%2Ccd_min%3A12%2F1%2F2019%2Ccd_max%3A1%2F31%2F2020&tbm="
 
@@ -49,6 +52,9 @@ subsidiary = "https://www.cmoney.tw/finance/f00031.aspx?s="+ticker
 
 revenue_mom = \
     "https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID="+ticker
+
+revenue_growth = \
+    "https://www.moneydj.com/Z/ZC/ZC1/ZC17/ZC17.djhtm?a="+ticker
 
 groups = "https://thaubing.gcaa.org.tw/group/name/G"+ticker
 
@@ -67,6 +73,7 @@ holdings = "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcj/zcj_" \
     + ticker + ".djhtm"
 
 hinet_technicals = "https://histock.tw/stock/"+ticker
+hinet_branch ="https://histock.tw/stock/branch.aspx?no=" + ticker
 
 cmoney_gossip = "https://www.cmoney.tw/follow/channel/stock-" + \
     ticker +"?chart=d&type=Personal"
@@ -97,16 +104,30 @@ google_chairman_image = \
     "https://www.google.com/search?q=%22"+ \
     ticker + "*%22+%22" + quote("董事長") + "%22&client=safari&rls=en&sxsrf=AOaemvJXeaXjO0UbVWkuEdDa9LoCtKikwA:1640721761933&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjl3q3upIf1AhU2yosBHTRcByMQ_AUoA3oECAEQBQ&biw=1440&bih=709&dpr=1"
 
+# is not update
 trust = \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zc0/zc07/zc07_" + \
     ticker + ".djhtm"
 # quick update
 # https://www.yesfund.com.tw/w/wr/wr04.djhtm?a=ACII01
 # https://fund.cnyes.com/detail/兆豐國際第一基金/A19001/shareholding
+# components
 # https://funds.citibank.com.tw/w/wr/wr04.djhtm?a=ACII01-A22004
 # http://just2.entrust.com.tw/w/wr/wr04.djhtm?a=ACYT11-A03011
 # http://just2.entrust.com.tw/w/wr/wr04.djhtm?a=ACII01-A22004
+# one month late
 # https://www.sitca.org.tw/ROC/Industry/IN2105.aspx?pid=IN2212_02
+
+# where to get complete fund list? ISIN Code/mode 7:
+# https://isin.twse.com.tw/isin/C_public.jsp?strMode=7
+# or:
+# https://isin.twse.com.tw/isin/class_main.jsp?owncode=&stockname=&isincode=&market=&issuertype=&industry_code=&others=1&Page=1&chklike=Y
+
+# for each fund, basic data
+# https://announce.fundclear.com.tw/MOPSonshoreFundWeb/main1.jsp?fundId=00965469
+
+# enquery:
+# https://isin.twse.com.tw/isin/class_i.jsp?kind=1
 
 government_banks = "https://histock.tw/stock/broker.aspx?no="+ticker
 # scrap gbank_activities.py
@@ -136,6 +157,7 @@ urls = [ \
     fundamental, \
     comparison, \
     revenue_mom, \
+    revenue_growth, \
     groups, \
     subsidiary, \
     ticker_news, \
@@ -144,6 +166,7 @@ urls = [ \
     eps_table, \
     google_news_past_year, \
     google_news_past_month, \
+    google_news_past_week, \
     mops_news, \
 
     # technical
@@ -156,7 +179,8 @@ urls = [ \
     institution_holdings, \
     holdings, \
     trust, \
-    government_banks, \
+    government_banks,
+    hinet_branch, \
 
     # news, information, PR, gossips
     cmoney_gossip, \

@@ -4,7 +4,7 @@
 # output: sort by seq,broker,price,buy,sell
 # return 0: success
 
-import sys, re
+import sys, re, unicodedata
 
 ticker   = sys.argv[1]
 stamp    = sys.argv[2]
@@ -41,27 +41,24 @@ with open(filename, 'r') as infile:
 
 file_name = 'datafiles/' + ticker + '/' + stamp + '.txt'
 with open(file_name, 'w') as outfile:
-    outfile.write( 'seq :broker:price:#buy:#sell\n' )
+    fmt  = '{0:4s}:{1:<10s}:{2:7s}:{3:<7s}:{4:<7s}\n'
+    fmt1 = '{:04d}:{:<s}:{:.2f}:{:d}:{:d}\n'
+    outfile.write(fmt.format('seq', 'broker', 'price', '#buy', '#sell'))
     for trans in new_table:
-        seq    = int( trans[0].strip() ) # // FIXME:
-        # bno    = trans[1].split('  ')[0]
-        # bdes   = trans[1].split('  ')[1]
-        bno    = trans[1][0:4]
+        seq    = int( trans[0].strip() ) #
+        bno    = trans[1][0:4].strip(' ')
         bdes   = trans[1][4:].strip(' ')
-        print(bdes.encode("utf-8").hex())
-        print(bdes)
-        broker = bno + '-' + bdes
+        # print(bdes.encode("utf-8").hex())
+        broker = bno + "-" + bdes # bdes is utf-8 variable length
+        # broker = unicodedata.east_asian_width(ubroker)
+        # @see https://stackoverflow.com/a/4632373
         price  = float(trans[2].strip().replace(',',''))
         # float(trans[2].text.strip())
         bid    = int(int(trans[3].strip().replace(',',''))/1000)
         ask    = int(int(trans[4].strip().replace(',',''))/1000)
-        row    = format(seq, '04d') + ':' + \
-                 format(broker) + ':' + \
-                 format(price, '>4.2f') + ':' + \
-                 format(bid, '>10d') + ':' + \
-                 format(ask, '>10d') + '\n'
-        outfile.write( row )
-    outfile.close()
+        outfile.write(fmt1.format(seq, broker, price, bid, ask))
+        # .ljust(10)
+outfile.close()
 
 print( ticker + " " + stamp + " " + \
     str(n_line) + " line processed, " + \

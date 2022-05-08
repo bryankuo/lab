@@ -77,8 +77,10 @@ for table in tables:
 
 n_trans = 0; bdes = ''
 file_name = 'datafiles/' + ticker + '/' + stamp + '.txt'
-with open(file_name, 'w') as the_file:
-    the_file.write( 'seq :broker:price:#buy:#sell\n' )
+with open(file_name, 'w') as outfile:
+    fmt  = '{0:4s}:{1:<7s}:{2:7s}:{3:<7s}:{4:<7s}\n'
+    fmt1 = '{0:04d}:{1:<7s}:{2:>4.2f}:{3:>7d}:{4:>7d}\n'
+    outfile.write(fmt.format('seq', 'broker', 'price', '#buy', '#sell'))
     for tr in new_table:
         tds    = tr.find_all('td')
         pattern = "\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20"
@@ -88,6 +90,7 @@ with open(file_name, 'w') as the_file:
             continue # exclude last line
         seq    = int( txt )
         bno    = tds[1].text.strip()[0:4]
+        '''
         broker = tds[1].text.strip()
         # for type 2, no redundant desc, therefore keep it for next round
         if ( 4 < len(broker) ):
@@ -99,17 +102,23 @@ with open(file_name, 'w') as the_file:
             broker = bno + '-' + bdes
             broker_full = broker
         broker = broker_full
+        '''
+        broker = bno
         price  = float(tds[2].text.strip().replace(',',''))
         # float(tds[2].text.strip())
         bid    = int(tds[3].text.strip().replace(',',''))
         ask    = int(tds[4].text.strip().replace(',',''))
+        '''
         row    = format(seq, '04d') + ':' + \
                  format(broker) + ':' + \
                  format(price, '>4.2f') + ':' + \
                  format(bid, '>10d') + ':' + \
                  format(ask, '>10d') + '\n'
-        the_file.write( row )
+        outfile.write( row )
+        '''
+        outfile.write(fmt1.format(seq, broker, price, bid, ask))
         n_trans = n_trans + 1
+outfile.close()
 
 print( ticker + " " + stamp + " " + \
     str(len(new_table)-1) + " transactions." )
