@@ -14,7 +14,10 @@ soybean = "https://www.barchart.com/futures/quotes/ZS*0/technical-chart"
 us_wheat = "https://www.investing.com/commodities/us-wheat-candlestick"
 corn = "https://futures.tradingcharts.com/chart/ZC/"
 oats = "https://www.investing.com/commodities/oats-candlestick"
-palmolive_oil = "http://quote.eastmoney.com/qihuo/pm.html"
+
+# palmolive_oil = "http://quote.eastmoney.com/qihuo/pm.html"
+palmolive_oil = "https://www.cnyes.com/futures/html5chart/PLKCON.html"
+
 coffee = "https://www.barchart.com/futures/quotes/KC*0/interactive-chart"
 
 uranium = "https://tradingeconomics.com/commodity/uranium"
@@ -32,10 +35,21 @@ fubon = "https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_EJ.djhtm"
 tpex = "https://www.tpex.org.tw/web/stock/trading/intraday_stat/intraday_trading_stat.php?l=zh-tw"
 
 # institutional buying and selling
+fdi = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZEE/ZEE.djhtm"
 fbs = "http://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=D&B=0&C=1"
+
+fund_d = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZES/ZES.djhtm"
 fund = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_DD.djhtm"
+
 retail = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZEF/ZEF.djhtm"
+re_detail = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZEF/ZEF.djhtm"
+
 b8 = "https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx"
+government_bs = "https://www.wantgoo.com/stock/public-bank/buy-sell"
+
+individual = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_F.djhtm"
+
+brokage_v = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm"
 
 # because URIs can't contain non-ASCII characters.
 # https://stackoverflow.com/a/6938893
@@ -59,6 +73,8 @@ emerging_market = "https://stockscan.io/stocks/EEM"
 # ETF price and volume https://etfdb.com/etf/IJR/#price-and-volume
 
 worldwide_index = "https://finance.yahoo.com/world-indices/"
+aaii_sentiment = "https://ycharts.com/indicators/reports/aaii_sentiment_survey"
+
 finviz = "https://finviz.com"
 twd_forex = "https://forex.tradingcharts.com/chart/US%20Dollar_New%20Taiwan%20Dollar.html?tz=CST&chartpair=US%2520Dollar_New%2520Taiwan%2520Dollar&ctype=b&movAvg1=&movAvg2=&per=1d"
 jpy_forex = "https://www.dailyfx.com/usd-jpy"
@@ -70,10 +86,16 @@ jlp_watchlist = "https://jlprudentmenu.blogspot.com"
 
 urls = [ \
     # regional
+    fdi, \
     fbs, \
+    fund_d, \
     fund, \
+    re_detail, \
     retail, \
+    individual, \
     b8, \
+    government_bs, \
+    brokage_v, \
     jlp_watchlist, \
 
     # worldwide
@@ -82,6 +104,7 @@ urls = [ \
     emerging_market, \
     worldwide_index, \
     fear_n_greed_sentiment, \
+    aaii_sentiment, \
 
     twd_forex, \
     jpy_forex, \
