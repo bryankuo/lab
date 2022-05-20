@@ -53,12 +53,15 @@ def get_per(ticker):
 
     n = random.randint(1,3)
     if ( n == 1 ):
+        # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm"
         url = "https://concords.moneydj.com/z/zc/zca/zca_" + \
             ticker + ".djhtm"
     elif ( n == 2 ):
+        # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2102.djhtm
         url = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + \
             ticker + ".djhtm"
     else: # 3
+        # http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_2102.djhtm
         url = 'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + \
             ticker + '.djhtm'
     response = requests.get(url)

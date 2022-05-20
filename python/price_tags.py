@@ -10,6 +10,8 @@ from urllib.request import urlopen
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
+commo = "https://tradingeconomics.com/commodities"
+
 soybean = "https://www.barchart.com/futures/quotes/ZS*0/technical-chart"
 us_wheat = "https://www.investing.com/commodities/us-wheat-candlestick"
 corn = "https://futures.tradingcharts.com/chart/ZC/"
@@ -49,6 +51,8 @@ government_bs = "https://www.wantgoo.com/stock/public-bank/buy-sell"
 
 individual = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_F.djhtm"
 
+margin_b = "https://tw.stock.yahoo.com/margin-balance"
+
 brokage_v = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm"
 
 # because URIs can't contain non-ASCII characters.
@@ -61,7 +65,6 @@ platinum = "https://www.cmegroup.com/markets/metals/precious/platinum.html"
 
 iron_ore = "https://www.marketindex.com.au/iron-ore"
 brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
-fear_n_greed_sentiment = "https://pyinvesting.com/fear-and-greed/"
 natural_gas = "https://www.tradingview.com/symbols/NYMEX-NG1%21/"
 fertilizers = "https://ycharts.com/indicators/fertilizers_index_world_bank"
 rubber = "https://economictimes.indiatimes.com/commoditysummary/symbol-RUBBER.cms"
@@ -74,6 +77,8 @@ emerging_market = "https://stockscan.io/stocks/EEM"
 
 worldwide_index = "https://finance.yahoo.com/world-indices/"
 aaii_sentiment = "https://ycharts.com/indicators/reports/aaii_sentiment_survey"
+fear_n_greed_sentiment = "https://pyinvesting.com/fear-and-greed/"
+cnn_gfear = "https://edition.cnn.com/markets/fear-and-greed"
 
 finviz = "https://finviz.com"
 twd_forex = "https://forex.tradingcharts.com/chart/US%20Dollar_New%20Taiwan%20Dollar.html?tz=CST&chartpair=US%2520Dollar_New%2520Taiwan%2520Dollar&ctype=b&movAvg1=&movAvg2=&per=1d"
@@ -86,6 +91,7 @@ jlp_watchlist = "https://jlprudentmenu.blogspot.com"
 
 urls = [ \
     # regional
+    margin_b, \
     fdi, \
     fbs, \
     fund_d, \
@@ -98,21 +104,8 @@ urls = [ \
     brokage_v, \
     jlp_watchlist, \
 
-    # worldwide
-    finviz, \
-    major_futures, \
-    emerging_market, \
-    worldwide_index, \
-    fear_n_greed_sentiment, \
-    aaii_sentiment, \
-
-    twd_forex, \
-    jpy_forex, \
-    bitcoin, \
-    gold, \
-    us10y, \
-
     # commodities
+    commo, \
     soybean, \
     us_wheat, \
     corn, \
@@ -120,21 +113,33 @@ urls = [ \
     palmolive_oil, \
     coffee, \
     rubber, \
-
     uranium, \
     brent_crude, \
     natural_gas, \
     fertilizers, \
     glass, \
-
     copper, \
     nickel, \
     platinum, \
     aluminum, \
     iron_ore, \
-
     nand_flash, \
-    ddr ]
+    ddr, \
+
+    # worldwide
+    finviz, \
+    major_futures, \
+    emerging_market, \
+    worldwide_index, \
+    fear_n_greed_sentiment, \
+    cnn_gfear, \
+    aaii_sentiment, \
+
+    twd_forex, \
+    jpy_forex, \
+    bitcoin, \
+    gold, \
+    us10y ]
 
 i = 0
 for url in urls:
