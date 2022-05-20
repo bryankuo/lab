@@ -9,7 +9,35 @@ from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 
+
+# @see https://www.twse.com.tw/zh/brokerService/brokerServiceAudit
+geo_group = [
+    '台北市', '基隆市', '新北市', '桃園市', '桃園縣',                      \
+    '新竹縣', '新竹市', '苗栗縣', '苗栗市', '台中市', '台中縣', '南投縣',  \
+    '彰化市', '彰化縣', '雲林縣',                                          \
+    '嘉義市', '嘉義縣',                                                    \
+    '台南市', '台南縣', '台東市', '台東縣',                                \
+    '高雄市', '高雄縣', '鳳山市', '屏東市', '屏東縣', '宜蘭縣', '宜蘭市',  \
+    '花蓮縣', '花連市', '澎湖縣', '金門縣' ]
+
+# cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
+# export LC_CTYPE="zh_TW.UTF-8"; cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
+# ( cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq ) | xxd
+n_geo_group = [                    \
+    210, 10, 112,   62,  3,        \
+    15,  25,  15,    6, 65, 3, 10, \
+    14,  28,  18,                  \
+    20,  5,                        \
+    48,  3,    4,    2,            \
+    94,  1,    1,   12, 15, 9,  6, \
+     5,  6,    2,    2 ]
+
 ticker = sys.argv[1]
+
+b = sum(n_geo_group)
+print( b )
+print( len(n_geo_group) )
+sys.exit(0)
 
 # trades = "b.txt" # download html
 # with open(trades) as fp:
@@ -110,14 +138,6 @@ sys.exit(0)
 # 買賣日報表查詢系統 https://bsr.twse.com.tw/bshtm/
 # or download csv file
 
-# @see https://www.twse.com.tw/zh/brokerService/brokerServiceAudit
-geo_group = ['台北市', '基隆市', '新北市', '桃園市',   \
-    '新竹縣', '新竹市', '苗栗縣', '台中市', '南投縣',  \
-    '彰化市', '彰化縣', '雲林縣', '嘉義市', '嘉義縣',  \
-    '台南市', '台南縣', \
-    '高雄市', '鳳山市', '屏東市', '屏東縣', '宜蘭縣',  \
-    '花蓮縣', '花連市', '澎湖縣', \
-    '金門縣' ]
 
 # enumerate 10 minor id of interest
 # ref: https://cutt.ly/GFZrjFd
