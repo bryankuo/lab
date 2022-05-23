@@ -77,26 +77,48 @@ for i in range(0,len(corp)):
       popup=corp.iloc[i]['name'],
       icon=folium.Icon(color='green', icon='info-sign'),
    ).add_to(myMap)
+# 基本資料查詢彙總表 2,4,5
+# https://mops.twse.com.tw/mops/web/t51sb01
+# https://mops.twse.com.tw/mops/web/t51sb01
+# grep -rnp --color="auto" -e "台南" datafiles/taiex/sii.csv | wc -l
+# cf. datafiles/taiex/summary.ods
 '''
 
-bkr = pd.read_excel('./datafiles/bkr.ods', engine='odf')
+# bkr = pd.read_excel('./datafiles/bkr.ods', engine='odf')
+bkr = pd.read_excel('./datafiles/taiex/broker_list.20220518.1533.ods', engine='odf')
+# comment is not allowed in calc
+# print(bkr)
 for i in range(0,len(bkr)):
-   folium.Marker(
-      location=[bkr.iloc[i]['lat'], bkr.iloc[i]['lon']],
-      color='orange',
-      clustered_marker=True,
-      popup=bkr.iloc[i]['name'],
-      icon=folium.Icon(color='green', icon='info-sign'),
-   ).add_to(myMap)
+    if ( bkr.iloc[i]['action'] == 1 ):
+        folium.Marker(
+            location=[bkr.iloc[i]['lat'], bkr.iloc[i]['lon']],
+            color='orange',
+            clustered_marker=True,
+            popup=bkr.iloc[i]['name'],
+            icon=folium.Icon(color='green', icon='info-sign'),
+        ).add_to(myMap)
+    else:
+        folium.Marker(
+            location=[bkr.iloc[i]['lat'], bkr.iloc[i]['lon']],
+            color='orange',
+            clustered_marker=True,
+            popup=bkr.iloc[i]['name'],
+            icon=folium.Icon(color='red', icon='info-sign'),
+        ).add_to(myMap)
+
+'''
 # add marker one by one on the map
 for i in range(0,len(bkr)):
    folium.Marker(
       location=[bkr.iloc[i]['lat'], bkr.iloc[i]['lon']],
       popup=bkr.iloc[i]['name'],
    ).add_to(myMap)
+'''
 
 filename = 'myMap.html'
 myMap.save(filename)
+# //TODO: figure out not opening
+# filename = 'myMap.1533.20220518.html'
 url = 'file://' + os.path.realpath(filename)
 # print("generate file: " + url)
 webbrowser.open(url)

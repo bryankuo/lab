@@ -43,11 +43,12 @@ fbs = "http://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=D&B=0&C=1"
 fund_d = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZES/ZES.djhtm"
 fund = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_DD.djhtm"
 
-retail = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZEF/ZEF.djhtm"
+retail = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_DB.djhtm"
 re_detail = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZE/ZEF/ZEF.djhtm"
 
 b8 = "https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx"
 government_bs = "https://www.wantgoo.com/stock/public-bank/buy-sell"
+gb8_trend = "https://www.wantgoo.com/stock/public-bank/trend"
 
 individual = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_F.djhtm"
 
@@ -92,29 +93,30 @@ jlp_watchlist = "https://jlprudentmenu.blogspot.com"
 urls = [ \
     # regional
     margin_b, \
-    fdi, \
+    # fdi, \
     fbs, \
-    fund_d, \
+    # fund_d, \
     fund, \
-    re_detail, \
+    # re_detail, \
     retail, \
     individual, \
-    b8, \
+    # b8, \
     government_bs, \
+    gb8_trend, \
     brokage_v, \
-    jlp_watchlist, \
+    # jlp_watchlist, \
 
     # commodities
     commo, \
-    soybean, \
-    us_wheat, \
-    corn, \
-    oats, \
-    palmolive_oil, \
-    coffee, \
-    rubber, \
-    uranium, \
-    brent_crude, \
+    # soybean, \
+    # us_wheat, \
+    # corn, \
+    # oats, \
+    # palmolive_oil, \
+    # coffee, \
+    # rubber, \
+    # uranium, \
+    # brent_crude, \
     natural_gas, \
     fertilizers, \
     glass, \

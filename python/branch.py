@@ -20,6 +20,14 @@ geo_group = [
     '高雄市', '高雄縣', '鳳山市', '屏東市', '屏東縣', '宜蘭縣', '宜蘭市',  \
     '花蓮縣', '花連市', '澎湖縣', '金門縣' ]
 
+# 1. legendary branch
+# 2. 個股買超第一名且買超佔比在20%以上的券商分點
+# 3. assume smallcap attracts major attention, and is likey to locate
+#    the branch where transactions occur
+# 4. assume it it likely to find branch that major in the form of subsidary,
+#    individual, investor, geographically related to active smallcap, within
+#    14 days.
+
 # cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
 # export LC_CTYPE="zh_TW.UTF-8"; cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
 # ( cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq ) | xxd
