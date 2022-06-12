@@ -56,8 +56,13 @@ try:
         .find_all('tr')[1] \
         .find_all('tr')[1].find_all('td')[1].text
 
+    cap = float( int( soup.findAll('table')[1] \
+        .find_all('tr')[6] \
+        .find_all('tr')[1].find_all('td')[0].text.strip() \
+        .replace(',','').replace('元','') ) / 100000000 )
+    cap = "{:.2f}".format(cap) # + 'E'
     olist = [ ticker, corp_name, ticker_type, co_type, cb, \
-        corp_title, hq_address, chairman, gm ]
+        corp_title, hq_address, chairman, gm, cap ]
     print(olist)
 
 except (IndexError):

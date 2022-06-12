@@ -12,6 +12,8 @@ CO_TYPE=${OUTPUT[2]%\'}
 CO_TYPE=${CO_TYPE#\'}
 CO_NAME=${OUTPUT[1]%\'}
 CO_NAME=${CO_NAME#\'}
+CAPE=${OUTPUT[9]%\'}
+CAPE=${CAPE#\'}
 if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     ACTIVITY=($(python3 activity.py $TICKER 1 | tr -d '[],'))
     QDI=${ACTIVITY[0]%\'}
@@ -67,7 +69,6 @@ else
     printf "range: %s %s %s %s\n" $RL52 $RL52P $RH52 $RH52P
 fi
 
-
 RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     uno_kicks.py $TICKER $DEAL $CO_NAME \
     $QDI $FUND $RETAIL $TOTAL \
@@ -75,7 +76,7 @@ RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     $RL52 $RL52P $RH52 $RH52P \
     $EPS2021Q4 $EPS2021Q3 $EPS2021Q2 $EPS2021Q1 \
     $EPS2020Q4 $EPS2020Q3 $EPS2020Q2 $EPS2020Q1 \
-    $EPS2019Q4 $EPS2019Q3 \
+    $EPS2019Q4 $EPS2019Q3 $CAPE \
     | tr -d '[],' ) )
 
 O_SPEC=${RETURN[0]%\'}

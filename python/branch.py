@@ -27,6 +27,11 @@ geo_group = [
 # 4. assume it it likely to find branch that major in the form of subsidary,
 #    individual, investor, geographically related to active smallcap, within
 #    14 days.
+# 5. assume clustered broker with SEC alert implies certain kind of price act
+# 6. presume a cluster of branch on the same side implies some kind of
+# coordination
+# 7. space/time/participants/volume/intetion
+# 8. presume broker nearby manufacturing plant has something todo with corp
 
 # cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
 # export LC_CTYPE="zh_TW.UTF-8"; cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
@@ -39,6 +44,8 @@ n_geo_group = [                    \
     48,  3,    4,    2,            \
     94,  1,    1,   12, 15, 9,  6, \
      5,  6,    2,    2 ]
+
+
 
 ticker = sys.argv[1]
 
@@ -56,6 +63,9 @@ url = "https://histock.tw/stock/branch.aspx?no="+ticker
 # https://histock.tw/stock/branch.aspx?no=2015&from=20220502&to=20220502
 # day off
 # https://histock.tw/stock/branch.aspx?no=2015&from=20220501&to=20220501
+# day: 30, ... 365
+# from, to
+# https://histock.tw/stock/branch.aspx?no=5011&day=30
 present = datetime.today()
 # present = datetime.today() + relativedelta(months=-2)
 tday = present.strftime("%Y") + present.strftime("%m") + present.strftime("%d")

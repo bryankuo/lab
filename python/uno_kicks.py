@@ -34,7 +34,7 @@ def context():
     # access the active sheet
     active_sheet = model.CurrentController.ActiveSheet
 
-MAX_ARG_LEN = 15
+MAX_ARG_LEN = 16
 if ( len(sys.argv) >= MAX_ARG_LEN ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
@@ -51,6 +51,7 @@ if ( len(sys.argv) >= MAX_ARG_LEN ):
     r52l_p    = sys.argv[13]
     r52h      = sys.argv[14]
     r52h_p    = sys.argv[15]
+    cap_e     = sys.argv[16]
 elif ( len(sys.argv) < MAX_ARG_LEN and len(sys.argv) >= 3 ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
@@ -165,9 +166,10 @@ addr_2020q1 = "Z1"
 
 addr_2019q4 = "AA1"
 addr_2019q3 = "AB1"
-addr_2019q2 = "AC1"
+addr_2019q2     = "AC1"
 
-addr_stalk = "AE1"
+addr_stalk      = "AE1"
+addr_cape       = "AL1"
 
 def set_value():
     if ( len(sys.argv) >= MAX_ARG_LEN ):
@@ -197,6 +199,8 @@ def set_value():
         cell_ticker.String = r52h
         cell_ticker = active_sheet.getCellRangeByName(addr_r52hp)
         cell_ticker.String = r52h_p
+        cell_ticker = active_sheet.getCellRangeByName(addr_cape)
+        cell_ticker.String = cap_e
 '''
         cell_ticker = active_sheet.getCellRangeByName(addr_2021q4)
         cell_ticker.String = eps21q4
@@ -246,6 +250,7 @@ for i in range(2, last_row):
         addr_per_l52 = "Q" + str(i)
         addr_per_peer = "R" + str(i)
         addr_stalk = "AE" + str(i)
+        addr_cape = "AL" + str(i)
         break
 
 if ( addr_q == "J1" ):
@@ -269,6 +274,7 @@ if ( addr_q == "J1" ):
     addr_per_l52 = "Q" + str( last_row + 1 )
     addr_per_peer = "R" + str( last_row + 1 )
     addr_stalk = "AE" + str( last_row + 1 )
+    addr_cape     = "AL" + str( last_row + 1 )
     cell_ticker = active_sheet.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
 
@@ -283,8 +289,14 @@ out_of_spec = 0
 
 cell = active_sheet.getCellRangeByName(addr_support)
 # @see https://stackoverflow.com/a/9573283
-if ( cell.String and cell.String != "n/a" ):
-    if ( float(cell.String) > float(quote) ):
+if ( cell.String and cell.String != "n/a" and cell.String != "" ):
+    support = float(cell.String)
+    # cell.String = ""
+    # cell.CellBackColor = 0xFFFFFF
+    if ( support > float(quote) ):
+        # become resistance
+        cell = active_sheet.getCellRangeByName(addr_resist)
+        cell.String = support
         cell.CellBackColor = 0xFFFF00
         out_of_spec = 1
     else:
@@ -307,8 +319,14 @@ if ( cell.String and cell.String != "n/a" ):
         cell.CellBackColor = 0xFFFFFF
 
 cell = active_sheet.getCellRangeByName(addr_resist)
-if ( cell.String and cell.String != "n/a" ):
-    if ( float(cell.String) < float(quote) ):
+if ( cell.String and cell.String != "n/a" and cell.String != "" ):
+    resist = float(cell.String)
+    # cell.String = ""
+    # cell.CellBackColor = 0xFFFFFF
+    if ( resist < float(quote) ):
+        # become support
+        cell = active_sheet.getCellRangeByName(addr_support)
+        cell.String = resist
         cell.CellBackColor = 0xFFFF00
         out_of_spec = 1
     else:
