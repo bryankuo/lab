@@ -287,20 +287,26 @@ time.sleep(.6)
 cellq.CellBackColor = 0xFFFFFF
 out_of_spec = 0
 
-cell = active_sheet.getCellRangeByName(addr_support)
+cell   = active_sheet.getCellRangeByName(addr_support)
+cell_r = active_sheet.getCellRangeByName(addr_resist)
 # @see https://stackoverflow.com/a/9573283
 if ( cell.String and cell.String != "n/a" and cell.String != "" ):
     support = float(cell.String)
-    # cell.String = ""
-    # cell.CellBackColor = 0xFFFFFF
     if ( support > float(quote) ):
-        # become resistance
-        cell = active_sheet.getCellRangeByName(addr_resist)
-        cell.String = support
-        cell.CellBackColor = 0xFFFF00
-        out_of_spec = 1
-    else:
+        cell_r.String = support
+        cell_r.CellBackColor = 0xFFFF00
+        cell.String = ""
         cell.CellBackColor = 0xFFFFFF
+        out_of_spec = 1 # become resistance
+
+if ( cell_r.String and cell_r.String != "n/a" and cell_r.String != "" ):
+    resist = float(cell_r.String)
+    if ( resist < float(quote) ):
+        cell.String = resist
+        cell.CellBackColor = 0xFFFF00
+        cell_r.String = ""
+        cell_r.CellBackColor = 0xFFFFFF
+        out_of_spec = 1 # become support
 
 cell = active_sheet.getCellRangeByName(addr_52lo)
 if ( cell.String and cell.String != "n/a" ):
@@ -313,20 +319,6 @@ if ( cell.String and cell.String != "n/a" ):
 cell = active_sheet.getCellRangeByName(addr_cheap)
 if ( cell.String and cell.String != "n/a" ):
     if ( float(cell.String) > float(quote) ):
-        cell.CellBackColor = 0xFFFF00
-        out_of_spec = 1
-    else:
-        cell.CellBackColor = 0xFFFFFF
-
-cell = active_sheet.getCellRangeByName(addr_resist)
-if ( cell.String and cell.String != "n/a" and cell.String != "" ):
-    resist = float(cell.String)
-    # cell.String = ""
-    # cell.CellBackColor = 0xFFFFFF
-    if ( resist < float(quote) ):
-        # become support
-        cell = active_sheet.getCellRangeByName(addr_support)
-        cell.String = resist
         cell.CellBackColor = 0xFFFF00
         out_of_spec = 1
     else:
