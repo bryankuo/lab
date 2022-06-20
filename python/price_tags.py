@@ -84,11 +84,17 @@ cnn_gfear = "https://edition.cnn.com/markets/fear-and-greed"
 finviz = "https://finviz.com"
 twd_forex = "https://forex.tradingcharts.com/chart/US%20Dollar_New%20Taiwan%20Dollar.html?tz=CST&chartpair=US%2520Dollar_New%2520Taiwan%2520Dollar&ctype=b&movAvg1=&movAvg2=&per=1d"
 jpy_forex = "https://www.dailyfx.com/usd-jpy"
+dailyfx = "https://www.dailyfx.com/forex-rates#currencies"
+
 major_futures = "https://www.cnyes.com/futures/indexftr.aspx"
 
 glass = "https://quote.eastmoney.com/qihuo/FGM.html"
 
 jlp_watchlist = "https://jlprudentmenu.blogspot.com"
+
+twse_calendar = "https://histock.tw/stock/stockskd.aspx"
+
+doji = "http://localhost"
 
 urls = [ \
     # regional
@@ -139,9 +145,13 @@ urls = [ \
 
     twd_forex, \
     jpy_forex, \
+    dailyfx, \
     bitcoin, \
     gold, \
-    us10y ]
+    us10y, \
+    jlp_watchlist,
+    twse_calendar,
+    doji ]
 
 i = 0
 for url in urls:
