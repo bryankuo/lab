@@ -71,3 +71,5 @@ br_ticker.py: trial tetch transactions from bsr.
 br.sh:
 transotc.py: parsing type 4 transactions from tpex.
 position3.py:
+hbs30: histock institutional buy and sell for the last 30 days.
+derivative.py: check if has derivatives.

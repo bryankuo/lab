@@ -62,6 +62,10 @@ else
     echo "not found."
 fi
 
+python3 chips.py $1
+python3 hbs30.py $1
+python3 derivative.py $1
+
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "last update:" $TIMESTAMP
 

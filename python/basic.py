@@ -3,11 +3,15 @@
 # python3 basic.py 2330
 # return 0: listed 2,  otc 4, otcbb 5
 
-import sys, requests, time, re
+import sys, requests, time, re, os
 import urllib.request
 from datetime import timedelta,datetime
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
+
+# @see https://stackoverflow.com/a/66187139
+def say(msg = "Finish", voice = "Victoria"):
+    os.system(f'say -v {voice} {msg}')
 
 ticker = sys.argv[1]
 url = "https://mops.twse.com.tw/mops/web/ajax_t05st03"
@@ -40,6 +44,7 @@ try:
     cb_issue = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('th')[32].text
     cb = has_cb + cb_issue
+    say(cb, "Mei-Jia")
 
     corp_title = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('td')[0].text
@@ -61,6 +66,8 @@ try:
         .find_all('tr')[1].find_all('td')[0].text.strip() \
         .replace(',','').replace('元','') ) / 100000000 )
     cap = "{:.2f}".format(cap) # + 'E'
+# stock futures, options
+# https://www.taifex.com.tw/cht/2/stockLists
     olist = [ ticker, corp_name, ticker_type, co_type, cb, \
         corp_title, hq_address, chairman, gm, cap ]
     print(olist)
