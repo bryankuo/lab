@@ -44,7 +44,7 @@ try:
     cb_issue = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('th')[32].text
     cb = has_cb + cb_issue
-    say(cb, "Mei-Jia")
+    # say(cb, "Mei-Jia")
 
     corp_title = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('td')[0].text

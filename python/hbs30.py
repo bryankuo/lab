@@ -19,7 +19,7 @@ sample = 0
 MAX_SAMPLE = 7
 def latch_consequtive_bs(amount, index):
     if not latch[index]:
-        amount = int( tds[index].text.strip() )
+        # amount = int( tds[index].text.strip() )
         if ( 0 < amount and 0 <= net_b[index] and net_s[index] <= 0 ):
             net_b[index] += 1
         elif ( amount < 0 and 0 <= net_s[index] and net_b[index] <= 0 ):
@@ -91,7 +91,8 @@ for i in range(1, len(tr0)):
         latch_consequtive_bs(subtotal, 5)
         '''
         for j in range(1, len(title)):
-            latch_consequtive_bs(int( tds[j].text.strip()), j)
+            latch_consequtive_bs( \
+                int( tds[j].text.replace(',','').strip() ), j)
         sample += 1
     tbl.append(row)
 
@@ -106,9 +107,22 @@ for i in range(1, len(tr0)):
     row.append(tds[5].text.strip())
     tbl.append(row)
 
-pprint(net_b)
-pprint(net_s)
-pprint(latch)
+print(*net_b)
+print(*net_s)
+print(*latch)
 pprint(tbl)
+for i in range(0, len(net_b)):
+    if ( 3 < net_b[i] ):
+        msg = title[i].replace('(','').replace(')','') + \
+            "連" + str(net_b[i]) + "買"
+        say(msg, "Mei-Jia")
+for i in range(0, len(net_s)):
+    if ( 3 < net_s[i] ):
+        msg = title[i].replace('(','').replace(')','') + \
+            "連" + str(net_b[i]) + "賣"
+        say(msg, "Mei-Jia")
 
+# // TODO: check if in the list
+# https://www.wantgoo.com/stock/public-bank/buy-sell?market=-1&orderBy=count&during=5&industry=
+#
 sys.exit(0)

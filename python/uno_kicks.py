@@ -297,7 +297,7 @@ if ( cell.String and cell.String != "n/a" and cell.String != "" ):
         cell_r.CellBackColor = 0xFFFF00
         cell.String = ""
         cell.CellBackColor = 0xFFFFFF
-        out_of_spec = 1 # become resistance
+        out_of_spec = out_of_spec + 1 # become resistance
 
 if ( cell_r.String and cell_r.String != "n/a" and cell_r.String != "" ):
     resist = float(cell_r.String)
@@ -306,13 +306,13 @@ if ( cell_r.String and cell_r.String != "n/a" and cell_r.String != "" ):
         cell.CellBackColor = 0xFFFF00
         cell_r.String = ""
         cell_r.CellBackColor = 0xFFFFFF
-        out_of_spec = 1 # become support
+        out_of_spec = out_of_spec + 2 # become support
 
 cell = active_sheet.getCellRangeByName(addr_52lo)
 if ( cell.String and cell.String != "n/a" ):
     if ( float(cell.String) > float(quote) ):
         cell.CellBackColor = 0xFFFF00
-        out_of_spec = 1
+        out_of_spec = out_of_spec + 4
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -320,7 +320,7 @@ cell = active_sheet.getCellRangeByName(addr_cheap)
 if ( cell.String and cell.String != "n/a" ):
     if ( float(cell.String) > float(quote) ):
         cell.CellBackColor = 0xFFFF00
-        out_of_spec = 1
+        out_of_spec = out_of_spec + 8
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -328,7 +328,7 @@ cell = active_sheet.getCellRangeByName(addr_52hi)
 if ( cell.String and cell.String != "n/a" ):
     if ( float(cell.String) < float(quote) ):
         cell.CellBackColor = 0xFFFF00
-        out_of_spec = 1
+        out_of_spec = out_of_spec + 16
     else:
         cell.CellBackColor = 0xFFFFFF
 
@@ -342,7 +342,7 @@ if ( cell.String and cell.String != "n/a" ):
 # cell_stalk.Value= 1
 
 cell_stalk = active_sheet.getCellRangeByName(addr_stalk)
-if ( out_of_spec ):
+if ( 0 < out_of_spec ):
     cell_stalk.Value = 1
 else:
     cell_stalk.String = ""
