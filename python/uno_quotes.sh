@@ -50,7 +50,7 @@ while read p; do
     # echo $OPUT # test return from calc
     O_SPEC=16
     if [ $O_SPEC -eq 1 ]; then
-	echo -ne '\007' # beep
+	# echo -ne '\007' # beep
 	CONDITION="跌破支撐" # $((5 % 2**3))
 	say -v "Mei-Jia" \
 	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
@@ -62,28 +62,28 @@ while read p; do
 	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
 	    "[[slnc 400]]" $DEAL \
 	    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    elif [ $((O_SPEC/(2**2))) -eq 1 ] && [ $((O_SPEC%(2**2))) -eq 0 ]; then
-	CONDITION="跌破52週新低"
-	say -v "Mei-Jia" \
-	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	    "[[slnc 400]]" $DEAL \
-	    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+    # elif [ $((O_SPEC/(2**2))) -eq 1 ] && [ $((O_SPEC%(2**2))) -eq 0 ]; then
+	# CONDITION="跌破52週新低"
+	# say -v "Mei-Jia" \
+	#    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	#    "[[slnc 400]]" $DEAL \
+	#    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
     elif [ $((O_SPEC/(2**3))) -eq 1 ] && [ $((O_SPEC%(2**3))) -eq 0 ]; then
 	CONDITION="跌入合理區間"
 	say -v "Mei-Jia" \
 	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
 	    "[[slnc 400]]" $DEAL \
 	    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    elif [ $((O_SPEC/(2**4))) -eq 1 ] && [ $((O_SPEC%(2**4))) -eq 0 ]; then
-	CONDITION="突破52週新高"
-	say -v "Mei-Jia" \
-	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	    "[[slnc 400]]" $DEAL \
-	    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    else
-	say -v "Mei-Jia" \
-	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	    "[[slnc 400]]" $DEAL
+    # elif [ $((O_SPEC/(2**4))) -eq 1 ] && [ $((O_SPEC%(2**4))) -eq 0 ]; then
+	# CONDITION="突破52週新高"
+	# say -v "Mei-Jia" \
+	#    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	#    "[[slnc 400]]" $DEAL \
+	#    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+    # else
+	# say -v "Mei-Jia" \
+	#     ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	#    "[[slnc 400]]" $DEAL
     fi
 
     index=$(($index+1))
