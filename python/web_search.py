@@ -73,7 +73,6 @@ holdings = "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcj/zcj_" \
     + ticker + ".djhtm"
 
 hinet_technicals = "https://histock.tw/stock/"+ticker
-hinet_branch ="https://histock.tw/stock/branch.aspx?no=" + ticker
 
 cmoney_gossip = "https://www.cmoney.tw/follow/channel/stock-" + \
     ticker +"?chart=d&type=Personal"
@@ -180,7 +179,6 @@ urls = [ \
     holdings, \
     trust, \
     government_banks,
-    hinet_branch, \
 
     # news, information, PR, gossips
     cmoney_gossip, \

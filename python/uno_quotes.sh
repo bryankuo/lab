@@ -48,8 +48,7 @@ while read p; do
     O_SPEC=${RETURN[0]%\'}
     O_SPEC=${O_SPEC#\'}
     # echo $OPUT # test return from calc
-    O_SPEC=16
-    if [ $O_SPEC -eq 1 ]; then
+    if [ $((O_SPEC/(2**1))) -eq 0 ] && [ $((O_SPEC%(2**1))) -eq 1 ]; then
 	# echo -ne '\007' # beep
 	CONDITION="跌破支撐" # $((5 % 2**3))
 	say -v "Mei-Jia" \

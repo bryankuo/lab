@@ -7,24 +7,59 @@
 # /Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9 -m pip install --upgrade pip
 # python3 -m pip install uno
 
-cp datafiles/activity_watchlist.ods datafiles/activity_watchlist.0.ods
-NLINES=( $(wc -l datafiles/bountylist.txt | cut -d " " -f5) )
-TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: "$TIMESTAMP " stalk #line " $NLINES
+# cp datafiles/activity_watchlist.ods datafiles/activity_watchlist.0.ods
+LIST="datafiles/bountylist.txt"
+index=1 # calc start index, while txt/calc not sync
+count=0
+NLINES=$(wc -l datafiles/bountylist.txt | cut -d " " -f7)
+if [[ $# -gt 1 ]]; then
+    START=$1
+    LEN=$2
+else
+    START=$index
+    LEN=$NLINES
+fi
+TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: "$TIMESTAMP0 " stalk " $LIST " #line " $NLINES
 
 while true; do
-    index=1
-    while read p; do
-	TICKER=$p
-	# // TODO: handle newly added item when process is ongoing
-	# @see https://stackoverflow.com/a/6022441
-	# sed '443q;d' datafiles/bountylist.txt
-	# sed '1072!d' datafiles/bountylist.txt
-	# awk 'NR==1071' datafiles/bountylist.txt
-	# TKR=( $(sed '1070q;d' datafiles/bountylist.txt) )
-	# echo $TKR
-	# exit 0
+    # // TODO: uno_activity.sh
+    # @see https://stackoverflow.com/a/6022441
+    # awk 'NR==1071' datafiles/watchlist.txt
+    TICKER=( $(sed "$index""q;d" $LIST) )
+    echo $TICKER
 
+    # PER update, it is more meaningful updating peers.
+    if true; then
+	OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
+	DEAL=${OUTPUT[0]%\'}
+	DEAL=${DEAL#\'}
+	OUTPUT=($(python3 pe.py $TICKER 1 | tr -d '[],'))
+	PER=${OUTPUT[0]%\'}
+	PER=${PER#\'}
+	PER_H52=${OUTPUT[1]%\'}
+	PER_H52=${PER_H52#\'}
+	PER_L52=${OUTPUT[2]%\'}
+	PER_L52=${PER_L52#\'}
+	PER_PEER=${OUTPUT[3]%\'}
+	PER_PEER=${PER_PEER#\'}
+	# MSG=$(printf "ticker: %04d %04.2f \
+	#    PER: %04.2f %04.2f %04.2f %04.2f\n" \
+	#    $TICKER $DEAL $PER $PER_H52 $PER_L52 $PER_PEER )
+	#echo $MSG
+	RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
+	    uno_per.py $TICKER $DEAL $PER $PER_H52 $PER_L52 $PER_PEER | \
+	    tr -d '[],' ) )
+	O_SPEC=${RETURN[0]%\'}
+	O_SPEC=${O_SPEC#\'}
+	# echo $OPUT # test return from calc
+	if [ "$O_SPEC" == "1" ]; then
+	    echo -ne '\007'
+	fi
+    fi
+
+    # quotes update
+    if false; then
 	OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
 	# echo ${OUTPUT[@]}
 	DEAL=${OUTPUT[0]%\'}
@@ -39,12 +74,15 @@ while true; do
 	if [ "$O_SPEC" == "1" ]; then
 	    echo -ne '\007'
 	fi
-	index=$(($index+1))
-	sleep 1
-    done < datafiles/bountylist.txt
-    TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
-    echo "time: " $TIMESTAMP " looping end"
+    fi
 
+    index=$(($index+1))
+    count=$(($count+1))
+    if [ $count -ge $NLINES ] ; then
+	echo "finish $count items."
+	break
+    fi
+    # sleep 1
     # In the following line -t for timeout, -N for just 1 character
     read -t 1 input
     if [[ $input = "q" ]] || [[ $input = "Q" ]]; then
@@ -52,7 +90,8 @@ while true; do
         echo
         break
     fi
-    sleep 10
+    sleep 3
 done
-
+TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: " $TIMESTAMP " looping end"
 exit 0
