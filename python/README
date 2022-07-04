@@ -73,3 +73,5 @@ transotc.py: parsing type 4 transactions from tpex.
 position3.py:
 hbs30: histock institutional buy and sell for the last 30 days.
 derivative.py: check if has derivatives.
+uno_per.py: update per by group.
+uno_stalk.sh: looping update by group.
