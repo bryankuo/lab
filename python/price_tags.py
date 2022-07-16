@@ -94,7 +94,10 @@ glass = "https://quote.eastmoney.com/qihuo/FGM.html"
 jlp_watchlist = "https://jlprudentmenu.blogspot.com"
 
 twse_calendar = "https://histock.tw/stock/stockskd.aspx"
-yuanta_calendar = "https://www.yuanta.com.tw/eYuanta/securities/Node/Index?MainId=00413&C1=2018031202503224&ID=2018031202503224&Level=1&rnd=9321"
+
+yuanta_calendar = "https://www.yuanta.com.tw/eYuanta/securities/Node/Index?MainId=00413&C1=2018031202503224&ID=2018031202503224&Level=1&rnd=25104"
+
+
 fl_calendar = "https://ww2.money-link.com.tw/TWStock/TWStockMarket.aspx?optionType=6"
 
 gtrend = "https://trends.google.com/trends/explore?geo=TW"
