@@ -11,7 +11,8 @@
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, while txt/calc not sync
 count=0
-NLINES=$(wc -l datafiles/bountylist.txt | cut -d " " -f7)
+NLINES=$(wc -l $LIST | xargs | cut -d " " -f1)
+echo $NLINES
 if [[ $# -gt 1 ]]; then
     START=$1
     LEN=$2

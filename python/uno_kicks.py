@@ -56,7 +56,7 @@ elif ( len(sys.argv) < MAX_ARG_LEN and len(sys.argv) >= 3 ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
 else:
-    printf('illegal #')
+    print('illegal #')
     sys.exit(0)
 
 # get the uno component context from the PyUNO runtime
