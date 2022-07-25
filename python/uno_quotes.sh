@@ -2,40 +2,43 @@
 # make sure running uno.sh
 # echo "$#"
 if [ "$#" -lt 1 ]; then
-    echo "./uno_quotes.sh [start] [len]"
+    echo "./uno_quotes.sh [start] [len] 0 for bounty"
     exit 64 # @see https://stackoverflow.com/a/1535733
 fi
 
 cp datafiles/activity_watchlist.ods datafiles/activity_watchlist.0.ods
 index=1 # calc start index, while txt/calc not sync
 count=0
-NLINES=( $(wc -l datafiles/watchlist.txt | cut -d " " -f5) )
+LIST="datafiles/watchlist.txt"
+BOUNTY="datafiles/bountylist.txt"
+# NLINES=( $(wc -l datafiles/watchlist.txt | cut -d " " -f5) )
+NLINES=$(wc -l $LIST | xargs | cut -d " " -f1)
 if [[ $# -gt 1 ]]; then
     START=$1
     LEN=$2
+    index=$1
 else
-    START=$index
-    LEN=$NLINES
+    if [[ $1 -eq 0 ]]; then
+	LIST=$BOUNTY
+	NLINES=$(wc -l $LIST | xargs | cut -d " " -f1)
+	LEN=$NLINES
+    else
+	START=$index
+	LEN=$NLINES
+    fi
 fi
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: "$TIMESTAMP0 " start "$START " len "$LEN " #line "$NLINES
+echo "time: "$TIMESTAMP0 "start "$START " len "$LEN " #line "$NLINES" list "$LIST
 
-while read p; do
-    TICKER=$p
-    # echo $index $START $LEN $TICKER
-    if [[ $index -lt $START ]]
-    then
-	index=$(($index+1))
-	continue
-    fi
-    # // TODO: handle newly added item when process is ongoing
-    # @see https://stackoverflow.com/a/6022441
-    # sed '443q;d' datafiles/watchlist.txt
-    # sed '1072!d' datafiles/watchlist.txt
-    # awk 'NR==1071' datafiles/watchlist.txt
-    # TKR=( $(sed '1070q;d' datafiles/watchlist.txt) )
-    # echo $TKR
-    # exit 0
+while true; do
+    # # echo $index $START $LEN $TICKER
+    # if [[ $index -lt $START ]]
+    # then
+    # index=$(($index+1))
+    # continue
+    # fi
+
+    TICKER=( $(sed "$index""q;d" $LIST) )
 
     OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
     # echo ${OUTPUT[@]}
@@ -87,13 +90,24 @@ while read p; do
 
     index=$(($index+1))
     count=$(($count+1))
-    if [[ $count -ge $LEN ]]; then
+    if [ $count -gt $LEN ] || [ $index -gt $LEN ] ; then
 	say -v "Mei-Jia" "完成 $count 個項目"
 	echo "finish $count items."
 	break
     fi
-    sleep 2
-done < datafiles/watchlist.txt
+
+    # sleep 1
+    # In the following line -t for timeout, -N for just 1 character
+    read -t 1 input
+    if [[ $input = "q" ]] || [[ $input = "Q" ]]; then
+	# The following line is for the prompt to appear on a new line.
+        echo
+        break
+    fi
+
+# done < datafiles/watchlist.txt
+done
+
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP1 " looping end"

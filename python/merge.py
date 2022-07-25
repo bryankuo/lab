@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys,csv
+from pprint import pprint
 
 def open_and_parse(lines, fname):
     with open(fname, 'r') as csvfile:
@@ -13,8 +14,9 @@ def open_and_parse(lines, fname):
     return 0
 
 title = \
-    ['代號', '市值(E)', '台股權值', '市值排名', '台灣50排名', \
-    'MSCI排名', '中100排名']
+    ['市值排名', '代號', '台股權值', 'MSCI排名', '台灣50排名', \
+     '中100排名', '市值(E)']
+
 top100_market_values = []
 
 t50_components  = []
@@ -43,93 +45,62 @@ def main():
     open_and_parse(t50_components, sys.argv[2])
     open_and_parse(msci_components, sys.argv[3])
     open_and_parse(top150_market_values, sys.argv[4])
-    # // TODO:
-    # open_and_parse(m100_components, sys.argv[5])
+    open_and_parse(m100_components, sys.argv[5])
 
-    '''
-    print(*market_values)
-    print("\n")
-    print(*t50_components)
-    print("\n")
-    print(*msci_components)
-    '''
+    # print(*top150_market_values)
+    merged_tab.append(title)
 
     for i in range(1, len(top150_market_values)):
         top150 = top150_market_values[i]
         rank = top150[0]
         tkr_name = top150[1]
         mkt_val = top150[2]
-        if ( i < len(top100_market_values) ):
-            weight = top100_market_values[3]
-        else:
-            weight = 0
 
-        index = 1
+        weight = 0
+        for i in range(1, len(top100_market_values)):
+            if tkr_name == top100_market_values[i][1] :
+                weight = top100_market_values[i][3]
+                break
+
+        # mark msci rank
         msci_rank = 0
-        for z in msci_components:
-            if tkr_name == z[1]:
-                msci_rank = index
+        for i in range(1, len(msci_components)):
+            if tkr_name == msci_components[i][1]:
+                msci_rank = i
                 break
-            index += 1
-        x.append(msci_rank)
 
+        # mark t50 rank
         t50_rank = 0
-        index = 0
-        for y in t50_components:
-            # print( tkr_name, y[0] )
-            if tkr_name == y[0].strip():
-                t50_rank = index
+        for i in range(0, len(t50_components)):
+            if tkr_name == t50_components[i][0].strip():
+                t50_rank = i + 1
                 break
-            index += 1
 
+        # mark m100 rank
         m100_rank = 0
-
-        merged_tab.append(tkr_name)
-        merged_tab.append(mkt_val)
-        merged_tab.append(weight)
-        merged_tab.append(rank)
-        merged_tab.append(t50_rank)
-
-
-    '''
-    for x in top100_market_values:
-        tkr_name = x[1]
-
-        t50_rank = 0
-        index = 0
-        for y in t50_components:
-            # print( tkr_name, y[0] )
-            if tkr_name == y[0].strip():
-                t50_rank = index
+        for i in range(1, len(m100_components)):
+            if tkr_name == m100_components[i][0].strip():
+                m100_rank = i
                 break
-            index += 1
-        x.append(t50_rank)
 
-        index = 1
-        msci_rank = 0
-        for z in msci_components:
-            if tkr_name == z[1]:
-                msci_rank = index
-                break
-            index += 1
-        x.append(msci_rank)
-    '''
+        r=[]
+        r.append("{:>04s}".format(rank))
+        r.append(tkr_name)
+        r.append(weight)
+        r.append(msci_rank)
+        r.append(t50_rank)
+        r.append(m100_rank)
+        r.append("{:>.02f}".format(mkt_val))
+        merged_tab.append(r)
 
-    print(title[0], end=":")
-    print(title[1], end=":")
-    print(title[2], end=":")
-    print(title[3], end=":")
-    print(title[4], end=":")
-    print(title[5], end=":")
-    print(title[6], end="\n")
-
-    for i in range(len(market_values)):
-        print(market_values[i][1], end=':')
-        print(market_values[i][2], end=':')
-        print(market_values[i][3], end=':')
-        print(market_values[i][0], end=':')
-        print(market_values[i][4], end=':')
-        print(market_values[i][5], end='\n')
+    for i in range(0, len(merged_tab)):
+        print(merged_tab[i][0], end=':')
+        print(merged_tab[i][1], end=':')
+        print(merged_tab[i][2], end=':')
+        print(merged_tab[i][3], end=':')
+        print(merged_tab[i][4], end=':')
+        print(merged_tab[i][5], end=':')
+        print(merged_tab[i][6], end='\n')
 
 if __name__ == "__main__":
 	main()

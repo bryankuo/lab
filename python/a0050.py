@@ -60,7 +60,7 @@ time.sleep(5) # wait until page fully loaded
 # stockweights
 page = browser.page_source
 soup = BeautifulSoup(page, 'html.parser')
-browser.quit()
+browser.close()
 # print(soup.prettify())
 
 '''

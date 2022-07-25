@@ -12,6 +12,7 @@ import calendar
 from bs4 import BeautifulSoup
 
 commo = "https://tradingeconomics.com/commodities"
+crb_idx = "https://www.barchart.com/futures/quotes/BZY00/interactive-chart"
 
 bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
 us10y = "https://www.marketwatch.com/investing/bond/tmubmusd10y/charts?countrycode=bx"
@@ -99,6 +100,7 @@ urls = [ \
     brokage_v, \
 
     # commodities
+    crb_idx, \
     commo, \
 
     # worldwide

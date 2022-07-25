@@ -52,7 +52,7 @@ try:
     browser.close()
 
     '''
-    component_list = "m100.txt"
+    component_list = "a.txt"
     with open(component_list) as fp:
         soup = BeautifulSoup(fp, 'html.parser')
     '''

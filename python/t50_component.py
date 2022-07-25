@@ -22,6 +22,8 @@ from slimit import ast
 from slimit.parser import Parser
 from slimit.visitors import nodevisitor
 
+new_table=[]
+
 '''
 browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
 if ( browser is None ):
@@ -35,53 +37,36 @@ time.sleep(5) # wait until page fully loaded
 # stockweights
 page = browser.page_source
 soup = BeautifulSoup(page, 'html.parser')
-browser.quit()
+browser.close()
 # print(soup.prettify())
 '''
 
-# component_list = "datafiles/t50.txt.20211109"
-component_list = "datafiles/t50.components.20211016"
+component_list = "a.txt"
 with open(component_list) as fp:
     soup = BeautifulSoup(fp, 'html.parser')
-'''
-scripts = soup.find_all("script", {})
-# pprint(scripts[8]); print(len(scripts))
-pattern = re.compile(r"window.__NUXT__=((.*?)\{.*?\}(.*?));")
-script = soup.find("script", text=pattern)
-pattern1 = re.compile(r"StockWeights:\[.*?\]")
-w = re.search(pattern1, str(script)).group(0)
-# print(type(w))
-# print(len(w))
-# print(w[14:len(w)-1])
-sw = w[14:len(w)-1].split(',{')
-# print(len(sw))
-# pprint(sw)
-for weight in sw:
-    print(weight)
-    # pattern2 = re.compile(r"weights:(.*?)")
-    # print(re.search(pattern2, weight))
-'''
+
 table = soup.find_all("table", {"class": "tb tb1"})
-pprint(table)
+# pprint(table)
+rows = soup.find_all("tr", {})
 
+# ths=soup.find_all("tr", {})[0].find_all("th")
+# row=[]
+# row.append( ths[0].text + ths[1].text )
+# row.append( ths[3].text )
+# new_table.append(row)
 
+for i in range(1, len(rows)):
+    tds=soup.find_all("tr", {})[i].find_all("td")
+    if ( len(tds[0].text) == 4 ):
+        row=[]
+        row.append( tds[0].text + tds[1].text )
+        row.append( tds[3].text )
+        new_table.append(row)
+# pprint(new_table)
 
-sys.exit(3)
-table = soup.find_all("table", {"id": "stockweights"})
-if ( table is None ):
-    sys.exit(1)
-rows = table[0].select('tr')
-if ( len(rows) <= 0 ):
-    sys.exit(2)
-for row in rows:
-    tds = row.select('td')
-    if ( 0 < len(tds) ):
-        tkr_name = tds[0].text.strip() + tds[1].text.strip()
-        weight = tds[2].text.strip()
-        shares = tds[3].text.strip()
-    print( \
-        tkr_name, ":", \
-        weight, ":", \
-        shares )
+for row in new_table:
+    tkr_name = row[0]
+    weight   = row[1]
+    print( tkr_name + ":" + weight )
 
 sys.exit(0)
