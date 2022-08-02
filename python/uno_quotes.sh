@@ -90,7 +90,7 @@ while true; do
 
     index=$(($index+1))
     count=$(($count+1))
-    if [ $count -gt $LEN ] || [ $index -gt $LEN ] ; then
+    if [ $count -ge $LEN ] || [ $index -gt $NLINES ] ; then
 	say -v "Mei-Jia" "完成 $count 個項目"
 	echo "finish $count items."
 	break

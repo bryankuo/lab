@@ -2,12 +2,12 @@
 
 # @see uno_stalk.sh
 
-STORY="中概"
+STORY="中鋼集團"
 LIST="datafiles/bountylist.txt"
-index=1 # calc start index, while txt/calc not sync
+index=1 # calc start index, since txt/calc not sync
 count=0
 NLINES=$(wc -l $LIST | xargs | cut -d " " -f1)
-echo $NLINES
+# echo $NLINES
 if [[ $# -gt 1 ]]; then
     START=$1
     LEN=$2
