@@ -2,6 +2,8 @@
 
 # @see uno_stalk.sh
 
+./check_bountylist.sh
+
 STORY="中鋼集團"
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
