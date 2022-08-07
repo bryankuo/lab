@@ -4,7 +4,7 @@
 
 ./check_bountylist.sh
 
-STORY="中鋼集團"
+STORY="遊戲"
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
 count=0

@@ -53,6 +53,9 @@ subsidiary = "https://www.cmoney.tw/finance/f00031.aspx?s="+ticker
 revenue_mom = \
     "https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID="+ticker
 
+monthly_revenue = \
+    "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_"+ticker+".djhtm"
+
 revenue_growth = \
     "https://www.moneydj.com/Z/ZC/ZC1/ZC17/ZC17.djhtm?a="+ticker
 
@@ -77,8 +80,8 @@ hinet_technicals = "https://histock.tw/stock/"+ticker
 cmoney_gossip = "https://www.cmoney.tw/follow/channel/stock-" + \
     ticker +"?chart=d&type=Personal"
 
-share_outstanding = \
-    "https://norway.twsthr.info/StockHolders.aspx?stock="+ticker
+# share_outstanding = \
+#    "https://norway.twsthr.info/StockHolders.aspx?stock="+ticker
 
 moneydj_profile = \
     "https://www.google.com/search?client=safari" + \
@@ -93,7 +96,7 @@ revenue_yoy = \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_" + ticker + ".djhtm"
 
 eps_table = "https://goodinfo.tw/tw/StockFinDetail.asp"+ \
-    "?RPT_CAT=XX_M_QUAR&QRY_TIME=20214&STOCK_ID=" + ticker
+    "?RPT_CAT=XX_M_QUAR&QRY_TIME=20222&STOCK_ID=" + ticker
 
 google_gm_image = \
     "https://www.google.com/search?q=%22"+ \
@@ -156,6 +159,7 @@ urls = [ \
     fundamental, \
     comparison, \
     revenue_mom, \
+    monthly_revenue, \
     revenue_growth, \
     groups, \
     subsidiary, \
@@ -174,7 +178,7 @@ urls = [ \
 
     # chips
     major_holders_bs, \
-    share_outstanding, \
+    # share_outstanding, \
     institution_holdings, \
     holdings, \
     trust, \
