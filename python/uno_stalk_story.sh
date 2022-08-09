@@ -4,7 +4,7 @@
 
 ./check_bountylist.sh
 
-STORY="遊戲"
+STORY="散熱"
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
 count=0

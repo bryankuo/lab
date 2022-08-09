@@ -2,7 +2,7 @@
 # make sure running uno.sh
 # echo "$#"
 if [ "$#" -lt 1 ]; then
-    echo "./uno_quotes.sh [start] [len] 0 for bounty"
+    echo "./uno_quotes.sh 0 for bounty list"
     exit 64 # @see https://stackoverflow.com/a/1535733
 fi
 
@@ -28,16 +28,10 @@ else
     fi
 fi
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: "$TIMESTAMP0 "start "$START " len "$LEN " #line "$NLINES" list "$LIST
+echo "time: "$TIMESTAMP0
+echo "start "$START " len "$LEN " #line "$NLINES" list "$LIST
 
 while true; do
-    # # echo $index $START $LEN $TICKER
-    # if [[ $index -lt $START ]]
-    # then
-    # index=$(($index+1))
-    # continue
-    # fi
-
     TICKER=( $(sed "$index""q;d" $LIST) )
 
     OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
