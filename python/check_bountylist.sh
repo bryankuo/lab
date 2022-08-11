@@ -14,7 +14,7 @@ else
     LEN=$NLINES
 fi
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: "$TIMESTAMP0 " check bounty list " $LIST " #line " $NLINES
+echo "time: "$TIMESTAMP0" check bounty list "$LIST" #line "$NLINES
 
 while true; do
     # // TODO: uno_activity.sh
