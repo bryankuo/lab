@@ -36,7 +36,14 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
 # access the current writer document
 model = desktop.getCurrentComponent()
-active_sheet = model.CurrentController.ActiveSheet
+# active_sheet = model.CurrentController.ActiveSheet
+active_sheet = model.Sheets.getByName("20220126")
+'''
+sheet = model.Sheets.getByName("RS ranking") # works
+# sheet = model.Sheets.getByIndex(2)         # works
+cell_q = sheet.getCellRangeByName("A2")
+cell_q.Value = 8
+'''
 
 # assume no more than 3000 listed.
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
@@ -78,7 +85,8 @@ def set_value():
     cell_ticker.CellBackColor = 0xFFFFFF
     # new_story = cell_ticker.String
     cell_q = active_sheet.getCellRangeByName(addr_q)
-    cell_q.Value = 0
+    if ( len(cell_q.String) <= 0 ):
+        cell_q.Value = 0
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 for i in range(2, last_row):

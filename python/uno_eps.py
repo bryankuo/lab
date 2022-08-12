@@ -25,7 +25,7 @@ if ( len(sys.argv) == MAX_ARG_LEN ):
     eps19q4   = sys.argv[10]
     eps19q3   = sys.argv[11]
 else:
-    printf('illegal # argv')
+    print('illegal # argv')
     sys.exit(0)
 
 # get the uno component context from the PyUNO runtime
@@ -46,7 +46,7 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
 # access the current writer document
 model = desktop.getCurrentComponent()
-active_sheet = model.CurrentController.ActiveSheet
+active_sheet = model.Sheets.getByName("20220126")
 
 # assume no more than 3000 listed.
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)

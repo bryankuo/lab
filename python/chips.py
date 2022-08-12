@@ -11,7 +11,27 @@ from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 
 ticker  = sys.argv[1]
-co_type = int( sys.argv[2] )
+
+if ( 3 <= len(sys.argv) ):
+    co_type = int( sys.argv[2] )
+    year  = datetime.today().strftime('%Y')
+    month = datetime.today().strftime('%m')
+    day   = datetime.today().strftime('%d')
+    tday = year+month+day
+    if ( co_type == 2 ) :
+        # https://www.twse.com.tw/exchangeReport/FMSRFK?response=html&date=20220809&stockNo=1236
+        monthly_turnaround = \
+            "https://www.twse.com.tw/exchangeReport/FMSRFK?response=html&date=" \
+            +tday+"&stockNo="+ticker
+    elif ( co_type == 4 ) :
+        # https://www.tpex.org.tw/web/stock/statistics/monthly/st44.php?l=zh-tw&code=3105
+        monthly_turnaround = \
+        "https://www.tpex.org.tw/web/stock/statistics/monthly/st44.php?l=zh-tw&code=" \
+        + ticker
+    else:
+        monthly_turnaround = ""
+else:
+    monthly_turnaround = ""
 
 # // FIXME
 # major_holders = "https://tw.stock.yahoo.com/quote/"+ticker+".TW/major-holders"
@@ -41,19 +61,6 @@ share_outstanding = \
 vol_profile = "https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm?id="+ticker
 
 margin = "https://histock.tw/stock/chips.aspx?no="+ticker+"&m=mg"
-
-year  = datetime.today().strftime('%Y')
-month = datetime.today().strftime('%m')
-day   = datetime.today().strftime('%d')
-tday = year+month+day
-if ( co_type == 2 ) :
-    # https://www.twse.com.tw/exchangeReport/FMSRFK?response=html&date=20220809&stockNo=1236
-    monthly_turnaround = "https://www.twse.com.tw/exchangeReport/FMSRFK?response=html&date="+tday+"&stockNo="+ticker
-elif ( co_type == 4 ) :
-    # https://www.tpex.org.tw/web/stock/statistics/monthly/st44.php?l=zh-tw&code=3105
-    monthly_turnaround = "https://www.tpex.org.tw/web/stock/statistics/monthly/st44.php?l=zh-tw&code="+ticker
-else:
-    monthly_turnaround = ""
 
 urls = [ \
     # major_holders, \

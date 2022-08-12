@@ -31,8 +31,7 @@ def context():
     # which is made available to all scripts
     desktop = XSCRIPTCONTEXT.getDesktop()
     model = desktop.getCurrentComponent()
-    # access the active sheet
-    active_sheet = model.CurrentController.ActiveSheet
+    active_sheet = model.Sheets.getByName("20220126")
 
 MAX_ARG_LEN = 16
 if ( len(sys.argv) >= MAX_ARG_LEN ):
@@ -85,8 +84,10 @@ model = desktop.getCurrentComponent()
 # sheet_name = "20220126"
 # sheet = model.Sheets.getByName(sheet_name)
 # model.getCurrentController.setActiveSheet(sheet) # set the sheet active
+
 # access the active sheet
-active_sheet = model.CurrentController.ActiveSheet
+# active_sheet = model.CurrentController.ActiveSheet
+active_sheet = model.Sheets.getByName("20220126")
 
 # access cell C4
 # cell1 = active_sheet.getCellRangeByName("j501")

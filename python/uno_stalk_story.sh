@@ -4,7 +4,7 @@
 
 ./check_bountylist.sh
 
-STORY="pcb"
+STORY="模具沖壓"
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
 count=0
@@ -31,8 +31,8 @@ while true; do
 	tr -d '[],' ) )
     O_SPEC=${RETURN[0]%\'}
     O_SPEC=${O_SPEC#\'}
-    echo $index $TICKER $O_SPEC # return from calc
-
+    MSG=$(printf "%04d %04d %04.2f" $index $TICKER $O_SPEC)
+    echo $MSG
     index=$(($index+1))
     count=$(($count+1))
     if [ $count -ge $NLINES ] ; then
