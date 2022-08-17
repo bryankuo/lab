@@ -1,4 +1,5 @@
 #!/bin/bash
+TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 rm -f datafiles/listed_taiex.txt
 declare -a arr=(2 4 5)
 echo "get all the tickers..."
@@ -18,4 +19,8 @@ mv datafiles/listed_taiex.txt datafiles/listed_taiex.$DATE.txt
 rm -f datafiles/listed_taiex.txt
 ln -s datafiles/listed_taiex.$DATE.txt datafiles/listed_taiex.txt
 ls -lt datafiles/listed_*.txt
+TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: " $TIMESTAMP0 " looping start"
+echo "time: " $TIMESTAMP1 " looping end"
+echo -ne '\007'
 exit 0

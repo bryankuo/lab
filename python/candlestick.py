@@ -93,6 +93,9 @@ elif ticker == "bitcoin" :
 elif ticker == "rubber" :
     thing = rubber
 
+elif ticker == "oil" :
+    thing = brent_crude
+
 elif ticker == "metal" :
     i = 0
     for url in metals:

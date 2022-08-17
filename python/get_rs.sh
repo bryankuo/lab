@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# @see uno_stalk.sh
+# @see uno_stalk_story.sh
+# get_rs.sh with respect to the 1st
 
-./check_bountylist.sh
+# ./check_bountylist.sh
 
-STORY="模具沖壓"
+DATE=`date '+%Y%m%d%H%M%S'`
+OUTF0=datafiles/rs.$DATE.txt
+
 LIST="datafiles/bountylist.txt"
-index=1 # calc start index, since txt/calc not sync
+index=1
 count=0
 NLINES=$(wc -l $LIST | xargs | cut -d " " -f1)
-# echo $NLINES
 if [[ $# -gt 1 ]]; then
     START=$1
     LEN=$2
@@ -22,18 +24,22 @@ echo "time: "$TIMESTAMP0
 echo "start "$START " len "$LEN " #line "$NLINES" list "$LIST
 
 while true; do
-    # // TODO: uno_activity.sh
-    # @see https://stackoverflow.com/a/6022441
-    # awk 'NR==1071' datafiles/watchlist.txt
     TICKER=( $(sed "$index""q;d" $LIST) )
-
-    RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
-	uno_story.py $TICKER $STORY | \
-	tr -d '[],' ) )
-    O_SPEC=${RETURN[0]%\'}
-    O_SPEC=${O_SPEC#\'}
-    MSG=$(printf "%04d %04d %04.2f" $index $TICKER $O_SPEC)
+    MSG=$(printf "%04d %04d" $index $TICKER)
     echo $MSG
+
+    # https://stackoverflow.com/a/42251434
+    found2=$(grep --color="auto" -c -e $TICKER datafiles/listed_2.txt)
+    found4=$(grep --color="auto" -c -e $TICKER datafiles/listed_4.txt)
+    if [ $found2 -eq 1 ]; then
+	# ohlc_2.py
+	python3 ohlc_2.py $TICKER $OUTF0 $index
+    elif [ $found4 -eq 1 ]; then
+	# ohlc_4.py
+	python3 ohlc_4.py $TICKER $OUTF0 $index
+    else
+	echo $rt2 $rt4
+    fi
     index=$(($index+1))
     count=$(($count+1))
     if [ $count -ge $NLINES ] ; then
@@ -54,4 +60,6 @@ TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP1 " looping end"
 echo -ne '\007'
+python3 launch.py $OUTF0
+
 exit 0
