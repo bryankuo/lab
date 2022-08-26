@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 basic.py [ticker]
+# python3 warrant.py [ticker]
 # return 0: listed 2,  otc 4, otcbb 5
 
 import sys, requests, time, re, os
@@ -8,22 +8,25 @@ import urllib.request
 from datetime import timedelta,datetime
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
+from pprint import pprint
 
 # @see https://stackoverflow.com/a/66187139
 def say(msg = "Finish", voice = "Victoria"):
     os.system(f'say -v {voice} {msg}')
 
 ticker = sys.argv[1]
-url = "https://mops.twse.com.tw/mops/web/ajax_t05st03"
+# // TODO:
+# url = "http://warrants.sfi.org.tw/Query.aspx"
+url = "http://warrants.sfi.org.tw/Default.aspx"
 data = { \
-    "subMenuID": 1, "step": 1, "firstin": "true", \
-    "off": "1", "keyword4": "", "code1": "", \
-    "TYPEK2": "", "checkbtn": "", "queryName": "co_id", \
-    "inputType": "co_id", "TYPEK": "all", \
-    "co_id": ticker }
+    "stockNo": ticker, "duration1": 0, "duration2": 730, \
+    "Period": 14 }
+
 try:
     response = requests.post(url, data)
     soup = BeautifulSoup(response.text, 'html.parser')
+    pprint(soup)
+    '''
     corp_name = soup.findAll('span')[0].text
     # if ( corp_name is None ):
     #     print('not listed.')
@@ -71,8 +74,9 @@ try:
     olist = [ ticker, corp_name, ticker_type, co_type, cb, \
         corp_title, hq_address, chairman, gm, cap ]
     print(olist)
+    '''
 
 except (IndexError):
-    print('not listed.') # // TODO: grep listed file instead
+    print('not found.') # // TODO: grep listed file instead
 
 sys.exit(0)

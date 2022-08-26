@@ -138,6 +138,7 @@ major_holders_bs = \
     "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zck/zck_"+ticker+".djhtm"
 
 management = ""
+warrant = "http://warrants.sfi.org.tw/Default.aspx"
 
 g_trend =""
 # https://trends.google.com/trends/explore
@@ -182,7 +183,8 @@ urls = [ \
     institution_holdings, \
     holdings, \
     trust, \
-    government_banks,
+    government_banks, \
+    warrant,
 
     # news, information, PR, gossips
     cmoney_gossip, \
