@@ -60,6 +60,9 @@ revenue_growth = \
     "https://www.moneydj.com/Z/ZC/ZC1/ZC17/ZC17.djhtm?a="+ticker
 
 groups = "https://thaubing.gcaa.org.tw/group/name/G"+ticker
+# // TODO: 使用統編
+# corp_bi = "https://www.twincn.com/item.aspx?no=97170472"
+corp_bi = "https://www.twincn.com/Lq.aspx?q="+ticker
 
 volume_profile = \
     "https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm?id=" \
