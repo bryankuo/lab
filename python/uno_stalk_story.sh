@@ -2,9 +2,9 @@
 
 # @see uno_stalk.sh
 
-# ./check_bountylist.sh
+./check_bountylist.sh
 
-STORY="UPS"
+STORY="醫材"
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
 count=0

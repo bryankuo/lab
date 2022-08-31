@@ -7,7 +7,8 @@ import urllib.request
 from urllib.parse   import quote
 from urllib.request import urlopen
 
-from datetime import timedelta,datetime,date
+from datetime import datetime, date, time, timedelta
+
 import calendar
 from bs4 import BeautifulSoup
 
@@ -76,10 +77,10 @@ gtrend = "https://trends.google.com/trends/explore?geo=TW"
 weekly_bases = [ \
     gtrend, \
     twse_calendar, \
-    yuanta_calendar, \
-    fl_calendar, \
+    # yuanta_calendar, \
+    # fl_calendar, \
     jlp_watchlist, \
-    insider_1m \
+    # insider_1m \
 ]
 
 doji = "http://localhost"
@@ -125,24 +126,36 @@ msg = "it is " + str(datetime.today().isoweekday()) + \
     " " + calendar.day_name[curr_date.weekday()]
 print(msg)
 
+# hourly based
+tw_start = time(9, 30)
+tw_end   = time(13, 30)
+current = time( datetime.now().hour, datetime.now().minute )
+if tw_start <= current <= tw_end :
+    print('tw market is opened')
+    webbrowser.open(fl_calendar)
+    webbrowser.open(insider_1m)
+else:
+    print('tw market is closed')
+
 # // TODO: on demand, daily, weekly, monthly bases
 
 # weekly bases
 # monday
-if datetime.today().isoweekday() == 1 :
+if datetime.today().isoweekday() in range(1, 5):
+
     for url in weekly_bases:
         webbrowser.open(url)
         print('\a') # beep
-input("Press Enter to continue...")
+    input("Press Enter to continue...")
 
+    i = 0
+    for url in urls:
+        webbrowser.open(url)
+        # datetime.time.sleep(1) // FIXME:
+        i += 1
+        if ( i % 10 == 9 ):
+            print('\a') # beep
+            input("Press Enter to continue...")
 # daily
-i = 0
-for url in urls:
-    webbrowser.open(url)
-    time.sleep(1)
-    i += 1
-    if ( i % 10 == 9 ):
-        print('\a') # beep
-        input("Press Enter to continue...")
 
 sys.exit(0)
