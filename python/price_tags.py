@@ -66,6 +66,7 @@ finviz = "https://finviz.com"
 twd_forex = "https://forex.tradingcharts.com/chart/US%20Dollar_New%20Taiwan%20Dollar.html?tz=CST&chartpair=US%2520Dollar_New%2520Taiwan%2520Dollar&ctype=b&movAvg1=&movAvg2=&per=1d"
 jpy_forex = "https://www.dailyfx.com/usd-jpy"
 dailyfx = "https://www.dailyfx.com/forex-rates#currencies"
+mmicro = "https://www.macromicro.me/forex?utm_campaign=&utm_content=post&utm_medium=social&utm_source=groups"
 
 major_futures = "https://www.cnyes.com/futures/indexftr.aspx"
 
@@ -74,6 +75,10 @@ twse_calendar = "https://histock.tw/stock/stockskd.aspx"
 yuanta_calendar = "https://www.yuanta.com.tw/eYuanta/securities/Node/Index?MainId=00413&C1=2018031202503224&ID=2018031202503224&Level=1&rnd=25104"
 fl_calendar = "https://ww2.money-link.com.tw/TWStock/TWStockMarket.aspx?optionType=6"
 gtrend = "https://trends.google.com/trends/explore?geo=TW"
+nyse_tick_idx = "https://www.investing.com/indices/nyse-tick-index-chart"
+sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=email&utm_campaign=send_market_spotlight_earnings_calls"
+trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"
+
 weekly_bases = [ \
     gtrend, \
     twse_calendar, \
@@ -111,11 +116,15 @@ urls = [ \
     worldwide_index, \
     fear_n_greed_sentiment, \
     cnn_gfear, \
-    aaii_sentiment, \
+    aaii_sentiment,
+    nyse_tick_idx, \
+    sdog, \
+    trans_idx, \
 
     twd_forex, \
     jpy_forex, \
     dailyfx, \
+    mmicro, \
     bitcoin, \
     us10y, \
     doji ]
@@ -141,7 +150,8 @@ else:
 
 # weekly bases
 # monday
-if datetime.today().isoweekday() in range(1, 5):
+print( datetime.today().isoweekday() )
+if datetime.today().isoweekday() in range(1, 6):
 
     for url in weekly_bases:
         webbrowser.open(url)

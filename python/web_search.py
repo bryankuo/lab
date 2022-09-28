@@ -60,7 +60,7 @@ revenue_growth = \
     "https://www.moneydj.com/Z/ZC/ZC1/ZC17/ZC17.djhtm?a="+ticker
 
 groups = "https://thaubing.gcaa.org.tw/group/name/G"+ticker
-# // TODO: 使用統編
+# // TODO: 使用統編, grep from corp.ods csv
 # corp_bi = "https://www.twincn.com/item.aspx?no=97170472"
 corp_bi = "https://www.twincn.com/Lq.aspx?q="+ticker
 
@@ -90,10 +90,14 @@ moneydj_profile = \
     "https://www.google.com/search?client=safari" + \
     "&rls=en&q=moneydj+"+quote("財經百科")+"+"+ticker+"&ie=UTF-8&oe=UTF-8"
 
+convertible_bond = \
+    "https://www.google.com/search?client=safari" + \
+    "&rls=en&q=moneydj+"+ticker+"+"+quote("可轉債")+"+"+"&ie=UTF-8&oe=UTF-8"
+
 pttstock_gossip = "https://www.google.com/search?q="+ticker+"+ptt+stock&client=safari&sxsrf=ALeKk02tz2-BrxlgznV37pUb3jBhfWDw8A:1623571437756&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwi1i8L2kpTxAhWrzIsBHeciAhQQpwV6BAgBECQ&biw=1440&bih=709"
 
 # 職缺, 公司全名
-hr104_search = "https://www.google.com/search?q="+ticker+"+104&client=safari&rls=en&sxsrf=AOaemvJQ_3UVNBgOgvmw8LgOPjMQ6ukDmw%3A1637394407406&ei=56eYYZ__F-DR2roPua-g6A4&ved=0ahUKEwjfjorAuab0AhXgqFYBHbkXCO0Q4dUDCA0&uact=5&oq="+ticker+"+104&gs_lcp=Cgdnd3Mtd2l6EAM6CAgAEAcQChAeOgQIABAeOgYIABAIEB46CAgAEAgQBxAeOgIIJjoGCAAQBxAeOgUIABCRAjoFCAAQgAQ6CwguEIAEEMcBEK8BOggIABAHEAUQHkoECEEYAVD-BFiPKGC1KmgCcAB4AIABcYgBkwWSAQM3LjKYAQCgAQHAAQE&sclient=gws-wiz"
+hr104_search = "https://www.google.com/search?q="+quote("職缺")+quote(co_name)+"+104&client=safari&rls=en&sxsrf=AOaemvJQ_3UVNBgOgvmw8LgOPjMQ6ukDmw%3A1637394407406&ei=56eYYZ__F-DR2roPua-g6A4&ved=0ahUKEwjfjorAuab0AhXgqFYBHbkXCO0Q4dUDCA0&uact=5&oq="+ticker+"+104&gs_lcp=Cgdnd3Mtd2l6EAM6CAgAEAcQChAeOgQIABAeOgYIABAIEB46CAgAEAgQBxAeOgIIJjoGCAAQBxAeOgUIABCRAjoFCAAQgAQ6CwguEIAEEMcBEK8BOggIABAHEAUQHkoECEEYAVD-BFiPKGC1KmgCcAB4AIABcYgBkwWSAQM3LjKYAQCgAQHAAQE&sclient=gws-wiz"
 
 revenue_yoy = \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_" + ticker + ".djhtm"
@@ -143,6 +147,8 @@ major_holders_bs = \
 management = ""
 warrant = "http://warrants.sfi.org.tw/Default.aspx"
 
+gdr = "https://www.google.com/search?q="+quote(co_name)+"+gdr&client=safari&rls=en&ei=a_0fY9-sN8n0-QagpqSABg&ved=0ahUKEwifjp-F7pD6AhVJet4KHSATCWAQ4dUDCA0&uact=5&oq=力晶+gdr&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIHCAAQHhCiBDIHCAAQHhCiBDIHCAAQHhCiBDoKCAAQHhCiBBCwAzoICAAQogQQsAM6BQghEKABOgQIABAeOgYIABAeEA86CAgAEB4QDxAIOgUIABCABDoOCC4QsQMQxwEQ0QMQ1AI6CAgAELEDEIMBOgsILhCABBDHARCvAToRCC4QgAQQsQMQgwEQxwEQ0QM6CAgAEIAEELEDOgsILhCABBCxAxDUAjoOCC4QgAQQsQMQgwEQ1AI6CwgAEIAEELEDEIMBOggILhCABBCxAzoLCC4QgAQQsQMQgwE6BQgAELEDOhEILhCABBCxAxCDARDHARCvAToUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguELEDEIMBENQCOgUILhCABDoOCC4QgAQQsQMQxwEQrwE6CgguEMcBENEDEEM6EAguELEDEIMBEMcBENEDEEM6BAgAEEM6CgguEMcBEK8BEEM6CAguEIAEENQCOggIABAeEAQQCjoGCAAQHhAESgQIQRgBSgQIRhgAUOUHWOJ9YOR_aBFwAHgBgAFiiAHhD5IBAjM1mAEAoAEBsAEAyAEDwAEB&sclient=gws-wiz"
+
 g_trend =""
 # https://trends.google.com/trends/explore
 # ?q=宏達電&geo=TW
@@ -151,7 +157,8 @@ g_trend =""
 # ?date=now%207-d&geo=TW&q=2498,2330
 # ?date=today%205-y&q=2498,2330
 # ?date=now%204-H&q=2498,2330
-
+# 全球過去1個月
+# https://trends.google.com/trends/explore?date=today%201-m
 if ( co_type == 4 or co_type == 5 ):
     tpex_info = "https://www.tpex.org.tw/web/regular_emerging/" \
     "corporateInfo/regular/regular_stock_detail.php?" \
@@ -187,7 +194,9 @@ urls = [ \
     holdings, \
     trust, \
     government_banks, \
-    warrant,
+    warrant, \
+    gdr, \
+    convertible_bond, \
 
     # news, information, PR, gossips
     cmoney_gossip, \
