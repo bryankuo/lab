@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # @see uno_stalk.sh
-
+#
 ./check_bountylist.sh
 
-STORY="AMD"
+STORY="軟板"
+# STORY=$1
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
 count=0

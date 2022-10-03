@@ -34,6 +34,7 @@ while true; do
     index=$(($index+1))
     count=$(($count+1))
     if [ $count -ge $NLINES ] ; then
+	git add -u datafiles/watchlist.txt
 	echo "finish $count items, add $n_add to watch list."
 	break
     fi
