@@ -78,6 +78,7 @@ gtrend = "https://trends.google.com/trends/explore?geo=TW"
 nyse_tick_idx = "https://www.investing.com/indices/nyse-tick-index-chart"
 sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=email&utm_campaign=send_market_spotlight_earnings_calls"
 trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"
+block_pair_trade = "https://www.twse.com.tw/block/BFIAUU?response=html&date=20221014&selectType=S"
 
 weekly_bases = [ \
     gtrend, \
@@ -93,6 +94,7 @@ doji = "http://localhost"
 urls = [ \
     # regional
     margin_b, \
+    block_pair_trade, \
     # fdi, \
     fbs, \
     # fund_d, \

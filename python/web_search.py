@@ -44,6 +44,18 @@ google_news_past_week = "https://www.google.com/search?q="+ticker+"+"+quote(co_n
 
 google_news_custom_date = "https://www.google.com/search?q=力山工業+天下&client=safari&rls=en&biw=1440&bih=709&sxsrf=APq-WBum_3tpXoRWy8R-7OrqTzxyIR5hbQ%3A1643968325345&source=lnt&tbs=cdr%3A1%2Ccd_min%3A12%2F1%2F2019%2Ccd_max%3A1%2F31%2F2020&tbm="
 
+google_search_competitors = "https://www.google.com/search?q=" + \
+    ticker+"+"+quote(co_name)+"+"+quote("競爭對手")+ \
+    "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
+    "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
+    "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+
+google_index_components = "https://www.google.com/search?q=" + \
+    ticker+"+"+quote(co_name)+"+"+quote("成分股")+ \
+    "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
+    "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
+    "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+
 # mops news and hq address
 mops_news = 'http://mops.twse.com.tw/mops/web/ajax_t146sb05?TYPEK=all&step=1&firstin=1&off=1&queryName=co_id&co_id=' + ticker
 # //TODO: https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id=1514&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year=110&month1=0&begin_day=1&end_day=1
@@ -205,6 +217,8 @@ urls = [ \
     moneydj_profile, \
     google_gm_image, \
     google_chairman_image, \
+    google_search_competitors, \
+    google_index_components, \
     management ]
 
 i = 0
