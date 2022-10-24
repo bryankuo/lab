@@ -47,6 +47,8 @@ margin_b = "https://tw.stock.yahoo.com/margin-balance"
 
 brokage_v = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm"
 
+twse_pledge = "上市櫃公司董監質設異動公告"
+
 # because URIs can't contain non-ASCII characters.
 # https://stackoverflow.com/a/6938893
 
@@ -79,6 +81,12 @@ nyse_tick_idx = "https://www.investing.com/indices/nyse-tick-index-chart"
 sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=email&utm_campaign=send_market_spotlight_earnings_calls"
 trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"
 block_pair_trade = "https://www.twse.com.tw/block/BFIAUU?response=html&date=20221014&selectType=S"
+
+google_pledge = "https://www.google.com/search?q=" + \
+    "quote(董監質設異動公告)+" \
+    "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
+    "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
+    "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
 
 weekly_bases = [ \
     gtrend, \

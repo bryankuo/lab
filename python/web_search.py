@@ -56,6 +56,18 @@ google_index_components = "https://www.google.com/search?q=" + \
     "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
     "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
 
+google_map = "https://www.google.com/search?q=" + \
+    quote("google map")+"+"+quote(co_name)+"+"+ \
+    "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
+    "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
+    "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+
+google_pledge = "https://www.google.com/search?q=" + \
+    ticker+"+"+quote(co_name)+"+"+quote("董監質設異動公告")+ \
+    "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
+    "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
+    "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+
 # mops news and hq address
 mops_news = 'http://mops.twse.com.tw/mops/web/ajax_t146sb05?TYPEK=all&step=1&firstin=1&off=1&queryName=co_id&co_id=' + ticker
 # //TODO: https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id=1514&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year=110&month1=0&begin_day=1&end_day=1
@@ -84,8 +96,11 @@ tech_chart = "https://invest.cnyes.com/twstock/TWS/" + ticker + "/technical"
 # support 2,4 but 5
 # https://invest.cnyes.com/twstock/TWS/6278/technical#fixed
 
-institution_holdings = "https://www.wantgoo.com/stock/" + ticker \
-    + "/institutional-investors/trend"
+# institution_holdings = "https://www.wantgoo.com/stock/" + ticker \
+#    + "/institutional-investors/trend"
+
+# // TODO: support and resistance
+# https://www.cnyes.com/archive/twstock/Pressure/2528.htm
 
 holdings = "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcj/zcj_" \
     + ticker + ".djhtm"
@@ -95,9 +110,6 @@ hinet_technicals = "https://histock.tw/stock/"+ticker
 cmoney_gossip = "https://www.cmoney.tw/follow/channel/stock-" + \
     ticker +"?chart=d&type=Personal"
 
-# share_outstanding = \
-#    "https://norway.twsthr.info/StockHolders.aspx?stock="+ticker
-
 moneydj_profile = \
     "https://www.google.com/search?client=safari" + \
     "&rls=en&q=moneydj+"+quote("財經百科")+"+"+ticker+"&ie=UTF-8&oe=UTF-8"
@@ -105,6 +117,8 @@ moneydj_profile = \
 convertible_bond = \
     "https://www.google.com/search?client=safari" + \
     "&rls=en&q=moneydj+"+ticker+"+"+quote("可轉債")+"+"+"&ie=UTF-8&oe=UTF-8"
+
+cnyes_cb = "https://www.cnyes.com/twstock/cb.aspx?code="+ticker
 
 pttstock_gossip = "https://www.google.com/search?q="+ticker+"+ptt+stock&client=safari&sxsrf=ALeKk02tz2-BrxlgznV37pUb3jBhfWDw8A:1623571437756&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwi1i8L2kpTxAhWrzIsBHeciAhQQpwV6BAgBECQ&biw=1440&bih=709"
 
@@ -150,14 +164,9 @@ trust = \
 # enquery:
 # https://isin.twse.com.tw/isin/class_i.jsp?kind=1
 
-government_banks = "https://histock.tw/stock/broker.aspx?no="+ticker
-# scrap gbank_activities.py
-
-major_holders_bs = \
-    "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zck/zck_"+ticker+".djhtm"
-
-management = ""
 warrant = "http://warrants.sfi.org.tw/Default.aspx"
+# // TODO: check id "agree" and then press id "BTNConfirm" automatically,
+# redirect to http://warrants.sfi.org.tw/Query.aspx
 
 gdr = "https://www.google.com/search?q="+quote(co_name)+"+gdr&client=safari&rls=en&ei=a_0fY9-sN8n0-QagpqSABg&ved=0ahUKEwifjp-F7pD6AhVJet4KHSATCWAQ4dUDCA0&uact=5&oq=力晶+gdr&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIHCAAQHhCiBDIHCAAQHhCiBDIHCAAQHhCiBDoKCAAQHhCiBBCwAzoICAAQogQQsAM6BQghEKABOgQIABAeOgYIABAeEA86CAgAEB4QDxAIOgUIABCABDoOCC4QsQMQxwEQ0QMQ1AI6CAgAELEDEIMBOgsILhCABBDHARCvAToRCC4QgAQQsQMQgwEQxwEQ0QM6CAgAEIAEELEDOgsILhCABBCxAxDUAjoOCC4QgAQQsQMQgwEQ1AI6CwgAEIAEELEDEIMBOggILhCABBCxAzoLCC4QgAQQsQMQgwE6BQgAELEDOhEILhCABBCxAxCDARDHARCvAToUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguELEDEIMBENQCOgUILhCABDoOCC4QgAQQsQMQxwEQrwE6CgguEMcBENEDEEM6EAguELEDEIMBEMcBENEDEEM6BAgAEEM6CgguEMcBEK8BEEM6CAguEIAEENQCOggIABAeEAQQCjoGCAAQHhAESgQIQRgBSgQIRhgAUOUHWOJ9YOR_aBFwAHgBgAFiiAHhD5IBAjM1mAEAoAEBsAEAyAEDwAEB&sclient=gws-wiz"
 
@@ -200,15 +209,14 @@ urls = [ \
     hinet_technicals, \
 
     # chips
-    major_holders_bs, \
-    # share_outstanding, \
-    institution_holdings, \
+    # institution_holdings, \
     holdings, \
     trust, \
-    government_banks, \
+    # government_banks, \
     warrant, \
     gdr, \
     convertible_bond, \
+    cnyes_cb, \
 
     # news, information, PR, gossips
     cmoney_gossip, \
@@ -219,7 +227,8 @@ urls = [ \
     google_chairman_image, \
     google_search_competitors, \
     google_index_components, \
-    management ]
+    google_map, \
+    google_pledge ]
 
 i = 0
 for url in urls:

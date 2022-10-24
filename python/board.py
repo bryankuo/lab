@@ -13,8 +13,12 @@ ticker = sys.argv[1]
 # https://mops.twse.com.tw/mops/web/stapap1_all
 # board holdings, got valid data, 2 months earlier
 the_day = datetime.today() + relativedelta(months=-2)
-yr = str(int(the_day.strftime("%Y")) - 1911)
-month = the_day.strftime("%m")
+month = int(the_day.strftime("%m")) - 1 # latest
+if ( month == 0 ):
+    month = 12
+    yr = str(int(the_day.strftime("%Y")) - 1911 - 1)
+else:
+    yr = str(int(the_day.strftime("%Y")) - 1911)
 
 # url = "https://mops.twse.com.tw/mops/web/ajax_stapap1"
 # data = {
