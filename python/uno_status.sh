@@ -50,10 +50,30 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     RH52=${RH52#\'}
     RH52P=${RANGE[3]%\'}
     RH52P=${RH52P#\'}
+
+    # // TODO:
+    SMA=($(python3 sma5.py $TICKER 1 | tr -d '[],'))
+    SMA5=${SMA[0]%\'}
+    SMA5=${SMA5#\'}
+    SMA5_D=${SMA[1]%\'}
+    SMA5_D=${SMA5_D#\'}
+
+    SMA20=${SMA[2]%\'}
+    SMA20=${SMA20#\'}
+    SMA20_D=${SMA[3]%\'}
+    SMA20_D=${SMA20_D#\'}
+
+    SMA60=${SMA[4]%\'}
+    SMA60=${SMA60#\'}
+    SMA60_D=${SMA[5]%\'}
+    SMA60_D=${SMA60_D#\'}
+
     printf "ticker: %04d %s %d %04.2f\n" $TICKER $CO_NAME $CO_TYPE $DEAL
     printf "activity: %d %d %d %d\n" $QDI $FUND $RETAIL $TOTAL
     printf "pe: %04.2f %04.2f %04.2f %04.2f\n" $PER $PER_H52 $PER_L52 $PER_PEER
     printf "range: %.2f %.2f %.2f %.2f\n" $RL52 $RL52P $RH52 $RH52P
+    printf "sma: %s %s %s %s %s %s\n" $SMA5 $SMA5_D $SMA20 $SMA20_D $SMA60 $SMA60_D
+
 else
     # // TODO:
     QDI=0
@@ -78,10 +98,11 @@ RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     uno_kicks.py $TICKER $DEAL $CO_NAME \
     $QDI $FUND $RETAIL $TOTAL \
     $PER $PER_H52 $PER_L52 $PER_PEER \
-    $RL52 $RL52P $RH52 $RH52P \
-    $EPS2021Q4 $EPS2021Q3 $EPS2021Q2 $EPS2021Q1 \
-    $EPS2020Q4 $EPS2020Q3 $EPS2020Q2 $EPS2020Q1 \
-    $EPS2019Q4 $EPS2019Q3 $CAPE \
+    $RL52 $RL52P $RH52 $RH52P                     \
+    $EPS2021Q4 $EPS2021Q3 $EPS2021Q2 $EPS2021Q1   \
+    $EPS2020Q4 $EPS2020Q3 $EPS2020Q2 $EPS2020Q1   \
+    $EPS2019Q4 $EPS2019Q3 $CAPE                   \
+    $SMA5 $SMA5_D $SMA20 $SMA20_D $SMA60 $SMA60_D \
     | tr -d '[],' ) )
 
 O_SPEC=${RETURN[0]%\'}

@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
-# looping:
 # python3 uno_kicks.py [ticker] [quote]
-#
+# return a list to caller
+
 # reference doc:
-# http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
+# shorturl.at/EIJV1
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
 
 # import socket  # only needed on win32-OOo3.0.0
@@ -33,7 +33,7 @@ def context():
     model = desktop.getCurrentComponent()
     active_sheet = model.Sheets.getByName("20220126")
 
-MAX_ARG_LEN = 16
+MAX_ARG_LEN = 22
 if ( len(sys.argv) >= MAX_ARG_LEN ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
@@ -51,6 +51,12 @@ if ( len(sys.argv) >= MAX_ARG_LEN ):
     r52h      = sys.argv[14]
     r52h_p    = sys.argv[15]
     cap_e     = sys.argv[16]
+    sma5      = sys.argv[17]
+    sma5_d    = sys.argv[18] # direction is TBD
+    sma20     = sys.argv[19]
+    sma20_d   = sys.argv[20]
+    sma60     = sys.argv[21]
+    sma60_d   = sys.argv[22]
 elif ( len(sys.argv) < MAX_ARG_LEN and len(sys.argv) >= 3 ):
     ticker = sys.argv[1]
     quote = sys.argv[2]
@@ -58,6 +64,7 @@ else:
     print('illegal #')
     sys.exit(0)
 
+# try:
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
 
@@ -172,6 +179,10 @@ addr_2019q2     = "AC1"
 addr_stalk      = "AE1"
 addr_cape       = "AL1"
 
+addr_sma5       = "AN1"
+addr_sma20      = "AO1"
+addr_sma60      = "AP1"
+
 def set_value():
     if ( len(sys.argv) >= MAX_ARG_LEN ):
         cell_ticker = active_sheet.getCellRangeByName(addr_n)
@@ -202,6 +213,12 @@ def set_value():
         cell_ticker.String = r52h_p
         cell_ticker = active_sheet.getCellRangeByName(addr_cape)
         cell_ticker.String = cap_e
+        cell_ticker = active_sheet.getCellRangeByName(addr_sma5)
+        cell_ticker.String = sma5
+        cell_ticker = active_sheet.getCellRangeByName(addr_sma20)
+        cell_ticker.String = sma20
+        cell_ticker = active_sheet.getCellRangeByName(addr_sma60)
+        cell_ticker.String = sma60
 '''
         cell_ticker = active_sheet.getCellRangeByName(addr_2021q4)
         cell_ticker.String = eps21q4
@@ -252,6 +269,9 @@ for i in range(2, last_row):
         addr_per_peer = "R" + str(i)
         addr_stalk = "AE" + str(i)
         addr_cape = "AL" + str(i)
+        addr_sma5     = "AN" + str(i)
+        addr_sma20    = "AO" + str(i)
+        addr_sma60    = "AP" + str(i)
         break
 
 if ( addr_q == "J1" ):
@@ -276,6 +296,9 @@ if ( addr_q == "J1" ):
     addr_per_peer = "R" + str( last_row + 1 )
     addr_stalk = "AE" + str( last_row + 1 )
     addr_cape     = "AL" + str( last_row + 1 )
+    addr_sma5     = "AN" + str( last_row + 1 )
+    addr_sma20    = "AO" + str( last_row + 1 )
+    addr_sma60    = "AP" + str( last_row + 1 )
     cell_ticker = active_sheet.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
 
@@ -361,4 +384,16 @@ print(olist)
 # https://www.capital.com.tw/stock/fetw/sup_res.asp?xy=4&xt=6
 # @see https://www.wantgoo.com/stock/future-index-calculator
 
+'''
+except NoConnectException e:
+    print "The OpenOffice.org process is not started or does not listen on the resource ("+e.Message+")"
+except IllegalArgumentException e:
+    print "The url is invalid ( "+ e.Message+ ")"
+except RuntimeException e:
+    print "An unknown error occurred: " + e.Message
+except NoConnectException as ex:
+    print(ex.Message)
+    print('make sure calc UNO bridge is ready.')
+finally:
+'''
 sys.exit(0)
