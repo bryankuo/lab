@@ -80,7 +80,16 @@ gtrend = "https://trends.google.com/trends/explore?geo=TW"
 nyse_tick_idx = "https://www.investing.com/indices/nyse-tick-index-chart"
 sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=email&utm_campaign=send_market_spotlight_earnings_calls"
 trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"
-block_pair_trade = "https://www.twse.com.tw/block/BFIAUU?response=html&date=20221014&selectType=S"
+
+curr_date = date.today()
+yyyymmdd = datetime.today().strftime('%Y%m%d')
+msg = "it is " + str(datetime.today().isoweekday()) + \
+    " " + calendar.day_name[curr_date.weekday()] + \
+    " " + yyyymmdd
+print(msg)
+
+block_pair_trade = "https://www.twse.com.tw/block/BFIAUU" + \
+    "?response=html&date="+yyyymmdd+"&selectType=S"
 
 google_pledge = "https://www.google.com/search?q=" + \
     "quote(董監質設異動公告)+" \
@@ -140,10 +149,6 @@ urls = [ \
     doji ]
 
 
-curr_date = date.today()
-msg = "it is " + str(datetime.today().isoweekday()) + \
-    " " + calendar.day_name[curr_date.weekday()]
-print(msg)
 
 # hourly based
 tw_start = time(9, 30)

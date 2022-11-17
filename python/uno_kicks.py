@@ -188,11 +188,11 @@ def set_value():
         cell_ticker = active_sheet.getCellRangeByName(addr_n)
         cell_ticker.String = corp_name
         cell_ticker = active_sheet.getCellRangeByName(addr_qdi)
-        cell_ticker.String = qdi
+        cell_ticker.Value = int(qdi)
         cell_ticker = active_sheet.getCellRangeByName(addr_fund)
-        cell_ticker.String = fund
+        cell_ticker.Value = int(fund)
         cell_ticker = active_sheet.getCellRangeByName(addr_retail)
-        cell_ticker.String = retail
+        cell_ticker.Value = int(retail)
         cell_ticker = active_sheet.getCellRangeByName(addr_5dtotal)
         cell_ticker.String = d5total
         cell_ticker = active_sheet.getCellRangeByName(addr_per)
@@ -212,13 +212,13 @@ def set_value():
         cell_ticker = active_sheet.getCellRangeByName(addr_r52hp)
         cell_ticker.String = r52h_p
         cell_ticker = active_sheet.getCellRangeByName(addr_cape)
-        cell_ticker.String = cap_e
+        cell_ticker.Value = float(cap_e)
         cell_ticker = active_sheet.getCellRangeByName(addr_sma5)
-        cell_ticker.String = sma5
+        cell_ticker.Value = float(sma5)
         cell_ticker = active_sheet.getCellRangeByName(addr_sma20)
-        cell_ticker.String = sma20
+        cell_ticker.Value = float(sma20)
         cell_ticker = active_sheet.getCellRangeByName(addr_sma60)
-        cell_ticker.String = sma60
+        cell_ticker.Value = float(sma60)
 '''
         cell_ticker = active_sheet.getCellRangeByName(addr_2021q4)
         cell_ticker.String = eps21q4
@@ -305,7 +305,7 @@ if ( addr_q == "J1" ):
 set_value()
 
 cellq = active_sheet.getCellRangeByName(addr_q)
-cellq.String = quote
+cellq.Value = float(quote)
 cellq.CellBackColor = 0xFFFF00
 time.sleep(.6)
 cellq.CellBackColor = 0xFFFFFF

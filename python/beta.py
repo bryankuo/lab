@@ -10,6 +10,8 @@ from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
 url = 'http://5850web.moneydj.com/z/zc/zcx/zcxNew_' + ticker + '.djhtm'
+# source 2
+# https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_4_1?ticker=2890
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 beta = soup.findAll('table')[3].find_all('tr')[7].find_all('td')[5].text

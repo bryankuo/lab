@@ -32,6 +32,7 @@ geo_group = [
 # coordination
 # 7. space/time/participants/volume/intetion
 # 8. presume broker nearby manufacturing plant has something todo with corp
+# 9. prusume local corp has more todo with local broker activities
 
 # cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
 # export LC_CTYPE="zh_TW.UTF-8"; cut -f 4 -d ':' datafiles/broker_list.csv | cut -c1-3 | sort | uniq | wc -l
@@ -50,8 +51,8 @@ n_geo_group = [                    \
 ticker = sys.argv[1]
 
 b = sum(n_geo_group)
-print( b )
-print( len(n_geo_group) )
+# print( b )
+# print( len(n_geo_group) )
 sys.exit(0)
 
 # trades = "b.txt" # download html
