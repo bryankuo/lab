@@ -167,6 +167,8 @@ trust = \
 warrant = "http://warrants.sfi.org.tw/Default.aspx"
 # // TODO: check id "agree" and then press id "BTNConfirm" automatically,
 # redirect to http://warrants.sfi.org.tw/Query.aspx
+# // TODO: try selenium moving mouse and click
+# source 2: https://www.cmoney.tw/finance/warrantsbystock.aspx?stock=1102
 
 gdr = "https://www.google.com/search?q="+quote(co_name)+"+gdr&client=safari&rls=en&ei=a_0fY9-sN8n0-QagpqSABg&ved=0ahUKEwifjp-F7pD6AhVJet4KHSATCWAQ4dUDCA0&uact=5&oq=力晶+gdr&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIHCAAQHhCiBDIHCAAQHhCiBDIHCAAQHhCiBDoKCAAQHhCiBBCwAzoICAAQogQQsAM6BQghEKABOgQIABAeOgYIABAeEA86CAgAEB4QDxAIOgUIABCABDoOCC4QsQMQxwEQ0QMQ1AI6CAgAELEDEIMBOgsILhCABBDHARCvAToRCC4QgAQQsQMQgwEQxwEQ0QM6CAgAEIAEELEDOgsILhCABBCxAxDUAjoOCC4QgAQQsQMQgwEQ1AI6CwgAEIAEELEDEIMBOggILhCABBCxAzoLCC4QgAQQsQMQgwE6BQgAELEDOhEILhCABBCxAxCDARDHARCvAToUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguELEDEIMBENQCOgUILhCABDoOCC4QgAQQsQMQxwEQrwE6CgguEMcBENEDEEM6EAguELEDEIMBEMcBENEDEEM6BAgAEEM6CgguEMcBEK8BEEM6CAguEIAEENQCOggIABAeEAQQCjoGCAAQHhAESgQIQRgBSgQIRhgAUOUHWOJ9YOR_aBFwAHgBgAFiiAHhD5IBAjM1mAEAoAEBsAEAyAEDwAEB&sclient=gws-wiz"
 

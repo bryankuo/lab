@@ -76,7 +76,10 @@ jlp_watchlist = "https://jlprudentmenu.blogspot.com"
 twse_calendar = "https://histock.tw/stock/stockskd.aspx"
 yuanta_calendar = "https://www.yuanta.com.tw/eYuanta/securities/Node/Index?MainId=00413&C1=2018031202503224&ID=2018031202503224&Level=1&rnd=25104"
 fl_calendar = "https://ww2.money-link.com.tw/TWStock/TWStockMarket.aspx?optionType=6"
-gtrend = "https://trends.google.com/trends/explore?geo=TW"
+
+# gtrend = "https://trends.google.com/trends/explore?geo=TW"
+gtrend = "https://trends.google.com/trends/explore?date=today%201-m&geo=TW"
+
 nyse_tick_idx = "https://www.investing.com/indices/nyse-tick-index-chart"
 sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=email&utm_campaign=send_market_spotlight_earnings_calls"
 trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"

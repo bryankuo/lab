@@ -2,7 +2,6 @@
 
 # python3 board.py 2330
 # return 0: success
-# // TODO: grep -rnp --color="auto" -e "和築" ./datafiles/taiex/majority/*.txt
 # pattern can be a list of keywords
 
 import sys, requests, time, webbrowser, os
