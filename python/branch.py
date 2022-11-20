@@ -169,12 +169,20 @@ sys.exit(0)
 
 # https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9100&b=0039003100380065
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8880&b=8880
+
+# 主力進出比較圖
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco_2618.djhtm
+
 # https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=8450&b=0038003400350042
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 broker_group = [ \
     9200, 9268, 9217, 9875, 9658, \
     9697, 9100, 8880, 8450, 8440, \
+]
+
+huwei_gang = [ \
+    '980I', 9377 \
 ]
 
 ticker_group = [ 6182, 3008, 5011, 2441, 2618 ]

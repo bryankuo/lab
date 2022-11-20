@@ -8,6 +8,7 @@ from urllib.parse   import quote
 from urllib.request import urlopen
 
 from datetime import datetime, date, time, timedelta
+from dateutil.relativedelta import relativedelta
 
 import calendar
 from bs4 import BeautifulSoup
@@ -85,14 +86,26 @@ sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=
 trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"
 
 curr_date = date.today()
-yyyymmdd = datetime.today().strftime('%Y%m%d')
+if datetime.today().isoweekday() == 6:
+    effective_date = date.today() + relativedelta(days=-1)
+elif datetime.today().isoweekday() == 7:
+    effective_date = date.today() + relativedelta(days=-2)
+elif datetime.today().isoweekday() == 1:
+    effective_date = date.today() + relativedelta(days=-3)
+else:
+    effective_date = date.today()
+
+yyyymmdd   = date.today().strftime('%Y%m%d')
+yyyymmdd_e = effective_date.strftime('%Y%m%d')
 msg = "it is " + str(datetime.today().isoweekday()) + \
     " " + calendar.day_name[curr_date.weekday()] + \
-    " " + yyyymmdd
+    " " + yyyymmdd + " effective " + yyyymmdd_e
 print(msg)
 
+# print( datetime.today().isoweekday() )
+
 block_pair_trade = "https://www.twse.com.tw/block/BFIAUU" + \
-    "?response=html&date="+yyyymmdd+"&selectType=S"
+    "?response=html&date="+yyyymmdd_e+"&selectType=S"
 
 google_pledge = "https://www.google.com/search?q=" + \
     "quote(董監質設異動公告)+" \
@@ -168,22 +181,21 @@ else:
 
 # weekly bases
 # monday
-print( datetime.today().isoweekday() )
-if datetime.today().isoweekday() in range(1, 6):
 
-    for url in weekly_bases:
-        webbrowser.open(url)
+for url in weekly_bases:
+    webbrowser.open(url)
+    print('\a') # beep
+input("Press Enter to continue...")
+
+i = 0
+for url in urls:
+    webbrowser.open(url)
+    # datetime.time.sleep(1) // FIXME:
+    i += 1
+    if ( i % 10 == 9 ):
         print('\a') # beep
-    input("Press Enter to continue...")
+        input("Press Enter to continue...")
 
-    i = 0
-    for url in urls:
-        webbrowser.open(url)
-        # datetime.time.sleep(1) // FIXME:
-        i += 1
-        if ( i % 10 == 9 ):
-            print('\a') # beep
-            input("Press Enter to continue...")
 # daily
 
 sys.exit(0)

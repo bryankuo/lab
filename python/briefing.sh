@@ -26,12 +26,12 @@ then
     OUTPUT_ID=($(python3 taxid.py $1 $CO_TITLE | tr -d '[],'))
     TID=${OUTPUT_ID[0]%\'}
     TID=${TID#\'}
-    echo "統一編號 "$TID
 
     BROWSING=1
     if [[ $BROWSING -eq 1 ]]
     then
-	python3 web_search.py $1 $CO_TITLE $CO_ADDR $CO_CHAIRMAN $CO_GM $CO_TYPE
+	python3 web_search.py $1 \
+	    $CO_TITLE $CO_ADDR $CO_CHAIRMAN $CO_GM $CO_TYPE $TID
 	python3 branch.py $1
     fi
 

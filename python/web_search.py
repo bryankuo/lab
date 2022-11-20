@@ -8,19 +8,24 @@ from urllib.parse   import quote
 from urllib.request import urlopen
 
 ticker = sys.argv[1]
-if ( len(sys.argv) > 2 ):
-    co_name = sys.argv[2]
-    co_addr = sys.argv[3]
+if ( 2 < len(sys.argv) ):
+    co_name  = sys.argv[2]
+    co_addr  = sys.argv[3]
     chairman = sys.argv[4]
-    gm = sys.argv[5]
-    #//TODO: pass as search parameter
-    '''
-    print(co_addr)
-    print(chairman)
-    print(gm)
-    sys.exit(0)
-    '''
-    co_type = sys.argv[6]
+    # // TODO: could be more than one "簡山傑、王石"
+    gm       = sys.argv[5]
+    co_type  = sys.argv[6]
+    tid      = sys.argv[7]
+
+# https://www.findcompany.com.tw/search/
+# https://www.twincn.com/Lq.aspx?q=呂黃玉蘭
+# // FIXME:
+find_company = "https://www.findcompany.com.tw/search/"+quote(chairman)
+tw_company   = "https://www.twincn.com/Lq.aspx?q="+chairman
+find_company1 = "https://www.findcompany.com.tw/search/"+gm
+tw_company1   = "https://www.twincn.com/Lq.aspx?q="+quote(gm) # // TODO: scrap
+
+print(tid)
 
 ticker_news = \
     "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
@@ -164,11 +169,12 @@ trust = \
 # enquery:
 # https://isin.twse.com.tw/isin/class_i.jsp?kind=1
 
-warrant = "http://warrants.sfi.org.tw/Default.aspx"
+# warrant = "http://warrants.sfi.org.tw/Default.aspx"
 # // TODO: check id "agree" and then press id "BTNConfirm" automatically,
 # redirect to http://warrants.sfi.org.tw/Query.aspx
 # // TODO: try selenium moving mouse and click
 # source 2: https://www.cmoney.tw/finance/warrantsbystock.aspx?stock=1102
+warrant = "https://www.cmoney.tw/finance/warrantsbystock.aspx?stock="+ticker
 
 gdr = "https://www.google.com/search?q="+quote(co_name)+"+gdr&client=safari&rls=en&ei=a_0fY9-sN8n0-QagpqSABg&ved=0ahUKEwifjp-F7pD6AhVJet4KHSATCWAQ4dUDCA0&uact=5&oq=力晶+gdr&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIHCAAQHhCiBDIHCAAQHhCiBDIHCAAQHhCiBDoKCAAQHhCiBBCwAzoICAAQogQQsAM6BQghEKABOgQIABAeOgYIABAeEA86CAgAEB4QDxAIOgUIABCABDoOCC4QsQMQxwEQ0QMQ1AI6CAgAELEDEIMBOgsILhCABBDHARCvAToRCC4QgAQQsQMQgwEQxwEQ0QM6CAgAEIAEELEDOgsILhCABBCxAxDUAjoOCC4QgAQQsQMQgwEQ1AI6CwgAEIAEELEDEIMBOggILhCABBCxAzoLCC4QgAQQsQMQgwE6BQgAELEDOhEILhCABBCxAxCDARDHARCvAToUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguELEDEIMBENQCOgUILhCABDoOCC4QgAQQsQMQxwEQrwE6CgguEMcBENEDEEM6EAguELEDEIMBEMcBENEDEEM6BAgAEEM6CgguEMcBEK8BEEM6CAguEIAEENQCOggIABAeEAQQCjoGCAAQHhAESgQIQRgBSgQIRhgAUOUHWOJ9YOR_aBFwAHgBgAFiiAHhD5IBAjM1mAEAoAEBsAEAyAEDwAEB&sclient=gws-wiz"
 
@@ -190,6 +196,10 @@ if ( co_type == 4 or co_type == 5 ):
     time.sleep(1)
 
 urls = [ \
+    find_company, \
+    tw_company, \
+    find_company1, \
+    tw_company1, \
     fundamental, \
     comparison, \
     revenue_mom, \
@@ -236,7 +246,7 @@ i = 0
 for url in urls:
     webbrowser.open(url)
     i += 1
-    if ( i % 10 == 9 ):
+    if ( i % 10 == 3 ):
         print('\a') # beep
         input("Press Enter to continue...")
 

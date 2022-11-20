@@ -9,74 +9,64 @@ from datetime import timedelta,datetime
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 from pprint import pprint
-
-# @see https://stackoverflow.com/a/66187139
-def say(msg = "Finish", voice = "Victoria"):
-    os.system(f'say -v {voice} {msg}')
+from selenium import webdriver
+from selenium.common.exceptions import SessionNotCreatedException
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+# // TODO: from selenium.webdriver.common.keys import Keys
 
 ticker = sys.argv[1]
-# // TODO:
-# url = "http://warrants.sfi.org.tw/Query.aspx"
-url = "http://warrants.sfi.org.tw/Default.aspx"
 data = { \
     "stockNo": ticker, "duration1": 0, "duration2": 730, \
     "Period": 14 }
 
 try:
-    response = requests.post(url, data)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    pprint(soup)
-    '''
-    corp_name = soup.findAll('span')[0].text
-    # if ( corp_name is None ):
-    #     print('not listed.')
-    #    sys.exit(1)
-    co_type = re.search('\(([^)]+)', corp_name).group(1)
-    corp_name = corp_name.split('\n',1)[1]
-    if ( co_type == "上市公司" ):
-        ticker_type = 2
-    elif ( co_type == "上櫃公司" ):
-        ticker_type = 4
-    elif ( co_type == "興櫃公司" ):
-        ticker_type = 5
-    else:
-        # // TODO: others
-        ticker_type = 3
-    has_cb = soup.findAll('table')[1] \
-        .find_all('tr')[1].find_all('td')[30].text
-    cb_issue = soup.findAll('table')[1] \
-        .find_all('tr')[1].find_all('th')[32].text
-    cb = has_cb + cb_issue
-    # say(cb, "Mei-Jia")
+    browser = webdriver.Safari( \
+        executable_path = '/usr/bin/safaridriver')
+    # url = "http://warrants.sfi.org.tw/Query.aspx"
+    url = "http://warrants.sfi.org.tw/Default.aspx"
+    # url = "https://stackoverflow.com/questions/20986631/how-can-i-scroll-a-web-page-using-selenium-webdriver-in-python"
 
-    corp_title = soup.findAll('table')[1] \
-        .find_all('tr')[1].find_all('td')[0].text
+    browser.get(url)
+    browser.switch_to.window(browser.current_window_handle)
+    browser.maximize_window() # OK
+    # @see https://stackoverflow.com/a/27760083
+    browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
 
-    hq_address = soup.findAll('table')[1] \
-        .find_all('tr')[1] \
-        .find_all('tr')[0].find_all('td')[0].text
+    # check programatically
+    element = browser.find_element_by_id('agree')
+    # element  = browser.find_element_by_link_text('Screener') // FIXME:
+    # element  = browser.find_element_by_css_selector('checkbox#agree') // FIXME:
+    # elements = browser.find_elements_by_name("passwd") // FIXME:
+    # formal way @see shorturl.at/bghsD
+    action = webdriver.ActionChains(browser)
+    # action.move_to_element(element)
+    # action.click(element)
+    # action.perform()
+    # shorthand
+    action.move_to_element(element).click(element).perform()
+    # shortcut @see https://stackoverflow.com/a/68895534
+    # browser.execute_script("arguments[0].click();", element)
 
-    chairman = soup.findAll('table')[1] \
-        .find_all('tr')[1] \
-        .find_all('tr')[1].find_all('td')[0].text
+    # then click 'BTNConfirm'
+    action2 = webdriver.ActionChains(browser)
+    element = browser.find_element_by_id('BTNConfirm')
+    action2.move_to_element(element).click(element).perform() # works
 
-    gm = soup.findAll('table')[1] \
-        .find_all('tr')[1] \
-        .find_all('tr')[1].find_all('td')[1].text
+    # print('before:' + webdriver.current_url) // FIXME:
+    # then page redirected, input text [ticker]
+    time.sleep(3) # wait page load complete
+    # print('after :' + webdriver.current_url) // FIXME:
+    element3 = browser.find_element_by_id('stockNo')
+    element3.send_keys(ticker) # OK
 
-    cap = float( int( soup.findAll('table')[1] \
-        .find_all('tr')[6] \
-        .find_all('tr')[1].find_all('td')[0].text.strip() \
-        .replace(',','').replace('元','') ) / 100000000 )
-    cap = "{:.2f}".format(cap) # + 'E'
-# stock futures, options
-# https://www.taifex.com.tw/cht/2/stockLists
-    olist = [ ticker, corp_name, ticker_type, co_type, cb, \
-        corp_title, hq_address, chairman, gm, cap ]
-    print(olist)
-    '''
+except (SessionNotCreatedException):
+    print('turn on safari remote option.')
 
-except (IndexError):
-    print('not found.') # // TODO: grep listed file instead
+finally:
+    time.sleep(4)
+    # browser.minimize_window() // OK
+    browser.quit()
 
 sys.exit(0)
