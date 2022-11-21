@@ -192,7 +192,7 @@ for url in urls:
     webbrowser.open(url)
     # datetime.time.sleep(1) // FIXME:
     i += 1
-    if ( i % 10 == 9 ):
+    if ( i % 10 == 4 ):
         print('\a') # beep
         input("Press Enter to continue...")
 

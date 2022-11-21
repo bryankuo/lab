@@ -17,15 +17,15 @@ if ( 2 < len(sys.argv) ):
     co_type  = sys.argv[6]
     tid      = sys.argv[7]
 
-# https://www.findcompany.com.tw/search/
-# https://www.twincn.com/Lq.aspx?q=呂黃玉蘭
-# // FIXME:
 find_company = "https://www.findcompany.com.tw/search/"+quote(chairman)
-tw_company   = "https://www.twincn.com/Lq.aspx?q="+chairman
-find_company1 = "https://www.findcompany.com.tw/search/"+gm
+tw_company   = "https://www.twincn.com/Lq.aspx?q="+quote(chairman)
+find_company1 = "https://www.findcompany.com.tw/search/"+quote(gm)
 tw_company1   = "https://www.twincn.com/Lq.aspx?q="+quote(gm) # // TODO: scrap
-
 print(tid)
+# // TODO: link by tid https://costring.com/business/54852890/
+# // TODO: link by tid https://www.twfile.com/83492902
+# // TODO: link by tid https://opengovtw.com/drug
+# // TODO: https://www.companys.com.tw/2052473/97257913
 
 ticker_news = \
     "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
@@ -78,6 +78,8 @@ mops_news = 'http://mops.twse.com.tw/mops/web/ajax_t146sb05?TYPEK=all&step=1&fir
 # //TODO: https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id=1514&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year=110&month1=0&begin_day=1&end_day=1
 
 subsidiary = "https://www.cmoney.tw/finance/f00031.aspx?s="+ticker
+chinai     = "https://www.cnyes.com/archive/twstock/chinai/"+ticker+".htm"
+overseasi  = "https://www.cnyes.com/archive/twstock/overseasi/"+ticker+".htm"
 
 revenue_mom = \
     "https://goodinfo.tw/StockInfo/ShowSaleMonChart.asp?STOCK_ID="+ticker
@@ -178,6 +180,8 @@ warrant = "https://www.cmoney.tw/finance/warrantsbystock.aspx?stock="+ticker
 
 gdr = "https://www.google.com/search?q="+quote(co_name)+"+gdr&client=safari&rls=en&ei=a_0fY9-sN8n0-QagpqSABg&ved=0ahUKEwifjp-F7pD6AhVJet4KHSATCWAQ4dUDCA0&uact=5&oq=力晶+gdr&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIHCAAQHhCiBDIHCAAQHhCiBDIHCAAQHhCiBDoKCAAQHhCiBBCwAzoICAAQogQQsAM6BQghEKABOgQIABAeOgYIABAeEA86CAgAEB4QDxAIOgUIABCABDoOCC4QsQMQxwEQ0QMQ1AI6CAgAELEDEIMBOgsILhCABBDHARCvAToRCC4QgAQQsQMQgwEQxwEQ0QM6CAgAEIAEELEDOgsILhCABBCxAxDUAjoOCC4QgAQQsQMQgwEQ1AI6CwgAEIAEELEDEIMBOggILhCABBCxAzoLCC4QgAQQsQMQgwE6BQgAELEDOhEILhCABBCxAxCDARDHARCvAToUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguELEDEIMBENQCOgUILhCABDoOCC4QgAQQsQMQxwEQrwE6CgguEMcBENEDEEM6EAguELEDEIMBEMcBENEDEEM6BAgAEEM6CgguEMcBEK8BEEM6CAguEIAEENQCOggIABAeEAQQCjoGCAAQHhAESgQIQRgBSgQIRhgAUOUHWOJ9YOR_aBFwAHgBgAFiiAHhD5IBAjM1mAEAoAEBsAEAyAEDwAEB&sclient=gws-wiz"
 
+dr  = "https://www.cnyes.com/archive/twstock/dr/"+ticker+".htm"
+
 g_trend =""
 # https://trends.google.com/trends/explore
 # ?q=宏達電&geo=TW
@@ -207,6 +211,8 @@ urls = [ \
     revenue_growth, \
     groups, \
     subsidiary, \
+    chinai, \
+    overseasi, \
     ticker_news, \
     volume_profile, \
     revenue_yoy, \
@@ -227,6 +233,7 @@ urls = [ \
     # government_banks, \
     warrant, \
     gdr, \
+    dr, \
     convertible_bond, \
     cnyes_cb, \
 

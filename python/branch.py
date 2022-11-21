@@ -177,12 +177,17 @@ sys.exit(0)
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 broker_group = [ \
-    9200, 9268, 9217, 9875, 9658, \
+    # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9200&b=9268
+    9200, 9268, \
+    9217, 9875, 9658, \
     9697, 9100, 8880, 8450, 8440, \
 ]
 
 huwei_gang = [ \
-    '980I', 9377 \
+    # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9800&b=003900380030006c
+    '980I', \
+    # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9300&b=9377
+    9377 \
 ]
 
 ticker_group = [ 6182, 3008, 5011, 2441, 2618 ]

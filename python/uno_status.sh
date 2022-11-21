@@ -15,6 +15,8 @@ CO_NAME=${CO_NAME#\'}
 CAPE=${OUTPUT[9]%\'}
 CAPE=${CAPE#\'}
 
+python3 board.py $TICKER 1
+
 say -v "Mei-Jia" \
     ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
     "[[slnc 200]]" $CO_NAME

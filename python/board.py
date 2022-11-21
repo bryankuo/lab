@@ -12,9 +12,8 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 
 ticker = sys.argv[1]
-# print( len(sys.argv) )
 if 3 <= len(sys.argv) :
-    loading_page = False # caller: board_loop.sh
+    loading_page = False # caller 0: board_loop.sh or 1: uno_status.sh
 else:
     loading_page = True  # caller: briefing.sh
 
