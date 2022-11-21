@@ -14,6 +14,7 @@ def say(msg = "Finish", voice = "Victoria"):
     os.system(f'say -v {voice} {msg}')
 
 ticker = sys.argv[1]
+# https://mops.twse.com.tw/mops/web/t05st03
 url = "https://mops.twse.com.tw/mops/web/ajax_t05st03"
 data = { \
     "subMenuID": 1, "step": 1, "firstin": "true", \
