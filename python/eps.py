@@ -19,7 +19,7 @@ def get_from_source(ticker):
     # https://goodinfo.tw/StockInfo/StockFinDetail.asp?RPT_CAT=XX_M_QUAR&QRY_TIME=20212&STOCK_ID=1227
     year  = datetime.today().strftime('%Y')
     month = datetime.today().strftime('%m')
-    quarter = (int(month) - 1) // 3 + 1.
+    quarter = (int(month) - 1) # // 3 + 1.
     quarter = quarter - 2 # to get 2 quarter away
     if ( quarter <= 0 ):
         quarter = 4
@@ -32,17 +32,21 @@ def get_from_source(ticker):
         "&STOCK_ID="+ticker
     # RPT_CAT: [ XX_M_QUAR ... XX_QUAR ]
     # site is under maintenance at 10 o'clock in the morning.
-    # // TODO: inside function try:
-    # print(url)
-    browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
-    if ( browser is None ):
-        print("make sure safari automation enabled")
-        sys.exit(3)
-    browser.get(url)
-    time.sleep(6) # wait until page fully loaded
-    page = browser.page_source
-    soup = BeautifulSoup(page, 'html.parser')
-    browser.close()
+    print(url)
+    try:
+        browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
+        if ( browser is None ):
+            print("make sure safari automation enabled")
+            sys.exit(3)
+        browser.get(url)
+        time.sleep(6) # wait until page fully loaded
+        page = browser.page_source
+        soup = BeautifulSoup(page, 'html.parser')
+    except (SessionNotCreatedException):
+        print('make sure allow remote is on')
+    finally:
+        browser.quit()
+        time.sleep(1) # wait until fully released ( test )
     return soup
 
 def print_header(ticker, soup, ofile):

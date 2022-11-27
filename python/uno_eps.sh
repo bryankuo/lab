@@ -28,14 +28,6 @@ while read p; do
 	index=$(($index+1))
 	continue
     fi
-    # // TODO: handle newly added item when process is ongoing
-    # @see https://stackoverflow.com/a/6022441
-    # sed '443q;d' datafiles/watchlist.txt
-    # sed '1072!d' datafiles/watchlist.txt
-    # awk 'NR==1071' datafiles/watchlist.txt
-    # TKR=( $(sed '1070q;d' datafiles/watchlist.txt) )
-    # echo $TKR
-    # exit 0
 
     EPS=($(python3 eps.py $TICKER 1 | tr -d '[],'))
     # echo ${EPS[@]}

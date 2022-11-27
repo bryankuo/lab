@@ -3,6 +3,7 @@ if [ "$#" -lt 1 ]; then
     echo "./uno_status.sh [ticker]"
     exit 64
 fi
+
 TICKER=$1
 OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
 DEAL=${OUTPUT[0]%\'}
@@ -53,7 +54,6 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     RH52P=${RANGE[3]%\'}
     RH52P=${RH52P#\'}
 
-    # // TODO:
     SMA=($(python3 sma5.py $TICKER 1 | tr -d '[],'))
     SMA5=${SMA[0]%\'}
     SMA5=${SMA5#\'}
@@ -149,6 +149,13 @@ elif [ $((O_SPEC/(2**3))) -eq 1 ] && [ $((O_SPEC%(2**3))) -eq 0 ]; then
     # say -v "Mei-Jia" \
     #     ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
     #    "[[slnc 400]]" $DEAL
+fi
+
+if [ $DEAL -gt $SMA5 ] && [ $DEAL -gt $SMA20 ] && [ $DEAL -gt $SMA60 ]; then
+    CONDITION="站上所有均線"
+    say -v "Mei-Jia" \
+	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	"[[slnc 400]]" $DEAL "[[slnc 300]]" $CONDITION
 fi
 
 # be aware the usage

@@ -172,9 +172,9 @@ trust = \
 # https://isin.twse.com.tw/isin/class_i.jsp?kind=1
 
 # warrant = "http://warrants.sfi.org.tw/Default.aspx"
-# // TODO: check id "agree" and then press id "BTNConfirm" automatically,
 # redirect to http://warrants.sfi.org.tw/Query.aspx
-# // TODO: try selenium moving mouse and click
+# // now selenium moving mouse and click, redirect, set ticker, and click
+# // via warrant.py
 # source 2: https://www.cmoney.tw/finance/warrantsbystock.aspx?stock=1102
 warrant = "https://www.cmoney.tw/finance/warrantsbystock.aspx?stock="+ticker
 

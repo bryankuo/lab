@@ -13,7 +13,7 @@ from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
-# // TODO: from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.keys import Keys
 
 ticker = sys.argv[1]
 data = { \
@@ -23,13 +23,17 @@ data = { \
 try:
     browser = webdriver.Safari( \
         executable_path = '/usr/bin/safaridriver')
-    # url = "http://warrants.sfi.org.tw/Query.aspx"
-    url = "http://warrants.sfi.org.tw/Default.aspx"
-    # url = "https://stackoverflow.com/questions/20986631/how-can-i-scroll-a-web-page-using-selenium-webdriver-in-python"
+    url0 = "http://localhost"
+    url  = "http://warrants.sfi.org.tw/Query.aspx"
+    url1 = "https://www.google.com"
+    url2 = "https://tw.yahoo.com"
 
-    browser.get(url)
-    browser.switch_to.window(browser.current_window_handle)
-    browser.maximize_window() # OK
+    # find selenium version
+    # python3 -c "import selenium; print(selenium.__version__)"
+
+    browser.get(url) # no tab name, 1 task is fine
+
+    # scroll to bottom
     # @see https://stackoverflow.com/a/27760083
     browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(1)
@@ -56,16 +60,40 @@ try:
 
     # print('before:' + webdriver.current_url) // FIXME:
     # then page redirected, input text [ticker]
-    time.sleep(3) # wait page load complete
+    time.sleep(2) # wait page load complete
     # print('after :' + webdriver.current_url) // FIXME:
     element3 = browser.find_element_by_id('stockNo')
     element3.send_keys(ticker) # OK
+
+    '''
+    # open new tab
+    # @see https://stackoverflow.com/a/68661030
+    browser.execute_script("window.open('about:blank','tab1');")
+
+    # browser.switch_to.window(browser.current_window_handle) # OK
+    # browser.maximize_window() # OK
+    # // set window size
+    # browser.set_window_size(640, 480) # OK
+
+    # Second tab
+    browser.execute_script("window.open('about:blank','secondtab');")
+    browser.switch_to.window("secondtab")
+    browser.get(url1)
+
+    browser.switch_to.window("tab1")
+    browser.get(url)
+
+    # close specific tab @see https://stackoverflow.com/a/54840685
+    window_name1 = browser.window_handles[0]
+    browser.switch_to.window(window_name=window_name1)
+    browser.close() # one tab
+    '''
 
 except (SessionNotCreatedException):
     print('turn on safari remote option.')
 
 finally:
-    time.sleep(4)
+    time.sleep(10)
     # browser.minimize_window() // OK
     browser.quit()
 

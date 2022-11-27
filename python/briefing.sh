@@ -71,6 +71,7 @@ python3 board.py $1
 python3 annual_report.py $1
 python3 announcement.py $1
 # python3 gtrend.py $1 // FIXME: return 429
+# python3 warrant.py $1
 
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "last update:" $TIMESTAMP

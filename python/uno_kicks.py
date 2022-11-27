@@ -162,19 +162,20 @@ addr_per_h52 = "P1"
 addr_per_l52 = "Q1"
 addr_per_peer = "R1"
 
-addr_2021q4 = "S1"
-addr_2021q3 = "T1"
-addr_2021q2 = "U1"
-addr_2021q1 = "V1"
+# update by uno_eps.sh -> uno_eps.py
+# addr_2021q4 = "S1"
+# addr_2021q3 = "T1"
+# addr_2021q2 = "U1"
+# addr_2021q1 = "V1"
 
-addr_2020q4 = "W1"
-addr_2020q3 = "X1"
-addr_2020q2 = "Y1"
-addr_2020q1 = "Z1"
+# addr_2020q4 = "W1"
+# addr_2020q3 = "X1"
+# addr_2020q2 = "Y1"
+# addr_2020q1 = "Z1"
 
-addr_2019q4 = "AA1"
-addr_2019q3 = "AB1"
-addr_2019q2     = "AC1"
+# addr_2019q4 = "AA1"
+# addr_2019q3 = "AB1"
+# addr_2019q2     = "AC1"
 
 addr_stalk      = "AE1"
 addr_cape       = "AL1"
@@ -219,30 +220,6 @@ def set_value():
         cell_ticker.Value = float(sma20)
         cell_ticker = active_sheet.getCellRangeByName(addr_sma60)
         cell_ticker.Value = float(sma60)
-'''
-        cell_ticker = active_sheet.getCellRangeByName(addr_2021q4)
-        cell_ticker.String = eps21q4
-        cell_ticker = active_sheet.getCellRangeByName(addr_2021q3)
-        cell_ticker.String = eps21q3
-        cell_ticker = active_sheet.getCellRangeByName(addr_2021q2)
-        cell_ticker.String = eps21q2
-        cell_ticker = active_sheet.getCellRangeByName(addr_2021q1)
-        cell_ticker.String = eps21q1
-
-        cell_ticker = active_sheet.getCellRangeByName(addr_2020q4)
-        cell_ticker.String = eps20q4
-        cell_ticker = active_sheet.getCellRangeByName(addr_2020q3)
-        cell_ticker.String = eps20q3
-        cell_ticker = active_sheet.getCellRangeByName(addr_2020q2)
-        cell_ticker.String = eps20q2
-        cell_ticker = active_sheet.getCellRangeByName(addr_2020q1)
-        cell_ticker.String = eps20q1
-
-        cell_ticker = active_sheet.getCellRangeByName(addr_2019q4)
-        cell_ticker.String = eps19q4
-        cell_ticker = active_sheet.getCellRangeByName(addr_2019q3)
-        cell_ticker.String = eps19q3
-'''
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 for i in range(2, last_row):

@@ -190,6 +190,11 @@ huwei_gang = [ \
     9377 \
 ]
 
+hanghai_king = [ \
+    # to be verified
+    9268, 9875, '585Y'
+]
+
 ticker_group = [ 6182, 3008, 5011, 2441, 2618 ]
 
 webbrowser.open(url)
