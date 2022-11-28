@@ -162,7 +162,7 @@ addr_per_h52 = "P1"
 addr_per_l52 = "Q1"
 addr_per_peer = "R1"
 
-# update by uno_eps.sh -> uno_eps.py
+# caller uno_eps.sh, uno_status.sh -> uno_eps.py
 # addr_2021q4 = "S1"
 # addr_2021q3 = "T1"
 # addr_2021q2 = "U1"

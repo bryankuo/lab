@@ -32,7 +32,7 @@ def get_from_source(ticker):
         "&STOCK_ID="+ticker
     # RPT_CAT: [ XX_M_QUAR ... XX_QUAR ]
     # site is under maintenance at 10 o'clock in the morning.
-    print(url)
+    # print(url)
     try:
         browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
         if ( browser is None ):
@@ -135,3 +135,5 @@ if __name__ == "__main__":
         get_eps(ticker, soup)
     else:
         print("not support. " + str(len(sys.argv)))
+
+# // TODO: 毛利率/營業利益率 @see https://bit.ly/3XumrPR

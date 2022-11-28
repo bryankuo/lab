@@ -5,9 +5,20 @@ if [ "$#" -lt 1 ]; then
 fi
 
 TICKER=$1
-OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
-DEAL=${OUTPUT[0]%\'}
-DEAL=${DEAL#\'}
+# // TODO: grep type as input parameter instead of judging inside quote.py
+LIST_TYPE=($(grep -rnp --color="auto" -e "$TICKER" datafiles/listed_[245].txt \
+    | cut -d "." -f 1 | cut -d "_" -f 2 ))
+if [ "$LIST_TYPE" != "2" ] && [ "$LIST_TYPE" != "4" ] \
+    && [ "$LIST_TYPE" != "5" ]; then
+	echo $TICKER " is not listed."
+	say -v "Mei-Jia" \
+	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	    "[[slnc 200]]" " is not listed."
+	exit 0
+fi
+OUTPUT=($(python3 quote.py $TICKER $LIST_TYPE | tr -d '[],'))
+QUOTE=${OUTPUT[0]%\'}
+QUOTE=${QUOTE#\'}
 OUTPUT=($(python3 basic.py $TICKER | tr -d '[],'))
 CO_TYPE=${OUTPUT[2]%\'}
 CO_TYPE=${CO_TYPE#\'}
@@ -70,16 +81,33 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     SMA60_D=${SMA[5]%\'}
     SMA60_D=${SMA60_D#\'}
 
-    # EPSs=($(python3 eps.py $TICKER 1 | tr -d '[],'))
-    # // TODO: starting from T1, 10 columns
-    # EPS_T01=${EPSs[0]%\'}
-    # EPS_T01=${EPS_T01#\'}
+    EPSs=($(python3 eps.py $TICKER 1 | tr -d '[],'))
+    # // TODO: starting from q0, 10 columns
+    EPS_Q0=${EPSs[0]%\'}; EPS_Q0=${EPS_Q0#\'}
+    EPS_Q1=${EPSs[1]%\'}; EPS_Q1=${EPS_Q1#\'}
+    EPS_Q2=${EPSs[2]%\'}; EPS_Q2=${EPS_Q2#\'}
+    EPS_Q3=${EPSs[3]%\'}; EPS_Q3=${EPS_Q3#\'}
+    EPS_Q4=${EPSs[4]%\'}; EPS_Q4=${EPS_Q4#\'}
+    EPS_Q5=${EPSs[5]%\'}; EPS_Q5=${EPS_Q5#\'}
+    EPS_Q6=${EPSs[6]%\'}; EPS_Q6=${EPS_Q6#\'}
+    EPS_Q7=${EPSs[7]%\'}; EPS_Q7=${EPS_Q7#\'}
+    EPS_Q8=${EPSs[8]%\'}; EPS_Q8=${EPS_Q8#\'}
+    EPS_Q9=${EPSs[9]%\'}; EPS_Q9=${EPS_Q9#\'}
 
-    printf "ticker: %04d %s %d %04.2f\n" $TICKER $CO_NAME $CO_TYPE $DEAL
+    printf "ticker: %04d %s %d %04.2f\n" $TICKER $CO_NAME $CO_TYPE $QUOTE
     printf "activity: %d %d %d %d\n" $QDI $FUND $RETAIL $TOTAL
     printf "pe: %04.2f %04.2f %04.2f %04.2f\n" $PER $PER_H52 $PER_L52 $PER_PEER
     printf "range: %.2f %.2f %.2f %.2f\n" $RL52 $RL52P $RH52 $RH52P
     printf "sma: %s %s %s %s %s %s\n" $SMA5 $SMA5_D $SMA20 $SMA20_D $SMA60 $SMA60_D
+    printf "eps: %s %s %s %s %s %s %s %s %s %s\n" \
+	$EPS_Q0 $EPS_Q1 $EPS_Q2 $EPS_Q3 $EPS_Q4 \
+	$EPS_Q5 $EPS_Q6 $EPS_Q7 $EPS_Q8 $EPS_Q9
+
+    RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
+       uno_eps.py $TICKER                                              \
+       $EPS_Q0 $EPS_Q1 $EPS_Q2 $EPS_Q3 $EPS_Q4                         \
+       $EPS_Q5 $EPS_Q6 $EPS_Q7 $EPS_Q8 $EPS_Q9                         \
+       | tr -d '[],' ) )
 
 else
     # // TODO:
@@ -95,16 +123,16 @@ else
     RL52P="n/a"
     RH52="n/a"
     RH52P="n/a"
-    printf "ticker: %04d %s %d %04.2f\n" $TICKER $CO_NAME $CO_TYPE $DEAL
+    printf "ticker: %04d %s %d %04.2f\n" $TICKER $CO_NAME $CO_TYPE $QUOTE
     printf "activity: %d %d %d %d\n" $QDI $FUND $RETAIL $TOTAL
     printf "pe: %s %s %s %s\n" $PER $PER_H52 $PER_L52 $PER_PEER
     printf "range: %s %s %s %s\n" $RL52 $RL52P $RH52 $RH52P
 fi
 
 RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
-    uno_kicks.py $TICKER $DEAL $CO_NAME \
-    $QDI $FUND $RETAIL $TOTAL \
-    $PER $PER_H52 $PER_L52 $PER_PEER \
+    uno_kicks.py $TICKER $QUOTE $CO_NAME           \
+    $QDI $FUND $RETAIL $TOTAL                     \
+    $PER $PER_H52 $PER_L52 $PER_PEER              \
     $RL52 $RL52P $RH52 $RH52P                     \
     $EPS2021Q4 $EPS2021Q3 $EPS2021Q2 $EPS2021Q1   \
     $EPS2020Q4 $EPS2020Q3 $EPS2020Q2 $EPS2020Q1   \
@@ -124,45 +152,45 @@ if [ $O_SPEC -eq 1 ]; then
     CONDITION="跌破支撐" # $((5 % 2**3))
     say -v "Mei-Jia" \
 	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $DEAL \
+	"[[slnc 400]]" $QUOTE \
 	"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 elif [ $((O_SPEC/(2**1))) -eq 1 ] && [ $((O_SPEC%(2**1))) -eq 0 ]; then
     CONDITION="突破壓力"
     say -v "Mei-Jia" \
 	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $DEAL \
+	"[[slnc 400]]" $QUOTE \
 	"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 # elif [ $((O_SPEC/(2**2))) -eq 1 ] && [ $((O_SPEC%(2**2))) -eq 0 ]; then
     # CONDITION="跌破52週新低"
     # say -v "Mei-Jia" \
     #    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-    #    "[[slnc 400]]" $DEAL \
+    #    "[[slnc 400]]" $QUOTE \
     #    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 elif [ $((O_SPEC/(2**3))) -eq 1 ] && [ $((O_SPEC%(2**3))) -eq 0 ]; then
     CONDITION="跌入合理區間"
     say -v "Mei-Jia" \
 	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $DEAL \
+	"[[slnc 400]]" $QUOTE \
 	"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 # elif [ $((O_SPEC/(2**4))) -eq 1 ] && [ $((O_SPEC%(2**4))) -eq 0 ]; then
     # CONDITION="突破52週新高"
     # say -v "Mei-Jia" \
     #    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-    #    "[[slnc 400]]" $DEAL \
+    #    "[[slnc 400]]" $QUOTE \
     #    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 # else
     # say -v "Mei-Jia" \
     #     ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-    #    "[[slnc 400]]" $DEAL
+    #    "[[slnc 400]]" $QUOTE
 fi
 
-if [ $(echo $DEAL'>'$SMA5 | bc -l) -eq 1 ] \
-    && [ $(echo $DEAL'>'$SMA20 | bc -l) -eq 1 ] \
-    && [ $(echo $DEAL'>'$SMA60 | bc -l) -eq 1 ]; then
+if [ $(echo $QUOTE'>'$SMA5 | bc -l) -eq 1 ] \
+    && [ $(echo $QUOTE'>'$SMA20 | bc -l) -eq 1 ] \
+    && [ $(echo $QUOTE'>'$SMA60 | bc -l) -eq 1 ]; then
     CONDITION="站上所有均線"
     say -v "Mei-Jia" \
 	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $DEAL "[[slnc 300]]" $CONDITION
+	"[[slnc 400]]" $QUOTE "[[slnc 300]]" $CONDITION
 fi
 
 # be aware the usage

@@ -10,41 +10,17 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 
 ticker = sys.argv[1]
+l_type = sys.argv[2]
 
-raw_list = []
-list2 = []
-list4 = []
-list5 = []
-
-f = open("datafiles/listed_2.txt", "r")
-raw_list = f.readlines()
-for element in raw_list:
-    list2.append(element.strip())
-
-raw_list.clear()
-f = open("datafiles/listed_4.txt", "r")
-raw_list = f.readlines()
-for element in raw_list:
-    list4.append(element.strip())
-
-raw_list.clear()
-f = open("datafiles/listed_5.txt", "r")
-raw_list = f.readlines()
-for element in raw_list:
-    list5.append(element.strip())
-
-if ticker in list2:
-    # print("tse_")
+if l_type == "2" :
     list_type = "tse_"
-elif ticker in list4:
-    # print("otc_")
+elif l_type == "4" :
     list_type = "otc_"
-elif ticker in list5:
+elif l_type == "5" :
     # print("not support") # // TODO: find quote API
     list_type = "tpex_"
 else:
-    print("not listed")
-    sys.exit(0)
+    list_type = "tse_"
 
 if ( list_type == "tse_" or list_type == "otc_" ):
     # @see shorturl.at/elwzD
@@ -52,7 +28,7 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     # https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_9904.tw%7C&json=1&d=20210422&delay=0&_=1432626332924
     url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?' + \
         'ex_ch=' + list_type + ticker + '.tw%7C' + \
-        '&json=1' + '&d=20220209&delay=0&_=1432626332924'
+        '&json=1' + '&d=20221128&delay=0&_=1432626332924'
     # print(url)
     frame = requests.get(url).json()
     # print(json.dumps(frame, indent=1))

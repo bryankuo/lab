@@ -4,7 +4,7 @@
 #
 ./check_bountylist.sh
 
-STORY="面板"
+STORY="金保成分股"
 # STORY=$1
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
@@ -39,6 +39,7 @@ while true; do
     count=$(($count+1))
     if [ $count -ge $NLINES ] ; then
 	echo "finish $count items."
+	say -v "Mei-Jia" "完成 $count 個項目"
 	break
     fi
     # sleep 1
