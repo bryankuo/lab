@@ -70,6 +70,11 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     SMA60_D=${SMA[5]%\'}
     SMA60_D=${SMA60_D#\'}
 
+    # EPSs=($(python3 eps.py $TICKER 1 | tr -d '[],'))
+    # // TODO: starting from T1, 10 columns
+    # EPS_T01=${EPSs[0]%\'}
+    # EPS_T01=${EPS_T01#\'}
+
     printf "ticker: %04d %s %d %04.2f\n" $TICKER $CO_NAME $CO_TYPE $DEAL
     printf "activity: %d %d %d %d\n" $QDI $FUND $RETAIL $TOTAL
     printf "pe: %04.2f %04.2f %04.2f %04.2f\n" $PER $PER_H52 $PER_L52 $PER_PEER
@@ -151,7 +156,9 @@ elif [ $((O_SPEC/(2**3))) -eq 1 ] && [ $((O_SPEC%(2**3))) -eq 0 ]; then
     #    "[[slnc 400]]" $DEAL
 fi
 
-if [ $DEAL -gt $SMA5 ] && [ $DEAL -gt $SMA20 ] && [ $DEAL -gt $SMA60 ]; then
+if [ $(echo $DEAL'>'$SMA5 | bc -l) -eq 1 ] \
+    && [ $(echo $DEAL'>'$SMA20 | bc -l) -eq 1 ] \
+    && [ $(echo $DEAL'>'$SMA60 | bc -l) -eq 1 ]; then
     CONDITION="站上所有均線"
     say -v "Mei-Jia" \
 	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \

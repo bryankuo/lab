@@ -4,7 +4,7 @@
 #
 ./check_bountylist.sh
 
-STORY="軟板"
+STORY="面板"
 # STORY=$1
 LIST="datafiles/bountylist.txt"
 index=1 # calc start index, since txt/calc not sync
