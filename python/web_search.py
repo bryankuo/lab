@@ -6,6 +6,7 @@
 import sys, requests, time, webbrowser
 from urllib.parse   import quote
 from urllib.request import urlopen
+from datetime import datetime
 
 ticker = sys.argv[1]
 if ( 2 < len(sys.argv) ):
@@ -135,8 +136,25 @@ hr104_search = "https://www.google.com/search?q="+quote("職缺")+quote(co_name)
 revenue_yoy = \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_" + ticker + ".djhtm"
 
-eps_table = "https://goodinfo.tw/tw/StockFinDetail.asp"+ \
-    "?RPT_CAT=XX_M_QUAR&QRY_TIME=20222&STOCK_ID=" + ticker
+
+# eps_table = "https://goodinfo.tw/tw/StockFinDetail.asp"+ \
+#    "?RPT_CAT=XX_M_QUAR&QRY_TIME=20222&STOCK_ID=" + ticker
+# https://goodinfo.tw/StockInfo/StockFinDetail.asp?RPT_CAT=XX_M_QUAR&QRY_TIME=20212&STOCK_ID=1227
+year  = datetime.today().strftime('%Y')
+month = datetime.today().strftime('%m')
+quarter = (int(month) - 1) # // 3 + 1.
+quarter = quarter - 2 # to get 2 quarter away
+if ( quarter <= 0 ):
+    quarter = 4
+    year = str( int(year) - 1 )
+quarter_s = "{:d}".format(quarter)
+# datetime.today().strftime('%Y-%m-%d')
+eps_table = "https://goodinfo.tw/StockInfo/StockFinDetail.asp?" + \
+    "RPT_CAT=XX_M_QUAR" + \
+    "&QRY_TIME=" + year + quarter_s + \
+    "&STOCK_ID="+ticker
+# RPT_CAT: [ XX_M_QUAR ... XX_QUAR ]
+# site is under maintenance at 10 o'clock in the morning.
 
 google_gm_image = \
     "https://www.google.com/search?q=%22"+ \
@@ -177,6 +195,8 @@ trust = \
 # // via warrant.py
 # source 2: https://www.cmoney.tw/finance/warrantsbystock.aspx?stock=1102
 warrant = "https://www.cmoney.tw/finance/warrantsbystock.aspx?stock="+ticker
+# // TODO: has option, future, compare the table
+# https://www.taifex.com.tw/cht/2/stockLists
 
 gdr = "https://www.google.com/search?q="+quote(co_name)+"+gdr&client=safari&rls=en&ei=a_0fY9-sN8n0-QagpqSABg&ved=0ahUKEwifjp-F7pD6AhVJet4KHSATCWAQ4dUDCA0&uact=5&oq=力晶+gdr&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIHCAAQHhCiBDIHCAAQHhCiBDIHCAAQHhCiBDoKCAAQHhCiBBCwAzoICAAQogQQsAM6BQghEKABOgQIABAeOgYIABAeEA86CAgAEB4QDxAIOgUIABCABDoOCC4QsQMQxwEQ0QMQ1AI6CAgAELEDEIMBOgsILhCABBDHARCvAToRCC4QgAQQsQMQgwEQxwEQ0QM6CAgAEIAEELEDOgsILhCABBCxAxDUAjoOCC4QgAQQsQMQgwEQ1AI6CwgAEIAEELEDEIMBOggILhCABBCxAzoLCC4QgAQQsQMQgwE6BQgAELEDOhEILhCABBCxAxCDARDHARCvAToUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguELEDEIMBENQCOgUILhCABDoOCC4QgAQQsQMQxwEQrwE6CgguEMcBENEDEEM6EAguELEDEIMBEMcBENEDEEM6BAgAEEM6CgguEMcBEK8BEEM6CAguEIAEENQCOggIABAeEAQQCjoGCAAQHhAESgQIQRgBSgQIRhgAUOUHWOJ9YOR_aBFwAHgBgAFiiAHhD5IBAjM1mAEAoAEBsAEAyAEDwAEB&sclient=gws-wiz"
 
@@ -258,3 +278,6 @@ for url in urls:
         input("Press Enter to continue...")
 
 sys.exit(0)
+
+# 發言人、代理發言人、重要營運主管(如:執行長、營運長、行銷長及策略長等)、財務主管、會計主管、公司治理主管、資訊安全長、研發主管、內部稽核主管或訴訟及非訟代理人
+# 辭任 辭職 離職 退休 新任
