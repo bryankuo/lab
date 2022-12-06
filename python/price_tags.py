@@ -14,6 +14,7 @@ import calendar
 from bs4 import BeautifulSoup
 
 commo = "https://tradingeconomics.com/commodities"
+copper = "https://www.investing.com/commodities/copper-candlestick"
 crb_idx = "https://www.barchart.com/futures/quotes/BZY00/interactive-chart"
 
 bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
@@ -143,6 +144,7 @@ urls = [ \
     # commodities
     crb_idx, \
     commo, \
+    copper, \
 
     # worldwide
     finviz, \

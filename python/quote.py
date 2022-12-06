@@ -9,6 +9,7 @@ from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 from pprint import pprint
 
+# caller: uno_status.sh uno_quotes.sh
 ticker = sys.argv[1]
 l_type = sys.argv[2]
 
@@ -33,7 +34,12 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     frame = requests.get(url).json()
     # print(json.dumps(frame, indent=1))
     yesterday = float(frame["msgArray"][0]["y"])
+    # // TODO:
+    #   File "/Users/chengchihkuo/github/python/quote.py", line 37, in <module>
+    # opn = float(frame["msgArray"][0]["o"])
+    # ValueError: could not convert string to float: '-'
     opn = float(frame["msgArray"][0]["o"])
+
     high = float(frame["msgArray"][0]["h"])
     low = float(frame["msgArray"][0]["l"])
     close_s = frame["msgArray"][0]["z"]

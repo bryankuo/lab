@@ -61,7 +61,7 @@ try:
     gm = soup.findAll('table')[1] \
         .find_all('tr')[1] \
         .find_all('tr')[1].find_all('td')[1].text
-
+    # // FIXME: 2330, 2723, 1626
     cap = float( int( soup.findAll('table')[1] \
         .find_all('tr')[6] \
         .find_all('tr')[1].find_all('td')[0].text.strip() \

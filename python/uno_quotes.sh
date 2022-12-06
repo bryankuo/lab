@@ -33,53 +33,64 @@ echo "start "$START " len "$LEN " #line "$NLINES" list "$LIST
 
 while true; do
     TICKER=( $(sed "$index""q;d" $LIST) )
-
-    OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
-    # echo ${OUTPUT[@]}
-    DEAL=${OUTPUT[0]%\'}
-    DEAL=${DEAL#\'}
-    MSG=$(printf "%04d %04d %04.2f" $index $TICKER $DEAL )
-    echo $MSG
-    RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
-	uno_kicks.py $TICKER $DEAL | tr -d '[],' ) )
-    O_SPEC=${RETURN[0]%\'}
-    O_SPEC=${O_SPEC#\'}
-    # echo $OPUT # test return from calc
-    if [ $((O_SPEC/(2**1))) -eq 0 ] && [ $((O_SPEC%(2**1))) -eq 1 ]; then
-	# echo -ne '\007' # beep
-	CONDITION="跌破支撐" # $((5 % 2**3))
-	say -v "Mei-Jia" \
-	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	    "[[slnc 400]]" $DEAL \
-	    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    elif [ $((O_SPEC/(2**1))) -eq 1 ] && [ $((O_SPEC%(2**1))) -eq 0 ]; then
-	CONDITION="突破壓力"
-	say -v "Mei-Jia" \
-	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	    "[[slnc 400]]" $DEAL \
-	    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    # elif [ $((O_SPEC/(2**2))) -eq 1 ] && [ $((O_SPEC%(2**2))) -eq 0 ]; then
-	# CONDITION="跌破52週新低"
-	# say -v "Mei-Jia" \
-	#    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	#    "[[slnc 400]]" $DEAL \
-	#    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    elif [ $((O_SPEC/(2**3))) -eq 1 ] && [ $((O_SPEC%(2**3))) -eq 0 ]; then
-	CONDITION="跌入合理區間"
-	say -v "Mei-Jia" \
-	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	    "[[slnc 400]]" $DEAL \
-	    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    # elif [ $((O_SPEC/(2**4))) -eq 1 ] && [ $((O_SPEC%(2**4))) -eq 0 ]; then
-	# CONDITION="突破52週新高"
-	# say -v "Mei-Jia" \
-	#    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	#    "[[slnc 400]]" $DEAL \
-	#    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
-    # else
-	# say -v "Mei-Jia" \
-	#     ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	#    "[[slnc 400]]" $DEAL
+    LIST_TYPE=($(grep -rnp --color="auto" -e "$TICKER" datafiles/listed_[245].txt \
+	| cut -d "." -f 1 | cut -d "_" -f 2 ))
+    if [ "$LIST_TYPE" != "2" ] && [ "$LIST_TYPE" != "4" ] \
+	&& [ "$LIST_TYPE" != "5" ]; then
+	    MSG=$(printf "%04d %04d is not listed" $index $TICKER)
+	    echo $MSG
+	    say -v "Mei-Jia" \
+		${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+		"[[slnc 200]]" " is not listed."
+    else
+	OUTPUT=($(python3 quote.py $TICKER $LIST_TYPE | tr -d '[],'))
+	# OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
+	# echo ${OUTPUT[@]}
+	DEAL=${OUTPUT[0]%\'}
+	DEAL=${DEAL#\'}
+	MSG=$(printf "%04d %04d %04.2f" $index $TICKER $DEAL )
+	echo $MSG
+	RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
+	    uno_kicks.py $TICKER $DEAL | tr -d '[],' ) )
+	O_SPEC=${RETURN[0]%\'}
+	O_SPEC=${O_SPEC#\'}
+	# echo $OPUT # test return from calc
+	if [ $((O_SPEC/(2**1))) -eq 0 ] && [ $((O_SPEC%(2**1))) -eq 1 ]; then
+	    # echo -ne '\007' # beep
+	    CONDITION="跌破支撐" # $((5 % 2**3))
+	    say -v "Mei-Jia" \
+		${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+		"[[slnc 400]]" $DEAL \
+		"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	elif [ $((O_SPEC/(2**1))) -eq 1 ] && [ $((O_SPEC%(2**1))) -eq 0 ]; then
+	    CONDITION="突破壓力"
+	    say -v "Mei-Jia" \
+		${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+		"[[slnc 400]]" $DEAL \
+		"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	# elif [ $((O_SPEC/(2**2))) -eq 1 ] && [ $((O_SPEC%(2**2))) -eq 0 ]; then
+	    # CONDITION="跌破52週新低"
+	    # say -v "Mei-Jia" \
+	    #    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	    #    "[[slnc 400]]" $DEAL \
+	    #    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	elif [ $((O_SPEC/(2**3))) -eq 1 ] && [ $((O_SPEC%(2**3))) -eq 0 ]; then
+	    CONDITION="跌入合理區間"
+	    say -v "Mei-Jia" \
+		${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+		"[[slnc 400]]" $DEAL \
+		"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	# elif [ $((O_SPEC/(2**4))) -eq 1 ] && [ $((O_SPEC%(2**4))) -eq 0 ]; then
+	    # CONDITION="突破52週新高"
+	    # say -v "Mei-Jia" \
+	    #    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	    #    "[[slnc 400]]" $DEAL \
+	    #    "[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	# else
+	    # say -v "Mei-Jia" \
+	    #     ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	    #    "[[slnc 400]]" $DEAL
+	fi
     fi
 
     index=$(($index+1))

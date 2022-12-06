@@ -70,16 +70,20 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     SMA5=${SMA5#\'}
     SMA5_D=${SMA[1]%\'}
     SMA5_D=${SMA5_D#\'}
-
     SMA20=${SMA[2]%\'}
     SMA20=${SMA20#\'}
     SMA20_D=${SMA[3]%\'}
     SMA20_D=${SMA20_D#\'}
-
     SMA60=${SMA[4]%\'}
     SMA60=${SMA60#\'}
     SMA60_D=${SMA[5]%\'}
     SMA60_D=${SMA60_D#\'}
+    VOLUME=${SMA[6]%\'}
+    VOLUME=${VOLUME#\'}
+    VOL5=${SMA[7]%\'}
+    VOL5=${VOL5#\'}
+    VOL10=${SMA[8]%\'}
+    VOL10=${VOL10#\'}
 
     EPSs=($(python3 eps.py $TICKER 1 | tr -d '[],'))
     # // TODO: starting from q0, 10 columns
@@ -99,6 +103,7 @@ if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     printf "pe: %04.2f %04.2f %04.2f %04.2f\n" $PER $PER_H52 $PER_L52 $PER_PEER
     printf "range: %.2f %.2f %.2f %.2f\n" $RL52 $RL52P $RH52 $RH52P
     printf "sma: %s %s %s %s %s %s\n" $SMA5 $SMA5_D $SMA20 $SMA20_D $SMA60 $SMA60_D
+    printf "vol: %s %s %s\n" $VOLUME $VOL5 $VOL10
     printf "eps: %s %s %s %s %s %s %s %s %s %s\n" \
 	$EPS_Q0 $EPS_Q1 $EPS_Q2 $EPS_Q3 $EPS_Q4 \
 	$EPS_Q5 $EPS_Q6 $EPS_Q7 $EPS_Q8 $EPS_Q9
@@ -193,8 +198,18 @@ if [ $(echo $QUOTE'>'$SMA5 | bc -l) -eq 1 ] \
 	"[[slnc 400]]" $QUOTE "[[slnc 300]]" $CONDITION
 fi
 
+if     [ $(echo $EPS_Q0'>'$EPS_Q1 | bc -l) -eq 1 ] \
+    && [ $(echo $EPS_Q1'>'$EPS_Q2 | bc -l) -eq 1 ]; then
+    CONDITION="EPS連三季增加"
+    say -v "Mei-Jia" \
+	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
+	"[[slnc 400]]" $QUOTE "[[slnc 300]]" $CONDITION
+fi
+
 # be aware the usage
 # python3 hbs30.py $TICKER
-echo
+# looping taiex watchlist and update:
+# ls -ltr datafiles/taiex/*.txt | head -n 10
+# cp datafiles/taiex/designhouse.txt datafiles/bountylist.txt; touch datafiles/taiex/designhouse.txt
 
 exit 0
