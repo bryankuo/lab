@@ -30,11 +30,26 @@ print(tid)
 
 ticker_news = \
     "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
+# // TODO: news
+# https://www.moneydj.com/kmdj/common/listnewarticles.aspx?svc=NW&a=TW.1218
 
 fundamental = \
     "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
 
 comparison = "https://mopsfin.twse.com.tw"
+# // TODO: 重要財務比率(type 2,4,5)
+# https://mops.twse.com.tw/mops/web/t05st22_q1?firstin=1&step=1&isnew=false&co_id=2753&year=110
+# https://mops.twse.com.tw/mops/web/t05st22_q1?firstin=1&step=1&isnew=false&co_id=2753&year=111
+# https://mops.twse.com.tw/mops/web/t05st22_q1?firstin=1&step=1&isnew=false&co_id=2753&year=111
+
+# // TODO: 營益分析表
+# https://mops.twse.com.tw/mops/web/t163sb08?firstin=1&step=1&isnew=false&co_id=2753&year=110
+# https://mops.twse.com.tw/mops/web/t163sb08?firstin=1&step=1&isnew=false&co_id=2753&year=110
+# https://mops.twse.com.tw/mops/web/t163sb08?firstin=1&step=1&isnew=false&co_id=2753&year=110
+
+# // TODO: side by side comparison
+#https://goodinfo.tw/tw/StockFinCompare.asp?STOCK0=台積電&STOCK1=聯電&STOCK2=世界&STOCK3=旺宏&STOCK4=&RPT_CAT=BS_M_YEAR&RPT_TYPE=NM&selYEAR=2021&selQUAR=4&btnQry=%C2%A0查%C2%A0%C2%A0%C2%A0詢%C2%A0
+# https://mopsfin.twse.com.tw
 
 # google news search
 # unicode encoding ( https://bit.ly/3syqeyC )
@@ -127,6 +142,8 @@ convertible_bond = \
     "&rls=en&q=moneydj+"+ticker+"+"+quote("可轉債")+"+"+"&ie=UTF-8&oe=UTF-8"
 
 cnyes_cb = "https://www.cnyes.com/twstock/cb.aspx?code="+ticker
+# // TODO: cb news 分類主題新聞-可轉債
+# https://www.moneydj.com/kmdj/common/listnewarticles.aspx?svc=NW&a=X0500003
 
 pttstock_gossip = "https://www.google.com/search?q="+ticker+"+ptt+stock&client=safari&sxsrf=ALeKk02tz2-BrxlgznV37pUb3jBhfWDw8A:1623571437756&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwi1i8L2kpTxAhWrzIsBHeciAhQQpwV6BAgBECQ&biw=1440&bih=709"
 
@@ -281,3 +298,6 @@ sys.exit(0)
 
 # 發言人、代理發言人、重要營運主管(如:執行長、營運長、行銷長及策略長等)、財務主管、會計主管、公司治理主管、資訊安全長、研發主管、內部稽核主管或訴訟及非訟代理人
 # 辭任 辭職 離職 退休 新任
+# 處分
+# 董監質設異動公告
+# 可轉債 認股權證

@@ -297,14 +297,14 @@ if ( cell.String and cell.String != "n/a" and cell.String != "" ):
         cell_r.String = support
         cell_r.CellBackColor = 0xFFFF00
         cell.String = ""
-        cell.CellBackColor = 0xFFFFFF
+        # cell.CellBackColor = 0xFFFFFF
         out_of_spec = out_of_spec + 1 # become resistance
 
 if ( cell_r.String and cell_r.String != "n/a" and cell_r.String != "" ):
     resist = float(cell_r.String)
     if ( resist < float(quote) ):
         cell.String = resist
-        cell.CellBackColor = 0xFFFF00
+        # cell.CellBackColor = 0xFFFF00
         cell_r.String = ""
         cell_r.CellBackColor = 0xFFFFFF
         out_of_spec = out_of_spec + 2 # become support
