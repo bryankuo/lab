@@ -8,14 +8,16 @@ TICKER=$1
 # // TODO: grep type as input parameter instead of judging inside quote.py
 LIST_TYPE=($(grep -rnp --color="auto" -e "$TICKER" datafiles/listed_[245].txt \
     | cut -d "." -f 1 | cut -d "_" -f 2 ))
+
+say -v "Mei-Jia" ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1}
+
 if [ "$LIST_TYPE" != "2" ] && [ "$LIST_TYPE" != "4" ] \
     && [ "$LIST_TYPE" != "5" ]; then
 	echo $TICKER " is not listed."
-	say -v "Mei-Jia" \
-	    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	    "[[slnc 200]]" " is not listed."
+	say -v "Mei-Jia" "[[slnc 200]]" " is not listed."
 	exit 0
 fi
+
 OUTPUT=($(python3 quote.py $TICKER $LIST_TYPE | tr -d '[],'))
 QUOTE=${OUTPUT[0]%\'}
 QUOTE=${QUOTE#\'}
@@ -26,12 +28,9 @@ CO_NAME=${OUTPUT[1]%\'}
 CO_NAME=${CO_NAME#\'}
 CAPE=${OUTPUT[9]%\'}
 CAPE=${CAPE#\'}
+say -v "Mei-Jia" "[[slnc 200]]" $CO_NAME
 
 python3 board.py $TICKER 1
-
-say -v "Mei-Jia" \
-    ${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-    "[[slnc 200]]" $CO_NAME
 
 if [ "$CO_TYPE" == "2" ] || [ "$CO_TYPE" == "4" ]; then
     ACTIVITY=($(python3 activity.py $TICKER 1 | tr -d '[],'))
@@ -156,14 +155,12 @@ if [ $O_SPEC -eq 1 ]; then
     # echo -ne '\007' # beep
     CONDITION="跌破支撐" # $((5 % 2**3))
     say -v "Mei-Jia" \
-	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $QUOTE \
+	"[[slnc 200]]" $QUOTE \
 	"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 elif [ $((O_SPEC/(2**1))) -eq 1 ] && [ $((O_SPEC%(2**1))) -eq 0 ]; then
     CONDITION="突破壓力"
     say -v "Mei-Jia" \
-	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $QUOTE \
+	"[[slnc 200]]" $QUOTE \
 	"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 # elif [ $((O_SPEC/(2**2))) -eq 1 ] && [ $((O_SPEC%(2**2))) -eq 0 ]; then
     # CONDITION="跌破52週新低"
@@ -174,8 +171,7 @@ elif [ $((O_SPEC/(2**1))) -eq 1 ] && [ $((O_SPEC%(2**1))) -eq 0 ]; then
 elif [ $((O_SPEC/(2**3))) -eq 1 ] && [ $((O_SPEC%(2**3))) -eq 0 ]; then
     CONDITION="跌入合理區間"
     say -v "Mei-Jia" \
-	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $QUOTE \
+	"[[slnc 200]]" $QUOTE \
 	"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
 # elif [ $((O_SPEC/(2**4))) -eq 1 ] && [ $((O_SPEC%(2**4))) -eq 0 ]; then
     # CONDITION="突破52週新高"
@@ -194,16 +190,14 @@ if [ $(echo $QUOTE'>'$SMA5 | bc -l) -eq 1 ] \
     && [ $(echo $QUOTE'>'$SMA60 | bc -l) -eq 1 ]; then
     CONDITION="站上所有均線"
     say -v "Mei-Jia" \
-	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $QUOTE "[[slnc 300]]" $CONDITION
+	"[[slnc 200]]" $QUOTE "[[slnc 300]]" $CONDITION
 fi
 
 if     [ $(echo $EPS_Q0'>'$EPS_Q1 | bc -l) -eq 1 ] \
     && [ $(echo $EPS_Q1'>'$EPS_Q2 | bc -l) -eq 1 ]; then
     CONDITION="EPS連三季增加"
     say -v "Mei-Jia" \
-	${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
-	"[[slnc 400]]" $QUOTE "[[slnc 300]]" $CONDITION
+	"[[slnc 200]]" $QUOTE "[[slnc 300]]" $CONDITION
 fi
 
 # be aware the usage

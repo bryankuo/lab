@@ -62,12 +62,14 @@ while true; do
 		${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
 		"[[slnc 400]]" $DEAL \
 		"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	    read -p "Press enter to continue..."
 	elif [ $((O_SPEC/(2**1))) -eq 1 ] && [ $((O_SPEC%(2**1))) -eq 0 ]; then
 	    CONDITION="突破壓力"
 	    say -v "Mei-Jia" \
 		${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
 		"[[slnc 400]]" $DEAL \
 		"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	    read -p "Press enter to continue..."
 	# elif [ $((O_SPEC/(2**2))) -eq 1 ] && [ $((O_SPEC%(2**2))) -eq 0 ]; then
 	    # CONDITION="跌破52週新低"
 	    # say -v "Mei-Jia" \
@@ -80,6 +82,7 @@ while true; do
 		${TICKER:0:1} ${TICKER:1:1} ${TICKER:2:1} ${TICKER:3:1} \
 		"[[slnc 400]]" $DEAL \
 		"[[slnc 300]]條件" $O_SPEC "[[slnc 200]]" $CONDITION
+	    read -p "Press enter to continue..."
 	# elif [ $((O_SPEC/(2**4))) -eq 1 ] && [ $((O_SPEC%(2**4))) -eq 0 ]; then
 	    # CONDITION="突破52週新高"
 	    # say -v "Mei-Jia" \

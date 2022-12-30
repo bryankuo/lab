@@ -34,7 +34,7 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     frame = requests.get(url).json()
     # print(json.dumps(frame, indent=1))
     yesterday = float(frame["msgArray"][0]["y"])
-    # // TODO:
+    # // FIXME:
     #   File "/Users/chengchihkuo/github/python/quote.py", line 37, in <module>
     # opn = float(frame["msgArray"][0]["o"])
     # ValueError: could not convert string to float: '-'
@@ -53,8 +53,13 @@ if ( list_type == "tse_" or list_type == "otc_" ):
 
     if ( frame["msgArray"][0]["pz"] != '-' ):
         # normal
-        strike = float(frame["msgArray"][0]["z"])
-        strike_s = "{:<04.2f}".format(strike)
+        if ( frame["msgArray"][0]["z"].isnumeric() ):
+            strike = float(frame["msgArray"][0]["z"]) # // FIXME:
+            strike_s = "{:<04.2f}".format(strike)
+        else:
+            strike_s = frame["msgArray"][0]["pz"] \
+                    + frame["msgArray"][0]["z"]   \
+                    + frame["msgArray"][0]["o"]
     else:
         strike_s = frame["msgArray"][0]["pz"]
         # print(str(len(bids))+','+str(len(asks)))

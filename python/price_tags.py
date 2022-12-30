@@ -45,7 +45,8 @@ gb8_trend = "https://www.wantgoo.com/stock/public-bank/trend"
 
 individual = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGK_F.djhtm"
 
-margin_b = "https://tw.stock.yahoo.com/margin-balance"
+margin_b  = "https://tw.stock.yahoo.com/margin-balance"
+vol_ratio = "https://tw.stock.yahoo.com/trading-vol-ratio"
 
 brokage_v = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm"
 
@@ -125,21 +126,25 @@ weekly_bases = [ \
 
 doji = "http://localhost"
 
-urls = [ \
-    # regional
+'''
+daily_bases  = [ \
     margin_b, \
     block_pair_trade, \
-    # fdi, \
-    fbs, \
-    # fund_d, \
-    fund, \
-    # re_detail, \
-    retail, \
-    individual, \
-    # b8, \
-    government_bs, \
-    gb8_trend, \
-    brokage_v, \
+]
+'''
+
+urls = [ \
+    # regional
+    margin_b,         \
+    vol_ratio,        \
+    block_pair_trade, \
+    fbs,              \
+    fund,             \
+    retail,           \
+    individual,       \
+    government_bs,    \
+    gb8_trend,        \
+    brokage_v,        \
 
     # commodities
     crb_idx, \
@@ -194,10 +199,11 @@ for url in urls:
     webbrowser.open(url)
     # datetime.time.sleep(1) // FIXME:
     i += 1
-    if ( i % 10 == 4 ):
+    if ( i % 10 == 3 ):
         print('\a') # beep
         input("Press Enter to continue...")
 
 # daily
+# // TODO: announcement_today.py
 
 sys.exit(0)

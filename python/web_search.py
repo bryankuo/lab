@@ -51,6 +51,9 @@ comparison = "https://mopsfin.twse.com.tw"
 #https://goodinfo.tw/tw/StockFinCompare.asp?STOCK0=台積電&STOCK1=聯電&STOCK2=世界&STOCK3=旺宏&STOCK4=&RPT_CAT=BS_M_YEAR&RPT_TYPE=NM&selYEAR=2021&selQUAR=4&btnQry=%C2%A0查%C2%A0%C2%A0%C2%A0詢%C2%A0
 # https://mopsfin.twse.com.tw
 
+# // TODO: business daily
+# https://wealth.businessweekly.com.tw/m/HSearchResult.aspx?keyword=伊朗
+
 # google news search
 # unicode encoding ( https://bit.ly/3syqeyC )
 google_news_past_year = "https://www.google.com/search?q=" + \
@@ -76,12 +79,18 @@ google_index_components = "https://www.google.com/search?q=" + \
     "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
     "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
     "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
-
+'''
 google_map = "https://www.google.com/search?q=" + \
     quote("google map")+"+"+quote(co_name)+"+"+ \
     "&client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:"  + \
     "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
     "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
+'''
+
+google_map = "https://www.google.com/maps?client=safari&rls=en"        + \
+    "&q=google+map+"+co_addr                                           + \
+    "&oe=UTF-8&um=1&ie=UTF-8&sa=X"                                     + \
+    "&ved=2ahUKEwiZzvT-4JP8AhVhUfUHHcALBtAQ_AUoAXoECAEQAw"
 
 google_pledge = "https://www.google.com/search?q=" + \
     ticker+"+"+quote(co_name)+"+"+quote("董監質設異動公告")+ \
@@ -115,7 +124,7 @@ volume_profile = \
     "https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm?id=" \
     + ticker
 
-tech_chart = "https://invest.cnyes.com/twstock/TWS/" + ticker + "/technical"
+# tech_chart = "https://invest.cnyes.com/twstock/TWS/" + ticker + "/technical"
 # support 2,4 but 5
 # https://invest.cnyes.com/twstock/TWS/6278/technical#fixed
 
@@ -251,7 +260,7 @@ urls = [ \
     chinai, \
     overseasi, \
     ticker_news, \
-    volume_profile, \
+    # volume_profile, \
     revenue_yoy, \
     eps_table, \
     google_news_past_year, \
@@ -260,13 +269,13 @@ urls = [ \
     mops_news, \
 
     # technical
-    tech_chart, \
+    # tech_chart, \
     hinet_technicals, \
 
     # chips
     # institution_holdings, \
     holdings, \
-    trust, \
+    # trust, \
     # government_banks, \
     warrant, \
     gdr, \
@@ -295,9 +304,18 @@ for url in urls:
         input("Press Enter to continue...")
 
 sys.exit(0)
+# (成分) 調整名單
+
+# 產銷組合
+
+# 全文
 
 # 發言人、代理發言人、重要營運主管(如:執行長、營運長、行銷長及策略長等)、財務主管、會計主管、公司治理主管、資訊安全長、研發主管、內部稽核主管或訴訟及非訟代理人
 # 辭任 辭職 離職 退休 新任
 # 處分
 # 董監質設異動公告
-# 可轉債 認股權證
+# 可轉債 認股權證 現金增資
+# 本次交易 庫藏股
+
+# // TODO: 跳出總公司/工廠 google map
+# https://maps.google.com/maps?client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:1639210457623&biw=1437&bih=703&dpr=1&q=google+map+鈺太科技股份有限公司&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjMmNzW8YT8AhWznFYBHe09AhEQ0pQJegQIBhAE

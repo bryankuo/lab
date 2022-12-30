@@ -45,7 +45,6 @@ try:
     cb_issue = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('th')[32].text
     cb = has_cb + cb_issue
-    # say(cb, "Mei-Jia")
 
     corp_title = soup.findAll('table')[1] \
         .find_all('tr')[1].find_all('td')[0].text
@@ -61,7 +60,8 @@ try:
     gm = soup.findAll('table')[1] \
         .find_all('tr')[1] \
         .find_all('tr')[1].find_all('td')[1].text
-    # // FIXME: 2330, 2723, 1626
+    # // FIXME: 2330, 2723, 1626, 2724, 5538, 6666, 6415, 6550, 5284
+    #
     cap = float( int( soup.findAll('table')[1] \
         .find_all('tr')[6] \
         .find_all('tr')[1].find_all('td')[0].text.strip() \

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # python3 chips.py [ticker] [type]
+# caller:
 
 import sys, requests, time, webbrowser
 import urllib.request
@@ -46,9 +47,10 @@ institutional = \
 holdings = \
     "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcj/zcj_"+ticker+".djhtm"
 
-fund = \
+trust = \
     "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zc0/zc07/zc07_"+ticker+".djhtm"
 
+# type 2,4,5 apply
 g8bank = "https://histock.tw/stock/broker.aspx?no="+ticker
 branch = "https://histock.tw/stock/branch.aspx?no="+ticker
 
@@ -73,7 +75,7 @@ urls = [ \
     institutional, \
     g8bank, \
     holdings, \
-    fund, \
+    trust, \
     histock_chips, \
     branch ]
 
@@ -82,7 +84,7 @@ for url in urls:
     webbrowser.open(url)
     time.sleep(1)
     i += 1
-    if ( i % 10 == 9 ):
+    if ( i % 10 == 3 ):
         print('\a') # beep
         input("Press Enter to continue...")
 
