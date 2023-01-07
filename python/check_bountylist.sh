@@ -1,6 +1,12 @@
 #!/bin/bash
 
-LIST="datafiles/bountylist.txt"
+if [ "$#" -eq 1 ]
+then
+    LIST="$1"
+else
+    LIST="datafiles/bountylist.txt"
+fi
+
 index=1 # calc start index, while txt/calc not sync
 count=0
 n_add=0

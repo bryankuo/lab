@@ -38,6 +38,7 @@ while true; do
     index=$(($index+1))
     count=$(($count+1))
     if [ $count -ge $LEN ] || [ $index -gt $NLINES ] ; then
+	# // TODO: enhance to allow adding items during processing
 	echo "finish $count items."
 	say -v "Mei-Jia" "完成 $count 個項目"
 	break

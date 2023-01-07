@@ -57,9 +57,7 @@ if ( list_type == "tse_" or list_type == "otc_" ):
             strike = float(frame["msgArray"][0]["z"]) # // FIXME:
             strike_s = "{:<04.2f}".format(strike)
         else:
-            strike_s = frame["msgArray"][0]["pz"] \
-                    + frame["msgArray"][0]["z"]   \
-                    + frame["msgArray"][0]["o"]
+            strike_s = close_s                        # // test
     else:
         strike_s = frame["msgArray"][0]["pz"]
         # print(str(len(bids))+','+str(len(asks)))

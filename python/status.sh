@@ -10,7 +10,7 @@ OUTF3=datafiles/eps_$INFILE.$DATE
 
 echo "time: " $TIMESTAMP
 
-DAILY=1
+DAILY=0
 if [[ $DAILY -eq 1 ]]
 then
     python3 looping.py $INPATH "activity" $OUTF0
@@ -22,7 +22,7 @@ then
     python3 launch.py $OUTF2
 fi
 
-EPS=0
+EPS=1
 if [[ $EPS -eq 1 ]]
 then
     echo "make sure safari dev. remote automation is on..."

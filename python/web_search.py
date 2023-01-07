@@ -88,7 +88,7 @@ google_map = "https://www.google.com/search?q=" + \
 '''
 
 google_map = "https://www.google.com/maps?client=safari&rls=en"        + \
-    "&q=google+map+"+co_addr                                           + \
+    "&q=google+map+"+quote(co_addr)                                           + \
     "&oe=UTF-8&um=1&ie=UTF-8&sa=X"                                     + \
     "&ved=2ahUKEwiZzvT-4JP8AhVhUfUHHcALBtAQ_AUoAXoECAEQAw"
 
@@ -224,6 +224,8 @@ warrant = "https://www.cmoney.tw/finance/warrantsbystock.aspx?stock="+ticker
 # // TODO: has option, future, compare the table
 # https://www.taifex.com.tw/cht/2/stockLists
 
+histock_future = "https://histock.tw/stock/future.aspx?no="+ticker
+
 gdr = "https://www.google.com/search?q="+quote(co_name)+"+gdr&client=safari&rls=en&ei=a_0fY9-sN8n0-QagpqSABg&ved=0ahUKEwifjp-F7pD6AhVJet4KHSATCWAQ4dUDCA0&uact=5&oq=力晶+gdr&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIHCAAQHhCiBDIHCAAQHhCiBDIHCAAQHhCiBDoKCAAQHhCiBBCwAzoICAAQogQQsAM6BQghEKABOgQIABAeOgYIABAeEA86CAgAEB4QDxAIOgUIABCABDoOCC4QsQMQxwEQ0QMQ1AI6CAgAELEDEIMBOgsILhCABBDHARCvAToRCC4QgAQQsQMQgwEQxwEQ0QM6CAgAEIAEELEDOgsILhCABBCxAxDUAjoOCC4QgAQQsQMQgwEQ1AI6CwgAEIAEELEDEIMBOggILhCABBCxAzoLCC4QgAQQsQMQgwE6BQgAELEDOhEILhCABBCxAxCDARDHARCvAToUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguELEDEIMBENQCOgUILhCABDoOCC4QgAQQsQMQxwEQrwE6CgguEMcBENEDEEM6EAguELEDEIMBEMcBENEDEEM6BAgAEEM6CgguEMcBEK8BEEM6CAguEIAEENQCOggIABAeEAQQCjoGCAAQHhAESgQIQRgBSgQIRhgAUOUHWOJ9YOR_aBFwAHgBgAFiiAHhD5IBAjM1mAEAoAEBsAEAyAEDwAEB&sclient=gws-wiz"
 
 dr  = "https://www.cnyes.com/archive/twstock/dr/"+ticker+".htm"
@@ -278,6 +280,7 @@ urls = [ \
     # trust, \
     # government_banks, \
     warrant, \
+    histock_future, \
     gdr, \
     dr, \
     convertible_bond, \
@@ -316,6 +319,13 @@ sys.exit(0)
 # 董監質設異動公告
 # 可轉債 認股權證 現金增資
 # 本次交易 庫藏股
+# 董監改選
 
 # // TODO: 跳出總公司/工廠 google map
 # https://maps.google.com/maps?client=safari&rls=en&sxsrf=AOaemvKTMQonLWeFKMTZV9EVT1oZ0KIqdw:1639210457623&biw=1437&bih=703&dpr=1&q=google+map+鈺太科技股份有限公司&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjMmNzW8YT8AhWznFYBHe09AhEQ0pQJegQIBhAE
+
+# https://web.pcc.gov.tw/prkms/tender/common/agent/indexTenderAgent
+# selenium 得標廠商統編
+
+# 得標
+# 最高行政法院
