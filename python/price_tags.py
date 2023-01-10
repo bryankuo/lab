@@ -87,6 +87,8 @@ nyse_tick_idx = "https://www.investing.com/indices/nyse-tick-index-chart"
 sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=email&utm_campaign=send_market_spotlight_earnings_calls"
 trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"
 
+tsm = "https://www.investing.com/equities/taiwan-semicond.manufacturing-co-candlestick"
+
 curr_date = date.today()
 if datetime.today().isoweekday() == 6:
     effective_date = date.today() + relativedelta(days=-1)
@@ -145,6 +147,8 @@ urls = [ \
     government_bs,    \
     gb8_trend,        \
     brokage_v,        \
+    tsm,              \
+
 
     # commodities
     crb_idx, \
