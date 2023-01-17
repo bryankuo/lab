@@ -88,6 +88,11 @@ try:
     browser.switch_to.window(window_name=window_name1)
     browser.close() # one tab
     '''
+    # how to find a link: shorturl.at/AIJPX
+    # element = browser.find_element(By.LINK_TEXT, '列印 / HTML')
+    # element = browser.find_element(By.PARTIAL_LINK_TEXT, 'HTML')
+    #
+    # how to select list item @see qfii.py
 
 except (SessionNotCreatedException):
     print('turn on safari remote option.')
