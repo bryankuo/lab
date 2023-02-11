@@ -117,6 +117,8 @@ google_pledge = "https://www.google.com/search?q=" + \
     "1639210457623&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjXi6foptv0AhWC" + \
     "JaYKHcRACmYQ_AUoAXoECAEQAw&biw=1437&bih=703&dpr=1"
 
+fiscal_calendar = "https://markets.businessinsider.com/earnings-calendar"
+
 weekly_bases = [ \
     gtrend, \
     twse_calendar, \
@@ -166,6 +168,7 @@ urls = [ \
     nyse_tick_idx, \
     sdog, \
     trans_idx, \
+    fiscal_calendar, \
 
     twd_forex, \
     jpy_forex, \
