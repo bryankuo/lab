@@ -48,9 +48,11 @@ mm   = datetime.today().strftime('%m')
 dd   = datetime.today().strftime('%d')
 # print( len(sys.argv) )
 is_from_net = False
+DIR0="datafiles/taiex/qfbs"
+
 if ( len(sys.argv) < 2 ):
     is_from_net = True
-    ofname = '外資投信同步買賣超.' + \
+    ofname = DIR0 + "/" + '外資投信同步買賣超.' + \
         datetime.today().strftime('%Y%m%d') + '.txt'
 elif ( 3 == len(sys.argv) ):
     if ( sys.argv[2] == "0" ):
@@ -59,7 +61,7 @@ elif ( 3 == len(sys.argv) ):
     elif ( sys.argv[2] == "1" ):
         is_from_net = False
         ofname = sys.argv[1]
-        print(ofname)
+        # print(ofname)
     else:
         print("usage:")
 elif ( 6 == len(sys.argv) ):
@@ -72,12 +74,12 @@ elif ( 6 == len(sys.argv) ):
     yyyy  = sys.argv[3]
     mm    = sys.argv[4]
     dd    = sys.argv[5]
-    ofname = '外資投信同步買賣超.' + yyyy + mm + dd + '.txt'
-    # print(ofname)
+    # ofname = '外資投信同步買賣超.' + yyyy + mm + dd + '.txt'
+    ofname = sys.argv[1]
 else:
     is_from_net = False
     ofname = sys.argv[1]
-    # // FIXME: net, date,file,output combination
+    # // TODO: net, date,file,output combination
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
@@ -101,11 +103,11 @@ try:
             Select(WebDriverWait(browser, 1)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='mm']"))))   \
-                .select_by_value(mm.strip("0"))
-            Select(WebDriverWait(browser, 1)                                \
+                .select_by_value(mm.lstrip("0"))
+            Select(WebDriverWait(browser, 3)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='dd']"))))   \
-                .select_by_value(dd.strip("0"))
+                .select_by_value(dd.lstrip("0"))
 
             browser.find_element_by_link_text("查詢").click()
 
@@ -117,7 +119,8 @@ try:
 
             page1 = browser.page_source
             soup1 = BeautifulSoup(page1, 'html.parser')
-            qname = "qfii."+yyyy+mm+dd+".html"
+            # dir must be identical to qfbs.sh
+            qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
             with open(qname, "w") as outfile1:
                 outfile1.write(soup1.prettify())
                 outfile1.close()
@@ -131,11 +134,11 @@ try:
             Select(WebDriverWait(browser, 1)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='mm']"))))   \
-                .select_by_value(mm.strip("0"))
+                .select_by_value(mm.lstrip("0"))
             Select(WebDriverWait(browser, 1)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='dd']"))))   \
-                .select_by_value(dd.strip("0"))
+                .select_by_value(dd.lstrip("0"))
             browser.find_element_by_link_text("查詢").click()
             Select(WebDriverWait(browser, 3)                               \
                 .until(EC.element_to_be_clickable(                          \
@@ -143,19 +146,18 @@ try:
                 .select_by_value('-1')
             page2 = browser.page_source
             soup2 = BeautifulSoup(page2, 'html.parser')
-            fname = "fund."+yyyy+mm+dd+".html"
+            fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
             with open(fname, "w") as outfile2:
                 outfile2.write(soup2.prettify())
                 outfile2.close()
             browser.quit()
-            # // TODO: fetch_pages(yyyy, mm, dd) # output (soup1, soup2)
         else:
             print("from file...")
-            qname = "qfii."+yyyy+mm+dd+".html"
+            qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
             print(qname)
             with open(qname) as q:
                 soup1 = BeautifulSoup(q, 'html.parser')
-            fname = "fund."+yyyy+mm+dd+".html"
+            fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
             print(fname)
             with open(fname) as r:
                 soup2 = BeautifulSoup(r, 'html.parser')
@@ -174,9 +176,9 @@ try:
                 .find_all("tr"))
         # print("n_rec1: " + str(n_rec1))
 
-        q_all  = "list1."  + yyyy + mm + dd + '.txt'
-        q_buy  = "list1b." + yyyy + mm + dd + '.txt'
-        q_sell = "list1s." + yyyy + mm + dd + '.txt'
+        q_all  = DIR0 + "/" + "list1."  + yyyy + mm + dd + '.txt'
+        q_buy  = DIR0 + "/" + "list1b." + yyyy + mm + dd + '.txt'
+        q_sell = DIR0 + "/" + "list1s." + yyyy + mm + dd + '.txt'
         with open(q_all, 'wt') as out0, \
             open(q_buy, 'wt') as out1, \
             open(q_sell, 'wt') as out2:
@@ -230,9 +232,9 @@ try:
                 .find_all("tbody")[0]                                   \
                 .find_all("tr"))
 
-        f_all  = "list2."  + yyyy + mm + dd + '.txt'
-        f_buy  = "list2b." + yyyy + mm + dd + '.txt'
-        f_sell = "list2s." + yyyy + mm + dd + '.txt' #// TODO: 'list2' to 'fund'
+        f_all  = DIR0 + "/" + "list2."  + yyyy + mm + dd + '.txt'
+        f_buy  = DIR0 + "/" + "list2b." + yyyy + mm + dd + '.txt'
+        f_sell = DIR0 + "/" + "list2s." + yyyy + mm + dd + '.txt' #// TODO: 'list2' to 'fund'
 
         with open(f_all, 'wt') as out0, \
             open(f_buy, 'wt') as out1, \
@@ -299,14 +301,14 @@ try:
         # print(timedelta(seconds=end-start))
 
         # start = timer()
-        print("union...")
+        # print("union...")
         # union without repition @see shorturl.at/kSVW8
         u_f = list( set(t_list1b) | set(t_list1s) | set(t_list2b) | set(t_list2s) )
         # end = timer()
         # print(timedelta(seconds=end-start))
 
         # start = timer()
-        print("strip None...")
+        # print("strip None...")
         t_f = [i for i in u_f if i is not None]
         # with open("t_f.txt", 'wt') as ofile:
         #    ofile.write(pprint(t_f))
@@ -316,13 +318,13 @@ try:
         # print(timedelta(seconds=end-start))
 
         # start = timer()
-        print("transpose back...")
+        # print("transpose back...")
         tab1 = numpy.transpose(t_f)
         # end = timer()
         # print(timedelta(seconds=end-start))
 
         # start = timer()
-        print("to list...")
+        # print("to list...")
         for i in range(0, len(tab1)):
             lst = []; lst.append(tab1[i])
             full_tab.append(lst)
@@ -332,15 +334,14 @@ try:
         # assert all ticker in place
 
         # start = timer()
-        print("append name column...")
-        # add 'name' column
+        # print("append name column...")
         for i in range(0, len(full_tab)):
             full_tab[i].append("") # '' "" None
         # end = timer()
         # print(timedelta(seconds=end-start))
 
         # start = timer()
-        print("add 'qfii buy' column with default value...")
+        # print("add 'qfii buy' column with default value...")
         for i in range(0, len(full_tab)):
             full_tab[i].append(0)
         # update qfii buy numbers
@@ -359,7 +360,7 @@ try:
         # print("add 'qfii sell' column with default value...")
         for i in range(0, len(full_tab)):
             full_tab[i].append(0)
-        print("update qfii sell numbers...")
+        # print("update qfii sell numbers...")
         for i in range(0, len(l1_s)):
             for j in range(0, len(full_tab)):
                 if l1_s[i][0] in full_tab[j]:
@@ -374,7 +375,7 @@ try:
         # print("add 'fund buy' column with default value...")
         for i in range(0, len(full_tab)):
             full_tab[i].append(0)
-        print("update fund buy numbers...")
+        # print("update fund buy numbers...")
         for i in range(0, len(l2_b)):
             for j in range(0, len(full_tab)):
                 if l2_b[i][0] in full_tab[j]:
@@ -391,7 +392,7 @@ try:
         # print("add 'fund sell' column with default value...")
         for i in range(0, len(full_tab)):
             full_tab[i].append(0)
-        print("update fund sell numbers...")
+        # print("update fund sell numbers...")
         for i in range(0, len(l2_s)):
             for j in range(0, len(full_tab)):
                 if l2_s[i][0] in full_tab[j]:
@@ -427,7 +428,7 @@ try:
         return full_tab
 
     # start = timer()
-    print("fetching...")
+    print("fetching..."+yyyy+mm+dd)
     soups = fetch()
     # print(len(tests))
     # print(type(tests))
@@ -446,7 +447,7 @@ try:
     end = timer()
     print(timedelta(seconds=end-start))
 
-    print("merging and output to file...")
+    print("merging, highlight, and output to file..."+ofname)
     # start = timer()
     tab = merge12(list1b, list1s, list2b, list2s)
     with open(ofname, 'wt') as ofile:
