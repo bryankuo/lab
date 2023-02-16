@@ -49,10 +49,13 @@ dd   = datetime.today().strftime('%d')
 # print( len(sys.argv) )
 is_from_net = False
 DIR0="datafiles/taiex/qfbs"
+DEFAULT_NAME0="外資投信同步買賣超"
+DEFAULT_NAME1="外資投信同買"
+DEFAULT_NAME2="外資投信同賣"
 
 if ( len(sys.argv) < 2 ):
     is_from_net = True
-    ofname = DIR0 + "/" + '外資投信同步買賣超.' + \
+    ofname = DIR0 + "/" + DEFAULT_NAME0 + '.' + \
         datetime.today().strftime('%Y%m%d') + '.txt'
 elif ( 3 == len(sys.argv) ):
     if ( sys.argv[2] == "0" ):
@@ -74,7 +77,6 @@ elif ( 6 == len(sys.argv) ):
     yyyy  = sys.argv[3]
     mm    = sys.argv[4]
     dd    = sys.argv[5]
-    # ofname = '外資投信同步買賣超.' + yyyy + mm + dd + '.txt'
     ofname = sys.argv[1]
 else:
     is_from_net = False
@@ -94,17 +96,16 @@ try:
             fund = "https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html"
 
             browser.get(qfii)
-
+            time.sleep(1)
             Select(WebDriverWait(browser, 1)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='yy']"))))   \
                 .select_by_value(yyyy)
-
             Select(WebDriverWait(browser, 1)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='mm']"))))   \
                 .select_by_value(mm.lstrip("0"))
-            Select(WebDriverWait(browser, 3)                                \
+            Select(WebDriverWait(browser, 2)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='dd']"))))   \
                 .select_by_value(dd.lstrip("0"))
@@ -140,7 +141,7 @@ try:
                     (By.XPATH,"//select[@name='dd']"))))   \
                 .select_by_value(dd.lstrip("0"))
             browser.find_element_by_link_text("查詢").click()
-            Select(WebDriverWait(browser, 3)                               \
+            Select(WebDriverWait(browser, 2)                               \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='report-table_length']"))))   \
                 .select_by_value('-1')
@@ -292,7 +293,7 @@ try:
         l2s = l2_s.copy()
 
         # start = timer()
-        print("transpose...")
+        # print("transpose...")
         t_list1b = numpy.transpose(l1b)[0]
         t_list1s = numpy.transpose(l1s)[0]
         t_list2b = numpy.transpose(l2b)[0]
@@ -403,37 +404,50 @@ try:
         # end = timer()
         # print(timedelta(seconds=end-start))
 
-        # start = timer()
-        # print("hightlight 'b2','s2'...")
         for i in range(0, len(full_tab)):
             full_tab[i].append(0)
             full_tab[i].append(0)
         print("highlight those qfii and fund go in the same direction...")
-        for i in range(0, len(full_tab)):
-            if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
-                full_tab[i][6] = 1
-            if ( int(full_tab[i][3]) < 0 ) and ( int(full_tab[i][5]) < 0 ):
-                full_tab[i][7] = 1
-            rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}" \
-                .format( \
-                full_tab[i][0], full_tab[i][1], \
-                full_tab[i][2], full_tab[i][3], \
-                full_tab[i][4], full_tab[i][5], \
-                full_tab[i][6], full_tab[i][7]  )
-            # print(rec)
 
-        # end = timer()
-        # print(timedelta(seconds=end-start))
+        both_buy  = DIR0 + "/" + DEFAULT_NAME1 + "."  + yyyy + mm + dd + '.txt'
+        both_sell = DIR0 + "/" + DEFAULT_NAME2 + "."  + yyyy + mm + dd + '.txt'
+        with open(both_buy, 'wt') as outf1, \
+            open(both_sell, 'wt') as outf2:
 
+            for i in range(0, len(full_tab)):
+                if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
+                    full_tab[i][6] = 1
+                    rec = "{0}:{1}:{2}:{3}:{4}:{5}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], \
+                        full_tab[i][2], full_tab[i][3], \
+                        full_tab[i][4], full_tab[i][5] )
+                    outf1.write(rec +"\n")
+
+                if ( int(full_tab[i][3]) < 0 ) and ( int(full_tab[i][5]) < 0 ):
+                    full_tab[i][7] = 1
+                    rec = "{0}:{1}:{2}:{3}:{4}:{5}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], \
+                        full_tab[i][2], full_tab[i][3], \
+                        full_tab[i][4], full_tab[i][5] )
+                    outf2.write(rec +"\n")
+
+                rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}" \
+                    .format( \
+                    full_tab[i][0], full_tab[i][1], \
+                    full_tab[i][2], full_tab[i][3], \
+                    full_tab[i][4], full_tab[i][5], \
+                    full_tab[i][6], full_tab[i][7]  )
+
+        outf1.close(); outf2.close()
         return full_tab
 
-    # start = timer()
+    start = timer()
     print("fetching..."+yyyy+mm+dd)
     soups = fetch()
-    # print(len(tests))
-    # print(type(tests))
-    # end = timer()
-    #print(timedelta(seconds=end-start))
+    end = timer()
+    print(timedelta(seconds=end-start))
 
     start = timer()
     print("qfii processing...")
@@ -447,11 +461,9 @@ try:
     end = timer()
     print(timedelta(seconds=end-start))
 
-    print("merging, highlight, and output to file..."+ofname)
-    # start = timer()
+    print("merging, highlight, and output to 3 files...")
     tab = merge12(list1b, list1s, list2b, list2s)
     with open(ofname, 'wt') as ofile:
-        # ofile.write(pprint(tab))
         n_col = len(tab[0])
         for i in range(0, len(tab)):
             tkr  = tab[i][0]
@@ -466,8 +478,6 @@ try:
                     str(qb)+":"+str(qs)+":"+str(fb)+":"+str(fs)+":"+ \
                     str(b2)+":"+str(s2)+"\n")
         ofile.close()
-    # end = timer()
-    # print(timedelta(seconds=end-start))
     msg = "finish buying "+str(n1)+", and selling "+str(n2)+"."
     say(msg)
 
