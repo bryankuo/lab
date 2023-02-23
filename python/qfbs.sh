@@ -13,6 +13,12 @@ MN=$2
 DAY=$3
 ORIGIN=$4
 
+if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -eq 1 ]]; then
+    LAST_TRADE_DAY=$(date -v-3d +%Y%m%d)
+else
+    LAST_TRADE_DAY=$(date -v-1d +%Y%m%d)
+fi
+
 DATE=$YR$MN$DAY
 # @see https://stackoverflow.com/a/46024878
 if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -gt 5 ]]; then
@@ -41,6 +47,8 @@ OUTF2B="$DIR0/$DEFAULT_NAME1.$DATE.txt"
 OUTF2S="$DIR0/$DEFAULT_NAME2.$DATE.txt"
 O2B="$DIR0/$DEFAULT_NAME1.$DATE.ods"
 O2S="$DIR0/$DEFAULT_NAME2.$DATE.ods"
+OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
+OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 
 if [ $ORIGIN -eq 0 ]; then
     rm -vf "$DIR0/qfii.$DATE.html"
@@ -95,12 +103,26 @@ read -p "Press enter to continue $O2S ..."
 "$O2S" \
 --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
 
-# generate 14 files
-ls -ltr $DIR0"/"*.txt $DIR0"/"*.html $DIR0"/"*.ods  | tail -n 14;
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S
 
-# // TODO: compare with yesterday
-# meld datafiles/taiex/qfbs/外資投信同賣.20230213.txt datafiles/taiex/qfbs/外資投信同賣.20230214.txt
-# meld datafiles/taiex/qfbs/外資投信同賣.20230213.txt datafiles/taiex/qfbs/外資投信同賣.20230214.txt
+tail -n +2 $OUTF2B > temp; awk -F':' '{print $1}' temp | sort > $OUTF2B_SORTED; cat $OUTF2B_SORTED
+rm -f temp
+tail -n +2 $OUTF2S > temp; awk -F':' '{print $1}' temp | sort > $OUTF2S_SORTED; cat $OUTF2S_SORTED
+rm -f temp
+
+# @see https://stackoverflow.com/a/26619069
+# echo "new buy...";
+# comm -13 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt;
+# echo "buy 2 days...";
+# comm -12 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt;
+# echo "new sell...";
+# comm -13 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt;
+# echo "sell 2 days...";
+# comm -12 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt;
+./check_2b2s.sh $LAST_TRADE_DAY $DATE
+
+# generate 16 files
+ls -ltr $DIR0"/"*.txt $DIR0"/"*.html $DIR0"/"*.ods  | tail -n 16;
+
 exit 0

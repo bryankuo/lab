@@ -52,9 +52,8 @@ trust = \
 
 # type 2,4,5 apply
 g8bank = "https://histock.tw/stock/broker.aspx?no="+ticker
-branch = "https://histock.tw/stock/branch.aspx?no="+ticker
 
-# histock_chips = "https://histock.tw/stock/chips.aspx?no="+ticker
+branch = "https://histock.tw/stock/branch.aspx?no="+ticker
 histock_chips = "https://histock.tw/stock/branch.aspx?no="+ticker+"&day=7"
 
 share_outstanding = \
@@ -69,15 +68,15 @@ urls = [ \
     monthly_turnaround, \
     margin, \
     share_outstanding, \
-    ta, \
+    # ta, \
     # histock_perf, \
     vol_profile, \
     institutional, \
     g8bank, \
     holdings, \
     trust, \
-    histock_chips, \
-    branch ]
+    histock_chips ]
+    # branch ]
 
 i = 0
 for url in urls:

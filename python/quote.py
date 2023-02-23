@@ -39,7 +39,6 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     # opn = float(frame["msgArray"][0]["o"])
     # ValueError: could not convert string to float: '-'
     opn = float(frame["msgArray"][0]["o"])
-
     high = float(frame["msgArray"][0]["h"])
     low = float(frame["msgArray"][0]["l"])
     close_s = frame["msgArray"][0]["z"]
@@ -110,3 +109,5 @@ olist = [ strike_s ]
 print(olist)
 
 sys.exit(0)
+
+# // TODO: second source, eye on close
