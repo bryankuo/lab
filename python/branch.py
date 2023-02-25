@@ -176,6 +176,29 @@ sys.exit(0)
 # https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=8450&b=0038003400350042
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
+
+# 個股單一券商歷史明細 7 sources so far
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2618&BHID=9200&b=9268
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2618&BHID=9200&b=9217
+# 近60日
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2618&BHID=9200&b=9217&C=3
+# 換ticker
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?a=3558&BHID=9200&b=9217&C=3
+# 查日期
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+# second source
+# http://tcfhcsec.moneydj.com/z/zc/zco/zco0/zco0.djhtm?a=3413&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+# third source
+# http://jsjustweb.jihsun.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+# fourth source
+# https://moneydj.emega.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+# fifth source
+# https://just2.entrust.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+# sixth source
+# https://stockchannelnew.sinotrade.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+# seventh source
+# https://concords.moneydj.com/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+
 broker_group = [ \
     # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9200&b=9268
     9200, 9268, \
@@ -216,5 +239,6 @@ url = "https://www.google.com/search?client=safari&rls=en&q=" + \
     response[0]["lat"] + "," + response[0]["lon"] + "&ie=UTF-8&oe=UTF-8"
 webbrowser.open(url)
 '''
-
+# // TODO: https://www.twfile.com/Lm.aspx?q=臺北市大安區仁愛路4段296號24樓
+# list companies at this address
 sys.exit(0)

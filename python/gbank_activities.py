@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 gbank_activities.py [today|5|20|60|YTD]
+# python3 gbank_activities.py [ticker] [today|5|20|60|YTD]
 # get government bank activities
 # return 0: success
 
@@ -10,10 +10,20 @@ from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 from pprint import pprint
 
+
 ticker = sys.argv[1]
-# source 1
+# source 1, term "上市官股券商動向", in total
 # http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app=
 url = "http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app="
+
+'''
+https://histock.tw/stock/broker.aspx?no=1217
+broker8 = 'https://histock.tw/stock/broker8.aspx'
+https://www.wantgoo.com/stock/public-bank/buy-sell
+https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx
+https://www.nta.gov.tw/singlehtml/67?cntId=nta_956_67
+'''
+
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 table = soup.find_all("table", {})
@@ -60,12 +70,5 @@ print( ticker + " quote: " + "{:>5.02f}".format(quote) + \
     "{:>5.02f}".format(high52)+ \
         " (" + "{:>5.02f}".format(p_high52) + "%) ")
 
-'''
-https://histock.tw/stock/broker.aspx?no=1217
-broker8 = 'https://histock.tw/stock/broker8.aspx'
-https://www.wantgoo.com/stock/public-bank/buy-sell
-https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx
-https://www.nta.gov.tw/singlehtml/67?cntId=nta_956_67
-'''
 
 sys.exit(0)
