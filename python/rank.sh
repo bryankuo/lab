@@ -51,19 +51,21 @@ if false; then
     fi
 fi
 
-if false; then
+if true; then
     echo "scrap t50 components..."
-    python3 t50_component.py > $OUTF2
+    # python3 t50_component.py > $OUTF2
+    python3 t50_component.py $DATE #$OUTF2
     num_file=$(ls -lt $OUTF2 | wc -l | xargs | cut -d " " -f1)
     num_lines=$(wc -l $OUTF2 | xargs | cut -d " " -f1)
     # echo $num_file
     # echo $num_lines
-    if [[ $num_file -eq 1 ]] && [[ $num_lines -eq 50 ]]; then
+    if [[ $num_file -eq 1 ]] && [[ $num_lines -eq 51 ]]; then
 	echo "done."
     else
 	echo "something wroing,"
     fi
 fi
+exit 0
 
 if false; then
     echo "scrap m100 components..."

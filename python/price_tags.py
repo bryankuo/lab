@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 commo = "https://tradingeconomics.com/commodities"
 copper = "https://www.investing.com/commodities/copper-candlestick"
 crb_idx = "https://www.barchart.com/futures/quotes/BZY00/interactive-chart"
-
+brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
 bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
 us10y = "https://www.marketwatch.com/investing/bond/tmubmusd10y/charts?countrycode=bx"
 
@@ -52,12 +52,88 @@ brokage_v = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm"
 
 twse_pledge = "上市櫃公司董監質設異動公告"
 
+commo = "https://tradingeconomics.com/commodities"
+
+fertilizers = "https://ycharts.com/indicators/fertilizers_index_world_bank"
+potash_f = "https://ca.investing.com/etfs/global-x-fertilizers-potash-candlestick#"
+soybean = "https://www.barchart.com/futures/quotes/ZS*0/technical-chart"
+
+us_wheat = "https://www.investing.com/commodities/us-wheat-candlestick"
+corn = "https://futures.tradingcharts.com/chart/ZC/"
+oats = "https://www.investing.com/commodities/oats-candlestick"
+# palmolive_oil = "http://quote.eastmoney.com/qihuo/pm.html"
+palmolive_oil = "https://www.cnyes.com/futures/html5chart/PLKCON.html"
+coffee = "https://www.barchart.com/futures/quotes/KC*0/interactive-chart"
+
+uranium = "https://tradingeconomics.com/commodity/uranium"
+copper = "https://www.investing.com/commodities/copper-candlestick"
+nickel = "https://www.investing.com/commodities/nickel-candlestick"
+aluminum = "https://markets.businessinsider.com/commodities/aluminum-price"
+platinum = "https://www.cmegroup.com/markets/metals/precious/platinum.html"
+iron_ore = "https://www.marketindex.com.au/iron-ore"
+gold = "https://candlecharts.com/candlestick-chart-look-up/gold-candlestick-chart/"
+brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
+natural_gas = "https://www.tradingview.com/symbols/NYMEX-NG1%21/"
+# rubber = "https://www.indexmundi.com/commodities/?commodity=rubber&months=12"
+rubber = "https://tradingeconomics.com/commodity/rubber#"
+commodities = [ \
+    natural_gas, \
+    rubber, \
+]
+
+nand_flash = "https://www.trendforce.com/price"
+ddr = "https://www.dramexchange.com"
+glass = "https://quote.eastmoney.com/qihuo/FGM.html"
+paper = "https://www.moneydj.com/z/ze/zeq/zeqa_d0190020.djhtm"
+
+bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
+
+doji = "http://localhost"
+
 # because URIs can't contain non-ASCII characters.
 # https://stackoverflow.com/a/6938893
 
-insider_1m = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
+curr_date = date.today()
+if datetime.today().isoweekday() == 6:
+    effective_date = date.today() + relativedelta(days=-1)
+elif datetime.today().isoweekday() == 7:
+    effective_date = date.today() + relativedelta(days=-2)
+elif datetime.today().isoweekday() == 1:
+    effective_date = date.today() + relativedelta(days=-3)
+else:
+    effective_date = date.today()
+yyyymmdd   = date.today().strftime('%Y%m%d')
+yyyymmdd_e = effective_date.strftime('%Y%m%d')
+msg = "it is (" + str(datetime.today().isoweekday()) + ") " + \
+    calendar.day_name[curr_date.weekday()] + " " + \
+    yyyymmdd + " effective " + yyyymmdd_e
+print(msg)
+
+tw_start = time(9, 30)
+tw_end   = time(13, 30)
+current = time( datetime.now().hour, datetime.now().minute )
+if datetime.today().isoweekday() in ( 1, 2, 3, 4, 5 ):
+    if tw_start <= current <= tw_end :
+        print('tw market is opened')
+        webbrowser.open(fl_calendar)
+    else:
+        print('tw market is closed')
+else:
+    print('tw market is closed')
+# sys.exit(0)
+
+# daily bases
+block_pair_trade = "https://www.twse.com.tw/block/BFIAUU" + \
+    "?response=html&date="+yyyymmdd_e+"&selectType=S"
+
+# 申報轉讓明細, update on daily bases
+insider_trade = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
 # "https://www.esunsec.com.tw/tw-market/z/ze/zei/zei.djhtm"
 # "https://www.moneydj.com/Z/ZE/ZEI/ZEI.djhtm"
+# how to link to https://mops.twse.com.tw/mops/web/t93sb06 ?
+# 一般交易: distribution
+# 贈與: tax cut
+# daily bases
 
 emerging_market = "https://stockscan.io/stocks/EEM"
 # ETF price and volume https://etfdb.com/etf/IJR/#price-and-volume
@@ -79,6 +155,7 @@ jlp_watchlist = "https://jlprudentmenu.blogspot.com"
 twse_calendar = "https://histock.tw/stock/stockskd.aspx"
 yuanta_calendar = "https://www.yuanta.com.tw/eYuanta/securities/Node/Index?MainId=00413&C1=2018031202503224&ID=2018031202503224&Level=1&rnd=25104"
 fl_calendar = "https://ww2.money-link.com.tw/TWStock/TWStockMarket.aspx?optionType=6"
+short_cover_calendar = "https://goodinfo.tw/tw/MarginPauseScheduleList.asp?MARKET_CAT=全部&INDUSTRY_CAT=全部&YEAR=即將發生"
 
 # gtrend = "https://trends.google.com/trends/explore?geo=TW"
 gtrend = "https://trends.google.com/trends/explore?date=today%201-m&geo=TW"
@@ -88,28 +165,6 @@ sdog = "https://statementdog.com/market-trend?utm_source=user_mailer&utm_medium=
 trans_idx = "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-transportation-average/#overview"
 
 tsm = "https://www.investing.com/equities/taiwan-semicond.manufacturing-co-candlestick"
-
-curr_date = date.today()
-if datetime.today().isoweekday() == 6:
-    effective_date = date.today() + relativedelta(days=-1)
-elif datetime.today().isoweekday() == 7:
-    effective_date = date.today() + relativedelta(days=-2)
-elif datetime.today().isoweekday() == 1:
-    effective_date = date.today() + relativedelta(days=-3)
-else:
-    effective_date = date.today()
-
-yyyymmdd   = date.today().strftime('%Y%m%d')
-yyyymmdd_e = effective_date.strftime('%Y%m%d')
-msg = "it is " + str(datetime.today().isoweekday()) + \
-    " " + calendar.day_name[curr_date.weekday()] + \
-    " " + yyyymmdd + " effective " + yyyymmdd_e
-print(msg)
-
-# print( datetime.today().isoweekday() )
-
-block_pair_trade = "https://www.twse.com.tw/block/BFIAUU" + \
-    "?response=html&date="+yyyymmdd_e+"&selectType=S"
 
 google_pledge = "https://www.google.com/search?q=" + \
     "quote(董監質設異動公告)+" \
@@ -123,44 +178,70 @@ weekly_bases = [ \
     gtrend, \
     twse_calendar, \
     # yuanta_calendar, \
-    # fl_calendar, \
+    fl_calendar, \
     jlp_watchlist, \
-    # insider_1m \
+
+    copper,   \
+    gold,     \
+    nickel,   \
+    aluminum, \
+    platinum, \
+    uranium,  \
+    iron_ore, \
+
+    brent_crude, \
+    natural_gas, \
+    rubber,      \
+    glass,       \
+    paper,       \
+
+    nand_flash,  \
+    ddr,         \
+
+    fertilizers, \
+    potash_f, \
+    soybean,  \
+
+    oats,     \
+    us_wheat, \
+    corn,     \
+    palmolive_oil, \
+    coffee
 ]
 
-doji = "http://localhost"
-
-'''
-daily_bases  = [ \
-    margin_b, \
-    block_pair_trade, \
-]
-'''
-
-urls = [ \
+daily_bases = [ \
     # regional
     margin_b,         \
     vol_ratio,        \
     block_pair_trade, \
-    fbs,              \
-    fund,             \
-    retail,           \
-    individual,       \
-    government_bs,    \
-    gb8_trend,        \
-    brokage_v,        \
+    insider_trade,    \
+
+    # use qfbs.sh instead
+    # fbs,              \
+    # fund,             \
+    # retail,           \
+    # individual,       \
+    # government_bs,    \
+    # gb8_trend,        \
+    # brokage_v,        \
     tsm,              \
 
-
-    # commodities
+    # commodities @see candlestick.py
     crb_idx, \
-    commo, \
+    # commo, \
     copper, \
+    brent_crude, \
+    bitcoin, \
 
     # worldwide
-    finviz, \
+    # finviz, \
     major_futures, \
     emerging_market, \
+
+    twd_forex, \
+    jpy_forex, \
+    dailyfx, \
+
     worldwide_index, \
     fear_n_greed_sentiment, \
     cnn_gfear, \
@@ -169,48 +250,36 @@ urls = [ \
     sdog, \
     trans_idx, \
     fiscal_calendar, \
+    short_cover_calendar, \
 
-    twd_forex, \
-    jpy_forex, \
-    dailyfx, \
     mmicro, \
-    bitcoin, \
     us10y, \
     doji ]
 
-
-
 # hourly based
-tw_start = time(9, 30)
-tw_end   = time(13, 30)
-current = time( datetime.now().hour, datetime.now().minute )
-if tw_start <= current <= tw_end :
-    print('tw market is opened')
-    webbrowser.open(fl_calendar)
-    webbrowser.open(insider_1m)
-else:
-    print('tw market is closed')
 
 # // TODO: on demand, daily, weekly, monthly bases
 
-# weekly bases
-# monday
-
-for url in weekly_bases:
-    webbrowser.open(url)
-    print('\a') # beep
-input("Press Enter to continue...")
-
 i = 0
-for url in urls:
+for url in daily_bases:
     webbrowser.open(url)
-    # datetime.time.sleep(1) // FIXME:
     i += 1
-    if ( i % 10 == 3 ):
+    if ( i % 3 == 2 ):
         print('\a') # beep
         input("Press Enter to continue...")
 
 # daily
 # // TODO: announcement_today.py
+# // TODO: calendars
+
+# weekly bases, saturday, sunday
+if datetime.today().isoweekday() in ( 6, 7 ):
+    i = 0
+    for url in weekly_bases:
+        webbrowser.open(url)
+        i += 1
+        if ( i % 3 == 2 ):
+            print('\a') # beep
+            input("Press Enter to continue...")
 
 sys.exit(0)

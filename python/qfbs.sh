@@ -13,13 +13,13 @@ MN=$2
 DAY=$3
 ORIGIN=$4
 
+DATE=$YR$MN$DAY
 if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -eq 1 ]]; then
-    LAST_TRADE_DAY=$(date -v-3d +%Y%m%d)
+    LAST_TRADE_DAY=$(date -v-4d +%Y%m%d)
 else
     LAST_TRADE_DAY=$(date -v-1d +%Y%m%d)
 fi
 
-DATE=$YR$MN$DAY
 # @see https://stackoverflow.com/a/46024878
 if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -gt 5 ]]; then
     echo "it is $(date -j -f '%Y%m%d' "$DATE" +'%A')"
@@ -56,7 +56,7 @@ if [ $ORIGIN -eq 0 ]; then
     ls -ltr *$YR$MN$DAY*; rm -f *$YR$MN$DAY*
 fi
 
-rm -vf $OUTF0 $OUTF1 $OUTF2B $OUTF2S
+rm -vf $OUTF0 $OUTF1 $OUTF2B $OUTF2S $O2B $O2S
 
 # python3 qfii.py $OUTF0
 # python3 qfii.py $OUTF0 0 # // TODO: lazy and less parameter
@@ -106,20 +106,14 @@ read -p "Press enter to continue $O2S ..."
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S
 
-tail -n +2 $OUTF2B > temp; awk -F':' '{print $1}' temp | sort > $OUTF2B_SORTED; cat $OUTF2B_SORTED
-rm -f temp
-tail -n +2 $OUTF2S > temp; awk -F':' '{print $1}' temp | sort > $OUTF2S_SORTED; cat $OUTF2S_SORTED
+tail -n +2 $OUTF2B > temp; awk -F':' '{print $1}' temp | \
+    sort > $OUTF2B_SORTED; #cat $OUTF2B_SORTED
 rm -f temp
 
-# @see https://stackoverflow.com/a/26619069
-# echo "new buy...";
-# comm -13 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt;
-# echo "buy 2 days...";
-# comm -12 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt;
-# echo "new sell...";
-# comm -13 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt;
-# echo "sell 2 days...";
-# comm -12 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt;
+tail -n +2 $OUTF2S > temp; awk -F':' '{print $1}' temp | \
+    sort > $OUTF2S_SORTED; cat $OUTF2S_SORTED
+rm -f temp
+
 ./check_2b2s.sh $LAST_TRADE_DAY $DATE
 
 # generate 16 files

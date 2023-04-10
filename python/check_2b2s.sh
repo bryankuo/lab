@@ -6,19 +6,27 @@ DATE=$2
 DIR0="datafiles/taiex/qfbs"
 
 # @see https://stackoverflow.com/a/26619069
-echo "new buy...";
-comm -13 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt
-echo
+N_NEW_BUY=$(comm -13 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt \
+    | tee $DIR0"/"newb.$DATE.txt | wc -l | cut -f7 -d' ' )
+echo "new buy........ "$N_NEW_BUY
 
-echo "buy 2 days...";
-comm -12 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt
-echo
+N_CON2BUY=$(comm -12 $DIR0"/"2b.$LAST_TRADE_DAY.txt $DIR0"/"2b.$DATE.txt \
+    | tee $DIR0"/"cn2b.$DATE.txt | wc -l | cut -f7 -d' ' )
+echo "buy 2 days..... "$N_CON2BUY
 
-echo "new sell...";
-comm -13 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt
-echo
+N_NEW_SEL=$(comm -13 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt \
+    | tee $DIR0"/"news.$DATE.txt | wc -l | cut -f7 -d' ' )
+echo "new sell....... "$N_NEW_SEL
 
-echo "sell 2 days...";
-comm -12 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt
+N_CON2SEL=$(comm -12 $DIR0"/"2s.$LAST_TRADE_DAY.txt $DIR0"/"2s.$DATE.txt \
+    | tee $DIR0"/"cn2s.$DATE.txt | wc -l | cut -f7 -d' ' )
+echo "sell 2 days.... "$N_CON2BUY
+
+# @see https://superuser.com/a/637330
+
+gvim +1 $DIR0"/"newb.$DATE.txt \
+    +"tabnew +1 $DIR0"/"cn2b.$DATE.txt" \
+    +"tabnew +1 $DIR0"/"news.$DATE.txt" \
+    +"tabnew +1 $DIR0"/"cn2s.$DATE.txt"
 
 exit 0
