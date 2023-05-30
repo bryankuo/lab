@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-03-26T01:19:39.708Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.6.1 Safari/605.1.15" etag="TPhj-i6P7k_UPxO09gBZ" version="21.1.1" type="device" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-05-30T02:35:13.079Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.57" etag="XYvT420YyC4awn-1Vsuk" version="21.3.5" type="device" pages="2">
   <diagram id="2W2IRHp-vWOM0x0aQLfi" name="US trades">
-    <mxGraphModel dx="954" dy="1833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1139" dy="1861" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1269,7 +1269,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="2dSnwpzdGkL1np50eXYA" name="TAIEX trades">
-    <mxGraphModel dx="1781" dy="3002" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1966" dy="3030" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="BYNCYiQlmRWArpgHuZKF-0" />
         <mxCell id="BYNCYiQlmRWArpgHuZKF-1" parent="BYNCYiQlmRWArpgHuZKF-0" />
@@ -2910,11 +2910,14 @@
         <mxCell id="jsq2W1YLSq1cWGQR6vqV-2" value="特大單(外資)&lt;br&gt;大單(主力)&lt;br&gt;中單(政府軍)&lt;br&gt;小單(中實戶)" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="670" y="430" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9Ceq99rh9TNcq2Q54r2d-0" value="昇鴻投資在&lt;br&gt;FB也曾經分享過&lt;br&gt;作息, 3點多就起床" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="9Ceq99rh9TNcq2Q54r2d-0" value="昇鴻投資在&lt;br&gt;FB也曾經分享過&lt;br&gt;作息, 3點多就起床" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="-480" y="-1380" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9Ceq99rh9TNcq2Q54r2d-1" value="the humble trade&lt;br&gt;說90%的交易工作&lt;br&gt;在開盤前就完成" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="9Ceq99rh9TNcq2Q54r2d-1" value="the humble trade&lt;br&gt;說90%的交易工作&lt;br&gt;在開盤前就完成" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="-480" y="-1310" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BCIpf6Ss-7MWfXgSAKPN-0" value="破開盤價&lt;br&gt;and沒站上&lt;br&gt;=&amp;gt; 偏空思考" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+          <mxGeometry x="-639" y="-1040" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
