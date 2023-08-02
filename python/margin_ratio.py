@@ -11,6 +11,10 @@ from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
 url = 'https://concords.moneydj.com/z/zc/zcn/zcn_' + ticker + '.djhtm'
+# source
+# https://stock.wearn.com/acredit.asp?year=112&month=08&kind=2913
+#
+
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 rows = soup.findAll('tr')[10]
