@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-08-18T02:53:41.975Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203" etag="bfQJOmmqdmEGTe8DdELP" version="21.6.8" type="device" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-08-19T18:38:59.102Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="eYlzq9RDbJImngUKXRj3" version="21.6.8" type="device" pages="2">
   <diagram id="2W2IRHp-vWOM0x0aQLfi" name="US trades">
-    <mxGraphModel dx="1139" dy="1857" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="682" dy="1922" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1327,7 +1327,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="2dSnwpzdGkL1np50eXYA" name="TAIEX trades">
-    <mxGraphModel dx="1966" dy="3026" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2261" dy="3128" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="BYNCYiQlmRWArpgHuZKF-0" />
         <mxCell id="BYNCYiQlmRWArpgHuZKF-1" parent="BYNCYiQlmRWArpgHuZKF-0" />
@@ -2975,46 +2975,46 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-0" value="07:30" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-0" value="07:30" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="40" y="1220" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-1" value="元大&lt;br&gt;點金靈&lt;br&gt;清盤" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-1" value="元大&lt;br&gt;點金靈&lt;br&gt;清盤" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="120" y="1200" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-3" value="交易醫生&lt;br&gt;盤前分享&lt;br&gt;( 不一定有 )" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-3" value="交易醫生&lt;br&gt;盤前分享&lt;br&gt;( 不一定有 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="280" y="1200" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-4" value="08:15" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-4" value="08:15" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="40" y="1300" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-8" value="個股試搓&lt;br&gt;開始" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-8" value="個股試搓&lt;br&gt;開始" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="120" y="1360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-9" value="08:45-09:15&lt;br&gt;Acer 操作&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;台指期" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-9" value="08:45-09:15&lt;br&gt;Acer 操作&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;台指期" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="278" y="1440" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-10" value="&amp;nbsp;現貨開盤" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-10" value="&amp;nbsp;現貨開盤" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="120" y="1520" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-11" value="09:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-11" value="09:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="40" y="1540" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-12" value="市場&lt;br&gt;隔日沖策略&lt;br&gt;執行" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-12" value="市場&lt;br&gt;隔日沖策略&lt;br&gt;執行" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="120" y="1680" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-13" value="09:00-10:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-13" value="09:00-10:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="40" y="1960" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-14" value="09:00-09:05" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-14" value="09:00-09:05" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="40" y="1620" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-15" value="09:15-09:45" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-15" value="09:15-09:45" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="40" y="1880" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-16" value="盤中&lt;br&gt;定期關注" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-16" value="盤中&lt;br&gt;定期關注" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="600" y="1600" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-17" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="BYNCYiQlmRWArpgHuZKF-1" source="lr_31bSm0Rdr2KRZyj8d-2" target="6FtCGhlQBLQZO-cK3OJJ-16">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-17" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="BYNCYiQlmRWArpgHuZKF-1" source="lr_31bSm0Rdr2KRZyj8d-2" target="6FtCGhlQBLQZO-cK3OJJ-16" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="490" y="1710" as="sourcePoint" />
             <mxPoint x="444" y="1640" as="targetPoint" />
@@ -3023,7 +3023,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-18" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="BYNCYiQlmRWArpgHuZKF-1" target="N-UELSfyyj_t3jlIXUUX-0">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-18" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="BYNCYiQlmRWArpgHuZKF-1" target="N-UELSfyyj_t3jlIXUUX-0" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="600" y="1550" as="sourcePoint" />
             <mxPoint x="610" y="1640" as="targetPoint" />
@@ -3032,16 +3032,16 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-19" value="券商前一日&lt;br&gt;融資斷頭&lt;br&gt;強制賣出" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-19" value="券商前一日&lt;br&gt;融資斷頭&lt;br&gt;強制賣出" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="120" y="1770" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-20" value="09:45是Acer&lt;br&gt;買個股時間點&lt;br&gt;why?" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-20" value="09:45是Acer&lt;br&gt;買個股時間點&lt;br&gt;why?" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="440" y="1860" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-21" value="10:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-21" value="10:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="40" y="2040" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-22" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="BYNCYiQlmRWArpgHuZKF-1" source="6FtCGhlQBLQZO-cK3OJJ-16" target="N-UELSfyyj_t3jlIXUUX-28">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-22" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="BYNCYiQlmRWArpgHuZKF-1" source="6FtCGhlQBLQZO-cK3OJJ-16" target="N-UELSfyyj_t3jlIXUUX-28" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="570" y="1640" as="sourcePoint" />
             <mxPoint x="610" y="1640" as="targetPoint" />
@@ -3050,11 +3050,17 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-26" value="內外盤比接近50%&lt;br&gt;代表開閘放水後&lt;br&gt;狀態將近stable" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-26" value="內外盤比接近50%&lt;br&gt;代表開閘放水後&lt;br&gt;狀態將近stable" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="409" y="200" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-27" value="tape reading&lt;br&gt;方向 / 速度 / 封包大小" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+        <mxCell id="6FtCGhlQBLQZO-cK3OJJ-27" value="tape reading&lt;br&gt;方向 / 速度 / 封包大小" style="rounded=1;whiteSpace=wrap;html=1;" parent="BYNCYiQlmRWArpgHuZKF-1" vertex="1">
           <mxGeometry x="670" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UhgWA6NjAiA7Z29GzyNQ-0" value="18:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+          <mxGeometry x="40" y="2380" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UhgWA6NjAiA7Z29GzyNQ-1" value="證券公司分點&lt;br&gt;必須於&lt;br&gt;下午18:00以前&lt;br&gt;向交易所申報" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="BYNCYiQlmRWArpgHuZKF-1">
+          <mxGeometry x="118" y="2360" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
