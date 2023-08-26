@@ -38,6 +38,10 @@ from pprint import pprint
 #
 # government sponsored banks
 # https://histock.tw/stock/broker8.aspx?d=2023-01-11
+#
+# margin
+# https://concords.moneydj.com/z/zc/zcn/zcn_1101.djhtm
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcn/zcn_2881.djhtm
 
 def say(msg = "Finish", voice = "Victoria"):
     os.system(f'say -v {voice} {msg}')
@@ -88,7 +92,7 @@ try:
 
     def fetch():
         if ( is_from_net ):
-            print("from internet...")
+            # print("from internet...")
             browser = webdriver.Safari( \
                 executable_path = '/usr/bin/safaridriver')
 
@@ -97,26 +101,29 @@ try:
 
             browser.get(qfii)
             time.sleep(1)
-            Select(WebDriverWait(browser, 1)                                \
+            Select(WebDriverWait(browser, 3)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='yy']"))))   \
                 .select_by_value(yyyy)
-            Select(WebDriverWait(browser, 1)                                \
+            Select(WebDriverWait(browser, 3)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='mm']"))))   \
                 .select_by_value(mm.lstrip("0"))
-            Select(WebDriverWait(browser, 2)                                \
+            Select(WebDriverWait(browser, 3)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='dd']"))))   \
                 .select_by_value(dd.lstrip("0"))
 
-            browser.find_element_by_link_text("查詢").click()
-
-            # https://stackoverflow.com/a/72901664
-            Select(WebDriverWait(browser, 1)                                \
+            # wait until rendered @see https://l8.nu/rTdU
+            search =  WebDriverWait(browser, 3)                                \
                 .until(EC.element_to_be_clickable(                          \
-                    (By.XPATH,"//select[@name='report-table_length']"))))   \
-                .select_by_value('-1')
+                    (By.XPATH, '//button[text()="查詢"]')))
+            search.click()
+            per_page = Select(WebDriverWait(browser, 3)                     \
+                .until(EC.element_to_be_clickable(                          \
+                    (By.XPATH,"//div[@class='per-page']//select"))))
+            # @see https://stackoverflow.com/a/29059348
+            per_page.select_by_value("-1")
 
             page1 = browser.page_source
             soup1 = BeautifulSoup(page1, 'html.parser')
@@ -140,11 +147,18 @@ try:
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='dd']"))))   \
                 .select_by_value(dd.lstrip("0"))
-            browser.find_element_by_link_text("查詢").click()
-            Select(WebDriverWait(browser, 2)                               \
+            # browser.find_element_by_link_text("查詢").click()
+            search =  WebDriverWait(browser, 3)                             \
                 .until(EC.element_to_be_clickable(                          \
-                    (By.XPATH,"//select[@name='report-table_length']"))))   \
-                .select_by_value('-1')
+                    (By.XPATH, '//button[text()="查詢"]')))
+            search.click()
+
+            per_page = Select(WebDriverWait(browser, 3)                     \
+                .until(EC.element_to_be_clickable(                          \
+                    (By.XPATH,"//div[@class='per-page']//select"))))
+            # @see https://stackoverflow.com/a/29059348
+            per_page.select_by_value("-1")
+
             page2 = browser.page_source
             soup2 = BeautifulSoup(page2, 'html.parser')
             fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
@@ -153,7 +167,7 @@ try:
                 outfile2.close()
             browser.quit()
         else:
-            print("from file...")
+            # print("from the files...")
             qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
             print(qname)
             with open(qname) as q:
@@ -165,12 +179,17 @@ try:
         return soup1, soup2
 
     def parse_1(soup1):
-        tab1 = soup1.find_all("table", {"id": "report-table"})[0]
+        tab1 = soup1                                                        \
+            .find_all("div",                                                \
+                    {"class": "rwd-table dragscroll sortable F3 R4_"})[0]   \
+            .find_all("table")[0]
+        print(len(tab1))
+
         len1 = len(soup1.find_all("table", {"id": "report-table"})[0]   \
                 .find_all("tbody")[0]                                   \
                 .find_all("tr")[0]                                      \
                 .find_all("td"))
-        # print("len1:" + str(len1))
+        print("len1:" + str(len1))
 
         n_rec1 = len(soup1.find_all("table", {"id": "report-table"})[0]   \
                 .find_all("tbody")[0]                                   \
@@ -444,22 +463,21 @@ try:
         return full_tab
 
     start = timer()
-    print("fetching..."+yyyy+mm+dd)
     soups = fetch()
     end = timer()
-    print(timedelta(seconds=end-start))
+    print("fetching "+str(int(is_from_net))+"........"+yyyy+mm+dd+ \
+        " done, takes "+str(timedelta(seconds=end-start)))
 
     start = timer()
-    print("qfii processing...")
     n1 = parse_1(soups[0])
     end = timer()
-    print(timedelta(seconds=end-start))
+    print("qfii processing..."+yyyy+mm+dd+" done, takes "+timedelta(seconds=end-start))
 
-    print("fund processing...")
     start = timer()
     n2 = parse_2(soups[1])
     end = timer()
-    print(timedelta(seconds=end-start))
+    print("fund processing..."+yyyy+mm+dd+" done, takes "+timedelta(seconds=end-start))
+
 
     print("merging, highlight, and output to 3 files...")
     tab = merge12(list1b, list1s, list2b, list2s)
