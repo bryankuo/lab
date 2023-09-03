@@ -35,7 +35,10 @@ else:
     monthly_turnaround = ""
 
 # // FIXME
-# major_holders = "https://tw.stock.yahoo.com/quote/"+ticker+".TW/major-holders"
+major_holders = "https://tw.stock.yahoo.com/quote/"+ticker+".TW/major-holders"
+transfer_lastmonth = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
+# sii daily transfer
+# https://mops.twse.com.tw/mops/web/t56sb12_q1
 
 ta = "https://invest.cnyes.com/twstock/TWS/"+ticker+"/technical"
 

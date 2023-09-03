@@ -79,3 +79,4 @@ check.sh: append ticker if in listed company but not in watchlist.
 check_bountylist.sh: loop bounty list and append ticker if in listed company but not in watchlist.
 uno_stalk_story.sh: looping add story.
 uno_story.py: append ticker story.
+chips.py: tracking major, internal, management transfer
