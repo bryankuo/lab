@@ -6,16 +6,14 @@ set bg=dark
 color evening  " Same as :colorscheme evening
 hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
 hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
-set guifont=DejaVu\ Sans\ Mono\ 16
-" if MacOS
-" set guifont=DejaVu\ Sans\ Mono:h36
+set guifont=DejaVu\ Sans\ Mono:h16
 set nu
 set shiftwidth=4 softtabstop=4
 set incsearch ignorecase hlsearch
 set lines=24 columns=80
 set cursorline
 set cursorcolumn
-set no list
+set nolist
 let g:indentLine_color_gui = '#A4E57E'
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
@@ -32,6 +30,7 @@ set autoindent
 set number
 autocmd BufWritePre * :%s/\s\+$//e
 " highlight Normal guifg=white guibg=black
-set tags=/usr/include/tags,/usr/include/c++/tags,/home/bryan/Qt/5.12.0/Src;
-highlight ColorColumn ctermbg=green guibg=orange
+set tags=/usr/include/tags,/usr/include/c++/tags,/home/bryan/Qt/5.12.0/Src,/home/bryan/src/dashboard/tags,/home/bryan/src/dashboard/tools/python/tags;
 set textwidth=80
+set colorcolumn=80
+set encoding=utf-8
