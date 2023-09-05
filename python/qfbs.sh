@@ -5,6 +5,7 @@
 
 if [ "$#" -lt 4 ]; then
     echo "usage: qfbs.sh yyyy mm dd [net|file]"
+    echo "       and let safari allow Remote Automation"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
 

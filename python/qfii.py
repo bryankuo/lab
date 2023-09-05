@@ -178,23 +178,27 @@ try:
                 soup2 = BeautifulSoup(r, 'html.parser')
         return soup1, soup2
 
+    # list whatever qfii buy or sell
     def parse_1(soup1):
-        tab1 = soup1                                                        \
-            .find_all("div",                                                \
-                    {"class": "rwd-table dragscroll sortable F3 R4_"})[0]   \
-            .find_all("table")[0]
-        print(len(tab1))
+        # print("parse_1+")
+        tab1 = soup1.find_all("div",                                                \
+                {"class": "rwd-table dragscroll sortable F3 R4_"})   # \
+        n_tab = len(tab1)
+        # print("# table: " + str(n_tab))
 
-        len1 = len(soup1.find_all("table", {"id": "report-table"})[0]   \
-                .find_all("tbody")[0]                                   \
-                .find_all("tr")[0]                                      \
-                .find_all("td"))
-        print("len1:" + str(len1))
+        '''
+        ths = soup1 \
+            .find_all("div", {"rwd-table dragscroll sortable F3 R4_"})[0] \
+            .find_all("thead")[0] \
+            .find_all("th")
+        n_th = len(ths)
+        print("# th:" + str(n_th))
+        '''
 
-        n_rec1 = len(soup1.find_all("table", {"id": "report-table"})[0]   \
+        n_rec = len(soup1.find_all("table", {})[0]   \
                 .find_all("tbody")[0]                                   \
                 .find_all("tr"))
-        # print("n_rec1: " + str(n_rec1))
+        # print("n_rec: " + str(n_rec))
 
         q_all  = DIR0 + "/" + "list1."  + yyyy + mm + dd + '.txt'
         q_buy  = DIR0 + "/" + "list1b." + yyyy + mm + dd + '.txt'
@@ -203,21 +207,36 @@ try:
             open(q_buy, 'wt') as out1, \
             open(q_sell, 'wt') as out2:
 
-            for i in range(0, n_rec1):
-                # start = timer()
+            tab1 = soup1.find_all("table", {})[0].find_all("tbody")[0]
+            n_td = len(soup1.find_all("table", {})[0]   \
+                .find_all("tbody")[0]                                   \
+                .find_all("tr")[0] \
+                .find_all("td"))
+            # print("n_td: " + str(n_td))
+
+            for i in range(0, n_rec):
+                '''
                 tkr1  = tab1                                            \
                         .find_all("tbody")[0]                           \
                         .find_all("tr")[i]                              \
                         .find_all("td")[1].text.strip().replace(',', '')
-                name1 = tab1                                            \
-                        .find_all("tbody")[0]                           \
-                        .find_all("tr")[i]                              \
-                        .find_all("td")[2].text.strip().replace(',', '')
-                vol1  = tab1                                            \
-                        .find_all("tbody")[0]                           \
-                        .find_all("tr")[i]                              \
-                        .find_all("td")[len1-1].text.strip()            \
-                            .replace(',', '') # [:-3] # 1000 shares
+
+                tkr1 = soup1.find_all("table", {})[0] \
+                    .find_all("tbody")[0] \
+                    .find_all("tr")[i].find_all("td")[1].text.strip().replace(',', '')
+                '''
+
+                row = tab1.find_all("tr")[i]
+                tkr1 = row.find_all("td")[1].text.strip().replace(',', '')
+                # print(tkr1)
+
+                name1 = row.find_all("td")[2].text.strip().replace(',', '')
+                # print(name1)
+
+                vol1  = row.find_all("td")[n_td-1].text.strip() \
+                        .replace(',', '') # [:-3] # 1000 shares
+                # print(vol1)
+
                 out0.write(tkr1+":"+name1+":"+vol1+"\n")
 
                 item = []
@@ -240,9 +259,11 @@ try:
                 #print(msg)
 
         out0.close(); out1.close(); out2.close()
-        return n_rec1
+        # print("parse_1-")
+        return n_rec
 
     def parse_2(soup2):
+        print("parse_2+")
         tab2 = soup2.find_all("table", {"id": "report-table"})[0]
         len2 = len(soup2.find_all("table", {"id": "report-table"})[0]   \
                 .find_all("tbody")[0]                                   \
@@ -299,6 +320,7 @@ try:
                     list2s[i][1]+":"+str(list2s[i][2])+"\n")
             '''
         out0.close(); out1.close(); out2.close()
+        print("parse_2-")
         return num2
 
     def merge12(l1_b, l1_s, l2_b, l2_s):
@@ -471,13 +493,15 @@ try:
     start = timer()
     n1 = parse_1(soups[0])
     end = timer()
-    print("qfii processing..."+yyyy+mm+dd+" done, takes "+timedelta(seconds=end-start))
+    print("qfii processing..."+yyyy+mm+dd+" done, takes " \
+            +str(timedelta(seconds=end-start)))
 
     start = timer()
     n2 = parse_2(soups[1])
     end = timer()
-    print("fund processing..."+yyyy+mm+dd+" done, takes "+timedelta(seconds=end-start))
-
+    print("fund processing..."+yyyy+mm+dd+" done, takes " \
+            +str(timedelta(seconds=end-start)))
+    sys.exit(0)
 
     print("merging, highlight, and output to 3 files...")
     tab = merge12(list1b, list1s, list2b, list2s)
