@@ -181,9 +181,11 @@ try:
     # list whatever qfii buy or sell
     def parse_1(soup1):
         # print("parse_1+")
-        tab1 = soup1.find_all("div",                                                \
-                {"class": "rwd-table dragscroll sortable F3 R4_"})   # \
-        n_tab = len(tab1)
+        '''
+        tab1 = soup1.find_all("div",                                          \
+                {"class": "rwd-table dragscroll sortable F3 R4_"})
+        '''
+        # n_tab = len(tab1)
         # print("# table: " + str(n_tab))
 
         '''
@@ -262,16 +264,35 @@ try:
         # print("parse_1-")
         return n_rec
 
+    # list whatever fund buy or sell
     def parse_2(soup2):
         print("parse_2+")
-        tab2 = soup2.find_all("table", {"id": "report-table"})[0]
-        len2 = len(soup2.find_all("table", {"id": "report-table"})[0]   \
+        '''
+        tab2 = soup2.find_all("div",                                          \
+                {"class": "rwd-table dragscroll sortable F3 R4_"})
+        '''
+        tab2 = soup2.find_all("table", {})[0].find_all("tbody")[0]
+
+        '''
+        n_td = len(soup2.find_all("table", {"id": "report-table"})[0]   \
                 .find_all("tbody")[0]                                   \
                 .find_all("tr")[0]                                      \
                 .find_all("td"))
-        num2 = len(soup2.find_all("table", {"id": "report-table"})[0]   \
+        '''
+        n_td = len(soup2.find_all("table", {})[0]   \
+            .find_all("tbody")[0]                                   \
+            .find_all("tr")[0] \
+            .find_all("td"))
+
+        '''
+        n_rec = len(soup2.find_all("table", {"id": "report-table"})[0]   \
                 .find_all("tbody")[0]                                   \
                 .find_all("tr"))
+        '''
+        n_rec = len(soup2.find_all("table", {})[0]   \
+                .find_all("tbody")[0]                                   \
+                .find_all("tr"))
+
 
         f_all  = DIR0 + "/" + "list2."  + yyyy + mm + dd + '.txt'
         f_buy  = DIR0 + "/" + "list2b." + yyyy + mm + dd + '.txt'
@@ -281,20 +302,33 @@ try:
             open(f_buy, 'wt') as out1, \
             open(f_sell, 'wt') as out2:
 
-            for i in range(0, num2):
+            for i in range(0, n_rec):
+                row = tab2.find_all("tr")[i]
+                '''
                 tkr2  = tab2                                            \
                         .find_all("tbody")[0]                           \
                         .find_all("tr")[i]                              \
                         .find_all("td")[1].text.strip().replace(',', '')
+                '''
+                tkr2  = row.find_all("td")[1].text.strip().replace(',', '')
+
+                '''
                 name2 = tab2                                            \
                         .find_all("tbody")[0]                           \
                         .find_all("tr")[i]                              \
                         .find_all("td")[2].text.strip().replace(',', '')
+                '''
+                name2 = row.find_all("td")[2].text.strip().replace(',', '')
+
+                '''
                 vol2  = tab2                                            \
                         .find_all("tbody")[0]                           \
                         .find_all("tr")[i]                              \
-                        .find_all("td")[len2-1].text.strip()            \
+                        .find_all("td")[n_td-1].text.strip()            \
                             .replace(',', '') # [:-3] # 1000 shares
+                '''
+                vol2  = row.find_all("td")[n_td-1].text.strip() \
+                        .replace(',', '')
 
                 out0.write(tkr2+":"+name2+":"+vol2+"\n")
 
@@ -321,7 +355,7 @@ try:
             '''
         out0.close(); out1.close(); out2.close()
         print("parse_2-")
-        return num2
+        return n_rec
 
     def merge12(l1_b, l1_s, l2_b, l2_s):
         # full_tab = list1b.copy()
@@ -501,7 +535,6 @@ try:
     end = timer()
     print("fund processing..."+yyyy+mm+dd+" done, takes " \
             +str(timedelta(seconds=end-start)))
-    sys.exit(0)
 
     print("merging, highlight, and output to 3 files...")
     tab = merge12(list1b, list1s, list2b, list2s)

@@ -75,16 +75,37 @@ echo -ne '\007'
 read -p "Press enter to continue $OUTF0 ..."
 python3 launch.py $OUTF0
 # manual process here...
+while true ; do
+    if [ ! -f "$OUTF1" ]; then
+        read -p "Save $OUTF0  to ods when ready ..."
+    else
+	break
+    fi
+done
 
 echo -ne '\007'
 read -p "Press enter to continue $OUTF2B ..."
 python3 launch.py $OUTF2B
 # manual process here...
+while true ; do
+    if [ ! -f "$O2B" ]; then
+        read -p "Save $OUTF2B to ods when ready ..."
+    else
+	break
+    fi
+done
 
 echo -ne '\007'
 read -p "Press enter to continue $OUTF2S ..."
 python3 launch.py $OUTF2S
 # manual process here...
+while true ; do
+    if [ ! -f "$O2S" ]; then
+        read -p "Save $OUTF2S to ods when ready ..."
+    else
+	break
+    fi
+done
 
 echo -ne '\007'
 read -p "Press enter to continue $OUTF1 ..."
