@@ -51,6 +51,7 @@ vol_ratio = "https://tw.stock.yahoo.com/trading-vol-ratio"
 brokage_v = "http://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm"
 
 twse_pledge = "上市櫃公司董監質設異動公告"
+twse_heatmap = "https://www.nstock.tw/market_index/heatmap?t1=0&t2=0&t3=0&t4=1&t5=0&iid&nh=0"
 
 commo = "https://tradingeconomics.com/commodities"
 
@@ -251,6 +252,7 @@ daily_bases = [ \
     trans_idx, \
     fiscal_calendar, \
     short_cover_calendar, \
+    twse_heatmap, \
 
     mmicro, \
     us10y, \
