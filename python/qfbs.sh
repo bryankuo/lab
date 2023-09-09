@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # @see uno_stalk_story.sh
+# \param twse close mark @see uno_status.sh
 # handle 4 cvs from qfii.py
+# \return
 
 if [ "$#" -lt 4 ]; then
     echo "usage: qfbs.sh yyyy mm dd [net|file]"
@@ -29,6 +31,20 @@ if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -gt 5 ]]; then
 fi
 
 clear
+
+
+OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
+echo ${OUTPUT[@]}
+DEAL=${OUTPUT[0]%\'}
+DEAL=${DEAL#\'}
+CHANGE=${OUTPUT[1]%\'}
+CHANGE=${CHANGE#\'}
+RISE=${OUTPUT[2]%\'}
+RISE=${RISE#\'}
+VOLUME=${OUTPUT[3]%\'}
+VOLUME=${VOLUME#\'}
+printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+exit 0
 
 DIR0="datafiles/taiex/qfbs"
 mkdir -p $DIR0
