@@ -2,8 +2,18 @@
 
 # @see uno_stalk_story.sh
 # \param twse close mark @see uno_status.sh
+#
+# qfii.py
+# \param timestamp
+# \param origin
 # handle 4 cvs from qfii.py
-# \return
+# \return OUTF0  txt file, a summary describe what qfii/fund buy and sell
+# \return OUTF2B txt file, summary describing both buy
+# \return OUTF2S txt file, summary describing both sell
+# \return OUTFQA txt file, summary describing when:
+#   1.buy  when twse dip
+#   2.sell when twse rip
+# \return OUTF1 ods file, manual saved by calc
 
 if [ "$#" -lt 4 ]; then
     echo "usage: qfbs.sh yyyy mm dd [net|file]"
@@ -32,9 +42,8 @@ fi
 
 clear
 
-
 OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
-echo ${OUTPUT[@]}
+# echo ${OUTPUT[@]}
 DEAL=${OUTPUT[0]%\'}
 DEAL=${DEAL#\'}
 CHANGE=${OUTPUT[1]%\'}
@@ -43,8 +52,8 @@ RISE=${OUTPUT[2]%\'}
 RISE=${RISE#\'}
 VOLUME=${OUTPUT[3]%\'}
 VOLUME=${VOLUME#\'}
-printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
-exit 0
+# printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+# exit 0
 
 DIR0="datafiles/taiex/qfbs"
 mkdir -p $DIR0
@@ -60,12 +69,16 @@ OUTF0="$DIR0/$NAME.$DATE.txt"
 OUTF1="$DIR0/$NAME.$DATE.ods"
 DEFAULT_NAME1="外資投信同買"
 DEFAULT_NAME2="外資投信同賣"
+DEFAULT_NAME3="外資操作異常"
 OUTF2B="$DIR0/$DEFAULT_NAME1.$DATE.txt"
 OUTF2S="$DIR0/$DEFAULT_NAME2.$DATE.txt"
+OUTFQA="$DIR0/$DEFAULT_NAME3.$DATE.txt"
 O2B="$DIR0/$DEFAULT_NAME1.$DATE.ods"
 O2S="$DIR0/$DEFAULT_NAME2.$DATE.ods"
+OQA="$DIR0/$DEFAULT_NAME3.$DATE.ods"
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
+OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 
 if [ $ORIGIN -eq 0 ]; then
     rm -vf "$DIR0/qfii.$DATE.html"

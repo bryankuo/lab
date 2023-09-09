@@ -169,11 +169,11 @@ try:
         else:
             # print("from the files...")
             qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
-            print(qname)
+            # print(qname)
             with open(qname) as q:
                 soup1 = BeautifulSoup(q, 'html.parser')
             fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
-            print(fname)
+            # print(fname)
             with open(fname) as r:
                 soup2 = BeautifulSoup(r, 'html.parser')
         return soup1, soup2
