@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-09-11T02:47:57.869Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="nyG5OnXrDC2cSB1QrGqm" version="21.7.4" type="device" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-09-11T16:11:20.980Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="QxhQG6zdlVMt8LHEe7jU" version="21.7.4" type="device" pages="3">
   <diagram id="2W2IRHp-vWOM0x0aQLfi" name="US trades">
     <mxGraphModel dx="1434" dy="1959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -86,7 +86,7 @@
           <mxGeometry x="1276" y="720" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="skBQHpanSOeN_9HQ8_Ik-33" value="分批&lt;br&gt;上漲過程賣出" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1120.5" y="980" width="120" height="60" as="geometry" />
+          <mxGeometry x="1120.5" y="1040" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="skBQHpanSOeN_9HQ8_Ik-34" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="skBQHpanSOeN_9HQ8_Ik-32" target="VhhBP-Niib41JX8jMxsJ-7" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -148,10 +148,10 @@
         <mxCell id="_6fpKBOjLZMXCEf4Lv_I-1" value="1.sell the rip" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1436" y="20" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="C_OK-YuIfiXgKfMNKGLl-2" value="yes" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="C_OK-YuIfiXgKfMNKGLl-3" target="ZMTA7PW-a7Co3rukDNKd-10" edge="1">
+        <mxCell id="C_OK-YuIfiXgKfMNKGLl-2" value="yes" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="C_OK-YuIfiXgKfMNKGLl-3" target="EkM0skgZJjpNYzMxfoZq-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="500" as="sourcePoint" />
-            <mxPoint x="-30" y="840" as="targetPoint" />
+            <mxPoint x="946" y="70" as="targetPoint" />
             <Array as="points">
               <mxPoint x="800" y="400" />
               <mxPoint x="490" y="740" />
@@ -178,7 +178,7 @@
           <mxGeometry x="470" y="460" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="eWIeHxmlQqAwC8VUloCX-1" value="within 3 hours, ASAP, don&#39;t stay too long in CASINO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="1120" y="40" width="280" height="20" as="geometry" />
+          <mxGeometry x="846" y="20" width="280" height="20" as="geometry" />
         </mxCell>
         <mxCell id="VhhBP-Niib41JX8jMxsJ-1" value="趨勢向上&lt;br&gt;且確認動能?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="1446" y="700" width="100" height="100" as="geometry" />
@@ -283,15 +283,6 @@
         <mxCell id="VhhBP-Niib41JX8jMxsJ-23" value="確認&lt;br&gt;產品內容?&lt;br&gt;股票?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="310" y="210" width="100" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="VhhBP-Niib41JX8jMxsJ-26" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="ZMTA7PW-a7Co3rukDNKd-10" target="EkM0skgZJjpNYzMxfoZq-1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1490" y="90" as="sourcePoint" />
-            <mxPoint x="1920" y="130" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1020" y="130" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="VhhBP-Niib41JX8jMxsJ-27" value="確認&lt;br&gt;交易工具&lt;br&gt;設定?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="530" y="-150" width="100" height="100" as="geometry" />
         </mxCell>
@@ -375,9 +366,6 @@
         </mxCell>
         <mxCell id="ZMTA7PW-a7Co3rukDNKd-5" value="設定&lt;br&gt;停(損/利)點 &amp;amp;&lt;br&gt;進出場策略" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="469" y="540" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="ZMTA7PW-a7Co3rukDNKd-10" value="開始專注於&lt;br&gt;單一產品交易" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="946" y="40" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="AaKZ0EF2qf_AE9YELpaL-1" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="skBQHpanSOeN_9HQ8_Ik-1" target="VhhBP-Niib41JX8jMxsJ-23" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -663,7 +651,7 @@
           <mxGeometry x="1560" y="380" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="u6-GuaqWwv9v-J1z-GwI-9" value="前一天如果&lt;br&gt;沒有交易&lt;br&gt;則從極小量開始&lt;br&gt;恢復盤(手)感" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1086" y="70" width="120" height="60" as="geometry" />
+          <mxGeometry x="946" y="70" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="i9BRzb6St7NZJ8dit2oQ-1" value="下程式單" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1880" y="140" width="120" height="60" as="geometry" />
@@ -1312,7 +1300,54 @@
           <mxGeometry x="1870" y="220" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="7EgHOoSaxjzABDbyqvDQ-1" value="成交量&lt;br&gt;在平均&lt;br&gt;以上?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1356" y="880" width="80" height="80" as="geometry" />
+          <mxGeometry x="1380" y="900" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-1" value="institutional&lt;br&gt;&amp;lt; 5%?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="210" y="870" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-2" value="突破策略?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="884" y="1564" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-3" value="yes" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="tiudf02tnPjbu0Jy9bx4-2" target="tiudf02tnPjbu0Jy9bx4-5">
+          <mxGeometry x="-0.2" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="753" y="1534" as="sourcePoint" />
+            <mxPoint x="1104" y="1614" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1054" y="1614" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-4" value="no" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="tiudf02tnPjbu0Jy9bx4-2" target="tiudf02tnPjbu0Jy9bx4-6">
+          <mxGeometry x="-0.2" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="803" y="1484" as="sourcePoint" />
+            <mxPoint x="1104" y="1724" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="964" y="1724" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-5" value="確認成交量&lt;br&gt;遠大於平均量" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1105" y="1584" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-6" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1105" y="1694" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-7" value="嚴格設定&lt;br&gt;空間停損&lt;br&gt;時間停損" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="1584" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-8" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="tiudf02tnPjbu0Jy9bx4-5" target="tiudf02tnPjbu0Jy9bx4-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1290" y="1430" as="sourcePoint" />
+            <mxPoint x="1246" y="1430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1240" y="1614" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tiudf02tnPjbu0Jy9bx4-9" value="# of trading range&lt;br&gt;&amp;gt; 1 的多嗎?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="690" y="40" width="100" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -2775,7 +2810,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
-    <mxGraphModel dx="1912" dy="1053" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="667" dy="455" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3175,13 +3210,13 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EIKaltL1t2nEZBCoPQCg-1" value="檢視&lt;br&gt;國際原物料行情&lt;br&gt;( Mike醫生 )&lt;br&gt;學習其早起做功課" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="EIKaltL1t2nEZBCoPQCg-1" value="檢視&lt;br&gt;國際原物料行情&lt;br&gt;( Mike醫生 )&lt;br&gt;學習其早起做功課" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="860" y="30" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="EIKaltL1t2nEZBCoPQCg-2" value="昇鴻投資在&lt;br&gt;FB也曾經分享過&lt;br&gt;作息, 3點多就起床" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="EIKaltL1t2nEZBCoPQCg-2" value="昇鴻投資在&lt;br&gt;FB也曾經分享過&lt;br&gt;作息, 3點多就起床" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1020" y="30" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="EIKaltL1t2nEZBCoPQCg-3" value="the humble trade&lt;br&gt;說90%的交易工作&lt;br&gt;在開盤前就完成" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="EIKaltL1t2nEZBCoPQCg-3" value="the humble trade&lt;br&gt;說90%的交易工作&lt;br&gt;在開盤前就完成" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1180" y="30" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
