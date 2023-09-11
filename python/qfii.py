@@ -282,7 +282,7 @@ try:
 
     # list whatever fund buy or sell
     def parse_2(soup2):
-        print("parse_2+")
+        # print("parse_2+")
         '''
         tab2 = soup2.find_all("div",                                          \
                 {"class": "rwd-table dragscroll sortable F3 R4_"})
@@ -370,11 +370,12 @@ try:
                     list2s[i][1]+":"+str(list2s[i][2])+"\n")
             '''
         out0.close(); out1.close(); out2.close()
-        print("parse_2-")
+        # print("parse_2-")
         return n_rec
 
     # \param market: 0 (choppy), 1 (low), 2 (high)
     def merge12(market, l1_b, l1_s, l2_b, l2_s):
+        # print("merge12+")
         # full_tab = list1b.copy()
         # transpose ( @see shorturl.at/ntuy8 ) then union
         # extend # of row, then looping
@@ -501,7 +502,7 @@ try:
             full_tab[i].append(0) # 2 b
             full_tab[i].append(0) # 2 s
             full_tab[i].append(0) # qfii anomaly
-        print("highlight those qfii and fund go in the same direction...")
+        print("highlight b2, s2, and qa ...")
 
         both_buy     = DIR0 + "/" + DEFAULT_NAME1 + "."  + yyyy + mm + dd + '.txt'
         both_sell    = DIR0 + "/" + DEFAULT_NAME2 + "."  + yyyy + mm + dd + '.txt'
@@ -537,6 +538,7 @@ try:
                         .format( \
                         full_tab[i][0], full_tab[i][1], \
                         full_tab[i][2] )
+                    # print(rec)
                     outf3.write(rec +"\n")
 
                 if ( market == 2 and int(full_tab[i][3]) < 0 ):
@@ -556,6 +558,7 @@ try:
                     full_tab[i][8] )
 
         outf1.close(); outf2.close(); outf3.close()
+        # print("merge12-")
         return full_tab
 
     # // TODO: definition of high
@@ -568,8 +571,7 @@ try:
 
     # 0 (choppy), 1 (low), 2 (high)
     market_status = is_market_rip(deal, change, rise, volume)
-    print(market_status)
-    sys.exit(0)
+    # print(market_status)
 
     start = timer()
     soups = fetch()
@@ -605,7 +607,7 @@ try:
             qa   = tab[i][8] # qfii anomaly
             ofile.write(tkr+":"+name+":"+ \
                     str(qb)+":"+str(qs)+":"+str(fb)+":"+str(fs)+":"+ \
-                    str(b2)+":"+str(s2)+"\n")
+                    str(b2)+":"+str(s2)+":"+str(qa)+"\n")
         ofile.close()
     msg = "finish buying "+str(n1)+", and selling "+str(n2)+"."
     say(msg)
