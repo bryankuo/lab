@@ -56,6 +56,7 @@ DIR0="datafiles/taiex/qfbs"
 DEFAULT_NAME0="外資投信同步買賣超"
 DEFAULT_NAME1="外資投信同買"
 DEFAULT_NAME2="外資投信同賣"
+DEFAULT_NAME3="外資操作異常"
 
 if ( len(sys.argv) < 2 ):
     is_from_net = True
@@ -82,6 +83,21 @@ elif ( 6 == len(sys.argv) ):
     mm    = sys.argv[4]
     dd    = sys.argv[5]
     ofname = sys.argv[1]
+elif ( 10 == len(sys.argv) ):
+    if ( sys.argv[2] == "0" ):
+        is_from_net = True
+    elif ( sys.argv[2] == "1" ):
+        is_from_net = False
+    else:
+        is_from_net = False
+    yyyy   = sys.argv[3]
+    mm     = sys.argv[4]
+    dd     = sys.argv[5]
+    ofname = sys.argv[1]
+    deal   = sys.argv[6]
+    change = sys.argv[7]
+    rise   = sys.argv[8]
+    volume = sys.argv[9]
 else:
     is_from_net = False
     ofname = sys.argv[1]
@@ -169,11 +185,11 @@ try:
         else:
             # print("from the files...")
             qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
-            print(qname)
+            # print(qname)
             with open(qname) as q:
                 soup1 = BeautifulSoup(q, 'html.parser')
             fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
-            print(fname)
+            # print(fname)
             with open(fname) as r:
                 soup2 = BeautifulSoup(r, 'html.parser')
         return soup1, soup2
@@ -357,7 +373,8 @@ try:
         print("parse_2-")
         return n_rec
 
-    def merge12(l1_b, l1_s, l2_b, l2_s):
+    # \param market: 0 (choppy), 1 (low), 2 (high)
+    def merge12(market, l1_b, l1_s, l2_b, l2_s):
         # full_tab = list1b.copy()
         # transpose ( @see shorturl.at/ntuy8 ) then union
         # extend # of row, then looping
@@ -479,17 +496,23 @@ try:
         # end = timer()
         # print(timedelta(seconds=end-start))
 
+        # add columns
         for i in range(0, len(full_tab)):
-            full_tab[i].append(0)
-            full_tab[i].append(0)
+            full_tab[i].append(0) # 2 b
+            full_tab[i].append(0) # 2 s
+            full_tab[i].append(0) # qfii anomaly
         print("highlight those qfii and fund go in the same direction...")
 
-        both_buy  = DIR0 + "/" + DEFAULT_NAME1 + "."  + yyyy + mm + dd + '.txt'
-        both_sell = DIR0 + "/" + DEFAULT_NAME2 + "."  + yyyy + mm + dd + '.txt'
+        both_buy     = DIR0 + "/" + DEFAULT_NAME1 + "."  + yyyy + mm + dd + '.txt'
+        both_sell    = DIR0 + "/" + DEFAULT_NAME2 + "."  + yyyy + mm + dd + '.txt'
+        qfii_anomaly = DIR0 + "/" + DEFAULT_NAME3 + "."  + yyyy + mm + dd + '.txt'
+
         with open(both_buy, 'wt') as outf1, \
-            open(both_sell, 'wt') as outf2:
+            open(both_sell, 'wt') as outf2, \
+            open(qfii_anomaly, 'wt') as outf3:
 
             for i in range(0, len(full_tab)):
+
                 if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
                     full_tab[i][6] = 1
                     rec = "{0}:{1}:{2}:{3}:{4}:{5}" \
@@ -508,15 +531,45 @@ try:
                         full_tab[i][4], full_tab[i][5] )
                     outf2.write(rec +"\n")
 
-                rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}" \
+                if ( market == 1 and 0 < int(full_tab[i][2]) ):
+                    full_tab[i][8] = 1
+                    rec = "{0}:{1}:{2}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], \
+                        full_tab[i][2] )
+                    outf3.write(rec +"\n")
+
+                if ( market == 2 and int(full_tab[i][3]) < 0 ):
+                    full_tab[i][8] = 1
+                    rec = "{0}:{1}:{2}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], \
+                        full_tab[i][2] )
+                    outf3.write(rec +"\n")
+
+                rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}:{8}" \
                     .format( \
                     full_tab[i][0], full_tab[i][1], \
                     full_tab[i][2], full_tab[i][3], \
                     full_tab[i][4], full_tab[i][5], \
-                    full_tab[i][6], full_tab[i][7]  )
+                    full_tab[i][6], full_tab[i][7], \
+                    full_tab[i][8] )
 
-        outf1.close(); outf2.close()
+        outf1.close(); outf2.close(); outf3.close()
         return full_tab
+
+    # // TODO: definition of high
+    def is_market_rip(deal, change, rise, volume):
+        if ( "-" in rise ):
+            status = 1
+        else:
+            status = 2
+        return status
+
+    # 0 (choppy), 1 (low), 2 (high)
+    market_status = is_market_rip(deal, change, rise, volume)
+    print(market_status)
+    sys.exit(0)
 
     start = timer()
     soups = fetch()
@@ -537,7 +590,7 @@ try:
             +str(timedelta(seconds=end-start)))
 
     print("merging, highlight, and output to 3 files...")
-    tab = merge12(list1b, list1s, list2b, list2s)
+    tab = merge12(market_status, list1b, list1s, list2b, list2s)
     with open(ofname, 'wt') as ofile:
         n_col = len(tab[0])
         for i in range(0, len(tab)):
@@ -549,6 +602,7 @@ try:
             fs   = tab[i][5]
             b2   = tab[i][6]
             s2   = tab[i][7]
+            qa   = tab[i][8] # qfii anomaly
             ofile.write(tkr+":"+name+":"+ \
                     str(qb)+":"+str(qs)+":"+str(fb)+":"+str(fs)+":"+ \
                     str(b2)+":"+str(s2)+"\n")
@@ -560,7 +614,7 @@ except (SessionNotCreatedException):
     print('turn on safari remote option.')
 
 finally:
-    print('finally')
+    print('finally...')
 
 print('done.')
 

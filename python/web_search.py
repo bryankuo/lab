@@ -111,6 +111,8 @@ revenue_mom = \
 
 monthly_revenue = \
     "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_"+ticker+".djhtm"
+monthly_revenue_chg = \
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=單月營收月增率%28本月份%29%40%40單月營收月增減率%40%40本月份月增率"
 
 revenue_growth = \
     "https://www.moneydj.com/Z/ZC/ZC1/ZC17/ZC17.djhtm?a="+ticker

@@ -1,7 +1,19 @@
 #!/bin/bash
 
 # @see uno_stalk_story.sh
+# \param twse close mark @see uno_status.sh
+#
+# qfii.py
+# \param timestamp
+# \param origin
 # handle 4 cvs from qfii.py
+# \return OUTF0  txt file, a summary describe what qfii/fund buy and sell
+# \return OUTF2B txt file, summary describing both buy
+# \return OUTF2S txt file, summary describing both sell
+# \return OUTFQA txt file, summary describing when:
+#   1.buy  when twse dip
+#   2.sell when twse rip
+# \return OUTF1 ods file, manual saved by calc
 
 if [ "$#" -lt 4 ]; then
     echo "usage: qfbs.sh yyyy mm dd [net|file]"
@@ -30,6 +42,18 @@ fi
 
 clear
 
+OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
+echo ${OUTPUT[@]}
+DEAL=${OUTPUT[0]%\'}
+DEAL=${DEAL#\'}
+CHANGE=${OUTPUT[1]%\'}
+CHANGE=${CHANGE#\'}
+RISE=${OUTPUT[2]%\'}
+RISE=${RISE#\'}
+VOLUME=${OUTPUT[3]%\'}
+VOLUME=${VOLUME#\'}
+# printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+
 DIR0="datafiles/taiex/qfbs"
 mkdir -p $DIR0
 
@@ -44,12 +68,16 @@ OUTF0="$DIR0/$NAME.$DATE.txt"
 OUTF1="$DIR0/$NAME.$DATE.ods"
 DEFAULT_NAME1="外資投信同買"
 DEFAULT_NAME2="外資投信同賣"
+DEFAULT_NAME3="外資操作異常"
 OUTF2B="$DIR0/$DEFAULT_NAME1.$DATE.txt"
 OUTF2S="$DIR0/$DEFAULT_NAME2.$DATE.txt"
+OUTFQA="$DIR0/$DEFAULT_NAME3.$DATE.txt"
 O2B="$DIR0/$DEFAULT_NAME1.$DATE.ods"
 O2S="$DIR0/$DEFAULT_NAME2.$DATE.ods"
+OQA="$DIR0/$DEFAULT_NAME3.$DATE.ods"
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
+OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 
 if [ $ORIGIN -eq 0 ]; then
     rm -vf "$DIR0/qfii.$DATE.html"
@@ -57,18 +85,20 @@ if [ $ORIGIN -eq 0 ]; then
     ls -ltr *$YR$MN$DAY*; rm -f *$YR$MN$DAY*
 fi
 
-rm -vf $OUTF0 $OUTF1 $OUTF2B $OUTF2S $O2B $O2S
+rm -vf $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
 
 # python3 qfii.py $OUTF0
 # python3 qfii.py $OUTF0 0 # // TODO: lazy and less parameter
-python3 qfii.py $OUTF0 $ORIGIN $YR $MN $DAY
+# python3 qfii.py $OUTF0 $ORIGIN $YR $MN $DAY
+python3 qfii.py $OUTF0 $ORIGIN $YR $MN $DAY $DEAL $CHANGE $RISE $VOLUME
 
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 
 # @see https://superuser.com/a/246841
-echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超:同步買超:同步賣超' | cat - $OUTF0 > temp && mv temp $OUTF0
+echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超:同步買超:同步賣超:外資操作異常' | cat - $OUTF0 > temp && mv temp $OUTF0
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' | cat - $OUTF2B > temp && mv temp $OUTF2B
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' | cat - $OUTF2S > temp && mv temp $OUTF2S
+echo '代  號:名  稱:外資買賣超' | cat - $OUTFQA > temp && mv temp $OUTFQA
 rm -f temp
 
 echo -ne '\007'
@@ -107,6 +137,19 @@ while true ; do
     fi
 done
 
+
+echo -ne '\007'
+read -p "Press enter to continue $OUTFQA ..."
+python3 launch.py $OUTFQA
+# manual process here...
+while true ; do
+    if [ ! -f "$OQA" ]; then
+        read -p "Save $OUTFQA to ods when ready ..."
+    else
+	break
+    fi
+done
+
 echo -ne '\007'
 read -p "Press enter to continue $OUTF1 ..."
 /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
@@ -125,8 +168,14 @@ read -p "Press enter to continue $O2S ..."
 "$O2S" \
 --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
 
+echo -ne '\007'
+read -p "Press enter to continue $OQA ..."
+/Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
+"$OQA" \
+--accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
+
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
-    $OUTF2B $OUTF2S
+    $OUTF2B $OUTF2S $OUTFQA
 
 tail -n +2 $OUTF2B > temp; awk -F':' '{print $1}' temp | \
     sort > $OUTF2B_SORTED; #cat $OUTF2B_SORTED
@@ -138,7 +187,7 @@ rm -f temp
 
 ./check_2b2s.sh $LAST_TRADE_DAY $DATE
 
-# generate 16 files
-ls -ltr $DIR0"/"*.txt $DIR0"/"*.html $DIR0"/"*.ods  | tail -n 16;
+# generate 18 files
+ls -ltr $DIR0"/"*.txt $DIR0"/"*.html $DIR0"/"*.ods  | tail -n 18;
 
 exit 0
