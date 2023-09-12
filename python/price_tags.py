@@ -17,7 +17,8 @@ commo = "https://tradingeconomics.com/commodities"
 copper = "https://www.investing.com/commodities/copper-candlestick"
 crb_idx = "https://www.barchart.com/futures/quotes/BZY00/interactive-chart"
 brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
-bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
+# a leading index
+btcusd = "https://www.tradingview.com/chart/?symbol=BITSTAMP%3ABTCUSD"
 us10y = "https://www.marketwatch.com/investing/bond/tmubmusd10y/charts?countrycode=bx"
 
 # //TODO:
@@ -86,8 +87,6 @@ nand_flash = "https://www.trendforce.com/price"
 ddr = "https://www.dramexchange.com"
 glass = "https://quote.eastmoney.com/qihuo/FGM.html"
 paper = "https://www.moneydj.com/z/ze/zeq/zeqa_d0190020.djhtm"
-
-bitcoin = "https://candlecharts.com/candlestick-chart-look-up/btc-candlestick-chart/"
 
 doji = "http://localhost"
 
@@ -232,7 +231,7 @@ daily_bases = [ \
     # commo, \
     copper, \
     brent_crude, \
-    bitcoin, \
+    btcusd, \
 
     # worldwide
     # finviz, \
