@@ -136,6 +136,13 @@ volume_profile = \
 # // TODO: support and resistance
 # https://www.cnyes.com/archive/twstock/Pressure/2528.htm
 
+# // TODO: relative strength
+# https://tw.stock.yahoo.com/rank/change-down
+# https://www.wantgoo.com/stock/ranking/top-loser
+# https://www.cmoney.tw/finance/f00016.aspx?o=2&o2=2
+# twse history
+# https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20230701&response=html
+
 holdings = "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcj/zcj_" \
     + ticker + ".djhtm"
 
