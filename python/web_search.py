@@ -140,8 +140,10 @@ volume_profile = \
 # https://tw.stock.yahoo.com/rank/change-down
 # https://www.wantgoo.com/stock/ranking/top-loser
 # https://www.cmoney.tw/finance/f00016.aspx?o=2&o2=2
+# zca
 # twse history
 # https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20230701&response=html
+# https://goodinfo.tw/tw/StockIdxDetail.asp?STOCK_ID=%E5%8A%A0%E6%AC%8A%E6%8C%87%E6%95%B8
 
 holdings = "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcj/zcj_" \
     + ticker + ".djhtm"
