@@ -98,7 +98,7 @@ TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超:同步買超:同步賣超:外資操作異常' | cat - $OUTF0 > temp && mv temp $OUTF0
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' | cat - $OUTF2B > temp && mv temp $OUTF2B
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' | cat - $OUTF2S > temp && mv temp $OUTF2S
-echo '代  號:名  稱:外資買賣超' | cat - $OUTFQA > temp && mv temp $OUTFQA
+echo '代  號:名  稱:外資買超:外資賣超' | cat - $OUTFQA > temp && mv temp $OUTFQA
 rm -f temp
 
 echo -ne '\007'
