@@ -243,15 +243,18 @@ try:
                     .find_all("tbody")[0] \
                     .find_all("tr")[i].find_all("td")[1].text.strip().replace(',', '')
                 '''
-
+                # print(i)
                 row = tab1.find_all("tr")[i]
                 tkr1 = row.find_all("td")[1].text.strip().replace(',', '')
-                # print(tkr1)
 
                 name1 = row.find_all("td")[2].text.strip().replace(',', '')
                 # print(name1)
 
-                vol1  = row.find_all("td")[n_td-1].text.strip() \
+                # vol1  = row.find_all("td")[n_td-1].text.strip() \
+                #        .replace(',', '') # [:-3] # 1000 shares
+                # however td could be empty,
+
+                vol1  = row.find_all("td")[5].text.strip() \
                         .replace(',', '') # [:-3] # 1000 shares
                 # print(vol1)
 
