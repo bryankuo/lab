@@ -66,20 +66,31 @@ else:
         soup = BeautifulSoup(q, 'html.parser')
 
 title = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[1].text.strip().replace(',', '')
-ttl_1d = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[1] \
-        .find_all("td", {})[1].text.strip().replace(',', '')
-ttl_1w = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[1] \
-        .find_all("td", {})[2].text.strip().replace(',', '')
-ttl_1m = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[1] \
-        .find_all("td", {})[3].text.strip().replace(',', '')
-print(ttl_1)
+        .find_all("tr", {})[1]
+t_1d  = title.find_all("td", {})[1].text.strip().replace(',', '')
+t_1w  = title.find_all("td", {})[2].text.strip().replace(',', '')
+t_1m  = title.find_all("td", {})[3].text.strip().replace(',', '')
+t_3m  = title.find_all("td", {})[4].text.strip().replace(',', '')
+t_6m  = title.find_all("td", {})[5].text.strip().replace(',', '')
+t_1y  = title.find_all("td", {})[6].text.strip().replace(',', '')
+t_ytd = title.find_all("td", {})[7].text.strip().replace(',', '')
+t_3y  = title.find_all("td", {})[8].text.strip().replace(',', '')
+
+olist0 = [ t_1d, t_1w, t_1m, t_3m, t_6m, t_1y, t_ytd, t_3y ]
+print(olist0)
 
 figure = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[2].text.strip().replace(',', '')
-print(figure)
+        .find_all("tr", {})[2]
+f_1d   = figure.find_all("td", {})[1].text.strip().replace(',', '')
+f_1w   = figure.find_all("td", {})[2].text.strip().replace(',', '')
+f_1m   = figure.find_all("td", {})[3].text.strip().replace(',', '')
+f_3m   = figure.find_all("td", {})[4].text.strip().replace(',', '')
+f_6m   = figure.find_all("td", {})[5].text.strip().replace(',', '')
+f_1y   = figure.find_all("td", {})[6].text.strip().replace(',', '')
+f_ytd  = figure.find_all("td", {})[7].text.strip().replace(',', '')
+f_3y   = figure.find_all("td", {})[8].text.strip().replace(',', '')
+
+olist = [ f_1d, f_1w, f_1m, f_3m, f_6m, f_1y, f_ytd, f_3y ]
+print(olist)
 
 sys.exit(0)
