@@ -38,10 +38,14 @@ ticker = sys.argv[1]
 DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
+ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.txt'
+o_path = os.path.join(DIR0, ofname)
+
 is_from_net = True
 use_plain_req = True
 
 def select_src(ticker, seed):
+    print( "ticker " + ticker + ", src " + str(seed) )
     # zca
     if ( seed == 1 ):
         # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm
@@ -55,6 +59,14 @@ def select_src(ticker, seed):
         # http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_2102.djhtm
         src3 = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
         return src3
+    elif ( seed == 4 ):
+        # "https://trade.ftsi.com.tw/z/zc/zca/zca_1589.djhtm"
+        src4 = "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
+        return src4
+    elif ( seed == 5 ):
+        # https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=2303
+        src5 = "https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=" + ticker
+        return src5
     else:
         # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm
         src1 = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
@@ -64,8 +76,7 @@ if ( is_from_net ):
     if ( os.path.exists(path) ):
         os.remove(path) # clean up
     if ( use_plain_req ):
-        url = select_src(ticker, random.randint(1,3))
-        # print(url)
+        url = select_src( ticker, random.randint(1,5))
         response = requests.get(url)
         # response.encoding = 'cp950'
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -84,34 +95,42 @@ else:
     with open(path) as q:
         soup = BeautifulSoup(q, 'html.parser')
 
-sys.exit(0)
+# title = soup.find("meta",  {"name":"description"})
+name = "n/a" #title["content"].split(' ')[0].split(')')[1].strip()
 
-title = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[1]
-t_1d  = title.find_all("td", {})[1].text.strip().replace(',', '')
-t_1w  = title.find_all("td", {})[2].text.strip().replace(',', '')
-t_1m  = title.find_all("td", {})[3].text.strip().replace(',', '')
-t_3m  = title.find_all("td", {})[4].text.strip().replace(',', '')
-t_6m  = title.find_all("td", {})[5].text.strip().replace(',', '')
-t_1y  = title.find_all("td", {})[6].text.strip().replace(',', '')
-t_ytd = title.find_all("td", {})[7].text.strip().replace(',', '')
-t_3y  = title.find_all("td", {})[8].text.strip().replace(',', '')
+r_ytd = soup.findAll('table')[0] \
+    .find_all('table')[0] \
+    .find_all('tr')[8] \
+    .find_all('td')[1].text.strip()
 
-olist0 = [ t_1d, t_1w, t_1m, t_3m, t_6m, t_1y, t_ytd, t_3y ]
-print(olist0)
+r_1w  = soup.findAll('table')[0] \
+    .find_all('table')[0] \
+    .find_all('tr')[9] \
+    .find_all('td')[1].text.strip()
 
-figure = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[2]
-f_1d   = figure.find_all("td", {})[1].text.strip().replace(',', '')
-f_1w   = figure.find_all("td", {})[2].text.strip().replace(',', '')
-f_1m   = figure.find_all("td", {})[3].text.strip().replace(',', '')
-f_3m   = figure.find_all("td", {})[4].text.strip().replace(',', '')
-f_6m   = figure.find_all("td", {})[5].text.strip().replace(',', '')
-f_1y   = figure.find_all("td", {})[6].text.strip().replace(',', '')
-f_ytd  = figure.find_all("td", {})[7].text.strip().replace(',', '')
-f_3y   = figure.find_all("td", {})[8].text.strip().replace(',', '')
+r_1m  = soup.findAll('table')[0] \
+    .find_all('table')[0] \
+    .find_all('tr')[9] \
+    .find_all('td')[1].text.strip()
 
-olist = [ f_1d, f_1w, f_1m, f_3m, f_6m, f_1y, f_ytd, f_3y ]
-print(olist)
+r_2m  = soup.findAll('table')[0] \
+    .find_all('table')[0] \
+    .find_all('tr')[10] \
+    .find_all('td')[1].text.strip()
+
+r_3m  = soup.findAll('table')[0] \
+    .find_all('table')[0] \
+    .find_all('tr')[10] \
+    .find_all('td')[1].text.strip()
+
+# olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]
+olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
+#print(olist)
+# assume get_twse_ror.py is running at first
+with open(o_path, 'a') as ofile:
+    # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
+    ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
+        +":n/a:n/a:"+r_ytd+":n/a"+"\n")
+    ofile.close()
 
 sys.exit(0)
