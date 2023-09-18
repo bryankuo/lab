@@ -38,10 +38,13 @@ url = "https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059"
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
-DIR0="./datafiles"
+# DIR0="./datafiles/taiex"
 DIR0="."
 fname = "ror.twse.html"
 path = os.path.join(DIR0, fname)
+ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.txt'
+o_path = os.path.join(DIR0, ofname)
+
 is_from_net = True
 use_plain_req = False
 
@@ -78,6 +81,7 @@ t_1y  = title.find_all("td", {})[6].text.strip().replace(',', '')
 t_ytd = title.find_all("td", {})[7].text.strip().replace(',', '')
 t_3y  = title.find_all("td", {})[8].text.strip().replace(',', '')
 
+print("twse:")
 olist0 = [ t_1d, t_1w, t_1m, t_3m, t_6m, t_1y, t_ytd, t_3y ]
 print(olist0)
 
@@ -92,7 +96,13 @@ f_1y   = figure.find_all("td", {})[6].text.strip().replace(',', '')
 f_ytd  = figure.find_all("td", {})[7].text.strip().replace(',', '')
 f_3y   = figure.find_all("td", {})[8].text.strip().replace(',', '')
 
-olist = [ f_1d, f_1w, f_1m, f_3m, f_6m, f_1y, f_ytd, f_3y ]
+olist = [ f_1d, f_1w, f_1m, "n/a", f_3m, f_6m, f_1y, f_ytd, f_3y ]
 print(olist)
+
+with open(o_path, 'wt') as ofile:
+    ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
+    ofile.write("tse:台股加權:"+f_1d+":"+f_1w+":"+f_1m+":n/a:"+f_3m \
+        +":"+f_6m+":"+f_1y+":"+f_ytd+":"+f_3y+"\n")
+    ofile.close()
 
 sys.exit(0)
