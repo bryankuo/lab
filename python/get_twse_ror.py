@@ -42,7 +42,7 @@ url = "https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059"
 DIR0="."
 fname = "ror.twse.html"
 path = os.path.join(DIR0, fname)
-ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.txt'
+ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 o_path = os.path.join(DIR0, ofname)
 
 is_from_net = True

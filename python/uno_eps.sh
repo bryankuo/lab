@@ -21,6 +21,7 @@ fi
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 echo "start "$START " len "$LEN " #line "$NLINES
 
+# // FIXME: uno_quotes.sh has been update lately
 while read p; do
     TICKER=$p
     if [[ $index -lt $START ]]

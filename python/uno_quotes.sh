@@ -113,8 +113,6 @@ while true; do
         echo
         break
     fi
-
-# done < datafiles/watchlist.txt
 done
 
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
