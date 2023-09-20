@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # python3 get_ticker_ror.py
+# scraping from file fetched.
 # return 0
 
 '''
@@ -10,7 +11,7 @@ from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 '''
 
-import sys, requests, time, os, numpy, random
+import sys, requests, time, os, numpy, random, csv
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
@@ -29,85 +30,50 @@ from pprint import pprint
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
-if ( len(sys.argv) < 3 ):
-    print("usage: get_ticker_ror.py [ticker] [net|file]")
+if ( len(sys.argv) < 2 ):
+    print("usage: get_ticker_ror.py [ticker]")
     sys.exit(0)
 ticker = sys.argv[1]
-if ( int(sys.argv[2]) == 1 ):
-    is_from_net = False
-elif ( int(sys.argv[2]) == 0 ):
-    is_from_net = True
-else:
-    is_from_net = False
 
 # DIR0="./datafiles"
 DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
-ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
-o_path = os.path.join(DIR0, ofname)
+ifname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
+i_path = os.path.join(DIR0, ifname)
+rs_fname = "rs." + datetime.today().strftime('%Y%m%d') + '.csv'
+rs_path = os.path.join(DIR0, rs_fname)
 
-# // FIXME:
-# works on holiday
-# not working at 11:00 in the morning
-use_plain_req = True
+def fetch_twse_ror():
+    print("fetch_twse_ror+")
+    # print(i_path)
+    f = open(i_path, newline='')
+    csv_reader = csv.reader(f)
+    next(csv_reader)
+    s_figures=next(csv_reader) # the second line
+    figures = s_figures[0].split(':')
+    # print(figures[3])
+    return figures
 
-def select_src(ticker, seed):
-    print( "ticker " + ticker + ", src " + str(seed) )
-    # zca
-    if   ( seed == 1 ): # plain request ok,
-        # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm
-        src1 = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
-        return src1
-    elif ( seed == 2 ): # plain request ok, t 5
-        # http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_2102.djhtm
-        src2 = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-        return src2
-    elif ( seed == 3 ): # plain request ok, t 5
-        # "https://trade.ftsi.com.tw/z/zc/zca/zca_1589.djhtm"
-        src3 = "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-        return src3
-    elif ( seed == 4 ): # plain request ok, t 5
-        # https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=2303
-        src4 = "https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=" + ticker
-        return src4
-    else:
-        # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm
-        src1 = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
-        return src1
+twse_ror_figures = fetch_twse_ror()
+# print("{:>.02f}".format(float(twse_ror_figures[2])))
+t_1d  = float(twse_ror_figures[2])
+t_1w  = float(twse_ror_figures[3])
+t_1m  = float(twse_ror_figures[4])
+# t_2m  = float(twse_ror_figures[5]) # yet available
+t_3m  = float(twse_ror_figures[6])
+t_6m  = float(twse_ror_figures[7])
+t_1y  = float(twse_ror_figures[8])
+t_ytd = float(twse_ror_figures[9])
+t_3y  = float(twse_ror_figures[10])
 
-# // FIXME: plain request NG, different than others
-# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2102.djhtm
-# src2 = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-#
+# sys.exit(0)
+with open(fname) as q:
+    soup = BeautifulSoup(q, 'html.parser')
 
-if ( is_from_net ):
-    if ( os.path.exists(path) ):
-        os.remove(path) # clean up
-    url = select_src( ticker, random.randint(1,4) )
-    # url = select_src( ticker, 1 )
-    if ( use_plain_req ):
-        response = requests.get(url)
-        # response.encoding = 'cp950'
-        soup = BeautifulSoup(response.text, 'html.parser')
-    else:
-        browser = webdriver.Safari( \
-            executable_path = '/usr/bin/safaridriver')
-        browser.get(url)
-        time.sleep(1)
-        page1 = browser.page_source
-        soup = BeautifulSoup(page1, 'html.parser')
-        browser.quit()
-    with open(path, "w") as outfile2:
-        outfile2.write(soup.prettify())
-        outfile2.close()
-else:
-    with open(path) as q:
-        soup = BeautifulSoup(q, 'html.parser')
-
+# // FIXME: fetch name
 # title = soup.find("meta",  {"name":"description"})
 name = "n/a" #title["content"].split(' ')[0].split(')')[1].strip()
-# // FIXME: fetch name
 
 # apply to src 1,2,3,4
 r_ytd = soup.findAll('table')[0] \
@@ -137,9 +103,13 @@ r_3m  = soup.findAll('table')[0] \
 
 # olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]
 olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
-#print(olist)
+
+
+print("{:>.02f}".format(float(r_1w)))
+print("{:>.02f}".format(float(t_1w)))
+print("{:>.02f}".format(((float(r_1w)-float(t_1w))*100)/abs(float(t_1w))))
 # assume get_twse_ror.py is running at first
-with open(o_path, 'a') as ofile:
+with open(rs_path, 'a') as ofile:
     # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
     ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
