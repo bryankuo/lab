@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-09-20T13:09:02.519Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="fMdCUXHvLay_0C2Jpivz" version="21.7.5" type="device" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-09-21T16:45:01.559Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="SVNkwmSj9cEwN0huDJNy" version="21.7.5" type="device" pages="3">
   <diagram id="2W2IRHp-vWOM0x0aQLfi" name="US trades">
     <mxGraphModel dx="1040" dy="1874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -977,7 +977,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="lobaQ4SKj8pfq9Lnb3rV-5" value="銜接 台股&lt;br&gt;確認出量 確認傾斜&lt;br&gt;的操作方式" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1060" y="630" width="120" height="60" as="geometry" />
+          <mxGeometry x="994" y="630" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="PMTa05_-Mj8FBm4ylKyr-1" value="algorithm&lt;br&gt;trading?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="70" y="840" width="100" height="100" as="geometry" />
@@ -1356,6 +1356,9 @@
               <mxPoint x="640" y="-120" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="NMqWzvAI4yNut2S3Ltvt-1" value="higher low&lt;br&gt;higher high" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1121" y="630" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -2766,7 +2769,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
-    <mxGraphModel dx="1040" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="832" dy="564" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3358,14 +3361,17 @@
         <mxCell id="ih47zRXDiB6Vx5exN6KT-2" value="內容包含&lt;br&gt;價位 部位 方向&lt;br&gt;操作週期" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1021" y="500" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="odt28SvdBJ1r2UKIwxWc-1" value="阿魯米 &lt;br&gt;在米高說的&lt;br&gt;&quot;eye on close&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="odt28SvdBJ1r2UKIwxWc-1" value="阿魯米 &lt;br&gt;在米高說的&lt;br&gt;&quot;eye on close&quot;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="840" y="1810" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ZyF135fITEKeyA3McAPk-1" value="同一個時間週期&lt;br&gt;講求一致性" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="ZyF135fITEKeyA3McAPk-1" value="同一個時間週期&lt;br&gt;講求一致性" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="970" y="1810" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="onkI_4f4pqVzvRu4h3fp-1" value="day trade&lt;br&gt;以飄動的範圍來決定停損的大小" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="onkI_4f4pqVzvRu4h3fp-1" value="day trade&lt;br&gt;以飄動的範圍來決定停損的大小" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1100" y="1810" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2c-eJzCrdm8DDsGjYiPR-1" value="包含 賺賠比&lt;br&gt;勝率 每筆交易的筆記" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="2160" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
