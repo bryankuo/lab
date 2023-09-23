@@ -9,10 +9,16 @@ START=$index
 LEN=$NLINES
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 echo "start "$START" len "$NLINES
-# generate csv
-# BENCHMARK=($(python3 get_twse_ror.py | tr -d '[],'))
-BENCHMARK=($(python3 get_twse_ror.py))
-echo $BENCHMARK
+
+echo "clean up data files..."
+rm -f ror.*.html ror.*.csv
+
+echo "done, get twse ror..."
+# generate csv header and twse ror
+BENCHMARK=($(python3 get_twse_ror.py | tr -d '[],'))
+
+echo "done, looping fetch file..."
+# echo ${BENCHMARK[@]}
 while true; do
     TICKER=( $(sed "$index""q;d" $BOUNTY) )
     python3 fetch_ticker_ror.py $TICKER 0
@@ -24,15 +30,50 @@ while true; do
     fi
     sleep 1
 done
-# // TODO: extract and generate the rs
-# read csv, create a list, for each ticker, compare and
-# generate another csv in percentage
-# python3 get_ticker_ror.py $TICKER 0
-
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
+
+echo "done, figure out ror for each ticker..."
+index=1
+count=0
+TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
+# // generate the rs against twse, append csv
+while true; do
+    TICKER=( $(sed "$index""q;d" $BOUNTY) )
+    python3 get_ticker_ror.py $TICKER 0
+    index=$(($index+1))
+    count=$(($count+1))
+    if [[ $count -ge $LEN ]]; then
+	echo "finish $count items."
+	break
+    fi
+done
+TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: " $TIMESTAMP0 " looping start"
+echo "time: " $TIMESTAMP  " looping end"
+
+# notify user it's done
 echo -ne '\007'
-# // TODO:
-# python3 generate_bounty_rs.py
+ls -ltr ror.*.html ror.*.csv rs.*.csv
+print("done.")
+
+# DIR0="./datafiles/taiex"
+DIR0="."
+mkdir -p $DIR0
+DATE=`date '+%Y%m%d'`
+OUTF0="$DIR0/rs.$DATE.csv"
+OUTF1="$DIR0/rs.$DATE.ods"
+
+# read -p "Press enter to continue $OUTF0 ..."
+python3 launch.py $OUTF0
+# manual process here...
+while true ; do
+    if [ ! -f "$OUTF1" ]; then
+        read -p "Save $OUTF0  to ods when ready ..."
+    else
+	break
+    fi
+done
+
 exit 0

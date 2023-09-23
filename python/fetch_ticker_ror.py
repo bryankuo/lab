@@ -40,7 +40,7 @@ elif ( int(sys.argv[2]) == 0 ):
 else:
     is_from_net = False
 
-# DIR0="./datafiles"
+# DIR0="./datafiles/taiex"
 DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
@@ -76,6 +76,7 @@ def select_src(ticker, seed):
     else:
         # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm
         src1 = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
+        # // FIXME: 2 consequtive request in short time NG
         return src1
 # // FIXME: plain request NG, different than others
 # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2102.djhtm

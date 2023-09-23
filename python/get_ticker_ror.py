@@ -34,8 +34,9 @@ if ( len(sys.argv) < 2 ):
     print("usage: get_ticker_ror.py [ticker]")
     sys.exit(0)
 ticker = sys.argv[1]
+print(ticker)
 
-# DIR0="./datafiles"
+# DIR0="./datafiles/taiex"
 DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
@@ -45,8 +46,7 @@ rs_fname = "rs." + datetime.today().strftime('%Y%m%d') + '.csv'
 rs_path = os.path.join(DIR0, rs_fname)
 
 def fetch_twse_ror():
-    print("fetch_twse_ror+")
-    # print(i_path)
+    # print("fetch_twse_ror+")
     f = open(i_path, newline='')
     csv_reader = csv.reader(f)
     next(csv_reader)
@@ -67,7 +67,6 @@ t_1y  = float(twse_ror_figures[8])
 t_ytd = float(twse_ror_figures[9])
 t_3y  = float(twse_ror_figures[10])
 
-# sys.exit(0)
 with open(fname) as q:
     soup = BeautifulSoup(q, 'html.parser')
 
@@ -88,31 +87,39 @@ r_1w  = soup.findAll('table')[0] \
 
 r_1m  = soup.findAll('table')[0] \
     .find_all('table')[0] \
-    .find_all('tr')[9] \
+    .find_all('tr')[10] \
     .find_all('td')[1].text.strip().replace('%', '')
 
 r_2m  = soup.findAll('table')[0] \
     .find_all('table')[0] \
-    .find_all('tr')[10] \
+    .find_all('tr')[11] \
     .find_all('td')[1].text.strip().replace('%', '')
 
 r_3m  = soup.findAll('table')[0] \
     .find_all('table')[0] \
-    .find_all('tr')[10] \
+    .find_all('tr')[12] \
     .find_all('td')[1].text.strip().replace('%', '')
 
 # olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]
 olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
 
-
-print("{:>.02f}".format(float(r_1w)))
-print("{:>.02f}".format(float(t_1w)))
-print("{:>.02f}".format(((float(r_1w)-float(t_1w))*100)/abs(float(t_1w))))
 # assume get_twse_ror.py is running at first
 with open(rs_path, 'a') as ofile:
     # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
     ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
     ofile.close()
+
+rs_1w  = ( (float(r_1w) -float(t_1w) ) * 100 ) / abs(float(t_1w) )
+rs_1m  = ( (float(r_1m) -float(t_1m) ) * 100 ) / abs(float(t_1m) )
+rs_3m  = ( (float(r_3m) -float(t_3m) ) * 100 ) / abs(float(t_3m) )
+rs_ytd = ( (float(r_ytd)-float(t_ytd)) * 100 ) / abs(float(t_ytd))
+
+'''
+print("{:>.02f}".format(rs_1w ))
+print("{:>.02f}".format(rs_1m ))
+print("{:>.02f}".format(rs_3m ))
+print("{:>.02f}".format(rs_ytd))
+'''
 
 sys.exit(0)
