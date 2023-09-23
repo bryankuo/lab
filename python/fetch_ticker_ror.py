@@ -124,17 +124,17 @@ r_1w  = soup.findAll('table')[0] \
 
 r_1m  = soup.findAll('table')[0] \
     .find_all('table')[0] \
-    .find_all('tr')[9] \
+    .find_all('tr')[10] \
     .find_all('td')[1].text.strip().replace('%', '')
 
 r_2m  = soup.findAll('table')[0] \
     .find_all('table')[0] \
-    .find_all('tr')[10] \
+    .find_all('tr')[11] \
     .find_all('td')[1].text.strip().replace('%', '')
 
 r_3m  = soup.findAll('table')[0] \
     .find_all('table')[0] \
-    .find_all('tr')[10] \
+    .find_all('tr')[12] \
     .find_all('td')[1].text.strip().replace('%', '')
 
 # olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]

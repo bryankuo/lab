@@ -4,7 +4,7 @@
 # get TAIEX 50 components
 # return 0: success
 
-import sys, requests, time
+import sys, requests, time, os
 import urllib.request, json, re
 # import json5
 from pprint import pprint
@@ -22,9 +22,19 @@ from slimit import ast
 from slimit.parser import Parser
 from slimit.visitors import nodevisitor
 
+if ( len(sys.argv) < 2 ):
+    print("usage: t50_component.py [ticker]")
+    sys.exit(0)
+#ticker = sys.argv[1]
+
 new_table=[]
 
-source_from_net = 0
+DIR0="./datafiles" # consider compatible with rank.sh
+fname = "t50."+sys.argv[1]+".html"
+o_fname = "t50."+sys.argv[1]+".txt" # // FIXME: compatible with rank.sh in csv
+path = os.path.join(DIR0, fname)
+o_path = os.path.join(DIR0, o_fname)
+source_from_net = 1
 if ( source_from_net == 1 ):
     browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
     if ( browser is None ):
@@ -34,20 +44,17 @@ if ( source_from_net == 1 ):
     # url = 'https://www.cmoney.tw/etf/e210.aspx?key=0050'
     url = 'https://www.cmoney.tw/etf/tw/0050/fundholding'
     browser.get(url)
-    time.sleep(5) # wait until page fully loaded
+    time.sleep(3) # wait until page fully loaded
 
     # stockweights
     page = browser.page_source
     soup = BeautifulSoup(page, 'html.parser')
     browser.close()
-    # print(soup.prettify())
-    outf0 = "datafiles/t50."+sys.argv[1]+".html"
-    with open(outf0, "w") as outfile:
+    with open(path, "w") as outfile:
         outfile.write(soup.prettify())
     outfile.close()
 else:
-    component_list = "datafiles/t50."+sys.argv[1]+".html"
-    with open(component_list) as fp:
+    with open(path) as fp:
         soup = BeautifulSoup(fp, 'html.parser')
 
 ths=soup.find_all("thead", {})[0] \
@@ -72,13 +79,13 @@ for i in range(0, len(rows)):
         row.append( tds[2].text.strip() )
         new_table.append(row)
 
-outf0 = "datafiles/t50."+sys.argv[1]+".txt"
-with open(outf0, "w") as outfile:
+with open(o_fname, "w") as outfile:
     # outfile.write(soup.prettify())
     for row in new_table:
         tkr_name = row[0]
         weight   = row[1]
         outfile.write( tkr_name + ":" + weight + '\n' )
 outfile.close()
-
+print("done.")
+# // TODO: combine a0050.py as one
 sys.exit(0)

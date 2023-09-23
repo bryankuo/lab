@@ -177,12 +177,13 @@ read -p "Press enter to continue $OQA ..."
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S $OUTFQA
 
+echo "sort "$OUTF2B", "$OUTF2S" for new(b|s), 2day(b|s) ..."
 tail -n +2 $OUTF2B > temp; awk -F':' '{print $1}' temp | \
     sort > $OUTF2B_SORTED; #cat $OUTF2B_SORTED
 rm -f temp
 
 tail -n +2 $OUTF2S > temp; awk -F':' '{print $1}' temp | \
-    sort > $OUTF2S_SORTED; cat $OUTF2S_SORTED
+    sort > $OUTF2S_SORTED; # cat $OUTF2S_SORTED
 rm -f temp
 
 ./check_2b2s.sh $LAST_TRADE_DAY $DATE
@@ -190,4 +191,6 @@ rm -f temp
 # generate 18 files
 ls -ltr $DIR0"/"*.txt $DIR0"/"*.html $DIR0"/"*.ods  | tail -n 18;
 
+# // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
+# // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股
 exit 0
