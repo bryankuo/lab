@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 get_ticker_ror.py
+# python3 get_ticker_ror.py [ticker]
 # scraping from file fetched.
 # return 0
 
@@ -40,6 +40,7 @@ print(ticker)
 DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
+# // FIXME: date may be not today, but input from ror.sh
 ifname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 i_path = os.path.join(DIR0, ifname)
 rs_fname = "rs." + datetime.today().strftime('%Y%m%d') + '.csv'

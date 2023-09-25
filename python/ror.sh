@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ./ror.sh
+# scraping ror and generate rs into csv for calc.
+# return
+
 # echo "$#"
 index=1
 count=0
@@ -34,11 +38,21 @@ TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
 
+
+# DIR0="./datafiles/taiex"
+DIR0="."
+mkdir -p $DIR0
+# // FIXME: date may be not today, but input parameter to get_ticker_ror.py
+DATE=`date '+%Y%m%d'`
+OUTF0="$DIR0/rs.$DATE.csv"
+OUTF1="$DIR0/rs.$DATE.ods"
+
 echo "done, figure out ror for each ticker..."
 index=1
 count=0
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 # // generate the rs against twse, append csv
+echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF0
 while true; do
     TICKER=( $(sed "$index""q;d" $BOUNTY) )
     python3 get_ticker_ror.py $TICKER 0
@@ -56,14 +70,7 @@ echo "time: " $TIMESTAMP  " looping end"
 # notify user it's done
 echo -ne '\007'
 ls -ltr ror.*.html ror.*.csv rs.*.csv
-print("done.")
-
-# DIR0="./datafiles/taiex"
-DIR0="."
-mkdir -p $DIR0
-DATE=`date '+%Y%m%d'`
-OUTF0="$DIR0/rs.$DATE.csv"
-OUTF1="$DIR0/rs.$DATE.ods"
+echo "done."
 
 # read -p "Press enter to continue $OUTF0 ..."
 python3 launch.py $OUTF0
