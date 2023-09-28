@@ -44,7 +44,38 @@ if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -gt 5 ]]; then
     exit 22
 fi
 
-clear
+echo "date "$DATE", last trade date "$LAST_TRADE_DAY
+
+# // FIXME: random seed generator
+FROM_SROUCE=1
+echo "fetch limit up type 2 from $FROM_SROUCE ..."
+OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
+echo "done."
+
+echo "fetch limit up type 4 from $FROM_SROUCE ..."
+OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 1 $FROM_SROUCE | tr -d '[],'))
+echo ${OUTPUT[@]}
+echo "done."
+
+exit 0
+
+# // TODO:
+echo "get limit up..."
+NUM_TKR=($(python3 get_limit_updown.py 1 $DATE $FROM_SROUCE | tr -d '[],'))
+echo ${NUM_TKR[@]}
+echo "done, "$NUM_TKR" items."
+
+exit 0
+
+# // TODO:
+echo "fetch limit down..."
+OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE | tr -d '[],'))
+# echo ${OUTPUT[@]}
+echo "done."
+
+
+
+# clear
 
 OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
 echo ${OUTPUT[@]}

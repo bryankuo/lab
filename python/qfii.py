@@ -185,6 +185,7 @@ try:
         else:
             # print("from the files...")
             qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
+            # // FIXME: use join instead
             # print(qname)
             with open(qname) as q:
                 soup1 = BeautifulSoup(q, 'html.parser')

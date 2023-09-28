@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 
-# python3 fetch_limit_updown.py
-# \param 0:down 1:up
+# python3 fetch_limit_updown.py [up or down] [date] [tkr type] [from]
+# \param up or down, 0:down 1:up
 # \param date in YYYYMMDD // TODO:
+# \param in type ticker type
+# \param in from source
+# \return html file
 # return 0
 
 import sys, requests, time, os, numpy, random, csv
@@ -42,26 +45,34 @@ from array import *
 # https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_AB.djhtm
 # https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_AC.djhtm
 # 403 - Forbidden: Access is denied
-#
-sources = [                                                         \
-    [   "https://concords.moneydj.com/Z/ZG/ZG_AC.djhtm",            \
-        "https://concords.moneydj.com/Z/ZG/ZG_AB.djhtm" ],          \
-        # type 2 and 4 by option
-        # https://concords.moneydj.com/z/zg/zg_AB_0_0.djhtm
-        # https://concords.moneydj.com/z/zg/zg_AB_1_0.djhtm
 
-    [   "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac.djhtm",          \
+# for each source, ther is a [ down 2, down 4, up 2, up 4 ] touple
+sources = [                                                         \
+    [   "https://concords.moneydj.com/Z/ZG/ZG_AC_0_0.djhtm",        \
+        "https://concords.moneydj.com/Z/ZG/ZG_AC_1_0.djhtm",        \
+        "https://concords.moneydj.com/z/zg/zg_AB_0_0.djhtm",        \
+        "https://concords.moneydj.com/z/zg/zg_AB_1_0.djhtm" ],      \
+
+    [   "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_0_0.djhtm",      \
+        "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_1_0.djhtm",      \
+        "http://jsjustweb.jihsun.com.tw/z/zg/zg_ab_0_0.djhtm",      \
         "http://jsjustweb.jihsun.com.tw/z/zg/zg_ab_1_0.djhtm" ],    \
 
         # response.encoding = 'cp950' matters
-    [   "https://trade.ftsi.com.tw/z/zg/zg_ac.djhtm",               \
-        "https://trade.ftsi.com.tw/z/zg/zg_ab_0_0.djhtm"],          \
+    [   "https://trade.ftsi.com.tw/z/zg/zg_ac_0_0.djhtm",           \
+        "https://trade.ftsi.com.tw/z/zg/zg_ac_1_0.djhtm",           \
+        "https://trade.ftsi.com.tw/z/zg/zg_ab_0_0.djhtm",           \
+        "https://trade.ftsi.com.tw/z/zg/zg_ab_1_0.djhtm"],          \
 
-    [   "https://just2.entrust.com.tw/z/zg/zg_ac.djhtm",            \
+    [   "https://just2.entrust.com.tw/z/zg/zg_ac_0_0.djhtm",        \
+        "https://just2.entrust.com.tw/z/zg/zg_ab_1_0.djhtm",        \
+        "https://just2.entrust.com.tw/z/zg/zg_ab_0_0.djhtm",        \
         "https://just2.entrust.com.tw/z/zg/zg_ab_1_0.djhtm"],       \
 
-    [   "https://moneydj.emega.com.tw/z/ZG/ZG_AC.djhtm",            \
-        "https://moneydj.emega.com.tw/z/ZG/ZG_AB_0_0.djhtm"]        \
+    [   "https://moneydj.emega.com.tw/z/ZG/ZG_AC_0_0.djhtm",        \
+        "https://moneydj.emega.com.tw/z/ZG/ZG_AC_1_0.djhtm",        \
+        "https://moneydj.emega.com.tw/z/ZG/ZG_AB_0_0.djhtm",        \
+        "https://moneydj.emega.com.tw/z/zg/zg_AB_1_0.djhtm"]        \
 
     # selenium required
     #[   "https://www.esunsec.com.tw/tw-rank/z/ZG/ZG_AC.djhtm", \
@@ -75,8 +86,8 @@ sources = [                                                         \
     #    "https://english.honsec.com.tw/z/zg/zg_AB_1_0.djhtm"] \
 ]
 
-if ( len(sys.argv) < 3 ):
-    print("usage: fetch_limit_updown.py [0|1] [YYYYMMDD]")
+if ( len(sys.argv) < 4 ):
+    print("usage: fetch_limit_updown.py [up or down] [date] [tkr type] [from]")
     sys.exit(0)
 is_limit_up = True
 direction = "up"
@@ -84,22 +95,23 @@ if ( int(sys.argv[1]) == 0 ):
     is_limit_up = False
     direction = "down"
 fetch_date = sys.argv[2]
+ticker_type = sys.argv[3]
+from_src = sys.argv[4]
+
 # DIR0="./datafiles/taiex"
 DIR0="."
-#fname = "limit." + direction + "." + \
-#    datetime.today().strftime('%Y%m%d') + '.html'
-fname = "limit." + direction + "." + fetch_date + '.html'
-path = os.path.join(DIR0, fname)
 
-def select_src( seed, fetch_date, limit_up ):
+def select_src( limit_up, fetch_date, tkr_type, seed ):
     print( "src " + str(seed) + ", date " + fetch_date \
-        + ", limit_up " + str(limit_up) )
-    return sources[seed-1][limit_up]
+        + ", limit_up " + str(limit_up) + ", type " + str(tkr_type) )
+    return sources[seed-1][ 2*limit_up + tkr_type ]
 
+# source_from = random.randint(1,len(sources)) # move to sh
+fname = "limit." + direction + "." + fetch_date + "." + ticker_type + "." + from_src + '.html'
+path = os.path.join(DIR0, fname)
 if ( os.path.exists(path) ):
     os.remove(path) # clean up
-# url = select_src( 6, fetch_date, int(sys.argv[1]) )
-url = select_src( random.randint(1,len(sources)), fetch_date, int(sys.argv[1]) )
+url = select_src( int(sys.argv[1]), fetch_date, int(ticker_type), int(from_src) )
 print(url)
 use_plain_req = True
 req_get       = True
@@ -131,10 +143,14 @@ else:
     finally:
         browser.quit()
 
+fname = "limit." + direction + "." + fetch_date + "." + ticker_type + "." + from_src + '.html'
+path = os.path.join(DIR0, fname)
 with open(path, "w") as outfile2:
     outfile2.write(soup.prettify())
     outfile2.close()
-print('done.')
+s_from = str(from_src)
+olist = [ s_from ]
+print(olist)
 sys.exit(0)
 
 # // FIXME: fetch name
