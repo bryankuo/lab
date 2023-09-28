@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# // FIXME fetch ticker volume by specific date
+# // named - volume.sh [ticker] [date]
+#
 
 DATE=`date '+%Y%m%d'`
 TKR=$1
