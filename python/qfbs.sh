@@ -46,36 +46,45 @@ fi
 
 echo "date "$DATE", last trade date "$LAST_TRADE_DAY
 
-# // FIXME: random seed generator
-FROM_SROUCE=1
-echo "fetch limit up type 2 from $FROM_SROUCE ..."
-OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
-echo "done."
+get_limit_up() {
+    # // FIXME: random seed generator
+    FROM_SROUCE=3
+    echo "fetch limit up type 2 from $FROM_SROUCE ..."
+    OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
+    echo "done."
+    sleep 1
+    echo "fetch limit up type 4 from $FROM_SROUCE ..."
+    OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 1 $FROM_SROUCE | tr -d '[],'))
+    # echo ${OUTPUT[@]}
+    echo "done."
 
-echo "fetch limit up type 4 from $FROM_SROUCE ..."
-OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 1 $FROM_SROUCE | tr -d '[],'))
-echo ${OUTPUT[@]}
-echo "done."
+    rm -f limit.up.$DATE.csv
 
-exit 0
+    echo "get $DATE type 2 limit up list..."
+    OUTPUT=($(python3 get_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
+    NUM_TKR=${OUTPUT[0]%\'}
+    NUM_TKR=${NUM_TKR#\'}
+    echo "done, "$NUM_TKR" items."
+
+    echo "get $DATE type 4 limit up list..."
+    OUTPUT=($(python3 get_limit_updown.py 1 $DATE 1 $FROM_SROUCE | tr -d '[],'))
+    NUM_TKR=${OUTPUT[0]%\'}
+    NUM_TKR=${NUM_TKR#\'}
+    echo "done, "$NUM_TKR" items."
+}
+
+get_limit_up
 
 # // TODO:
-echo "get limit up..."
-NUM_TKR=($(python3 get_limit_updown.py 1 $DATE $FROM_SROUCE | tr -d '[],'))
-echo ${NUM_TKR[@]}
-echo "done, "$NUM_TKR" items."
-
-exit 0
-
-# // TODO:
-echo "fetch limit down..."
-OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE | tr -d '[],'))
+# get_limit_down
+# echo "fetch limit down..."
+# OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE | tr -d '[],'))
 # echo ${OUTPUT[@]}
-echo "done."
+# echo "done."
 
+exit 0
 
-
-# clear
+clear
 
 OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
 echo ${OUTPUT[@]}

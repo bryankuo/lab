@@ -52,27 +52,32 @@ sources = [                                                         \
         "https://concords.moneydj.com/Z/ZG/ZG_AC_1_0.djhtm",        \
         "https://concords.moneydj.com/z/zg/zg_AB_0_0.djhtm",        \
         "https://concords.moneydj.com/z/zg/zg_AB_1_0.djhtm" ],      \
+        # oMainTable ( 6, 11), 1st 2 row
 
     [   "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_0_0.djhtm",      \
         "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_1_0.djhtm",      \
         "http://jsjustweb.jihsun.com.tw/z/zg/zg_ab_0_0.djhtm",      \
         "http://jsjustweb.jihsun.com.tw/z/zg/zg_ab_1_0.djhtm" ],    \
+        # oMainTable ( 6, 7)
 
-        # response.encoding = 'cp950' matters
+        # FIXME: response.encoding = 'cp950' matters
     [   "https://trade.ftsi.com.tw/z/zg/zg_ac_0_0.djhtm",           \
         "https://trade.ftsi.com.tw/z/zg/zg_ac_1_0.djhtm",           \
         "https://trade.ftsi.com.tw/z/zg/zg_ab_0_0.djhtm",           \
         "https://trade.ftsi.com.tw/z/zg/zg_ab_1_0.djhtm"],          \
+        # oMainTable ( 6, 11)
 
     [   "https://just2.entrust.com.tw/z/zg/zg_ac_0_0.djhtm",        \
         "https://just2.entrust.com.tw/z/zg/zg_ab_1_0.djhtm",        \
         "https://just2.entrust.com.tw/z/zg/zg_ab_0_0.djhtm",        \
         "https://just2.entrust.com.tw/z/zg/zg_ab_1_0.djhtm"],       \
+        # oMainTable ( 6, 7)
 
     [   "https://moneydj.emega.com.tw/z/ZG/ZG_AC_0_0.djhtm",        \
         "https://moneydj.emega.com.tw/z/ZG/ZG_AC_1_0.djhtm",        \
         "https://moneydj.emega.com.tw/z/ZG/ZG_AB_0_0.djhtm",        \
         "https://moneydj.emega.com.tw/z/zg/zg_AB_1_0.djhtm"]        \
+        # oMainTable ( 6, 11)
 
     # selenium required
     #[   "https://www.esunsec.com.tw/tw-rank/z/ZG/ZG_AC.djhtm", \
@@ -112,7 +117,6 @@ path = os.path.join(DIR0, fname)
 if ( os.path.exists(path) ):
     os.remove(path) # clean up
 url = select_src( int(sys.argv[1]), fetch_date, int(ticker_type), int(from_src) )
-print(url)
 use_plain_req = True
 req_get       = True
 if ( use_plain_req ):
@@ -140,6 +144,11 @@ else:
         soup = BeautifulSoup(page1, 'html.parser')
     except (SessionNotCreatedException):
         print('make sure allow remote is on')
+    except:
+        traceback.format_exception(*sys.exc_info())
+        e = sys.exc_info()[0]
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
     finally:
         browser.quit()
 
@@ -151,46 +160,4 @@ with open(path, "w") as outfile2:
 s_from = str(from_src)
 olist = [ s_from ]
 print(olist)
-sys.exit(0)
-
-# // FIXME: fetch name
-# title = soup.find("meta",  {"name":"description"})
-name = "n/a" #title["content"].split(' ')[0].split(')')[1].strip()
-
-# apply to src 1,2,3,4
-r_ytd = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[8] \
-    .find_all('td')[1].text.strip().replace('%', '')
-
-r_1w  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[9] \
-    .find_all('td')[1].text.strip().replace('%', '')
-
-r_1m  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[10] \
-    .find_all('td')[1].text.strip().replace('%', '')
-
-r_2m  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[11] \
-    .find_all('td')[1].text.strip().replace('%', '')
-
-r_3m  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[12] \
-    .find_all('td')[1].text.strip().replace('%', '')
-
-# olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]
-olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
-#print(olist)
-# assume get_twse_ror.py is running at first
-with open(o_path, 'a') as ofile:
-    # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
-    ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
-        +":n/a:n/a:"+r_ytd+":n/a"+"\n")
-    ofile.close()
-
 sys.exit(0)
