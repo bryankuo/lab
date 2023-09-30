@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 
-# python3 fetch_ticker_ror.py
+# python3 fetch_ticker_ror.py [tkr] [net|file]
+# \param in ticker
+# \param in 0: from internet, 1: from file
+# \param out ror.YYYYMMDD.csv, append, created by get_twse_ror.py
+# \param out ror.[ticker].html
 # return 0
 
 '''
@@ -46,8 +50,6 @@ fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
 ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 o_path = os.path.join(DIR0, ofname)
-rs_fname = "rs." + datetime.today().strftime('%Y%m%d') + '.csv'
-rs_path = os.path.join(DIR0, rs_fname)
 
 # // FIXME:
 # works on holiday
@@ -141,11 +143,10 @@ r_3m  = soup.findAll('table')[0] \
 # olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]
 olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
 #print(olist)
-# assume get_twse_ror.py is running at first
+# presume get_twse_ror.py is running at first
 with open(o_path, 'a') as ofile:
     # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
     ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
     ofile.close()
-
 sys.exit(0)

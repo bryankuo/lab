@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # python3 get_twse_ror.py
+# \param out ror.YYYYMMDD.csv
 # return 0
 
 '''
@@ -49,8 +50,8 @@ is_from_net = True
 use_plain_req = False
 
 if ( is_from_net ):
-    if ( os.path.exists(path) ):
-        os.remove(path) # clean up
+    # if ( os.path.exists(path) ):
+    #     os.remove(path) # clean up
     if ( use_plain_req ):
         response = requests.get(url)
         # response.encoding = 'cp950'
@@ -98,8 +99,8 @@ f_3y   = figure.find_all("td", {})[8].text.strip().replace(',', '')
 olist = [ f_1d, f_1w, f_1m, "n/a", f_3m, f_6m, f_1y, f_ytd, f_3y ]
 print(olist) # return for ticker ror parameters.
 
-with open(o_path, 'wt') as ofile:
-    ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
+with open(o_path, 'a') as ofile:
+    # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
     ofile.write("tse:台股加權:"+f_1d+":"+f_1w+":"+f_1m+":n/a:"+f_3m \
         +":"+f_6m+":"+f_1y+":"+f_ytd+":"+f_3y+"\n")
     ofile.close()

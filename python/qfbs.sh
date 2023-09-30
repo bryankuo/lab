@@ -48,9 +48,11 @@ fi
 echo "date "$DATE", last trade date "$LAST_TRADE_DAY
 # // FIXME: verify last trade day by query TWSE exchange data (ex. volume)
 
+
+# FROM_SROUCE=4
+# // FIXME: test random seed generator
+FROM_SROUCE=($(shuf -i 1-5 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
-    # // FIXME: random seed generator
-    FROM_SROUCE=3
     echo "fetch limit up type 2 from $FROM_SROUCE ..."
     OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
     echo "done."
@@ -76,8 +78,6 @@ get_limit_up() {
 }
 
 get_limit_down() {
-    # // FIXME: random seed generator
-    FROM_SROUCE=4
     echo "fetch limit down type 2 from $FROM_SROUCE ..."
     # OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
     echo "done."

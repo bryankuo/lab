@@ -2,6 +2,9 @@
 
 # python3 get_ticker_ror.py [ticker]
 # scraping from file fetched.
+# \param in  ror.YYYYMMDD.csv
+# \param in  ror.[ticker].html
+# \param out  rs.YYYYMMDD.csv
 # return 0
 
 '''
