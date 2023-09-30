@@ -24,6 +24,7 @@ if [ "$#" -lt 4 ]; then
     echo "       and let safari allow Remote Automation"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
+clear
 
 YR=$1
 MN=$2
@@ -45,6 +46,7 @@ if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -gt 5 ]]; then
 fi
 
 echo "date "$DATE", last trade date "$LAST_TRADE_DAY
+# // FIXME: verify last trade day by query TWSE exchange data (ex. volume)
 
 get_limit_up() {
     # // FIXME: random seed generator
@@ -73,18 +75,31 @@ get_limit_up() {
     echo "done, "$NUM_TKR" items."
 }
 
-get_limit_up
+get_limit_down() {
+    # // FIXME: random seed generator
+    FROM_SROUCE=4
+    echo "fetch limit down type 2 from $FROM_SROUCE ..."
+    # OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
+    echo "done."
+    # sleep 1
+    echo "fetch limit down type 4 from $FROM_SROUCE ..."
+    # OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 1 $FROM_SROUCE | tr -d '[],'))
+    echo "done."
 
-# // TODO:
-# get_limit_down
-# echo "fetch limit down..."
-# OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE | tr -d '[],'))
-# echo ${OUTPUT[@]}
-# echo "done."
+    rm -f limit.down.$DATE.csv
 
-exit 0
+    echo "get $DATE type 2 limit down list..."
+    OUTPUT=($(python3 get_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
+    NUM_TKR=${OUTPUT[0]%\'}
+    NUM_TKR=${NUM_TKR#\'}
+    echo "done, "$NUM_TKR" items."
 
-clear
+    echo "get $DATE type 4 limit down list..."
+    OUTPUT=($(python3 get_limit_updown.py 0 $DATE 1 $FROM_SROUCE | tr -d '[],'))
+    NUM_TKR=${OUTPUT[0]%\'}
+    NUM_TKR=${NUM_TKR#\'}
+    echo "done, "$NUM_TKR" items."
+}
 
 OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
 echo ${OUTPUT[@]}
@@ -97,6 +112,10 @@ RISE=${RISE#\'}
 VOLUME=${OUTPUT[3]%\'}
 VOLUME=${VOLUME#\'}
 # printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+
+get_limit_up
+
+get_limit_down
 
 DIR0="datafiles/taiex/qfbs"
 mkdir -p $DIR0

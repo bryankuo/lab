@@ -48,11 +48,15 @@ from array import *
 
 # for each source, ther is a [ down 2, down 4, up 2, up 4 ] touple
 sources = [                                                         \
+        # param AC: down, AB: up
+        # param 0: type 2, 1: type 4
+        # param 0: last 1,2,3,4,5,7,10,20,30 day(s)
     [   "https://concords.moneydj.com/Z/ZG/ZG_AC_0_0.djhtm",        \
         "https://concords.moneydj.com/Z/ZG/ZG_AC_1_0.djhtm",        \
         "https://concords.moneydj.com/z/zg/zg_AB_0_0.djhtm",        \
         "https://concords.moneydj.com/z/zg/zg_AB_1_0.djhtm" ],      \
         # oMainTable ( 6, 11), 1st 2 row
+        # //FIXME: there is no data for last trade day on Saturday
 
     [   "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_0_0.djhtm",      \
         "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_1_0.djhtm",      \
@@ -72,6 +76,7 @@ sources = [                                                         \
         "https://just2.entrust.com.tw/z/zg/zg_ab_0_0.djhtm",        \
         "https://just2.entrust.com.tw/z/zg/zg_ab_1_0.djhtm"],       \
         # oMainTable ( 6, 7)
+        # 1,2,3,4,5,7,10,20,30 day rank, works on Saturday
 
     [   "https://moneydj.emega.com.tw/z/ZG/ZG_AC_0_0.djhtm",        \
         "https://moneydj.emega.com.tw/z/ZG/ZG_AC_1_0.djhtm",        \

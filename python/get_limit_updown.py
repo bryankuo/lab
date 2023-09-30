@@ -48,13 +48,12 @@ n_rows = 0
 try:
     with open(i_path) as q:
         soup = BeautifulSoup(q, 'html.parser')
+    if ( soup.find("table", {"id": "oMainTable"}) is None ):
+        olist = [ str(n_rows) ]
+        print(olist)
+        sys.exit(0)
     rows = soup.find("table", {"id": "oMainTable"}) \
         .find_all('tr')
-    # fname = "a.1.html"
-    # path = os.path.join(DIR0, fname)
-    #with open(path, "w") as outfile2:
-    #    outfile2.write(rows[2].prettify())
-    #    outfile2.close()
     with open(o_path, 'a') as ofile:
         for i in range(2, len(rows)):
             tkr = rows[i].findAll('td')[1].text.strip().replace(' ', '')[0:4]
@@ -62,7 +61,7 @@ try:
             n_rows += 1
         ofile.close()
 except:
-    traceback.format_exception(*sys.exc_info())
+    # traceback.format_exception(*sys.exc_info())
     e = sys.exc_info()[0]
     print("Unexpected error:", sys.exc_info()[0])
     raise
