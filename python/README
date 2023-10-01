@@ -87,3 +87,5 @@ get_ticker_ror.py: scrap ticker ror and out rs.
 a0050.py: info source for t50_component.py.
 fetch_limit_updown.py: fetch limit up or limit down by date.
 get_limit_updown.py: extract limit up or down table by date.
+uno_launch: launch calc ods or csv via uno.
+uno_formula.py: adding formula to ods.

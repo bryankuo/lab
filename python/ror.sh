@@ -106,8 +106,11 @@ while true ; do
     fi
 done
 
-/Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-"$OUTF1" \
---accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
+# /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
+# "$OUTF1" \
+# --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
+
+./uno_launch.sh $OUTF2
+# so as to let uno_rs.sh adding formula
 
 exit 0
