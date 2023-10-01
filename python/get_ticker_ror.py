@@ -2,9 +2,9 @@
 
 # python3 get_ticker_ror.py [ticker]
 # scraping from file fetched.
-# \param in  ror.YYYYMMDD.csv
-# \param in  ror.[ticker].html
-# \param out  rs.YYYYMMDD.csv
+# \param in out  ror.YYYYMMDD.csv
+# \param in      ror.[ticker].html
+# \param out     rs.YYYYMMDD.csv
 # return 0
 
 '''
@@ -44,10 +44,14 @@ DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
 # // FIXME: date may be not today, but input from ror.sh
-ifname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
-i_path = os.path.join(DIR0, ifname)
-rs_fname = "rs." + datetime.today().strftime('%Y%m%d') + '.csv'
-rs_path = os.path.join(DIR0, rs_fname)
+ifname    = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
+i_path    = os.path.join(DIR0, ifname)
+
+ror_fname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
+ror_path  = os.path.join(DIR0, ror_fname)
+
+rs_fname  = "rs."  + datetime.today().strftime('%Y%m%d') + '.csv'
+rs_path   = os.path.join(DIR0, rs_fname)
 
 def fetch_twse_ror():
     # print("fetch_twse_ror+")
@@ -105,10 +109,10 @@ r_3m  = soup.findAll('table')[0] \
     .find_all('td')[1].text.strip().replace('%', '')
 
 # olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]
-olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
+# olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
 
 # assume get_twse_ror.py is running at first
-with open(rs_path, 'a') as ofile:
+with open(ror_path, 'a') as ofile:
     # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
     ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
@@ -125,5 +129,12 @@ print("{:>.02f}".format(rs_1m ))
 print("{:>.02f}".format(rs_3m ))
 print("{:>.02f}".format(rs_ytd))
 '''
+
+with open(rs_path, 'a') as ofile:
+    # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
+    ofile.write(ticker+":n/a:n/a:"+"{:>.02f}".format(rs_1w )+ \
+        ":"+"{:>.02f}".format(rs_1m )+":n/a:"+"{:>.02f}".format(rs_3m ) \
+        +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a"+"\n")
+    ofile.close()
 
 sys.exit(0)

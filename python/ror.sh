@@ -45,9 +45,8 @@ if [ ! -f "$OUTF0" ]; then
     # generate csv header and twse ror
     BENCHMARK=($(python3 get_twse_ror.py | tr -d '[],'))
 
-    echo "done, looping fetch file..."
+    echo "done, looping fetch ticker file..."
     echo ${BENCHMARK[@]}
-    exit 0
     while true; do
 	TICKER=( $(sed "$index""q;d" $BOUNTY) )
 	python3 fetch_ticker_ror.py $TICKER 0
