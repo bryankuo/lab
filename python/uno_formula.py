@@ -9,6 +9,7 @@
 
 import uno, sys, time
 from datetime import datetime
+from com.sun.star.uno import RuntimeException
 
 file_name = sys.argv[1]
 # assume ror.20231001.ods, sheet name : 'ror.20231001'
@@ -36,6 +37,24 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 model = desktop.getCurrentComponent()
 active_sheet = model.Sheets.getByName(sheet_name)
 
+doc = None
+numbers = None
+locale = None
+nl = None
+# trying:
+# @see https://ask.libreoffice.org/t/why-does-desktop-getcurrentcomponent-return-none-in-pyuno/59902/5
+while doc is None:
+    doc = desktop.getCurrentComponent()
+    numbers = doc.NumberFormats
+    locale = doc.CharLocale
+# instead of
+# @see https://ask.libreoffice.org/t/formatting-data-cell-from-macro-in-calc/23740
+# doc = XSCRIPTCONTEXT.getDocument()
+try:
+    nl = numbers.addNew( "###0.00",  locale )
+except RuntimeException:
+    nl = numbers.queryKey("###0.00", locale, False)
+
 # assume no more than 3000 listed.
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
 # look up the actual used area within the guess area
@@ -45,94 +64,60 @@ cursor.gotoStartOfUsedArea(True)
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 last_row = len(cursor.Rows)
+n_ticker = ( last_row - 2 ) + 1
 
 def set_formula_1w():
     addr = "$L1"
     cell = active_sheet.getCellRangeByName(addr)
     cell.String = "PR(1w)"
-
-    addr_x = "L2"
-    cell = active_sheet.getCellRangeByName(addr_x)
+    # msgbox(cell.AbsoluteName)
     # cell.String = "a1b2c3"
     # cell_stalk.Value = 1
     # cell.Formula = "=C2+D2"
-    cell.Formula = "=PERCENTRANK($D$2:$D$6; $D2)"
-
-    addr_x = "L3"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($D$2:$D$6; $D3)"
-
-    addr_x = "L4"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($D$2:$D$6; $D4)"
-
-    addr_x = "L5"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($D$2:$D$6; $D5)"
-
-    addr_x = "L6"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($D$2:$D$6; $D6)"
+    for i in range( 2, last_row + 1 ):
+        addr = "L"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($D2:$D$"+str(last_row)+"; $D"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
 
 def set_formula_1m():
     addr = "$M1"
     cell = active_sheet.getCellRangeByName(addr)
     cell.String = "PR(1m)"
-
-    addr_x = "M2"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    # cell.String = "a1b2c3"
-    # cell_stalk.Value = 1
-    # cell.Formula = "=C2+D2"
-    cell.Formula = "=PERCENTRANK($E$2:$E$6; $E2)"
-
-    addr_x = "M3"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($E$2:$E$6; $E3)"
-
-    addr_x = "M4"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($E$2:$E$6; $E4)"
-
-    addr_x = "M5"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($E$2:$E$6; $E5)"
-
-    addr_x = "M6"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($E$2:$E$6; $E6)"
+    for i in range( 2, last_row + 1 ):
+        addr = "M"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($E2:$E"+str(last_row)+"; $E"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
 
 def set_formula_3m():
-    addr = "$N1"
+    addr = "$n1"
     cell = active_sheet.getCellRangeByName(addr)
     cell.String = "PR(3m)"
+    for i in range( 2, last_row + 1 ):
+        addr = "N"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($G2:$G"+str(last_row)+"; $G"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
 
-    addr_x = "n2"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    # cell.String = "a1b2c3"
-    # cell_stalk.Value = 1
-    # cell.Formula = "=C2+D2"
-    cell.Formula = "=PERCENTRANK($G$2:$G$6; $G2)"
-
-    addr_x = "N3"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($G$2:$G$6; $G3)"
-
-    addr_x = "N4"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($G$2:$G$6; $G4)"
-
-    addr_x = "N5"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($G$2:$G$6; $G5)"
-
-    addr_x = "N6"
-    cell = active_sheet.getCellRangeByName(addr_x)
-    cell.Formula = "=PERCENTRANK($G$2:$G$6; $G6)"
+def set_formula_ytd():
+    addr = "$O1"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "PR(ytd)"
+    for i in range( 2, last_row + 1 ):
+        addr = "$O"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($J2:$J"+str(last_row)+"; $J"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
 
 set_formula_1w()
 set_formula_1m()
 set_formula_3m()
+set_formula_ytd()
 
 olist = [ str(last_row) ]
 print(olist)
