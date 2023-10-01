@@ -118,10 +118,10 @@ with open(ror_path, 'a') as ofile:
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
     ofile.close()
 
-rs_1w  = ( (float(r_1w) -float(t_1w) ) * 100 ) / abs(float(t_1w) )
-rs_1m  = ( (float(r_1m) -float(t_1m) ) * 100 ) / abs(float(t_1m) )
-rs_3m  = ( (float(r_3m) -float(t_3m) ) * 100 ) / abs(float(t_3m) )
-rs_ytd = ( (float(r_ytd)-float(t_ytd)) * 100 ) / abs(float(t_ytd))
+rs_1w  = ( (float(r_1w) -float(t_1w) ) ) / abs(float(t_1w) )
+rs_1m  = ( (float(r_1m) -float(t_1m) ) ) / abs(float(t_1m) )
+rs_3m  = ( (float(r_3m) -float(t_3m) ) ) / abs(float(t_3m) )
+rs_ytd = ( (float(r_ytd)-float(t_ytd)) ) / abs(float(t_ytd))
 
 '''
 print("{:>.02f}".format(rs_1w ))
