@@ -11,10 +11,8 @@ import uno, sys, time
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
 
-file_name = sys.argv[1]
-# assume ror.20231001.ods, sheet name : 'ror.20231001'
-tokens = file_name.split('.')
-sheet_name = tokens[0]+"."+tokens[1]
+yyyymmdd = sys.argv[1]
+sheet_name = "rs."+yyyymmdd
 # print(sheet_name)
 
 # get the uno component context from the PyUNO runtime

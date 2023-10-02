@@ -44,8 +44,8 @@ elif ( int(sys.argv[2]) == 0 ):
 else:
     is_from_net = False
 
-# DIR0="./datafiles/taiex"
-DIR0="."
+DIR0="./datafiles/taiex/rs"
+# DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
 ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'

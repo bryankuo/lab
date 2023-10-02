@@ -39,8 +39,8 @@ url = "https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059"
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
-# DIR0="./datafiles/taiex"
-DIR0="."
+DIR0="./datafiles/taiex/rs"
+# DIR0="."
 fname = "ror.twse.html"
 path = os.path.join(DIR0, fname)
 ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'

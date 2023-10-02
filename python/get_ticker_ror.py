@@ -39,10 +39,10 @@ if ( len(sys.argv) < 2 ):
 ticker = sys.argv[1]
 print(ticker)
 
-# DIR0="./datafiles/taiex"
-DIR0="."
+DIR0="./datafiles/taiex/rs"
+# DIR0="."
 fname = "ror." + ticker + ".html"
-path = os.path.join(DIR0, fname)
+h_path = os.path.join(DIR0, fname)
 # // FIXME: date may be not today, but input from ror.sh
 ifname    = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 i_path    = os.path.join(DIR0, ifname)
@@ -75,7 +75,7 @@ t_1y  = float(twse_ror_figures[8])
 t_ytd = float(twse_ror_figures[9])
 t_3y  = float(twse_ror_figures[10])
 
-with open(fname) as q:
+with open(h_path) as q:
     soup = BeautifulSoup(q, 'html.parser')
 
 # // FIXME: fetch name

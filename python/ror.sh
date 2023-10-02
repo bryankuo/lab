@@ -29,8 +29,8 @@ TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 echo "start "$START" len "$NLINES
 
 echo "clean up data files..."
-# DIR0="datafiles/taiex/rs"
-DIR0="."
+DIR0="datafiles/taiex/rs"
+# DIR0="."
 mkdir -p $DIR0
 # // FIXME: date may be not today, but input parameter to get_ticker_ror.py
 DATE=`date '+%Y%m%d'`
@@ -91,7 +91,6 @@ echo "time: " $TIMESTAMP  " looping end"
 echo -ne '\007'
 ls -lt rs.*.csv ror.*.csv ror.????????.html
 ls -l ror.????.html | wc -l
-echo "done."
 
 read -p "Press enter to continue $OUTF1 ..."
 # open via subprocess, can not modify from outside python
@@ -106,11 +105,12 @@ while true ; do
     fi
 done
 
-# /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-# "$OUTF1" \
-# --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
-
 ./uno_launch.sh $OUTF2
 # so as to let uno_rs.sh adding formula
+
+echo "done extracting rs, ready to rank in 10 seconds..."
+sleep 10
+
+./uno_rs.sh $OUTF2
 
 exit 0
