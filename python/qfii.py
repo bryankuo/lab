@@ -9,7 +9,7 @@
 # red: same direction, green: opposite direction
 # return 0: success
 
-import sys, requests, time, os, numpy
+import sys, requests, time, os, numpy, csv
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
@@ -105,6 +105,7 @@ else:
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
+    limit_ulist = []; limit_dlist = []
 
     def fetch():
         if ( is_from_net ):
@@ -536,6 +537,7 @@ try:
                         full_tab[i][4], full_tab[i][5] )
                     outf2.write(rec +"\n")
 
+                '''
                 if ( market == 1 and 0 < int(full_tab[i][2]) ):
                     full_tab[i][8] = 1
                     rec = "{0}:{1}:{2}:{3}" \
@@ -546,6 +548,25 @@ try:
                     outf3.write(rec +"\n")
 
                 if ( market == 2 and int(full_tab[i][3]) < 0 ):
+                    full_tab[i][8] = 1
+                    rec = "{0}:{1}:{2}:{3}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], \
+                        full_tab[i][2], full_tab[i][3] )
+                    outf3.write(rec +"\n")
+                '''
+                if ( full_tab[i][0] in limit_dlist \
+                    and 0 < int(full_tab[i][2]) ):
+                    full_tab[i][8] = 1
+                    rec = "{0}:{1}:{2}:{3}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], \
+                        full_tab[i][2], full_tab[i][3] )
+                    # print(rec)
+                    outf3.write(rec +"\n")
+
+                if ( full_tab[i][0] in limit_ulist \
+                    and int(full_tab[i][3]) < 0 ):
                     full_tab[i][8] = 1
                     rec = "{0}:{1}:{2}:{3}" \
                         .format( \
@@ -573,6 +594,24 @@ try:
             status = 2
         return status
 
+    def parse_limit_updown():
+        u_fname = "limit.up" + "." +yyyy+mm+dd+ '.csv'
+        u_path = os.path.join(DIR0, u_fname)
+        file = open(u_path, "r")
+        limit_ulist = list(csv.reader(file, delimiter=","))
+        file.close()
+        print(limit_ulist)
+
+        d_fname = "limit.down" + "." +yyyy+mm+dd+ '.csv'
+        d_path = os.path.join(DIR0, d_fname)
+        file2 = open(d_path, "r")
+        limit_dlist = list(csv.reader(file, delimiter=","))
+        file.close()
+        print(limit_dlist)
+        print(len(limit_dlist))
+
+        return 0
+
     # 0 (choppy), 1 (low), 2 (high)
     market_status = is_market_rip(deal, change, rise, volume)
     # print(market_status)
@@ -593,6 +632,12 @@ try:
     n2 = parse_2(soups[1])
     end = timer()
     print("fund processing..."+yyyy+mm+dd+" done, takes " \
+            +str(timedelta(seconds=end-start)))
+
+    start = timer()
+    n3 = parse_limit_updown()
+    end = timer()
+    print("limit updown list..."+yyyy+mm+dd+" done, takes " \
             +str(timedelta(seconds=end-start)))
 
     print("merging, highlight, and output to 3 files...")

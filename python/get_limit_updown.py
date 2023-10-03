@@ -33,16 +33,16 @@ fetch_date  = sys.argv[2]
 ticker_type = sys.argv[3]
 from_src = sys.argv[4]
 
-# DIR0="./datafiles/taiex"
-DIR0="."
+DIR0="datafiles/taiex/qfbs"
+
 i_fname = "limit." + direction + "." + fetch_date + "." + \
     ticker_type + "." + from_src + '.html'
 i_path = os.path.join(DIR0, i_fname)
 o_fname = "limit." + direction + "." + fetch_date + '.csv'
 o_path = os.path.join(DIR0, o_fname)
 
-# if ( os.path.exists(o_path) ):
-#    os.remove(o_path) # clean up
+if ( os.path.exists(o_path) ):
+    os.remove(o_path) # clean up
 
 n_rows = 0
 try:

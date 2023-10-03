@@ -108,8 +108,7 @@ fetch_date = sys.argv[2]
 ticker_type = sys.argv[3]
 from_src = sys.argv[4]
 
-# DIR0="./datafiles/taiex"
-DIR0="."
+DIR0="datafiles/taiex/qfbs"
 
 def select_src( limit_up, fetch_date, tkr_type, seed ):
     print( "src " + str(seed) + ", date " + fetch_date \

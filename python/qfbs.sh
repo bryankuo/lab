@@ -256,4 +256,5 @@ ls -ltr $DIR0"/"*.txt $DIR0"/"*.html $DIR0"/"*.ods  | tail -n 18;
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股
+# // TODO: mv -v datafiles/taiex/qfbs/*.20231002.* datafiles/taiex/qfbs/20231002
 exit 0
