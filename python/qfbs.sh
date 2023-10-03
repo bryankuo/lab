@@ -79,11 +79,11 @@ get_limit_up() {
 
 get_limit_down() {
     echo "fetch limit down type 2 from $FROM_SROUCE ..."
-    # OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
+    OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
     echo "done."
-    # sleep 1
+    sleep 1
     echo "fetch limit down type 4 from $FROM_SROUCE ..."
-    # OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 1 $FROM_SROUCE | tr -d '[],'))
+    OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 1 $FROM_SROUCE | tr -d '[],'))
     echo "done."
 
     rm -f limit.down.$DATE.csv

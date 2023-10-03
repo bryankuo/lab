@@ -599,14 +599,14 @@ try:
         u_path = os.path.join(DIR0, u_fname)
         file = open(u_path, "r")
         limit_ulist = list(csv.reader(file, delimiter=","))
-        file.close()
+        # file.close()
         print(limit_ulist)
 
         d_fname = "limit.down" + "." +yyyy+mm+dd+ '.csv'
         d_path = os.path.join(DIR0, d_fname)
         file2 = open(d_path, "r")
         limit_dlist = list(csv.reader(file, delimiter=","))
-        file.close()
+        # file.close()
         print(limit_dlist)
         print(len(limit_dlist))
 
