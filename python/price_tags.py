@@ -139,6 +139,8 @@ emerging_market = "https://stockscan.io/stocks/EEM"
 # ETF price and volume https://etfdb.com/etf/IJR/#price-and-volume
 
 worldwide_index = "https://finance.yahoo.com/world-indices/"
+nikkei = "https://indexes.nikkei.co.jp/en/nkave/index/profile?idx=nk225"
+nikkei_futures = "https://www.investing.com/indices/japan-225-futures"
 aaii_sentiment = "https://ycharts.com/indicators/reports/aaii_sentiment_survey"
 fear_n_greed_sentiment = "https://pyinvesting.com/fear-and-greed/"
 cnn_gfear = "https://edition.cnn.com/markets/fear-and-greed"
