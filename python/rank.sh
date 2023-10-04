@@ -1,11 +1,17 @@
 #!/bin/bash
 DATE=`date '+%Y%m%d'`
+DIR0="./datafiles/taiex"
+mkdir -p $DIR0
+
 OUTF0=datafiles/top100_market_value.$DATE.txt
 OUTF1=datafiles/msci.$DATE.txt
-OUTF2=datafiles/t50.$DATE.txt
+OUTF2=$DIR0"/t50.$DATE.csv"
 OUTF3=datafiles/rank.$DATE.txt
 OUTF4=datafiles/top150_market_value.$DATE.txt
 OUTF5=datafiles/m100.$DATE.txt
+OUTF6=$DIR0"/bountylist.t50.$DATE.txt"
+
+# // TODO: change directory
 
 if false; then
     echo "scrap top 100 market value and weight..."
@@ -53,14 +59,11 @@ fi
 
 if true; then
     echo "scrap t50 components..."
-    # python3 t50_component.py > $OUTF2
-    python3 t50_component.py $DATE #$OUTF2
+    python3 t50_component.py $DATE
     num_file=$(ls -lt $OUTF2 | wc -l | xargs | cut -d " " -f1)
-    num_lines=$(wc -l $OUTF2 | xargs | cut -d " " -f1)
-    # echo $num_file
-    # echo $num_lines
-    if [[ $num_file -eq 1 ]] && [[ $num_lines -eq 51 ]]; then
-	echo "done."
+    num_lines=$(wc -l $OUTF6 | xargs | cut -d " " -f1)
+    if [[ $num_file -eq 1 ]] ; then
+	echo "done, there are "$num_lines
     else
 	echo "something wroing,"
     fi
