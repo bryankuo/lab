@@ -33,7 +33,7 @@ fetch_date  = sys.argv[2]
 ticker_type = sys.argv[3]
 from_src = sys.argv[4]
 
-DIR0="datafiles/taiex/qfbs"
+DIR0="./datafiles/taiex/qfbs"
 
 i_fname = "limit." + direction + "." + fetch_date + "." + \
     ticker_type + "." + from_src + '.html'
@@ -54,7 +54,7 @@ try:
         sys.exit(0)
     rows = soup.find("table", {"id": "oMainTable"}) \
         .find_all('tr')
-    with open(o_path, 'a') as ofile:
+    with open(o_fname, 'a') as ofile: # // FIXME: qfii.py failed to open u_path
         for i in range(2, len(rows)):
             tkr = rows[i].findAll('td')[1].text.strip().replace(' ', '')[0:4]
             ofile.write(tkr+"\n")

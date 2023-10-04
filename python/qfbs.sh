@@ -4,8 +4,8 @@
 # \param twse close mark @see uno_status.sh
 #
 # qfii.py
-# \param timestamp
-# \param origin
+# \param timestamp: yyyy mm dd
+# \param origin: net 0, file 1
 # handle 4 cvs from qfii.py
 # \return OUTF0  txt file, a summary describe what qfii/fund buy and sell
 # \return OUTF2B txt file, summary describing both buy
@@ -101,17 +101,20 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
-OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
-echo ${OUTPUT[@]}
-DEAL=${OUTPUT[0]%\'}
-DEAL=${DEAL#\'}
-CHANGE=${OUTPUT[1]%\'}
-CHANGE=${CHANGE#\'}
-RISE=${OUTPUT[2]%\'}
-RISE=${RISE#\'}
-VOLUME=${OUTPUT[3]%\'}
-VOLUME=${VOLUME#\'}
-# printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+if [ 1 -eq 1 ]
+then
+    OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
+    echo ${OUTPUT[@]}
+    DEAL=${OUTPUT[0]%\'}
+    DEAL=${DEAL#\'}
+    CHANGE=${OUTPUT[1]%\'}
+    CHANGE=${CHANGE#\'}
+    RISE=${OUTPUT[2]%\'}
+    RISE=${RISE#\'}
+    VOLUME=${OUTPUT[3]%\'}
+    VOLUME=${VOLUME#\'}
+    # printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+fi
 
 get_limit_up
 
@@ -143,9 +146,9 @@ OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 
 if [ $ORIGIN -eq 0 ]; then
-    rm -vf "$DIR0/qfii.$DATE.html"
-    rm -vf "$DIR0/fund.$DATE.html"
-    ls -ltr *$YR$MN$DAY*; rm -f *$YR$MN$DAY*
+    trash "$DIR0/qfii.$DATE.html"
+    trash "$DIR0/fund.$DATE.html"
+    ls -ltr "$DIR0/"*$YR$MN$DAY*; rm -f "$DIR0/"*$YR$MN$DAY*
 fi
 
 rm -vf $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA

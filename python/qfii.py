@@ -52,7 +52,7 @@ mm   = datetime.today().strftime('%m')
 dd   = datetime.today().strftime('%d')
 # print( len(sys.argv) )
 is_from_net = False
-DIR0="datafiles/taiex/qfbs"
+DIR0="./datafiles/taiex/qfbs"
 DEFAULT_NAME0="外資投信同步買賣超"
 DEFAULT_NAME1="外資投信同買"
 DEFAULT_NAME2="外資投信同賣"
@@ -537,6 +537,9 @@ try:
                         full_tab[i][4], full_tab[i][5] )
                     outf2.write(rec +"\n")
 
+                # 1.
+                # market rip and qfii climax sell or
+                # market dip and qfii buy
                 '''
                 if ( market == 1 and 0 < int(full_tab[i][2]) ):
                     full_tab[i][8] = 1
@@ -555,6 +558,9 @@ try:
                         full_tab[i][2], full_tab[i][3] )
                     outf3.write(rec +"\n")
                 '''
+
+                # 2.
+                # in updown list and qfii doing reverse
                 if ( full_tab[i][0] in limit_dlist \
                     and 0 < int(full_tab[i][2]) ):
                     full_tab[i][8] = 1
@@ -573,6 +579,8 @@ try:
                         full_tab[i][0], full_tab[i][1], \
                         full_tab[i][2], full_tab[i][3] )
                     outf3.write(rec +"\n")
+
+                # 3. more?
 
                 rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}:{8}" \
                     .format( \
@@ -595,22 +603,31 @@ try:
         return status
 
     def parse_limit_updown():
+        # cwd = os.getcwd()
+        # print(cwd)
         u_fname = "limit.up" + "." +yyyy+mm+dd+ '.csv'
-        u_path = os.path.join(DIR0, u_fname)
-        file = open(u_path, "r")
-        limit_ulist = list(csv.reader(file, delimiter=","))
-        # file.close()
-        print(limit_ulist)
+        # u_path = os.path.join(DIR0, u_fname) # // FIXME: can not open u_path
+        file = open(u_fname, "r")
+        limit_ulist = list(csv.reader(file, delimiter=','))
+        # with open(u_fname, "r") as f:
+        # f = open(u_path, newline='')
+        # csv_reader = csv.reader(f)
+        #limit_ulist = list(csv_reader)
+        # print(limit_ulist)
+        file.close()
 
         d_fname = "limit.down" + "." +yyyy+mm+dd+ '.csv'
-        d_path = os.path.join(DIR0, d_fname)
-        file2 = open(d_path, "r")
-        limit_dlist = list(csv.reader(file, delimiter=","))
-        # file.close()
-        print(limit_dlist)
-        print(len(limit_dlist))
+        d_path = os.path.join(DIR0, d_fname) # // FIXME: can not open u_path
+        # file2 = open(d_path, "r")
+        # limit_dlist = list(csv.reader(file, delimiter=","))
+        limit_dlist = list(csv.reader(open(d_fname, newline='')))
+        return len(limit_dlist)
 
-        return 0
+    start = timer()
+    n3 = parse_limit_updown()
+    end = timer()
+    print("get limit updown list..."+yyyy+mm+dd+" done, takes " \
+            +str(timedelta(seconds=end-start)))
 
     # 0 (choppy), 1 (low), 2 (high)
     market_status = is_market_rip(deal, change, rise, volume)
@@ -632,12 +649,6 @@ try:
     n2 = parse_2(soups[1])
     end = timer()
     print("fund processing..."+yyyy+mm+dd+" done, takes " \
-            +str(timedelta(seconds=end-start)))
-
-    start = timer()
-    n3 = parse_limit_updown()
-    end = timer()
-    print("limit updown list..."+yyyy+mm+dd+" done, takes " \
             +str(timedelta(seconds=end-start)))
 
     print("merging, highlight, and output to 3 files...")
