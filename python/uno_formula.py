@@ -78,6 +78,9 @@ def set_formula_1w():
         f = "=PERCENTRANK($D2:$D$"+str(last_row)+"; $D"+str(i)+")"
         cell.Formula = f
         cell.NumberFormat = nl
+        if ( 0.66 < cell.Value ):
+            cell.CellBackColor = 0xFFFF00
+
 
 def set_formula_1m():
     addr = "$M1"
@@ -89,6 +92,8 @@ def set_formula_1m():
         f = "=PERCENTRANK($E2:$E"+str(last_row)+"; $E"+str(i)+")"
         cell.Formula = f
         cell.NumberFormat = nl
+        if ( 0.66 < cell.Value ):
+            cell.CellBackColor = 0xFFFF00
 
 def set_formula_3m():
     addr = "$n1"
@@ -100,6 +105,8 @@ def set_formula_3m():
         f = "=PERCENTRANK($G2:$G"+str(last_row)+"; $G"+str(i)+")"
         cell.Formula = f
         cell.NumberFormat = nl
+        if ( 0.66 < cell.Value ):
+            cell.CellBackColor = 0xFFFF00
 
 def set_formula_ytd():
     addr = "$O1"
@@ -111,11 +118,13 @@ def set_formula_ytd():
         f = "=PERCENTRANK($J2:$J"+str(last_row)+"; $J"+str(i)+")"
         cell.Formula = f
         cell.NumberFormat = nl
+        if ( 0.66 < cell.Value ):
+            cell.CellBackColor = 0xFFFF00
 
-set_formula_1w()
-set_formula_1m()
-set_formula_3m()
 set_formula_ytd()
+set_formula_3m()
+set_formula_1m()
+set_formula_1w()
 
 olist = [ str(last_row) ]
 print(olist)

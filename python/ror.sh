@@ -89,8 +89,8 @@ echo "time: " $TIMESTAMP  " looping end"
 
 # notify user it's done
 echo -ne '\007'
-ls -lt rs.*.csv ror.*.csv ror.????????.html
-ls -l ror.????.html | wc -l
+ls -lt "$DIR0/"rs.*.csv "$DIR0/"ror.*.csv "$DIR0/"ror.????????.html
+ls -l "$DIR0/"ror.????.html | wc -l
 
 read -p "Press enter to continue $OUTF1 ..."
 # open via subprocess, can not modify from outside python
@@ -108,9 +108,10 @@ done
 ./uno_launch.sh $OUTF2
 # so as to let uno_rs.sh adding formula
 
-echo "done extracting rs, ready to rank in 10 seconds..."
-sleep 10
+# echo "done extracting rs, ready to rank in 10 seconds..."
+# sleep 10
+# ./uno_rs.sh $OUTF2
+# // FIXME: launch in the same script
 
-./uno_rs.sh $OUTF2
-
+echo "done, file name is "$OUTF2
 exit 0
