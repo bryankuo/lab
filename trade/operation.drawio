@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-05T04:35:30.938Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="uan6nIdRDPjNvZtgxy9f" version="22.0.2" type="device" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-10-05T04:44:12.414Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="7smZn-ZUcPGFkDlfww5-" version="22.0.2" type="device" pages="3">
   <diagram id="2W2IRHp-vWOM0x0aQLfi" name="US trades">
     <mxGraphModel dx="1040" dy="1874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -3461,6 +3461,9 @@
         </mxCell>
         <mxCell id="oayfRg0XtzpRzZBdce6M-9" value="中期趨勢 / 波段趨勢的追蹤 / 關於趨勢的想法" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="3340" y="2370" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="8hNwp8EcKCbHMfozePGs-1" value="今天天氣&lt;br&gt;有沒有EDT?&lt;br&gt;( 例如颱風 )" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2520" y="130" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
