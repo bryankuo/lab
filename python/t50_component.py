@@ -68,8 +68,8 @@ o_path = os.path.join(DIR0, o_fname)
 o_fname1 = "bountylist.t50."+sys.argv[1]+".txt"
 o_path1 = os.path.join(DIR0, o_fname1)
 
-source_from_net = 0 # // FIXME: as parameter
-if ( source_from_net == 1 ):
+source_from_file = 1 # // FIXME: as parameter
+if ( int(sys.argv[2]) == 0 ):
     browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
     if ( browser is None ):
         print("make sure safari automation enabled")
