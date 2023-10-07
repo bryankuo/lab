@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 volume.py 2330
+# python3 volume.py [ticker]
 # get listed daily average volume for one year
 # return 0: not found, assume otc
 
@@ -30,6 +30,7 @@ for i in range(0,12):
     n_rows[i] = 0; shares = 0
     url = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY?' + \
         'response=html&date=' + months[i] + '&stockNo=' + sys.argv[1]
+    # print(url)
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     table_body = soup.find('tbody')

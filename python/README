@@ -2,8 +2,8 @@ hello.py: a simple example.
 ofile.py: another example.
 web.py: scraping web example.
 volume.sh: caller of volume*.py file.
-volume.py: scrap listed volume.
-volume_otc.py: scrap otc volume.
+volume.py: scrap listed average daily volume for the last year.
+volume_otc.py: scrap otc average daily volume for the last year.
 overview.sh: overview of a ticker.
 range52week.py: get 52 week range,
 range52week_cmp.sh: compare 52 week range between tickers.
@@ -21,6 +21,7 @@ board.py: get board holdings.
 basic.py: check if CB issued by scraping POST reply.
 get_mrkt_value.py: scrap ticker market values.
 transaction.py: parsing type 2 daily transaction by ticker symbol from bsr.
+transotc.py: parsing type 4 transactions from tpex.
 transaction.sh: streamline type 2 to calc.
 workbench.py: keep current workbench.
 branch.py: browsing major broker transactions by ticker and date.
@@ -69,7 +70,6 @@ geopy.py:
 br.py: fetch major transactions by (broker, date)
 br_ticker.py: trial tetch transactions from bsr.
 br.sh:
-transotc.py: parsing type 4 transactions from tpex.
 position3.py:
 hbs30: histock institutional buy and sell for the last 30 days.
 derivative.py: check if has derivatives.

@@ -32,6 +32,7 @@ for i in range(0,12):
 # print("The Array is: ", months)
 
 url = 'https://www.tpex.org.tw/web/stock/aftertrading/daily_trading_info/st43_print.php?l=zh-tw&d=' + months[0]+ '&stkno=' + sys.argv[1] + '&s=0,asc,0'
+# print(url)
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 table_body = soup.find('tbody')

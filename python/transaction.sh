@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # // FIXME fetch ticker volume by specific date
-# // named - volume.sh [ticker] [date]
-#
+# // named - volume.sh [ticker] [date] [transaction file]
+# \param in ticker
+# \param in date in yyyymmdd
+# \param in transaction file down load from daily transaction (manual)
+# \param out formatted file sorted by sequence, broker, price, buy, sell
 
 DATE=`date '+%Y%m%d'`
 TKR=$1
