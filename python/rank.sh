@@ -8,8 +8,9 @@ OUTF1=datafiles/msci.$DATE.txt
 OUTF2=$DIR0"/t50.$DATE.csv"
 OUTF3=datafiles/rank.$DATE.txt
 OUTF4=datafiles/top150_market_value.$DATE.txt
-OUTF5=datafiles/m100.$DATE.txt
+OUTF5=$DIR0"/m100.$DATE.csv"
 OUTF6=$DIR0"/bountylist.t50.$DATE.txt"
+OUTF7=$DIR0"/bountylist.m100.$DATE.txt"
 
 # // TODO: change directory
 
@@ -57,6 +58,7 @@ if false; then
     fi
 fi
 
+# ready to serve rank.sh
 if true; then
     echo "scrap t50 components..."
     python3 t50_component.py $DATE
@@ -65,24 +67,23 @@ if true; then
     if [[ $num_file -eq 1 ]] ; then
 	echo "done, there are "$num_lines
     else
-	echo "something wroing,"
+	echo "something wrong,"
+    fi
+fi
+
+# ready to serve rank.sh, but // FIXME: output has changed
+if true; then
+    echo "scrap m100 components..."
+    python3 m100_components.py $DATE
+    num_file=$(ls -lt $OUTF5 | wc -l | xargs | cut -d " " -f1)
+    num_lines=$(wc -l $OUTF7 | xargs | cut -d " " -f1)
+    if [[ $num_file -eq 1 ]] ; then
+	echo "done, there are "$num_lines
+    else
+	echo "something wrong,"
     fi
 fi
 exit 0
-
-if false; then
-    echo "scrap m100 components..."
-    python3 m100_components.py > $OUTF5
-    num_file=$(ls -lt $OUTF2 | wc -l | xargs | cut -d " " -f1)
-    num_lines=$(wc -l $OUTF2 | xargs | cut -d " " -f1)
-    # echo $num_file
-    # echo $num_lines
-    if [[ $num_file -eq 1 ]] && [[ $num_lines -eq 101 ]]; then
-	echo "done."
-    else
-	echo "something wroing,"
-    fi
-fi
 
 echo "merge..."
 python3 merge.py $OUTF0 $OUTF2 $OUTF1 $OUTF4 $OUTF5 > $OUTF3
