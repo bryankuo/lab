@@ -101,20 +101,17 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
-if [ 1 -eq 1 ]
-then
-    OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
-    echo ${OUTPUT[@]}
-    DEAL=${OUTPUT[0]%\'}
-    DEAL=${DEAL#\'}
-    CHANGE=${OUTPUT[1]%\'}
-    CHANGE=${CHANGE#\'}
-    RISE=${OUTPUT[2]%\'}
-    RISE=${RISE#\'}
-    VOLUME=${OUTPUT[3]%\'}
-    VOLUME=${VOLUME#\'}
-    # printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
-fi
+OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
+echo ${OUTPUT[@]}
+DEAL=${OUTPUT[0]%\'}
+DEAL=${DEAL#\'}
+CHANGE=${OUTPUT[1]%\'}
+CHANGE=${CHANGE#\'}
+RISE=${OUTPUT[2]%\'}
+RISE=${RISE#\'}
+VOLUME=${OUTPUT[3]%\'}
+VOLUME=${VOLUME#\'}
+# printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
 
 get_limit_up
 
