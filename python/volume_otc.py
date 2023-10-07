@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 volume_otc.py 2330
+# python3 volume_otc.py [ticker]
 # get otc daily average volume for one year
 # return 0: not found, assume neither listed nor otc, semi-otc?
 

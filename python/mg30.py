@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 # python3 mg30.py [ticker]
+# to tell consequtive buy or sell
+# \param in manual buy and sell record
 # return 0: success
 
 import sys, requests, time, re, os, webbrowser
