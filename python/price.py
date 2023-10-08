@@ -35,7 +35,6 @@ DIR0="./datafiles/taiex" # consider compatible with rank.sh
 fname = "price."+ticker+"."+yyyymmdd+".html"
 path = os.path.join(DIR0, fname)
 
-# n_rows[i] = 0; shares = 0
 url = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY?' + \
     'response=html&date=' + yyyymmdd + '&stockNo=' + ticker
 if ( is_from_net ):

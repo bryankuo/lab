@@ -3,7 +3,7 @@
 # @see uno_stalk_story.sh
 # \param twse close mark @see uno_status.sh
 #
-# qfii.py
+# qfii.py yyyy mm dd [net|file]
 # \param timestamp: yyyy mm dd
 # \param origin: net 0, file 1
 # handle 4 cvs from qfii.py
