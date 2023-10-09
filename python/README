@@ -94,3 +94,4 @@ price_otc.py: extract type 4 ticker close price by date and return in list.
 price.sh: extract twse ticker close price by date and return in list.
 price_type5.py: fetch type 5 ticker close price and return in list.
 price_type5_csv.py: download and parsing csv example.
+insider_trade.py: fetch latest insider trade report.
