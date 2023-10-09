@@ -79,8 +79,12 @@ def set_formula_1w():
         cell.Formula = f
         cell.NumberFormat = nl
         if ( 0.66 < cell.Value ):
-            cell.CellBackColor = 0xFFFF00
+            cell.CellBackColor = 0x3faf46
 
+        addr_1m = "M"+str(i)
+        cell_1m = active_sheet.getCellRangeByName(addr_1m)
+        if ( cell_1m.Value < 0.34 and 0.5 < cell.Value ):
+            cell.CellBackColor = 0xFFFFD7
 
 def set_formula_1m():
     addr = "$M1"
@@ -93,7 +97,7 @@ def set_formula_1m():
         cell.Formula = f
         cell.NumberFormat = nl
         if ( 0.66 < cell.Value ):
-            cell.CellBackColor = 0xFFFF00
+            cell.CellBackColor = 0x3faf46
 
 def set_formula_3m():
     addr = "$n1"
@@ -106,7 +110,7 @@ def set_formula_3m():
         cell.Formula = f
         cell.NumberFormat = nl
         if ( 0.66 < cell.Value ):
-            cell.CellBackColor = 0xFFFF00
+            cell.CellBackColor = 0x3faf46
 
 def set_formula_ytd():
     addr = "$O1"
@@ -119,7 +123,7 @@ def set_formula_ytd():
         cell.Formula = f
         cell.NumberFormat = nl
         if ( 0.66 < cell.Value ):
-            cell.CellBackColor = 0xFFFF00
+            cell.CellBackColor = 0x3faf46
 
 set_formula_ytd()
 set_formula_3m()
