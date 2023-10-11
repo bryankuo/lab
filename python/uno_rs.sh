@@ -12,7 +12,7 @@ mkdir -p $DIR0
 # DATE=`date '+%Y%m%d'`
 DATE=$1
 # assume ror.20231001.ods, sheet name : 'ror.20231001'
-INF0="$1"
+INF0="$2"
 
 RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     uno_formula.py $DATE | tr -d '[],' ) )
