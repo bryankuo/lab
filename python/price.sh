@@ -1,6 +1,12 @@
 #!/bin/bash
 
 # price.sh [ticker] [yyyymmdd] [net|file]
+# a wrapper fetching close price by ticker, date, from internet or file.
+# \param in ticker
+# \param in yyyymmdd
+# \param in 0 net 1 file
+# \param out price
+#
 if [ "$#" -lt 3 ]; then
     echo "usage: ./price.sh [ticker] [yyyymmdd] [net|file]"
     exit 22 # @see https://stackoverflow.com/a/50405954
@@ -20,7 +26,7 @@ elif [ $CO_TYPE1 -eq 4 ]; then
     # echo ${OUTPUT[@]}
     PRICE0=${OUTPUT[0]}
 elif [ $CO_TYPE1 -eq 5 ]; then
-    echo "TBD" # // TODO:
+    # echo "type 5"
     OUTPUT=($(python3 price_type5.py $1 $2 $3 | tr -d '[],'))
     # echo ${OUTPUT[@]}
     PRICE0=${OUTPUT[0]}
@@ -28,6 +34,6 @@ elif [ $CO_TYPE1 -eq 5 ]; then
 else
     echo "it is not supported for type "$CO_TYPE1
 fi
-echo $PRICE0 $PRICE1
+echo $PRICE0
 
 exit 0
