@@ -13,7 +13,8 @@ OUTF6=$DIR0"/bountylist.t50.$DATE.txt"
 OUTF7=$DIR0"/bountylist.m100.$DATE.txt"
 OUTF8=$DIR0"/top100_market_value.$DATE.txt"
 
-if true; then
+# ready to serve rank.sh
+if false; then
     echo "scrap top 100 market value and weight..."
     python3 get_mrkt_value.py  $DATE
     num_file=$(ls -lt $OUTF0 | wc -l | xargs | cut -d " " -f1)
@@ -24,7 +25,6 @@ if true; then
 	echo "something wrong,"
     fi
 fi
-exit 0
 
 # // TODO: change directory
 if false; then

@@ -66,7 +66,7 @@ uno_eps.sh: looping eps.
 uno_activity.sh: looping activity.
 gmap.py: trigger jsfiddle show plots.
 gtrend.py:
-geopy.py:
+geopy.py: add point to google map.
 br.py: fetch major transactions by (broker, date)
 br_ticker.py: trial tetch transactions from bsr.
 br.sh:
@@ -95,3 +95,4 @@ price.sh: extract twse ticker close price by date and return in list.
 price_type5.py: fetch type 5 ticker close price and return in list.
 price_type5_csv.py: download and parsing csv example.
 insider_trade.py: fetch latest insider trade report.
+fetch_ocf.py: fetch operation cash flow.
