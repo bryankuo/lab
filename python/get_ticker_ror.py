@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
-# python3 get_ticker_ror.py [ticker]
+# python3 get_ticker_ror.py [ticker] [net|file] [benchmark]
 # scraping from file fetched.
 # \param in out  ror.YYYYMMDD.csv
+# \param in      ror.yyyymmdd.csv 2nd line for twse ror
 # \param in      ror.[ticker].html
+# \param in      benchmark
 # \param out     rs.YYYYMMDD.csv
 # return 0
 
@@ -33,14 +35,21 @@ from pprint import pprint
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
-if ( len(sys.argv) < 2 ):
-    print("usage: get_ticker_ror.py [ticker]")
+if ( len(sys.argv) < 3 ):
+    print("usage: get_ticker_ror.py [ticker] [benchmark]")
     sys.exit(0)
 ticker = sys.argv[1]
-print(ticker)
+# t_1d  = float(twse_ror_figures[2])
+t_1w  = float(sys.argv[3].replace('\'',''))
+t_1m  = float(sys.argv[4].replace('\'',''))
+# t_2m  = float(twse_ror_figures[5]) # yet available
+t_3m  = float(sys.argv[6].replace('\'',''))
+#t_6m  = float(twse_ror_figures[7])
+# t_1y  = float(twse_ror_figures[8])
+t_ytd = float(sys.argv[9].replace('\'',''))
+# t_3y  = float(twse_ror_figures[10])
 
 DIR0="./datafiles/taiex/rs"
-# DIR0="."
 fname = "ror." + ticker + ".html"
 h_path = os.path.join(DIR0, fname)
 # // FIXME: date may be not today, but input from ror.sh
@@ -54,7 +63,6 @@ rs_fname  = "rs."  + datetime.today().strftime('%Y%m%d') + '.csv'
 rs_path   = os.path.join(DIR0, rs_fname)
 
 def fetch_twse_ror():
-    # print("fetch_twse_ror+")
     f = open(i_path, newline='')
     csv_reader = csv.reader(f)
     next(csv_reader)
@@ -63,17 +71,8 @@ def fetch_twse_ror():
     # print(figures[3])
     return figures
 
-twse_ror_figures = fetch_twse_ror()
+# twse_ror_figures = fetch_twse_ror()
 # print("{:>.02f}".format(float(twse_ror_figures[2])))
-t_1d  = float(twse_ror_figures[2])
-t_1w  = float(twse_ror_figures[3])
-t_1m  = float(twse_ror_figures[4])
-# t_2m  = float(twse_ror_figures[5]) # yet available
-t_3m  = float(twse_ror_figures[6])
-t_6m  = float(twse_ror_figures[7])
-t_1y  = float(twse_ror_figures[8])
-t_ytd = float(twse_ror_figures[9])
-t_3y  = float(twse_ror_figures[10])
 
 with open(h_path) as q:
     soup = BeautifulSoup(q, 'html.parser')

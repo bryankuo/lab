@@ -50,29 +50,27 @@ is_from_net = True
 use_plain_req = False
 
 if ( is_from_net ):
-    # if ( os.path.exists(path) ):
-    #     os.remove(path) # clean up
+    # if ( os.path.exists(path) ): os.remove(path) # clean up
     if ( use_plain_req ):
         response = requests.get(url)
         # response.encoding = 'cp950'
         soup = BeautifulSoup(response.text, 'html.parser')
     else:
-        browser = webdriver.Safari( \
-            executable_path = '/usr/bin/safaridriver')
+        browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
         browser.get(url)
         time.sleep(1)
         page1 = browser.page_source
         soup = BeautifulSoup(page1, 'html.parser')
         browser.quit()
-    with open(path, "w") as outfile2:
-        outfile2.write(soup.prettify())
-        outfile2.close()
+        with open(path, "w") as outfile2:
+            outfile2.write(soup.prettify())
+            outfile2.close()
 else:
     with open(path) as q:
         soup = BeautifulSoup(q, 'html.parser')
 
 title = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[1]
+    .find_all("tr", {})[1]
 t_1d  = title.find_all("td", {})[1].text.strip().replace(',', '')
 t_1w  = title.find_all("td", {})[2].text.strip().replace(',', '')
 t_1m  = title.find_all("td", {})[3].text.strip().replace(',', '')
@@ -83,10 +81,9 @@ t_ytd = title.find_all("td", {})[7].text.strip().replace(',', '')
 t_3y  = title.find_all("td", {})[8].text.strip().replace(',', '')
 
 olist0 = [ t_1d, t_1w, t_1m, t_3m, t_6m, t_1y, t_ytd, t_3y ]
-# print(olist0)
 
 figure = soup.find_all("table", {"class": "t01"})[0] \
-        .find_all("tr", {})[2]
+    .find_all("tr", {})[2]
 f_1d   = figure.find_all("td", {})[1].text.strip().replace(',', '')
 f_1w   = figure.find_all("td", {})[2].text.strip().replace(',', '')
 f_1m   = figure.find_all("td", {})[3].text.strip().replace(',', '')
@@ -97,7 +94,8 @@ f_ytd  = figure.find_all("td", {})[7].text.strip().replace(',', '')
 f_3y   = figure.find_all("td", {})[8].text.strip().replace(',', '')
 
 olist = [ f_1d, f_1w, f_1m, "n/a", f_3m, f_6m, f_1y, f_ytd, f_3y ]
-print(olist) # return for ticker ror parameters.
+print(olist)
+# return for ticker ror parameters.
 
 with open(o_path, 'a') as ofile:
     # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")

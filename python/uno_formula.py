@@ -99,6 +99,29 @@ def set_formula_1m():
         if ( 0.66 < cell.Value ):
             cell.CellBackColor = 0x3faf46
 
+            # set cell border
+            aThinBorder = cell.TopBorder2
+            aThinBorder.Color          = 0x00ff0000
+            aThinBorder.LineWidth      = 1
+            aThinBorder.InnerLineWidth = 0
+            aThinBorder.OuterLineWidth = 1
+            cell.LeftBorder2   = aThinBorder
+
+            rThinBorder = cell.RightBorder2
+            rThinBorder.Color = 0x0000ff00
+            rThinBorder.LineWidth = 5
+            aThinBorder.InnerLineWidth = 0
+            aThinBorder.OuterLineWidth = 1
+            cell.RightBorder2   = rThinBorder
+            cell.BottomBorder2 = rThinBorder
+            cell.TopBorder2 = rThinBorder
+            # // TODO: playground
+            # @see https://t.ly/TFSjH
+            # @see https://t.ly/_wZ6_
+            # @see https://t.ly/UR2Us
+            #aThinBorder.LineDistance   = 0
+            # aThinBorder.LineStyle      = 1
+
 def set_formula_3m():
     addr = "$n1"
     cell = active_sheet.getCellRangeByName(addr)

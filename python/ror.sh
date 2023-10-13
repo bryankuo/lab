@@ -38,6 +38,8 @@ OUTF0="$DIR0/ror.$DATE.csv"
 OUTF1="$DIR0/rs.$DATE.csv"
 OUTF2="$DIR0/rs.$DATE.ods"
 trash -v $OUTF0 $OUTF1 $OUTF2
+
+BENCHMARK=""
 if [ ! -f "$OUTF0" ]; then
     trash -v ror.????.html ror.????????.html
     echo "done, get twse ror..."
@@ -74,7 +76,8 @@ TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF1
 while true; do
     TICKER=( $(sed "$index""q;d" $BOUNTY) )
-    python3 get_ticker_ror.py $TICKER
+    # echo ${BENCHMARK[@]}
+    python3 get_ticker_ror.py $TICKER ${BENCHMARK[@]}
     index=$(($index+1))
     count=$(($count+1))
     if [[ $count -ge $LEN ]]; then
