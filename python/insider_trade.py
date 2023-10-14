@@ -2,10 +2,12 @@
 
 # python3 insider_trade.py [yyyymmdd] [net|file]
 # get ticker close price by date
-# \param in ticker
+# // TODO: automate updating activities
+#
 # \param in date in yyyymmdd
 # \param in 0: from internet, 1: from file
-# \param out price.[ticker].[yyyymmdd].html
+# \param out datafiles/taiex/insider_trade.[yyyymmdd].html, assuming on Sat.
+#
 # \parm  out a list containing close price
 # \return 0: success
 
@@ -36,6 +38,13 @@ DIR0="./datafiles/taiex" # consider compatible with rank.sh
 fname = "insider_trade."+yyyymmdd+".html"
 path = os.path.join(DIR0, fname)
 
+this_date = date( int(yyyymmdd[0:4]), int(yyyymmdd[4:6]), int(yyyymmdd[6:8]) )
+# print(this_date)
+# print(this_date.weekday())
+idx = (this_date.weekday() + 1) % 7
+last_sat = this_date - timedelta(7+idx-6)
+# @see https://stackoverflow.com/a/18200686
+
 url = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
 
 if ( is_from_net ):
@@ -60,22 +69,19 @@ if ( is_from_net ):
 else:
     with open(path) as q:
         soup = BeautifulSoup(q, 'html.parser')
-'''
-close_price = 0
-req_date_format = '%Y%m%d'
-req_date_obj = datetime.strptime(yyyymmdd, req_date_format)
-#print(req_date_obj)
-table_body = soup.find('tbody')
-if ( table_body is not None ):
-    for tr in soup.findAll('tr')[2:]:
-        tds = tr.findAll('td')
-        dt_s = tds[0].text.replace('\n','').strip()
-        this_date = date( int(dt_s[0:3])+1911, int(dt_s[4:6]), int(dt_s[7:9]) )
-        # print(this_date)
-        if ( this_date.day == req_date_obj.day ):
-            close_price = float(tds[6].text.replace(',', ''))
-            break
-'''
-olist = [ 0 ]
+
+rows = soup.find_all("table", {"class": "t01"})[0] \
+        .find_all("tr")
+num_this_wk = 0
+for i in range(2, len(rows)):
+    mm = rows[i].find_all('td')[0].text.strip()[0:2]
+    dd = rows[i].find_all('td')[0].text.strip()[3:5]
+    the_date = date( int(yyyymmdd[0:4]), int(mm), int(dd) )
+    if ( last_sat < the_date ):
+        num_this_wk += 1
+    else:
+        break
+
+olist = [ num_this_wk ]
 print(olist)
 sys.exit(0)
