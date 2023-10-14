@@ -98,3 +98,4 @@ insider_trade.py: fetch latest insider trade report.
 fetch_ocf.py: fetch operation cash flow.
 fetch_cashflow_statement.py: fetch mops cash flow statement.
 fetch_fcf.py: fetch free cash flow.
+gbank_histock.py: getting gbank volume by date, ticker some sort of.

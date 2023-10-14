@@ -16,9 +16,13 @@ ticker = sys.argv[1]
 # fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
 fname = ticker+".html"
 
-# source 1, term "上市官股券商動向", in total
+# source 1, term "上市官股券商動向", sorted by type 2, type 4, and total
 # http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app=
 # url = "http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app="
+#
+# src 2: by ticker, date
+# https://histock.tw/stock/broker.aspx?no=1402
+
 '''
 url = "https://histock.tw/stock/broker.aspx?no="+ticker
 browser = webdriver.Safari( \
