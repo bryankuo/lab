@@ -14,7 +14,7 @@
 #   1.buy  when twse dip
 #   2.sell when twse rip
 # \return OUTF1 ods file, manual saved by calc
-# // TODO: add public bank b/s
+# // TODO: consider public bank activities
 # https://www.wantgoo.com/stock/public-bank/buy-sell
 # https://histock.tw/stock/broker8.aspx
 # https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx
