@@ -47,6 +47,8 @@ fi
 
 echo "date "$DATE", last trade date "$LAST_TRADE_DAY
 # // FIXME: verify last trade day by query TWSE exchange data (ex. volume)
+# src: https://www.twse.com.tw/pcversion/zh/page/trading/exchange/FMTQIK.html
+# python is_twse_open [yyyymmdd] return 0 success
 
 
 # FROM_SROUCE=4

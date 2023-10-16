@@ -137,3 +137,4 @@ if __name__ == "__main__":
         print("not support. " + str(len(sys.argv)))
 
 # // TODO: 毛利率/營業利益率 @see https://bit.ly/3XumrPR
+# fetch_opm fetch_gm
