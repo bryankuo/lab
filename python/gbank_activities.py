@@ -12,16 +12,17 @@ from pprint import pprint
 
 
 ticker = sys.argv[1]
+
+# // TODO: serving qfbs.sh as input
 # source 1, term "上市官股券商動向", in total
 # http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app=
 url = "http://www.money-link.com.tw/stxba/imwcontent0.asp?page=hott3&ID=HOTT3&menusub=2&app="
+broker8 = 'https://histock.tw/stock/broker8.aspx'     # summary
 
 '''
-https://histock.tw/stock/broker.aspx?no=1217
-broker8 = 'https://histock.tw/stock/broker8.aspx'
-https://www.wantgoo.com/stock/public-bank/buy-sell
-https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx
-https://www.nta.gov.tw/singlehtml/67?cntId=nta_956_67
+https://histock.tw/stock/broker.aspx?no=1217          # by ticker
+https://www.wantgoo.com/stock/public-bank/buy-sell    # enumeration
+https://www.nta.gov.tw/singlehtml/67?cntId=nta_956_67 # update quarterly
 '''
 
 response = requests.get(url)

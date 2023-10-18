@@ -183,6 +183,7 @@ addr_cape       = "AL1"
 addr_sma5       = "AN1"
 addr_sma20      = "AO1"
 addr_sma60      = "AP1"
+addr_last       = "BH1"
 
 def set_value():
     if ( len(sys.argv) >= MAX_ARG_LEN ):
@@ -249,6 +250,7 @@ for i in range(2, last_row):
         addr_sma5     = "AN" + str(i)
         addr_sma20    = "AO" + str(i)
         addr_sma60    = "AP" + str(i)
+        addr_last     = "BH" + str(i)
         break
 
 if ( addr_q == "J1" ):
@@ -276,6 +278,7 @@ if ( addr_q == "J1" ):
     addr_sma5     = "AN" + str( last_row + 1 )
     addr_sma20    = "AO" + str( last_row + 1 )
     addr_sma60    = "AP" + str( last_row + 1 )
+    addr_last     = "BH" + str( last_row + 1 )
     cell_ticker = active_sheet.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
 
@@ -348,6 +351,9 @@ if ( 0 < out_of_spec ):
 else:
     cell_stalk.String = ""
 # @see ref: shorturl.at/lsuHT
+
+cell = active_sheet.getCellRangeByName(addr_last)
+cell.Value = int('{:%Y%m%d}'.format(datetime.now()))
 
 olist = [ out_of_spec ]
 print(olist)

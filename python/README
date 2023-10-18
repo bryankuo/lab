@@ -99,3 +99,5 @@ fetch_ocf.py: fetch operation cash flow.
 fetch_cashflow_statement.py: fetch mops cash flow statement.
 fetch_fcf.py: fetch free cash flow.
 gbank_histock.py: getting gbank volume by date, ticker some sort of.
+ticker_ror.sh: figure out ror since X weeks ago.
+is_twse_open.py: to tell market is open, otherwise return last trade day.

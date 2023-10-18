@@ -14,7 +14,7 @@
 #   1.buy  when twse dip
 #   2.sell when twse rip
 # \return OUTF1 ods file, manual saved by calc
-# // TODO: add public bank b/s
+# // TODO: consider public bank activities
 # https://www.wantgoo.com/stock/public-bank/buy-sell
 # https://histock.tw/stock/broker8.aspx
 # https://chart.capital.com.tw/Chart/TWII/TAIEX11.aspx
@@ -46,8 +46,7 @@ if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -gt 5 ]]; then
 fi
 
 echo "date "$DATE", last trade date "$LAST_TRADE_DAY
-# // FIXME: verify last trade day by query TWSE exchange data (ex. volume)
-
+# // TODO: @see price.sh
 
 # FROM_SROUCE=4
 # // FIXME: test random seed generator
@@ -145,7 +144,8 @@ OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 if [ $ORIGIN -eq 0 ]; then
     trash "$DIR0/qfii.$DATE.html"
     trash "$DIR0/fund.$DATE.html"
-    ls -ltr "$DIR0/"*$YR$MN$DAY*; rm -f "$DIR0/"*$YR$MN$DAY*
+    ls -ltr "$DIR0/"*$YR$MN$DAY*;
+    # rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
 fi
 
 rm -vf $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
