@@ -119,6 +119,8 @@ get_limit_down
 DIR0="datafiles/taiex/qfbs"
 mkdir -p $DIR0
 
+ls -ltr "$DIR0/limit*$DATE.csv"
+
 OUTFL1="$DIR0/list1.$DATE.txt"
 OUTFL1b="$DIR0/list1b.$DATE.txt"
 OUTFL1s="$DIR0/list1s.$DATE.txt"

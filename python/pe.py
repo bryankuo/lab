@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# python3 pe.py [ticker]
+# python3 pe.py [ticker] [flag]
+# \param in flag additional flag for uno_status.sh
 # return 0: success
 
 def print_header(ticker, ofile):
