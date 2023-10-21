@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
 # python3 board.py 2330 [0|1]
+# get board holdings.
+# \param in ticker
+# \param in flag
 # return 0: success
 # pattern can be a list of keywords
 

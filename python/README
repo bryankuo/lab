@@ -39,7 +39,7 @@ get_listed.sh: get 3 types of listed tickers,
 annual_report.py: browse latest annual report.
 simple_plot.py: simple matplotlib example.
 correlation.py: correlating 2 or more US tickers,
-activity.py: counting chips,
+activity.py: counting chips in recent 5 days,
 looping.py: looping listed companies.
 activities.sh: looping company activity by type.
 announcement.py: launch TSEC announcement,
@@ -61,6 +61,7 @@ m100_components.py: get m100 components.
 uno_kicks.py: update libreoffice calc, as well as testbed.
 uno_kicks.sh: scripting update quote.
 uno_status.sh: update quote, activity, per of a ticker to calc.
+uno_status_loop.sh: for each item in list, run uno_status.sh.
 uno_quotes.sh: batch updating quote.
 uno_eps.sh: looping eps.
 uno_activity.sh: looping activity.

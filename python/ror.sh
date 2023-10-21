@@ -93,7 +93,7 @@ echo "time: " $TIMESTAMP  " looping end"
 # notify user it's done
 echo -ne '\007'
 ls -lt "$DIR0/"rs.*.csv "$DIR0/"ror.*.csv "$DIR0/"ror.????????.html
-ls -l "$DIR0/"ror.????.html | wc -l
+ls -lt "$DIR0/"ror.????.html "$DIR0/"rs.*.ods | wc -l
 
 read -p "Press enter to continue $OUTF1 ..."
 # open via subprocess, can not modify from outside python

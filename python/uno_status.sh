@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# update quote, activity, per of a ticker to calc.
+
 if [ "$#" -lt 1 ]; then
     echo "./uno_status.sh [ticker]"
     exit 64

@@ -73,15 +73,22 @@ else:
 rows = soup.find_all("table", {"class": "t01"})[0] \
         .find_all("tr")
 num_this_wk = 0
+last_ticker = 0
+num_ticker = 0
 for i in range(2, len(rows)):
     mm = rows[i].find_all('td')[0].text.strip()[0:2]
     dd = rows[i].find_all('td')[0].text.strip()[3:5]
     the_date = date( int(yyyymmdd[0:4]), int(mm), int(dd) )
+    the_ticker = rows[i].find_all('td')[1].text
+    print(the_ticker)
     if ( last_sat < the_date ):
         num_this_wk += 1
+        if ( the_ticker != last_ticker ):
+            num_ticker +=1
+            last_ticker = the_ticker
     else:
         break
 
-olist = [ num_this_wk ]
+olist = [ num_this_wk, num_ticker, path, url ]
 print(olist)
 sys.exit(0)

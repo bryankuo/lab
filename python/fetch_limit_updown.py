@@ -88,8 +88,9 @@ sources = [                                                         \
     #[   "https://www.esunsec.com.tw/tw-rank/z/ZG/ZG_AC.djhtm", \
     #    "https://www.esunsec.com.tw/tw-rank/z/ZG/ZG_AB.djhtm"], \
 
-    # not allowed
+    # not allowed, // TODO: how about http?
     # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2102.djhtm
+    # http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcl/zcl.djhtm?a=3680&b=2
 
     # 404 possible path mismatch, has room to improve
     # [   "https://english.honsec.com.tw/Content.Files/Securities.Files/ZG/ZG07.aspx", \

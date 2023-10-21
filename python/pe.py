@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
 
+# python3 pe.py [ticker]
 # python3 pe.py [ticker] [flag]
-# \param in flag additional flag for uno_status.sh
+# \param in ticker
+# \param in flag, 0: TBD, 1: serving uno_status.sh,
+#           show console if not provided.
 # return 0: success
+
+import sys
+ticker = sys.argv[1]
+sources = [                                                         \
+    "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm",
+    "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
+]
 
 def print_header(ticker, ofile):
     if ( ofile is None ):
@@ -11,13 +22,12 @@ def print_header(ticker, ofile):
         ofile.write("代號:PER:52w高:52w低:同業平均" + "\n")
         ofile.flush()
 
-def print_body(ticker, ofile):
+def print_body(ticker, ofile, seed):
     import requests
     from bs4 import BeautifulSoup
-    # source 1
-    # url = 'http://5850web.moneydj.com/z/zc/zcx/zcxNew_' + ticker + '.djhtm'
-    # source 2
-    url = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
+
+    url = sources[seed]
+    # print(str(n) + ": " + url)
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     # beta = soup.findAll('table')[3].find_all('tr')[7] \
@@ -47,24 +57,13 @@ def print_body(ticker, ofile):
         ofile.write('\n')
         ofile.flush()
 
-def get_per(ticker):
-    # print("get_activity " + ticker)
-    import requests, random
+def get_per(ticker, seed):
+    # print("get_per " + ticker + ", " + str(seed))
+    import requests #, random
     from bs4 import BeautifulSoup
 
-    n = random.randint(1,3)
-    if ( n == 1 ):
-        # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm"
-        url = "https://concords.moneydj.com/z/zc/zca/zca_" + \
-            ticker + ".djhtm"
-    elif ( n == 2 ):
-        # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2102.djhtm
-        url = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + \
-            ticker + ".djhtm"
-    else: # 3
-        # http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_2102.djhtm
-        url = 'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + \
-            ticker + '.djhtm'
+    url = sources[seed]
+    # print(str(n) + ": " + url)
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     pe = soup.findAll('table')[0] \
@@ -90,14 +89,15 @@ def get_per(ticker):
     print(olist)
 
 if __name__ == "__main__":
-    import sys, requests
+    import sys, random #, requests
     from bs4 import BeautifulSoup
 
     ticker = sys.argv[1]
+    n = random.randint(0,2)
     if ( 2 == len(sys.argv) ):
         print_header(ticker, None)
-        print_body(ticker, None)
+        print_body(ticker, None, n)
     elif ( 3 == len(sys.argv) ):
-        get_per(ticker)
+        get_per(ticker, n)
     else:
         print("not support. " + str(len(sys.argv)))
