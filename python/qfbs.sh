@@ -6,6 +6,7 @@
 # qfii.py yyyy mm dd [net|file]
 # \param timestamp: yyyy mm dd
 # \param origin: net 0, file 1
+# \param out in limit up down file
 # handle 4 cvs from qfii.py
 # \return OUTF0  txt file, a summary describe what qfii/fund buy and sell
 # \return OUTF2B txt file, summary describing both buy
@@ -48,20 +49,42 @@ fi
 echo "date "$DATE", last trade date "$LAST_TRADE_DAY
 # // TODO: @see price.sh
 
+DIR0="datafiles/taiex/qfbs"
+mkdir -p $DIR0
+
+OUTFL1="$DIR0/list1.$DATE.txt"
+OUTFL1b="$DIR0/list1b.$DATE.txt"
+OUTFL1s="$DIR0/list1s.$DATE.txt"
+OUTFL2="$DIR0/list2.$DATE.txt"
+OUTFL2b="$DIR0/list2b.$DATE.txt"
+OUTFL2s="$DIR0/list2s.$DATE.txt"
+NAME="外資投信同步買賣超"
+OUTF0="$DIR0/$NAME.$DATE.txt"
+OUTF1="$DIR0/$NAME.$DATE.ods"
+DEFAULT_NAME1="外資投信同買"
+DEFAULT_NAME2="外資投信同賣"
+DEFAULT_NAME3="外資操作異常"
+OUTF2B="$DIR0/$DEFAULT_NAME1.$DATE.txt"
+OUTF2S="$DIR0/$DEFAULT_NAME2.$DATE.txt"
+OUTFQA="$DIR0/$DEFAULT_NAME3.$DATE.txt"
+O2B="$DIR0/$DEFAULT_NAME1.$DATE.ods"
+O2S="$DIR0/$DEFAULT_NAME2.$DATE.ods"
+OQA="$DIR0/$DEFAULT_NAME3.$DATE.ods"
+OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
+OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
+OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
+
 # FROM_SROUCE=4
 # // FIXME: test random seed generator
 FROM_SROUCE=($(shuf -i 1-5 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
     echo "fetch limit up type 2 from $FROM_SROUCE ..."
     OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
-    echo "done."
     sleep 1
     echo "fetch limit up type 4 from $FROM_SROUCE ..."
     OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 1 $FROM_SROUCE | tr -d '[],'))
     # echo ${OUTPUT[@]}
-    echo "done."
-
-    rm -f limit.up.$DATE.csv
+    #trash limit.up.$DATE.csv # already done in get_limit_updown.py
 
     echo "get $DATE type 2 limit up list..."
     OUTPUT=($(python3 get_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
@@ -79,13 +102,10 @@ get_limit_up() {
 get_limit_down() {
     echo "fetch limit down type 2 from $FROM_SROUCE ..."
     OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
-    echo "done."
     sleep 1
     echo "fetch limit down type 4 from $FROM_SROUCE ..."
     OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 1 $FROM_SROUCE | tr -d '[],'))
-    echo "done."
-
-    rm -f limit.down.$DATE.csv
+    # trash limit.down.$DATE.csv # already done in get_limit_updown.py
 
     echo "get $DATE type 2 limit down list..."
     OUTPUT=($(python3 get_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
@@ -116,32 +136,9 @@ get_limit_up
 
 get_limit_down
 
-DIR0="datafiles/taiex/qfbs"
-mkdir -p $DIR0
-
 ls -ltr "$DIR0/limit*$DATE.csv"
 
-OUTFL1="$DIR0/list1.$DATE.txt"
-OUTFL1b="$DIR0/list1b.$DATE.txt"
-OUTFL1s="$DIR0/list1s.$DATE.txt"
-OUTFL2="$DIR0/list2.$DATE.txt"
-OUTFL2b="$DIR0/list2b.$DATE.txt"
-OUTFL2s="$DIR0/list2s.$DATE.txt"
-NAME="外資投信同步買賣超"
-OUTF0="$DIR0/$NAME.$DATE.txt"
-OUTF1="$DIR0/$NAME.$DATE.ods"
-DEFAULT_NAME1="外資投信同買"
-DEFAULT_NAME2="外資投信同賣"
-DEFAULT_NAME3="外資操作異常"
-OUTF2B="$DIR0/$DEFAULT_NAME1.$DATE.txt"
-OUTF2S="$DIR0/$DEFAULT_NAME2.$DATE.txt"
-OUTFQA="$DIR0/$DEFAULT_NAME3.$DATE.txt"
-O2B="$DIR0/$DEFAULT_NAME1.$DATE.ods"
-O2S="$DIR0/$DEFAULT_NAME2.$DATE.ods"
-OQA="$DIR0/$DEFAULT_NAME3.$DATE.ods"
-OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
-OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
-OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
+trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
 
 if [ $ORIGIN -eq 0 ]; then
     trash "$DIR0/qfii.$DATE.html"
@@ -149,8 +146,6 @@ if [ $ORIGIN -eq 0 ]; then
     ls -ltr "$DIR0/"*$YR$MN$DAY*;
     # rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
 fi
-
-rm -vf $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
 
 # python3 qfii.py $OUTF0
 # python3 qfii.py $OUTF0 0 # // TODO: lazy and less parameter
@@ -201,7 +196,6 @@ while true ; do
 	break
     fi
 done
-
 
 echo -ne '\007'
 read -p "Press enter to continue $OUTFQA ..."

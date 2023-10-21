@@ -54,7 +54,7 @@ try:
         sys.exit(0)
     rows = soup.find("table", {"id": "oMainTable"}) \
         .find_all('tr')
-    with open(o_fname, 'a') as ofile: # // FIXME: qfii.py failed to open u_path
+    with open(o_path, 'a') as ofile:
         for i in range(2, len(rows)):
             tkr = rows[i].findAll('td')[1].text.strip().replace(' ', '')[0:4]
             ofile.write(tkr+"\n")
