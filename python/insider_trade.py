@@ -11,7 +11,7 @@
 # \parm  out a list containing close price
 # \return 0: success
 
-import sys, requests, time, os
+import sys, requests, time, os, re
 import urllib.request
 from datetime import timedelta, datetime, date
 from bs4 import BeautifulSoup
@@ -79,8 +79,10 @@ for i in range(2, len(rows)):
     mm = rows[i].find_all('td')[0].text.strip()[0:2]
     dd = rows[i].find_all('td')[0].text.strip()[3:5]
     the_date = date( int(yyyymmdd[0:4]), int(mm), int(dd) )
-    the_ticker = rows[i].find_all('td')[1].text
-    print(the_ticker)
+    td = str(rows[i].find_all('td')[1])
+    # @see https://stackoverflow.com/a/65561465
+    the_ticker = int( re.search('\(([^)]+)', td).group(1) \
+        .split(',')[0].split('\'')[1].split("AS")[1] )
     if ( last_sat < the_date ):
         num_this_wk += 1
         if ( the_ticker != last_ticker ):
