@@ -38,7 +38,7 @@ get_listed.py: get listed tickers from TAIEX to file,
 get_listed.sh: get 3 types of listed tickers,
 annual_report.py: browse latest annual report.
 simple_plot.py: simple matplotlib example.
-correlation.py: correlating 2 or more US tickers,
+correlation.py: poc test correlating 2 or more US tickers
 activity.py: counting chips in recent 5 days,
 looping.py: looping listed companies.
 activities.sh: looping company activity by type.
