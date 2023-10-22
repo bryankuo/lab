@@ -12,7 +12,7 @@ sources = [                                                         \
     "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
     "https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=" + ticker
 ]
-# // FIXME: eps, sma5
+# // FIXME: eps
 
 def print_header(ticker, ofile):
     print("代號:價格:52w低價:低距％:52w高價:高距％")
