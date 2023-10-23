@@ -9,13 +9,6 @@
 # \param out     rs.YYYYMMDD.csv
 # return 0
 
-'''
-import sys, requests, time, os
-import urllib.request
-from datetime import timedelta,datetime
-from bs4 import BeautifulSoup
-'''
-
 import sys, requests, time, os, numpy, random, csv
 from bs4 import BeautifulSoup
 from selenium import webdriver

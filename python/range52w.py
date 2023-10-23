@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
 
 # python3 range52w.py [ticker]
+# python3 range52w.py [ticker] [flag]
+#
 # return 0: success
+import sys
+ticker = sys.argv[1]
+sources = [                                                         \
+    "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm",
+    'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + ticker + '.djhtm',
+    "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=" + ticker
+]
+# // FIXME: eps
 
 def print_header(ticker, ofile):
     print("代號:價格:52w低價:低距％:52w高價:高距％")
@@ -9,13 +20,11 @@ def print_header(ticker, ofile):
         ofile.write("代號:價格:52w低價:低距％:52w高價:高距％" + "\n")
         ofile.flush()
 
-def print_body(ticker, ofile):
+def print_body(ticker, ofile, seed):
     import requests
     from bs4 import BeautifulSoup
-    # source 1
-    # url = 'http://5850web.moneydj.com/z/zc/zcx/zcxNew_' + ticker + '.djhtm'
-    # source 2
-    url = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
+
+    url = sources[seed]
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     # beta = soup.findAll('table')[3].find_all('tr')[7] \
@@ -53,22 +62,13 @@ def print_body(ticker, ofile):
         ofile.write('\n')
         ofile.flush()
 
-def get_range52w(ticker):
+def get_range52w(ticker, seed):
     # print("get_activity " + ticker)
-    import requests, random
+    import requests #, random
     from bs4 import BeautifulSoup
 
-    n = random.randint(1,3)
-    if ( n == 1 ):
-        url = "https://concords.moneydj.com/z/zc/zca/zca_" + \
-            ticker + ".djhtm"
-    elif ( n == 2 ):
-        url = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + \
-            ticker + ".djhtm"
-    else: # 3
-        url = 'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + \
-            ticker + '.djhtm'
-    # print(url)
+    url = sources[seed]
+    # print(str(seed) + ": " + url)
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     rows = soup.select('table .t01 tr')
@@ -92,14 +92,14 @@ def get_range52w(ticker):
     print(olist)
 
 if __name__ == "__main__":
-    import sys, requests
-    from bs4 import BeautifulSoup
+    import sys, requests, random
 
     ticker = sys.argv[1]
+    n = random.randint(0,3)
     if ( 2 == len(sys.argv) ):
         print_header(ticker, None)
-        print_body(ticker, None)
+        print_body(ticker, None, n)
     elif ( 3 == len(sys.argv) ):
-        get_range52w(ticker)
+        get_range52w(ticker, n)
     else:
         print("not support. " + str(len(sys.argv)))

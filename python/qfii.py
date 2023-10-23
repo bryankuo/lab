@@ -105,7 +105,7 @@ else:
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
-    limit_ulist = []; limit_dlist = []
+    limit_ulist = []; limit_dlist = [];
 
     def fetch():
         if ( is_from_net ):
@@ -518,7 +518,7 @@ try:
             open(qfii_anomaly, 'wt') as outf3:
 
             for i in range(0, len(full_tab)):
-
+                print(full_tab[i][0])
                 if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
                     full_tab[i][6] = 1
                     rec = "{0}:{1}:{2}:{3}:{4}:{5}" \
@@ -568,7 +568,6 @@ try:
                         .format( \
                         full_tab[i][0], full_tab[i][1], \
                         full_tab[i][2], full_tab[i][3] )
-                    # print(rec)
                     outf3.write(rec +"\n")
 
                 if ( full_tab[i][0] in limit_ulist \
@@ -603,25 +602,28 @@ try:
         return status
 
     def parse_limit_updown():
-        # cwd = os.getcwd()
-        # print(cwd)
         u_fname = "limit.up" + "." +yyyy+mm+dd+ '.csv'
-        # u_path = os.path.join(DIR0, u_fname) # // FIXME: can not open u_path
-        file = open(u_fname, "r")
-        limit_ulist = list(csv.reader(file, delimiter=','))
-        # with open(u_fname, "r") as f:
-        # f = open(u_path, newline='')
-        # csv_reader = csv.reader(f)
-        #limit_ulist = list(csv_reader)
-        # print(limit_ulist)
-        file.close()
+        u_path = os.path.join(DIR0, u_fname)
+        f = open(u_path, "r")
+        line = f.readline().strip()
+        while line != '':
+            if ( len(line) == 4 ):
+                limit_ulist.append(int(line))
+            line = f.readline().strip()
+        f.close()
+        print(limit_ulist)
 
         d_fname = "limit.down" + "." +yyyy+mm+dd+ '.csv'
-        d_path = os.path.join(DIR0, d_fname) # // FIXME: can not open u_path
-        # file2 = open(d_path, "r")
-        # limit_dlist = list(csv.reader(file, delimiter=","))
-        limit_dlist = list(csv.reader(open(d_fname, newline='')))
-        return len(limit_dlist)
+        d_path = os.path.join(DIR0, d_fname)
+        f = open(d_path, "r")
+        line = f.readline().strip()
+        while line != '':
+            if ( len(line) == 4 ):
+                limit_dlist.append(int(line))
+            line = f.readline().strip()
+        f.close()
+        print(limit_dlist)
+        return len(limit_dlist)+len(limit_dlist)
 
     start = timer()
     n3 = parse_limit_updown()

@@ -11,7 +11,7 @@
 # \parm  out a list containing close price
 # \return 0: success
 
-import sys, requests, time, os
+import sys, requests, time, os, re
 import urllib.request
 from datetime import timedelta, datetime, date
 from bs4 import BeautifulSoup
@@ -73,15 +73,24 @@ else:
 rows = soup.find_all("table", {"class": "t01"})[0] \
         .find_all("tr")
 num_this_wk = 0
+last_ticker = 0
+num_ticker = 0
 for i in range(2, len(rows)):
     mm = rows[i].find_all('td')[0].text.strip()[0:2]
     dd = rows[i].find_all('td')[0].text.strip()[3:5]
     the_date = date( int(yyyymmdd[0:4]), int(mm), int(dd) )
+    td = str(rows[i].find_all('td')[1])
+    # @see https://stackoverflow.com/a/65561465
+    the_ticker = int( re.search('\(([^)]+)', td).group(1) \
+        .split(',')[0].split('\'')[1].split("AS")[1] )
     if ( last_sat < the_date ):
         num_this_wk += 1
+        if ( the_ticker != last_ticker ):
+            num_ticker +=1
+            last_ticker = the_ticker
     else:
         break
 
-olist = [ num_this_wk ]
+olist = [ num_this_wk, num_ticker, path, url ]
 print(olist)
 sys.exit(0)

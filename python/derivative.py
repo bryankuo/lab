@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # python3 derivative.py [ticker]
+# check if has derivatives.
 # return 0: success
 
 import sys, requests, time, re, os, webbrowser
