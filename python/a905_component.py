@@ -10,8 +10,24 @@ from bs4 import BeautifulSoup
 
 #
 url = "https://stock.capital.com.tw/z/zm/zmd/zmdb.djhtm?MSCI=0"
-# 00733 holdings:
+
+# 00733 holdings: more pages
 # https://www.moneydj.com/ETF/X/Basic/Basic0007B.xdjhtm?etfid=00733.TW
+# https://www.moneydj.com/ETF/X/Basic/Basic0007B.xdjhtm?etfid=510880.SH
+#
+# one page
+# https://www.wantgoo.com/stock/etf/00733/constituent
+# https://www.wantgoo.com/stock/etf/00878/constituent
+# https://www.wantgoo.com/stock/etf/0056/constituent
+# https://www.wantgoo.com/stock/etf/00919/constituent
+# https://www.wantgoo.com/stock/etf/0050/constituent
+# https://www.wantgoo.com/stock/etf/00905/constituent
+
+# https://www.wantgoo.com/stock/etf/ranking/fund-size
+# https://www.wantgoo.com/stock/etf/ranking/fund-size?manager=國泰證券投資信託股份有限公司
+
+# https://goodinfo.tw/tw/StockList.asp?MARKET_CAT=全部&INDUSTRY_CAT=ETF
+
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 rows = soup.find_all("table", {})[2] \

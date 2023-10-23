@@ -117,7 +117,7 @@ try:
             fund = "https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html"
 
             browser.get(qfii)
-            time.sleep(1)
+            time.sleep(1) # // TODO: test if removed
             Select(WebDriverWait(browser, 3)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='yy']"))))   \

@@ -71,7 +71,6 @@ geopy.py: add point to google map.
 br.py: fetch major transactions by (broker, date)
 br_ticker.py: trial tetch transactions from bsr.
 br.sh:
-position3.py:
 hbs30: histock institutional buy and sell for the last 30 days.
 derivative.py: check if has derivatives.
 uno_per.py: update per by group.
@@ -103,3 +102,4 @@ gbank_histock.py: getting gbank volume by date, ticker some sort of.
 ticker_ror.sh: figure out ror since X weeks ago.
 is_twse_open.py: to tell market is open, otherwise return last trade day.
 sma5.py: get sma5 from chart data.
+fetch_etf_components.py: fetch by id.
