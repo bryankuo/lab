@@ -9,6 +9,7 @@
 #
 if [ "$#" -lt 3 ]; then
     echo "usage: ./price.sh [ticker] [yyyymmdd] [net|file]"
+    echo "fetch the close price of last trade date"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
 TICKER=$1

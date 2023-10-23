@@ -38,8 +38,13 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     #   File "/Users/chengchihkuo/github/python/quote.py", line 37, in <module>
     # opn = float(frame["msgArray"][0]["o"])
     # ValueError: could not convert string to float: '-'
-    opn = float(frame["msgArray"][0]["o"])
-    high = float(frame["msgArray"][0]["h"])
+    #if ( frame["msgArray"][0]["o"].isnumeric() ):
+    if ( frame["msgArray"][0]["o"] != '-' ):
+        opn = float(frame["msgArray"][0]["o"])
+
+    if ( frame["msgArray"][0]["h"] != '-' ):
+        high = float(frame["msgArray"][0]["h"])
+
     low = float(frame["msgArray"][0]["l"])
     close_s = frame["msgArray"][0]["z"]
     volume = frame["msgArray"][0]["v"]

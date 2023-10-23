@@ -1,18 +1,12 @@
 #!/usr/bin/python3
 
 # python3 fetch_ticker_ror.py [tkr] [net|file]
+# fetch ticker ror from broker, serving ror.sh
 # \param in ticker
 # \param in 0: from internet, 1: from file
 # \param out ror.YYYYMMDD.csv, append, created by get_twse_ror.py
 # \param out ror.[ticker].html
 # return 0
-
-'''
-import sys, requests, time, os
-import urllib.request
-from datetime import timedelta,datetime
-from bs4 import BeautifulSoup
-'''
 
 import sys, requests, time, os, numpy, random, csv
 from bs4 import BeautifulSoup
@@ -44,8 +38,16 @@ elif ( int(sys.argv[2]) == 0 ):
 else:
     is_from_net = False
 
+import sys
+ticker = sys.argv[1]
+sources = [                                                         \
+    "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm",
+    "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
+    # // TODO: more sources
+]
+
 DIR0="./datafiles/taiex/rs"
-# DIR0="."
 fname = "ror." + ticker + ".html"
 path = os.path.join(DIR0, fname)
 ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
@@ -71,7 +73,7 @@ def select_src(ticker, seed):
         # "https://trade.ftsi.com.tw/z/zc/zca/zca_1589.djhtm"
         src3 = "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
         return src3
-    elif ( seed == 4 ): # plain request ok, t 5
+    elif ( seed == 4 ): # plain request ok, t 5, slow response on Saturday
         # https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=2303
         src4 = "https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=" + ticker
         return src4
@@ -90,6 +92,8 @@ if ( is_from_net ):
         os.remove(path) # clean up
     url = select_src( ticker, random.randint(1,4) )
     # url = select_src( ticker, 1 )
+    # // TODO:
+    # url = sources[seed]
     if ( use_plain_req ):
         response = requests.get(url)
         # response.encoding = 'cp950'
