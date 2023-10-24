@@ -263,6 +263,12 @@ daily_bases = [ \
 
 # // TODO: on demand, daily, weekly, monthly bases
 
+copper_gold_vs_10yb = "https://www.macromicro.me/charts/15943/copper-gold-ratio"
+
+key_ten = [
+    copper_gold_vs_10yb
+]
+
 i = 0
 for url in daily_bases:
     webbrowser.open(url)
