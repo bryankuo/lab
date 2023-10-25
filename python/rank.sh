@@ -7,7 +7,7 @@ OUTF0=$DIR0"/top100_market_value.$DATE.txt"
 OUTF1=datafiles/msci.$DATE.txt
 OUTF2=$DIR0"/t50.$DATE.csv"
 OUTF3=datafiles/rank.$DATE.txt
-OUTF4=datafiles/top150_market_value.$DATE.txt
+OUTF4=$DIR0"/top150_market_value.$DATE.txt"
 OUTF5=$DIR0"/m100.$DATE.csv"
 OUTF6=$DIR0"/bountylist.t50.$DATE.txt"
 OUTF7=$DIR0"/bountylist.m100.$DATE.txt"
@@ -16,7 +16,7 @@ OUTF8=$DIR0"/top100_market_value.$DATE.txt"
 # ready to serve rank.sh
 if false; then
     echo "scrap top 100 market value and weight..."
-    python3 get_mrkt_value.py  $DATE
+    python3 get_mrkt_value.py $DATE
     num_file=$(ls -lt $OUTF0 | wc -l | xargs | cut -d " " -f1)
     num_lines=$(wc -l $OUTF8 | xargs | cut -d " " -f1)
     if [[ $num_file -eq 1 ]] ; then
@@ -29,15 +29,13 @@ fi
 # // TODO: change directory
 if false; then
     echo "scrap top 150 market value and weight..."
-    python3 top150.py > $OUTF4
+    python3 top150.py $DATE # $OUTF4
     echo "wait 1m to complete..."
     sleep 1m
     num_file=$(ls -lt $OUTF4 | wc -l | xargs | cut -d " " -f1)
     num_lines=$(wc -l $OUTF4 | xargs | cut -d " " -f1)
-    echo $num_file
-    echo $num_lines
-    if [[ $num_file -eq 1 ]] && [[ $num_lines -eq 151 ]]; then
-	echo "done."
+    if [[ $num_file -eq 1 ]]; then
+	echo "done, there are "$num_lines
     else
 	echo "something wroing,"
     fi
