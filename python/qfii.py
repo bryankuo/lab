@@ -105,7 +105,7 @@ else:
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
-    limit_ulist = []; limit_dlist = [];
+    limit_ulist = None; limit_dlist = None;
 
     def fetch():
         if ( is_from_net ):
@@ -518,7 +518,8 @@ try:
             open(qfii_anomaly, 'wt') as outf3:
 
             for i in range(0, len(full_tab)):
-                print(full_tab[i][0])
+                tkr = full_tab[i][0].strip()
+                # print(tkr)
                 if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
                     full_tab[i][6] = 1
                     rec = "{0}:{1}:{2}:{3}:{4}:{5}" \
@@ -561,23 +562,32 @@ try:
 
                 # 2.
                 # in updown list and qfii doing reverse
-                if ( full_tab[i][0] in limit_dlist \
-                    and 0 < int(full_tab[i][2]) ):
-                    full_tab[i][8] = 1
-                    rec = "{0}:{1}:{2}:{3}" \
-                        .format( \
-                        full_tab[i][0], full_tab[i][1], \
-                        full_tab[i][2], full_tab[i][3] )
-                    outf3.write(rec +"\n")
+                if ( len(tkr) <= 4 ):
+                    if ( limit_dlist is not None and \
+                        0 < len(limit_dlist) ):
+                        # print(limit_dlist)
+                        if ( int(tkr) in limit_dlist \
+                            and 0 < int(full_tab[i][2]) ):
+                            full_tab[i][8] = 1
+                            print( "hit d " + tkr )
+                            rec = "{0}:{1}:{2}:{3}" \
+                                .format( \
+                                full_tab[i][0], full_tab[i][1], \
+                                full_tab[i][2], full_tab[i][3] )
+                            outf3.write(rec +"\n")
 
-                if ( full_tab[i][0] in limit_ulist \
-                    and int(full_tab[i][3]) < 0 ):
-                    full_tab[i][8] = 1
-                    rec = "{0}:{1}:{2}:{3}" \
-                        .format( \
-                        full_tab[i][0], full_tab[i][1], \
-                        full_tab[i][2], full_tab[i][3] )
-                    outf3.write(rec +"\n")
+                    if ( limit_ulist is not None and \
+                        0 < len(limit_ulist) ):
+                        # print(limit_ulist)
+                        if ( int(tkr) in limit_ulist \
+                            and int(full_tab[i][3]) < 0 ):
+                            print( "hit u " + tkr )
+                            full_tab[i][8] = 1
+                            rec = "{0}:{1}:{2}:{3}" \
+                                .format( \
+                                full_tab[i][0], full_tab[i][1], \
+                                full_tab[i][2], full_tab[i][3] )
+                            outf3.write(rec +"\n")
 
                 # 3. more?
 
@@ -602,28 +612,33 @@ try:
         return status
 
     def parse_limit_updown():
+        limit_ulist = []; limit_dlist = [];
         u_fname = "limit.up" + "." +yyyy+mm+dd+ '.csv'
         u_path = os.path.join(DIR0, u_fname)
-        f = open(u_path, "r")
-        line = f.readline().strip()
-        while line != '':
-            if ( len(line) == 4 ):
-                limit_ulist.append(int(line))
+        if ( os.path.exists(u_path) ):
+            print( "usize: " + str(os.path.getsize(u_path)) )
+            f = open(u_path, "r")
             line = f.readline().strip()
-        f.close()
-        print(limit_ulist)
+            while line != '':
+                if ( len(line) == 4 ):
+                    limit_ulist.append(int(line))
+                line = f.readline().strip()
+            f.close()
+            print( limit_ulist )
 
         d_fname = "limit.down" + "." +yyyy+mm+dd+ '.csv'
         d_path = os.path.join(DIR0, d_fname)
-        f = open(d_path, "r")
-        line = f.readline().strip()
-        while line != '':
-            if ( len(line) == 4 ):
-                limit_dlist.append(int(line))
+        if ( os.path.exists(d_path) ):
+            print( "dsize: " + str(os.path.getsize(d_path)) )
+            f = open(d_path, "r")
             line = f.readline().strip()
-        f.close()
-        print(limit_dlist)
-        return len(limit_dlist)+len(limit_dlist)
+            while line != '':
+                if ( len(line) == 4 ):
+                    limit_dlist.append(int(line))
+                line = f.readline().strip()
+            f.close()
+            print( limit_dlist )
+        return 0 #len(limit_dlist)+len(limit_dlist)
 
     start = timer()
     n3 = parse_limit_updown()

@@ -74,8 +74,6 @@ OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 
-# FROM_SROUCE=4
-# // FIXME: test random seed generator
 FROM_SROUCE=($(shuf -i 1-5 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
     echo "fetch limit up type 2 from $FROM_SROUCE ..."
@@ -120,6 +118,12 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
+get_limit_up
+get_limit_down
+# pwd
+# echo "$DIR0/limit*"
+# ls -lt $DIR0"/limit*" | head -n 6 # // FIXME: not displayed.
+
 OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
 echo ${OUTPUT[@]}
 DEAL=${OUTPUT[0]%\'}
@@ -131,12 +135,6 @@ RISE=${RISE#\'}
 VOLUME=${OUTPUT[3]%\'}
 VOLUME=${VOLUME#\'}
 # printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
-
-get_limit_up
-
-get_limit_down
-
-ls -ltr "$DIR0/limit*$DATE.csv"
 
 trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
 

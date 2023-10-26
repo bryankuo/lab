@@ -116,7 +116,6 @@ def select_src( limit_up, fetch_date, tkr_type, seed ):
         + ", limit_up " + str(limit_up) + ", type " + str(tkr_type) )
     return sources[seed-1][ 2*limit_up + tkr_type ]
 
-# source_from = random.randint(1,len(sources)) # move to sh
 fname = "limit." + direction + "." + fetch_date + "." + ticker_type + "." + from_src + '.html'
 path = os.path.join(DIR0, fname)
 if ( os.path.exists(path) ):

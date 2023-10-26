@@ -42,6 +42,8 @@ o_fname = "limit." + direction + "." + fetch_date + '.csv'
 o_path = os.path.join(DIR0, o_fname)
 
 if ( os.path.exists(o_path) ):
+    #  int(ticker_type) == 0 \
+    # if from type 2, it means starting from a new one
     os.remove(o_path) # clean up
 
 n_rows = 0
@@ -57,6 +59,8 @@ try:
     with open(o_path, 'a') as ofile:
         for i in range(2, len(rows)):
             tkr = rows[i].findAll('td')[1].text.strip().replace(' ', '')[0:4]
+            #tkr = rows[i].findAll('td')[1].text.replace(' ', '').strip()
+            #if ( len(tkr) <= 4 ):
             ofile.write(tkr+"\n")
             n_rows += 1
         ofile.close()
