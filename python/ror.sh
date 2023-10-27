@@ -21,7 +21,9 @@ clear
 index=1
 count=0
 # incase repeated: uniq -i datafiles/bountylist.txt
-BOUNTY="datafiles/bountylist.txt"
+# BOUNTY="datafiles/bountylist.txt"
+# BOUNTY="datafiles/taiex.watchlist.txt" # // FIXME: symbolic link
+BOUNTY="datafiles/watchlist.20231023.txt"
 NLINES=$(wc -l $BOUNTY | xargs | cut -d " " -f1)
 START=$index
 LEN=$NLINES
@@ -54,6 +56,8 @@ if [ ! -f "$OUTF0" ]; then
 	python3 fetch_ticker_ror.py $TICKER 0
 	index=$(($index+1))
 	count=$(($count+1))
+	MSG=$(printf "f %04d %04d" $index $TICKER)
+	echo $MSG
 	if [[ $count -ge $LEN ]]; then
 	    echo "finish $count items."
 	    break
@@ -80,6 +84,8 @@ while true; do
     python3 get_ticker_ror.py $TICKER ${BENCHMARK[@]}
     index=$(($index+1))
     count=$(($count+1))
+    MSG=$(printf "g %04d %04d" $index $TICKER)
+    echo $MSG
     if [[ $count -ge $LEN ]]; then
 	echo "finish $count items."
 	break
@@ -115,6 +121,10 @@ done
 # sleep 10
 # ./uno_rs.sh $OUTF2
 # // FIXME: launch in the same script
-
+# // FIXME:     r_ytd = soup.findAll('table')[0] \
+# IndexError: list index out of range
+#
+# find ./datafiles/ -type f -iname 'ror.*.html' -mtime -1 -print | wc -l
+# // TODO: seperate fetch and get
 echo "done, file name is "$OUTF2
 exit 0
