@@ -61,6 +61,7 @@ if ( is_from_net ):
         time.sleep(1)
         page1 = browser.page_source
         soup = BeautifulSoup(page1, 'html.parser')
+        browser.minimize_window()
         browser.quit()
         with open(path, "w") as outfile2:
             outfile2.write(soup.prettify())

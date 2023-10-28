@@ -118,6 +118,7 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
+# // apply only today, history is not available
 get_limit_up
 get_limit_down
 # pwd
