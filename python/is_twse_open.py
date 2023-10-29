@@ -20,12 +20,14 @@ from timeit import default_timer as timer
 from datetime import timedelta,datetime
 from pprint import pprint
 
+# 每日市場成交資訊
 # source 1
 # https://www.twse.com.tw/pcversion/zh/page/trading/exchange/FMTQIK.html
 #
 # source 2
 # https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20230901&response=html
-
+# // FIXME: verify grails is still under construction
+#
 if ( len(sys.argv) < 1 ):
     print("usage: is_twse_open.py [yyyymmdd]")
     sys.exit(0)

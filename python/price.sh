@@ -56,6 +56,8 @@ if [ "$PRICE0" == 0 ]; then
     # src: https://www.twse.com.tw/pcversion/zh/page/trading/exchange/FMTQIK.html
     # python is_twse_open [yyyymmdd] return 0 success else return last open yyyymmdd
     OUTPUT=($(python3 is_twse_open.py $THE_DATE | tr -d "[],'"))
+    # // FIXME: verify twse source is still working
+    # OUTPUT=0
     if [ "${OUTPUT[0]}" == 0 ]; then
 	sleep 1
     else

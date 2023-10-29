@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-# python3 quote.py 2330
+# python3 quote.py [ticker]
+# get instant quote
 # return 0: not found, assume otc
 
 import sys, requests, time, json, os
@@ -9,7 +10,7 @@ from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 from pprint import pprint
 
-# caller: uno_status.sh uno_quotes.sh
+# serving uno_status.sh uno_quotes.sh
 ticker = sys.argv[1]
 l_type = sys.argv[2]
 
