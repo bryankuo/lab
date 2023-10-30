@@ -103,5 +103,6 @@ fetch_fcf.py: fetch free cash flow.
 gbank_histock.py: getting gbank volume by date, ticker some sort of.
 ticker_ror.sh: figure out ror since X weeks ago.
 is_twse_open.py: to tell market is open, otherwise return last trade day.
+last_trade_day.py: get the last trade day of a specific date
 sma5.py: get sma5 from chart data.
 fetch_etf_components.py: fetch by id.
