@@ -1,14 +1,12 @@
 #!/usr/bin/python3
 
-# python3 is_twse_open.py [yyyymmdd]
-# get last trade day before yyyymmdd
-# generate trade days of the month
+# python3 last_trade_day.py [yyyymmdd]
+# get last trade day before or equal yyyymmdd by scraping
+# generate trade days file of the month
 # serving price.sh
-# // TODO: return yes or no instead
-
+#
 # \param in date in yyyymmdd
-# \param out 0: yes
-# \param out yyyymmdd: no, and last trade day is yyyymmdd
+# \param out yyyymmdd: the last trade day yyyymmdd
 # \return 0: success
 
 import sys, requests, time, os
@@ -34,7 +32,7 @@ from pprint import pprint
 # // note, is grails is still under construction?
 #
 if ( len(sys.argv) < 1 ):
-    print("usage: is_twse_open.py [yyyymmdd]")
+    print("usage: last_trade_day.py [yyyymmdd]")
     sys.exit(0)
 
 yyyymmdd = sys.argv[1]
@@ -56,20 +54,40 @@ path0a = os.path.join(DIR0, fname0a)
 
 url = "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=" \
     + yyyymmdd + "&response=html"
+url0 = url
 
 date_to_search = date( \
     int(yyyymmdd[0:4]), int(yyyymmdd[4:6]), int(yyyymmdd[6:8]) )
-
 prev_day = date_to_search - timedelta(days=1)
-#print(prev_day.strftime('%Y%m%d'))
-url0 = "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=" \
-    + yyyymmdd + "&response=html"
+
+if date_to_search.isoweekday() in ( 6, 7 ):
+    if prev_day.isoweekday() in ( 6, 7 ):
+        # date_to_search is Sunday
+        prev_day = date_to_search - timedelta(days=2)
+    else:
+        # date_to_search is Saturday
+        prev_day = date_to_search - timedelta(days=1)
+else:
+    # date_to_search is weekdays
+    if ( date_to_search.isoweekday() == 1 ):
+        # date_to_search is Monday
+        prev_day = date_to_search - timedelta(days=3)
+    else:
+        # default case
+        prev_day = date_to_search - timedelta(days=1)
+# print(prev_day.strftime('%Y%m%d'))
 
 if ( prev_day.month != date_to_search.month ) :
-    # // TODO: get another month
     url0 = "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=" \
         + prev_day.strftime('%Y%m')+ "01" + "&response=html"
+    # rename
+    fname0 = "trade.days."+prev_day.strftime('%Y%m')+".html"
+    path0 = os.path.join(DIR0, fname0)
+    fname0a = "trade.days."+prev_day.strftime('%Y%m')+".txt"
+    path0a = os.path.join(DIR0, fname0a)
+# print(url0)
 
+soup = None; soup0 = None;
 if ( use_plain_req ):
     response = requests.get(url)
     # response.encoding = 'cp950'
@@ -77,9 +95,8 @@ if ( use_plain_req ):
     with open(path, "w") as outfile2:
         outfile2.write(soup.prettify())
         outfile2.close()
-
     if ( url0 != url ) :
-        response0 = requests.get(url)
+        response0 = requests.get(url0)
         soup0 = BeautifulSoup(response0.text, 'html.parser')
         with open(path0, "w") as outfile2:
             outfile2.write(soup0.prettify())
@@ -88,6 +105,7 @@ if ( use_plain_req ):
 else:
     browser = webdriver.Safari( \
         executable_path = '/usr/bin/safaridriver')
+    browser.maximize_window()
     browser.get(url)
     time.sleep(1)
 
@@ -111,6 +129,7 @@ else:
 
     page1 = browser.page_source
     soup = BeautifulSoup(page1, 'html.parser')
+    browser.minimize_window()
     browser.quit()
 
 if ( url0 != url ) :
@@ -125,8 +144,6 @@ if ( url0 != url ) :
         outfile2.close()
 
 rows = soup.find_all("tbody", {})[0].find_all("tr")
-
-# // TODO: update trading day for grep in price.sh
 with open(path1, "w") as outfile2:
     for tr in rows:
         tds = tr.findAll('td')
@@ -135,32 +152,29 @@ with open(path1, "w") as outfile2:
             dts[4:6] + dts[7:9] + "\n" )
     outfile2.close()
 
-for tr in rows:
+olist = None
+for tr in rows[::-1]:
     tds = tr.findAll('td')
     dts = tds[0].text.replace('\n','').strip()
     this_date = date( int(dts[0:3])+1911, int(dts[4:6]), int(dts[7:9]) )
-    if ( date_to_search == this_date ):
-        olist = [ 0 ]
+    if ( date_to_search >= this_date ):
+        olist = [ this_date.strftime('%Y%m%d') ]
         break
-    elif ( date_to_search > this_date ):
+    else:
         continue
-    else: # assume prev month
-        # olist = [ prev_day.strftime('%Y%m%d') ]
-        # break
-        rows0 = soup0.find_all("tbody", {})[0].find_all("tr")
-        the_last = None
-        for tr0 in rows0:
-            tds0 = tr0.findAll('td')
-            dts0 = tds0[0].text.replace('\n','').strip()
-            this_date = date( int(dts0[0:3])+1911, int(dts0[4:6]), int(dts0[7:9]) )
-            if ( prev_day <= this_date ):
-                olist = [ this_date.strftime('%Y%m%d') ] # end here
-                break
-            elif ( prev_day > this_date ):
-                the_last = this_date
-                continue
-            else: # unlikely
-                time.sleep(1)
+
+if ( olist is None ):
+    rows0 = soup0.find_all("tbody", {})[0].find_all("tr")
+    the_last = None
+    for tr0 in rows0[::-1]:
+        tds0 = tr0.findAll('td')
+        dts0 = tds0[0].text.replace('\n','').strip()
+        this_date = date( int(dts0[0:3])+1911, int(dts0[4:6]), int(dts0[7:9]) )
+        if ( date_to_search >= this_date ):
+            olist = [ this_date.strftime('%Y%m%d') ]
+            break
+        else:
+            continue
 
 print(olist)
 sys.exit(0)

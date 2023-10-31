@@ -72,32 +72,32 @@ elif ( 3 == len(sys.argv) ):
         # print(ofname)
     else:
         print("usage:")
-elif ( 6 == len(sys.argv) ):
+elif ( 4 == len(sys.argv) ):
     if ( sys.argv[2] == "0" ):
         is_from_net = True
     elif ( sys.argv[2] == "1" ):
         is_from_net = False
     else:
         is_from_net = False
-    yyyy  = sys.argv[3]
-    mm    = sys.argv[4]
-    dd    = sys.argv[5]
+    yyyy  = sys.argv[3][0:4]
+    mm    = sys.argv[3][4:6]
+    dd    = sys.argv[3][6:8]
     ofname = sys.argv[1]
-elif ( 10 == len(sys.argv) ):
+elif ( 8 == len(sys.argv) ):
     if ( sys.argv[2] == "0" ):
         is_from_net = True
     elif ( sys.argv[2] == "1" ):
         is_from_net = False
     else:
         is_from_net = False
-    yyyy   = sys.argv[3]
-    mm     = sys.argv[4]
-    dd     = sys.argv[5]
+    yyyy   = sys.argv[3][0:4]
+    mm     = sys.argv[3][4:6]
+    dd     = sys.argv[3][6:8]
     ofname = sys.argv[1]
-    deal   = sys.argv[6]
-    change = sys.argv[7]
-    rise   = sys.argv[8]
-    volume = sys.argv[9]
+    deal   = sys.argv[5]
+    change = sys.argv[6]
+    rise   = sys.argv[7]
+    volume = sys.argv[7]
 else:
     is_from_net = False
     ofname = sys.argv[1]
@@ -105,7 +105,7 @@ else:
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
-    limit_ulist = None; limit_dlist = None;
+    limit_ulist = []; limit_dlist = [];
 
     def fetch():
         if ( is_from_net ):
@@ -116,6 +116,7 @@ try:
             qfii = "https://www.twse.com.tw/zh/page/trading/fund/TWT38U.html"
             fund = "https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html"
 
+            browser.maximize_window()
             browser.get(qfii)
             time.sleep(1) # // TODO: test if removed
             Select(WebDriverWait(browser, 3)                                \
@@ -182,6 +183,7 @@ try:
             with open(fname, "w") as outfile2:
                 outfile2.write(soup2.prettify())
                 outfile2.close()
+            browser.minimize_window()
             browser.quit()
         else:
             # print("from the files...")
@@ -379,9 +381,7 @@ try:
         return n_rec
 
     # \param market: 0 (choppy), 1 (low), 2 (high)
-    def merge12(market, l1_b, l1_s, l2_b, l2_s):
-        # print("merge12+")
-        # full_tab = list1b.copy()
+    def merge12(market, l1_b, l1_s, l2_b, l2_s, ld_lst, lu_lst):
         # transpose ( @see shorturl.at/ntuy8 ) then union
         # extend # of row, then looping
 
@@ -563,10 +563,9 @@ try:
                 # 2.
                 # in updown list and qfii doing reverse
                 if ( len(tkr) <= 4 ):
-                    if ( limit_dlist is not None and \
-                        0 < len(limit_dlist) ):
-                        # print(limit_dlist)
-                        if ( int(tkr) in limit_dlist \
+                    if ( ld_lst is not None and \
+                        0 < len(ld_lst) ):
+                        if ( int(tkr) in ld_lst \
                             and 0 < int(full_tab[i][2]) ):
                             full_tab[i][8] = 1
                             print( "hit d " + tkr )
@@ -576,10 +575,9 @@ try:
                                 full_tab[i][2], full_tab[i][3] )
                             outf3.write(rec +"\n")
 
-                    if ( limit_ulist is not None and \
-                        0 < len(limit_ulist) ):
-                        # print(limit_ulist)
-                        if ( int(tkr) in limit_ulist \
+                    if ( lu_lst is not None and \
+                        0 < len(lu_lst) ):
+                        if ( int(tkr) in lu_lst \
                             and int(full_tab[i][3]) < 0 ):
                             print( "hit u " + tkr )
                             full_tab[i][8] = 1
@@ -600,7 +598,6 @@ try:
                     full_tab[i][8] )
 
         outf1.close(); outf2.close(); outf3.close()
-        # print("merge12-")
         return full_tab
 
     # // TODO: definition of high
@@ -616,7 +613,7 @@ try:
         u_fname = "limit.up" + "." +yyyy+mm+dd+ '.csv'
         u_path = os.path.join(DIR0, u_fname)
         if ( os.path.exists(u_path) ):
-            print( "usize: " + str(os.path.getsize(u_path)) )
+            # print( "usize: " + str(os.path.getsize(u_path)) )
             f = open(u_path, "r")
             line = f.readline().strip()
             while line != '':
@@ -624,12 +621,12 @@ try:
                     limit_ulist.append(int(line))
                 line = f.readline().strip()
             f.close()
-            print( limit_ulist )
+            # print( "lu " + str(len(limit_ulist)) + ": " +
+            #        str(pprint(limit_ulist)) )
 
         d_fname = "limit.down" + "." +yyyy+mm+dd+ '.csv'
         d_path = os.path.join(DIR0, d_fname)
         if ( os.path.exists(d_path) ):
-            print( "dsize: " + str(os.path.getsize(d_path)) )
             f = open(d_path, "r")
             line = f.readline().strip()
             while line != '':
@@ -637,8 +634,9 @@ try:
                     limit_dlist.append(int(line))
                 line = f.readline().strip()
             f.close()
-            print( limit_dlist )
-        return 0 #len(limit_dlist)+len(limit_dlist)
+            # print( "ld " + str(len(limit_dlist)) + ": " +
+            #         str(pprint(limit_dlist)) )
+        return [ limit_dlist, limit_ulist ]
 
     start = timer()
     n3 = parse_limit_updown()
@@ -669,7 +667,7 @@ try:
             +str(timedelta(seconds=end-start)))
 
     print("merging, highlight, and output to 3 files...")
-    tab = merge12(market_status, list1b, list1s, list2b, list2s)
+    tab = merge12(market_status, list1b, list1s, list2b, list2s, n3[0], n3[1] )
     with open(ofname, 'wt') as ofile:
         n_col = len(tab[0])
         for i in range(0, len(tab)):

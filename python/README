@@ -36,6 +36,7 @@ gpm.py: scrap GPM/OPM from pages,
 gpm_cmp.sh: compare ticker Gross Profit Margin with competiors.
 get_listed.py: get listed tickers from TAIEX to file,
 get_listed.sh: get 3 types of listed tickers,
+update_watchlist.sh: add new symbol to watchlist,
 annual_report.py: browse latest annual report.
 simple_plot.py: simple matplotlib example.
 correlation.py: poc test correlating 2 or more US tickers
@@ -84,6 +85,7 @@ get_twse_mark.py: get mark and volume.
 get_twse_ror.py: get ror history.
 fetch_ticker_ror.py: fetch ticker ror for further process.
 get_ticker_ror.py: scrap ticker ror and out rs.
+get_file_ror.sh: loop specific file in directory and scraping ror,
 fetch_limit_updown.py: fetch limit up or limit down by date.
 get_limit_updown.py: extract limit up or down table by date.
 uno_launch: launch calc ods or csv via uno.
@@ -101,5 +103,6 @@ fetch_fcf.py: fetch free cash flow.
 gbank_histock.py: getting gbank volume by date, ticker some sort of.
 ticker_ror.sh: figure out ror since X weeks ago.
 is_twse_open.py: to tell market is open, otherwise return last trade day.
+last_trade_day.py: get the last trade day of a specific date
 sma5.py: get sma5 from chart data.
 fetch_etf_components.py: fetch by id.

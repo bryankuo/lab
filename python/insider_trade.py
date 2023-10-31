@@ -90,7 +90,7 @@ for i in range(2, len(rows)):
             last_ticker = the_ticker
     else:
         break
-
+print("scan from " + last_sat.strftime('%Y%m%d') + " to " + this_date.strftime('%Y%m%d') )
 olist = [ num_this_wk, num_ticker, path, url ]
 print(olist)
 sys.exit(0)

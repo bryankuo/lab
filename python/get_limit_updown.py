@@ -41,10 +41,10 @@ i_path = os.path.join(DIR0, i_fname)
 o_fname = "limit." + direction + "." + fetch_date + '.csv'
 o_path = os.path.join(DIR0, o_fname)
 
-if ( os.path.exists(o_path) ):
+# if ( os.path.exists(o_path) ):
     #  int(ticker_type) == 0 \
     # if from type 2, it means starting from a new one
-    os.remove(o_path) # clean up
+#    os.remove(o_path) # clean up
 
 n_rows = 0
 try:

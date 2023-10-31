@@ -30,7 +30,7 @@ set autoindent
 set number
 autocmd BufWritePre * :%s/\s\+$//e
 " highlight Normal guifg=white guibg=black
-set tags=/usr/include/tags,/usr/include/c++/tags,~/src/dashboard/tags,/home/bryan/Qt/5.12.0/Src,/home/bryan/src/dashboard/tags,/home/bryan/src/dashboard/tools/python/tags;
+set tags=/usr/include/tags,/usr/include/c++/tags,~/github/python/mytags;
 syntax on
 " //TODO: windows @see https://shorturl.at/djLYZ
 " set runtimepath+=$HOME/.vim

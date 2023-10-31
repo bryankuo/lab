@@ -35,7 +35,7 @@ timewaiting = [
     3,
     3,
     3,
-    3
+    5
 ]
 
 DIR0="datafiles/taiex/"
@@ -78,12 +78,6 @@ def print_body(ticker, ofile, seed):
     # browser.close()
     # in turn closes all web driver session @see shorturl.at/ltGPR
     browser.quit()
-
-    '''
-    download_pg = "a.txt"
-    with open(download_pg) as inf_download:
-        soup = BeautifulSoup(inf_download, 'html.parser')
-    '''
 
     SMAs    = soup.find_all("div", {"id": "fg0"})[0]
     sma5    = SMAs.find_all('span')[0].text.strip()
@@ -136,11 +130,9 @@ def get_sma(ticker, seed):
         browser = webdriver.Safari( \
             executable_path = '/usr/bin/safaridriver')
         url = sources[seed]
-        print(str(seed)+": "+url)
+        # print(str(seed)+": "+url)
         browser.get(url)
-        browser.switch_to.window(browser.current_window_handle) # testing to top
-        # browser.maximize_window()
-        # time.sleep(3) # wait until page fully loaded ( or redirected )
+        # browser.switch_to.window(browser.current_window_handle) # testing to top
         time.sleep(timewaiting[seed]) # differs from source to source
         page = browser.page_source
         soup = BeautifulSoup(page, 'html.parser')
@@ -158,13 +150,14 @@ def get_sma(ticker, seed):
         sma60   = sma60[sma60.index(u'\xa0')+1:]
         sma60_d = SMAs.find_all('span')[5].text.strip()
 
+        # some 'SMA5 6.39' and some '成交量 315', it differs
+        # use greatest common denominator
         vols    = soup.find_all("div", {"id": "fg1"})[0]
-        vol      = vols.find_all('span')[0].text.strip()
-        vol      = vol[vol.index(u'\xa0')+1:]
-        v_sma5   = vols.find_all('span')[3].text.strip()
-        v_sma5   = v_sma5[v_sma5.index(u'\xa0')+1:]
-        v_sma10  = vols.find_all('span')[6].text.strip()
-        v_sma10  = v_sma10[v_sma10.index(u'\xa0')+1:]
+        vol      = vols.find_all('span')[0].text.replace(u'\xa0', ' ')
+        v_sma5   = vols.find_all('span')[1].text.replace(u'\xa0', ' ')
+        #v_sma5   = vols.find_all('span')[1].text.replace(u'\xa0', ' ') \
+        #        .split(' ')[1].replace('張','')
+        v_sma10  = vols.find_all('span')[2].text.replace(u'\xa0', ' ')
     except (SessionNotCreatedException):
         # print('turn on safari remote option.')
         sma5    = '0'
@@ -173,6 +166,9 @@ def get_sma(ticker, seed):
         sma5_d  = '?'
         sma20_d = '?'
         sma60_d = '?'
+        vol     = 0
+        v_sma5  = 0
+        v_sma10 = 0
 
     finally:
         olist = [ sma5, sma5_d, sma20, sma20_d, sma60, sma60_d, \

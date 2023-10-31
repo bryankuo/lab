@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-# python3 get_ticker_ror.py [ticker] [net|file] [benchmark]
-# scraping from file fetched.
+# python3 get_ticker_ror.py [ticker] [benchmark]
+# scraping from file fetched and compare with twse in rs
 # \param in out  ror.YYYYMMDD.csv
 # \param in      ror.yyyymmdd.csv 2nd line for twse ror
 # \param in      ror.[ticker].html
-# \param in      benchmark
+# \param in      benchmark output from get_twse_ror.py
 # \param out     rs.YYYYMMDD.csv
 # return 0
 
@@ -55,6 +55,7 @@ ror_path  = os.path.join(DIR0, ror_fname)
 rs_fname  = "rs."  + datetime.today().strftime('%Y%m%d') + '.csv'
 rs_path   = os.path.join(DIR0, rs_fname)
 
+'''
 def fetch_twse_ror():
     f = open(i_path, newline='')
     csv_reader = csv.reader(f)
@@ -63,6 +64,7 @@ def fetch_twse_ror():
     figures = s_figures[0].split(':')
     # print(figures[3])
     return figures
+'''
 
 # twse_ror_figures = fetch_twse_ror()
 # print("{:>.02f}".format(float(twse_ror_figures[2])))
@@ -70,6 +72,10 @@ def fetch_twse_ror():
 with open(h_path) as q:
     soup = BeautifulSoup(q, 'html.parser')
 
+    # print( len(soup.findAll('table')) )
+    if ( len(soup.findAll('table')) != 5 ):
+        print(ticker + " no data, bypass")
+        sys.exit(0)
 # // FIXME: fetch name
 # title = soup.find("meta",  {"name":"description"})
 name = "n/a" #title["content"].split(' ')[0].split(')')[1].strip()
