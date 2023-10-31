@@ -112,14 +112,14 @@ from_src = sys.argv[4]
 DIR0="datafiles/taiex/qfbs"
 
 def select_src( limit_up, fetch_date, tkr_type, seed ):
-    print( "src " + str(seed) + ", date " + fetch_date \
-        + ", limit_up " + str(limit_up) + ", type " + str(tkr_type) )
+    # print( "src " + str(seed) + ", date " + fetch_date \
+    #    + ", limit_up " + str(limit_up) + ", type " + str(tkr_type) )
     return sources[seed-1][ 2*limit_up + tkr_type ]
 
-fname = "limit." + direction + "." + fetch_date + "." + ticker_type + "." + from_src + '.html'
+fname = "limit." + direction + "." + fetch_date \
+    + "." + ticker_type + "." + from_src + '.html'
 path = os.path.join(DIR0, fname)
-if ( os.path.exists(path) ):
-    os.remove(path) # clean up
+
 url = select_src( int(sys.argv[1]), fetch_date, int(ticker_type), int(from_src) )
 use_plain_req = True
 req_get       = True
@@ -156,12 +156,13 @@ else:
     finally:
         browser.quit()
 
-fname = "limit." + direction + "." + fetch_date + "." + ticker_type + "." + from_src + '.html'
+fname = "limit." + direction + "." + fetch_date + "." \
+    + ticker_type + "." + from_src + '.html'
 path = os.path.join(DIR0, fname)
 with open(path, "w") as outfile2:
     outfile2.write(soup.prettify())
     outfile2.close()
-s_from = str(from_src)
-olist = [ s_from ]
+# s_from = str(from_src)
+olist = [ url ]
 print(olist)
 sys.exit(0)
