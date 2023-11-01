@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-31T15:39:22.349Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="PGima6Nx1fwLAfZYWCIT" version="22.0.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-11-01T15:23:47.668Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="rCyYqhNDm7r2NOVPoiIZ" version="22.0.8" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
     <mxGraphModel dx="1185" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -244,10 +244,10 @@
         <mxCell id="1aOPPhWUjk9Jvw55mJIz-73" value="US premarket&lt;br&gt;activity increases&lt;br&gt;( bouncing )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="84" y="2900.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="JFEfkQYytVqiEuE9yTjc-1" value="US market open" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="JFEfkQYytVqiEuE9yTjc-1" value="US market open&lt;br&gt;( 夏令時間 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="84" y="3160.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="JFEfkQYytVqiEuE9yTjc-2" value="US market&lt;br&gt;動能漸減" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="JFEfkQYytVqiEuE9yTjc-2" value="US market open&lt;br&gt;( 冬令時間 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="84" y="3258" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="JFEfkQYytVqiEuE9yTjc-3" value="22:30 -" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -3532,7 +3532,7 @@
         <mxCell id="3AL-5tmJJn0EK18efQVa-2" value="交易前的儀式" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="2999" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="3AL-5tmJJn0EK18efQVa-4" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="JFEfkQYytVqiEuE9yTjc-1" target="dljDY5ffslMk7ETXlWwH-1" edge="1">
+        <mxCell id="3AL-5tmJJn0EK18efQVa-4" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ryVjXmxsbDmQeMw-zUNG-1" target="dljDY5ffslMk7ETXlWwH-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1500" y="2981" as="sourcePoint" />
             <mxPoint x="1862" y="2790" as="targetPoint" />
@@ -3631,8 +3631,18 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="NWF3crr4l9viDTQRQ0tI-1" value="針對波動空間&lt;br&gt;進行設定 T桑&lt;br&gt;ep35 12:00" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="NWF3crr4l9viDTQRQ0tI-1" value="針對波動空間&lt;br&gt;進行設定 T桑&lt;br&gt;ep35 12:00" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1315.75" y="1480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ryVjXmxsbDmQeMw-zUNG-2" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="JFEfkQYytVqiEuE9yTjc-1" target="ryVjXmxsbDmQeMw-zUNG-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="204" y="3191" as="sourcePoint" />
+            <mxPoint x="898" y="3230" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ryVjXmxsbDmQeMw-zUNG-1" value="依據標的開盤的&lt;br&gt;波動震幅調整&lt;br&gt;停損點數的大小" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="3160.5" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
