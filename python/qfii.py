@@ -541,14 +541,12 @@ try:
                 # 1.
                 # market rip and qfii climax sell or
                 # market dip and qfii buy
-                '''
                 if ( market == 1 and 0 < int(full_tab[i][2]) ):
                     full_tab[i][8] = 1
                     rec = "{0}:{1}:{2}:{3}" \
                         .format( \
                         full_tab[i][0], full_tab[i][1], \
                         full_tab[i][2], full_tab[i][3] )
-                    # print(rec)
                     outf3.write(rec +"\n")
 
                 if ( market == 2 and int(full_tab[i][3]) < 0 ):
@@ -558,7 +556,6 @@ try:
                         full_tab[i][0], full_tab[i][1], \
                         full_tab[i][2], full_tab[i][3] )
                     outf3.write(rec +"\n")
-                '''
 
                 # 2.
                 # in updown list and qfii doing reverse

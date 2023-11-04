@@ -39,12 +39,15 @@ def get_from_source(ticker):
             print("make sure safari automation enabled")
             sys.exit(3)
         browser.get(url)
+        browser.switch_to.window(browser.current_window_handle)
+        browser.maximize_window()
         time.sleep(6) # wait until page fully loaded
         page = browser.page_source
         soup = BeautifulSoup(page, 'html.parser')
     except (SessionNotCreatedException):
         print('make sure allow remote is on')
     finally:
+        browser.minimize_window()
         browser.quit()
         time.sleep(1) # wait until fully released ( test )
     return soup
