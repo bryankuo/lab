@@ -6,8 +6,8 @@
 # \param in
 #
 
-import sys, requests, time, os, numpy, random, csv
-import urllib.parse
+import sys, requests, time, os, numpy, random, csv, urllib
+# import urllib.parse
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
@@ -74,18 +74,11 @@ sources = [
 '''
 
 # f = { 'RANK' : '1' }
-# page 2 rank 301 - 600
-sources = [
-
-    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%E2%80%93%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94%40%40%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%40%40%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94",
-
-'''
-    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%E2%80%93%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94%40%40%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%40%40%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94&STOCK_CODE=&RPT_TIME=%E6%9C%80%E6%96%B0%E8%B3%87%E6%96%99&STEP=DATA&RANK='+encodeURIComponent(selRANK.value)"
-'''
-
-"https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%E2%80%93%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94%40%40%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%40%40%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94&STOCK_CODE=&RPT_TIME=%E6%9C%80%E6%96%B0%E8%B3%87%E6%96%99&STEP=DATA&RANK=1"
-]
-
+criteria = { 'RPT_TIME': '', 'MARKET_CAT': '熱門排行', \
+    'INDUSTRY_CAT':
+    '成交量增加張數–當日成交量與昨日比@@成交量增加張數@@當日成交量與昨日比', \
+    'RANK': 1 }
+# print(urllib.parse.urlencode(criteria)) # OK // TODO: append to asp
 '''
 + urllib.parse.quote_plus(1)
 
@@ -95,10 +88,17 @@ print(urllib.parse.quote("http://www.sample.com/", safe=""))
 sys.exit(0)
 '''
 
+sources = [
+    # ok
+    '''
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%E2%80%93%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94%40%40%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%40%40%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94"
+    '''
+
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比",
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=1"
+]
 
 '''
-ReloadStockList('SEARCH_WORD=&SHEET=%E4%BA%A4%E6%98%93%E7%8B%80%E6%B3%81&SHEET2=%E8%BF%9112%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E4%B8%80%E8%A6%BD&MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%B9%85%E5%BA%A6%E2%80%93%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94%40%40%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%B9%85%E5%BA%A6%40%40%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94&STOCK_CODE=&RPT_TIME=%E6%9C%80%E6%96%B0%E8%B3%87%E6%96%99&STEP=DATA&RANK='+encodeURIComponent(selRANK.value));
-
 selRANK
 value 0 1 2 3 4
 '''
@@ -111,7 +111,7 @@ DIR0="."
 
 use_plain_req = False
 req_get       = True
-from_file     = False
+from_file     = True
 
 if ( use_plain_req ):
     seed          = random.randint(0, len_sources-1)
@@ -138,15 +138,10 @@ if ( use_plain_req ):
         soup = BeautifulSoup(response.text, 'html.parser')
 else:
     try:
-        seed = 0
+        seed = 1
         fname = "volume.ratio." + datetime.today().strftime('%Y%m%d') \
             + ".rank." + str(seed) + '.html'
         path = os.path.join(DIR0, fname)
-
-        fname1 = "volume.ratio." + datetime.today().strftime('%Y%m%d') \
-            + ".rank." + str(seed) + '.1.html'
-        path1 = os.path.join(DIR0, fname1)
-
         print(path)
         if ( from_file ):
             with open(path) as fp:
@@ -183,8 +178,8 @@ else:
             url = sources[seed]
             # print(sources[seed])
             browser.implicitly_wait(20)
-            browser.switch_to.window(browser.current_window_handle)
             browser.maximize_window()
+            browser.switch_to.window(browser.current_window_handle)
             browser.get(url)
             page1 = browser.page_source
             soup = BeautifulSoup(page1, 'html.parser')
@@ -192,6 +187,7 @@ else:
             with open(path, "w") as outfile2:
                 outfile2.write(soup.prettify())
                 outfile2.close()
+                print(path)
             '''
             for selection in range( 1, 5 ):
                 rank = Select(WebDriverWait(browser, 3)                           \
@@ -218,19 +214,13 @@ else:
                     (By.XPATH,"//select[@id='selSHEET2']"))))
             #print(sheet2)
             # print(sheet2.val)
-            sheet2.select_by_value("近12日成交量一覽")
+            # sheet2.select_by_value("近12日成交量一覽")
 
             rank = Select(WebDriverWait(browser, 3)                     \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@id='selRANK']"))))
-            print(rank)
+            # print(rank)
             # rank.select_by_value("1")
-
-            page1 = browser.page_source
-            soup = BeautifulSoup(page1, 'html.parser')
-            with open(path1, "w") as outfile2:
-                outfile2.write(soup.prettify())
-                outfile2.close()
 
             browser.minimize_window()
             browser.quit()
