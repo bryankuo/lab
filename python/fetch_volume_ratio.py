@@ -47,9 +47,9 @@ sources = [ # the most comprehensive one                                        
     [   "https://stockchannelnew.sinotrade.com.tw/z/zg/zg_B_0_0.djhtm",  \
         "https://stockchannelnew.sinotrade.com.tw/z/zg/zg_B_1_0.djhtm"],
 
-    # SSLError Exception
-    [   "https://moneydj.emega.com.tw/z/zg/zg_B_0_0.djhtm",        \
-        "https://moneydj.emega.com.tw/z/zg/zg_B_1_0.djhtm"],        \
+    # SSLError Exception, use http instead
+    [   "http://moneydj.emega.com.tw/z/zg/zg_B_0_0.djhtm",        \
+        "http://moneydj.emega.com.tw/z/zg/zg_B_1_0.djhtm"],        \
 
     [   "https://stock.capital.com.tw/z/zg/zg_B_0_0.djhtm",        \
         "https://stock.capital.com.tw/z/zg/zg_B_1_0.djhtm"],        \

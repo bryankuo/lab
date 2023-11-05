@@ -8,7 +8,7 @@
 # \param out ror.[ticker].html
 # return 0
 
-import sys, requests, time, os, numpy, random, csv
+import sys, requests, time, os, numpy, random, csv, timeit
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
@@ -47,7 +47,10 @@ sources = [                                                         \
     "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
     "https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+
+    #"https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "http://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+
     "https://stock.capital.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
     "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
     "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
@@ -74,7 +77,8 @@ def source_factory(index, ticker):
         "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        #"https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "http://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://stock.capital.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \

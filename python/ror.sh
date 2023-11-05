@@ -34,7 +34,6 @@ trash -v $OUTF0 $OUTF1 $OUTF2 # $TSE_ROR
 echo "fetch ticker files..."
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 # index=1
-# n_fetched=0
 # // TODO: connection pooling instead of frequent access
 # if [ ! -f "$OUTF0" ]; then
 trash -v ror.????.html ror.????????.html
@@ -47,7 +46,8 @@ python3 fetch_ticker_ror.py $TICKER 0
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
-#fi
+n_fetched=$(ls -lt datafiles/taiex/rs/ror.????.html | wc -l | xargs | cut -d " " -f1)
+
 exit 0
 
 BENCHMARK=""
@@ -105,7 +105,8 @@ fi
 echo -ne '\007'
 ls -lt "$DIR0/"rs.*.csv "$DIR0/"ror.*.csv "$DIR0/"ror.????????.html
 ls -lt "$DIR0/"ror.????.html "$DIR0/"rs.*.ods | wc -l
-echo $n_fetched" fetched."
+n_fetched=$(ls -lt datafiles/taiex/rs/ror.????.html | wc -l | xargs | cut -d " " -f1)
+echo $n_fetched" fetched"
 echo $count"     parsed. "
 
 read -p "Press enter to continue $OUTF1 ..."
