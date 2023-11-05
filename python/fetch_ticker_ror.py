@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 fetch_ticker_ror.py [tkr] [net|file]
-# fetch ticker ror from broker, serving ror.sh
+# fetch ticker ror html from broker, serving ror.sh
 # \param in ticker
 # \param in 0: from internet, 1: from file
 # \param out ror.YYYYMMDD.csv, append, created by get_twse_ror.py
@@ -121,6 +121,10 @@ if ( is_from_net ):
                 finally:
                     index += 1
                     continue
+
+            # // TODO: test this @see https://stackoverflow.com/a/49253627
+            session.close()
+
         f.close()
         # urllib3 maintains a connection pool keyed by (hostname, port) pair
         sys.exit(0)
@@ -175,4 +179,6 @@ with open(o_path, 'a') as ofile:
     ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
     ofile.close()
+# // FIXME: house keeping, has already done by get_ticker_ror.py
+
 sys.exit(0)

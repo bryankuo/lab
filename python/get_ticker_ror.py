@@ -74,7 +74,7 @@ with open(h_path) as q:
 
     # print( len(soup.findAll('table')) )
     if ( len(soup.findAll('table')) != 5 ):
-        print(ticker + " no data, bypass")
+        print(ticker + " no data, bypass") # // FIXME: filtered by fetching?
         sys.exit(0)
 # // FIXME: fetch name
 # title = soup.find("meta",  {"name":"description"})
@@ -134,5 +134,7 @@ with open(rs_path, 'a') as ofile:
         ":"+"{:>.02f}".format(rs_1m )+":n/a:"+"{:>.02f}".format(rs_3m ) \
         +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a"+"\n")
     ofile.close()
-
+print(ticker+":n/a:n/a:"+"{:>.02f}".format(rs_1w )+ \
+        ":"+"{:>.02f}".format(rs_1m )+":n/a:"+"{:>.02f}".format(rs_3m ) \
+        +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a")
 sys.exit(0)
