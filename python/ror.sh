@@ -87,12 +87,6 @@ if false; then
 # find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c
 fi
 
-# // TODO:
-# if moving old files, create yyyymmdd folder then move it
-# stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/rs.*.csv | sort | tail -n 1
-# mkdir -p "$DIR0/[last yyyymmdd]"
-
-
 echo "generate the rs against twse..."
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 index=1
@@ -152,14 +146,20 @@ done
 ./uno_launch.sh $OUTF2
 # so as to let uno_rs.sh adding formula
 
-# echo "done extracting rs, ready to rank in 10 seconds..."
-# sleep 10
 # ./uno_rs.sh $OUTF2
-# // FIXME: launch in the same script
 # // FIXME:     r_ytd = soup.findAll('table')[0] \
 # IndexError: list index out of range
 #
 
 # // TODO: seperate fetch and get
 echo "done, file name is "$OUTF2
+
+# // TODO: housekeeping
+# if moving old files, create yyyymmdd folder then move it
+# stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/rs.*.csv | sort | tail -n 1
+# FETCH_DATE=$(stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/rs.*.csv | sort | tail -n 1)
+# mkdir -p datafiles/taiex/rs/20231105
+# mkdir -p datafiles/taiex/rs/$FETCH_DATE
+# mv ./datafiles/taiex/rs/ror.????.html ./datafiles/taiex/rs/$FETCH_DATE/
+
 exit 0
