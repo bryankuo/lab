@@ -2,6 +2,7 @@
 
 # python3 fetch_eft_components.py [id] [net|file]
 # fetch ticker ror from broker, serving ror.sh
+# with selenium tips
 # \param in id
 # \param in 0: from internet, 1: from file
 # \param out components.[id].[yyyymmdd].txt as bountylist.txt

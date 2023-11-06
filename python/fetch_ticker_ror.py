@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
 # python3 fetch_ticker_ror.py [tkr] [net|file]
-# fetch ticker ror from broker, serving ror.sh
+# fetch ticker ror html from broker, serving ror.sh
 # \param in ticker
 # \param in 0: from internet, 1: from file
 # \param out ror.YYYYMMDD.csv, append, created by get_twse_ror.py
 # \param out ror.[ticker].html
 # return 0
 
-import sys, requests, time, os, numpy, random, csv
+import sys, requests, time, os, numpy, random, csv, timeit
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
@@ -42,62 +42,92 @@ import sys
 ticker = sys.argv[1]
 sources = [                                                         \
     "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm",
+    "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-    # // TODO: more sources
+    "https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+
+    #"https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "http://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+
+    "https://stock.capital.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
+    "https://sjmain.esunsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
 ]
+len_sources = len(sources)
 
 DIR0="./datafiles/taiex/rs"
-fname = "ror." + ticker + ".html"
-path = os.path.join(DIR0, fname)
+
 ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 o_path = os.path.join(DIR0, ofname)
 
-# // FIXME:
-# works on holiday
-# not working at 11:00 in the morning
+DIR1   = "./datafiles"
+fname1 = "watchlist.20231023.txt"
+path1  = os.path.join(DIR1, fname1)
+
 use_plain_req = True
 
-def select_src(ticker, seed):
-    print( "ticker " + ticker + ", src " + str(seed) )
-    # zca
-    if   ( seed == 1 ): # plain request ok,
-        # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm
-        src1 = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
-        return src1
-    elif ( seed == 2 ): # plain request ok, t 5
-        # http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_2102.djhtm
-        src2 = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-        return src2
-    elif ( seed == 3 ): # plain request ok, t 5
-        # "https://trade.ftsi.com.tw/z/zc/zca/zca_1589.djhtm"
-        src3 = "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-        return src3
-    elif ( seed == 4 ): # plain request ok, t 5, slow response on Saturday
-        # https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=2303
-        src4 = "https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=" + ticker
-        return src4
-    else:
-        # https://concords.moneydj.com/z/zc/zca/zca_2102.djhtm
-        src1 = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"
-        # // FIXME: 2 consequtive request in short time NG
-        return src1
-# // FIXME: plain request NG, different than others
-# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2102.djhtm
-# src2 = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-#
+def source_factory(index, ticker):
+    sources = [                                                         \
+        "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        #"https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "http://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "https://stock.capital.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        "https://sjmain.esunsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
+    ]
+    seed = random.randint(0, len_sources-1)
+    url = sources[seed]
+    print("{0:04d} {1:02d} {2:s}".format(index, seed, url))
+    return url
 
 if ( is_from_net ):
-    if ( os.path.exists(path) ):
-        os.remove(path) # clean up
-    url = select_src( ticker, random.randint(1,4) )
-    # url = select_src( ticker, 1 )
-    # // TODO:
-    # url = sources[seed]
     if ( use_plain_req ):
-        response = requests.get(url)
-        # response.encoding = 'cp950'
-        soup = BeautifulSoup(response.text, 'html.parser')
+        with open(path1, 'r') as f:
+            session = None; index = 1;
+            for ticker in f:
+                ticker = ticker.replace('\n','')
+                url = source_factory(index, ticker)
+                # @see https://stackoverflow.com/a/34491383
+                # if you have to do just a few requests,
+                # Otherwise you'll want to manage sessions yourself.
+                try:
+                    if session is None:
+                        response = requests.get(url) # // TODO: connection pool instead
+                        session = requests.Session()
+                    else:
+                        response = session.get(url)
+                    # response.encoding = 'cp950'
+                    time.sleep(1)
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    fname = "ror." + ticker + ".html"
+                    path = os.path.join(DIR0, fname)
+                    with open(path, "w") as outfile2:
+                        outfile2.write(soup.prettify())
+                        outfile2.close()
+                except:
+                    # traceback.format_exception(*sys.exc_info())
+                    e = sys.exc_info()[0]
+                    print("Unexpected error:", sys.exc_info()[0])
+                    # raise
+                finally:
+                    index += 1
+                    continue
+
+            # // TODO: test this @see https://stackoverflow.com/a/49253627
+            session.close()
+
+        f.close()
+        # urllib3 maintains a connection pool keyed by (hostname, port) pair
+        sys.exit(0)
     else:
         browser = webdriver.Safari( \
             executable_path = '/usr/bin/safaridriver')
@@ -106,19 +136,15 @@ if ( is_from_net ):
         page1 = browser.page_source
         soup = BeautifulSoup(page1, 'html.parser')
         browser.quit()
-    with open(path, "w") as outfile2:
-        outfile2.write(soup.prettify())
-        outfile2.close()
 else:
     with open(path) as q:
         soup = BeautifulSoup(q, 'html.parser')
-
 
 # // FIXME: fetch name
 # title = soup.find("meta",  {"name":"description"})
 name = "n/a" #title["content"].split(' ')[0].split(')')[1].strip()
 
-# apply to src 1,2,3,4
+# // FIXME: parse ytd ror
 r_ytd = soup.findAll('table')[0] \
     .find_all('table')[0] \
     .find_all('tr')[8] \
@@ -153,4 +179,6 @@ with open(o_path, 'a') as ofile:
     ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
     ofile.close()
+# // FIXME: house keeping, has already done by get_ticker_ror.py
+
 sys.exit(0)

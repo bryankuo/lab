@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # python3 warrant.py [ticker]
+# with selenium tips
 # return 0: listed 2,  otc 4, otcbb 5
 
 import sys, requests, time, re, os

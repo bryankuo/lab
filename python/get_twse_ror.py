@@ -57,8 +57,11 @@ if ( is_from_net ):
         soup = BeautifulSoup(response.text, 'html.parser')
     else:
         browser = webdriver.Safari(executable_path = '/usr/bin/safaridriver')
+        browser.implicitly_wait(20)
+        browser.maximize_window()
+        browser.switch_to.window(browser.current_window_handle)
         browser.get(url)
-        time.sleep(1)
+        # time.sleep(1)
         page1 = browser.page_source
         soup = BeautifulSoup(page1, 'html.parser')
         browser.minimize_window()

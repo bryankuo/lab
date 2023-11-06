@@ -106,4 +106,4 @@ is_twse_open.py: to tell market is open, otherwise return last trade day.
 last_trade_day.py: get the last trade day of a specific date
 sma5.py: get sma5 from chart data.
 fetch_etf_components.py: fetch by id.
-fetch_volume_ratio.py: fetch increased volume rank today.
+fetch_volume_ratio.py: scrap volume ratio of last trade day.
