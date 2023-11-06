@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-06T01:14:21.930Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="xzsuXH9oVeBjgi3fthjK" version="22.0.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-11-06T17:29:23.603Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="TzoqSZPVO_LxfyyNLeLm" version="22.0.8" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
     <mxGraphModel dx="1185" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -432,7 +432,7 @@
         <mxCell id="X8Q6vWOJKznaJpAc4sKJ-1" value="23:30 -" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="10" y="3380" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="X8Q6vWOJKznaJpAc4sKJ-2" value="記帳&lt;br&gt;盤後檢討與紀錄&lt;br&gt;紀錄交易心態" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="X8Q6vWOJKznaJpAc4sKJ-2" value="結帳&lt;br&gt;盤後檢討與紀錄&lt;br&gt;紀錄交易心態" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="84" y="3360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="X8Q6vWOJKznaJpAc4sKJ-3" value="記帳&lt;br&gt;盤後檢討與紀錄" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -576,7 +576,7 @@
         <mxCell id="onkI_4f4pqVzvRu4h3fp-1" value="day trade&lt;br&gt;以飄動的範圍來決定停損的大小" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1316.25" y="1620" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="2c-eJzCrdm8DDsGjYiPR-1" value="包含 賺賠比&lt;br&gt;勝率 每筆交易的筆記" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="2c-eJzCrdm8DDsGjYiPR-1" value="包含 賺賠比&lt;br&gt;勝率 每筆交易的筆記&lt;br&gt;以及當時心態想法" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="220" y="3360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="mCX8aS_O3Q_4noS1LeP5-1" value="buy &lt;br&gt;or&lt;br&gt;sell?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
