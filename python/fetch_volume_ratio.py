@@ -20,7 +20,7 @@ from datetime import timedelta,datetime
 from pprint import pprint
 from array import *
 
-# src3: histock?
+# filedate = sys.argv[1]
 
 # src1:  50, more reusable than the others, plain request ok
 '''
@@ -85,36 +85,52 @@ print(urllib.parse.quote("http://www.sample.com/", safe=""))
 sys.exit(0)
 '''
 
+'''
 sources = [
-    # ok
-    '''
-    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%E2%80%93%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94%40%40%E6%88%90%E4%BA%A4%E9%87%8F%E5%A2%9E%E5%8A%A0%E5%BC%B5%E6%95%B8%40%40%E7%95%B6%E6%97%A5%E6%88%90%E4%BA%A4%E9%87%8F%E8%88%87%E6%98%A8%E6%97%A5%E6%AF%94"
-    '''
-
     # ok, default rank 0
     # selRANK
     # value 0 1 2 3 4
+
     "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比",
     "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=1",
     "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=2",
     "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=3",
     "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=4"
 ]
+'''
+
+sources = [
+    # ok, default rank 0
+    # selRANK
+    # value 0 1 2 3 4
+
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比%40%40交易狀況–成交資料%40%40近12日成交一覽",
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=1",
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=2",
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=3",
+    "https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比&RANK=4"
+    # // FIXME: incorrect page
+]
 
 len_sources = len(sources)
+# src3: http get, histock https://histock.tw/stock/rank.aspx
+# 44 pages, 3 parameters, m, d, and p.
+# https://histock.tw/stock/rank.aspx?p=all
+
 
 DIR0="."
 
-use_plain_req = False
+use_plain_req = True
 req_get       = True
-from_file     = True
+from_file     = False
 
 if ( use_plain_req ):
-    seed          = random.randint(0, len_sources-1)
-    url           = sources[seed][1]
+    # if source 1
+    # seed          = random.randint(0, len_sources-1)
+    # url           = sources[seed][1]
+    url = "https://histock.tw/stock/rank.aspx?p=all"
     print(url)
-    fname = "volume.ratio." + datetime.today().strftime('%Y%m%d') \
-        + "." + str(seed) + '.html'
+    fname = "after.market." + datetime.today().strftime('%Y%m%d') + '.html'
     path = os.path.join(DIR0, fname)
     print(path)
     if ( req_get == True ):
@@ -134,39 +150,56 @@ if ( use_plain_req ):
         soup = BeautifulSoup(response.text, 'html.parser')
 else:
     try:
-        seed = 1
-        fname = "volume.ratio." + datetime.today().strftime('%Y%m%d') \
+        seed = 0
+        # fname = "volume.ratio." + datetime.today().strftime('%Y%m%d') \
+        #  + ".rank." + str(seed) + '.html'
+        fname = "volume.ratio." + filedate \
             + ".rank." + str(seed) + '.html'
         path = os.path.join(DIR0, fname)
         print(path)
-        if ( from_file ):
-            with open(path) as fp:
-                soup = BeautifulSoup(fp, 'html.parser')
-            rows = soup.find_all("table", {"id": "tblStockList", \
-                    "class": "r10 b1 p4_1"})[0].find_all("tr")
-            # print(len(tables))
-            # print(len(rows))
 
-            fname = "table." + datetime.today().strftime('%Y%m%d') \
-                + ".rank." + str(seed) + '.html'
+        if ( from_file ):
+            # fname = "table." + datetime.today().strftime('%Y%m%d') \
+            #    + ".rank." + str(seed) + '.html'
+            fname = "volume.ratio." + filedate + '.csv'
             path1 = os.path.join(DIR0, fname)
-            '''
-            with open(path1, "w") as outfile2:
-                outfile2.write(tables[0].text)
-                outfile2.close()
-            '''
-            fp.close()
-            # the rank page could be not fully 300, ignoring etf
-            for i in range(1, len(rows)):
-                row = rows[i]
-                tds = row.find_all('td')
-                rid = row.get('id')
-                if ( rid != None ):
-                    print(rid)
-                    # for each page, row0 to 299
-                # now row located // TODO: extract volume and write to csv file
-            # need some time to parse
-            # <table class="r10 b1 p4_1" id="tblStockList"
+            with open(path1, "w") as outfile0:
+                n_tickers = 0
+                for selection in range(0, 5):
+                    fname = "volume.ratio." + filedate \
+                        + ".rank." + str(selection) + '.html'
+                    path = os.path.join(DIR0, fname)
+                    # print(sources[seed])
+                    with open(path) as fp:
+                        soup = BeautifulSoup(fp, 'html.parser')
+                    rows = soup.find_all("table", {"id": "tblStockList", \
+                            "class": "r10 b1 p4_1"})[0].find_all("tr")
+                    # print(len(rows))
+
+                     # the rank page could be not fully 300, ignoring etf
+                    for i in range(1, len(rows)):
+                        row = rows[i]
+                        tds = row.find_all('td')
+                        rid = row.get('id')
+                        seq = tds[0].text.strip()
+                        tkr = tds[1].text.strip()
+                        url = tds[1].find_all('a')[0].get('href')
+                        v_last = tds[13].text.strip().replace(',','')
+                        vol    = tds[14].text.strip().replace(',','')
+                        ratio  = '{:.4f}'. format(float(int(vol)/int(v_last)))
+                        if ( rid != None and 4 == len(tkr) ):
+                            # print( seq + " " + rid + " " + tkr + " " + url )
+                            print( seq + " " + tkr + " " + v_last \
+                                + " " + vol + " " + ratio )
+                            outfile0.write( seq + ":" + tkr + ":" \
+                                + v_last + ":" + vol + ":" + ratio + "\n" )
+                            n_tickers += 1
+                            # for each page, row0 to 299
+                        # now row located // TODO: extract volume and write to csv file
+                    # need some time to parse
+                    # <table class="r10 b1 p4_1" id="tblStockList"
+                print("n_tickers: " + str(n_tickers))
+            outfile0.close()
         else:
             browser = webdriver.Safari( \
                 executable_path = '/usr/bin/safaridriver')
