@@ -1,14 +1,19 @@
 #!/usr/bin/python3
 
-# python3 quote.py [ticker]
+# python3 quote.py [ticker] [type]
 # get instant quote
 # return 0: not found, assume otc
 
 import sys, requests, time, json, os
 import urllib.request
+import urllib.parse
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
 from pprint import pprint
+
+if ( len(sys.argv) < 2 ):
+    print("python3 quote.py [ticker] [type]")
+    sys.exit(0)
 
 # serving uno_status.sh uno_quotes.sh
 ticker = sys.argv[1]
@@ -28,10 +33,24 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     # @see shorturl.at/elwzD
     # @see https://zys-notes.blogspot.com/2020/01/api.html
     # https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_9904.tw%7C&json=1&d=20210422&delay=0&_=1432626332924
+    '''
     url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?' + \
         'ex_ch=' + list_type + ticker + '.tw%7C' + \
-        '&json=1' + '&d=20221128&delay=0&_=1432626332924'
-    # print(url)
+        '&json=1' + '&d=20231110&delay=0&_=1432626332924'
+    print("current")
+    print(url)
+    '''
+
+    criteria = {
+        'ex_ch': list_type + ticker + '.tw|', \
+                'json': 1, 'd': '20231110', 'delay': 0, '_': 1432626332924 }
+    # print(urllib.parse.urlencode(criteria))
+    # @see https://stackoverflow.com/a/5607708
+    # @see https://www.urldecoder.org
+    # @see https://www.urlencoder.org
+
+    url0 = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?'
+    url = url0 + urllib.parse.urlencode(criteria)
     frame = requests.get(url).json()
     # print(json.dumps(frame, indent=1))
     yesterday = float(frame["msgArray"][0]["y"])
@@ -117,3 +136,5 @@ print(olist)
 sys.exit(0)
 
 # // TODO: second source, eye on close
+# // TODO: monitor of volume increase ( decrease )
+# // TODO: connection pooling to boosting performance
