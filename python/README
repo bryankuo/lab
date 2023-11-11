@@ -1,4 +1,7 @@
 hello.py: a simple example.
+hello_vscode.py: coding on vscode.
+hello_chrome.py: open chrome.
+gmap_chrome.py: selenium chrome driver and stealth,
 ofile.py: another example.
 web.py: scraping web example.
 volume.sh: caller of volume*.py file.
