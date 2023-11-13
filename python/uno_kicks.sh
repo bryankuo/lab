@@ -48,9 +48,10 @@ while read p; do
 
     OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
     # echo ${OUTPUT[@]}
-    DEAL=${OUTPUT[0]%\'}
-    DEAL=${DEAL#\'}
-    MSG=$(printf "%04d %04d %04.2f" $index $TICKER $DEAL )
+    # DEAL=${OUTPUT[0]%\'}
+    # DEAL=${DEAL#\'}
+    DEAL=${OUTPUT[0]}
+    MSG=$(printf "%04d %04d %07.2f" $index $TICKER $DEAL )
     echo $MSG
     RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
 	uno_kicks.py $TICKER $DEAL | tr -d '[],' ) )

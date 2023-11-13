@@ -33,8 +33,9 @@ while true; do
     # PER update, it is more meaningful updating peers.
     if true; then
 	OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
-	DEAL=${OUTPUT[0]%\'}
-	DEAL=${DEAL#\'}
+	# DEAL=${OUTPUT[0]%\'}
+	# DEAL=${DEAL#\'}
+	DEAL=${OUTPUT[0]}
 	OUTPUT=($(python3 pe.py $TICKER 1 | tr -d '[],'))
 	PER=${OUTPUT[0]%\'}
 	PER=${PER#\'}

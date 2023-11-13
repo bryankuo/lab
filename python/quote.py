@@ -3,13 +3,17 @@
 # python3 quote.py [ticker] [type]
 # get instant quote
 # return 0: not found, assume otc
-
-import sys, requests, time, json, os
+#
+# // TODO: instant quote for type 2, 4 @see https://histock.tw/stock/rank.aspx?p=all
+#
+import sys, requests, time, json, os, calendar
 import urllib.request
 import urllib.parse
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
-from pprint import pprint
+# from pprint import pprint
+
+DIR0="./datafiles/taiex"
 
 if ( len(sys.argv) < 2 ):
     print("python3 quote.py [ticker] [type]")
@@ -33,17 +37,12 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     # @see shorturl.at/elwzD
     # @see https://zys-notes.blogspot.com/2020/01/api.html
     # https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_9904.tw%7C&json=1&d=20210422&delay=0&_=1432626332924
-    '''
-    url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?' + \
-        'ex_ch=' + list_type + ticker + '.tw%7C' + \
-        '&json=1' + '&d=20231110&delay=0&_=1432626332924'
-    print("current")
-    print(url)
-    '''
 
-    criteria = {
-        'ex_ch': list_type + ticker + '.tw|', \
-                'json': 1, 'd': '20231110', 'delay': 0, '_': 1432626332924 }
+    stamp = calendar.timegm(time.gmtime())
+    criteria = { 'ex_ch': list_type + ticker + '.tw|', \
+        'json': 1, 'd': '20231110', 'delay': 0, \
+        # @see https://stackoverflow.com/a/4548711
+        '_': stamp } # 1432626332924
     # print(urllib.parse.urlencode(criteria))
     # @see https://stackoverflow.com/a/5607708
     # @see https://www.urldecoder.org
@@ -51,21 +50,30 @@ if ( list_type == "tse_" or list_type == "otc_" ):
 
     url0 = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?'
     url = url0 + urllib.parse.urlencode(criteria)
-    frame = requests.get(url).json()
-    # print(json.dumps(frame, indent=1))
+    frame = requests.get(url).json() # OK
+
+    dump_frame = False
+    if ( dump_frame ):
+        fname0 = "quote." + ticker + '.' + str(stamp) + '.txt'
+        path0 = os.path.join(DIR0, fname0)
+        # print(path0)
+        with open(path0, 'w') as outfile0:
+            # print(json.dumps(frame, indent=1))
+            # utf-16 @see https://stackoverflow.com/a/18337754
+            outfile0.write(json.dumps(frame, indent=1, ensure_ascii=False))
+        outfile0.close()
+
     yesterday = float(frame["msgArray"][0]["y"])
-    # // FIXME:
-    #   File "/Users/chengchihkuo/github/python/quote.py", line 37, in <module>
-    # opn = float(frame["msgArray"][0]["o"])
-    # ValueError: could not convert string to float: '-'
-    #if ( frame["msgArray"][0]["o"].isnumeric() ):
+    # print( frame["msgArray"][0]["n"] ) # OK
     if ( frame["msgArray"][0]["o"] != '-' ):
         opn = float(frame["msgArray"][0]["o"])
 
     if ( frame["msgArray"][0]["h"] != '-' ):
         high = float(frame["msgArray"][0]["h"])
 
-    low = float(frame["msgArray"][0]["l"])
+    if ( frame["msgArray"][0]["l"] != '-' ):
+        low = float(frame["msgArray"][0]["l"])
+
     close_s = frame["msgArray"][0]["z"]
     volume = frame["msgArray"][0]["v"]
     limit_h = float(frame["msgArray"][0]["u"])
@@ -96,20 +104,26 @@ if ( list_type == "tse_" or list_type == "otc_" ):
         elif ( len(bids) < len(asks) ):
             strike_s = "{:<04.2f}".format(float(asks[0]))
         else:
-            strike_s = "{:<04.2f}".format(opn)
+            # strike_s = "{:<04.2f}".format(opn)
+            strike_s = asks[0] # // FIXME: testing
+
 elif ( list_type == "tpex_" ):
     # // TODO: TPEX
     # url = "https://www.tpex.org.tw/web/emergingstock/lateststats/new.htm?l=zh-tw"
-    url = "https://www.tpex.org.tw/storage/emgstk/ch/new.csv?t=1645506923059"
+    # url = "https://www.tpex.org.tw/storage/emgstk/ch/new.csv?t=1645506923059"
+    url0 = "https://www.tpex.org.tw/storage/emgstk/ch/new.csv?"
+    criteria = { \
+        't': calendar.timegm(time.gmtime()) } # 1645506923059
+    url = url0 + urllib.parse.urlencode(criteria)
     response = requests.get(url)
     response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    # print(soup.prettify())
     text = soup.get_text()      # @see https://cutt.ly/zPOUnnY
     table = text.split('\r\n')  # @see https://stackoverflow.com/q/53071858
     del table[-4:]              # @see https://stackoverflow.com/a/15715924
     del table[:3]
-    matching = [s for s in table if ticker in s]    # @see https://stackoverflow.com/a/4843172
+    # @see https://stackoverflow.com/a/4843172
+    matching = [s for s in table if ticker in s]
     # pprint(matching[0]) # assume one item
     quotes = matching[0].split(',')
     typ = quotes[13]
@@ -130,11 +144,9 @@ else:
     print("not support.")
     sys.exit(0)
 
-olist = [ strike_s ]
+# olist = [ strike_s ]
+# olist = [ "{:>4.02f}".format(float(strike_s)) ]
+olist = [ float(strike_s) ]
 print(olist)
 
 sys.exit(0)
-
-# // TODO: second source, eye on close
-# // TODO: monitor of volume increase ( decrease )
-# // TODO: connection pooling to boosting performance

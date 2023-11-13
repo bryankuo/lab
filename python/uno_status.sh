@@ -8,7 +8,6 @@ if [ "$#" -lt 1 ]; then
 fi
 
 TICKER=$1
-# // TODO: grep type as input parameter instead of judging inside quote.py
 LIST_TYPE=($(grep -rnp --color="auto" -e "$TICKER" datafiles/listed_[245].txt \
     | cut -d "." -f 1 | cut -d "_" -f 2 ))
 
@@ -22,8 +21,9 @@ if [ "$LIST_TYPE" != "2" ] && [ "$LIST_TYPE" != "4" ] \
 fi
 
 OUTPUT=($(python3 quote.py $TICKER $LIST_TYPE | tr -d '[],'))
-QUOTE=${OUTPUT[0]%\'}
-QUOTE=${QUOTE#\'}
+# QUOTE=${OUTPUT[0]%\'}
+# QUOTE=${QUOTE#\'}
+QUOTE=${OUTPUT[0]}
 OUTPUT=($(python3 basic.py $TICKER | tr -d '[],'))
 CO_TYPE=${OUTPUT[2]%\'}
 CO_TYPE=${CO_TYPE#\'}

@@ -1,4 +1,8 @@
 #!/bin/bash
+# ./uno_quotes.sh 0
+# ./uno_quotes.sh [index] [length]
+# update calc via instant quote,
+# // TODO: update quotes via after market data
 # make sure running uno.sh
 # echo "$#"
 if [ "$#" -lt 1 ]; then
@@ -45,11 +49,11 @@ while true; do
 		"[[slnc 200]]" " is not listed."
     else
 	OUTPUT=($(python3 quote.py $TICKER $LIST_TYPE | tr -d '[],'))
-	# OUTPUT=($(python3 quote.py $TICKER | tr -d '[],'))
 	# echo ${OUTPUT[@]}
-	DEAL=${OUTPUT[0]%\'}
-	DEAL=${DEAL#\'}
-	MSG=$(printf "%04d %04d %04.2f" $index $TICKER $DEAL )
+	# DEAL=${OUTPUT[0]%\'}
+	# DEAL=${DEAL#\'}
+	DEAL=${OUTPUT[0]}
+	MSG=$(printf "%04d %04d %-4.2f" $index $TICKER $DEAL )
 	echo $MSG
 	RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
 	    uno_kicks.py $TICKER $DEAL | tr -d '[],' ) )
@@ -105,14 +109,15 @@ while true; do
 	break
     fi
 
-    # sleep 1
+    # to speed up
     # In the following line -t for timeout, -N for just 1 character
-    read -t 1 input
-    if [[ $input = "q" ]] || [[ $input = "Q" ]]; then
+    # read -t 1 input
+    # if [[ $input = "q" ]] || [[ $input = "Q" ]]; then
 	# The following line is for the prompt to appear on a new line.
-        echo
-        break
-    fi
+    #   echo
+    #   break
+    # fi
+
 done
 
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
