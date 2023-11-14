@@ -28,42 +28,22 @@ OUTF0="$DIR0/ror.$DATE.csv"
 OUTF1="$DIR0/rs.$DATE.csv"
 OUTF2="$DIR0/rs.$DATE.ods"
 TSE_ROR="$DIR0/ror.twse.html"
-echo "clean up data files..."
-trash -v $OUTF0 $OUTF1 $OUTF2 $TSE_ROR
+TICKER_ROR="$DIR0/ror.[0-9][0-9][0-9][0-9].html"
 
-if true; then
-    BENCHMARK=""
-    if [ ! -f "$TSE_ROR" ]; then
-	echo "get twse ror..."
-	echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF0
-	# generate csv header and twse ror
-	BENCHMARK=($(python3 get_twse_ror.py | tr -d '[],'))
-    else
-	# // TODO: by reading from OUTF0
-	BENCHMARK=""
-    fi
-    echo "twse: " ${BENCHMARK[@]}
-fi
-
+# watch -n 1 "ls -lt datafiles/taiex/rs/*.html | wc -l"
 if false; then
+    trash -v $TICKER_ROR
     echo "fetch ticker files..."
     TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-    # index=1
-    # // TODO: connection pooling instead of frequent access
-    # if [ ! -f "$OUTF0" ]; then
-    trash -v ror.????.html ror.????????.html
     # @see https://stackoverflow.com/a/34491383
     # if you have to do just a few requests,
     # Otherwise you'll want to manage sessions yourself.
     # here comes connection pooling
-    TICKER=1101
+    TICKER=1101 # // FIXME: get rid of input parameter
     python3 fetch_ticker_ror.py $TICKER 0
     TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
     echo "time: " $TIMESTAMP0 " looping start"
     echo "time: " $TIMESTAMP  " looping end"
-    # n_fetched=$(ls -lt datafiles/taiex/rs/ror.twse.html | wc -l | xargs | cut -d " " -f1)
-    # n_fetched=$(ls -lt datafiles/taiex/rs/ror.????.html | wc -l | xargs | cut -d " " -f1)
-
     n_fetched=$(ls -lt datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html \
 	| wc -l | xargs | cut -d " " -f1)
     echo "fetched:   $n_fetched"
@@ -85,17 +65,30 @@ if false; then
 
 # path
 # find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c
+    exit 0
 fi
 
-echo "generate the rs against twse..."
-TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-index=1
-count=0
-echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF1
-if [ -z "${BENCHMARK[@]}" ]; then
-    echo "TBD" ${BENCHMARK[@]}
-else
-    # // TODO: for f in *; do echo "File -> $f" done
+# watch -n 1 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
+if false; then
+    echo "clean up data files..."
+    trash -v $OUTF0 $OUTF1 $OUTF2 $TSE_ROR
+    BENCHMARK=""
+    if [ ! -f "$TSE_ROR" ]; then
+	echo "get twse ror..."
+	echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF0
+	# generate csv header and twse ror
+	BENCHMARK=($(python3 get_twse_ror.py | tr -d '[],'))
+    else
+	# // TODO: by reading from OUTF0
+	BENCHMARK=""
+    fi
+    echo "twse: " ${BENCHMARK[@]}
+
+    echo "generate the rs against twse..."
+    TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
+    index=1
+    count=0
+    echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF1
     # @see https://superuser.com/a/423086
     effective=$(find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c)
     for f in $effective; do
@@ -110,25 +103,24 @@ else
     TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
     echo "time: " $TIMESTAMP0 " looping start"
     echo "time: " $TIMESTAMP  " looping end"
-    # watch -n 2 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
+
+    # notify user it's done
+    echo -ne '\007'
+    ls -lt "$DIR0/"*.csv | head -n 5
+
+    echo "watchlist: $NLINES"
+
+    n_fetched=$(ls -lt datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html \
+	| wc -l | xargs | cut -d " " -f1)
+    echo "fetched:   $n_fetched"
+
+    n_effective=$(find ./datafiles/taiex/rs/ -type f \
+	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
+	-print | wc -l | xargs | cut -d " " -f1)
+    echo "effective: $n_effective"
+
+    echo $count"     parsed. "
 fi
-
-# notify user it's done
-echo -ne '\007'
-ls -lt "$DIR0/"*.csv | head -n 5
-
-echo "watchlist: $NLINES"
-
-n_fetched=$(ls -lt datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html \
-    | wc -l | xargs | cut -d " " -f1)
-echo "fetched:   $n_fetched"
-
-n_effective=$(find ./datafiles/taiex/rs/ -type f \
-    -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
-    -print | wc -l | xargs | cut -d " " -f1)
-echo "effective: $n_effective"
-
-echo $count"     parsed. "
 
 read -p "Press enter to continue $OUTF1 ..."
 # open via subprocess, can not modify from outside python
@@ -161,5 +153,8 @@ echo "done, file name is "$OUTF2
 # mkdir -p datafiles/taiex/rs/20231105
 # mkdir -p datafiles/taiex/rs/$FETCH_DATE
 # mv ./datafiles/taiex/rs/ror.????.html ./datafiles/taiex/rs/$FETCH_DATE/
+#
+# python$ ./uno_launch.sh datafiles/taiex/rs/rs.20231112.ods
+# python$ ./uno_rs.sh 20231112
 
 exit 0

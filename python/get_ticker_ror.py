@@ -116,25 +116,23 @@ with open(ror_path, 'a') as ofile:
         +":n/a:n/a:"+r_ytd+":n/a"+"\n")
     ofile.close()
 
-rs_1w  = ( (float(r_1w) -float(t_1w) ) ) / abs(float(t_1w) )
-rs_1m  = ( (float(r_1m) -float(t_1m) ) ) / abs(float(t_1m) )
-rs_3m  = ( (float(r_3m) -float(t_3m) ) ) / abs(float(t_3m) )
-rs_ytd = ( (float(r_ytd)-float(t_ytd)) ) / abs(float(t_ytd))
+# // TODO: verify output
+if ( r_1w.isnumeric() and rs_1m.isnumeric() \
+    and rs_3m.isnumeric() and rs_ytd.isnumeric() ):
+    rs_1w  = ( (float(r_1w) -float(t_1w) ) ) / abs(float(t_1w) )
+    rs_1m  = ( (float(r_1m) -float(t_1m) ) ) / abs(float(t_1m) )
+    rs_3m  = ( (float(r_3m) -float(t_3m) ) ) / abs(float(t_3m) )
+    rs_ytd = ( (float(r_ytd)-float(t_ytd)) ) / abs(float(t_ytd))
+    with open(rs_path, 'a') as ofile:
+        # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
+        ofile.write(ticker+":n/a:n/a:"+"{:>.02f}".format(rs_1w )+ \
+            ":"+"{:>.02f}".format(rs_1m )+":n/a:"+"{:>.02f}".format(rs_3m ) \
+            +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a"+"\n")
+        ofile.close()
+    print(" " +ticker+":n/a:n/a:"+"{:>.02f}".format(rs_1w )+ \
+            ":"+"{:>.02f}".format(rs_1m )+":n/a:"+"{:>.02f}".format(rs_3m ) \
+            +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a")
+else:
+    print(" " + ticker + " NG " + r_1w + " " + r_1m + " " + r_3m + " " + r_ytd)
 
-'''
-print("{:>.02f}".format(rs_1w ))
-print("{:>.02f}".format(rs_1m ))
-print("{:>.02f}".format(rs_3m ))
-print("{:>.02f}".format(rs_ytd))
-'''
-
-with open(rs_path, 'a') as ofile:
-    # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
-    ofile.write(ticker+":n/a:n/a:"+"{:>.02f}".format(rs_1w )+ \
-        ":"+"{:>.02f}".format(rs_1m )+":n/a:"+"{:>.02f}".format(rs_3m ) \
-        +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a"+"\n")
-    ofile.close()
-print(ticker+":n/a:n/a:"+"{:>.02f}".format(rs_1w )+ \
-        ":"+"{:>.02f}".format(rs_1m )+":n/a:"+"{:>.02f}".format(rs_3m ) \
-        +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a")
 sys.exit(0)

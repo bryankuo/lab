@@ -83,8 +83,8 @@ def set_formula_1w():
 
         addr_1m = "M"+str(i)
         cell_1m = active_sheet.getCellRangeByName(addr_1m)
-        if ( cell_1m.Value < 0.34 and 0.66 < cell.Value ):
-            cell.CellBackColor = 0xFFFFD7
+        if ( cell_1m.Value < 0.34 and 0.75 < cell.Value ):
+            cell.CellBackColor = 0xffff38
 
 def set_formula_1m():
     addr = "$M1"
@@ -132,7 +132,7 @@ def set_formula_3m():
         f = "=PERCENTRANK($G2:$G"+str(last_row)+"; $G"+str(i)+")"
         cell.Formula = f
         cell.NumberFormat = nl
-        if ( 0.66 < cell.Value ):
+        if ( 0.75 < cell.Value ):
             cell.CellBackColor = 0x3faf46
 
 def set_formula_ytd():
@@ -145,7 +145,7 @@ def set_formula_ytd():
         f = "=PERCENTRANK($J2:$J"+str(last_row)+"; $J"+str(i)+")"
         cell.Formula = f
         cell.NumberFormat = nl
-        if ( 0.66 < cell.Value ):
+        if ( 0.75 < cell.Value ):
             cell.CellBackColor = 0x3faf46
 
 def draw_legend():
@@ -159,15 +159,15 @@ def draw_legend():
 
     addr = "$Q2"
     cell = active_sheet.getCellRangeByName(addr)
-    cell.String = "PR66 or leading one-3rd"
+    cell.String = "PR75 or leading one-4th"
 
     addr = "$P3"
     cell = active_sheet.getCellRangeByName(addr)
-    cell.CellBackColor = 0xFFFFD7
+    cell.CellBackColor = 0xffff38
 
     addr = "$Q3"
     cell = active_sheet.getCellRangeByName(addr)
-    cell.String = "Advancing from below PR33 to leading PR66"
+    cell.String = "Advancing from below PR33 to leading PR75"
 
 
 set_formula_ytd()
