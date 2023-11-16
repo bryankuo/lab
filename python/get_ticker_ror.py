@@ -55,17 +55,6 @@ ror_path  = os.path.join(DIR0, ror_fname)
 rs_fname  = "rs."  + datetime.today().strftime('%Y%m%d') + '.csv'
 rs_path   = os.path.join(DIR0, rs_fname)
 
-'''
-def fetch_twse_ror():
-    f = open(i_path, newline='')
-    csv_reader = csv.reader(f)
-    next(csv_reader)
-    s_figures=next(csv_reader) # the second line
-    figures = s_figures[0].split(':')
-    # print(figures[3])
-    return figures
-'''
-
 # twse_ror_figures = fetch_twse_ror()
 # print("{:>.02f}".format(float(twse_ror_figures[2])))
 

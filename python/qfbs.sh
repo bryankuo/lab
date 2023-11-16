@@ -150,9 +150,11 @@ if [ $ORIGIN -eq 0 ]; then
     # rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
 fi
 
+
 # python3 qfii.py $OUTF0
 # python3 qfii.py $OUTF0 0 # // TODO: lazy and less parameter
 # python3 qfii.py $OUTF0 $ORIGIN $YR $MN $DAY
+echo "python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME"
 python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME
 
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
