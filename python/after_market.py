@@ -3,9 +3,11 @@
 # python3 after_market.py [yyyymmdd] [net|file]
 # scrap all volume by date.
 #
+# there are 2 steps, 1: from net, 2: scrap from file
+#
 # \param in yyyymmdd
 # \param in 0 net 1 file
-# \param out csv
+# \param out csv file(ticker,close,volume)
 #
 
 import sys, requests, datetime, time, numpy, random, csv, urllib
@@ -67,11 +69,13 @@ if ( use_plain_req ):
                         row = rows[i]
                         tds = row.find_all('td')
                         tkr = tds[0].text.strip()
+                        close  = tds[2].text.strip()
+                        p_chg  = tds[4].text.strip() # // FIXME: "--"
                         vol    = tds[11].text.strip().replace(',','')
                         #ratio  = '{:.4f}'. format(float(int(vol)/int(v_last)))
                         if ( 4 == len(tkr) ):
                             # print( tkr + " " + vol )
-                            outfile0.write( tkr + ":" + vol + "\n" )
+                            outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
                             n_tickers += 1
                     print("n_tickers: " + str(n_tickers))
                     outfile0.close();
@@ -126,3 +130,6 @@ else:
         print(olist)
 
 sys.exit(0)
+# could be 0
+# sort by price descending
+#

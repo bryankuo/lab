@@ -1,8 +1,19 @@
 #!/usr/bin/python3
 
 # python3 warrant.py [ticker]
-# with selenium tips
+# with selenium tips as well as playground
 # return 0: listed 2,  otc 4, otcbb 5
+
+
+# find selenium version
+# python3 -c "import selenium; print(selenium.__version__)"
+# change version @see https://stackoverflow.com/a/49215247
+# pip uninstall selenium
+# pip install selenium==3.9
+# current working version on macos
+# Successfully uninstalled selenium-3.141.0
+# testing version 3.9 NG
+# 4.15.2 is the latest, NG,
 
 import sys, requests, time, re, os
 import urllib.request
@@ -28,9 +39,6 @@ try:
     url  = "http://warrants.sfi.org.tw/Query.aspx"
     url1 = "https://www.google.com"
     url2 = "https://tw.yahoo.com"
-
-    # find selenium version
-    # python3 -c "import selenium; print(selenium.__version__)"
 
     browser.get(url) # no tab name, 1 task is fine
 

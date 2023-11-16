@@ -12,6 +12,10 @@
 import sys, requests, time, os, numpy, csv
 from bs4 import BeautifulSoup
 from selenium import webdriver
+
+# @see https://stackoverflow.com/a/76550727
+from selenium.webdriver.safari.service import Service
+
 from selenium.common.exceptions import SessionNotCreatedException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -50,7 +54,9 @@ from datetime import date
 yyyy = datetime.today().strftime('%Y')
 mm   = datetime.today().strftime('%m')
 dd   = datetime.today().strftime('%d')
-# print( len(sys.argv) )
+print( 'qfii.py+ ' + str(len(sys.argv)) )
+theday = datetime.today().strftime('%Y%m%d')
+
 is_from_net = False
 DIR0="./datafiles/taiex/qfbs"
 DEFAULT_NAME0="外資投信同步買賣超"
@@ -60,8 +66,7 @@ DEFAULT_NAME3="外資操作異常"
 
 if ( len(sys.argv) < 2 ):
     is_from_net = True
-    ofname = DIR0 + "/" + DEFAULT_NAME0 + '.' + \
-        datetime.today().strftime('%Y%m%d') + '.txt'
+    ofname = DIR0 + "/" + DEFAULT_NAME0 + '.' + theday + '.txt'
 elif ( 3 == len(sys.argv) ):
     if ( sys.argv[2] == "0" ):
         is_from_net = True
@@ -79,9 +84,10 @@ elif ( 4 == len(sys.argv) ):
         is_from_net = False
     else:
         is_from_net = False
-    yyyy  = sys.argv[3][0:4]
-    mm    = sys.argv[3][4:6]
-    dd    = sys.argv[3][6:8]
+    yyyy   = sys.argv[3][0:4]
+    mm     = sys.argv[3][4:6]
+    dd     = sys.argv[3][6:8]
+    theday = sys.argv[3]
     ofname = sys.argv[1]
 elif ( 8 == len(sys.argv) ):
     if ( sys.argv[2] == "0" ):
@@ -93,6 +99,7 @@ elif ( 8 == len(sys.argv) ):
     yyyy   = sys.argv[3][0:4]
     mm     = sys.argv[3][4:6]
     dd     = sys.argv[3][6:8]
+    theday = sys.argv[3]
     ofname = sys.argv[1]
     deal   = sys.argv[5]
     change = sys.argv[6]
@@ -108,17 +115,24 @@ try:
     limit_ulist = []; limit_dlist = [];
 
     def fetch():
+        url_qfii = "https://www.twse.com.tw/zh/page/trading/fund/TWT38U.html"
+        url_fund = "https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html"
+        q_fname = "qfii." + theday + '.html'
+        q_path = os.path.join(DIR0, q_fname)
+        f_fname = "fund." + theday + '.html'
+        f_path = os.path.join(DIR0, f_fname)
         if ( is_from_net ):
-            # print("from internet...")
             browser = webdriver.Safari( \
                 executable_path = '/usr/bin/safaridriver')
+            # @see https://stackoverflow.com/a/49215247
+            # @see https://stackoverflow.com/a/56127898
+            # browser = webdriver.Safari()
+            # browser = webdriver.Safari(quiet = True)
 
-            qfii = "https://www.twse.com.tw/zh/page/trading/fund/TWT38U.html"
-            fund = "https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html"
-
+            browser.implicitly_wait(10)
             browser.maximize_window()
-            browser.get(qfii)
-            time.sleep(1) # // TODO: test if removed
+            browser.get(url_qfii)
+            # time.sleep(1) # // TODO: test if removed
             Select(WebDriverWait(browser, 3)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='yy']"))))   \
@@ -145,14 +159,13 @@ try:
 
             page1 = browser.page_source
             soup1 = BeautifulSoup(page1, 'html.parser')
-            # dir must be identical to qfbs.sh
-            qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
-            with open(qname, "w") as outfile1:
+            with open(q_path, "w") as outfile1:
                 outfile1.write(soup1.prettify())
-                outfile1.close()
+            outfile1.close()
+            print("write to: " + q_path)
 
-            browser.get(fund)
-            time.sleep(1)
+            browser.get(url_fund)
+            # time.sleep(1)
             Select(WebDriverWait(browser, 1)                                \
                 .until(EC.element_to_be_clickable(                          \
                     (By.XPATH,"//select[@name='yy']"))))   \
@@ -179,23 +192,22 @@ try:
 
             page2 = browser.page_source
             soup2 = BeautifulSoup(page2, 'html.parser')
-            fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
-            with open(fname, "w") as outfile2:
+            with open(f_path, "w") as outfile2:
                 outfile2.write(soup2.prettify())
-                outfile2.close()
+            outfile2.close()
+            print("write to: " + f_path)
+
             browser.minimize_window()
             browser.quit()
         else:
-            # print("from the files...")
-            qname = DIR0 + "/" + "qfii."+yyyy+mm+dd+".html"
-            # // FIXME: use join instead
-            # print(qname)
-            with open(qname) as q:
+            with open(q_path) as q:
                 soup1 = BeautifulSoup(q, 'html.parser')
-            fname = DIR0 + "/" + "fund."+yyyy+mm+dd+".html"
-            # print(fname)
-            with open(fname) as r:
+                print("loaded: " + q_path)
+            q.close()
+            with open(f_path) as r:
                 soup2 = BeautifulSoup(r, 'html.parser')
+                print("loaded: " + f_path)
+
         return soup1, soup2
 
     # list whatever qfii buy or sell
@@ -384,7 +396,7 @@ try:
     def merge12(market, l1_b, l1_s, l2_b, l2_s, ld_lst, lu_lst):
         # transpose ( @see shorturl.at/ntuy8 ) then union
         # extend # of row, then looping
-
+        print("merge12+")
         l1b = l1_b.copy()
         l1s = l1_s.copy()
         l2b = l2_b.copy()
@@ -620,6 +632,8 @@ try:
             f.close()
             # print( "lu " + str(len(limit_ulist)) + ": " +
             #        str(pprint(limit_ulist)) )
+        else:
+            print("not found: " + u_path)
 
         d_fname = "limit.down" + "." +yyyy+mm+dd+ '.csv'
         d_path = os.path.join(DIR0, d_fname)
@@ -633,6 +647,9 @@ try:
             f.close()
             # print( "ld " + str(len(limit_dlist)) + ": " +
             #         str(pprint(limit_dlist)) )
+        else:
+            print("not found: " + d_path)
+
         return [ limit_dlist, limit_ulist ]
 
     start = timer()
@@ -648,19 +665,18 @@ try:
     start = timer()
     soups = fetch()
     end = timer()
-    print("fetching "+str(int(is_from_net))+"........"+yyyy+mm+dd+ \
-        " done, takes "+str(timedelta(seconds=end-start)))
+    print("fetched: "+theday+ " takes " + str(timedelta(seconds=end-start)))
 
     start = timer()
     n1 = parse_1(soups[0])
     end = timer()
-    print("qfii processing..."+yyyy+mm+dd+" done, takes " \
-            +str(timedelta(seconds=end-start)))
+    print("processed qfii " + theday + " takes " + \
+        str(timedelta(seconds=end-start)))
 
     start = timer()
     n2 = parse_2(soups[1])
     end = timer()
-    print("fund processing..."+yyyy+mm+dd+" done, takes " \
+    print("processed fund " + theday + " takes " \
             +str(timedelta(seconds=end-start)))
 
     print("merging, highlight, and output to 3 files...")
@@ -687,9 +703,16 @@ try:
 except (SessionNotCreatedException):
     print('turn on safari remote option.')
 
-finally:
-    print('finally...')
+except:
+    # traceback.format_exception(*sys.exc_info())
+    e = sys.exc_info()[0]
+    print("Unexpected error:", sys.exc_info()[0])
+    raise
 
-print('done.')
+finally:
+    # print('finally...')
+    pass
+
+print('qfii.py-')
 
 sys.exit(0)
