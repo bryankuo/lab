@@ -132,4 +132,6 @@ else:
 sys.exit(0)
 # could be 0
 # sort by price descending
-#
+# python3 after_market.py 20231116 0
+# python3 after_market.py 20231116 1
+# grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv

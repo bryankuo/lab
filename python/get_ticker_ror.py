@@ -43,8 +43,11 @@ t_ytd = float(sys.argv[9].replace('\'',''))
 # t_3y  = float(twse_ror_figures[10])
 
 DIR0="./datafiles/taiex/rs"
+DIR1 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
+
 fname = "ror." + ticker + ".html"
-h_path = os.path.join(DIR0, fname)
+h_path = os.path.join(DIR1, fname)
+
 # // FIXME: date may be not today, but input from ror.sh
 ifname    = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 i_path    = os.path.join(DIR0, ifname)
@@ -106,8 +109,12 @@ with open(ror_path, 'a') as ofile:
     ofile.close()
 
 # // TODO: verify output
-if ( r_1w.isnumeric() and rs_1m.isnumeric() \
-    and rs_3m.isnumeric() and rs_ytd.isnumeric() ):
+# if ( r_1w.isnumeric() and rs_1m.isnumeric() \
+#     and rs_3m.isnumeric() and rs_ytd.isnumeric() ):
+if ( r_1w.lower() != "N/A".lower() \
+    and r_1m.lower() != "N/A".lower() \
+    and r_3m.lower() != "N/A".lower() \
+    and r_ytd.lower() != "N/A".lower() ):
     rs_1w  = ( (float(r_1w) -float(t_1w) ) ) / abs(float(t_1w) )
     rs_1m  = ( (float(r_1m) -float(t_1m) ) ) / abs(float(t_1m) )
     rs_3m  = ( (float(r_3m) -float(t_3m) ) ) / abs(float(t_3m) )
@@ -123,5 +130,7 @@ if ( r_1w.isnumeric() and rs_1m.isnumeric() \
             +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a")
 else:
     print(" " + ticker + " NG " + r_1w + " " + r_1m + " " + r_3m + " " + r_ytd)
+
+print("\a")
 
 sys.exit(0)

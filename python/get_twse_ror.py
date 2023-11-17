@@ -40,9 +40,11 @@ url = "https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059"
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
 DIR0="./datafiles/taiex/rs"
-# DIR0="."
+DIR1 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
+
 fname = "ror.twse.html"
-path = os.path.join(DIR0, fname)
+path = os.path.join(DIR1, fname)
+
 ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 o_path = os.path.join(DIR0, ofname)
 
@@ -50,7 +52,6 @@ is_from_net = True
 use_plain_req = False
 
 if ( is_from_net ):
-    # if ( os.path.exists(path) ): os.remove(path) # clean up
     if ( use_plain_req ):
         response = requests.get(url)
         # response.encoding = 'cp950'

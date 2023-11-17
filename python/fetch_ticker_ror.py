@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-# python3 fetch_ticker_ror.py [tkr] [net|file]
+# python3 fetch_ticker_ror.py
 # fetch ticker ror html from broker, serving ror.sh
-# \param in ticker
-# \param in 0: from internet, 1: from file
+# rotating user agent
+# \param in rs/yyyymmdd folder
 # \param out ror.YYYYMMDD.csv, append, created by get_twse_ror.py
 # \param out ror.[ticker].html
 # return 0
@@ -27,47 +27,22 @@ from pprint import pprint
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
-if ( len(sys.argv) < 3 ):
-    print("usage: fetch_ticker_ror.py [ticker] [net|file]")
-    sys.exit(0)
-ticker = sys.argv[1]
-if ( int(sys.argv[2]) == 1 ):
-    is_from_net = False
-elif ( int(sys.argv[2]) == 0 ):
-    is_from_net = True
-else:
-    is_from_net = False
-
-import sys
-ticker = sys.argv[1]
-sources = [                                                         \
-    "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm",
-    "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-
-    #"https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "http://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-
-    "https://stock.capital.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "https://sjmain.esunsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
+user_agent_list = [
+	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+	'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
 ]
-len_sources = len(sources)
+n_ua = len(user_agent_list)
 
 DIR0="./datafiles/taiex/rs"
+DIR2 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
 
 ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 o_path = os.path.join(DIR0, ofname)
 
 DIR1   = "./datafiles"
-fname1 = "watchlist.20231023.txt"
+fname1 = "watchlist.txt"
 path1  = os.path.join(DIR1, fname1)
-
-use_plain_req = True
 
 def source_factory(index, ticker):
     sources = [                                                         \
@@ -77,108 +52,68 @@ def source_factory(index, ticker):
         "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        #"https://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "http://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://stock.capital.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://sjmain.esunsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
     ]
-    seed = random.randint(0, len_sources-1)
+    seed = random.randint(0, len(sources)-1)
     url = sources[seed]
     print("{0:04d} {1:02d} {2:s}".format(index, seed, url))
     return url
 
-if ( is_from_net ):
-    if ( use_plain_req ):
-        with open(path1, 'r') as f:
-            session = None; index = 1;
-            for ticker in f:
-                ticker = ticker.replace('\n','')
-                url = source_factory(index, ticker)
-                # @see https://stackoverflow.com/a/34491383
-                # if you have to do just a few requests,
-                # Otherwise you'll want to manage sessions yourself.
-                try:
-                    if session is None:
-                        response = requests.get(url) # // TODO: connection pool instead
-                        session = requests.Session()
-                    else:
-                        response = session.get(url)
-                    # response.encoding = 'cp950'
-                    time.sleep(1)
-                    soup = BeautifulSoup(response.text, 'html.parser')
-                    fname = "ror." + ticker + ".html"
-                    path = os.path.join(DIR0, fname)
-                    with open(path, "w") as outfile2:
-                        outfile2.write(soup.prettify())
-                        outfile2.close()
-                except:
-                    # traceback.format_exception(*sys.exc_info())
-                    e = sys.exc_info()[0]
-                    print("Unexpected error:", sys.exc_info()[0])
-                    # raise
-                finally:
-                    index += 1
-                    continue
+with open(path1, 'r') as f:
+    session = None; index = 1;
+    for ticker in f:
+        ticker = ticker.replace('\n','')
 
-            # // TODO: test this @see https://stackoverflow.com/a/49253627
-            session.close()
+        # adopting rotating can help mask your scraping
+        # @see https://rb.gy/uu497g
+        user_agent = random.choice(user_agent_list)
+        headers = {'User-Agent': user_agent}
+        print(user_agent)
 
-        f.close()
-        # urllib3 maintains a connection pool keyed by (hostname, port) pair
-        sys.exit(0)
-    else:
-        browser = webdriver.Safari( \
-            executable_path = '/usr/bin/safaridriver')
-        browser.get(url)
-        time.sleep(1)
-        page1 = browser.page_source
-        soup = BeautifulSoup(page1, 'html.parser')
-        browser.quit()
-else:
-    with open(path) as q:
-        soup = BeautifulSoup(q, 'html.parser')
+        url = source_factory(index, ticker)
+        # @see https://stackoverflow.com/a/34491383
+        # if you have to do just a few requests,
+        # Otherwise you'll want to manage sessions yourself.
+        try:
+            if session is None:
+                # response = requests.get(url)
+                response = requests.get(url, headers=headers)
+                session = requests.Session()
+            else:
+                # response = session.get(url)
+                response = session.get(url, headers=headers)
+            # response.encoding = 'cp950'
+            time.sleep(1) # // FIXME: random time
+            soup = BeautifulSoup(response.text, 'html.parser')
+            fname = "ror." + ticker + ".html"
+            path = os.path.join(DIR2, fname)
+            with open(path, "w") as outfile2:
+                outfile2.write(soup.prettify())
+                outfile2.close()
 
-# // FIXME: fetch name
-# title = soup.find("meta",  {"name":"description"})
-name = "n/a" #title["content"].split(' ')[0].split(')')[1].strip()
+        except requests.exceptions.ConnectionError:
+            e = sys.exc_info()[0]
+            print("Unexpected error:", sys.exc_info()[0])
+            pass
+            # // FIXME: try next site instead of pass, get them'll
 
-# // FIXME: parse ytd ror
-r_ytd = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[8] \
-    .find_all('td')[1].text.strip().replace('%', '')
+        except:
+            # traceback.format_exception(*sys.exc_info())
+            e = sys.exc_info()[0]
+            print("Unexpected error:", sys.exc_info()[0])
+            # raise
 
-r_1w  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[9] \
-    .find_all('td')[1].text.strip().replace('%', '')
+        finally:
+            index += 1
+            continue
 
-r_1m  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[10] \
-    .find_all('td')[1].text.strip().replace('%', '')
+    # // TODO: test this @see https://stackoverflow.com/a/49253627
+    session.close()
 
-r_2m  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[11] \
-    .find_all('td')[1].text.strip().replace('%', '')
-
-r_3m  = soup.findAll('table')[0] \
-    .find_all('table')[0] \
-    .find_all('tr')[12] \
-    .find_all('td')[1].text.strip().replace('%', '')
-
-# olist =   [ f_1d,  f_1w, f_1m, "n/a", f_3m, f_6m,  f_1y,  f_ytd, f_3y  ]
-olist   =   [ "n/a", r_1w, r_1m, r_2m,  r_3m, "n/a", "n/a", r_ytd, "n/a" ]
-#print(olist)
-# presume get_twse_ror.py is running at first
-with open(o_path, 'a') as ofile:
-    # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
-    ofile.write(ticker+":"+name+":n/a:"+r_1w+":"+r_1m+":"+r_2m+":"+r_3m \
-        +":n/a:n/a:"+r_ytd+":n/a"+"\n")
-    ofile.close()
-# // FIXME: house keeping, has already done by get_ticker_ror.py
-
+f.close()
 sys.exit(0)
+# urllib3 maintains a connection pool keyed by (hostname, port) pair

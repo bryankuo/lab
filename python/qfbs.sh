@@ -38,7 +38,10 @@ DATE=$YR$MN$DAY
 if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -eq 1 ]]; then
     LAST_TRADE_DAY=$(date -v-4d +%Y%m%d)
 else
-    LAST_TRADE_DAY=$(date -v-1d +%Y%m%d)
+    # LAST_TRADE_DAY=$(date -v-1d +%Y%m%d)
+    # date calculations on an arbitrary date
+    # @see https://stackoverflow.com/a/8521717
+    LAST_TRADE_DAY=$( date -j -v-1d -f "%Y%m%d" "$DATE" "+%Y%m%d")
 fi
 
 # @see https://stackoverflow.com/a/46024878
@@ -49,7 +52,7 @@ if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -gt 5 ]]; then
 fi
 
 echo "date "$DATE", last trade date "$LAST_TRADE_DAY
-# // TODO: @see price.sh
+# // TODO: @see +62 price.sh, grep file to see if found
 
 DIR0="datafiles/taiex/qfbs"
 mkdir -p $DIR0

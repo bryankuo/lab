@@ -2,6 +2,8 @@
 
 # price.sh [ticker] [yyyymmdd] [net|file]
 # a wrapper fetching close price by ticker, date, from internet or file.
+# // TODO: if today, using quote.py instead
+
 # call is_twse_open.py to tell market open day.
 # \param in ticker
 # \param in yyyymmdd
@@ -62,7 +64,7 @@ FOUND=$(grep --color="auto" -c -e $THE_DATE \
 
 if [ $FOUND -eq 0 ]; then
     # cal ${THE_DATE:4:2} ${THE_DATE:0:4}
-    # 2. generate preserved files
+    # 2. last_trade_day.py generate preserved trade.days files
     # OUTPUT=($(python3 is_twse_open.py $THE_DATE | tr -d "[],'"))
     OUTPUT=($(python3 last_trade_day.py $THE_DATE | tr -d "[],'"))
     LAST_TRADE_DAY=${OUTPUT[0]}

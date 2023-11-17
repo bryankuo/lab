@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# ./ror.sh [net|file]
-# scraping ror from a list, and generate rs into csv for calc.
+# ./ror.sh
+# 1. scraping ror from a list,
+# 2. get twse as benchmark
+# 3. for each fetched html, generate rs into csv for calc.
+#
 # \param in 0: net, 1:file
 # \param in bountylist.txt
 # \param out OUTF0 ror.YYYYMMDD.csv
@@ -14,7 +17,7 @@ clear
 # incase repeated: uniq -i datafiles/bountylist.txt
 # BOUNTY="datafiles/bountylist.txt"
 # BOUNTY="datafiles/taiex.watchlist.txt" # // FIXME: symbolic link
-BOUNTY="datafiles/watchlist.20231023.txt"
+BOUNTY="datafiles/watchlist.txt"
 NLINES=$(wc -l $BOUNTY | xargs | cut -d " " -f1)
 START=$index
 LEN=$NLINES
@@ -22,13 +25,16 @@ echo "start "$START" len "$NLINES
 
 DIR0="datafiles/taiex/rs"
 mkdir -p $DIR0
-# // FIXME: date may be not today, but input parameter to get_ticker_ror.py
+
 DATE=`date '+%Y%m%d'`
+DIR1="$DIR0/$DATE" # to archive *.html
+mkdir -p $DIR1
+
 OUTF0="$DIR0/ror.$DATE.csv"
 OUTF1="$DIR0/rs.$DATE.csv"
 OUTF2="$DIR0/rs.$DATE.ods"
-TSE_ROR="$DIR0/ror.twse.html"
-TICKER_ROR="$DIR0/ror.[0-9][0-9][0-9][0-9].html"
+TSE_ROR="$DIR1/ror.twse.html"
+TICKER_ROR="$DIR1/ror.[0-9][0-9][0-9][0-9].html"
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/*.html | wc -l"
 if false; then
@@ -39,8 +45,7 @@ if false; then
     # if you have to do just a few requests,
     # Otherwise you'll want to manage sessions yourself.
     # here comes connection pooling
-    TICKER=1101 # // FIXME: get rid of input parameter
-    python3 fetch_ticker_ror.py $TICKER 0
+    python3 fetch_ticker_ror.py
     TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
     echo "time: " $TIMESTAMP0 " looping start"
     echo "time: " $TIMESTAMP  " looping end"
@@ -52,10 +57,13 @@ if false; then
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
     echo "effective: $n_effective"
+
 # yyyymmdd
 # stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html
+
 # in size
 # stat -f%z ./datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html
+
 # fetched, today, size is normal, bigger than 20000 bytes
 # find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -print | wc -l | xargs | cut -d " " -f1
 # smaller
