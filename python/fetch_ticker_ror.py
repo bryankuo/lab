@@ -8,7 +8,7 @@
 # \param out ror.[ticker].html
 # return 0
 
-import sys, requests, time, os, numpy, random, csv, timeit
+import os, sys, requests, time, numpy, random, csv, timeit
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
@@ -19,6 +19,8 @@ from selenium.webdriver.support.ui import Select
 from timeit import default_timer as timer
 from datetime import timedelta,datetime
 from pprint import pprint
+sys.path.append(os.getcwd())
+import useragents as ua
 
 # twse history
 # https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20230701&response=html
@@ -26,13 +28,6 @@ from pprint import pprint
 # https://www.macromicro.me/charts/36436/tai-wan-gu-shi-da-pan-zhi-shu-bao-chou-lyu
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
-
-user_agent_list = [
-	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
-	'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
-]
-n_ua = len(user_agent_list)
 
 DIR0="./datafiles/taiex/rs"
 DIR2 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
@@ -70,9 +65,7 @@ with open(path1, 'r') as f:
 
         # adopting rotating can help mask your scraping
         # @see https://rb.gy/uu497g
-        user_agent = random.choice(user_agent_list)
-        headers = {'User-Agent': user_agent}
-        print(user_agent)
+        headers = {'User-Agent': random.choice(ua.list)}
 
         url = source_factory(index, ticker)
         # @see https://stackoverflow.com/a/34491383
@@ -98,14 +91,14 @@ with open(path1, 'r') as f:
         except requests.exceptions.ConnectionError:
             e = sys.exc_info()[0]
             print("Unexpected error:", sys.exc_info()[0])
-            pass
+            raise
             # // FIXME: try next site instead of pass, get them'll
 
         except:
             # traceback.format_exception(*sys.exc_info())
             e = sys.exc_info()[0]
             print("Unexpected error:", sys.exc_info()[0])
-            # raise
+            raise
 
         finally:
             index += 1

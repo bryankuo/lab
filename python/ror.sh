@@ -37,7 +37,7 @@ TSE_ROR="$DIR1/ror.twse.html"
 TICKER_ROR="$DIR1/ror.[0-9][0-9][0-9][0-9].html"
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/*.html | wc -l"
-if false; then
+if true; then
     trash -v $TICKER_ROR
     echo "fetch ticker files..."
     TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
