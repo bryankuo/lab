@@ -3,6 +3,8 @@
 # /Applications/LibreOffice.app/Contents/Resources/python
 #  uno_formula.py [file]
 #
+# calc uno playground
+#
 # reference doc:
 # http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets

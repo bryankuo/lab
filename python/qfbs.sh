@@ -127,22 +127,22 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
-# // apply only today, history is not available
-get_limit_up
-get_limit_down
-# ls -lt "$DIR0/"*.html "$DIR0/"*.csv | head -n 10
-
 OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
 echo ${OUTPUT[@]}
-DEAL=${OUTPUT[0]%\'}
-DEAL=${DEAL#\'}
+DEAL=${OUTPUT[0]}
 CHANGE=${OUTPUT[1]%\'}
 CHANGE=${CHANGE#\'}
 RISE=${OUTPUT[2]%\'}
 RISE=${RISE#\'}
-VOLUME=${OUTPUT[3]%\'}
-VOLUME=${VOLUME#\'}
-# printf "twse date: %8s %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+VOLUME=${OUTPUT[3]}
+# printf " %8s twse: %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+
+if true; then
+    # // apply only today, history is not available
+    get_limit_up
+    get_limit_down
+    # ls -lt "$DIR0/"*.html "$DIR0/"*.csv | head -n 10
+fi
 
 trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
 
@@ -152,7 +152,6 @@ if [ $ORIGIN -eq 0 ]; then
     ls -ltr "$DIR0/"*$YR$MN$DAY*;
     # rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
 fi
-
 
 # python3 qfii.py $OUTF0
 # python3 qfii.py $OUTF0 0 # // TODO: lazy and less parameter

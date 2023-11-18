@@ -3,6 +3,8 @@
 # python3 uno_kicks.py [ticker] [quote]
 # return a list to caller
 
+# calc uno playground
+
 # reference doc:
 # shorturl.at/EIJV1
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
