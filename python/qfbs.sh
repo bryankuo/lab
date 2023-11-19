@@ -127,37 +127,39 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
-OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
-echo ${OUTPUT[@]}
-DEAL=${OUTPUT[0]}
-CHANGE=${OUTPUT[1]%\'}
-CHANGE=${CHANGE#\'}
-RISE=${OUTPUT[2]%\'}
-RISE=${RISE#\'}
-VOLUME=${OUTPUT[3]}
-# printf " %8s twse: %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
-
-if true; then
+if false; then
     # // apply only today, history is not available
     get_limit_up
     get_limit_down
     # ls -lt "$DIR0/"*.html "$DIR0/"*.csv | head -n 10
 fi
 
-trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
+if true; then
+    trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
+    if [ $ORIGIN -eq 0 ]; then
+	trash "$DIR0/qfii.$DATE.html"
+	trash "$DIR0/fund.$DATE.html"
+	ls -ltr "$DIR0/"*$YR$MN$DAY*;
+	# rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
+    fi
 
-if [ $ORIGIN -eq 0 ]; then
-    trash "$DIR0/qfii.$DATE.html"
-    trash "$DIR0/fund.$DATE.html"
-    ls -ltr "$DIR0/"*$YR$MN$DAY*;
-    # rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
+    OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))
+    echo ${OUTPUT[@]}
+    DEAL=${OUTPUT[0]}
+    CHANGE=${OUTPUT[1]%\'}
+    CHANGE=${CHANGE#\'}
+    RISE=${OUTPUT[2]%\'}
+    RISE=${RISE#\'}
+    VOLUME=${OUTPUT[3]}
+    # printf " %8s twse: %8s %8s %7s %4s\n" $DATE $DEAL $CHANGE $RISE $VOLUME
+
+    # python3 qfii.py $OUTF0
+    # python3 qfii.py $OUTF0 0 # // TODO: lazy and less parameter
+    # python3 qfii.py $OUTF0 $ORIGIN $YR $MN $DAY
+    echo "python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME"
+    python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME
+    exit 0
 fi
-
-# python3 qfii.py $OUTF0
-# python3 qfii.py $OUTF0 0 # // TODO: lazy and less parameter
-# python3 qfii.py $OUTF0 $ORIGIN $YR $MN $DAY
-echo "python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME"
-python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME
 
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 
