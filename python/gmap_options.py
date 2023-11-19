@@ -20,28 +20,30 @@ from shutil import which
 import sys
 # import chromedriver_binary  # // FIXME:
 
+# @see https://github.com/sulasoft/Scraping-Business-in-Google/blob/main/Scraping%20Business%20in%20Google.py
+
 try:
     # keyword = input("Name of companies (Example: Martial arts companies in the United States): ")
     keyword = "33rd Rd, Khar, Khar West, Mumbai, Maharashtra 400052, India"
     chromedriver_autoinstaller.install()
-    
+
     # selenium 4.10.0 @see https://stackoverflow.com/a/76550727
     # service1 = Service(executable_path='./chromedriver.exe')
-    # chromedriver.exe @see https://stackoverflow.com/a/42478941 
+    # chromedriver.exe @see https://stackoverflow.com/a/42478941
     # @see https://sites.google.com/chromium.org/driver/?pli=1
 
-    service1 = Service()    
+    service1 = Service()
     options = webdriver.ChromeOptions()
 
     # options.add_argument('--headless') # command line switches @see https://shorturl.at/bfxX5
     # options.add_argument('--log-level=3')
     # options.add_argument('--window-size=1920,1080') # OK
-    # options.add_argument('--disable-dev-shm-usage')    
+    # options.add_argument('--disable-dev-shm-usage')
     # options.add_argument('--start-maximized') # roger that
-    # options.add_argument('--disable-blink-features=AutomationControlled')            
+    # options.add_argument('--disable-blink-features=AutomationControlled')
     # lista = ['enable-automation', 'enable-logging']
-    # options.add_experimental_option('excludeSwitches', lista)    
-    options.add_argument('--enable-gpu')    
+    # options.add_experimental_option('excludeSwitches', lista)
+    options.add_argument('--enable-gpu')
 
     driver = webdriver.Chrome(service=service1, options=options)
     # driver = webdriver.Chrome(ChromeDriverManager().install()) # // FIXME:
