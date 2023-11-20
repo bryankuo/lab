@@ -115,3 +115,5 @@ revenue.py: scrap monthly revenue growth.
 create_ticker_list: create a list from watchlist file,
 httpbin.py: playground of httpbin,
 useragents.py: user agents global variables,
+uno_bquote.py: batch update quote,
+uno_bquote.sh: wrapper
