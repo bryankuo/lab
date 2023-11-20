@@ -1,12 +1,19 @@
 #!/usr/bin/python3
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a9f5993 (testing feature)
 #
 # batch update quote to calc
 # \param in after market csv
 # \param activity watchlist ods
 #
+<<<<<<< HEAD
 # calc uno playground
 #
+=======
+>>>>>>> a9f5993 (testing feature)
 # reference doc:
 # http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
@@ -59,9 +66,15 @@ while doc is None:
 # @see https://ask.libreoffice.org/t/formatting-data-cell-from-macro-in-calc/23740
 # doc = XSCRIPTCONTEXT.getDocument()
 try:
+<<<<<<< HEAD
     nl = numbers.addNew( "###0.00",  locale )
 except RuntimeException:
     nl = numbers.queryKey("###0.00", locale, False)
+=======
+    nl = numbers.addNew( "###0.000",  locale )
+except RuntimeException:
+    nl = numbers.queryKey("###0.000", locale, False)
+>>>>>>> a9f5993 (testing feature)
 
 # assume no more than 3000 listed.
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
@@ -73,12 +86,16 @@ guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 last_row = len(cursor.Rows)
 n_ticker = ( last_row - 2 ) + 1
+<<<<<<< HEAD
 cell4 = active_sheet.getCellRangeByName("$BI1")
 cell4.Value = last_row
+=======
+>>>>>>> a9f5993 (testing feature)
 
 # theday = datetime.today().strftime('%Y%m%d')
 infile0 = open(path0, "r")
 ilist = infile0.readlines()
+<<<<<<< HEAD
 # print( "# ilist: " + str(len(ilist)) ) # // FIXME:
 cell5 = active_sheet.getCellRangeByName("$Bj1")
 cell5.Value = len(ilist)
@@ -179,3 +196,179 @@ sys.exit(0)
 # @see https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_HLOOKUP_function
 #
 # @see https://openpyxl.readthedocs.io
+=======
+print( "# ilist: " + str(len(ilist)) )
+
+cell = active_sheet.getCellRangeByName("$BT1") # to figure out position
+# print( str(cell.getCellAddress().Column) + ", " + str(cell.getCellAddress().Row) )
+# print( cell.getCellAddress().Sheet )
+# print( cell.getCellAddress() )
+print( cell.Formula )
+
+index = 1
+for l in ilist:
+    the_line = l.replace('\n','')
+    items = the_line.split(":")
+    tkr   = items[0]
+    close = items[1]
+    # @see https://shorturl.at/dotvB
+    # f = '=CONCAT("A",MATCH(' + tkr + ',A1:A3000,0))'
+    # f = "=MATCH("+tkr+",$A1:$A3000,0)"
+    cell = active_sheet.getCellRangeByName("$BT"+str(index)) # to figure out position
+    cell.Formula = '=CONCAT("A",MATCH("' + tkr + '",A1:A3000,0))'
+    # cell = active_sheet.getCellRangeByName("$BT3") # trick?
+    # cell = active_sheet.getCellRangeByName("$BT2")
+    # print( cell.Formula )
+    print( tkr + '{:8.2f}'.format(float(close)) + " " + cell.String + " " + cell.Formula )
+    cell.clearContents(4)
+    index += 1
+
+infile0.close()
+cell.String = ""
+sys.exit(0)
+
+# @see https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_HLOOKUP_function
+
+def set_formula_1w():
+    addr = "$L1"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "PR(1w)"
+    # msgbox(cell.AbsoluteName)
+    # cell.String = "a1b2c3"
+    # cell_stalk.Value = 1
+    # cell.Formula = "=C2+D2"
+    for i in range( 2, last_row + 1 ):
+        addr = "L"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($D2:$D$"+str(last_row)+"; $D"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
+        if ( 0.66 < cell.Value ):
+            cell.CellBackColor = 0x3faf46
+
+        addr_1m = "M"+str(i)
+        cell_1m = active_sheet.getCellRangeByName(addr_1m)
+        if ( cell_1m.Value < 0.34 and 0.75 < cell.Value ):
+            cell.CellBackColor = 0xffff38
+            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
+            outf0.write(tkr + ":" \
+                + "{:3.3f}".format(cell.Value) + ":" \
+                + "{:3.3f}".format(cell_1m.Value) + "\n")
+
+        rs_1w  = active_sheet.getCellRangeByName("L"+str(i)).Value
+        rs_1m  = active_sheet.getCellRangeByName("M"+str(i)).Value
+        rs_3m  = active_sheet.getCellRangeByName("N"+str(i)).Value
+        rs_ytd = active_sheet.getCellRangeByName("O"+str(i)).Value
+        if ( 0.75 < rs_1w and 0.75 < rs_1m and 0.75 < rs_3m and 0.75 < rs_ytd ):
+            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
+            outf1.write(tkr + ":" \
+                + "{:3.3f}".format(rs_1w) + ":" \
+                + "{:3.3f}".format(rs_1m) + ":" \
+                + "{:3.3f}".format(rs_3m) + ":" \
+                + "{:3.3f}".format(rs_ytd) + "\n")
+
+def set_formula_1m():
+    addr = "$M1"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "PR(1m)"
+    for i in range( 2, last_row + 1 ):
+        addr = "M"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($E2:$E"+str(last_row)+"; $E"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
+        if ( 0.66 < cell.Value ):
+            cell.CellBackColor = 0x3faf46
+
+            # set cell border
+            aThinBorder = cell.TopBorder2
+            aThinBorder.Color          = 0x00ff0000
+            aThinBorder.LineWidth      = 1
+            aThinBorder.InnerLineWidth = 0
+            aThinBorder.OuterLineWidth = 1
+            cell.LeftBorder2   = aThinBorder
+
+            rThinBorder = cell.RightBorder2
+            rThinBorder.Color = 0x0000ff00
+            rThinBorder.LineWidth = 5
+            aThinBorder.InnerLineWidth = 0
+            aThinBorder.OuterLineWidth = 1
+            cell.RightBorder2   = rThinBorder
+            cell.BottomBorder2 = rThinBorder
+            cell.TopBorder2 = rThinBorder
+            # // TODO: playground
+            # @see https://t.ly/TFSjH
+            # @see https://t.ly/_wZ6_
+            # @see https://t.ly/UR2Us
+            #aThinBorder.LineDistance   = 0
+            # aThinBorder.LineStyle      = 1
+
+def set_formula_3m():
+    addr = "$n1"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "PR(3m)"
+    for i in range( 2, last_row + 1 ):
+        addr = "N"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($G2:$G"+str(last_row)+"; $G"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
+        if ( 0.75 < cell.Value ):
+            cell.CellBackColor = 0x3faf46
+
+def set_formula_ytd():
+    addr = "$O1"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "PR(ytd)"
+    for i in range( 2, last_row + 1 ):
+        addr = "$O"+str(i)
+        cell = active_sheet.getCellRangeByName(addr)
+        f = "=PERCENTRANK($J2:$J"+str(last_row)+"; $J"+str(i)+")"
+        cell.Formula = f
+        cell.NumberFormat = nl
+        if ( 0.75 < cell.Value ):
+            cell.CellBackColor = 0x3faf46
+
+def draw_legend():
+    addr = "$P1"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "Legend"
+
+    addr = "$P2"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.CellBackColor = 0x3faf46
+
+    addr = "$Q2"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "PR75 or leading one-4th"
+
+    addr = "$P3"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.CellBackColor = 0xffff38
+
+    addr = "$Q3"
+    cell = active_sheet.getCellRangeByName(addr)
+    cell.String = "Advancing from below PR33 to leading PR75"
+
+
+set_formula_ytd()
+set_formula_3m()
+set_formula_1m()
+set_formula_1w()
+draw_legend()
+
+outf0.close(); outf1.close()
+
+olist = [ str(last_row), path0 ]
+print(olist)
+print("\a")
+
+sys.exit(0)
+
+# ls -lt datafiles/taiex/rs/*.csv | head -n 5
+#
+
+#
+# @see https://openpyxl.readthedocs.io
+
+>>>>>>> a9f5993 (testing feature)
