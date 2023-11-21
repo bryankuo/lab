@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-20T04:11:56.742Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="CA8FBlZkxYREybPzfDdi" version="22.1.3" type="device">
+<mxfile host="app.diagrams.net" modified="2023-11-21T06:00:10.301Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="4xDty9LA3kwLc_gzLhCo" version="22.1.3" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
     <mxGraphModel dx="1434" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -3932,7 +3932,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="o6yxz6Tkgwx2Tn4I-VS--24" value="老余的概念反過來&lt;br&gt;空在上方尖尖的點" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="o6yxz6Tkgwx2Tn4I-VS--24" value="老余的概念反過來&lt;br&gt;空在上方尖尖的點&lt;br&gt;( 配合成交量, 量縮 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="2661" y="750" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="5gQmJfHNH4HgBfwM9AFE-7" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startArrow=none;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="o6yxz6Tkgwx2Tn4I-VS--24" target="vmqeTPf0TjOyQkxSXlvq-11" edge="1">
@@ -3952,7 +3952,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="lhv6j-S2FHncOJZCP1lb-1" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="TFDlaE1OMgxI-6m1mIKU-7" target="imAM5OSlRjNlHl0Rsuep-1">
+        <mxCell id="lhv6j-S2FHncOJZCP1lb-1" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" source="TFDlaE1OMgxI-6m1mIKU-7" target="imAM5OSlRjNlHl0Rsuep-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1530" y="1080" as="sourcePoint" />
             <mxPoint x="1710" y="640" as="targetPoint" />
@@ -3961,10 +3961,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="lhv6j-S2FHncOJZCP1lb-3" value="連續多天&lt;br&gt;壓縮嗎&lt;br&gt;?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="lhv6j-S2FHncOJZCP1lb-3" value="連續多天&lt;br&gt;壓縮嗎&lt;br&gt;?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1600" y="1029" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="lhv6j-S2FHncOJZCP1lb-4" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="imAM5OSlRjNlHl0Rsuep-1" target="lhv6j-S2FHncOJZCP1lb-3">
+        <mxCell id="lhv6j-S2FHncOJZCP1lb-4" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="imAM5OSlRjNlHl0Rsuep-1" target="lhv6j-S2FHncOJZCP1lb-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1311" y="535" as="sourcePoint" />
             <mxPoint x="1710" y="640" as="targetPoint" />
