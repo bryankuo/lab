@@ -99,3 +99,5 @@ sys.exit(0)
 # python3 after_market.py 20231116 0
 # python3 after_market.py 20231116 1
 # grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
+# ls -lt ./datafiles/taiex/after.market/20231120.csv
+# ./uno_launch.sh datafiles/activity_watchlist.ods

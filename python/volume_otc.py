@@ -2,12 +2,15 @@
 
 # python3 volume_otc.py [ticker]
 # get otc daily average volume for one year
+# caller: briefing.sh
 # return 0: not found, assume neither listed nor otc, semi-otc?
 
-import sys, requests, time
+import os, sys, requests, time, random
 import urllib.request
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
+sys.path.append(os.getcwd())
+import useragents as ua
 
 print(sys.argv[1] + " daily average volume for the past year:")
 
@@ -33,7 +36,9 @@ for i in range(0,12):
 
 url = 'https://www.tpex.org.tw/web/stock/aftertrading/daily_trading_info/st43_print.php?l=zh-tw&d=' + months[0]+ '&stkno=' + sys.argv[1] + '&s=0,asc,0'
 # print(url)
-response = requests.get(url)
+# response = requests.get(url)
+headers = {'User-Agent': random.choice(ua.list)}
+response = requests.get('http://httpbin.org/headers', headers=headers)
 soup = BeautifulSoup(response.text, 'html.parser')
 table_body = soup.find('tbody')
 if ( table_body is None ):
@@ -47,7 +52,9 @@ for i in range(0,12):
     url = 'https://www.tpex.org.tw/web/stock/aftertrading' \
         '/daily_trading_info/st43_print.php?l=zh-tw&d=' + months[i] + \
         '&stkno=' + sys.argv[1] + '&s=0,asc,0'
-    response = requests.get(url)
+    # response = requests.get(url)
+    headers = {'User-Agent': random.choice(ua.list)}
+    response = requests.get('http://httpbin.org/headers', headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
     table_body = soup.find('tbody')
     rows = table_body.find_all('tr')

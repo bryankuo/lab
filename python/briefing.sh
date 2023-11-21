@@ -76,3 +76,4 @@ TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "last update:" $TIMESTAMP
 
 exit 0
+# // TODO: scrap and to official sites

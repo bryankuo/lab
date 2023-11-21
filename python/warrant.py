@@ -4,7 +4,6 @@
 # with selenium tips as well as playground
 # return 0: listed 2,  otc 4, otcbb 5
 
-
 # find selenium version
 # python3 -c "import selenium; print(selenium.__version__)"
 # change version @see https://stackoverflow.com/a/49215247
@@ -14,6 +13,26 @@
 # Successfully uninstalled selenium-3.141.0
 # testing version 3.9 NG
 # 4.15.2 is the latest, NG,
+
+# install the latest version
+# pip3 uninstall selenium; pip3 install -U selenium
+
+# @see https://stackoverflow.com/a/49215247
+# @see https://stackoverflow.com/a/56127898
+# @see https://stackoverflow.com/a/70211769
+# @see https://stackoverflow.com/a/70099102
+# With selenium4 as the key executable_path is deprecated
+# pip3 install webdriver-manager
+# python3 -c "import webdriver_manager; print(webdriver_manager.__version__)"
+
+# selenium.common.exceptions.NoSuchDriverException
+# safaridriver --version
+# Included with Safari 15.6.1 (15613.3.9.1.16)
+# @see https://www.selenium.dev/selenium/docs/api/py/api.html#common
+
+# to list all versions of a module
+# @see https://stackoverflow.com/a/5422144
+# pip install selenium==
 
 import sys, requests, time, re, os
 import urllib.request
@@ -43,6 +62,7 @@ try:
     url  = "http://warrants.sfi.org.tw/Query.aspx"
     url1 = "https://www.google.com"
     url2 = "https://tw.yahoo.com"
+    url3 = 'http://httpbin.org/headers'
 
     browser.implicitly_wait(10)
     browser.get(url) # no tab name, 1 task is fine
@@ -121,3 +141,6 @@ finally:
     browser.quit()
 
 sys.exit(0)
+# @see https://www.twse.com.tw/zh/products/securities/warrant/infomation/stock.html
+# @see https://www.twse.com.tw/zh/announcement/punish.html
+# @see https://www.twse.com.tw/zh/announcement/notice.html
