@@ -93,6 +93,8 @@ cell5.Value = len(ilist)
 # cell.Value = len( columns )
 # column_b = columns.getByName("BH")
 # column_b.Width = 5000 # works .7875" = 2000
+
+# @see https://stackoverflow.com/a/72261886
 # second_doc = desktop.create_spreadsheet() # testing
 
 try:
@@ -100,30 +102,37 @@ try:
     cell6 = active_sheet.getCellRangeByName("$BK1")
     cell6.Value = index
     for l in ilist:
+        # cursor.gotoStartOfUsedArea(True) # testing
         the_line = l.replace('\n','')
         items = the_line.split(":")
-        tkr   = items[0]
+        tkr   = items[0].strip()
         close = items[1]
         cell0 = active_sheet.getCellRangeByName("$BL1")
         # cell0 = active_sheet.getCellRangeByName("$BI"+str(index))
         cell0.Value = tkr
-        # @see https://shorturl.at/dotvB
-        # to figure out position
-        cell1 = active_sheet.getCellRangeByName("$BM1")
-        # cell1 = active_sheet.getCellRangeByName("$Bj"+str(index))
-        # cell1.Formula = "=CONCAT(\"A\"; MATCH(" + tkr + "; A1:A3000; 0))" # OK
-        cell1.Formula = "=MATCH(" + tkr + "; A1:A3000; 0)"
-
-        if ( cell1.String == "#N/A" ):
+        tkr_found = False
+        for i in range( 2, last_row ):
+            cell7 = active_sheet.getCellRangeByName("$A"+str(i))
+            if ( cell7.String == tkr ):
+                cell9 = active_sheet.getCellRangeByName("$BM1")
+                cell9.String = "A"+str(i)
+                cell8 = active_sheet.getCellRangeByName("$J"+str(i))
+                cell8.NumberFormat = nl
+                cell8.Value = close
+                addr = "$BH" + str(i)
+                cell = active_sheet.getCellRangeByName(addr)
+                cell.String = '{:%Y%m%d %H%M%S}'.format(datetime.now())
+                tkr_found = True
+                break
+        if ( not tkr_found ):
             cell2 = active_sheet.getCellRangeByName("$A"+str(last_row+1))
             cell2.Value = tkr
-            cell3 = active_sheet.getCellRangeByName("$Bi"+str(last_row+1))
+            cell3 = active_sheet.getCellRangeByName("$J"+str(last_row+1))
             cell3.NumberFormat = nl
             cell3.Value = close
             cell = active_sheet.getCellRangeByName("$BH"+str(last_row+1))
             # cell.Value = int('{:%H%M%S}'.format(datetime.now())) # OK
             cell.String = '{:%Y%m%d %H%M%S}'.format(datetime.now())
-
             guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
             cursor = active_sheet.createCursorByRange(guessRange)
             cursor.gotoEndOfUsedArea(False)
@@ -134,15 +143,17 @@ try:
             cell4 = active_sheet.getCellRangeByName("$BI1")
             cell4.Value = last_row
 
-        else:
-            addr = "BI" + cell1.String # "BK"+cell1.String
-            cell2 = active_sheet.getCellRangeByName(addr)
-            cell2.NumberFormat = nl
-            cell2.Value = close
-            addr = "$BH" + cell1.String
-            cell = active_sheet.getCellRangeByName(addr)
-            # cell.Value = int('{:%H%M%S}'.format(datetime.now())) # OK
-            cell.String = '{:%Y%m%d %H%M%S}'.format(datetime.now())
+        '''
+        # @see https://shorturl.at/dotvB
+        # to figure out position
+        cell1 = active_sheet.getCellRangeByName("$BM1")
+        # cell1 = active_sheet.getCellRangeByName("$Bj"+str(index))
+        # cell1.Formula = "=CONCAT(\"A\"; MATCH(" + tkr + "; A1:A3000; 0))" # OK
+        # cell1.Formula = "=MATCH(" + tkr + "; A1:A3000; 0)"
+        cell1.Formula = "=MATCH($BL1; A1:A3000; 0)"
+        # cell1.Formula = "=MATCH(1; EXACT($BL1; A1:A3000);0)"
+        # cell1.Formula = "=MATCH(1; EXACT(" + tkr + "; A1:A3000);0)"
+        '''
 
         # @see https://shorturl.at/BITY9
 
