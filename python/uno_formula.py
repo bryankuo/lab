@@ -220,11 +220,7 @@ draw_legend()
 
 outf0.close(); outf1.close()
 
-olist = [ str(last_row), path0 ]
+olist = [ last_row, path0, path1 ]
 print(olist)
-print("\a")
 
 sys.exit(0)
-
-# ls -lt datafiles/taiex/rs/*.csv | head -n 5
-#

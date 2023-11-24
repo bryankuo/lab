@@ -23,8 +23,8 @@ TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 
 RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
     uno_formula.py $DATE | tr -d '[],' ) )
-N_ROWS=${RETURN[0]%\'}
-N_ROWS=${N_ROWS#\'}
+echo "return: $RETURN"
+N_ROWS=${RETURN[0]}
 echo "#rows: "$N_ROWS
 
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`

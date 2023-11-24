@@ -42,7 +42,11 @@ path1  = os.path.join(DIR1, fname1)
 def source_factory(index, ticker):
     sources = [                                                         \
         "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
+
         "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+        # verifying...
+        # "https://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
+
         "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \

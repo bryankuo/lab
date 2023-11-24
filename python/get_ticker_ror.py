@@ -32,7 +32,6 @@ if ( len(sys.argv) < 3 ):
     print("usage: get_ticker_ror.py [ticker] [benchmark]")
     sys.exit(0)
 ticker = sys.argv[1]
-# print(" " + ticker)
 
 # t_1d  = float(twse_ror_figures[2])
 t_1w  = float(sys.argv[3].replace('\'',''))
