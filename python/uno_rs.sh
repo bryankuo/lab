@@ -5,8 +5,13 @@
 # \param in yyyymmdd as sheet identification
 # return 0
 
+if [ "$#" -lt 2 ]; then
+    echo "usage: uno_rs.sh [yyyymmdd]"
+    echo "       and let safari allow Remote Automation"
+    exit 22 # @see https://stackoverflow.com/a/50405954
+fi
+
 DIR0="datafiles/taiex/rs"
-# DIR0="."
 mkdir -p $DIR0
 
 # DATE=`date '+%Y%m%d'`
@@ -25,5 +30,6 @@ echo "#rows: "$N_ROWS
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
+tput bel
 
 exit 0
