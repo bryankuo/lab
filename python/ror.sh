@@ -17,11 +17,11 @@ clear
 # incase repeated: uniq -i datafiles/bountylist.txt
 # BOUNTY="datafiles/bountylist.txt"
 # BOUNTY="datafiles/taiex.watchlist.txt" # // FIXME: symbolic link
-BOUNTY="datafiles/watchlist.txt"
-NLINES=$(wc -l $BOUNTY | xargs | cut -d " " -f1)
-START=$index
-LEN=$NLINES
-echo "start "$START" len "$NLINES
+# BOUNTY="datafiles/watchlist.txt"
+# NLINES=$(wc -l $BOUNTY | xargs | cut -d " " -f1)
+# START=$index
+# LEN=$NLINES
+# echo "start "$START" len "$NLINES
 
 DIR0="datafiles/taiex/rs"
 mkdir -p $DIR0
@@ -49,11 +49,11 @@ if true; then
     TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
     echo "time: " $TIMESTAMP0 " looping start"
     echo "time: " $TIMESTAMP  " looping end"
-    n_fetched=$(ls -lt datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html \
+    n_fetched=$(ls -lt datafiles/taiex/rs/$DIR1/ror.[0-9][0-9][0-9][0-9].html \
 	| wc -l | xargs | cut -d " " -f1)
     echo "fetched:   $n_fetched"
 
-    effective=$(find ./datafiles/taiex/rs/ -type f \
+    effective=$(find ./datafiles/taiex/rs/$DIR1 -type f \
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
     echo "effective: $n_effective"
@@ -98,11 +98,10 @@ if false; then
     count=0
     echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF1
     # @see https://superuser.com/a/423086
-    effective=$(find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c)
+    effective=$(find $DIR1 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c)
     for f in $effective; do
-	TICKER=${f:26:4}
-	# echo -n $TICKER
-	MSG=$(printf "figuring %04d " $index)
+	TICKER=${f:32:4}
+	MSG=$(printf "%04d %04d %s" $index $TICKER $f)
 	echo -n $MSG
 	python3 get_ticker_ror.py $TICKER ${BENCHMARK[@]}
 	count=$(($count+1))
@@ -118,16 +117,17 @@ if false; then
 
     echo "watchlist: $NLINES"
 
-    n_fetched=$(ls -lt datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html \
+    n_fetched=$(ls -lt $DIR1/ror.[0-9][0-9][0-9][0-9].html \
 	| wc -l | xargs | cut -d " " -f1)
     echo "fetched:   $n_fetched"
 
-    n_effective=$(find ./datafiles/taiex/rs/ -type f \
+    n_effective=$(find $DIR1 -type f \
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
     echo "effective: $n_effective"
 
     echo $count"     parsed. "
+    tput bel
 fi
 
 read -p "Press enter to continue $OUTF1 ..."

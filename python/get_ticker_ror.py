@@ -32,6 +32,8 @@ if ( len(sys.argv) < 3 ):
     print("usage: get_ticker_ror.py [ticker] [benchmark]")
     sys.exit(0)
 ticker = sys.argv[1]
+# print(" " + ticker)
+
 # t_1d  = float(twse_ror_figures[2])
 t_1w  = float(sys.argv[3].replace('\'',''))
 t_1m  = float(sys.argv[4].replace('\'',''))
@@ -66,7 +68,7 @@ with open(h_path) as q:
 
     # print( len(soup.findAll('table')) )
     if ( len(soup.findAll('table')) != 5 ):
-        print(ticker + " no data, bypass") # // FIXME: filtered by fetching?
+        print(" " + ticker + " no data, bypass") # // FIXME: filtered by fetching?
         sys.exit(0)
 # // FIXME: fetch name
 # title = soup.find("meta",  {"name":"description"})
@@ -130,7 +132,5 @@ if ( r_1w.lower() != "N/A".lower() \
             +":n/a:n/a:"+"{:>.02f}".format(rs_ytd)+":n/a")
 else:
     print(" " + ticker + " NG " + r_1w + " " + r_1m + " " + r_3m + " " + r_ytd)
-
-print("\a")
 
 sys.exit(0)
