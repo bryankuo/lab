@@ -5,7 +5,7 @@
 # \param in yyyymmdd as sheet identification
 # return 0
 
-if [ "$#" -lt 2 ]; then
+if [ "$#" -lt 1 ]; then
     echo "usage: uno_rs.sh [yyyymmdd]"
     echo "       and let safari allow Remote Automation"
     exit 22 # @see https://stackoverflow.com/a/50405954
