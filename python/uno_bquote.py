@@ -177,45 +177,5 @@ finally:
 sys.exit(0)
 
 # @see https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_HLOOKUP_function
-
-def set_formula_1w():
-    addr = "$L1"
-    cell = active_sheet.getCellRangeByName(addr)
-    cell.String = "PR(1w)"
-    # msgbox(cell.AbsoluteName)
-    # cell.String = "a1b2c3"
-    # cell_stalk.Value = 1
-    # cell.Formula = "=C2+D2"
-    for i in range( 2, last_row + 1 ):
-        addr = "L"+str(i)
-        cell = active_sheet.getCellRangeByName(addr)
-        f = "=PERCENTRANK($D2:$D$"+str(last_row)+"; $D"+str(i)+")"
-        cell.Formula = f
-        cell.NumberFormat = nl
-        if ( 0.66 < cell.Value ):
-            cell.CellBackColor = 0x3faf46
-
-        addr_1m = "M"+str(i)
-        cell_1m = active_sheet.getCellRangeByName(addr_1m)
-        if ( cell_1m.Value < 0.34 and 0.75 < cell.Value ):
-            cell.CellBackColor = 0xffff38
-            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
-            outf0.write(tkr + ":" \
-                + "{:3.3f}".format(cell.Value) + ":" \
-                + "{:3.3f}".format(cell_1m.Value) + "\n")
-
-        rs_1w  = active_sheet.getCellRangeByName("L"+str(i)).Value
-        rs_1m  = active_sheet.getCellRangeByName("M"+str(i)).Value
-        rs_3m  = active_sheet.getCellRangeByName("N"+str(i)).Value
-        rs_ytd = active_sheet.getCellRangeByName("O"+str(i)).Value
-        if ( 0.75 < rs_1w and 0.75 < rs_1m and 0.75 < rs_3m and 0.75 < rs_ytd ):
-            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
-            outf1.write(tkr + ":" \
-                + "{:3.3f}".format(rs_1w) + ":" \
-                + "{:3.3f}".format(rs_1m) + ":" \
-                + "{:3.3f}".format(rs_3m) + ":" \
-                + "{:3.3f}".format(rs_ytd) + "\n")
-
-# ls -lt datafiles/taiex/rs/*.csv | head -n 5
 #
 # @see https://openpyxl.readthedocs.io
