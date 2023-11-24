@@ -30,6 +30,6 @@ echo "#rows: "$N_ROWS
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
+ls -lt datafiles/taiex/rs/*.20231125.???
 tput bel
-
 exit 0
