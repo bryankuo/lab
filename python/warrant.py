@@ -27,6 +27,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 
+if ( len(sys.argv) < 2 ):
+    print("python3 warrant.py [ticker]")
+    sys.exit(0)
+
 ticker = sys.argv[1]
 data = { \
     "stockNo": ticker, "duration1": 0, "duration2": 730, \
@@ -40,7 +44,9 @@ try:
     url1 = "https://www.google.com"
     url2 = "https://tw.yahoo.com"
 
+    browser.implicitly_wait(10)
     browser.get(url) # no tab name, 1 task is fine
+    browser.maximize_window()
 
     # scroll to bottom
     # @see https://stackoverflow.com/a/27760083
@@ -61,6 +67,7 @@ try:
     action.move_to_element(element).click(element).perform()
     # shortcut @see https://stackoverflow.com/a/68895534
     # browser.execute_script("arguments[0].click();", element)
+    browser.save_screenshot("ss0.png") # OK
 
     # then click 'BTNConfirm'
     action2 = webdriver.ActionChains(browser)
@@ -103,12 +110,14 @@ try:
     #
     # how to select list item @see qfii.py
 
+    browser.save_screenshot("ss1.png") # OK
+
 except (SessionNotCreatedException):
     print('turn on safari remote option.')
 
 finally:
-    time.sleep(10)
-    # browser.minimize_window() // OK
+    # time.sleep(10)
+    browser.minimize_window() # OK
     browser.quit()
 
 sys.exit(0)

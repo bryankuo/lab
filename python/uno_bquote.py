@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
-# /Applications/LibreOffice.app/Contents/Resources/python
-#  uno_formula.py [file]
+
 #
-# calc uno playground
+# batch update quote to calc
+# \param in after market csv
+# \param activity watchlist ods
 #
 # reference doc:
 # http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
@@ -15,7 +16,12 @@ from com.sun.star.uno import RuntimeException
 # from datetime import date
 
 yyyymmdd = sys.argv[1]
-sheet_name = "rs."+yyyymmdd
+DIR0="./datafiles/taiex/after.market"
+fname0 = yyyymmdd + '.csv'
+path0 = os.path.join(DIR0, fname0)
+# print(path0)
+
+sheet_name = "20220126"
 # print(sheet_name)
 
 # get the uno component context from the PyUNO runtime
@@ -67,26 +73,40 @@ guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 last_row = len(cursor.Rows)
 n_ticker = ( last_row - 2 ) + 1
 
-# import os
-# duration = 1  # seconds
-# freq = 440  # Hz
-# os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq))
-# sys.exit(0)
-
-DIR0="./datafiles/taiex/rs"
 # theday = datetime.today().strftime('%Y%m%d')
+infile0 = open(path0, "r")
+ilist = infile0.readlines()
+print( "# ilist: " + str(len(ilist)) )
 
-# rule 1
-fname1 = "leading75." + yyyymmdd + '.csv'
-path1 = os.path.join(DIR0, fname1)
-outf1 = open(path1, "w")
-outf1.write("ticker:pr1w:pr1m:pr3m:ytd\n")
+cell = active_sheet.getCellRangeByName("$BT1") # to figure out position
+# print( str(cell.getCellAddress().Column) + ", " + str(cell.getCellAddress().Row) )
+# print( cell.getCellAddress().Sheet )
+# print( cell.getCellAddress() )
+print( cell.Formula )
 
-# rule 2
-fname0 = "pr34above75." + yyyymmdd + '.csv'
-path0 = os.path.join(DIR0, fname0)
-outf0 = open(path0, "w")
-outf0.write("ticker:pr1w:pr1m\n")
+index = 1
+for l in ilist:
+    the_line = l.replace('\n','')
+    items = the_line.split(":")
+    tkr   = items[0]
+    close = items[1]
+    # @see https://shorturl.at/dotvB
+    # f = '=CONCAT("A",MATCH(' + tkr + ',A1:A3000,0))'
+    # f = "=MATCH("+tkr+",$A1:$A3000,0)"
+    cell = active_sheet.getCellRangeByName("$BT"+str(index)) # to figure out position
+    cell.Formula = '=CONCAT("A",MATCH("' + tkr + '",A1:A3000,0))'
+    # cell = active_sheet.getCellRangeByName("$BT3") # trick?
+    # cell = active_sheet.getCellRangeByName("$BT2")
+    # print( cell.Formula )
+    print( tkr + '{:8.2f}'.format(float(close)) + " " + cell.String + " " + cell.Formula )
+    cell.clearContents(4)
+    index += 1
+
+infile0.close()
+cell.String = ""
+sys.exit(0)
+
+# @see https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_HLOOKUP_function
 
 def set_formula_1w():
     addr = "$L1"
@@ -105,11 +125,19 @@ def set_formula_1w():
         if ( 0.66 < cell.Value ):
             cell.CellBackColor = 0x3faf46
 
+        addr_1m = "M"+str(i)
+        cell_1m = active_sheet.getCellRangeByName(addr_1m)
+        if ( cell_1m.Value < 0.34 and 0.75 < cell.Value ):
+            cell.CellBackColor = 0xffff38
+            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
+            outf0.write(tkr + ":" \
+                + "{:3.3f}".format(cell.Value) + ":" \
+                + "{:3.3f}".format(cell_1m.Value) + "\n")
+
         rs_1w  = active_sheet.getCellRangeByName("L"+str(i)).Value
         rs_1m  = active_sheet.getCellRangeByName("M"+str(i)).Value
         rs_3m  = active_sheet.getCellRangeByName("N"+str(i)).Value
         rs_ytd = active_sheet.getCellRangeByName("O"+str(i)).Value
-        # rule 1
         if ( 0.75 < rs_1w and 0.75 < rs_1m and 0.75 < rs_3m and 0.75 < rs_ytd ):
             tkr = active_sheet.getCellRangeByName("A"+str(i)).String
             outf1.write(tkr + ":" \
@@ -117,16 +145,6 @@ def set_formula_1w():
                 + "{:3.3f}".format(rs_1m) + ":" \
                 + "{:3.3f}".format(rs_3m) + ":" \
                 + "{:3.3f}".format(rs_ytd) + "\n")
-
-        addr_1m = "M"+str(i)
-        cell_1m = active_sheet.getCellRangeByName(addr_1m)
-        # rule 2
-        if ( cell_1m.Value < 0.34 and 0.75 < cell.Value ):
-            cell.CellBackColor = 0xffff38
-            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
-            outf0.write(tkr + ":" \
-                + "{:3.3f}".format(cell.Value) + ":" \
-                + "{:3.3f}".format(cell_1m.Value) + "\n")
 
 def set_formula_1m():
     addr = "$M1"
@@ -201,7 +219,7 @@ def draw_legend():
 
     addr = "$Q2"
     cell = active_sheet.getCellRangeByName(addr)
-    cell.String = "straight 4 PR75 or leading one-4th"
+    cell.String = "PR75 or leading one-4th"
 
     addr = "$P3"
     cell = active_sheet.getCellRangeByName(addr)
@@ -228,3 +246,7 @@ sys.exit(0)
 
 # ls -lt datafiles/taiex/rs/*.csv | head -n 5
 #
+
+#
+# @see https://openpyxl.readthedocs.io
+

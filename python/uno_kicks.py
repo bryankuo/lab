@@ -3,6 +3,8 @@
 # python3 uno_kicks.py [ticker] [quote]
 # return a list to caller
 
+# calc uno playground
+
 # reference doc:
 # shorturl.at/EIJV1
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
@@ -10,6 +12,7 @@
 # import socket  # only needed on win32-OOo3.0.0
 import uno, sys, time
 from datetime import datetime
+from com.sun.star.uno import RuntimeException
 
 # https://bit.ly/3sQRR4C
 # import msgbox
@@ -142,6 +145,25 @@ cursor.gotoStartOfUsedArea(True)
 last_row = len(cursor.Rows)
 sys.exit(0)
 '''
+
+# set number format. is ( model, doc ) interchangable in terms?
+doc = None
+numbers = None
+locale = None
+nl = None
+# trying:
+# @see https://ask.libreoffice.org/t/why-does-desktop-getcurrentcomponent-return-none-in-pyuno/59902/5
+while doc is None:
+    doc = desktop.getCurrentComponent()
+    numbers = doc.NumberFormats
+    locale = doc.CharLocale
+# instead of
+# @see https://ask.libreoffice.org/t/formatting-data-cell-from-macro-in-calc/23740
+# doc = XSCRIPTCONTEXT.getDocument()
+try:
+    nl = numbers.addNew( "###0.00",  locale )
+except RuntimeException:
+    nl = numbers.queryKey("###0.00", locale, False)
 
 addr_q     = "J1" # initial
 addr_52lo  = "K1"
@@ -286,6 +308,7 @@ set_value()
 
 cellq = active_sheet.getCellRangeByName(addr_q)
 cellq.Value = float(quote)
+cellq.NumberFormat = nl
 cellq.CellBackColor = 0xFFFF00
 time.sleep(.6)
 cellq.CellBackColor = 0xFFFFFF

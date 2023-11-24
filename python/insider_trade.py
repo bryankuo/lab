@@ -11,10 +11,12 @@
 # \parm  out a list containing close price
 # \return 0: success
 
-import sys, requests, time, os, re
+import sys, requests, time, os, re, random
 import urllib.request
 from datetime import timedelta, datetime, date
 from bs4 import BeautifulSoup
+sys.path.append(os.getcwd())
+import useragents as ua
 
 # source
 # http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm
@@ -32,7 +34,6 @@ elif ( int(sys.argv[2]) == 0 ):
     is_from_net = True
 else:
     is_from_net = False
-use_plain_req = True
 
 DIR0="./datafiles/taiex" # consider compatible with rank.sh
 fname = "insider_trade."+yyyymmdd+".html"
@@ -50,22 +51,16 @@ url = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
 if ( is_from_net ):
     if ( os.path.exists(path) ):
         os.remove(path) # clean up
-    # url = select_src( ticker, random.randint(1,4) )
-    if ( use_plain_req ):
-        response = requests.get(url)
-        # response.encoding = 'cp950'
-        soup = BeautifulSoup(response.text, 'html.parser')
-    else:
-        browser = webdriver.Safari( \
-            executable_path = '/usr/bin/safaridriver')
-        browser.get(url)
-        time.sleep(1)
-        page1 = browser.page_source
-        soup = BeautifulSoup(page1, 'html.parser')
-        browser.quit()
+    # response = requests.get(url)
+    user_agent = random.choice(ua.list)
+    headers = {'User-Agent': user_agent}
+    response = requests.get(url, headers=headers)
+
+    # response.encoding = 'cp950'
+    soup = BeautifulSoup(response.text, 'html.parser')
     with open(path, "w") as outfile2:
         outfile2.write(soup.prettify())
-        outfile2.close()
+    outfile2.close()
 else:
     with open(path) as q:
         soup = BeautifulSoup(q, 'html.parser')

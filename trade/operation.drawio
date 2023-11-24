@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-21T06:00:10.301Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="4xDty9LA3kwLc_gzLhCo" version="22.1.3" type="device">
+<mxfile host="app.diagrams.net" modified="2023-11-21T14:17:48.087Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="gnR85ZRCwVWS1cevNiKD" version="22.1.3" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
-    <mxGraphModel dx="1434" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1167" dy="606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -943,7 +943,7 @@
             <mxPoint x="579.5" y="4060" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3I5Y8zIOKp_ng-i0djw_-13" value="每週末檢視&lt;br&gt;MSCI排名變化&lt;br&gt;( rank.sh )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="3I5Y8zIOKp_ng-i0djw_-13" value="每週末檢視&lt;br&gt;市值排名變化&lt;br&gt;( rank.sh )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="200" y="3680" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="3I5Y8zIOKp_ng-i0djw_-14" value="一週分點&lt;br&gt;進出概況" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">

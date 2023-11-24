@@ -16,6 +16,12 @@ from selenium import webdriver
 # @see https://stackoverflow.com/a/76550727
 from selenium.webdriver.safari.service import Service
 
+# // TODO: pip install webdriver-manager==
+# pip install webdriver-manager==3.9.1
+# 4.0.1 NG
+# 3.9.1 NG
+# from webdriver_manager.safari import SafariDriverManager
+
 from selenium.common.exceptions import SessionNotCreatedException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -122,12 +128,22 @@ try:
         f_fname = "fund." + theday + '.html'
         f_path = os.path.join(DIR0, f_fname)
         if ( is_from_net ):
+            # pip3 install selenium==3.141.0
             browser = webdriver.Safari( \
                 executable_path = '/usr/bin/safaridriver')
-            # @see https://stackoverflow.com/a/49215247
-            # @see https://stackoverflow.com/a/56127898
+
+            # pip3 uninstall selenium; pip3 install -U selenium
             # browser = webdriver.Safari()
             # browser = webdriver.Safari(quiet = True)
+
+            # pip install selenium==
+            # pip3 uninstall selenium; pip3 install selenium==3.141.0
+            # pip3 install webdriver-manager==
+            # 3.9.1 NG
+            # pip3 install webdriver-manager==3.9.0 NG
+            # pip3 install -U webdriver-manager
+            # 4.0.1 NG
+            # browser = webdriver.Safari(executable_path=SafariDriverManager().install())
 
             browser.implicitly_wait(10)
             browser.maximize_window()

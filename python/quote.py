@@ -6,11 +6,13 @@
 #
 # // TODO: instant quote for type 2, 4 @see https://histock.tw/stock/rank.aspx?p=all
 #
-import sys, requests, time, json, os, calendar
+import sys, requests, time, json, os, calendar, random
 import urllib.request
 import urllib.parse
 from datetime import timedelta,datetime
 from bs4 import BeautifulSoup
+sys.path.append(os.getcwd())
+import useragents as ua
 # from pprint import pprint
 
 DIR0="./datafiles/taiex"
@@ -50,7 +52,9 @@ if ( list_type == "tse_" or list_type == "otc_" ):
 
     url0 = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?'
     url = url0 + urllib.parse.urlencode(criteria)
-    frame = requests.get(url).json() # OK
+    # frame = requests.get(url).json() # OK
+    headers = {'User-Agent': random.choice(ua.list)}
+    frame = requests.get(url, headers=headers).json()
 
     dump_frame = False
     if ( dump_frame ):
@@ -115,7 +119,9 @@ elif ( list_type == "tpex_" ):
     criteria = { \
         't': calendar.timegm(time.gmtime()) } # 1645506923059
     url = url0 + urllib.parse.urlencode(criteria)
-    response = requests.get(url)
+    # response = requests.get(url)
+    headers = {'User-Agent': random.choice(ua.list)}
+    response = requests.get(url, headers=headers)
     response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
     text = soup.get_text()      # @see https://cutt.ly/zPOUnnY
