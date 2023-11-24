@@ -127,11 +127,7 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
-<<<<<<< HEAD
-if false; then
-=======
 if true; then
->>>>>>> 0fcd551 (update)
     # // apply only today, history is not available
     get_limit_up
     get_limit_down
@@ -162,10 +158,6 @@ if true; then
     # python3 qfii.py $OUTF0 $ORIGIN $YR $MN $DAY
     echo "python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME"
     python3 qfii.py $OUTF0 $ORIGIN $DATE $DEAL $CHANGE $RISE $VOLUME
-<<<<<<< HEAD
-    exit 0
-=======
->>>>>>> 0fcd551 (update)
 fi
 
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
