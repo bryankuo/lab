@@ -46,7 +46,7 @@ idx = (this_date.weekday() + 1) % 7
 last_sat = this_date - timedelta(7+idx-6)
 # @see https://stackoverflow.com/a/18200686
 
-url = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
+url = "https://sjmain.esunsec.com.tw/z/ze/zei/zei.djhtm"
 
 if ( is_from_net ):
     if ( os.path.exists(path) ):
