@@ -98,11 +98,16 @@ cell5.Value = len(ilist)
 columns = active_sheet.getColumns()
 # cell.Value = len( columns )
 column = columns.getByName("B")
-column.Width = 6000 # works .7875" = 2000
+column.Width = 3500 # # 1.3590″, works, .7875" = 2000
+column = columns.getByName("J")
+column.Width = 2100 # 0.8111″ around 2100
 
 # @see https://stackoverflow.com/a/72261886
 # second_doc = desktop.create_spreadsheet() # testing
 
+t0 = time.time()
+# @see https://stackoverflow.com/a/18406412
+t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 try:
     index = 2
     cell6 = active_sheet.getCellRangeByName(FIDX)
@@ -161,6 +166,24 @@ except:
 
 finally:
     pass
+
+t1 = time.time()
+# print("{:>.0f} nanoseconds".format(t1-t0))
+# print("{:,} nanoseconds".format(t1-t0))
+cell0 = active_sheet.getCellRangeByName(TIKR)
+cell0.String = t_start
+column = columns.getByName("BL")
+column.Width = 5000 # works .7875" = 2000
+
+# @see https://stackoverflow.com/a/27780763
+hours, rem = divmod(t1-t0, 3600)
+minutes, seconds = divmod(rem, 60)
+cell0 = active_sheet.getCellRangeByName(POS)
+cell0.String = "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds)
+column = columns.getByName("BM")
+# column.Width = 3000
+# @see https://stackoverflow.com/a/50077601
+column.OptimalWidth = True
 
 olist = [ n_ticker, path0 ]
 print(olist)
