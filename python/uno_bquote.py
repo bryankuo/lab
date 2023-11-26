@@ -13,7 +13,6 @@
 import uno, sys, time, os
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
-# from datetime import date
 
 yyyymmdd = sys.argv[1]
 DIR0="./datafiles/taiex/after.market"
@@ -181,7 +180,7 @@ column.Width = 5000 # works .7875" = 2000
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
 cell0 = active_sheet.getCellRangeByName(POS)
-cell0.String = "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds)
+cell0.String = "{:0>2}:{:0>2}:{:05.3f}".format(int(hours),int(minutes),seconds)
 column = columns.getByName("BM")
 # column.Width = 3000
 # @see https://stackoverflow.com/a/50077601
