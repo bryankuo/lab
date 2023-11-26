@@ -117,3 +117,4 @@ httpbin.py: playground of httpbin,
 useragents.py: user agents global variables,
 uno_bquote.py: batch update quote,
 uno_bquote.sh: wrapper
+compare_volume.py: generate ratio by ticker,
