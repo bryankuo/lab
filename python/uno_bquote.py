@@ -116,7 +116,9 @@ try:
         # cursor.gotoStartOfUsedArea(True) # testing
         the_line = l.replace('\n','')
         items = the_line.split(":")
-        tkr   = items[0].strip()
+         # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
+        tkr   = items[0].strip() if ( 4 <= len(items[0]) ) \
+            else "{:>04d}".format(items[0]) # // FIXME:
         close = items[1]
         cell0 = active_sheet.getCellRangeByName(TIKR)
         cell0.Value = tkr

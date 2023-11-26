@@ -70,8 +70,10 @@ if ( from_file ):
                 close  = tds[2].text.strip()
                 p_chg  = tds[4].text.strip() # // FIXME: "--"
                 vol    = tds[11].text.strip().replace(',','')
-                #ratio  = '{:.4f}'. format(float(int(vol)/int(v_last)))
-                if ( 4 == len(tkr) ):
+                # // FIXME:
+                # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
+                # if ( 4 == len(tkr) ):
+                if ( 1101 <= int(tkr) and int(tkr) <= 9999 ):
                     # print( tkr + " " + vol )
                     outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
                     n_tickers += 1
