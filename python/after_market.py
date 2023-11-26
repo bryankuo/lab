@@ -101,3 +101,4 @@ sys.exit(0)
 # grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
 # ls -lt ./datafiles/taiex/after.market/20231120.csv
 # ./uno_launch.sh datafiles/activity_watchlist.ods
+# python3 compare_volume.py 20231124 20231123
