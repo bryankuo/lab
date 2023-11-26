@@ -6,7 +6,7 @@
 # \return html file
 # return 0
 
-import sys, requests, time, os, numpy, random, csv
+import sys, requests, time, os, numpy, random
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException

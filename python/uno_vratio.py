@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-# python3 compare_volume.py [dt1] [dt2]
-# \param in dt1 yyyymmdd
-# \param in dt2 yyyymmdd
-# \param out 3 column csv file
+# python3 compare_volume.py [today] [last day]
+# \param in dt1 today, yyyymmdd
+# \param in dt2 last day, yyyymmdd
 # return 0
 
 # @see https://tinyurl.com/y8442u6u
@@ -30,7 +29,7 @@ from datetime import datetime
 # import numpy
 # print(numpy.__file__) # 1.21.1
 
-import pandas as pd
+# import pandas as pd
 # v = pd.__version__ # 1.3.1
 # print(pd.__version__)
 # // TODO: using pandas inthe libreoffice python installation
@@ -49,12 +48,7 @@ path1  = os.path.join(DIR0, fname1)
 
 fname2 = dt2 + ".csv"
 path2  = os.path.join(DIR0, fname2)
-
-ofname = dt1 + ".vr.csv"
-opath  = os.path.join(DIR0, ofname)
-
 print("comparing: " + path1 + " " + path2)
-
 f1 = open(path1)
 f2 = open(path2)
 
@@ -82,32 +76,18 @@ if ( tkr1 != tkr2 ):
     sys.exit(0)
 
 print("size: " + str(len(df1)))
-
-# t0 = time.time_ns() / (10 ** 9)
-# t0 = time.time_ns()
-t0 = time.time()
-# @see https://stackoverflow.com/a/18406412
-t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
-
 try:
     ratio = []
-    for i in range(0, len(df1)):
+    for i in range(0, 10): # len(df1)):
         # print( "{:>4d}".format(i) + " " + str(df1[0][i]) \
         #    + " " + str(df1[3][i]) + " " + str(df2[3][i]) )
         r = [ int(df1[0][i]) , \
             float(df1[3][i])/ float(df2[3][i]) if ( df2[3][i] != 0 ) else 1, \
-            df2[3][i], \
-            df1[3][i] ]
+            ]
         # @see https://stackoverflow.com/a/394814
         ratio.append(r)
-    df3 = pd \
-        .DataFrame(ratio, columns=['ticker', 'ratio', 'last', 'volume'])
-    df3 = df3.sort_values("ticker")
+    df3 = pd.DataFrame(ratio, columns=['ticker', 'ratio', 'last', 'volume'])
     # pprint(df3)
-    # df.columns = ['m1', 'm2', 'm3']
-    # df.index = ['seq1', 'seq2']
-    df3.to_csv(opath)
-    df3.to_csv(opath, sep = ':')
 
 except:
     # traceback.format_exception(*sys.exc_info())
@@ -116,8 +96,57 @@ except:
     raise
 
 finally:
-    # pass
-    f1.close(); f2.close()
+    pass
+
+
+print("updating calc...")
+
+
+sheet_name = "20220126"
+localContext = uno.getComponentContext()
+resolver = localContext.ServiceManager\
+    .createInstanceWithContext( \
+        "com.sun.star.bridge.UnoUrlResolver", localContext )
+ctx = resolver.resolve(
+    "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
+smgr = ctx.ServiceManager
+desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
+model = desktop.getCurrentComponent()
+active_sheet = model.Sheets.getByName(sheet_name)
+doc = None
+numbers = None
+locale = None
+nl = None
+while doc is None:
+    doc = desktop.getCurrentComponent()
+    numbers = doc.NumberFormats
+    locale = doc.CharLocale
+try:
+    nl = numbers.addNew( "###0.000",  locale )
+except RuntimeException:
+    nl = numbers.queryKey("###0.000", locale, False)
+
+guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
+cursor = active_sheet.createCursorByRange(guessRange)
+cursor.gotoEndOfUsedArea(False)
+cursor.gotoStartOfUsedArea(True)
+guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+n_ticker = len(cursor.Rows) - 1
+
+columns = active_sheet.getColumns()
+columns.getByName("C:BG")
+columns.IsVisible = False
+
+# t0 = time.time_ns() / (10 ** 9)
+# t0 = time.time_ns()
+t0 = time.time()
+# @see https://stackoverflow.com/a/18406412
+t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
+
+for i in range(2, cursor.Rows):
+    tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
+    print(tkr)
+    # active_sheet.getCellRangeByName(
 
 # t1 = time.time_ns()
 # print("{:>.0f} nanoseconds".format(t1-t0))

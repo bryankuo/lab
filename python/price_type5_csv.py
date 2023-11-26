@@ -15,6 +15,8 @@ with requests.Session() as s:
     # decoded_content = download.content.decode('BIG5')
 
     cr = csv.reader(decoded_content.splitlines(), delimiter=',')
+    # // FIXME:
+    # UnicodeDecodeError: 'utf-8' codec can't decode byte 0xa4 in position 6: invalid start byte
     my_list = list(cr)
     for row in my_list:
         print(row)

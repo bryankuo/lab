@@ -118,3 +118,5 @@ useragents.py: user agents global variables,
 uno_bquote.py: batch update quote,
 uno_bquote.sh: wrapper
 compare_volume.py: generate ratio by ticker,
+compare_volume.sh: a wrapper,
+uno_vratio.py: update vr to calc via UNO,
