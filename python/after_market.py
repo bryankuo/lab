@@ -20,6 +20,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
+# // TODO: if selenium, click anchor of 1st th
+# of 1st tr of table CPHB1_gv, twice, to sort by ticker ascend
 from timeit import default_timer as timer
 from datetime import timedelta,datetime
 from pprint import pprint
