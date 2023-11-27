@@ -34,6 +34,16 @@
 # @see https://stackoverflow.com/a/5422144
 # pip install selenium==
 
+# keyword: 上市認購(售)權證 11/24
+# https://www.twse.com.tw/zh/stocks/inquiry.html
+#
+# type 2 official source:
+#
+# type 4 official source:
+# @see https://www.tpex.org.tw/web/extend/warrant/warrant_stat.php?l=zh-tw
+
+# type 5?
+
 import sys, requests, time, re, os
 import urllib.request
 from datetime import timedelta,datetime
