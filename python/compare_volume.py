@@ -64,7 +64,12 @@ f2 = open(path2)
 df1a = pd.read_csv(path1, sep=':', header=None)
 df2a = pd.read_csv(path2, sep=':', header=None)
 if ( len(df1a) != len(df2a) ):
+    # // TODO:
     print("size is different,")
+    # meld ./datafiles/taiex/after.market/20231127.sorted.csv ./datafiles/taiex/after.market/20231124.sorted.csv
+    # wc -l ./datafiles/taiex/after.market/20231127.csv
+    # @see https://stackoverflow.com/a/26249359
+    # sort -k1 -n -t: ./datafiles/taiex/after.market/20231127.csv > ./datafiles/taiex/after.market/20231127.sorted.csv
     sys.exit(0)
 
 # df1.sort_index(inplace=True)

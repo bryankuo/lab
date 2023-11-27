@@ -16,7 +16,7 @@ from com.sun.star.uno import RuntimeException
 
 yyyymmdd = sys.argv[1]
 DIR0="./datafiles/taiex/after.market"
-fname0 = yyyymmdd + '.csv'
+fname0 = yyyymmdd + '.csv' # // TODO: assume sorted,
 path0 = os.path.join(DIR0, fname0)
 
 sheet_name = "20220126"

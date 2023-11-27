@@ -55,7 +55,7 @@ if ( from_file ):
     fname = yyyymmdd + '.html'
     path = os.path.join(DIR0, fname)
     print(path)
-    fname0 = yyyymmdd + '.csv'
+    fname0 = yyyymmdd + '.unsorted.csv'
     path0 = os.path.join(DIR0, fname0)
     print(path0)
     with open(path, 'r') as fp:
@@ -72,10 +72,8 @@ if ( from_file ):
                 close  = tds[2].text.strip()
                 p_chg  = tds[4].text.strip() # // FIXME: "--"
                 vol    = tds[11].text.strip().replace(',','')
-                # // FIXME:
                 # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
-                # if ( 4 == len(tkr) ):
-                if ( 1101 <= int(tkr) and int(tkr) <= 9999 ):
+                if ( 4 == len(tkr) and 1101 <= int(tkr) and int(tkr) <= 9999 ):
                     # print( tkr + " " + vol )
                     outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
                     n_tickers += 1
@@ -98,11 +96,3 @@ else:
         outfile2.close()
 
 sys.exit(0)
-# could be 0
-# sort by price descending
-# python3 after_market.py 20231116 0
-# python3 after_market.py 20231116 1
-# grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
-# ls -lt ./datafiles/taiex/after.market/20231120.csv
-# ./uno_launch.sh datafiles/activity_watchlist.ods
-# python3 compare_volume.py 20231124 20231123

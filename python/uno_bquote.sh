@@ -10,9 +10,14 @@ if [ "$#" -lt 1 ]; then
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
 
-RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
-    uno_bquote.py $1 | tr -d '[],' ) )
+if false; then
+    # no output
+    RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
+	uno_bquote.py $1 | tr -d '[],' ) )
+fi
 
-echo $RETURN
+/Applications/LibreOffice.app/Contents/Resources/python uno_bquote.py $1
+
+# echo $RETURN
 
 exit 0
