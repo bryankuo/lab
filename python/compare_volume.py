@@ -101,7 +101,7 @@ try:
         # @see https://stackoverflow.com/a/394814
         ratio.append(r)
     df3 = pd \
-        .DataFrame(ratio, columns=['ticker', 'ratio', 'last', 'volume'])
+        .DataFrame(ratio, columns=['ticker', 'ratio', 'volume', 'last'])
     df3 = df3.sort_values("ticker")
     # pprint(df3)
     # df.columns = ['m1', 'm2', 'm3']
