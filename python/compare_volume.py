@@ -94,10 +94,10 @@ try:
     for i in range(0, len(df1)):
         # print( "{:>4d}".format(i) + " " + str(df1[0][i]) \
         #    + " " + str(df1[3][i]) + " " + str(df2[3][i]) )
-        r = [ int(df1[0][i]) , \
+        r = [ "{:>04d}".format(int(df1[0][i])) , \
             float(df1[3][i])/ float(df2[3][i]) if ( df2[3][i] != 0 ) else 1, \
-            df2[3][i], \
-            df1[3][i] ]
+            df1[3][i], \
+            df2[3][i] ] # // FIXME: 0051...
         # @see https://stackoverflow.com/a/394814
         ratio.append(r)
     df3 = pd \

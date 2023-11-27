@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 compare_volume.py [today] [last day]
+# python3 uno_vratio.py [today] [last day]
 # \param in dt1 today, yyyymmdd
 # \param in dt2 last day, yyyymmdd
 # return 0
@@ -10,7 +10,7 @@
 # volume is the leading indicator of stock prices
 # @see https://tinyurl.com/2cau7m5j
 
-import os, sys, time
+import os, sys, time, csv
 from pprint import pprint
 from datetime import datetime
 
@@ -29,13 +29,16 @@ from datetime import datetime
 # import numpy
 # print(numpy.__file__) # 1.21.1
 
-# import pandas as pd
+# import pandas as pd # // FIXME:
 # v = pd.__version__ # 1.3.1
 # print(pd.__version__)
 # // TODO: using pandas inthe libreoffice python installation
 
+import uno
+from com.sun.star.uno import RuntimeException
+
 if ( len(sys.argv) < 2 ):
-    print("python3 compare_volume.py [dt1] [dt2]")
+    print("python3 uno_vratio.py [dt1] [dt2]")
     sys.exit(0)
 
 dt1 = sys.argv[1]
@@ -43,66 +46,22 @@ dt2 = sys.argv[2]
 
 DIR0="./datafiles/taiex/after.market"
 
-fname1 = dt1 + ".csv"
-path1  = os.path.join(DIR0, fname1)
+ifname1 = dt1 + ".vr.csv"
+ipath1  = os.path.join(DIR0, ifname1)
+print("update calc loading: " + ipath1)
+f1 = open(ipath1)
 
-fname2 = dt2 + ".csv"
-path2  = os.path.join(DIR0, fname2)
-print("comparing: " + path1 + " " + path2)
-f1 = open(path1)
-f2 = open(path2)
+data = list(csv.reader(f1, delimiter=':')) # list from 2d csv
+# print(data[0])
+# print(data[1][4])
 
-# reader=csv.reader(f1, delimiter=':') #
-# df1=list(reader)
+# df1 = pd.read_csv(path1, sep=':', header=['ticker', 'ratio', 'last', 'volume'])
+# df2a = pd.read_csv(path2, sep=':', header=None)
 
-df1a = pd.read_csv(path1, sep=':', header=None)
-df2a = pd.read_csv(path2, sep=':', header=None)
-if ( len(df1a) != len(df2a) ):
-    print("size is different,")
-    sys.exit(0)
-
-# df1.sort_index(inplace=True)
-# df1=df1.sort_index()
-df1=df1a.sort_values(0).copy()
+# df1=df1a.sort_values(0).copy()
+# print("size: " + str(len(df1)))
 # pprint(df1)
 
-df2=df2a.sort_values(0, ascending=True).copy()
-# df2.sort_values(0, inplace=True)
-
-tkr1 = df1[0].tolist()
-tkr2 = df2[0].tolist()
-if ( tkr1 != tkr2 ):
-    print("list is different,")
-    sys.exit(0)
-
-print("size: " + str(len(df1)))
-try:
-    ratio = []
-    for i in range(0, 10): # len(df1)):
-        # print( "{:>4d}".format(i) + " " + str(df1[0][i]) \
-        #    + " " + str(df1[3][i]) + " " + str(df2[3][i]) )
-        r = [ int(df1[0][i]) , \
-            float(df1[3][i])/ float(df2[3][i]) if ( df2[3][i] != 0 ) else 1, \
-            ]
-        # @see https://stackoverflow.com/a/394814
-        ratio.append(r)
-    df3 = pd.DataFrame(ratio, columns=['ticker', 'ratio', 'last', 'volume'])
-    # pprint(df3)
-
-except:
-    # traceback.format_exception(*sys.exc_info())
-    e = sys.exc_info()[0]
-    print("Unexpected error:", sys.exc_info()[0])
-    raise
-
-finally:
-    pass
-
-
-print("updating calc...")
-
-
-sheet_name = "20220126"
 localContext = uno.getComponentContext()
 resolver = localContext.ServiceManager\
     .createInstanceWithContext( \
@@ -112,7 +71,9 @@ ctx = resolver.resolve(
 smgr = ctx.ServiceManager
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 model = desktop.getCurrentComponent()
+sheet_name = "20220126"
 active_sheet = model.Sheets.getByName(sheet_name)
+
 doc = None
 numbers = None
 locale = None
@@ -133,9 +94,10 @@ cursor.gotoStartOfUsedArea(True)
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 n_ticker = len(cursor.Rows) - 1
 
-columns = active_sheet.getColumns()
-columns.getByName("C:BG")
-columns.IsVisible = False
+VR="BI"
+VOL="BJ"
+LAST="BK"
+UPTD = "$BH"
 
 # t0 = time.time_ns() / (10 ** 9)
 # t0 = time.time_ns()
@@ -143,17 +105,67 @@ t0 = time.time()
 # @see https://stackoverflow.com/a/18406412
 t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
-for i in range(2, cursor.Rows):
-    tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
-    print(tkr)
-    # active_sheet.getCellRangeByName(
+try:
+    columns = active_sheet.getColumns()
+    # columns.IsVisible = False # all hide
 
+    # @see http://surl.li/nottj
+    the_range = active_sheet.getCellRangeByName("C:BG")
+    the_range.Columns.IsVisible = False
+    i = 1
+    active_sheet.getCellRangeByName(  VR+str(i)).String = "V. ratio"
+    active_sheet.getCellRangeByName(  VR+str(i)).NumberFormat = nl
+    active_sheet.getCellRangeByName( VOL+str(i)).String = "Last V."
+    active_sheet.getCellRangeByName(LAST+str(i)).String = "Volume"
+
+    tkrs = [ x[1] for x in data ]
+    rtos = [ x[2] for x in data ]
+    last = [ x[3] for x in data ]
+    vol  = [ x[4] for x in data ]
+
+    start = 1
+    for i in range(2, len(cursor.Rows)+1):
+        tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
+        found = False
+        for j in range(start, len(tkrs)):
+            # print(str(i)+" "+str(j))
+            if ( tkrs[j] == tkr ):
+                cell = active_sheet.getCellRangeByName(VR+str(i))
+                cell.Value = rtos[j]
+                cell.NumberFormat = nl
+                active_sheet.getCellRangeByName(VOL+str(i)).Value  = last[j]
+                active_sheet.getCellRangeByName(LAST+str(i)).Value =  vol[j]
+                cell = active_sheet.getCellRangeByName(UPTD + str(i))
+                cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
+                start = j + 1
+                found = True
+                break
+        if ( found ):
+            print("i {:0>4} tkr {:0>4} found {:0>4}".format(i, tkr, j))
+        else:
+            print("i {:0>4} tkr {:0>4} not found ".format(i, tkr))
+            start = 1
+
+    the_range = active_sheet.getCellRangeByName("BI:Bk")
+    the_range.Columns.OptimalWidth = True
+
+except:
+    # traceback.format_exception(*sys.exc_info())
+    e = sys.exc_info()[0]
+    print("Unexpected error:", sys.exc_info()[0])
+    raise
+
+finally:
+    pass
+
+f1.close()
 # t1 = time.time_ns()
 # print("{:>.0f} nanoseconds".format(t1-t0))
 # print("{:,} nanoseconds".format(t1-t0))
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
+print("start: " + t_start)
 print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 
 sys.exit(0)

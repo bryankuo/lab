@@ -19,6 +19,10 @@ DATE=$1
 # assume ror.20231001.ods, sheet name : 'ror.20231001'
 INF0="$2"
 
+OUTF0="$DIR0/rs.$DATE.ods"
+OUTF1="$DIR0/leading75.$DATE.csv"
+OUTF2="$DIR0/pr34above75.$DATE.csv"
+
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 
 RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
@@ -30,6 +34,11 @@ echo "#rows: "$N_ROWS
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
-ls -lt datafiles/taiex/rs/*.20231125.???
+
 tput bel
+read -p "Press enter to continue copying ..."
+ls -lt datafiles/taiex/rs/*.$DATE.???
+
+cp -v $OUTF0 $OUTF1 $OUTF2 ~/Dropbox/
+
 exit 0

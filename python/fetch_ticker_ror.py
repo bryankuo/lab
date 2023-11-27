@@ -39,14 +39,11 @@ DIR1   = "./datafiles"
 fname1 = "watchlist.txt"
 path1  = os.path.join(DIR1, fname1)
 
-def source_factory(index, ticker):
+def source_factory(index, ticker): # the most comprehensive one
     sources = [                                                         \
         "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
-
-        "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        # verifying...
-        # "https://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-
+        # site is down
+        # "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
@@ -56,6 +53,11 @@ def source_factory(index, ticker):
         "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
         "https://sjmain.esunsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
+        # // TODO: to be verified
+        # "https://kgieworld.moneydj.com/z/con_CSA.htm?A=1227"
+        # "masterlink.com.tw"
+        # "cathaysec.com.tw"
+        # "www.yuanta.com.tw/eYuanta/Securities"
     ]
     seed = random.randint(0, len(sources)-1)
     url = sources[seed]

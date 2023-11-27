@@ -218,6 +218,9 @@ while true ; do
 done
 
 echo -ne '\007'
+
+cp -v $OUTF1 $O2B $O2S $OQA ~/Dropbox
+
 read -p "Press enter to continue $OUTF1 ..."
 /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
 "$OUTF1" \

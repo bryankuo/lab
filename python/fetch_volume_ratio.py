@@ -24,7 +24,7 @@ from array import *
 
 # src1:  50, more reusable than the others, plain request ok
 '''
-sources = [ # the most comprehensive one                                             \
+sources = [                                              \
         # param 0: type 2, 1: type 4
     [   "https://concords.moneydj.com/z/zg/zg_B_0_0.djhtm",        \
         "https://concords.moneydj.com/z/zg/zg_B_1_0.djhtm" ],      \
