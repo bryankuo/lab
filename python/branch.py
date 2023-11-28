@@ -175,7 +175,6 @@ sys.exit(0)
 
 # https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=8450&b=0038003400350042
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
-# http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 
 # 個股單一券商歷史明細 6 sources so far @see fetch_ticker_ror.py
 # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2618&BHID=9200&b=9268
@@ -199,16 +198,16 @@ sys.exit(0)
 
 
 broker_group = [ \
-    # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9200&b=9268
+    # https://concords.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&b=9268
     9200, 9268, \
     9217, 9875, 9658, \
     9697, 9100, 8880, 8450, 8440, \
 ]
 
 huwei_gang = [ \
-    # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9800&b=003900380030006c
+    # https://concords.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9800&b=003900380030006c
     '980I', \
-    # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9300&b=9377
+    # https://concords.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9300&b=9377
     9377 \
 ]
 
