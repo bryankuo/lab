@@ -34,7 +34,7 @@ ticker_news = \
 # https://www.moneydj.com/kmdj/common/listnewarticles.aspx?svc=NW&a=TW.1218
 
 fundamental = \
-    "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
+    "https://concords.moneydj.com/z/zc/zca/zca.djhtm?a=" + ticker
 
 comparison = "https://mopsfin.twse.com.tw"
 # // TODO: 重要財務比率(type 2,4,5)

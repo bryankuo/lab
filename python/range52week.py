@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
 # source 1
-url = "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca.djhtm?a=" + ticker
+url = "https://concords.moneydj.com/z/zc/zca/zca.djhtm?a=" + ticker
 # source 2
 # https://concords.moneydj.com/z/zc/zca/zca_1101.djhtm
 url = "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm"

@@ -19,7 +19,6 @@ sys.path.append(os.getcwd())
 import useragents as ua
 
 # source
-# http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm
 # https://www.moneydj.com/Z/ZE/ZEI/ZEI.djhtm
 # https://www.sinotrade.com.tw/Stock/Stock_3_6?ch=Stock_3_6_6
 
