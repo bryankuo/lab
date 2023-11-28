@@ -37,7 +37,7 @@
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=9200&b=9208&c=B&e=2022-4-14&f=2022-4-15
 
 # source 5: *
-# http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9800&b=9875
+# https://concords.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9800&b=9875
 
 # source 6, for each broker, for each ticker,
 #  display positions in time period

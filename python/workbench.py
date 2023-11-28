@@ -22,12 +22,10 @@ src2 ="https://histock.tw/stock/branch.aspx?no=" + ticker
 
 src3 ="https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&b=9208"
 src4 ="https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440"
-src5 ="http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440"
-
 
 technical ="https://invest.cnyes.com/twstock/TWS/2015/technical"
 
-urls = [ typ2, typ4, src2, src3, src4, src5, technical ]
+urls = [ typ2, typ4, src2, src3, src4, technical ]
 
 i = 0
 for url in urls:

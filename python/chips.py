@@ -35,7 +35,7 @@ else:
     monthly_turnaround = ""
 
 major_holders = "https://tw.stock.yahoo.com/quote/"+ticker+".TW/major-holders"
-transfer_lastmonth = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
+transfer_lastmonth = "https://concords.moneydj.com/z/ze/zei/zei.djhtm"
 # sii daily transfer
 # https://mops.twse.com.tw/mops/web/t56sb12_q1
 # // TODO: counting # of upload weekly

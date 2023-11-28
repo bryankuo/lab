@@ -127,8 +127,8 @@ block_pair_trade = "https://www.twse.com.tw/block/BFIAUU" + \
     "?response=html&date="+yyyymmdd_e+"&selectType=S"
 
 # 申報轉讓明細, update on daily bases
-insider_trade = "http://jsjustweb.jihsun.com.tw/z/ze/zei/zei.djhtm"
-# "https://www.esunsec.com.tw/tw-market/z/ze/zei/zei.djhtm"
+insider_trade = "https://concords.moneydj.com/z/ze/zei/zei.djhtm"
+# "https://sjmain.esunsec.com.tw/z/ze/zei/zei.djhtm" works
 # "https://www.moneydj.com/Z/ZE/ZEI/ZEI.djhtm"
 # how to link to https://mops.twse.com.tw/mops/web/t93sb06 ?
 # 一般交易: distribution

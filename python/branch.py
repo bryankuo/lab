@@ -177,7 +177,7 @@ sys.exit(0)
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
 
-# 個股單一券商歷史明細 7 sources so far
+# 個股單一券商歷史明細 6 sources so far @see fetch_ticker_ror.py
 # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2618&BHID=9200&b=9268
 # https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2618&BHID=9200&b=9217
 # 近60日
@@ -189,15 +189,14 @@ sys.exit(0)
 # second source
 # http://tcfhcsec.moneydj.com/z/zc/zco/zco0/zco0.djhtm?a=3413&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
 # third source
-# http://jsjustweb.jihsun.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
-# fourth source
 # https://moneydj.emega.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
-# fifth source
+# fourth source
 # https://just2.entrust.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
-# sixth source
+# fifth source
 # https://stockchannelnew.sinotrade.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
-# seventh source
+# sixth source
 # https://concords.moneydj.com/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
+
 
 broker_group = [ \
     # http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=9200&b=9268

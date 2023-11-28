@@ -23,47 +23,7 @@ from array import *
 # filedate = sys.argv[1]
 
 # src1:  50, more reusable than the others, plain request ok
-'''
-sources = [                                              \
-        # param 0: type 2, 1: type 4
-    [   "https://concords.moneydj.com/z/zg/zg_B_0_0.djhtm",        \
-        "https://concords.moneydj.com/z/zg/zg_B_1_0.djhtm" ],      \
-
-    [   "http://jsjustweb.jihsun.com.tw/z/zg/zg_B_0_0.djhtm",      \
-        "http://jsjustweb.jihsun.com.tw/z/zg/zg_B_1_0.djhtm" ],    \
-
-        # FIXME: response.encoding = 'cp950' matters
-    [   "https://trade.ftsi.com.tw/z/zg/zg_B_0_0.djhtm",           \
-        "https://trade.ftsi.com.tw/z/zg/zg_B_1_0.djhtm"],          \
-
-    [   "https://just2.entrust.com.tw/z/zg/zg_B_0_0.djhtm",        \
-        "https://just2.entrust.com.tw/z/zg/zg_B_1_0.djhtm"],       \
-        # 1,2,3,4,5,7,10,20,30 day rank, works on Saturday
-
-    # not allowed, // TODO: how about http?
-    [   "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zg_B_0_0.djhtm",  \
-        "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zg_B_1_0.djhtm"],
-
-    [   "https://stockchannelnew.sinotrade.com.tw/z/zg/zg_B_0_0.djhtm",  \
-        "https://stockchannelnew.sinotrade.com.tw/z/zg/zg_B_1_0.djhtm"],
-
-    # SSLError Exception, use http instead
-    [   "http://moneydj.emega.com.tw/z/zg/zg_B_0_0.djhtm",        \
-        "http://moneydj.emega.com.tw/z/zg/zg_B_1_0.djhtm"],        \
-
-    [   "https://stock.capital.com.tw/z/zg/zg_B_0_0.djhtm",        \
-        "https://stock.capital.com.tw/z/zg/zg_B_1_0.djhtm"],        \
-
-    [   "https://fund.hncb.com.tw/z/zg/zg_B_0_0.djhtm",        \
-        "https://fund.hncb.com.tw/z/zg/zg_B_1_0.djhtm"],        \
-
-    [   "https://just.honsec.com.tw/z/zg/zg_B_0_0.djhtm", \
-        "https://just.honsec.com.tw/z/zg/zg_B_1_0.djhtm"], \
-
-    [   "https://sjmain.esunsec.com.tw/z/zg/zg_B_0_0.djhtm", \
-        "https://sjmain.esunsec.com.tw/z/zg/zg_B_1_0.djhtm"] \
-]
-'''
+# https://concords.moneydj.com/Z/ZG/ZG_BB.djhtm
 
 # src2: 300, https://goodinfo.tw/tw2/StockList.asp?RPT_TIME=&MARKET_CAT=熱門排行&INDUSTRY_CAT=成交量增加張數–當日成交量與昨日比%40%40成交量增加張數%40%40當日成交量與昨日比
 # f = { 'RANK' : '1' }

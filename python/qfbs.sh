@@ -79,7 +79,7 @@ OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 
-FROM_SROUCE=($(shuf -i 1-5 -n 1)) # @see https://shorturl.at/AOQU6
+FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
     echo "get_limit_up()+"
     trash "$DIR0/"limit.up.$DATE.csv

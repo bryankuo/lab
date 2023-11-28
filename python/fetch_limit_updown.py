@@ -58,12 +58,6 @@ sources = [                                                         \
         # oMainTable ( 6, 11), 1st 2 row
         # //FIXME: there is no data for last trade day on Saturday
 
-    [   "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_0_0.djhtm",      \
-        "http://jsjustweb.jihsun.com.tw/z/zg/zg_ac_1_0.djhtm",      \
-        "http://jsjustweb.jihsun.com.tw/z/zg/zg_ab_0_0.djhtm",      \
-        "http://jsjustweb.jihsun.com.tw/z/zg/zg_ab_1_0.djhtm" ],    \
-        # oMainTable ( 6, 7)
-
         # FIXME: response.encoding = 'cp950' matters
     [   "https://trade.ftsi.com.tw/z/zg/zg_ac_0_0.djhtm",           \
         "https://trade.ftsi.com.tw/z/zg/zg_ac_1_0.djhtm",           \

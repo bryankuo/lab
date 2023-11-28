@@ -29,7 +29,7 @@ print(tid)
 # // TODO: https://www.companys.com.tw/2052473/97257913
 
 ticker_news = \
-    "http://jsjustweb.jihsun.com.tw/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
+    "https://concords.moneydj.com/Z/ZC/ZCV/ZCV_" + ticker + ".djhtm"
 # // TODO: news
 # https://www.moneydj.com/kmdj/common/listnewarticles.aspx?svc=NW&a=TW.1218
 

@@ -12,9 +12,9 @@ import sys, os
 from datetime import datetime
 
 ticker = sys.argv[1]
+# @see fetch_ticker_ror.py
 sources = [                                                         \
     "https://concords.moneydj.com/z/zc/zcw/zcw1_"+ticker+".djhtm",
-    "https://jsjustweb.jihsun.com.tw/z/zc/zcw/zcw_"+ticker+".djhtm",
     "https://trade.ftsi.com.tw/z/zc/zcw/zcw_" + ticker + ".djhtm",
     "https://just2.entrust.com.tw/z/zc/zcw/zcw.djhtm?A=" + ticker,
     "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcw/zcw1_"+ticker+".djhtm",
@@ -180,7 +180,7 @@ def get_sma(ticker, seed):
 
 if __name__ == "__main__":
     import sys, requests, random
-    n = random.randint(0,9)
+    n = random.randint(0,8)
     ticker = sys.argv[1]
     if ( 2 == len(sys.argv) ):
         print_header(ticker, None)

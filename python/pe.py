@@ -11,8 +11,7 @@ import sys
 ticker = sys.argv[1]
 sources = [                                                         \
     "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm",
-    "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
-    "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
+    "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
 ]
 
 def print_header(ticker, ofile):
@@ -93,7 +92,7 @@ if __name__ == "__main__":
     from bs4 import BeautifulSoup
 
     ticker = sys.argv[1]
-    n = random.randint(0,2)
+    n = random.randint(0,1)
     if ( 2 == len(sys.argv) ):
         print_header(ticker, None)
         print_body(ticker, None, n)

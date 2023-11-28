@@ -13,7 +13,6 @@ import sys
 ticker = sys.argv[1]
 sources = [                                                         \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zcl/zcl.djhtm?a=" + ticker + "&b=2",
-    "http://jsjustweb.jihsun.com.tw/z/zc/zcl/zcl.djhtm?a=" + ticker + "&b=2",
     "https://concords.moneydj.com/z/zc/zcl/zcl.djhtm?a=" + ticker + "&b=2"
 ]
 # // FIXME: per, eps, range, sma5
@@ -91,7 +90,7 @@ if __name__ == "__main__":
     ticker = sys.argv[1]
     # random source selection
     # random.seed()
-    n = random.randint(0,2)
+    n = random.randint(0,1) # @see fetch_ticker_ror.py for sites
     if ( 2 == len(sys.argv) ):
         print_header(ticker, None)
         print_body(ticker, None, n)

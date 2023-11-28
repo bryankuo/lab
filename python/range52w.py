@@ -6,9 +6,9 @@
 # return 0: success
 import sys
 ticker = sys.argv[1]
+# @see fetch_ticker_ror.py source factory
 sources = [                                                         \
     "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm",
-    'http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_' + ticker + '.djhtm',
     "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm",
     "https://just2.entrust.com.tw/z/zc/zca/zca.djhtm?A=" + ticker
 ]
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     import sys, requests, random
 
     ticker = sys.argv[1]
-    n = random.randint(0,3)
+    n = random.randint(0,2)
     if ( 2 == len(sys.argv) ):
         print_header(ticker, None)
         print_body(ticker, None, n)
