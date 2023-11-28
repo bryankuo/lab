@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 compare_volume.py [dt1] [dt2]
-# \param in dt1 yyyymmdd
+# \param in dt1 yyyymmdd, which is newer
 # \param in dt2 yyyymmdd
 # \param out 3 column csv file
 # return 0

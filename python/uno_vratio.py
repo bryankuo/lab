@@ -123,7 +123,7 @@ try:
     last = [ x[3] for x in data ]
     vol  = [ x[4] for x in data ]
 
-    start = 1
+    start = 0
     for i in range(2, len(cursor.Rows)+1):
         tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
         found = False
