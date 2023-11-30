@@ -82,7 +82,7 @@ OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
     echo "get_limit_up()+"
-    trash "$DIR0/"limit.up.$DATE.csv
+    # trash "$DIR0/"limit.up.$DATE.csv
     # echo "fetch limit up type 2 from $FROM_SROUCE ..."
     OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
     echo ${OUTPUT[@]}
@@ -105,7 +105,7 @@ get_limit_up() {
 
 get_limit_down() {
     echo "get_limit_down()+"
-    trash "$DIR0/"limit.down.$DATE.csv
+    # trash "$DIR0/"limit.down.$DATE.csv
     # echo "fetch limit down type 2 from $FROM_SROUCE ..."
     OUTPUT=($(python3 fetch_limit_updown.py 0 $DATE 0 $FROM_SROUCE | tr -d '[],'))
     echo ${OUTPUT[@]}

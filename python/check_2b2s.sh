@@ -29,4 +29,6 @@ gvim +1 $DIR0"/"newb.$DATE.txt \
     +"tabnew +1 $DIR0"/"news.$DATE.txt" \
     +"tabnew +1 $DIR0"/"cn2s.$DATE.txt"
 
+cp -v $N_CON2BUY $N_NEW_BUY $N_NEW_SEL $N_CON2SEL ~/Dropbox
+
 exit 0

@@ -30,4 +30,9 @@ wc -l  "$DIR0/$DATE.csv"
 
 cp -v "$DIR0/$DATE.csv" ~/Dropbox/after.market.$DATE.csv
 
+# ./compare_volume.sh 20231129 20231128
+N_DAYS=$(ls -lt datafiles/taiex/after.market/????????.csv | wc -l | xargs | cut -d " " -f1)
+echo "there are $N_DAYS recorded."
+ls -lt datafiles/taiex/after.market/????????.csv | head -n 5
+
 exit 0
