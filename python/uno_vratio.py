@@ -115,13 +115,13 @@ try:
     i = 1
     active_sheet.getCellRangeByName(  VR+str(i)).String = "V. ratio"
     active_sheet.getCellRangeByName(  VR+str(i)).NumberFormat = nl
-    active_sheet.getCellRangeByName( VOL+str(i)).String = "Last V."
-    active_sheet.getCellRangeByName(LAST+str(i)).String = "Volume"
+    active_sheet.getCellRangeByName( VOL+str(i)).String = "Volume"
+    active_sheet.getCellRangeByName(LAST+str(i)).String = "Last V."
 
-    tkrs = [ x[1] for x in data ]
-    rtos = [ x[2] for x in data ]
-    last = [ x[3] for x in data ]
-    vol  = [ x[4] for x in data ]
+    tkrs = [ x[0] for x in data ]
+    rtos = [ x[1] for x in data ]
+    last = [ x[2] for x in data ]
+    vol  = [ x[3] for x in data ]
 
     start = 0
     for i in range(2, len(cursor.Rows)+1):
