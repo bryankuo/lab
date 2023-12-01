@@ -43,6 +43,31 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 model = desktop.getCurrentComponent()
 active_sheet = model.Sheets.getByName(sheet_name)
 
+# ====test
+
+# https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html
+# active_sheet = model.Sheets.getByIndex(1) # works
+# sname = "strategies"
+sname = "Sheet7"
+active_sheet = model.Sheets.getByName(sname) # works
+# model.getCurrentController.setActiveSheet(the_sheet) # NG
+# https://forum.openoffice.org/en/forum/viewtopic.php?p=371055#p371055
+model.CurrentController.setActiveSheet(active_sheet) # works
+# Controller = model.getcurrentController
+# Controller.setActiveSheet(active_sheet)
+# assume no more than 3000 listed.
+guessRange = active_sheet.getCellRangeByPosition(0, 0, 6, 30) # works
+# look up the actual used area within the guess area
+cursor = active_sheet.createCursorByRange(guessRange)
+cursor.gotoEndOfUsedArea(False)
+cursor.gotoStartOfUsedArea(True)
+# guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows), 1)
+print(guessRange.getDataArray())
+last_row = len(cursor.Rows)
+print("done! "+ str(last_row))
+sys.exit(0)
+# ====test
+
 doc = None
 numbers = None
 locale = None
@@ -60,6 +85,7 @@ try:
     nl = numbers.addNew( "###0.00",  locale )
 except RuntimeException:
     nl = numbers.queryKey("###0.00", locale, False)
+
 
 # take 53:20 to complete
 # now  00:42 by sorted data
