@@ -37,7 +37,7 @@ TSE_ROR="$DIR1/ror.twse.html"
 TICKER_ROR="$DIR1/ror.[0-9][0-9][0-9][0-9].html"
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/20231201/*.html | wc -l"
-if true; then
+if false; then
     trash -v $TICKER_ROR
     echo "fetch ticker files..."
     TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
@@ -78,7 +78,7 @@ if true; then
 fi
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
-if false; then
+if true; then
     echo "clean up data files..."
     trash -v $OUTF0 $OUTF1 $OUTF2 $TSE_ROR
     BENCHMARK=""
@@ -154,6 +154,9 @@ done
 
 # // TODO: seperate fetch and get
 echo "done, file name is "$OUTF2
+echo "execute \"uno_launch.sh $OUTF2 \" and "
+echo "execute \"uno_rs.sh $DATE \" to continue,"
+# cp -v $OUTF2 ~/Dropbox
 
 # // TODO: housekeeping
 # if moving old files, create yyyymmdd folder then move it

@@ -25,11 +25,14 @@ OUTF2="$DIR0/pr34above75.$DATE.csv"
 
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 
-RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
-    uno_formula.py $DATE | tr -d '[],' ) )
-echo "return: $RETURN"
-N_ROWS=${RETURN[0]}
-echo "#rows: "$N_ROWS
+# RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
+#    uno_formula.py $DATE | tr -d '[],' ) )
+# echo "return: $RETURN"
+# N_ROWS=${RETURN[0]}
+# echo "#rows: "$N_ROWS
+
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno_formula.py $DATE
 
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
