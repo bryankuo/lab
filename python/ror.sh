@@ -36,7 +36,7 @@ OUTF2="$DIR0/rs.$DATE.ods"
 TSE_ROR="$DIR1/ror.twse.html"
 TICKER_ROR="$DIR1/ror.[0-9][0-9][0-9][0-9].html"
 
-# watch -n 1 "ls -lt datafiles/taiex/rs/*.html | wc -l"
+# watch -n 1 "ls -lt datafiles/taiex/rs/20231201/*.html | wc -l"
 if true; then
     trash -v $TICKER_ROR
     echo "fetch ticker files..."
@@ -48,12 +48,12 @@ if true; then
     python3 fetch_ticker_ror.py
     TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
     echo "time: " $TIMESTAMP0 " looping start"
-    echo "time: " $TIMESTAMP  " looping end"
-    n_fetched=$(ls -lt datafiles/taiex/rs/$DIR1/ror.[0-9][0-9][0-9][0-9].html \
+    echo "time: " $TIMESTAMP  " looping end" # 14 minutes
+    n_fetched=$(ls -lt $DIR1/ror.[0-9][0-9][0-9][0-9].html \
 	| wc -l | xargs | cut -d " " -f1)
     echo "fetched:   $n_fetched"
 
-    effective=$(find ./datafiles/taiex/rs/$DIR1 -type f \
+    effective=$(find $DIR1 -type f \
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
     echo "effective: $n_effective"
@@ -64,15 +64,16 @@ if true; then
 # in size
 # stat -f%z ./datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html
 
-# fetched, today, size is normal, bigger than 20000 bytes
-# find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -print | wc -l | xargs | cut -d " " -f1
-# smaller
-# find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | wc -l | xargs | cut -d " " -f1
+# fetched, today, size is normal, all
+# find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -print | wc -l | xargs | cut -d " " -f1
 
-#find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -exec stat -f %Sm -t %Y%m%d%H%M%S \;
+# fetched, today, size is normal, bigger than 20000 bytes
+# find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -print | wc -l | xargs | cut -d " " -f1
+
+#find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -exec stat -f %Sm -t %Y%m%d%H%M%S \;
 
 # path
-# find ./datafiles/taiex/rs/ -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c
+# find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c
     exit 0
 fi
 

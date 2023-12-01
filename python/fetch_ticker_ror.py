@@ -39,7 +39,7 @@ DIR1   = "./datafiles"
 fname1 = "watchlist.txt"
 path1  = os.path.join(DIR1, fname1)
 
-def source_factory(index, ticker): # the most comprehensive one
+def source_factory(ticker): # the most comprehensive one
     sources = [                                                         \
         "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
         # site is down "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
@@ -60,19 +60,21 @@ def source_factory(index, ticker): # the most comprehensive one
     ]
     seed = random.randint(0, len(sources)-1)
     url = sources[seed]
-    print("{0:04d} {1:02d} {2:s}".format(index, seed, url))
     return url
 
-with open(path1, 'r') as f:
-    session = None; index = 1;
-    for ticker in f:
-        ticker = ticker.replace('\n','')
+f = open(path1, 'r')
+session = None; count = 0;
 
+for ticker in f:
+    ticker = ticker.replace('\n','')
+
+    # // FIXME: try next site instead of pass, get them'll
+    while True:
         # adopting rotating can help mask your scraping
         # @see https://rb.gy/uu497g
         headers = {'User-Agent': random.choice(ua.list)}
 
-        url = source_factory(index, ticker)
+        url = source_factory(ticker)
         # @see https://stackoverflow.com/a/34491383
         # if you have to do just a few requests,
         # Otherwise you'll want to manage sessions yourself.
@@ -85,7 +87,7 @@ with open(path1, 'r') as f:
                 # response = session.get(url)
                 response = session.get(url, headers=headers)
             # response.encoding = 'cp950'
-            time.sleep(1) # // FIXME: random time
+            # time.sleep(1) # // FIXME: random time
             soup = BeautifulSoup(response.text, 'html.parser')
             fname = "ror." + ticker + ".html"
             path = os.path.join(DIR2, fname)
@@ -97,7 +99,6 @@ with open(path1, 'r') as f:
             e = sys.exc_info()[0]
             print("Unexpected error:", sys.exc_info()[0])
             raise
-            # // FIXME: try next site instead of pass, get them'll
 
         except:
             # traceback.format_exception(*sys.exc_info())
@@ -106,12 +107,13 @@ with open(path1, 'r') as f:
             raise
 
         finally:
-            index += 1
-            continue
+            print("{:04} {:4} {} {}" \
+                .format(count, ticker, response.status_code, url))
+            if ( response.status_code <= 200 ):
+                count += 1
+                break
 
-    # // TODO: test this @see https://stackoverflow.com/a/49253627
-    session.close()
-
+# // TODO: test this @see https://stackoverflow.com/a/49253627
+session.close();
 f.close()
 sys.exit(0)
-# urllib3 maintains a connection pool keyed by (hostname, port) pair
