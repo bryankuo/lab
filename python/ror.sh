@@ -58,17 +58,22 @@ if false; then
 	-print | wc -l | xargs | cut -d " " -f1)
     echo "effective: $n_effective"
 
+    ls -lt "$DIR1/log.txt"
+
 # yyyymmdd
-# stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html
+# stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/20231201/ror.[0-9][0-9][0-9][0-9].html
 
 # in size
-# stat -f%z ./datafiles/taiex/rs/ror.[0-9][0-9][0-9][0-9].html
+# stat -f%z ./datafiles/taiex/rs/20231201/ror.[0-9][0-9][0-9][0-9].html
 
 # fetched, today, size is normal, all
 # find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -print | wc -l | xargs | cut -d " " -f1
 
 # fetched, today, size is normal, bigger than 20000 bytes
 # find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -print | wc -l | xargs | cut -d " " -f1
+
+# find those not matching criteria
+# find . -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print > ng.txt
 
 #find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -exec stat -f %Sm -t %Y%m%d%H%M%S \;
 

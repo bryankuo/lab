@@ -39,6 +39,9 @@ DIR1   = "./datafiles"
 fname1 = "watchlist.txt"
 path1  = os.path.join(DIR1, fname1)
 
+ofname1 = "log.txt"
+log_path = os.path.join(DIR2, ofname1)
+
 def source_factory(ticker): # the most comprehensive one
     sources = [                                                         \
         "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
@@ -62,8 +65,8 @@ def source_factory(ticker): # the most comprehensive one
     url = sources[seed]
     return url
 
-f = open(path1, 'r')
-session = None; count = 0;
+f = open(path1, 'r'); logf = open(log_path, 'w')
+session = None; count = 0; fname = ""; path = ""
 
 for ticker in f:
     ticker = ticker.replace('\n','')
@@ -107,13 +110,17 @@ for ticker in f:
             raise
 
         finally:
-            print("{:04} {:4} {} {}" \
-                .format(count, ticker, response.status_code, url))
+            sz = os.path.getsize(path)
+            msg = "{:04} {:4} {} {} {}" \
+                .format(count, ticker, response.status_code, sz, url)
+            print(msg)
+            logf.write(msg) # // FIXME:
             if ( response.status_code <= 200 ):
                 count += 1
                 break
+            # // TODO: check size
 
 # // TODO: test this @see https://stackoverflow.com/a/49253627
 session.close();
-f.close()
+f.close(); logf.close()
 sys.exit(0)
