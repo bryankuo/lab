@@ -63,21 +63,24 @@ OUTFL1s="$DIR0/list1s.$DATE.txt"
 OUTFL2="$DIR0/list2.$DATE.txt"
 OUTFL2b="$DIR0/list2b.$DATE.txt"
 OUTFL2s="$DIR0/list2s.$DATE.txt"
-NAME="外資投信同步買賣超"
-OUTF0="$DIR0/$NAME.$DATE.txt"
-OUTF1="$DIR0/$NAME.$DATE.ods"
-DEFAULT_NAME1="外資投信同買"
-DEFAULT_NAME2="外資投信同賣"
-DEFAULT_NAME3="外資操作異常"
-OUTF2B="$DIR0/$DEFAULT_NAME1.$DATE.txt"
-OUTF2S="$DIR0/$DEFAULT_NAME2.$DATE.txt"
-OUTFQA="$DIR0/$DEFAULT_NAME3.$DATE.txt"
-O2B="$DIR0/$DEFAULT_NAME1.$DATE.ods"
-O2S="$DIR0/$DEFAULT_NAME2.$DATE.ods"
-OQA="$DIR0/$DEFAULT_NAME3.$DATE.ods"
+
+NAME037="外投同買賣及異常"
+NAME037_1="外投同買列表"
+NAME037_2="外投同賣列表"
+NAME037_3="外資操作異常"
+
+OUTF0="$DIR0/$NAME037.$DATE.txt"
+OUTF1="$DIR0/$NAME037.$DATE.ods"
+OUTF2B="$DIR0/$NAME037_1.$DATE.txt"
+OUTF2S="$DIR0/$NAME037_2.$DATE.txt"
+OUTFQA="$DIR0/$NAME037_3.$DATE.txt"
+O2B="$DIR0/$NAME037_1.$DATE.ods"
+O2S="$DIR0/$NAME037_2.$DATE.ods"
+OQA="$DIR0/$NAME037_3.$DATE.ods"
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
+REMOTE_FOLDER="~/Dropbox/$DATE"
 
 FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
@@ -219,30 +222,33 @@ done
 
 echo -ne '\007'
 
-cp -v $OUTF1 $O2B $O2S $OQA ~/Dropbox
+mkdir -p $REMOTE_FOLDER
+cp -v $OUTF1 $O2B $O2S $OQA $REMOTE_FOLDER
 
 read -p "Press enter to continue $OUTF1 ..."
 /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-"$OUTF1" \
+"$OUTF1" "$O2B" "$O2S" "$OQA" \
 --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
 
-echo -ne '\007'
-read -p "Press enter to continue $O2B ..."
-/Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-"$O2B" \
---accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
+if false; then
+    echo -ne '\007'
+    read -p "Press enter to continue $O2B ..."
+    /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
+    "$O2B" \
+    --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
 
-echo -ne '\007'
-read -p "Press enter to continue $O2S ..."
-/Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-"$O2S" \
---accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
+    echo -ne '\007'
+    read -p "Press enter to continue $O2S ..."
+    /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
+    "$O2S" \
+    --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
 
-echo -ne '\007'
-read -p "Press enter to continue $OQA ..."
-/Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-"$OQA" \
---accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
+    echo -ne '\007'
+    read -p "Press enter to continue $OQA ..."
+    /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
+    "$OQA" \
+    --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
+fi
 
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S $OUTFQA
@@ -258,8 +264,9 @@ rm -f temp
 
 ./check_2b2s.sh $LAST_TRADE_DAY $DATE
 
-# generate 18 files
-ls -ltr $DIR0"/"*.txt $DIR0"/"*.html $DIR0"/"*.ods  | tail -n 18;
+# generate 18 files // FIXME:
+# ls -ltr "$DIR0/*.txt" "$DIR0/*.html" "$DIR0/*.ods" "$DIR0/*.csv"  | tail -n 18;
+ls -ltr "$DIR0/*.{html,txt,csv,ods}" | tail -n 18
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股
