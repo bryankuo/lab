@@ -61,39 +61,7 @@ except RuntimeException:
     nl = numbers.queryKey("###0.00", locale, False)
 
 # active_sheet = model.Sheets.getByName(sheet_name)
-active_sheet = doc.Sheets.getByName(sheet_name)
-# interchangable
-
-# ====test
-
-# https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html
-# active_sheet = doc.Sheets.getByIndex(1) # works
-# sname = "strategies"
-sname = "Sheet7"
-active_sheet = doc.Sheets.getByName(sname) # works
-# https://forum.openoffice.org/en/forum/viewtopic.php?p=371055#p371055
-# doc.CurrentController.setActiveSheet(active_sheet) # works
-# Controller = doc.getcurrentController
-# Controller.setActiveSheet(active_sheet)
-# assume no more than 3000 listed.
-guessRange = active_sheet.getCellRangeByPosition(0, 0, 6, 30) # works
-# look up the actual used area within the guess area
-cursor = active_sheet.createCursorByRange(guessRange)
-cursor.gotoEndOfUsedArea(False)
-cursor.gotoStartOfUsedArea(True)
-# guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows), 1)
-# print(guessRange.getDataArray()) # works
-last_row = len(cursor.Rows)
-print("cursor row "+ str(last_row))
-print("# sheets: " + str(doc.Sheets.Count)) # works
-sheet = doc.Sheets.getByIndex(3)
-# sheet.Name = 'OtherName其他名字'
-# doc.CurrentController.setActiveSheet(sheet) # works
-doc.Sheets.insertNewByName('leading75', 0)
-sys.exit(0)
-# ====test
-
-
+active_sheet = doc.Sheets.getByName(sheet_name) # interchangable
 
 # take 53:20 to complete
 # now  00:42 by sorted data

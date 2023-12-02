@@ -16,6 +16,7 @@ mkdir -p $DIR0
 
 # DATE=`date '+%Y%m%d'`
 DATE=$1
+# ./uno_launch.sh datafiles/taiex/rs/rs.20231201.ods
 # assume ror.20231001.ods, sheet name : 'ror.20231001'
 INF0="$2"
 

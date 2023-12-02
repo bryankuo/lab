@@ -13,6 +13,8 @@ import uno, sys, time, os
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
 # from datetime import date
+# test
+from com.sun.star.awt import MessageBoxButtons as MSG_BUTTONS
 
 yyyymmdd = sys.argv[1]
 sheet_name = "rs."+yyyymmdd
@@ -35,8 +37,6 @@ smgr = ctx.ServiceManager
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
 # access the current writer document
-model = desktop.getCurrentComponent()
-active_sheet = model.Sheets.getByName(sheet_name)
 
 doc = None
 numbers = None
@@ -55,6 +55,8 @@ try:
     nl = numbers.addNew( "###0.000",  locale )
 except RuntimeException:
     nl = numbers.queryKey("###0.000", locale, False)
+
+active_sheet = doc.Sheets.getByName(sheet_name)
 
 # assume no more than 3000 listed.
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
@@ -81,6 +83,39 @@ fname1 = "leading75." + yyyymmdd + '.csv'
 path1 = os.path.join(DIR0, fname1)
 outf1 = open(path1, "w")
 outf1.write("ticker:pr1w:pr1m:pr3m:ytd\n")
+
+# ====test
+# https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html
+# https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets#Sheets
+# active_sheet = doc.Sheets.getByIndex(1) # works
+# sname = "strategies"
+# sname = "Sheet7"
+# active_sheet = doc.Sheets.getByName(sname) # works
+# https://forum.openoffice.org/en/forum/viewtopic.php?p=371055#p371055
+# doc.CurrentController.setActiveSheet(active_sheet) # works
+# Controller = doc.getcurrentController
+# Controller.setActiveSheet(active_sheet)
+# assume no more than 3000 listed.
+guessRange = active_sheet.getCellRangeByPosition(0, 0, 6, 30) # works
+# look up the actual used area within the guess area
+cursor = active_sheet.createCursorByRange(guessRange)
+cursor.gotoEndOfUsedArea(False)
+cursor.gotoStartOfUsedArea(True)
+# guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows), 1)
+# print(guessRange.getDataArray()) # works
+last_row = len(cursor.Rows)
+# print("cursor row "+ str(last_row))
+# print("# sheets: " + str(doc.Sheets.Count)) # works
+# sheet = doc.Sheets.getByIndex(3)
+# sheet.Name = 'OtherName其他名字'
+# doc.CurrentController.setActiveSheet(sheet) # works
+# @see https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets#Insert
+# doc.Sheets.insertNewByName('leading75', 1) # works
+# doc.Sheets.moveByName('leading75', 1)
+# doc.Sheets.insertNewByName('pr34above75', 2) # works
+doc.store() # works
+sys.exit(0)
+# ====test
 
 # rule 2
 fname0 = "pr34above75." + yyyymmdd + '.csv'
