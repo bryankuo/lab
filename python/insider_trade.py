@@ -18,10 +18,6 @@ from bs4 import BeautifulSoup
 sys.path.append(os.getcwd())
 import useragents as ua
 
-# source
-# https://www.moneydj.com/Z/ZE/ZEI/ZEI.djhtm
-# https://www.sinotrade.com.tw/Stock/Stock_3_6?ch=Stock_3_6_6
-
 if ( len(sys.argv) < 3 ):
     print("usage: insider_trade.py [yyyymmdd] [net|file]")
     sys.exit(0)
@@ -45,6 +41,10 @@ idx = (this_date.weekday() + 1) % 7
 last_sat = this_date - timedelta(7+idx-6)
 # @see https://stackoverflow.com/a/18200686
 
+
+# source
+# https://www.moneydj.com/Z/ZE/ZEI/ZEI.djhtm
+# https://www.sinotrade.com.tw/Stock/Stock_3_6?ch=Stock_3_6_6
 url = "https://sjmain.esunsec.com.tw/z/ze/zei/zei.djhtm"
 
 if ( is_from_net ):
