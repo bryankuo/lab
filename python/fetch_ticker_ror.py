@@ -21,6 +21,7 @@ from datetime import timedelta,datetime
 from pprint import pprint
 sys.path.append(os.getcwd())
 import useragents as ua
+#import sites # test
 
 # twse history
 # https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20230701&response=html
@@ -42,7 +43,7 @@ path1  = os.path.join(DIR1, fname1)
 ofname1 = "log.txt"
 log_path = os.path.join(DIR2, ofname1)
 
-def source_factory(ticker): # the most comprehensive one
+def source_factory(ticker):
     sources = [                                                         \
         "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
         # site is down "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \

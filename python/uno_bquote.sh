@@ -18,6 +18,4 @@ fi
 
 /Applications/LibreOffice.app/Contents/Resources/python uno_bquote.py $1
 
-# echo $RETURN
-
 exit 0

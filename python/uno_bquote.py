@@ -89,7 +89,7 @@ print("# sheet row :{:>4}".format(len(cursor.Rows)))
 # theday = datetime.today().strftime('%Y%m%d')
 infile0 = open(path0, "r")
 # ilist = infile0.readlines()
-# print( "# ilist: " + str(len(ilist)) ) # // FIXME: no console output
+# print( "# ilist: " + str(len(ilist)) )
 data = list(csv.reader(infile0, delimiter=':'))
 # print(data[0])
 # print(data[2][2])
@@ -152,9 +152,11 @@ try:
             checked[j] = 1
             start = j + 1
             # print("i {:0>4} tkr {:0>4} found {:0>4}".format(i, tkr, j))
+            # // FIXME: some in list but not found
         else:
             print("i {:0>4} tkr {:0>4} not found ".format(i, tkr))
             start = 1
+            # // FIXME: below 1000 shares ( 1 lot )
 
     # // FIXME: possible new in data, therefore search
     missed = 0
@@ -199,48 +201,5 @@ column.OptimalWidth = True
 sys.exit(0)
 
 '''
-    for l in ilist:
-        # cursor.gotoStartOfUsedArea(True) # testing
-        the_line = l.replace('\n','')
-        items = the_line.split(":")
-         # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
-        tkr   = items[0].strip() if ( 4 <= len(items[0]) ) \
-            else "{:>04d}".format(items[0]) # // FIXME:
-        close = items[1]
-        cell0 = active_sheet.getCellRangeByName(TIKR)
-        cell0.Value = tkr
-        tkr_found = False
-        for i in range( 2, len(cursor.Rows)+1 ): # to be verified
-            cell7 = active_sheet.getCellRangeByName("$A"+str(i))
-            if ( cell7.String == tkr ):
-                cell9 = active_sheet.getCellRangeByName(POS)
-                cell9.String = "A"+str(i)
-                cell8 = active_sheet.getCellRangeByName("$J"+str(i))
-                cell8.NumberFormat = nl
-                cell8.Value = close
-                addr = UPTD + str(i)
-                cell = active_sheet.getCellRangeByName(addr)
-                # cell.String = '{:%Y%m%d %H:%M:%S}'.format(datetime.now())
-                cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
-                tkr_found = True
-                break
-        if ( not tkr_found ):
-            cell2 = active_sheet.getCellRangeByName("$A"+str(len(cursor.Rows)+1))
-            cell2.Value = tkr
-            cell3 = active_sheet.getCellRangeByName("$J"+str(len(cursor.Rows)+1))
-            cell3.NumberFormat = nl
-            cell3.Value = close
-            cell = active_sheet.getCellRangeByName(UPTD+str(len(cursor.Rows)+1))
-            cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
-            guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
-            cursor = active_sheet.createCursorByRange(guessRange)
-            cursor.gotoEndOfUsedArea(False)
-            cursor.gotoStartOfUsedArea(True)
-            guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
-            n_ticker = len(cursor.Rows) - 1
-            cell4 = active_sheet.getCellRangeByName(LROW)
-            cell4.Value = len(cursor.Rows)
-
-        # cell.clearContents(4)
-        # index += 1
+# cell.clearContents(4)
 '''

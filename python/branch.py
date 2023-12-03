@@ -146,6 +146,16 @@ for i in range( 0, len(dates) ):
 
 sys.exit(0)
 
+# terms:
+# 券商分點進出查詢
+# 券商分點買賣日報
+# 券商分點買賣超排行
+# 主力進出
+# 分點明細查詢
+# 主力進出-分點
+
+# wc -l branch.py transaction.py chips.py br.py
+
 # by ticker symbol
 # date is available, at most 14 days in range
 # https://histock.tw/stock/branch.aspx?no=1514&from=20210713&to=20210713
@@ -195,7 +205,7 @@ sys.exit(0)
 # https://stockchannelnew.sinotrade.com.tw/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
 # sixth source
 # https://concords.moneydj.com/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
-
+# https://stock.capital.com.tw/z/zg/zgb/zgb0.djhtm?a=6010&b=6010
 
 broker_group = [ \
     # https://concords.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&b=9268
@@ -239,4 +249,9 @@ webbrowser.open(url)
 '''
 # // TODO: https://www.twfile.com/Lm.aspx?q=臺北市大安區仁愛路4段296號24樓
 # list companies at this address
+
+# wc -l branch.py transaction.py chips.py br.py
+# https://www.statology.org/gini-coefficient-python/
+# https://tinyurl.com/2p9c54t3
+
 sys.exit(0)
