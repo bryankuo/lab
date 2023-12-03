@@ -8,7 +8,8 @@ import urllib.request
 from datetime import timedelta, datetime
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
-
+sys.path.append(os.getcwd())
+import sites
 
 # @see https://www.twse.com.tw/zh/brokerService/brokerServiceAudit
 geo_group = [
@@ -146,19 +147,44 @@ for i in range( 0, len(dates) ):
 
 sys.exit(0)
 
-# terms:
+# keywords:
 # 券商分點進出查詢
-# 券商分點買賣日報
-# 券商分點買賣超排行
-# 主力進出
+
+# 主力進出-分點 broker, branch
+# https://www.yuanta.com.tw/eYuanta/Securities/Node/Index?MainId=00412&C1=2018040403451986&C2=2018040406180228&ID=2018040406180228&Level=2
+# 券商分點-進出明細
+# https://www.sinotrade.com.tw/Stock/Stock_3_1/Stock_3_1_6_7?ticker=2303
+# https://www.yuanta.com.tw/eYuanta/agent/Node/Index?MainId=00412&C1=2018040403451986&C2=2018040406180228&ID=2018040406180228&Level=2
+
 # 分點明細查詢
-# 主力進出-分點
+# https://newjust.masterlink.com.tw/z/zg/zgb/zgb0.djhtm?a=5920&b=0035003900320079
+
+# 券商分點買賣日報
+# https://histock.tw/stock/branch.aspx?no=1101
+
+# 券商分點買賣超排行
+
+# 主力進出明細
+
+
+# broker
+# 券商整體-主力進出明細
+# https://www.yuanta.com.tw/eYuanta/Securities/Node/Index?MainId=00412&C1=2018040403451986&C2=2023010405266306&ID=2023010405266306&Level=2&rnd=99061
+
+# https://www.cnyes.com/twstock/a_main.aspx
+
+# 主力進出比較圖
+# 主力進出
+# 融資融券明細
+# 關鍵,地緣
 
 # wc -l branch.py transaction.py chips.py br.py
 
 # by ticker symbol
-# date is available, at most 14 days in range
+# date is available, at most 14 days in range, top 15
 # https://histock.tw/stock/branch.aspx?no=1514&from=20210713&to=20210713
+# https://www.cnyes.com/twstock/a_main.aspx
+# https://sjmain.esunsec.com.tw/z/zg/zgb/zgb0.djhtm?a=8840&b=8840
 
 # by broker
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=1380&b=1380&c=B&e=2021-12-1&f=2021-12-3
@@ -170,6 +196,10 @@ sys.exit(0)
 
 # enumerate 10 minor id of interest
 # ref: https://cutt.ly/GFZrjFd
+
+# 券商分點進出金額排行
+# https://www.moneydj.com/Z/ZG/ZGB/ZGB.djhtm
+# https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZGB/ZGB.djhtm
 
 # https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&9268
 # 9217
@@ -206,6 +236,9 @@ sys.exit(0)
 # sixth source
 # https://concords.moneydj.com/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
 # https://stock.capital.com.tw/z/zg/zgb/zgb0.djhtm?a=6010&b=6010
+
+# 券商買賣超排行
+# https://www.wantgoo.com/stock/major-investors/broker-buy-sell-rank?during=1&majorId=9846&orderBy=count
 
 broker_group = [ \
     # https://concords.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9200&b=9268
