@@ -154,3 +154,6 @@ sys.exit(0)
 # @see https://www.twse.com.tw/zh/products/securities/warrant/infomation/stock.html
 # @see https://www.twse.com.tw/zh/announcement/punish.html
 # @see https://www.twse.com.tw/zh/announcement/notice.html
+# warrant news
+# @see https://newjust.masterlink.com.tw/z/zx/zxf/zxf.djhtm?A=2023-12-4&B=13
+
