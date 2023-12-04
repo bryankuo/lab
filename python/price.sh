@@ -15,9 +15,14 @@ if [ "$#" -lt 3 ]; then
     echo "fetch the close price of last trade date"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
+# echo "$1 $2 $3"
+
 TICKER=$1
 THE_DATE=$2
 NET=$3
+
+DIR0="datafiles/taiex"
+
 # if sunday saturday holiday, use last close ( in general, Friday )
 if [[ $(date -j -v -0d -f "%Y%m%d" "$2" +%u) -eq 6 ]]; then   # Saturday
     # echo "today is "$(date +%A)
@@ -52,15 +57,23 @@ fetch_price_by_date() {
 	echo "it is not supported for type "$CO_TYPE1
     fi
 }
+# echo "THE_DATE is $THE_DATE"
+
+# fix the start of new month issue
+if [ ! -f "$DIR0/trade.days.${THE_DATE:0:6}.txt" ]; then
+    python3 last_trade_day.py $THE_DATE
+fi
 
 LAST_TRADE_DAY=0
+
 # src: https://www.twse.com.tw/pcversion/zh/page/trading/exchange/FMTQIK.html
 # python is_twse_open [yyyymmdd] return 0 success else return last open yyyymmdd
 
 # 1. search in the preserved files
 # grep --color="auto" -c -e 20230928 datafiles/taiex/trade.days.202309.txt
 FOUND=$(grep --color="auto" -c -e $THE_DATE \
-    datafiles/taiex/trade.days.${THE_DATE:0:6}.txt)
+    $DIR0/trade.days.${THE_DATE:0:6}.txt)
+# echo $FOUND
 
 if [ $FOUND -eq 0 ]; then
     # cal ${THE_DATE:4:2} ${THE_DATE:0:4}
