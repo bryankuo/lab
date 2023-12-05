@@ -30,6 +30,11 @@ wc -l  "$DIR0/$DATE.csv"
 
 cp -v "$DIR0/$DATE.csv" ~/Dropbox/after.market.$DATE.csv
 
+currenttime=$(date +%H:%M)
+if [[ "$currenttime" > "09:00" ]] && [[ "$currenttime" < "13:30" ]]; then
+    cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.${currenttime:0:2}${currenttime:3:2}.csv"
+fi
+
 # ./compare_volume.sh 20231129 20231128
 N_DAYS=$(ls -lt datafiles/taiex/after.market/????????.csv | wc -l | xargs | cut -d " " -f1)
 echo "there are $N_DAYS trade days recorded."

@@ -40,7 +40,7 @@ smgr = ctx.ServiceManager
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
 # access the current writer document
-# model = desktop.getCurrentComponent()
+# model = desktop.getCurrentComponent() # doc
 
 doc = None
 numbers = None
@@ -60,7 +60,6 @@ try:
 except RuntimeException:
     nl = numbers.queryKey("###0.00", locale, False)
 
-# active_sheet = model.Sheets.getByName(sheet_name)
 active_sheet = doc.Sheets.getByName(sheet_name) # interchangable
 
 # take 53:20 to complete
@@ -82,9 +81,31 @@ cursor.gotoStartOfUsedArea(True)
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 n_ticker = len(cursor.Rows) - 1
-# cell4 = active_sheet.getCellRangeByName(LROW)
-# cell4.Value = len(cursor.Rows)
-print("# sheet row :{:>4}".format(len(cursor.Rows)))
+last_row = len(cursor.Rows)
+
+# // TODO:
+# @see https://stackoverflow.com/q/27103022
+'''
+print("test... +")
+colDescr = uno.createUnoStruct('com.sun.star.table.TableSortField')
+colDescr.Field = 0
+
+# oSortFields(0).Field = 1
+#oSortFields(0).SortAscending = TRUE
+
+# sort descriptor
+sortDescr = guessRange.createSortDescriptor()
+# sortDescr(0).Name = "SortFields"
+# sortDescr(0).Value = oSortFields()
+for x in sortDescr:
+  if x.Name == 'SortFields':
+    x.Value = (colDescr,)
+    break
+
+guessRange.sort(sortDescr)
+print("test... -")
+sys.exit(0)
+'''
 
 # theday = datetime.today().strftime('%Y%m%d')
 infile0 = open(path0, "r")
@@ -97,7 +118,6 @@ data = list(csv.reader(infile0, delimiter=':'))
 
 # cell5 = active_sheet.getCellRangeByName(FLEN)
 # cell5.Value = len(ilist)
-print("list size {:>4}".format(len(data)))
 infile0.close()
 
 # cell = active_sheet.getCellRangeByName("$BI1")
@@ -128,43 +148,59 @@ t0 = time.time()
 # @see https://stackoverflow.com/a/18406412
 t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 try:
-    # index = 2
-    # cell6 = active_sheet.getCellRangeByName(FIDX)
-    # cell6.Value = index
     tkrs     = [ x[0] for x in data ]
     closes   = [ x[1] for x in data ]
     checked  = [ 0 ] * len(tkrs)
-    start = 0
+    start = 0; missed = 0
     for i in range(2, len(cursor.Rows)+1):
         tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
         found = False
         for j in range(start, len(tkrs)):
             # print("i {:0>4} j {:0>4} ".format(i, j) + "tkr " + tkrs[j])
             if ( checked[j] == 0 and tkrs[j] == tkr ):
-                cell = active_sheet.getCellRangeByName("$J"+str(i))
-                cell.NumberFormat = nl
-                cell.Value = closes[j]
-                cell = active_sheet.getCellRangeByName(UPTD+str(i))
-                cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
                 found = True
                 break
         if ( found ):
-            checked[j] = 1
-            start = j + 1
+            cell = active_sheet.getCellRangeByName("$J"+str(i))
+            cell.NumberFormat = nl
+            cell.Value = closes[j]
+            cell = active_sheet.getCellRangeByName(UPTD+str(i))
+            cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
+            checked[j] = 1; start = j + 1
             # print("i {:0>4} tkr {:0>4} found {:0>4}".format(i, tkr, j))
-            # // FIXME: some in list but not found
+            # // FIXME: some in list but not found in spreadsheet -> add one row
+            # // FIXME: at the end, sort sheet then save
+
         else:
-            print("i {:0>4} tkr {:0>4} not found ".format(i, tkr))
+            print("i {:0>4} tkr {:0>4} not found in quotes".format(i, tkr))
             start = 1
             # // FIXME: below 1000 shares ( 1 lot )
+            missed +=1
 
     # // FIXME: possible new in data, therefore search
-    missed = 0
-    for j in range(0, len(tkrs)):
-        if ( checked[j] == 0 ):
-            missed +=1
-            print("missed: " + tkrs[j])
     print("{:>4} missed".format(missed)) # // FIXME:
+    print("# tkr in spreadsheet: {:>4}".format(n_ticker))
+    print("list size {:>4}".format(len(data)))
+    print("difference {:>4}".format(n_ticker-len(data)))
+    for i in range(0, len(tkrs)):
+        if ( checked[i] == 0 ):
+            tkr = tkrs[i]
+            print("add {:>4} to spreadsheet".format(tkr))
+            # new row in spreadsheet
+            last_row += 1
+            cell = active_sheet.getCellRangeByName("$A"+str(last_row))
+            cell.Value = tkr
+            guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
+            # look up the actual used area within the guess area
+            cursor = active_sheet.createCursorByRange(guessRange)
+            cursor.gotoEndOfUsedArea(False)
+            cursor.gotoStartOfUsedArea(True)
+            guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+            # print(guessRange.getDataArray())
+            n_ticker = len(cursor.Rows) - 1
+            last_row = len(cursor.Rows)
+    # doc.CurrentController.select(guessRange) # works
+    # what is dispatcher call? How to enable auto filters for a sheet
 
 except:
     # traceback.format_exception(*sys.exc_info())
@@ -194,6 +230,7 @@ column = columns.getByName("BM")
 # column.Width = 3000
 # @see https://stackoverflow.com/a/50077601
 column.OptimalWidth = True
+# doc.store()
 
 # olist = [ n_ticker, path0 ]
 # print(olist)

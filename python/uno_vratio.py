@@ -122,29 +122,38 @@ try:
     rtos = [ x[1] for x in data ]
     last = [ x[2] for x in data ]
     vol  = [ x[3] for x in data ]
+    checked  = [ 0 ] * len(tkrs)
+    # // FIXME: should be # of rows sheet
+    # // FIXME: or if
 
-    start = 0
+    start = 0; missed = 0
     for i in range(2, len(cursor.Rows)+1):
         tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
         found = False
         for j in range(start, len(tkrs)):
             # print(str(i)+" "+str(j))
-            if ( tkrs[j] == tkr ):
-                cell = active_sheet.getCellRangeByName(VR+str(i))
-                cell.Value = rtos[j]
-                cell.NumberFormat = nl
-                active_sheet.getCellRangeByName(VOL+str(i)).Value  = last[j]
-                active_sheet.getCellRangeByName(LAST+str(i)).Value =  vol[j]
-                cell = active_sheet.getCellRangeByName(UPTD + str(i))
-                cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
-                start = j + 1
+            if ( checked[j] == 0 and tkrs[j] == tkr ):
                 found = True
                 break
         if ( found ):
-            print("i {:0>4} tkr {:0>4} found {:0>4}".format(i, tkr, j))
+            # print("i {:0>4} tkr {:0>4} found {:0>4}".format(i, tkr, j))
+            cell = active_sheet.getCellRangeByName(VR+str(i))
+            cell.Value = rtos[j]
+            cell.NumberFormat = nl
+            active_sheet.getCellRangeByName(VOL+str(i)).Value  = last[j]
+            active_sheet.getCellRangeByName(LAST+str(i)).Value =  vol[j]
+            cell = active_sheet.getCellRangeByName(UPTD + str(i))
+            cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
+            checked[j] = 1; start = j + 1
         else:
-            print("i {:0>4} tkr {:0>4} not found ".format(i, tkr))
-            start = 1
+            print("i {:0>4} tkr {:0>4} not found in quotes".format(i, tkr))
+            # start = 1
+            # // FIXME: some in list but not found in spreadsheet -> add one row
+            # // FIXME: at the end, sort sheet then save
+            missed += 1
+
+    # // FIXME: possible new in data, therefore search
+    print("{:>4} missed".format(missed)) # // FIXME:
 
     the_range = active_sheet.getCellRangeByName("BI:Bk")
     the_range.Columns.OptimalWidth = True

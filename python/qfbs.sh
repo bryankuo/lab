@@ -230,26 +230,6 @@ read -p "Press enter to continue $OUTF1 ..."
 "$OUTF1" "$O2B" "$O2S" "$OQA" \
 --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
 
-if false; then
-    echo -ne '\007'
-    read -p "Press enter to continue $O2B ..."
-    /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-    "$O2B" \
-    --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
-
-    echo -ne '\007'
-    read -p "Press enter to continue $O2S ..."
-    /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-    "$O2S" \
-    --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
-
-    echo -ne '\007'
-    read -p "Press enter to continue $OQA ..."
-    /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-    "$OQA" \
-    --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
-fi
-
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S $OUTFQA
 
@@ -267,6 +247,7 @@ rm -f temp
 # generate 18 files // FIXME:
 # ls -ltr "$DIR0/*.txt" "$DIR0/*.html" "$DIR0/*.ods" "$DIR0/*.csv"  | tail -n 18;
 ls -ltr "$DIR0/*$DATE*.{html,txt,csv,ods}" | tail -n 18
+echo -ne '\007'
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股
