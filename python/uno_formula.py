@@ -84,6 +84,7 @@ path1 = os.path.join(DIR0, fname1)
 outf1 = open(path1, "w")
 outf1.write("ticker:pr1w:pr1m:pr3m:ytd\n")
 
+'''
 # ====test
 # https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets#Sheets
@@ -113,9 +114,8 @@ last_row = len(cursor.Rows)
 # doc.Sheets.insertNewByName('leading75', 1) # works
 # doc.Sheets.moveByName('leading75', 1)
 # doc.Sheets.insertNewByName('pr34above75', 2) # works
-doc.store() # works
-sys.exit(0)
-# ====test
+# // TODO: how to remove a sheet?
+'''
 
 # rule 2
 fname0 = "pr34above75." + yyyymmdd + '.csv'
@@ -153,15 +153,19 @@ def set_formula_1w():
                 + "{:3.3f}".format(rs_3m) + ":" \
                 + "{:3.3f}".format(rs_ytd) + "\n")
 
-        addr_1m = "M"+str(i)
-        cell_1m = active_sheet.getCellRangeByName(addr_1m)
+        # addr_3m = "N"+str(i)
+        # cell_3m = active_sheet.getCellRangeByName(addr_3m)
+        # addr_1m = "M"+str(i)
+        # cell_1m = active_sheet.getCellRangeByName(addr_1m)
         # rule 2
-        if ( cell_1m.Value < 0.34 and 0.75 < cell.Value ):
+        if ( rs_3m < 0.34 and rs_1m < 0.34 \
+            and 0.75 < cell.Value ):
             cell.CellBackColor = 0xffff38
             tkr = active_sheet.getCellRangeByName("A"+str(i)).String
             outf0.write(tkr + ":" \
                 + "{:3.3f}".format(cell.Value) + ":" \
-                + "{:3.3f}".format(cell_1m.Value) + "\n")
+                + "{:3.3f}".format(rs_1m) + "\n")
+        # // TODO: refactor as rule a function
 
 def set_formula_1m():
     addr = "$M1"
@@ -252,6 +256,7 @@ set_formula_3m()
 set_formula_1m()
 set_formula_1w()
 draw_legend()
+doc.store() # works
 
 outf0.close(); outf1.close()
 
