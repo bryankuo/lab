@@ -41,8 +41,11 @@ echo "there are $N_DAYS trade days recorded."
 ls -lt datafiles/taiex/after.market/????????.csv | head -n 5
 
 # ./after_market.sh 20231201
+
+# ./uno_bquote.sh 20231201
+
 # ./compare_volume.sh 20231201 20231130
 # ./uno_launch.sh datafiles/activity_watchlist.ods
 # ./uno_vratio.sh 20231201 20231130
-# ./uno_bquote.sh 20231201
+
 exit 0

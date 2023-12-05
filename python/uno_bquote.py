@@ -172,7 +172,7 @@ try:
             # // FIXME: at the end, sort sheet then save
 
         else:
-            print("i {:0>4} tkr {:0>4} not found in quotes".format(i, tkr))
+            print("i {:0>4} tkr {:0>4} not found in {}".format(i, tkr, path0))
             start = 1
             # // FIXME: below 1000 shares ( 1 lot )
             missed +=1

@@ -146,14 +146,14 @@ try:
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1; start = j + 1
         else:
-            print("i {:0>4} tkr {:0>4} not found in quotes".format(i, tkr))
+            print("row i {:0>4}, list tkr {:0>4} not found in {}".format(i, tkr, ipath1))
             # start = 1
             # // FIXME: some in list but not found in spreadsheet -> add one row
             # // FIXME: at the end, sort sheet then save
             missed += 1
 
     # // FIXME: possible new in data, therefore search
-    print("{:>4} missed".format(missed)) # // FIXME:
+    print("# file {:>4}, {:>4} missed, ".format(len(tkrs)-1, missed)) # // FIXME:
 
     the_range = active_sheet.getCellRangeByName("BI:Bk")
     the_range.Columns.OptimalWidth = True
