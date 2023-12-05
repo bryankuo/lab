@@ -266,7 +266,7 @@ rm -f temp
 
 # generate 18 files // FIXME:
 # ls -ltr "$DIR0/*.txt" "$DIR0/*.html" "$DIR0/*.ods" "$DIR0/*.csv"  | tail -n 18;
-ls -ltr "$DIR0/*.{html,txt,csv,ods}" | tail -n 18
+ls -ltr "$DIR0/*$DATE*.{html,txt,csv,ods}" | tail -n 18
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股

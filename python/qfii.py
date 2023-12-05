@@ -28,7 +28,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from timeit import default_timer as timer
-from datetime import timedelta,datetime
+from datetime import timedelta, datetime
 from pprint import pprint
 
 # source:
@@ -56,23 +56,20 @@ from pprint import pprint
 def say(msg = "Finish", voice = "Victoria"):
     os.system(f'say -v {voice} {msg}')
 
-from datetime import date
-yyyy = datetime.today().strftime('%Y')
-mm   = datetime.today().strftime('%m')
-dd   = datetime.today().strftime('%d')
 print( 'qfii.py+ ' + str(len(sys.argv)) )
-theday = datetime.today().strftime('%Y%m%d')
 
-is_from_net = False
 DIR0="./datafiles/taiex/qfbs"
-DEFAULT_NAME0="外資投信同步買賣超"
-DEFAULT_NAME1="外資投信同買"
-DEFAULT_NAME2="外資投信同賣"
-DEFAULT_NAME3="外資操作異常"
+NAME037="外投同買賣及異常"
+NAME037_1="外投同買列表"
+NAME037_2="外投同賣列表"
+NAME037_3="外資操作異常"
+
+theday = datetime.today().strftime('%Y%m%d')
+is_from_net = False
 
 if ( len(sys.argv) < 2 ):
     is_from_net = True
-    ofname = DIR0 + "/" + DEFAULT_NAME0 + '.' + theday + '.txt'
+    ofname = DIR0 + "/" + NAME037 + '.' + theday + '.txt'
 elif ( 3 == len(sys.argv) ):
     if ( sys.argv[2] == "0" ):
         is_from_net = True
@@ -115,6 +112,15 @@ else:
     is_from_net = False
     ofname = sys.argv[1]
     # // TODO: net, date,file,output combination
+
+# yyyy = datetime.today().strftime('%Y')
+# mm   = datetime.today().strftime('%m')
+# dd   = datetime.today().strftime('%d')
+
+# // FIXME: join
+both_buy     = DIR0 + "/" + NAME037_1 + "."  + yyyy + mm + dd + '.txt'
+both_sell    = DIR0 + "/" + NAME037_2 + "."  + yyyy + mm + dd + '.txt'
+qfii_anomaly = DIR0 + "/" + NAME037_3 + "."  + yyyy + mm + dd + '.txt'
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
@@ -536,10 +542,6 @@ try:
             full_tab[i].append(0) # 2 s
             full_tab[i].append(0) # qfii anomaly
         print("highlight b2, s2, and qa ...")
-
-        both_buy     = DIR0 + "/" + DEFAULT_NAME1 + "."  + yyyy + mm + dd + '.txt'
-        both_sell    = DIR0 + "/" + DEFAULT_NAME2 + "."  + yyyy + mm + dd + '.txt'
-        qfii_anomaly = DIR0 + "/" + DEFAULT_NAME3 + "."  + yyyy + mm + dd + '.txt'
 
         with open(both_buy, 'wt') as outf1, \
             open(both_sell, 'wt') as outf2, \
