@@ -25,6 +25,7 @@ list = [ # the most comprehensive site list in project
     "http://tcfhcsec.moneydj.com"
 
     # // TODO: to be verified
+    # http://5850web.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9600&b=9600
 
     # sites: www.yuanta.com.tw 個股基本資料
     # "www.yuanta.com.tw/eYuanta/Securities" # howto? different?
