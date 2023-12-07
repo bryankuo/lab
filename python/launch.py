@@ -5,7 +5,6 @@
 
 import os, sys, subprocess
 
-
 # subprocess.call(['soffice', '--headless', '--convert-to', 'txt:Text', 'document_to_convert.doc'])
 
 # print(os.getcwd())

@@ -120,8 +120,8 @@ try:
 
     tkrs = [ x[0] for x in data ]
     rtos = [ x[1] for x in data ]
-    last = [ x[2] for x in data ]
-    vol  = [ x[3] for x in data ]
+    vol  = [ x[2] for x in data ]
+    last = [ x[3] for x in data ]
     checked  = [ 0 ] * len(tkrs)
     # // FIXME: should be # of rows sheet
     # // FIXME: or if
@@ -131,23 +131,31 @@ try:
         tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
         found = False
         for j in range(start, len(tkrs)):
-            # print(str(i)+" "+str(j))
+            # print("i {:0>4} j {:0>4} tkr {:0>4}".format(i, j, tkr))
             if ( checked[j] == 0 and tkrs[j] == tkr ):
                 found = True
                 break
         if ( found ):
-            # print("i {:0>4} tkr {:0>4} found {:0>4}".format(i, tkr, j))
+            print("i {:0>4} j {:0>4} tkr {:0>4} found" \
+                .format(i, j, tkr))
             cell = active_sheet.getCellRangeByName(VR+str(i))
-            cell.Value = rtos[j]
             cell.NumberFormat = nl
-            active_sheet.getCellRangeByName(VOL+str(i)).Value  = last[j]
-            active_sheet.getCellRangeByName(LAST+str(i)).Value =  vol[j]
+            if ( rtos[j] != "n/a" ):
+                cell.Value = rtos[j]
+            else:
+                cell.String = rtos[j]
+            active_sheet.getCellRangeByName(VOL+str(i)).Value  = vol[j]
+            cell = active_sheet.getCellRangeByName(LAST+str(i))
+            if ( last[j] != "n/a" ):
+                cell.Value = last[j]
+            else:
+                cell.String = last[j]
             cell = active_sheet.getCellRangeByName(UPTD + str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1; start = j + 1
         else:
-            print("row i {:0>4}, list tkr {:0>4} not found in {}".format(i, tkr, ipath1))
-            # start = 1
+            print("i {:0>4} j {:0>4} tkr {:0>4} not found in {}" \
+                .format(i, j, tkr, ipath1))
             # // FIXME: some in list but not found in spreadsheet -> add one row
             # // FIXME: at the end, sort sheet then save
             missed += 1

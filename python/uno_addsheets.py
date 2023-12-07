@@ -83,9 +83,14 @@ guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 last_row = len(cursor.Rows)
 n_ticker = ( last_row - 2 ) + 1
 
-oCell = doc.getCurrentSelection()
-oCell.String = "oops" # // FIXME: only when get focused
+# oCell = doc.getCurrentSelection()
+# oCell.String = "oops" # // FIXME: only when get focused
 
+# columns = active_sheet.getColumns()
+# column = columns.getByName("A") # one column
+the_range = active_sheet.getCellRangeByName("A:j")
+the_range.Columns.OptimalWidth = True
+doc.store()
 
 sys.exit(0)
 
@@ -276,7 +281,6 @@ set_formula_3m()
 set_formula_1m()
 set_formula_1w()
 draw_legend()
-doc.store() # works
 
 outf0.close(); outf1.close()
 

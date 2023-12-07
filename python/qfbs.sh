@@ -81,6 +81,7 @@ OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
 REMOTE_FOLDER="~/Dropbox/$DATE"
+mkdir -p $REMOTE_FOLDER # // FIXME:
 
 FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
@@ -174,7 +175,8 @@ rm -f temp
 
 echo -ne '\007'
 read -p "Press enter to continue $OUTF0 ..."
-python3 launch.py $OUTF0
+# python3 launch.py $OUTF0
+./uno_launch.sh $OUTF0
 # manual process here...
 while true ; do
     if [ ! -f "$OUTF1" ]; then
@@ -183,6 +185,10 @@ while true ; do
 	break
     fi
 done
+# ./uno_launch.sh datafiles/taiex/qfbs/外投同買賣及異常.20231205.ods datafiles/taiex/qfbs/外投同買列表.20231205.ods
+# ./uno_launch.sh datafiles/taiex/qfbs/外投同買列表.20231205.ods datafiles/taiex/qfbs/外投同買賣及異常.20231205.ods
+/Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
+# optimal columns width, then store()
 
 echo -ne '\007'
 read -p "Press enter to continue $OUTF2B ..."
@@ -222,7 +228,6 @@ done
 
 echo -ne '\007'
 
-mkdir -p $REMOTE_FOLDER
 cp -v $OUTF1 $O2B $O2S $OQA $REMOTE_FOLDER
 
 read -p "Press enter to continue $OUTF1 ..."
@@ -230,10 +235,6 @@ read -p "Press enter to continue $OUTF1 ..."
 # "$OUTF1" "$O2B" "$O2S" "$OQA" \
 # --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
 ./uno_launch.sh "$OUTF1" "$O2B" "$O2S" "$OQA"
-
-# ./uno_launch.sh datafiles/taiex/qfbs/外投同買賣及異常.20231205.ods datafiles/taiex/qfbs/外投同買列表.20231205.ods
-# ./uno_launch.sh datafiles/taiex/qfbs/外投同買列表.20231205.ods datafiles/taiex/qfbs/外投同買賣及異常.20231205.ods
-# /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
 
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S $OUTFQA
@@ -249,9 +250,8 @@ rm -f temp
 
 ./check_2b2s.sh $LAST_TRADE_DAY $DATE
 
-# generate 18 files // FIXME:
-# ls -ltr "$DIR0/*.txt" "$DIR0/*.html" "$DIR0/*.ods" "$DIR0/*.csv"  | tail -n 35;
-ls -ltr "$DIR0/*$DATE*.{html,txt,csv,ods}" | tail -n 35
+# generate 35 files
+ls -lt $DIR0/*$DATE*.{html,txt,csv,ods} | tail -n 35 # // FIXME:
 echo -ne '\007'
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
