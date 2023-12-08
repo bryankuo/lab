@@ -15,11 +15,11 @@ if [ "$#" -lt 3 ]; then
     echo "fetch the close price of last trade date"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
-# echo "$1 $2 $3"
 
 TICKER=$1
 THE_DATE=$2
 NET=$3
+echo "price.sh+ $TICKER $THE_DATE $NET"
 
 DIR0="datafiles/taiex"
 
@@ -40,7 +40,7 @@ PRICE0=0
 PRICE1=0
 
 fetch_price_by_date() {
-    # echo "get $1 price..."
+    echo "get $1 price..."
     if [ $CO_TYPE1 -eq 2 ]; then
 	OUTPUT=($(python3 price.py $TICKER $1 $NET | tr -d '[],'))
 	# echo ${OUTPUT[@]}
@@ -48,6 +48,7 @@ fetch_price_by_date() {
     elif [ $CO_TYPE1 -eq 4 ]; then
 	OUTPUT=($(python3 price_otc.py $TICKER $1 $NET | tr -d '[],'))
 	PRICE0=${OUTPUT[0]}
+	# python3 price_otc.py $TICKER $1 $NET
     elif [ $CO_TYPE1 -eq 5 ]; then
 	# echo "type 5" // FIXME:
 	OUTPUT=($(python3 price_type5.py $TICKER $1 $NET | tr -d '[],'))

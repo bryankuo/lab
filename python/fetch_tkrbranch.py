@@ -8,7 +8,6 @@
 # \param in ticker
 # \param in 0 net 1 file
 # \param out csv file(ticker,close,volume)
-# // TODO: test if sites apply
 
 import sys, requests, datetime, time, numpy, random, csv, urllib
 import os, errno
