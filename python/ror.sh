@@ -36,8 +36,11 @@ OUTF2="$DIR0/rs.$DATE.ods"
 TSE_ROR="$DIR1/ror.twse.html"
 TICKER_ROR="$DIR1/ror.[0-9][0-9][0-9][0-9].html"
 
+# COMMAND="fetching"
+COMMAND="figuring"
+
 # watch -n 1 "ls -lt datafiles/taiex/rs/20231201/*.html | wc -l"
-if false; then
+if [ "$COMMAND" = "fetching" ]; then
     trash -v $TICKER_ROR
     echo "fetch ticker files..."
     TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
@@ -83,7 +86,7 @@ if false; then
 fi
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
-if true; then
+if [ "$COMMAND" = "figuring" ]; then
     echo "clean up data files..."
     trash -v $OUTF0 $OUTF1 $OUTF2 $TSE_ROR
     BENCHMARK=""
@@ -138,7 +141,8 @@ fi
 
 read -p "Press enter to continue $OUTF1 ..."
 # open via subprocess, can not modify from outside python
-python3 launch.py $OUTF1
+# python3 launch.py $OUTF1
+./uno_launch.sh $OUTF1
 
 # manual process here...
 while true ; do
@@ -149,18 +153,16 @@ while true ; do
     fi
 done
 
-./uno_launch.sh $OUTF2
-# so as to let uno_rs.sh adding formula
-
-# ./uno_rs.sh $OUTF2
+# ./uno_launch.sh $OUTF2
+# assume ready and focused, uno_rs.sh adding formula
+./uno_rs.sh $DATE
 # // FIXME:     r_ytd = soup.findAll('table')[0] \
 # IndexError: list index out of range
-#
 
 # // TODO: seperate fetch and get
 echo "done, file name is "$OUTF2
-echo "execute \"uno_launch.sh $OUTF2 \" and "
-echo "execute \"uno_rs.sh $DATE \" to continue,"
+echo "execute \"./uno_launch.sh $OUTF2 \" and "
+echo "execute \"./uno_rs.sh $DATE \" to continue,"
 # cp -v $OUTF2 ~/Dropbox
 
 # // TODO: housekeeping

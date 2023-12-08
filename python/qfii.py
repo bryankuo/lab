@@ -414,11 +414,11 @@ try:
         # print("parse_2-")
         return n_rec
 
-    # \param market: 0 (choppy), 1 (low), 2 (high)
+    # \param market: 0 (choppy), 1 (down), 2 (up)
     def merge12(market, l1_b, l1_s, l2_b, l2_s, ld_lst, lu_lst):
         # transpose ( @see shorturl.at/ntuy8 ) then union
         # extend # of row, then looping
-        print("merge12+")
+        print("merge12+ {}".format(market)) # // FIXME:
         l1b = l1_b.copy()
         l1s = l1_s.copy()
         l2b = l2_b.copy()
@@ -578,14 +578,16 @@ try:
                         full_tab[i][0], full_tab[i][1], \
                         full_tab[i][2], full_tab[i][3] )
                     outf3.write(rec +"\n")
-
-                if ( market == 2 and int(full_tab[i][3]) < 0 ):
+                elif ( market == 2 and int(full_tab[i][3]) < 0 ):
                     full_tab[i][8] = 1
                     rec = "{0}:{1}:{2}:{3}" \
                         .format( \
                         full_tab[i][0], full_tab[i][1], \
                         full_tab[i][2], full_tab[i][3] )
                     outf3.write(rec +"\n")
+                else:
+                    print("market is 0")
+                # // TODO: index drop but stock qfii doing reverse
 
                 # 2.
                 # in updown list and qfii doing reverse
@@ -613,6 +615,7 @@ try:
                                 full_tab[i][0], full_tab[i][1], \
                                 full_tab[i][2], full_tab[i][3] )
                             outf3.write(rec +"\n")
+                # // TODO: another file, drop limit but stock qfii doing reverse
 
                 # 3. more?
 
@@ -676,7 +679,7 @@ try:
     print("get limit updown list..."+yyyy+mm+dd+" done, takes " \
             +str(timedelta(seconds=end-start)))
 
-    # 0 (choppy), 1 (low), 2 (high)
+    # 0 (choppy), 1 (down), 2 (up)
     market_status = is_market_rip(deal, change, rise, volume)
     # print(market_status)
 

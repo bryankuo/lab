@@ -115,7 +115,7 @@ for ticker in f:
             msg = "{:04} {:4} {} {} {}" \
                 .format(count, ticker, response.status_code, sz, url)
             print(msg)
-            logf.write(msg) # // FIXME:
+            logf.write(msg+"\n") # // FIXME: scan fetch log
             if ( response.status_code <= 200 ):
                 count += 1
                 break
