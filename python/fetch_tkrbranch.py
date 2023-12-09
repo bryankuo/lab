@@ -121,23 +121,7 @@ else:
     page = "/z/zc/zco/zco_" + tkr + ".djhtm"
     # class="t01" id="oMainTable", file size is around 20k
 
-    # url = "https://concords.moneydj.com" + page                        # works,
-    # url = "https://trade.ftsi.com.tw" + page                           # works, test adding encoding cp950
-    # url = "https://just2.entrust.com.tw" + page                        # works, plus adding encoding
-    # url = "https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco_1103.djhtm" # works
-    # "http://fubon-ebrokerdj.fbs.com.tw"                                # works
-    # "https://fubon-ebrokerdj.fbs.com.tw",
-
-    # url = "https://stockchannelnew.sinotrade.com.tw" + page            # works
-    # url = st.list[4] + page                                            # works
-    # url = sites.list[5] + page                                         # works
-    # url = sites.list[6] + page                                         # works
-    # url = sites.list[7] + page                                         # works
-    # url = sites.list[8] + page                                         # works
-    # url = sites.list[9] + page                                         # works
-    # url = sites.list[10] + page                                        # works
-    # url = sites.list[11] + page                                        # works
-    # url = sites.list[12] + page                                        # works
+    # "https://concords.moneydj.com" # na
     url = random.choice(sites.list)
     print(url) # // FIXME: possible market closed?
     # response = requests.get(url)
@@ -145,10 +129,10 @@ else:
     response = requests.get(url, headers=headers)
     response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    print(path)
     with open(path, "w") as outfile2:
         outfile2.write(soup.prettify())
         outfile2.close()
+    print(path)
 
 sys.exit(0)
 # rm -f datafiles/taiex/branch/????.html
