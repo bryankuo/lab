@@ -43,6 +43,7 @@
 #  display positions in time period
 # https://histock.tw/stock/brokertrace.aspx?bno=1560&no=3008
 # // TODO: there are exact daily numbers in wangoo
+# 券商分點個股進出
 
 # how to parse? what do they offer?
 # what is this? type2, type4, how about type5?

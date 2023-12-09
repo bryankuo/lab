@@ -2,6 +2,8 @@
 
 # python3 branch.py [ticker]
 # return 0: success
+#
+# @see fetch_tkrbranch.py
 
 import sys, requests, time, re, os, webbrowser
 import urllib.request
@@ -56,18 +58,6 @@ b = sum(n_geo_group)
 # print( len(n_geo_group) )
 sys.exit(0)
 
-# trades = "b.txt" # download html
-# with open(trades) as fp:
-#    soup = BeautifulSoup(fp, 'html.parser')
-
-url = "https://histock.tw/stock/branch.aspx?no="+ticker
-# previous day ( @see transaction.py )
-# https://histock.tw/stock/branch.aspx?no=2015&from=20220502&to=20220502
-# day off
-# https://histock.tw/stock/branch.aspx?no=2015&from=20220501&to=20220501
-# day: 30, ... 365
-# from, to
-# https://histock.tw/stock/branch.aspx?no=5011&day=30
 present = datetime.today()
 # present = datetime.today() + relativedelta(months=-2)
 tday = present.strftime("%Y") + present.strftime("%m") + present.strftime("%d")
@@ -159,13 +149,13 @@ sys.exit(0)
 # 分點明細查詢
 # https://newjust.masterlink.com.tw/z/zg/zgb/zgb0.djhtm?a=5920&b=0035003900320079
 
-# 券商分點買賣日報
-# https://histock.tw/stock/branch.aspx?no=1101
+# 主力進出比較圖
+# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco_2618.djhtm
+
 
 # 券商分點買賣超排行
 
 # 主力進出明細
-
 
 # broker
 # 券商整體-主力進出明細
@@ -209,9 +199,6 @@ sys.exit(0)
 
 # https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9100&b=0039003100380065
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8880&b=8880
-
-# 主力進出比較圖
-# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zco/zco_2618.djhtm
 
 # https://www.moneydj.com/z/zg/zgb/zgb0.djhtm?a=8450&b=0038003400350042
 # https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440
