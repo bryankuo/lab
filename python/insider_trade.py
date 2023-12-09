@@ -17,6 +17,7 @@ from datetime import timedelta, datetime, date
 from bs4 import BeautifulSoup
 sys.path.append(os.getcwd())
 import useragents as ua
+import sites
 
 if ( len(sys.argv) < 3 ):
     print("usage: insider_trade.py [yyyymmdd] [net|file]")
@@ -45,7 +46,9 @@ last_sat = this_date - timedelta(7+idx-6)
 # source
 # https://www.moneydj.com/Z/ZE/ZEI/ZEI.djhtm
 # https://www.sinotrade.com.tw/Stock/Stock_3_6?ch=Stock_3_6_6
-url = "https://sjmain.esunsec.com.tw/z/ze/zei/zei.djhtm"
+url = "https://sjmain.esunsec.com.tw/z/ze/zei/zei.djhtm" # running
+# https://www.esunsec.com.tw/tw-rank/z/ZG/ZG_AB.djhtm # down
+# sites.test() # works
 
 if ( is_from_net ):
     if ( os.path.exists(path) ):

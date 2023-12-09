@@ -35,3 +35,16 @@ list = [ # the most comprehensive site list in project
     # "https://www.masterlink.com.tw/stock-individualinteractive" # different?
     # "https://www.masterlink.com.tw"
 ]
+
+import requests
+
+def test():
+    print("# sites: " + str(len(list)))
+    for url in list:
+        try:
+            page = requests.get(url)
+            a = page.status_code
+        except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError):
+            a = "C.Error" # print("Error")
+        finally:
+            print("test " + str(a) + " " + url)
