@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-12-04T23:22:34.436Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="wrYyYhiKqMfG70rRwF93" version="22.1.5" type="device">
+<mxfile host="app.diagrams.net" modified="2023-12-09T03:09:26.015Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="rTPDS9I72VYg5E0NXXKJ" version="22.1.7" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
-    <mxGraphModel dx="927" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1167" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -271,7 +271,7 @@
         <mxCell id="bQSQkTfY7fp3am4eQp_7-1" value="目前的觀察&lt;br&gt;週一06:00仍可&lt;br&gt;看到成交明細" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="244" y="585" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="h0bOWt3YbgbBBf8mHP9O-1" value="歐股開盤" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="h0bOWt3YbgbBBf8mHP9O-1" value="歐股開盤&lt;br&gt;( 原物料主場 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="84" y="2370" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="h0bOWt3YbgbBBf8mHP9O-2" value="15:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -692,7 +692,7 @@
             <mxPoint x="1770" y="370" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="mCX8aS_O3Q_4noS1LeP5-25" value="搜尋與看盤&lt;br&gt;找出當時人氣股&lt;br&gt;( 找出一套&lt;br&gt;台股盯盤方法 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="mCX8aS_O3Q_4noS1LeP5-25" value="搜尋與看盤&lt;br&gt;找人氣股, 高周轉,&lt;br&gt;成交量數字滾動快的" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1997" y="460" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="mCX8aS_O3Q_4noS1LeP5-26" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="mCX8aS_O3Q_4noS1LeP5-23" target="mCX8aS_O3Q_4noS1LeP5-27" edge="1">
@@ -1748,7 +1748,7 @@
         <mxCell id="ZEdiwUFx5rHleK81hNN1-1" value="Ross提示&lt;br&gt;開盤前後兩小時&lt;br&gt;的momentum&lt;br&gt;呈現常態分佈" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="500" y="2691.75" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="8j63Yt_ft4YTMm4X93cR-1" value="run price tags&lt;br&gt;script&lt;br&gt;top10_indexes.sh" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="8j63Yt_ft4YTMm4X93cR-1" value="run price tags&lt;br&gt;script&lt;br&gt;top10_indexes.py" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="2500.5" y="40" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8j63Yt_ft4YTMm4X93cR-2" value="只看10個代表數據&lt;br&gt;會選哪個?" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -3715,7 +3715,7 @@
         <mxCell id="o6yxz6Tkgwx2Tn4I-VS--1" value="間隔以&lt;br&gt;重量訓練&lt;br&gt;或心肺訓練 或 拉伸" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="2321" y="375" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="o6yxz6Tkgwx2Tn4I-VS--3" value="美股熱力圖" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="o6yxz6Tkgwx2Tn4I-VS--3" value="美股/全球&lt;br&gt;熱力圖" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="3020" y="190" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="o6yxz6Tkgwx2Tn4I-VS--4" value="設定警示&lt;br&gt;三日最高最低&lt;br&gt;黃國華用8天停損&lt;br&gt;( 台股波段時間停損 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
