@@ -17,8 +17,9 @@ from com.sun.star.uno import RuntimeException
 from com.sun.star.awt import MessageBoxButtons as MSG_BUTTONS
 
 yyyymmdd = sys.argv[1]
-sheet_name = "rs."+yyyymmdd
-# print(sheet_name)
+s0 = "rs."+yyyymmdd
+s1 = "leading75"
+s2 = "pr34above75"
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -56,7 +57,9 @@ try:
 except RuntimeException:
     nl = numbers.queryKey("###0.000", locale, False)
 
-active_sheet = doc.Sheets.getByName(sheet_name)
+doc.Sheets.insertNewByName(s1, 1)
+doc.Sheets.insertNewByName(s2, 2)
+active_sheet = doc.Sheets.getByName(s0)
 
 # assume no more than 3000 listed.
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
@@ -123,6 +126,55 @@ path0 = os.path.join(DIR0, fname0)
 outf0 = open(path0, "w")
 outf0.write("ticker:pr1w:pr1m\n")
 
+sheet1 = doc.Sheets.getByName(s1)
+
+def check_rule_1(row_idx):
+    i = row_idx
+    rs_1w  = active_sheet.getCellRangeByName("L"+str(i)).Value
+    rs_1m  = active_sheet.getCellRangeByName("M"+str(i)).Value
+    rs_3m  = active_sheet.getCellRangeByName("N"+str(i)).Value
+    rs_ytd = active_sheet.getCellRangeByName("O"+str(i)).Value
+    if ( 0.75 < rs_1w and 0.75 < rs_1m and 0.75 < rs_3m and 0.75 < rs_ytd ):
+        tkr = active_sheet.getCellRangeByName("A"+str(i)).String
+        outf1.write(tkr + ":" \
+            + "{:3.3f}".format(rs_1w) + ":" \
+            + "{:3.3f}".format(rs_1m) + ":" \
+            + "{:3.3f}".format(rs_3m) + ":" \
+            + "{:3.3f}".format(rs_ytd) + "\n")
+
+        range1 = sheet1.getCellRangeByPosition(0, 0, 4, 999) # topl, bottomr
+        cursor1 = sheet1.createCursorByRange(range1)
+        cursor1.gotoEndOfUsedArea(False)
+        cursor1.gotoStartOfUsedArea(True)
+        new_row = len(cursor1.Rows) + 1
+
+        # // TODO: format
+        sheet1.getCellRangeByName("A"+str(new_row)).String  = tkr
+        sheet1.getCellRangeByName("b"+str(new_row)).String  = rs_1w
+        sheet1.getCellRangeByName("c"+str(new_row)).String  = rs_1m
+        sheet1.getCellRangeByName("$d"+str(new_row)).String = rs_ytd
+
+def check_rule_2(row_idx):
+    i = row_idx
+    cell   = active_sheet.getCellRangeByName("L"+str(i))
+    rs_1w  = active_sheet.getCellRangeByName("L"+str(i)).Value
+    rs_1m  = active_sheet.getCellRangeByName("M"+str(i)).Value
+    rs_3m  = active_sheet.getCellRangeByName("N"+str(i)).Value
+    rs_ytd = active_sheet.getCellRangeByName("O"+str(i)).Value
+
+    # straigh 3 at December seems all losers
+    # if ( rs_3m < 0.34 and rs_1m < 0.34 \
+    #     and 0.75 < cell.Value ):
+
+    if ( rs_1m < 0.34 and 0.75 < rs_1w ):
+        cell.CellBackColor = 0xffff38
+        tkr = active_sheet.getCellRangeByName("A"+str(i)).String
+        outf0.write(tkr + ":" \
+            + "{:3.3f}".format(rs_1w) + ":" \
+            + "{:3.3f}".format(rs_1m) + ":" \
+            + "{:3.3f}".format(rs_3m) + "\n")
+        # // TODO: fill it up to sheet2
+
 def set_formula_1w():
     addr = "$L1"
     cell = active_sheet.getCellRangeByName(addr)
@@ -139,33 +191,9 @@ def set_formula_1w():
         cell.NumberFormat = nl
         if ( 0.66 < cell.Value ):
             cell.CellBackColor = 0x3faf46
-
-        rs_1w  = active_sheet.getCellRangeByName("L"+str(i)).Value
-        rs_1m  = active_sheet.getCellRangeByName("M"+str(i)).Value
-        rs_3m  = active_sheet.getCellRangeByName("N"+str(i)).Value
-        rs_ytd = active_sheet.getCellRangeByName("O"+str(i)).Value
-        # rule 1
-        if ( 0.75 < rs_1w and 0.75 < rs_1m and 0.75 < rs_3m and 0.75 < rs_ytd ):
-            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
-            outf1.write(tkr + ":" \
-                + "{:3.3f}".format(rs_1w) + ":" \
-                + "{:3.3f}".format(rs_1m) + ":" \
-                + "{:3.3f}".format(rs_3m) + ":" \
-                + "{:3.3f}".format(rs_ytd) + "\n")
-
-        # addr_3m = "N"+str(i)
-        # cell_3m = active_sheet.getCellRangeByName(addr_3m)
-        # addr_1m = "M"+str(i)
-        # cell_1m = active_sheet.getCellRangeByName(addr_1m)
-        # rule 2
-        if ( rs_3m < 0.34 and rs_1m < 0.34 \
-            and 0.75 < cell.Value ):
-            cell.CellBackColor = 0xffff38
-            tkr = active_sheet.getCellRangeByName("A"+str(i)).String
-            outf0.write(tkr + ":" \
-                + "{:3.3f}".format(cell.Value) + ":" \
-                + "{:3.3f}".format(rs_1m) + "\n")
-        # // TODO: refactor as rule a function
+        check_rule_1(i)
+        check_rule_2(i)
+        # // TODO:
 
 def set_formula_1m():
     addr = "$M1"
@@ -230,6 +258,7 @@ def set_formula_ytd():
             cell.CellBackColor = 0x3faf46
 
 def draw_legend():
+    active_sheet = doc.Sheets.getByName(s0)
     addr = "$P1"
     cell = active_sheet.getCellRangeByName(addr)
     cell.String = "Legend"
@@ -248,16 +277,41 @@ def draw_legend():
 
     addr = "$Q3"
     cell = active_sheet.getCellRangeByName(addr)
-    cell.String = "Advancing from below PR33 to leading PR75"
+    cell.String = "3m, 1m below PR33 to 1w leading PR75"
 
+    sheet1 = doc.Sheets.getByName(s1)
+    sheet1.getCellRangeByName("A1").String = "ticker"
+    sheet1.getCellRangeByName("b1").String = "pr1w"
+    sheet1.getCellRangeByName("c1").String = "pr1m"
+    sheet1.getCellRangeByName("$d1").String = "pr3m"
+    range1 = sheet1.getCellRangeByPosition(0, 0, 4, 999) # topl, bottomr
+    cursor1 = sheet1.createCursorByRange(range1)
+    cursor1.gotoEndOfUsedArea(False)
+    cursor1.gotoStartOfUsedArea(True)
+    print("# row: "+str(len(cursor1.Rows)))
 
+    sheet2 = doc.Sheets.getByName(s2)
+    sheet2.getCellRangeByName("A1").String = "ticker"
+    sheet2.getCellRangeByName("b1").String = "pr1w"
+    sheet2.getCellRangeByName("c1").String = "pr1m"
+    sheet2.getCellRangeByName("$d1").String = "pr3m"
+    sheet2.getCellRangeByName("$E1").String = "ytd"
+    range2 = sheet2.getCellRangeByPosition(0, 0, 5, 999) # topl, bottomr
+    cursor2 = sheet2.createCursorByRange(range2)
+    cursor2.gotoEndOfUsedArea(False)
+    cursor2.gotoStartOfUsedArea(True)
+    print("2 # row: "+str(len(cursor2.Rows)))
+
+    # doc.CurrentController.setActiveSheet(sheet0)
+    active_sheet = doc.Sheets.getByName(s0)
+    # // TODO: dispathing call to a1
+
+draw_legend()
 set_formula_ytd()
 set_formula_3m()
 set_formula_1m()
 set_formula_1w()
-draw_legend()
-doc.store() # works
-
+doc.store()
 outf0.close(); outf1.close()
 
 olist = [ last_row, path0, path1 ]
