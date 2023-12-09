@@ -64,3 +64,27 @@ if loading_page == True:
     webbrowser.open(url)
 
 sys.exit(0)
+
+# https://goodinfo.tw/tw/StockHolderMeetingList.asp?MARKET_CAT=%E5%85%A8%E9%83%A8&INDUSTRY_CAT=%E5%85%A8%E9%83%A8&YEAR=%E8%BF%91%E6%9C%9F%E5%8F%AC%E9%96%8B
+
+# 股東會時間明細表
+# https://concords.moneydj.com/z/zu/zue/zuec/zuec_1_.djhtm
+
+# 改選年度
+# https://stock.wespai.com/equity
+
+# 股東會時間地點
+# https://www.kgi.com.tw/zh-tw/product-market/calendar-overview/shareholder-meetings
+
+# history
+# 召開股東常(臨時)會及受益人大會(94.5.5後之上市櫃/興櫃公司)
+# https://mops.twse.com.tw/mops/web/t108sb16_q1
+# 選舉事項：○無●有　改選本公司董事案
+# /mops/web/ajax_t108sb16 post
+
+# 採候選人提名制、累積投票制、全額連記法選任董監事及當選資料彙總表
+# https://mops.twse.com.tw/mops/web/t144sb11
+
+# 股東會議案決議情形
+# https://mops.twse.com.tw/mops/web/t150sb04
+# 4.董監事選舉
