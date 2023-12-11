@@ -51,10 +51,11 @@ from_file     = True
 if ( int(sys.argv[2]) == 0 ):
     from_file     = False
 
+fname = yyyymmdd + '.html'
+html_path = os.path.join(DIR0, fname)
+
 if ( from_file ):
-    fname = yyyymmdd + '.html'
-    path = os.path.join(DIR0, fname)
-    print(path)
+    print(html_path)
     fname0 = yyyymmdd + '.unsorted.csv'
     path0 = os.path.join(DIR0, fname0)
     print(path0)
@@ -69,9 +70,18 @@ if ( from_file ):
                 row = rows[i]
                 tds = row.find_all('td')
                 tkr = tds[0].text.strip()
+                nm = tds[1].text.strip()
                 close  = tds[2].text.strip()
+                chg  = tds[3].text.strip()
                 p_chg  = tds[4].text.strip() # // FIXME: "--"
+                wp_chg = tds[5].text.strip()
+                amp = tds[6].text.strip()
+                opn = tds[7].text.strip()
+                hi  = tds[8].text.strip()
+                low = tds[9].text.strip()
+                mark = tds[10].text.strip()
                 vol    = tds[11].text.strip().replace(',','')
+                turn   = tds[12].text.strip().replace(',','')
                 # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
                 if ( 4 == len(tkr) and 1101 <= int(tkr) and int(tkr) <= 9999 ):
                     # print( tkr + " " + vol )
@@ -88,10 +98,8 @@ else:
     response = requests.get(url, headers=headers)
     # response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    fname = yyyymmdd + '.html'
-    path = os.path.join(DIR0, fname)
-    print(path)
-    with open(path, "w") as outfile2:
+    print(html_path)
+    with open(html_path, "w") as outfile2:
         outfile2.write(soup.prettify())
         outfile2.close()
 

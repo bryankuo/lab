@@ -20,8 +20,9 @@ DIR0="./datafiles/taiex/after.market"
 fname0 = yyyymmdd + '.csv' # // sorted by after_market.sh
 path0 = os.path.join(DIR0, fname0)
 
-sheet_name = "20220126"
-# print(sheet_name)
+# sheet_name = "20220126"
+sheet_name = "20231211"
+print(sheet_name)
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -68,7 +69,6 @@ active_sheet = doc.Sheets.getByName(sheet_name) # interchangable
 # FLEN = "$BI1"
 # LROW = "$BJ1"
 # FIDX = "$Bk1" # in calc, case insensitive
-# TIKR = "$BL1"
 # POS  = "$BM1"
 UPTD = "$BH"
 
@@ -136,9 +136,11 @@ column = columns.getByName("J")
 column.OptimalWidth = True
 
 
-the_range = active_sheet.getCellRangeByName("B:I")
+the_range = active_sheet.getCellRangeByName("C:I")
 the_range.Columns.IsVisible = False
-the_range = active_sheet.getCellRangeByName("K:BG")
+the_range = active_sheet.getCellRangeByName("K:Bg")
+the_range.Columns.IsVisible = False
+the_range = active_sheet.getCellRangeByName("bI:$BL")
 the_range.Columns.IsVisible = False
 
 # @see https://stackoverflow.com/a/72261886
@@ -151,12 +153,13 @@ try:
     tkrs     = [ x[0] for x in data ]
     closes   = [ x[1] for x in data ]
     checked  = [ 0 ] * len(tkrs)
-    start = 0; missed = 0
-    for i in range(2, len(cursor.Rows)+1):
+    start0=2; start1 = 0; missed = 0
+    for i in range(start0, len(cursor.Rows)+1):
         tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
         found = False
-        for j in range(start, len(tkrs)):
-            # print("i {:0>4} j {:0>4} ".format(i, j) + "tkr " + tkrs[j])
+        for j in range(start1, len(tkrs)):
+            tkr0 = tkrs[j]; q0 = closes[j]
+            print("{} {} {} {} {}".format(i, tkr, j, tkr0, q0))
             if ( checked[j] == 0 and tkrs[j] == tkr ):
                 found = True
                 break
@@ -166,14 +169,13 @@ try:
             cell.Value = closes[j]
             cell = active_sheet.getCellRangeByName(UPTD+str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
-            checked[j] = 1; start = j + 1
-            # print("i {:0>4} tkr {:0>4} found {:0>4}".format(i, tkr, j))
+            checked[j] = 1; start0 = i + 1; start1 = j + 1
             # // FIXME: some in list but not found in spreadsheet -> add one row
             # // FIXME: at the end, sort sheet then save
 
         else:
             print("i {:0>4} tkr {:0>4} not found in {}".format(i, tkr, path0))
-            start = 1
+            start = j
             # // FIXME: below 1000 shares ( 1 lot )
             missed +=1
 
@@ -182,6 +184,7 @@ try:
     print("# tkr in spreadsheet: {:>4}".format(n_ticker))
     print("list size {:>4}".format(len(data)))
     print("difference {:>4}".format(n_ticker-len(data)))
+    '''
     for i in range(0, len(tkrs)):
         if ( checked[i] == 0 ):
             tkr = tkrs[i]
@@ -199,8 +202,11 @@ try:
             # print(guessRange.getDataArray())
             n_ticker = len(cursor.Rows) - 1
             last_row = len(cursor.Rows)
+    '''
     # doc.CurrentController.select(guessRange) # works
     # what is dispatcher call? How to enable auto filters for a sheet
+    # @see dispatcher.executeDispatch
+    # https://ask.libreoffice.org/t/how-to-define-the-active-cell/11746/5
 
 except:
     # traceback.format_exception(*sys.exc_info())
@@ -216,7 +222,6 @@ t1 = time.time()
 # print("{:,} nanoseconds".format(t1-t0))
 # cell0 = active_sheet.getCellRangeByName(TIKR)
 # cell0.String = t_start
-# column = columns.getByName("BL")
 # column.Width = 5000 # works .7875" = 2000
 print("t_start: " + t_start)
 
