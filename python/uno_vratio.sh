@@ -18,12 +18,6 @@ DIR0="./datafiles/taiex/after.market"
 # 3.8.10
 # ModuleNotFoundError: No module named 'pandas'
 
-if false; then
-    RETURN=( $(/Applications/LibreOffice.app/Contents/Resources/python \
-	compare_volume.py $1 $2 | tr -d '[],' ) )
-    echo $RETURN
-fi
-
 /Applications/LibreOffice.app/Contents/Resources/python \
     uno_vratio.py $1 $2
 

@@ -59,7 +59,7 @@ if ( from_file ):
     fname0 = yyyymmdd + '.unsorted.csv'
     path0 = os.path.join(DIR0, fname0)
     print(path0)
-    with open(path, 'r') as fp:
+    with open(html_path, 'r') as fp:
         soup = BeautifulSoup(fp, 'html.parser')
         rows = soup.find_all("table", {"id": "CPHB1_gv"})[0] \
             .find_all("tr")

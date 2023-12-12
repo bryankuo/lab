@@ -71,7 +71,8 @@ ctx = resolver.resolve(
 smgr = ctx.ServiceManager
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 model = desktop.getCurrentComponent()
-sheet_name = "20220126"
+# sheet_name = "20220126"
+sheet_name = "20231211"
 active_sheet = model.Sheets.getByName(sheet_name)
 
 doc = None
@@ -126,11 +127,11 @@ try:
     # // FIXME: should be # of rows sheet
     # // FIXME: or if
 
-    start = 0; missed = 0
-    for i in range(2, len(cursor.Rows)+1):
+    start0 = 2; start1 = 0; missed = 0
+    for i in range(start0, len(cursor.Rows)+1):
         tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
         found = False
-        for j in range(start, len(tkrs)):
+        for j in range(start1, len(tkrs)):
             # print("i {:0>4} j {:0>4} tkr {:0>4}".format(i, j, tkr))
             if ( checked[j] == 0 and tkrs[j] == tkr ):
                 found = True
@@ -152,7 +153,7 @@ try:
                 cell.String = last[j]
             cell = active_sheet.getCellRangeByName(UPTD + str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
-            checked[j] = 1; start = j + 1
+            checked[j] = 1; start0 = i + 1; start1 = j + 1
         else:
             print("i {:0>4} j {:0>4} tkr {:0>4} not found in {}" \
                 .format(i, j, tkr, ipath1))
@@ -163,7 +164,7 @@ try:
     # // FIXME: possible new in data, therefore search
     print("# file {:>4}, {:>4} missed, ".format(len(tkrs)-1, missed)) # // FIXME:
 
-    the_range = active_sheet.getCellRangeByName("BI:Bk")
+    the_range = active_sheet.getCellRangeByName("BI:BL")
     the_range.Columns.OptimalWidth = True
 
 except:
