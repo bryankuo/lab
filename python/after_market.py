@@ -87,7 +87,7 @@ if ( from_file ):
                     # print( tkr + " " + vol )
                     outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
                     n_tickers += 1
-            print("n_tickers: " + str(n_tickers))
+            print("n_tickers: " + str(n_tickers) + "\n")
             outfile0.close();
         fp.close();
 else:

@@ -88,6 +88,7 @@ get_limit_up() {
     echo "get_limit_up()+"
     # trash "$DIR0/"limit.up.$DATE.csv
     # echo "fetch limit up type 2 from $FROM_SROUCE ..."
+    # // TODO: looping sites until get "exceptions.NewConnectionError"
     OUTPUT=($(python3 fetch_limit_updown.py 1 $DATE 0 $FROM_SROUCE | tr -d '[],'))
     echo ${OUTPUT[@]}
     sleep 1

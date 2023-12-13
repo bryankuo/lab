@@ -70,10 +70,7 @@ ctx = resolver.resolve(
     "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
 smgr = ctx.ServiceManager
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
-model = desktop.getCurrentComponent()
-# sheet_name = "20220126"
-sheet_name = "20231211"
-active_sheet = model.Sheets.getByName(sheet_name)
+# model = desktop.getCurrentComponent()
 
 doc = None
 numbers = None
@@ -87,6 +84,10 @@ try:
     nl = numbers.addNew( "###0.000",  locale )
 except RuntimeException:
     nl = numbers.queryKey("###0.000", locale, False)
+
+# sheet_name = "20220126"
+sheet_name = "20231211"
+active_sheet = doc.Sheets.getByName(sheet_name)
 
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
 cursor = active_sheet.createCursorByRange(guessRange)
@@ -175,6 +176,8 @@ except:
 
 finally:
     pass
+
+doc.store()
 
 f1.close()
 # t1 = time.time_ns()

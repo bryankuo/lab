@@ -16,47 +16,41 @@ DIR0="./datafiles/taiex/after.market"
 
 python3 after_market.py $DATE 0
 
-# html sort by price descending
-
 python3 after_market.py $DATE 1
 
 echo "sorting..."
+# html sort by price descending
 # @see https://stackoverflow.com/a/26249359
 sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.unsorted.csv"
-# grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
-wc -l  "$DIR0/$DATE.csv"
-cp -v "$DIR0/$DATE.csv" ~/Dropbox/after.market.$DATE.csv
-
-echo
-# ls -lt $DIR0 | head -n 10
 
 currenttime=$(date +%H:%M)
 if [[ "$currenttime" > "09:00" ]] && [[ "$currenttime" < "13:30" ]]; then
-    # cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.${currenttime:0:2}${currenttime:3:2}.csv"
-    # ls -lt $DIR0/????????.????.csv | head -n 5
-    THIS=$( ls -lt ./datafiles/taiex/after.market/20231212.????.csv \
-	| head -n 2 | cut -d ' ' -f 12 | xargs | cut -d ' ' -f1 )
-    LAST=$( ls -lt ./datafiles/taiex/after.market/20231212.????.csv \
-	| head -n 2 | cut -d ' ' -f 12 | xargs | cut -d ' ' -f1 )
+    cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.${currenttime:0:2}${currenttime:3:2}.csv"
+    ls -lt $DIR0/$DATE.????.csv | head -n 2
+    # ls -lt datafiles/taiex/after.market/20231213.????.csv
+    THIS_TIME=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
+	| cut -d '/' -f 5 | cut -c 1-13 | xargs | cut -d ' ' -f 1 )
+    LAST_TIME=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
+	| cut -d '/' -f 5 | cut -c 1-13 | xargs | cut -d ' ' -f 2 )
+    ./compare_volume.sh $THIS_TIME $LAST_TIME
+    ./uno_vratio.sh     $THIS_TIME $LAST_TIME
+else
+    # grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
+    wc -l  "$DIR0/$DATE.csv"
+    cp -v "$DIR0/$DATE.csv" ~/Dropbox/after.market.$DATE.csva
+    # ./compare_volume.sh 20231129 20231128
+    N_DAYS=$( ls -lt datafiles/taiex/after.market/????????.csv \
+	| wc -l | xargs | cut -d " " -f1 )
+    echo "there are $N_DAYS trade days recorded."
+    ls -lt $DIR0/????????.csv | head -n 3
 
-    ./compare_volume.sh $THIS $LAST
-    ./uno_vratio.sh     $THIS $LAST
+    # ./after_market.sh 20231201
+
+    # ./uno_launch.sh datafiles/activity_watchlist.ods
+
+    #read -p "save to ods, and let focus when ready ..."
+
+    # ./uno_bquote.sh 20231201
 fi
-
-echo
-
-# ./compare_volume.sh 20231129 20231128
-N_DAYS=$( ls -lt datafiles/taiex/after.market/????????.csv \
-    | wc -l | xargs | cut -d " " -f1 )
-echo "there are $N_DAYS trade days recorded."
-ls -lt $DIR0/????????.csv | head -n 3
-
-# ./after_market.sh 20231201
-
-# ./uno_launch.sh datafiles/activity_watchlist.ods
-
-#read -p "save to ods, and let focus when ready ..."
-
-# ./uno_bquote.sh 20231201
 
 exit 0
