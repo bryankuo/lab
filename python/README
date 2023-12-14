@@ -124,3 +124,5 @@ uno_vratio.py: update vr to calc via UNO,
 ticker_branch.py:
 sites.py:
 test.py: test how to run macro inside LO calc,
+volume_diff.sh: against last time, intraday
+volume_ratio.sh: compare against last trade day
