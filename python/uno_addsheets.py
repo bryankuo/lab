@@ -60,7 +60,7 @@ except RuntimeException:
     nl = numbers.queryKey("###0.000", locale, False)
 
 active_sheet = doc.Sheets.getByName(sheet_name)
-doc.Sheets.insertNewByName("外投同買列表",    1) # works
+# doc.Sheets.insertNewByName("外投同買列表",    1) # works
 doc.Sheets.insertNewByName("外投同賣列表",    2)
 doc.Sheets.insertNewByName("外資-賣漲停",     3)
 doc.Sheets.insertNewByName("外資-買跌停",     4)

@@ -117,8 +117,9 @@ else:
 # mm   = datetime.today().strftime('%m')
 # dd   = datetime.today().strftime('%d')
 
+both_buy = NAME037_1 + "."  + yyyy + mm + dd + '.txt'
+path0 = os.path.join(DIR0, both_buy)
 # // FIXME: join
-both_buy     = DIR0 + "/" + NAME037_1 + "."  + yyyy + mm + dd + '.txt'
 both_sell    = DIR0 + "/" + NAME037_2 + "."  + yyyy + mm + dd + '.txt'
 qfii_anomaly = DIR0 + "/" + NAME037_3 + "."  + yyyy + mm + dd + '.txt'
 
@@ -543,7 +544,7 @@ try:
             full_tab[i].append(0) # qfii anomaly
         print("highlight b2, s2, and qa ...")
 
-        with open(both_buy, 'wt') as outf1, \
+        with open(path0, 'wt') as outf1, \
             open(both_sell, 'wt') as outf2, \
             open(qfii_anomaly, 'wt') as outf3:
 
@@ -552,11 +553,12 @@ try:
                 # print(tkr)
                 if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
                     full_tab[i][6] = 1
-                    rec = "{0}:{1}:{2}:{3}:{4}:{5}" \
+                    rec = "{0}:{1}:{2}:{3}" \
                         .format( \
-                        full_tab[i][0], full_tab[i][1], \
-                        full_tab[i][2], full_tab[i][3], \
-                        full_tab[i][4], full_tab[i][5] )
+                        full_tab[i][0],
+                        full_tab[i][1], \
+                        full_tab[i][2], \
+                        full_tab[i][4] )
                     outf1.write(rec +"\n")
 
                 if ( int(full_tab[i][3]) < 0 ) and ( int(full_tab[i][5]) < 0 ):
@@ -586,7 +588,8 @@ try:
                         full_tab[i][2], full_tab[i][3] )
                     outf3.write(rec +"\n")
                 else:
-                    print("market is 0")
+                    # print("market is 0")
+                    pass
                 # // TODO: index drop but stock qfii doing reverse
 
                 # 2.
@@ -681,7 +684,7 @@ try:
 
     # 0 (choppy), 1 (down), 2 (up)
     market_status = is_market_rip(deal, change, rise, volume)
-    # print(market_status)
+    print("-is_market_rip " + str(market_status))
 
     start = timer()
     soups = fetch()

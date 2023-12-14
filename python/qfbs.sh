@@ -186,22 +186,26 @@ while true ; do
 	break
     fi
 done
-# ./uno_launch.sh datafiles/taiex/qfbs/外投同買賣及異常.20231205.ods datafiles/taiex/qfbs/外投同買列表.20231205.ods
-# ./uno_launch.sh datafiles/taiex/qfbs/外投同買列表.20231205.ods datafiles/taiex/qfbs/外投同買賣及異常.20231205.ods
+
+if false; then
+    # // TODO: duplicate $OUTF2B to calc spreadsheet
+    echo -ne '\007'
+    read -p "Press enter to continue $OUTF2B ..."
+    python3 launch.py $OUTF2B
+    # manual process here...
+    while true ; do
+	if [ ! -f "$O2B" ]; then
+	    read -p "Save $OUTF2B to ods when ready ..."
+	else
+	    break
+	fi
+    done
+else
+    /Applications/LibreOffice.app/Contents/Resources/python uno_update2b.py $DATE
+fi
+
 /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
 # optimal columns width, then store()
-
-echo -ne '\007'
-read -p "Press enter to continue $OUTF2B ..."
-python3 launch.py $OUTF2B
-# manual process here...
-while true ; do
-    if [ ! -f "$O2B" ]; then
-        read -p "Save $OUTF2B to ods when ready ..."
-    else
-	break
-    fi
-done
 
 echo -ne '\007'
 read -p "Press enter to continue $OUTF2S ..."
