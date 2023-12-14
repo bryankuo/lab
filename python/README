@@ -127,3 +127,4 @@ test.py: test how to run macro inside LO calc,
 volume_diff.sh: against last time, intraday
 volume_ratio.sh: compare against last trade day
 uno_update2b.py: update 2b into calc instead of open manually,
+us_ticker.py:
