@@ -123,3 +123,4 @@ compare_volume.sh: a wrapper,
 uno_vratio.py: update vr to calc via UNO,
 ticker_branch.py:
 sites.py:
+test.py: test how to run macro inside LO calc,
