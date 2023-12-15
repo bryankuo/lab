@@ -9,3 +9,4 @@ print "Hello World!";
 
 # Institutional Ownership and Shareholders
 # https://fintel.io/so/us/pltr
+# https://www.marketwatch.com/investing/stock/atak
