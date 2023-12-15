@@ -169,7 +169,8 @@ TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 
 # @see https://superuser.com/a/246841
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超:同步買超:同步賣超:外資操作異常' | cat - $OUTF0 > temp && mv temp $OUTF0
-echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' | cat - $OUTF2B > temp && mv temp $OUTF2B
+# echo '代  號:名  稱:外資買超:投信買超' \
+#    | cat - $OUTF2B > temp && mv temp $OUTF2B
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' | cat - $OUTF2S > temp && mv temp $OUTF2S
 echo '代  號:名  稱:外資買超:外資賣超' | cat - $OUTFQA > temp && mv temp $OUTFQA
 rm -f temp
@@ -203,6 +204,9 @@ if false; then
 else
     /Applications/LibreOffice.app/Contents/Resources/python uno_update2b.py $DATE
 fi
+# // TODO: pause for further processing, adding watch list, phase scan
+echo -ne '\007'
+read -p "Press enter to continue $OUTF2S ..."
 
 /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
 # optimal columns width, then store()

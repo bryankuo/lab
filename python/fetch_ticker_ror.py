@@ -17,7 +17,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from timeit import default_timer as timer
-from datetime import timedelta,datetime
+from datetime import timedelta, datetime
 from pprint import pprint
 sys.path.append(os.getcwd())
 import useragents as ua
@@ -111,17 +111,23 @@ for ticker in f:
             raise
 
         finally:
+            # @see https://stackoverflow.com/a/50223400
+            s = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')
+            d = datetime.strptime(s, '%Y%m%d %H:%M:%S.%f').strftime('%s.%f')
+            d_in_ms = int(float(d)*1000)
+            # print(d_in_ms)
+            # print(datetime.fromtimestamp(float(d)))
+            ts = datetime.fromtimestamp(float(d))
             sz = os.path.getsize(path)
-            msg = "{:04} {:4} {} {} {}" \
-                .format(count, ticker, response.status_code, sz, url)
+            msg = "{} {:04} {:4} {} {:>5} {}" \
+                .format(ts, count, ticker, response.status_code, sz, url)
             print(msg)
             logf.write(msg+"\n") # // FIXME: scan fetch log
             if ( response.status_code <= 200 ):
                 count += 1
                 break
-            # // TODO: check size
 
-# // TODO: test this @see https://stackoverflow.com/a/49253627
+# // @see https://stackoverflow.com/a/49253627
 session.close();
 f.close(); logf.close()
 sys.exit(0)

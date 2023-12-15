@@ -84,21 +84,14 @@ new_sheet.getCellRangeByName("$B1").String = "名  稱"
 new_sheet.getCellRangeByName("$C1").String = "外資買超"
 new_sheet.getCellRangeByName("$D1").String = "投信買超"
 
-idx = 0; i = 1
+idx = 0; i = 2
 for tkr in tkrs:
-    new_sheet.getCellRangeByName("$A"+str(i)).String = tkr # header included
+    new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
     new_sheet.getCellRangeByName("$B"+str(i)).String = name[idx]
-    new_sheet.getCellRangeByName("$C"+str(i)).String = qb[idx]
-    new_sheet.getCellRangeByName("$D"+str(i)).String = fb[idx]
-    '''
-    cell = new_sheet.getCellRangeByName("$C"+str(i))
-    cell.Value= int(qb[idx])
-    cell.NumberFormat = nl
-
-    cell = new_sheet.getCellRangeByName("$D"+str(i))
-    cell.Value= int(fb[idx])
-    cell.NumberFormat = nl
-    '''
+    new_sheet.getCellRangeByName("$C"+str(i)).Value = int(qb[idx])
+    new_sheet.getCellRangeByName("$C"+str(i)).NumberFormat = nl
+    new_sheet.getCellRangeByName("$D"+str(i)).Value = int(fb[idx])
+    new_sheet.getCellRangeByName("$D"+str(i)).NumberFormat = nl
     idx += 1; i += 1;
 
 # assume no more than 3000 listed.
