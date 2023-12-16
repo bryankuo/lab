@@ -56,7 +56,7 @@ if [ "$COMMAND" = "fetching" ]; then
 	| wc -l | xargs | cut -d " " -f1)
     echo "fetched:   $n_fetched"
 
-    effective=$(find $DIR1 -type f \
+    n_effective=$(find $DIR1 -type f \
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
     echo "effective: $n_effective"
@@ -86,7 +86,8 @@ if [ "$COMMAND" = "fetching" ]; then
 fi
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
-if [ "$COMMAND" = "figuring" ]; then
+# if [ "$COMMAND" = "figuring" ]; then
+if false; then
     echo "clean up data files..."
     trash -v $OUTF0 $OUTF1 $OUTF2 $TSE_ROR
     BENCHMARK=""
@@ -143,6 +144,7 @@ read -p "Press enter to continue $OUTF1 ..."
 # open via subprocess, can not modify from outside python
 # python3 launch.py $OUTF1
 ./uno_launch.sh $OUTF1
+tput bel
 
 # manual process here...
 while true ; do
@@ -155,15 +157,22 @@ done
 
 # ./uno_launch.sh $OUTF2
 # assume ready and focused, uno_rs.sh adding formula
-./uno_rs.sh $DATE
+# ./uno_rs.sh $DATE # abandon ./uno_rs.sh
 # // FIXME:     r_ytd = soup.findAll('table')[0] \
 # IndexError: list index out of range
+TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno_formula.py $DATE
+TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: " $TIMESTAMP0 " looping start"
+echo "time: " $TIMESTAMP  " looping end"
+tput bel
 
 # // TODO: seperate fetch and get
 echo "done, file name is "$OUTF2
-echo "execute \"./uno_launch.sh $OUTF2 \" and "
-echo "execute \"./uno_rs.sh $DATE \" to continue,"
-# cp -v $OUTF2 ~/Dropbox
+# echo "execute \"./uno_launch.sh $OUTF2 \" and "
+# echo "execute \"./uno_rs.sh $DATE \" to continue,"
+cp -v $OUTF2 ~/Dropbox
 
 # // TODO: housekeeping
 # if moving old files, create yyyymmdd folder then move it

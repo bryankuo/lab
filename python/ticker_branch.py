@@ -54,20 +54,20 @@ if ( int(sys.argv[2]) == 0 ):
     from_file     = False
 
 # fname = tkr + "." + datetime.today().strftime('%Y%m%d') + '.html'
-fname = tkr + '.html'
-path = os.path.join(DIR0, fname)
+fname = tkr + '.histock.html'
+hpath = os.path.join(DIR0, fname)
 
-bfname = tkr + '.b.csv'
+bfname = tkr + '.b.histock.csv'
 bpath = os.path.join(DIR0, bfname)
-ofb = open(bpath, 'w')
 
-sfname = tkr + '.s.csv'
+sfname = tkr + '.s.histock.csv'
 spath = os.path.join(DIR0, sfname)
-ofs = open(spath, 'w')
 
 if ( from_file ):
-    print(path)
-    fp = open(path, 'r')
+    ofb = open(bpath, 'w')
+    ofs = open(spath, 'w')
+    print(hpath)
+    fp = open(hpath, 'r')
     soup = BeautifulSoup(fp, 'html.parser')
     rows = soup \
         .find_all("table", {"class": "tb-stock tbChip tbHide"})[0] \
@@ -129,12 +129,15 @@ else:
     response = requests.get(url, headers=headers)
     # response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    fname = tkr + '.html'
-    path = os.path.join(DIR0, fname)
-    with open(path, "w") as outfile2:
+    # fname = tkr + '.html'
+    # path = os.path.join(DIR0, fname)
+    with open(hpath, "w") as outfile2:
         outfile2.write(soup.prettify())
         outfile2.close()
-    print(path)
+    sz = os.path.getsize(hpath)
+    msg = "{:4} {} {:>5} {} {}" \
+        .format(tkr, response.status_code, sz, hpath, url)
+    print(msg)
 
 sys.exit(0)
 
@@ -142,7 +145,7 @@ sys.exit(0)
 # https://histock.tw/stock/branch.aspx?no=2015&from=20220502&to=20220502
 # day off
 # https://histock.tw/stock/branch.aspx?no=2015&from=20220501&to=20220501
-# day: 30, ... 365
+# day: 1,7,30, ... 365
 # from, to
 # https://histock.tw/stock/branch.aspx?no=5011&day=30
 

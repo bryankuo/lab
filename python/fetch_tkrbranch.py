@@ -2,7 +2,7 @@
 
 # python3 fetch_tkrbranch.py [ticker] [net|file]
 # scrap all branch by ticker.
-#
+
 # there are 2 steps, 1: from net, 2: scrap from file
 #
 # \param in ticker
@@ -49,24 +49,23 @@ except OSError as exc:
 
 # fname = tkr + "." + datetime.today().strftime('%Y%m%d') + '.html'
 fname = tkr + '.html'
-path = os.path.join(DIR0, fname)
+hpath = os.path.join(DIR0, fname)
 
 bfname = tkr + '.b.csv'
 bpath = os.path.join(DIR0, bfname)
-ofb = open(bpath, 'w')
 
 sfname = tkr + '.s.csv'
 spath = os.path.join(DIR0, sfname)
-ofs = open(spath, 'w')
 
 from_file = True
 if ( int(sys.argv[2]) == 0 ):
     from_file = False
 
 if ( from_file ):
-    print("from:")
-    print(path)
-    fp = open(path, 'r')
+    ofb = open(bpath, 'w')
+    ofs = open(spath, 'w')
+    print("from: {}".format(hpath))
+    fp = open(hpath, 'r')
     soup = BeautifulSoup(fp, 'html.parser')
     rows = soup.find_all("table", {"id": "oMainTable", "class": "t01"})[0] \
         .find_all("tr")
@@ -94,45 +93,45 @@ if ( from_file ):
             ofs.write(s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
         else:
             print("tbd")
-    ofb.close(); ofs.close()
-    sys.exit(0) # // TODO:
-    n_tickers = 0
-    with open(path0, 'w') as outfile0:
-        for i in range(1, len(rows)):
-            row = rows[i]
-            tds = row.find_all('td')
-            tkr = tds[0].text.strip()
-            close  = tds[2].text.strip()
-            p_chg  = tds[4].text.strip() # // FIXME: "--"
-            vol    = tds[11].text.strip().replace(',','')
-            # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
-            if ( 4 == len(tkr) and 1101 <= int(tkr) and int(tkr) <= 9999 ):
-                # print( tkr + " " + vol )
-                outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
-                n_tickers += 1
-        print("n_tickers: " + str(n_tickers))
-        outfile0.close();
-    fp.close()
-    print("to:")
-    print(spath)
-    print(spath)
+    ofb.close(); ofs.close(); fp.close()
+    print("to: {} {}".format(bpath, spath))
 
 else:
     page = "/z/zc/zco/zco_" + tkr + ".djhtm"
     # class="t01" id="oMainTable", file size is around 20k
 
     # "https://concords.moneydj.com" # na
-    url = random.choice(sites.list)
+    url = random.choice(sites.list) + page
     print(url) # // FIXME: possible market closed?
+    # sys.exit(0)
     # response = requests.get(url)
     headers = {'User-Agent': random.choice(ua.list)}
     response = requests.get(url, headers=headers)
     response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    with open(path, "w") as outfile2:
+    with open(hpath, "w") as outfile2:
         outfile2.write(soup.prettify())
         outfile2.close()
-    print(path)
+    sz = os.path.getsize(hpath)
+    msg = "{:4} {} {:>5} {} {}" \
+        .format(tkr, response.status_code, sz, hpath, url)
+    print(msg)
 
 sys.exit(0)
 # rm -f datafiles/taiex/branch/????.html
+# rm -f ./datafiles/taiex/branch/????.[bs].csv
+
+#
+# note: 未計入自營商部份
+# @see https://shorturl.at/cruP3
+# 關於主力的定義是當天買賣超個股的前15名券商，因此並未計入自營商部份
+# @see https://shorturl.at/gAN09
+
+# https://just.honsec.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2615&b=9677&BHID=9600
+# a
+# b
+# BHID
+# C
+# D
+# E
+# Ver
