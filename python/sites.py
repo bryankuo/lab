@@ -22,8 +22,9 @@ list = [ # the most comprehensive site list in project
     "https://djinfo.cathaysec.com.tw",          \
 
     # "http://tcfhcsec.moneydj.com/z/zc/zco/zco0/zco0.djhtm" # works
-    "http://tcfhcsec.moneydj.com"
+    "http://tcfhcsec.moneydj.com", \
 
+    "http://5850web.moneydj.com"
     # // TODO: to be verified
     # http://5850web.moneydj.com/z/zg/zgb/zgb0.djhtm?a=9600&b=9600
 
