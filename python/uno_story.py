@@ -37,7 +37,7 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # access the current writer document
 model = desktop.getCurrentComponent()
 # active_sheet = model.CurrentController.ActiveSheet
-active_sheet = model.Sheets.getByName("20220126")
+active_sheet = model.Sheets.getByName("20231211")
 '''
 sheet = model.Sheets.getByName("RS ranking") # works
 # sheet = model.Sheets.getByIndex(2)         # works

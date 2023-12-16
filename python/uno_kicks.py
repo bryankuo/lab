@@ -34,7 +34,7 @@ def context():
     # which is made available to all scripts
     desktop = XSCRIPTCONTEXT.getDesktop()
     model = desktop.getCurrentComponent()
-    active_sheet = model.Sheets.getByName("20220126")
+    active_sheet = model.Sheets.getByName("20231211")
 
 MAX_ARG_LEN = 22
 if ( len(sys.argv) >= MAX_ARG_LEN ):
@@ -91,13 +91,13 @@ model = desktop.getCurrentComponent()
 #    .getCurrentController().getViewCursor()
 
 # @see http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html
-# sheet_name = "20220126"
+# sheet_name = "20231211"
 # sheet = model.Sheets.getByName(sheet_name)
 # model.getCurrentController.setActiveSheet(sheet) # set the sheet active
 
 # access the active sheet
 # active_sheet = model.CurrentController.ActiveSheet
-active_sheet = model.Sheets.getByName("20220126")
+active_sheet = model.Sheets.getByName("20231211")
 
 # access cell C4
 # cell1 = active_sheet.getCellRangeByName("j501")

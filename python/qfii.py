@@ -563,11 +563,10 @@ try:
 
                 if ( int(full_tab[i][3]) < 0 ) and ( int(full_tab[i][5]) < 0 ):
                     full_tab[i][7] = 1
-                    rec = "{0}:{1}:{2}:{3}:{4}:{5}" \
+                    rec = "{0}:{1}:{2}:{3}" \
                         .format( \
                         full_tab[i][0], full_tab[i][1], \
-                        full_tab[i][2], full_tab[i][3], \
-                        full_tab[i][4], full_tab[i][5] )
+                        full_tab[i][3], full_tab[i][5] )
                     outf2.write(rec +"\n")
 
                 # 1.

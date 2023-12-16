@@ -20,7 +20,7 @@ DIR0="./datafiles"
 # fname0 = yyyymmdd + '.csv' # // sorted by after_market.sh
 # path0 = os.path.join(DIR0, fname0)
 
-sheet_name = "20220126"
+sheet_name = "20231211"
 # print(sheet_name)
 src_sheet_name = "Sheet7"
 
