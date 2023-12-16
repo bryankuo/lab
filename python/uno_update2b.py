@@ -20,6 +20,7 @@ yyyymmdd = sys.argv[1]
 DIR0="./datafiles/taiex/qfbs"
 NAME037="外投同買賣及異常"
 NAME037_1="外投同買列表"
+NAME037_2="外投同賣列表"
 sheet_name = NAME037+"."+yyyymmdd
 print("uno_update2b.py+ "+yyyymmdd)
 
@@ -61,9 +62,23 @@ try:
     nl = numbers.addNew( "###0",  locale )
 except RuntimeException:
     nl = numbers.queryKey("###0", locale, False)
-
-active_sheet = doc.Sheets.getByName(sheet_name)
+'''
+sheet0 = doc.Sheets.getByName(sheet_name)
 doc.Sheets.insertNewByName(NAME037_1,    1) # works
+doc.Sheets.insertNewByName(NAME037_2,    2)
+sheet1 = doc.Sheets.getByName(NAME037_1)
+guessRange = sheet0.getCellRangeByPosition(0, 0, 10, 3000)
+cursor = sheet0.createCursorByRange(guessRange)
+cursor.gotoEndOfUsedArea(False)
+cursor.gotoStartOfUsedArea(True)
+guessRange = sheet0.getCellRangeByPosition(0, 0, 10, len(cursor.Rows))
+# print(guessRange.RangeAddress) # works
+range0 = sheet0.getCellRangeByPosition(0, 0, 10, len(cursor.Rows))
+range1 = sheet1.getCellRangeByPosition(0, 0, 10, len(cursor.Rows))
+range1.setDataArray(range0.getDataArray())
+print("{} copied".format(len(cursor.Rows)))
+sys.exit(0)
+'''
 
 DIR0="./datafiles/taiex/qfbs"
 nm0 = NAME037_1 + "." + yyyymmdd + '.txt'
@@ -77,6 +92,8 @@ fb   = [ x[3] for x in data ]
 checked  = [ 0 ] * len(tkrs)
 print("# lines {}".format(len(tkrs)))
 
+sheet0 = doc.Sheets.getByName(sheet_name)
+doc.Sheets.insertNewByName(NAME037_1,    1) # works
 new_sheet = doc.Sheets.getByName(NAME037_1)
 doc.CurrentController.setActiveSheet(new_sheet)
 new_sheet.getCellRangeByName("$A1").String = "代  號"
@@ -86,21 +103,22 @@ new_sheet.getCellRangeByName("$D1").String = "投信買超"
 
 idx = 0; i = 2
 for tkr in tkrs:
-    new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
-    new_sheet.getCellRangeByName("$B"+str(i)).String = name[idx]
-    new_sheet.getCellRangeByName("$C"+str(i)).Value = int(qb[idx])
-    new_sheet.getCellRangeByName("$C"+str(i)).NumberFormat = nl
-    new_sheet.getCellRangeByName("$D"+str(i)).Value = int(fb[idx])
-    new_sheet.getCellRangeByName("$D"+str(i)).NumberFormat = nl
+    if 1 <= idx 0:
+        new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
+        new_sheet.getCellRangeByName("$B"+str(i)).String = name[idx]
+        new_sheet.getCellRangeByName("$C"+str(i)).Value = int(qb[idx])
+        new_sheet.getCellRangeByName("$C"+str(i)).NumberFormat = nl
+        new_sheet.getCellRangeByName("$D"+str(i)).Value = int(fb[idx])
+        new_sheet.getCellRangeByName("$D"+str(i)).NumberFormat = nl
     idx += 1; i += 1;
 
 # assume no more than 3000 listed.
-guessRange = new_sheet.getCellRangeByPosition(0, 1, 3, 3001)
+guessRange = new_sheet.getCellRangeByPosition(0, 1, 10, 3001)
 # look up the actual used area within the guess area
 cursor = new_sheet.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = new_sheet.getCellRangeByPosition(0, 1, 0, len(cursor.Rows))
+guessRange = new_sheet.getCellRangeByPosition(0, 1, 10, len(cursor.Rows))
 # print(guessRange.getDataArray())
 last_row = len(cursor.Rows)
 n_ticker = ( last_row - 2 ) + 1
@@ -119,7 +137,7 @@ the_range.NumberFormat = nl # works, setting format of a range of cells
 # column = columns.getByName("A") # one column
 the_range = new_sheet.getCellRangeByName("A:D")
 the_range.Columns.OptimalWidth = True
-doc.CurrentController.setActiveSheet(active_sheet)
+doc.CurrentController.setActiveSheet(sheet0)
 doc.store()
 print("uno_update2b.py-")
 sys.exit(0)

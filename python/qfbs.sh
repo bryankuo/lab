@@ -169,9 +169,10 @@ TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 
 # @see https://superuser.com/a/246841
 echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超:同步買超:同步賣超:外資操作異常' | cat - $OUTF0 > temp && mv temp $OUTF0
-# echo '代  號:名  稱:外資買超:投信買超' \
-#    | cat - $OUTF2B > temp && mv temp $OUTF2B
-echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' | cat - $OUTF2S > temp && mv temp $OUTF2S
+echo '代  號:名  稱:外資買超:投信買超' \
+    | cat - $OUTF2B > temp && mv temp $OUTF2B
+echo '代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超' \
+    | cat - $OUTF2S > temp && mv temp $OUTF2S
 echo '代  號:名  稱:外資買超:外資賣超' | cat - $OUTFQA > temp && mv temp $OUTFQA
 rm -f temp
 
@@ -188,11 +189,12 @@ while true ; do
     fi
 done
 
-if false; then
+if true; then
     # // TODO: duplicate $OUTF2B to calc spreadsheet
-    echo -ne '\007'
     read -p "Press enter to continue $OUTF2B ..."
-    python3 launch.py $OUTF2B
+    # no need to close $OUTF0
+    # python3 launch.py $OUTF2B
+    ./uno_launch.sh $OUTF2B # let calc parsing correctly instead of uno
     # manual process here...
     while true ; do
 	if [ ! -f "$O2B" ]; then
@@ -201,12 +203,16 @@ if false; then
 	    break
 	fi
     done
+    # copy range
+    /Applications/LibreOffice.app/Contents/Resources/python uno_update2b.py $DATE
 else
+    # read from file
     /Applications/LibreOffice.app/Contents/Resources/python uno_update2b.py $DATE
 fi
 # // TODO: pause for further processing, adding watch list, phase scan
 echo -ne '\007'
 read -p "Press enter to continue $OUTF2S ..."
+
 
 /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
 # optimal columns width, then store()
