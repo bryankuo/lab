@@ -19,7 +19,7 @@ fi
 TICKER=$1
 THE_DATE=$2
 NET=$3
-echo "price.sh+ $TICKER $THE_DATE $NET"
+# echo "price.sh+ $TICKER $THE_DATE $NET"
 
 DIR0="datafiles/taiex"
 
@@ -40,7 +40,7 @@ PRICE0=0
 PRICE1=0
 
 fetch_price_by_date() {
-    echo "get $1 price..."
+    # echo "get $1 price..."
     if [ $CO_TYPE1 -eq 2 ]; then
 	OUTPUT=($(python3 price.py $TICKER $1 $NET | tr -d '[],'))
 	# echo ${OUTPUT[@]}
