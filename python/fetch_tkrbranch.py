@@ -9,7 +9,8 @@
 # \param in 0 net 1 file
 # \param out csv file(ticker,close,volume)
 
-import sys, requests, datetime, time, numpy, random, csv, urllib
+import sys, requests, datetime, time, random, csv, urllib
+import numpy as np
 import os, errno
 # import urllib.parse
 from bs4 import BeautifulSoup
@@ -47,7 +48,9 @@ except OSError as exc:
     if exc.errno == errno.EEXIST and os.path.isdir(DIR0):
         pass
 
-# fname = tkr + "." + datetime.today().strftime('%Y%m%d') + '.html'
+gfname = "gini." + datetime.today().strftime('%Y%m%d') + '.csv'
+gpath =  os.path.join(DIR0, gfname)
+
 fname = tkr + '.html'
 hpath = os.path.join(DIR0, fname)
 
@@ -61,9 +64,21 @@ from_file = True
 if ( int(sys.argv[2]) == 0 ):
     from_file = False
 
+bg0 = []
+sg0 = []
+
+# @see https://shorturl.at/agtuT
+#define function to calculate Gini coefficient
+def gini(x):
+    total = 0
+    for i, xi in enumerate(x[:-1], 1):
+        total += np.sum(np.abs(xi - x[i:]))
+    return total / (len(x)**2 * np.mean(x))
+
 if ( from_file ):
     ofb = open(bpath, 'w')
     ofs = open(spath, 'w')
+    gf = open(gpath, 'a')
     print("from: {}".format(hpath))
     fp = open(hpath, 'r')
     soup = BeautifulSoup(fp, 'html.parser')
@@ -82,12 +97,16 @@ if ( from_file ):
             b2 = tds[2].text.replace('\n','').replace(' ','').replace(',','')
             b3 = tds[3].text.replace('\n','').replace(' ','').replace(',','')
             b4 = tds[4].text.replace('\n','').replace(' ','')
+            if 7 < i: # title
+                bg0.append(float(b3))
 
             s0 = tds[5].text.replace('\n','').replace(' ','')
             s1 = tds[6].text.replace('\n','').replace(' ','').replace(',','')
             s2 = tds[7].text.replace('\n','').replace(' ','').replace(',','')
             s3 = tds[8].text.replace('\n','').replace(' ','').replace(',','')
             s4 = tds[9].text.replace('\n','').replace(' ','')
+            if 7 < i:
+                sg0.append(float(s3))
 
             ofb.write(b0+":"+b1+":"+b2+":"+b3+":"+b4+"\n")
             ofs.write(s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
@@ -95,6 +114,17 @@ if ( from_file ):
             print("tbd")
     ofb.close(); ofs.close(); fp.close()
     print("to: {} {}".format(bpath, spath))
+    g0 = gini(np.array(bg0))
+    print("b {:0.3f} {}".format(g0, bg0))
+    s0 = gini(np.array(sg0))
+    print("s {:0.3f} {}".format(s0, sg0))
+    # @see https://tinyurl.com/2p9c54t3
+    cg0 = g0 - s0
+    if ( cg0 < -0.2 or 0.2 < cg0 ):
+        gf.write( "{:4}:{:0.3f}".format(tkr, cg0) + "\n" )
+        print("assume in demand ( supply ): ".format(cg0))
+        sys.stdout.write('\a')
+        sys.stdout.flush()
 
 else:
     page = "/z/zc/zco/zco_" + tkr + ".djhtm"
