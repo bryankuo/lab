@@ -224,6 +224,9 @@ sys.exit(0)
 # https://concords.moneydj.com/z/zc/zco/zco0/zco0.djhtm?A=3558&BHID=9200&b=9217&C=3&D=2023-2-1&E=2023-2-24&ver=V3
 # https://stock.capital.com.tw/z/zg/zgb/zgb0.djhtm?a=6010&b=6010
 
+# 單一分點進出明細
+# http://5850web.moneydj.com/z/zc/zco/zco0/zco0.djhtm?a=8358&BHID=1480&b=1480
+
 # 券商買賣超排行
 # https://www.wantgoo.com/stock/major-investors/broker-buy-sell-rank?during=1&majorId=9846&orderBy=count
 

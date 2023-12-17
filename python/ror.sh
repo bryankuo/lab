@@ -86,8 +86,7 @@ if [ "$COMMAND" = "fetching" ]; then
 fi
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
-# if [ "$COMMAND" = "figuring" ]; then
-if false; then
+if [ "$COMMAND" = "figuring" ]; then
     echo "clean up data files..."
     trash -v $OUTF0 $OUTF1 $OUTF2 $TSE_ROR
     BENCHMARK=""

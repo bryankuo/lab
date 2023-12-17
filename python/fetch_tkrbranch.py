@@ -85,7 +85,7 @@ if ( from_file ):
     rows = soup.find_all("table", {"id": "oMainTable", "class": "t01"})[0] \
         .find_all("tr")
     n_rows = len(rows)
-    print("# rows: " + str(n_rows))
+    # print("# rows: " + str(n_rows))
     # pprint(rows[8].text.replace('\n','')) # .replace(' ','')
     # print("#tds: {}".format(len(tds)))
     for i in range(7, n_rows):
@@ -113,13 +113,14 @@ if ( from_file ):
         else:
             print("tbd")
     ofb.close(); ofs.close(); fp.close()
-    print("to: {} {}".format(bpath, spath))
+    # print("to: {} {}".format(bpath, spath))
     g0 = gini(np.array(bg0))
     print("b {:0.3f} {}".format(g0, bg0))
     s0 = gini(np.array(sg0))
     print("s {:0.3f} {}".format(s0, sg0))
     # @see https://tinyurl.com/2p9c54t3
     cg0 = g0 - s0
+    print("cg0 {:0.3f}".format(cg0))
     if ( cg0 < -0.2 or 0.2 < cg0 ):
         gf.write( "{:4}:{:0.3f}".format(tkr, cg0) + "\n" )
         print("assume in demand ( supply ): ".format(cg0))
@@ -127,13 +128,27 @@ if ( from_file ):
         sys.stdout.flush()
 
 else:
-    page = "/z/zc/zco/zco_" + tkr + ".djhtm"
+
+    # https://just.honsec.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2615&b=9677&BHID=9600
+    # https://just.honsec.com.tw/z/zc/zco/zco_2615_5.djhtm
+    # a: ticker
+    # b: branch
+    # BHID: hq id
+    # C: recent x day, selection item
+    # D
+    # e: start, ex.2023-12-11
+    # f: end
+    # Ver
+
+    # page = "/z/zc/zco/zco_" + tkr + ".djhtm" # works
+    c = 2 # recent 5, if not given is 0
+    page = "/z/zc/zco/zco_" + tkr + "_" + str(c) + ".djhtm" # works
+    # page = "/z/zc/zco/zco.djhtm?a="+tkr+"&c=5"
     # class="t01" id="oMainTable", file size is around 20k
 
     # "https://concords.moneydj.com" # na
     url = random.choice(sites.list) + page
-    print(url) # // FIXME: possible market closed?
-    # sys.exit(0)
+    print(url)
     # response = requests.get(url)
     headers = {'User-Agent': random.choice(ua.list)}
     response = requests.get(url, headers=headers)
@@ -157,13 +172,5 @@ sys.exit(0)
 # 關於主力的定義是當天買賣超個股的前15名券商，因此並未計入自營商部份
 # @see https://shorturl.at/gAN09
 
-# https://just.honsec.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2615&b=9677&BHID=9600
-# a
-# b
-# BHID
-# C
-# D
-# E
-# Ver
 
 # @see https://shorturl.at/xNX18

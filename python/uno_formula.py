@@ -277,7 +277,7 @@ def draw_legend():
 
     addr = "$Q3"
     cell = active_sheet.getCellRangeByName(addr)
-    cell.String = "3m, 1m below PR33 to 1w leading PR75"
+    cell.String = "1m below PR33 to 1w leading PR75"
 
     sheet1 = doc.Sheets.getByName(s1)
     sheet1.getCellRangeByName("A1").String = "ticker"
