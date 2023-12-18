@@ -27,7 +27,8 @@ transaction.py: parsing type 2 daily transaction by ticker symbol from bsr.
 transotc.py: parsing type 4 transactions from tpex.
 transaction.sh: streamline type 2 to calc.
 workbench.py: keep current workbench.
-branch.py: browsing major broker transactions by ticker and date.
+branch.py: browsing broker transaction summary by ticker and date,
+branch1.py: scrap single broker transactions,
 launch.py: launch libreoffice.
 briefing.sh: redirect overview.sh output to datafiles.
 money_flow.sh: trigger get_weighted_index.py
@@ -121,10 +122,12 @@ uno_bquote.sh: wrapper
 compare_volume.py: generate ratio by ticker,
 compare_volume.sh: a wrapper,
 uno_vratio.py: update vr to calc via UNO,
-ticker_branch.py:
 sites.py:
 test.py: test how to run macro inside LO calc,
 volume_diff.sh: against last time, intraday
 volume_ratio.sh: compare against last trade day
 uno_update2b.py: update 2b into calc instead of open manually,
 us_ticker.py:
+gini_tkrbranch.sh: wrapper
+fetch_tkrbranch.py: scrap branch and figure gini
+ticker_branch.py: hs version
