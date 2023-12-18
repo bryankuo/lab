@@ -76,10 +76,13 @@ def gini(x):
     return total / (len(x)**2 * np.mean(x))
 
 if ( from_file ):
+    sz = os.path.getsize(hpath)
+    if ( sz < 20000 ):
+        print("size issue, try another site")
+        sys.exit(0)
     ofb = open(bpath, 'w')
     ofs = open(spath, 'w')
     gf = open(gpath, 'a')
-    print("from: {}".format(hpath))
     fp = open(hpath, 'r')
     soup = BeautifulSoup(fp, 'html.parser')
     rows = soup.find_all("table", {"id": "oMainTable", "class": "t01"})[0] \
@@ -112,16 +115,21 @@ if ( from_file ):
             ofs.write(s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
         else:
             print("tbd")
+        # // TODO: adopt better algorithm with 8455, 1213, 2947, 3064, 8921
+        # for b0, s0
+        # if b0 empty then no buy record, then check sell part
+        # otherwise next tr
     ofb.close(); ofs.close(); fp.close()
     # print("to: {} {}".format(bpath, spath))
     g0 = gini(np.array(bg0))
-    print("b {:0.3f} {}".format(g0, bg0))
+    # print("b {:0.3f} {}".format(g0, bg0))
     s0 = gini(np.array(sg0))
-    print("s {:0.3f} {}".format(s0, sg0))
+    # print("s {:0.3f} {}".format(s0, sg0))
     # @see https://tinyurl.com/2p9c54t3
     cg0 = g0 - s0
-    print("cg0 {:0.3f}".format(cg0))
-    if ( cg0 < -0.2 or 0.2 < cg0 ):
+    print("{} recent 5d cg0 {:0.3f} [{:f}]".format(tkr, cg0, cg0))
+    THRESHOLD = 0.197 # free will
+    if ( cg0 <= -THRESHOLD or THRESHOLD <= cg0 ):
         gf.write( "{:4}:{:0.3f}".format(tkr, cg0) + "\n" )
         print("assume in demand ( supply ): ".format(cg0))
         sys.stdout.write('\a')

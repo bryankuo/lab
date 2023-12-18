@@ -569,7 +569,7 @@ try:
                         full_tab[i][3], full_tab[i][5] )
                     outf2.write(rec +"\n")
 
-                # 1.
+                # condition 1.
                 # market rip and qfii climax sell or
                 # market dip and qfii buy
                 if ( market == 1 and 0 < int(full_tab[i][2]) ):
@@ -591,7 +591,7 @@ try:
                     pass
                 # // TODO: index drop but stock qfii doing reverse
 
-                # 2.
+                # condition 2.
                 # in updown list and qfii doing reverse
                 if ( len(tkr) <= 4 ):
                     if ( ld_lst is not None and \
@@ -619,7 +619,9 @@ try:
                             outf3.write(rec +"\n")
                 # // TODO: another file, drop limit but stock qfii doing reverse
 
-                # 3. more?
+                # condition 3. limit up and qfi sell for several days
+
+                # more?
 
                 rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}:{8}" \
                     .format( \
