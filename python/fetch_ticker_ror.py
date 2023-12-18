@@ -21,7 +21,7 @@ from datetime import timedelta, datetime
 from pprint import pprint
 sys.path.append(os.getcwd())
 import useragents as ua
-#import sites # test
+import sites # // TODO: as well as url
 
 # twse history
 # https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20230701&response=html
@@ -73,12 +73,18 @@ for ticker in f:
     ticker = ticker.replace('\n','')
 
     # // FIXME: try next site instead of pass, get them'll
-    while True:
+    fetch_not_ok = True
+    while fetch_not_ok:
         # adopting rotating can help mask your scraping
         # @see https://rb.gy/uu497g
         headers = {'User-Agent': random.choice(ua.list)}
 
         url = source_factory(ticker)
+        # // TODO: update connectivity dynamically
+        # ex. available = [1] assume all initially,
+        # if connection error then update to 0, avoid repeating error
+        # // TODO: sites.py
+
         # @see https://stackoverflow.com/a/34491383
         # if you have to do just a few requests,
         # Otherwise you'll want to manage sessions yourself.
@@ -125,7 +131,8 @@ for ticker in f:
             logf.write(msg+"\n") # // FIXME: scan fetch log
             if ( response.status_code <= 200 ):
                 count += 1
-                break
+                fetch_not_ok = False
+                # break
 
 # // @see https://stackoverflow.com/a/49253627
 session.close();

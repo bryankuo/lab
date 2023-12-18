@@ -14,7 +14,6 @@ fi
 DATE=$1
 DIR0="./datafiles/taiex/after.market"
 
-
 currenttime=$(date +%H:%M)
 if [[ "$currenttime" > "09:00" ]] && [[ "$currenttime" < "13:30" ]]; then
 
@@ -35,11 +34,16 @@ if [[ "$currenttime" > "09:00" ]] && [[ "$currenttime" < "13:30" ]]; then
     # LAST_TIME=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
     #	| cut -d '/' -f 5 | cut -c 1-13 | xargs | cut -d ' ' -f 2 )
     # // TODO: volume_diff.sh [t1] [t0]
+    LAST_TRADE_DAY=$( ls -lt $DIR0/????????.csv | head -n 2 \
+	| cut -d '/' -f 5 | cut -c 1-8 | xargs | cut -d ' ' -f 2 )
 
     # // TODO: volume_ratio.sh [t1] [t0]
-    LAST_TRADE_DAY="20231213" # // FIXME:
     ./compare_volume.sh $THIS_TIME $LAST_TRADE_DAY
+    ./uno_launch.sh "./datafiles/activity_watchlist.ods"
+    tput bel
+    read -p "Press enter to continue ..."
     ./uno_vratio.sh     $THIS_TIME $LAST_TRADE_DAY
+    # To be verified
 else
     echo "market yet open"
     exit 0

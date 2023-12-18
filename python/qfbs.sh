@@ -80,8 +80,8 @@ OQA="$DIR0/$NAME037_3.$DATE.ods"
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
-REMOTE_FOLDER="~/Dropbox/$DATE"
-mkdir -p $REMOTE_FOLDER # // FIXME:
+# REMOTE_FOLDER="~/Dropbox/$DATE"
+# mkdir -p $REMOTE_FOLDER # // FIXME: python/~/Dropbox
 
 FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
@@ -234,7 +234,8 @@ done
 
 echo -ne '\007'
 
-cp -v $OUTF1 $O2B $O2S $OQA $REMOTE_FOLDER
+mkdir -p ~/Dropbox/$DATE # to be verified
+cp -v {$OUTF1, $O2B, $O2S, $OQA} ~/Dropbox/$DATE # to be verified
 
 read -p "Press enter to continue $OUTF1 ..."
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \

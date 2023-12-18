@@ -90,6 +90,7 @@ sources = [                                                         \
     # [   "https://english.honsec.com.tw/Content.Files/Securities.Files/ZG/ZG07.aspx", \
     #    "https://english.honsec.com.tw/z/zg/zg_AB_1_0.djhtm"] \
 ]
+# // TODO: import sites instead
 
 if ( len(sys.argv) < 4 ):
     print("usage: fetch_limit_updown.py [up or down] [date] [tkr type] [from]")
