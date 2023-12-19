@@ -7,6 +7,7 @@
 # \param in dt1 today, yyyymmdd
 # \param in dt2 last day, yyyymmdd
 
+# echo $#
 if [ "$#" -lt 2 ]; then
     echo "usage: ./compare_volume.sh [today] [last day], date in yyyymmdd"
     exit 22 # @see https://stackoverflow.com/a/50405954

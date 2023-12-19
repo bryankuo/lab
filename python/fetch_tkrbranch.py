@@ -11,7 +11,7 @@
 
 import sys, requests, datetime, time, random, csv, urllib
 import numpy as np
-import os, errno
+import os, errno, webbrowser, binascii
 # import urllib.parse
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -91,28 +91,81 @@ if ( from_file ):
     # print("# rows: " + str(n_rows))
     # pprint(rows[8].text.replace('\n','')) # .replace(' ','')
     # print("#tds: {}".format(len(tds)))
-    for i in range(7, n_rows):
+
+    i = 7
+    # print(rows[i])
+    # sys.exit(0)
+    tds = rows[i].find_all('td')
+    # print(tds)
+    b0 = tds[0].text.replace('\n','').replace(' ','')
+    b1 = tds[1].text.replace('\n','').replace(' ','').replace(',','')
+    b2 = tds[2].text.replace('\n','').replace(' ','').replace(',','')
+    b3 = tds[3].text.replace('\n','').replace(' ','').replace(',','')
+    b4 = tds[4].text.replace('\n','').replace(' ','')
+
+    s0 = tds[5].text.replace('\n','').replace(' ','')
+    s1 = tds[6].text.replace('\n','').replace(' ','').replace(',','')
+    s2 = tds[7].text.replace('\n','').replace(' ','').replace(',','')
+    s3 = tds[8].text.replace('\n','').replace(' ','').replace(',','')
+    s4 = tds[9].text.replace('\n','').replace(' ','')
+
+    ofb.write("代號"+":"+b0+":"+b1+":"+b2+":"+b3+":"+b4+"\n")
+    ofs.write("代號"+":"+s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
+
+    top1b_href = ""; top1s_href ="";
+    for i in range(8, n_rows):
         tds = rows[i].find_all('td')
         n_tds = len(tds)
         if ( n_tds == 10 ): # normal case, top 10 pairs but...not all
             b0 = tds[0].text.replace('\n','').replace(' ','')
+            # print(tds[0])
+
+            bbno = tds[0].find_all('a')[0].get('href').strip() \
+                .split('&')[1].split('=')[1].split('&')[0]
+            l = len(bbno)
+            if ( 4 < l and 16 == l ):
+                bbno1 = \
+                    binascii.a2b_hex(bbno[ 2: 4]).decode("ascii") + \
+                    binascii.a2b_hex(bbno[ 6: 8]).decode("ascii") + \
+                    binascii.a2b_hex(bbno[10:12]).decode("ascii") + \
+                    binascii.a2b_hex(bbno[14:16]).decode("ascii")
+                bbno = bbno1
+            else:
+                print("tbd bbno")
+
+            if ( i == 8 ):
+                top1b_href = tds[0].find_all('a')[0].get('href').strip()
             b1 = tds[1].text.replace('\n','').replace(' ','').replace(',','')
             b2 = tds[2].text.replace('\n','').replace(' ','').replace(',','')
             b3 = tds[3].text.replace('\n','').replace(' ','').replace(',','')
             b4 = tds[4].text.replace('\n','').replace(' ','')
-            if 7 < i: # title
-                bg0.append(float(b3))
+            bg0.append(float(b3))
 
             s0 = tds[5].text.replace('\n','').replace(' ','')
+            if ( i == 8 ):
+                top1s_href = tds[5].find_all('a')[0].get('href').strip()
+
+            sbno = tds[5].find_all('a')[0].get('href').strip() \
+                .split('&')[1].split('=')[1].split('&')[0]
+            l = len(sbno)
+            if ( 4 < l and 16 == l ):
+                sbno1 = \
+                    binascii.a2b_hex(sbno[ 2: 4]).decode("ascii") + \
+                    binascii.a2b_hex(sbno[ 6: 8]).decode("ascii") + \
+                    binascii.a2b_hex(sbno[10:12]).decode("ascii") + \
+                    binascii.a2b_hex(sbno[14:16]).decode("ascii")
+                sbno = sbno1
+            else:
+                print("tbd sbno")
+
             s1 = tds[6].text.replace('\n','').replace(' ','').replace(',','')
             s2 = tds[7].text.replace('\n','').replace(' ','').replace(',','')
             s3 = tds[8].text.replace('\n','').replace(' ','').replace(',','')
             s4 = tds[9].text.replace('\n','').replace(' ','')
-            if 7 < i:
-                sg0.append(float(s3))
+            sg0.append(float(s3))
 
-            ofb.write(b0+":"+b1+":"+b2+":"+b3+":"+b4+"\n")
-            ofs.write(s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
+            ofb.write(bbno+":"+b0+":"+b1+":"+b2+":"+b3+":"+b4+"\n")
+            ofs.write(sbno+":"+s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
         else:
             print("tbd")
         # // TODO: adopt better algorithm with 8455, 1213, 2947, 3064, 8921
@@ -127,14 +180,26 @@ if ( from_file ):
     # print("s {:0.3f} {}".format(s0, sg0))
     # @see https://tinyurl.com/2p9c54t3
     cg0 = g0 - s0
-    print("{} recent 5d cg0 {:0.3f} [{:f}]".format(tkr, cg0, cg0))
+    print("{} recent 20d cg0 {:0.3f} [{:f}]".format(tkr, cg0, cg0))
     THRESHOLD = 0.197 # free will
-    if ( cg0 <= -THRESHOLD or THRESHOLD <= cg0 ):
+    if ( cg0 <= -THRESHOLD ):
         gf.write( "{:4}:{:0.3f}".format(tkr, cg0) + "\n" )
-        print("assume in demand ( supply ): ".format(cg0))
-        sys.stdout.write('\a')
-        sys.stdout.flush()
+        print("assume in abundant supply: {}".format(cg0))
+        print("href: {}".format(top1s_href))
+        url = random.choice(sites.list) + top1s_href
+        print(url)
+        webbrowser.open(url)
 
+    if ( THRESHOLD <= cg0 ):
+        gf.write( "{:4}:{:0.3f}".format(tkr, cg0) + "\n" )
+        print("assume in demand: ".format(cg0))
+        print("href: {}".format(top1b_href))
+        url = random.choice(sites.list) + top1s_href
+        print(url)
+        webbrowser.open(url)
+
+    sys.stdout.write('\a')
+    sys.stdout.flush()
 else:
 
     # https://just.honsec.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2615&b=9677&BHID=9600
@@ -150,6 +215,7 @@ else:
 
     # page = "/z/zc/zco/zco_" + tkr + ".djhtm" # works
     c = 2 # recent 5, if not given is 0
+    c = 4 # recent 20 days, to see if better together with single branch
     page = "/z/zc/zco/zco_" + tkr + "_" + str(c) + ".djhtm" # works
     # page = "/z/zc/zco/zco.djhtm?a="+tkr+"&c=5"
     # class="t01" id="oMainTable", file size is around 20k

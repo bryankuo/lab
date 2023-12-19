@@ -103,7 +103,7 @@ new_sheet.getCellRangeByName("$D1").String = "投信買超"
 
 idx = 0; i = 2
 for tkr in tkrs:
-    if 1 <= idx 0:
+    if ( 1 <= idx ):
         new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
         new_sheet.getCellRangeByName("$B"+str(i)).String = name[idx]
         new_sheet.getCellRangeByName("$C"+str(i)).Value = int(qb[idx])
