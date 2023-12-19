@@ -62,7 +62,8 @@ DIR0="./datafiles/taiex/qfbs"
 NAME037="外投同買賣及異常"
 NAME037_1="外投同買列表"
 NAME037_2="外投同賣列表"
-NAME037_3="外資操作異常"
+NAME037_3="外資賣漲停"
+NAME037_4="外資買跌停"
 
 theday = datetime.today().strftime('%Y%m%d')
 is_from_net = False
@@ -118,10 +119,16 @@ else:
 # dd   = datetime.today().strftime('%d')
 
 both_buy = NAME037_1 + "."  + yyyy + mm + dd + '.txt'
-path0 = os.path.join(DIR0, both_buy)
-# // FIXME: join
-both_sell    = DIR0 + "/" + NAME037_2 + "."  + yyyy + mm + dd + '.txt'
-qfii_anomaly = DIR0 + "/" + NAME037_3 + "."  + yyyy + mm + dd + '.txt'
+path1 = os.path.join(DIR0, both_buy)
+
+both_sell = NAME037_2 + "."  + yyyy + mm + dd + '.txt'
+path2 = os.path.join(DIR0, both_sell)
+
+qslu = NAME037_3 + "."  + yyyy + mm + dd + '.txt'
+path3 = os.path.join(DIR0, qslu)
+
+qbld = NAME037_4 + "."  + yyyy + mm + dd + '.txt'
+path3 = os.path.join(DIR0, qbld)
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
@@ -544,92 +551,96 @@ try:
             full_tab[i].append(0) # qfii anomaly
         print("highlight b2, s2, and qa ...")
 
-        with open(path0, 'wt') as outf1, \
-            open(both_sell, 'wt') as outf2, \
-            open(qfii_anomaly, 'wt') as outf3:
+        outf1 = open(path1, 'wt')
+        outf2 = open(path2, 'wt')
+        outf3 = open(path3, 'wt')
+        outf4 = open(path4, 'wt')
 
-            for i in range(0, len(full_tab)):
-                tkr = full_tab[i][0].strip()
-                # print(tkr)
-                if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
-                    full_tab[i][6] = 1
-                    rec = "{0}:{1}:{2}:{3}" \
-                        .format( \
-                        full_tab[i][0],
-                        full_tab[i][1], \
-                        full_tab[i][2], \
-                        full_tab[i][4] )
-                    outf1.write(rec +"\n")
+        for i in range(0, len(full_tab)):
+            tkr = full_tab[i][0].strip()
+            # print(tkr)
+            if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
+                full_tab[i][6] = 1
+                rec = "{0}:{1}:{2}:{3}" \
+                    .format( \
+                    full_tab[i][0],
+                    full_tab[i][1], \
+                    full_tab[i][2], \
+                    full_tab[i][4] )
+                outf1.write(rec +"\n")
 
-                if ( int(full_tab[i][3]) < 0 ) and ( int(full_tab[i][5]) < 0 ):
-                    full_tab[i][7] = 1
-                    rec = "{0}:{1}:{2}:{3}" \
-                        .format( \
-                        full_tab[i][0], full_tab[i][1], \
-                        full_tab[i][3], full_tab[i][5] )
-                    outf2.write(rec +"\n")
-
-                # condition 1.
-                # market rip and qfii climax sell or
-                # market dip and qfii buy
-                if ( market == 1 and 0 < int(full_tab[i][2]) ):
-                    full_tab[i][8] = 1
-                    rec = "{0}:{1}:{2}:{3}" \
-                        .format( \
-                        full_tab[i][0], full_tab[i][1], \
-                        full_tab[i][2], full_tab[i][3] )
-                    outf3.write(rec +"\n")
-                elif ( market == 2 and int(full_tab[i][3]) < 0 ):
-                    full_tab[i][8] = 1
-                    rec = "{0}:{1}:{2}:{3}" \
-                        .format( \
-                        full_tab[i][0], full_tab[i][1], \
-                        full_tab[i][2], full_tab[i][3] )
-                    outf3.write(rec +"\n")
-                else:
-                    # print("market is 0")
-                    pass
-                # // TODO: index drop but stock qfii doing reverse
-
-                # condition 2.
-                # in updown list and qfii doing reverse
-                if ( len(tkr) <= 4 ):
-                    if ( ld_lst is not None and \
-                        0 < len(ld_lst) ):
-                        if ( int(tkr) in ld_lst \
-                            and 0 < int(full_tab[i][2]) ):
-                            full_tab[i][8] = 1
-                            print( "hit d " + tkr )
-                            rec = "{0}:{1}:{2}:{3}" \
-                                .format( \
-                                full_tab[i][0], full_tab[i][1], \
-                                full_tab[i][2], full_tab[i][3] )
-                            outf3.write(rec +"\n")
-
-                    if ( lu_lst is not None and \
-                        0 < len(lu_lst) ):
-                        if ( int(tkr) in lu_lst \
-                            and int(full_tab[i][3]) < 0 ):
-                            print( "hit u " + tkr )
-                            full_tab[i][8] = 1
-                            rec = "{0}:{1}:{2}:{3}" \
-                                .format( \
-                                full_tab[i][0], full_tab[i][1], \
-                                full_tab[i][2], full_tab[i][3] )
-                            outf3.write(rec +"\n")
-                # // TODO: another file, drop limit but stock qfii doing reverse
-
-                # condition 3. limit up and qfi sell for several days
-
-                # more?
-
-                rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}:{8}" \
+            if ( int(full_tab[i][3]) < 0 ) and ( int(full_tab[i][5]) < 0 ):
+                full_tab[i][7] = 1
+                rec = "{0}:{1}:{2}:{3}" \
                     .format( \
                     full_tab[i][0], full_tab[i][1], \
-                    full_tab[i][2], full_tab[i][3], \
-                    full_tab[i][4], full_tab[i][5], \
-                    full_tab[i][6], full_tab[i][7], \
-                    full_tab[i][8] )
+                    full_tab[i][3], full_tab[i][5] )
+                outf2.write(rec +"\n")
+
+            # in updown list and qfii doing reverse
+            if ( len(tkr) <= 4 ):
+                # rule 37.3 qfii sell at limit up
+                if ( lu_lst is not None and \
+                    0 < len(lu_lst) ):
+                    if ( int(tkr) in lu_lst \
+                        and int(full_tab[i][3]) < 0 ):
+                        print( "qslu " + tkr )
+                        full_tab[i][8] = 1
+                        rec = "{0}:{1}:{2}:{3}" \
+                            .format( \
+                            full_tab[i][0], full_tab[i][1], \
+                            full_tab[i][2], full_tab[i][3] )
+                        outf3.write(rec +"\n")
+
+                # rule 37.4 qfii buy at limit down
+                if ( ld_lst is not None and \
+                    0 < len(ld_lst) ):
+                    if ( int(tkr) in ld_lst \
+                        and 0 < int(full_tab[i][2]) ):
+                        full_tab[i][8] = 1
+                        print( "qbld " + tkr )
+                        rec = "{0}:{1}:{2}:{3}" \
+                            .format( \
+                            full_tab[i][0], full_tab[i][1], \
+                            full_tab[i][2], full_tab[i][3] )
+                        outf4.write(rec +"\n")
+
+            # // TODO: another file, drop limit but stock qfii doing reverse
+
+            # condition 1.
+            # market rip and qfii climax sell or
+            # market dip and qfii buy
+            if ( market == 1 and 0 < int(full_tab[i][2]) ):
+                full_tab[i][8] = 1
+                rec = "{0}:{1}:{2}:{3}" \
+                    .format( \
+                    full_tab[i][0], full_tab[i][1], \
+                    full_tab[i][2], full_tab[i][3] )
+                outf3.write(rec +"\n")
+            elif ( market == 2 and int(full_tab[i][3]) < 0 ):
+                full_tab[i][8] = 1
+                rec = "{0}:{1}:{2}:{3}" \
+                    .format( \
+                    full_tab[i][0], full_tab[i][1], \
+                    full_tab[i][2], full_tab[i][3] )
+                outf3.write(rec +"\n")
+            else:
+                # print("market is 0")
+                pass
+            # // TODO: index drop but stock qfii doing reverse
+
+
+            # condition 3. limit up and qfi sell for several days
+
+            # more?
+
+            rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}:{8}" \
+                .format( \
+                full_tab[i][0], full_tab[i][1], \
+                full_tab[i][2], full_tab[i][3], \
+                full_tab[i][4], full_tab[i][5], \
+                full_tab[i][6], full_tab[i][7], \
+                full_tab[i][8] )
 
         outf1.close(); outf2.close(); outf3.close()
         return full_tab

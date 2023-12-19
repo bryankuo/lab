@@ -67,16 +67,21 @@ OUTFL2s="$DIR0/list2s.$DATE.txt"
 NAME037="外投同買賣及異常"
 NAME037_1="外投同買列表"
 NAME037_2="外投同賣列表"
-NAME037_3="外資操作異常"
+NAME037_3="外資賣漲停"
+NAME037_4="外資買跌停"
 
 OUTF0="$DIR0/$NAME037.$DATE.txt"
 OUTF1="$DIR0/$NAME037.$DATE.ods"
 OUTF2B="$DIR0/$NAME037_1.$DATE.txt"
 OUTF2S="$DIR0/$NAME037_2.$DATE.txt"
 OUTFQA="$DIR0/$NAME037_3.$DATE.txt"
+OFQBLD="$DIR0/$NAME037_4.$DATE.txt"
+
 O2B="$DIR0/$NAME037_1.$DATE.ods"
 O2S="$DIR0/$NAME037_2.$DATE.ods"
-OQA="$DIR0/$NAME037_3.$DATE.ods"
+OQA0="$DIR0/$NAME037_3.$DATE.ods"
+OQBLD="$DIR0/$NAME037_4.$DATE.ods"
+
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
@@ -132,6 +137,22 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
+read -p "Press enter to continue $OUTFQA ..."
+
+python3 launch.py $OUTFQA
+# manual process here...
+while true ; do
+    if [ ! -f "$OQA0" ]; then
+        read -p "Save $OUTFQA to ods when ready ..."
+    else
+	break
+    fi
+done
+
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqa.py $DATE
+echo -ne '\007'
+exit 0
+
 if true; then
     # // apply only today, history is not available
     get_limit_up
@@ -140,7 +161,7 @@ if true; then
 fi
 
 if true; then
-    trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA
+    trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA0
     if [ $ORIGIN -eq 0 ]; then
 	trash "$DIR0/qfii.$DATE.html"
 	trash "$DIR0/fund.$DATE.html"
@@ -191,8 +212,6 @@ while true ; do
 done
 
 read -p "Press enter to continue $OUTF2B ..."
-# no need to close $OUTF0
-# python3 launch.py $OUTF2B
 ./uno_launch.sh $OUTF2B # let calc parsing correctly instead of uno
 # manual process here...
 while true ; do
@@ -217,31 +236,34 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_update2s.py $DATE
 echo -ne '\007'
 
-/Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
-
-echo -ne '\007'
 read -p "Press enter to continue $OUTFQA ..."
 
 python3 launch.py $OUTFQA
 # manual process here...
 while true ; do
-    if [ ! -f "$OQA" ]; then
+    if [ ! -f "$OQA0" ]; then
         read -p "Save $OUTFQA to ods when ready ..."
     else
 	break
     fi
 done
 
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqa.py $DATE
 echo -ne '\007'
 
-mkdir -p ~/Dropbox/$DATE # to be verified
-cp -v {$OUTF1, $O2B, $O2S, $OQA} ~/Dropbox/$DATE # to be verified
+/Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
+
+mkdir -p ~/Dropbox/$DATE
+cp -v $OUTF1 ~/Dropbox/$DATE
+cp -v $O2B ~/Dropbox/$DATE
+cp -v $O2S ~/Dropbox/$DATE
+cp -v $OQA0 ~/Dropbox/$DATE
 
 read -p "Press enter to continue $OUTF1 ..."
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-# "$OUTF1" "$O2B" "$O2S" "$OQA" \
+# "$OUTF1" "$O2B" "$O2S" "$OQA0" \
 # --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
-./uno_launch.sh "$OUTF1" "$O2B" "$O2S" "$OQA"
+./uno_launch.sh "$OUTF1" "$O2B" "$O2S" "$OQA0"
 
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S $OUTFQA

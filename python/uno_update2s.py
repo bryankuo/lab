@@ -22,7 +22,7 @@ NAME037="外投同買賣及異常"
 NAME037_1="外投同買列表"
 NAME037_2="外投同賣列表"
 sheet_name = NAME037+"."+yyyymmdd
-print("uno_update2b.py+ "+yyyymmdd)
+print("uno_update2s.py+ "+yyyymmdd)
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -62,63 +62,65 @@ try:
     nl = numbers.addNew( "###0",  locale )
 except RuntimeException:
     nl = numbers.queryKey("###0", locale, False)
-'''
+
 sheet0 = doc.Sheets.getByName(sheet_name)
-doc.Sheets.insertNewByName(NAME037_1,    1) # works
 doc.Sheets.insertNewByName(NAME037_2,    2)
-sheet1 = doc.Sheets.getByName(NAME037_1)
+sheet2 = doc.Sheets.getByName(NAME037_2)
+# range1 = sheet1.getCellRangeByPosition(0,0,150,5).RangeAddress
+
+'''
+# test copy
+# range0 = sheet0.getCellRangeByPosition(0,0,150,5)
+# assume no more than 3000 listed.
 guessRange = sheet0.getCellRangeByPosition(0, 0, 10, 3000)
+# look up the actual used area within the guess area
 cursor = sheet0.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
 guessRange = sheet0.getCellRangeByPosition(0, 0, 10, len(cursor.Rows))
 # print(guessRange.RangeAddress) # works
 range0 = sheet0.getCellRangeByPosition(0, 0, 10, len(cursor.Rows))
-range1 = sheet1.getCellRangeByPosition(0, 0, 10, len(cursor.Rows))
-range1.setDataArray(range0.getDataArray())
-print("{} copied".format(len(cursor.Rows)))
-sys.exit(0)
+range2 = sheet2.getCellRangeByPosition(0, 0, 10, len(cursor.Rows))
+range2.setDataArray(range0.getDataArray()) # works
 '''
 
 DIR0="./datafiles/taiex/qfbs"
-nm0 = NAME037_1 + "." + yyyymmdd + '.txt'
+nm0 = NAME037_2 + "." + yyyymmdd + '.txt'
 path0 = os.path.join(DIR0, nm0)
 inf0 = open(path0, 'r')
 data = list(csv.reader(inf0, delimiter=':'))
 tkrs = [ x[0] for x in data ]
 name = [ x[1] for x in data ]
-qb   = [ x[2] for x in data ]
-fb   = [ x[3] for x in data ]
+qs   = [ x[2] for x in data ]
+fs   = [ x[3] for x in data ]
 checked  = [ 0 ] * len(tkrs)
 print("# lines {}".format(len(tkrs)))
 
-sheet0 = doc.Sheets.getByName(sheet_name)
-doc.Sheets.insertNewByName(NAME037_1,    1) # works
-new_sheet = doc.Sheets.getByName(NAME037_1)
+new_sheet = doc.Sheets.getByName(NAME037_2)
 doc.CurrentController.setActiveSheet(new_sheet)
 new_sheet.getCellRangeByName("$A1").String = "代  號"
 new_sheet.getCellRangeByName("$B1").String = "名  稱"
-new_sheet.getCellRangeByName("$C1").String = "外資買超"
-new_sheet.getCellRangeByName("$D1").String = "投信買超"
+new_sheet.getCellRangeByName("$C1").String = "外資賣超"
+new_sheet.getCellRangeByName("$D1").String = "投信賣超"
 
-idx = 0; i = 2
+idx = 0; i = 1
 for tkr in tkrs:
     if ( 0 < idx ):
         new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
         new_sheet.getCellRangeByName("$B"+str(i)).String = name[idx]
-        new_sheet.getCellRangeByName("$C"+str(i)).Value = int(qb[idx])
+        new_sheet.getCellRangeByName("$C"+str(i)).Value = int(qs[idx])
         new_sheet.getCellRangeByName("$C"+str(i)).NumberFormat = nl
-        new_sheet.getCellRangeByName("$D"+str(i)).Value = int(fb[idx])
+        new_sheet.getCellRangeByName("$D"+str(i)).Value = int(fs[idx])
         new_sheet.getCellRangeByName("$D"+str(i)).NumberFormat = nl
     idx += 1; i += 1;
 
 # assume no more than 3000 listed.
-guessRange = new_sheet.getCellRangeByPosition(0, 1, 10, 3001)
+guessRange = new_sheet.getCellRangeByPosition(0, 1, 3, 3001)
 # look up the actual used area within the guess area
 cursor = new_sheet.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = new_sheet.getCellRangeByPosition(0, 1, 10, len(cursor.Rows))
+guessRange = new_sheet.getCellRangeByPosition(0, 1, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 last_row = len(cursor.Rows)
 n_ticker = ( last_row - 2 ) + 1
@@ -139,5 +141,5 @@ the_range = new_sheet.getCellRangeByName("A:D")
 the_range.Columns.OptimalWidth = True
 doc.CurrentController.setActiveSheet(sheet0)
 doc.store()
-print("uno_update2b.py-")
+print("uno_update2s.py-")
 sys.exit(0)
