@@ -137,22 +137,6 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
-read -p "Press enter to continue $OUTFQA ..."
-
-python3 launch.py $OUTFQA
-# manual process here...
-while true ; do
-    if [ ! -f "$OQA0" ]; then
-        read -p "Save $OUTFQA to ods when ready ..."
-    else
-	break
-    fi
-done
-
-/Applications/LibreOffice.app/Contents/Resources/python uno_updateqa.py $DATE
-echo -ne '\007'
-exit 0
-
 if true; then
     # // apply only today, history is not available
     get_limit_up
@@ -236,8 +220,9 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_update2s.py $DATE
 echo -ne '\007'
 
-read -p "Press enter to continue $OUTFQA ..."
 
+# // TODO:
+read -p "Press enter to continue $OUTFQA ..."
 python3 launch.py $OUTFQA
 # manual process here...
 while true ; do
@@ -247,8 +232,21 @@ while true ; do
 	break
     fi
 done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqslu.py $DATE
+echo -ne '\007'
 
-/Applications/LibreOffice.app/Contents/Resources/python uno_updateqa.py $DATE
+# // TODO:
+read -p "Press enter to continue $OFQBLD ..."
+python3 launch.py $OFQBLD
+# manual process here...
+while true ; do
+    if [ ! -f "$OQBLD" ]; then
+        read -p "Save $OFQBLD to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqbld.py $DATE
 echo -ne '\007'
 
 /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE

@@ -112,13 +112,20 @@ try:
     # columns.IsVisible = False # all hide
 
     # @see http://surl.li/nottj
+    '''
+    the_range = active_sheet.getCellRangeByName("$BL") # // FIXME:
+    the_range.Columns.IsVisible = False
+    the_range = active_sheet.getCellRangeByName("BH")
+    the_range.Columns.IsVisible = False
+    '''
     the_range = active_sheet.getCellRangeByName("C:BG")
     the_range.Columns.IsVisible = False
+
     i = 1
     active_sheet.getCellRangeByName(  VR+str(i)).String = "V. ratio"
     active_sheet.getCellRangeByName(  VR+str(i)).NumberFormat = nl
-    active_sheet.getCellRangeByName( VOL+str(i)).String = "Volume"
-    active_sheet.getCellRangeByName(LAST+str(i)).String = "Last V."
+    active_sheet.getCellRangeByName( VOL+str(i)).String = "Vdt1.(" + dt1 + ")"
+    active_sheet.getCellRangeByName(LAST+str(i)).String = "Vdt2.(" + dt2 + ")"
 
     tkrs = [ x[0] for x in data ]
     rtos = [ x[1] for x in data ]

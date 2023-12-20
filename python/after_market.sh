@@ -45,7 +45,7 @@ if [[ "$currenttime" > "09:00" ]] && [[ "$currenttime" < "13:30" ]]; then
     ./uno_launch.sh "./datafiles/activity_watchlist.ods"
     tput bel
     read -p "Press enter to continue ..."
-    ./uno_vratio.sh     $THIS_TIME $LAST_TIME
+    ./uno_vratio.sh $THIS_TIME $LAST_TIME
     # // TODO: volume_diff.sh [t1] [t0]
 
     # // TODO: volume_ratio.sh [t1] [t0]
