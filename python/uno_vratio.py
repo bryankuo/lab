@@ -125,7 +125,7 @@ try:
     active_sheet.getCellRangeByName(  VR+str(i)).String = "V. ratio"
     active_sheet.getCellRangeByName(  VR+str(i)).NumberFormat = nl
     active_sheet.getCellRangeByName( VOL+str(i)).String = "Vdt1.(" + dt1 + ")"
-    active_sheet.getCellRangeByName(LAST+str(i)).String = "Vdt2.(" + dt2 + ")"
+    active_sheet.getCellRangeByName(LAST+str(i)).String = "Vdt0.(" + dt2 + ")"
 
     tkrs = [ x[0] for x in data ]
     rtos = [ x[1] for x in data ]

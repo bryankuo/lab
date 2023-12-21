@@ -128,7 +128,7 @@ qslu = NAME037_3 + "."  + yyyy + mm + dd + '.txt'
 path3 = os.path.join(DIR0, qslu)
 
 qbld = NAME037_4 + "."  + yyyy + mm + dd + '.txt'
-path3 = os.path.join(DIR0, qbld)
+path4 = os.path.join(DIR0, qbld)
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
@@ -642,7 +642,7 @@ try:
                 full_tab[i][6], full_tab[i][7], \
                 full_tab[i][8] )
 
-        outf1.close(); outf2.close(); outf3.close()
+        outf1.close(); outf2.close(); outf3.close(); outf4.close()
         return full_tab
 
     # // TODO: definition of high
