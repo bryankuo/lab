@@ -113,65 +113,60 @@ if ( from_file ):
     ofs.write("代號"+":"+s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
 
     top1b_href = ""; top1s_href ="";
-    for i in range(8, n_rows):
+    N_FOOTER=3
+    for i in range(8, n_rows-N_FOOTER):
         tds = rows[i].find_all('td')
         n_tds = len(tds)
         if ( n_tds == 10 ): # normal case, top 10 pairs but...not all
             b0 = tds[0].text.replace('\n','').replace(' ','')
             # print(tds[0])
-
-            bbno = tds[0].find_all('a')[0].get('href').strip() \
-                .split('&')[1].split('=')[1].split('&')[0]
-            l = len(bbno)
-            if ( 4 < l and 16 == l ):
-                bbno1 = \
-                    binascii.a2b_hex(bbno[ 2: 4]).decode("ascii") + \
-                    binascii.a2b_hex(bbno[ 6: 8]).decode("ascii") + \
-                    binascii.a2b_hex(bbno[10:12]).decode("ascii") + \
-                    binascii.a2b_hex(bbno[14:16]).decode("ascii")
-                bbno = bbno1
-            else:
-                print("tbd bbno")
-
-            if ( i == 8 ):
-                top1b_href = tds[0].find_all('a')[0].get('href').strip()
-            b1 = tds[1].text.replace('\n','').replace(' ','').replace(',','')
-            b2 = tds[2].text.replace('\n','').replace(' ','').replace(',','')
-            b3 = tds[3].text.replace('\n','').replace(' ','').replace(',','')
-            b4 = tds[4].text.replace('\n','').replace(' ','')
-            bg0.append(float(b3))
+            if ( 0 < len(b0) ):
+                bbno = tds[0].find_all('a')[0].get('href').strip() \
+                    .split('&')[1].split('=')[1].split('&')[0]
+                l = len(bbno)
+                if ( 4 < l and 16 == l ):
+                    bbno1 = \
+                        binascii.a2b_hex(bbno[ 2: 4]).decode("ascii") + \
+                        binascii.a2b_hex(bbno[ 6: 8]).decode("ascii") + \
+                        binascii.a2b_hex(bbno[10:12]).decode("ascii") + \
+                        binascii.a2b_hex(bbno[14:16]).decode("ascii")
+                    bbno = bbno1
+                # else:
+                #    print("{} bbno {}".format(i, bbno))
+                if ( i == 8 ):
+                    top1b_href = tds[0].find_all('a')[0].get('href').strip()
+                b1 = tds[1].text.replace('\n','').replace(' ','').replace(',','')
+                b2 = tds[2].text.replace('\n','').replace(' ','').replace(',','')
+                b3 = tds[3].text.replace('\n','').replace(' ','').replace(',','')
+                b4 = tds[4].text.replace('\n','').replace(' ','')
+                bg0.append(float(b3))
+                ofb.write(bbno+":"+b0+":"+b1+":"+b2+":"+b3+":"+b4+"\n")
 
             s0 = tds[5].text.replace('\n','').replace(' ','')
-            if ( i == 8 ):
-                top1s_href = tds[5].find_all('a')[0].get('href').strip()
+            if ( 0 < len(s0) ):
+                if ( i == 8 ):
+                    top1s_href = tds[5].find_all('a')[0].get('href').strip()
 
-            sbno = tds[5].find_all('a')[0].get('href').strip() \
-                .split('&')[1].split('=')[1].split('&')[0]
-            l = len(sbno)
-            if ( 4 < l and 16 == l ):
-                sbno1 = \
-                    binascii.a2b_hex(sbno[ 2: 4]).decode("ascii") + \
-                    binascii.a2b_hex(sbno[ 6: 8]).decode("ascii") + \
-                    binascii.a2b_hex(sbno[10:12]).decode("ascii") + \
-                    binascii.a2b_hex(sbno[14:16]).decode("ascii")
-                sbno = sbno1
-            else:
-                print("tbd sbno")
-
-            s1 = tds[6].text.replace('\n','').replace(' ','').replace(',','')
-            s2 = tds[7].text.replace('\n','').replace(' ','').replace(',','')
-            s3 = tds[8].text.replace('\n','').replace(' ','').replace(',','')
-            s4 = tds[9].text.replace('\n','').replace(' ','')
-            sg0.append(float(s3))
-
-            ofb.write(bbno+":"+b0+":"+b1+":"+b2+":"+b3+":"+b4+"\n")
-            ofs.write(sbno+":"+s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
+                sbno = tds[5].find_all('a')[0].get('href').strip() \
+                    .split('&')[1].split('=')[1].split('&')[0]
+                l = len(sbno)
+                if ( 4 < l and 16 == l ):
+                    sbno1 = \
+                        binascii.a2b_hex(sbno[ 2: 4]).decode("ascii") + \
+                        binascii.a2b_hex(sbno[ 6: 8]).decode("ascii") + \
+                        binascii.a2b_hex(sbno[10:12]).decode("ascii") + \
+                        binascii.a2b_hex(sbno[14:16]).decode("ascii")
+                    sbno = sbno1
+                # else:
+                #    print("{} sbno {}".format(i, bbno))
+                s1 = tds[6].text.replace('\n','').replace(' ','').replace(',','')
+                s2 = tds[7].text.replace('\n','').replace(' ','').replace(',','')
+                s3 = tds[8].text.replace('\n','').replace(' ','').replace(',','')
+                s4 = tds[9].text.replace('\n','').replace(' ','')
+                sg0.append(float(s3))
+                ofs.write(sbno+":"+s0+":"+s1+":"+s2+":"+s3+":"+s4+"\n")
         else:
-            print("tbd")
-        # // TODO: adopt better algorithm with 8455, 1213, 2947, 3064, 8921
-        # for b0, s0
-        # if b0 empty then no buy record, then check sell part
-        # otherwise next tr
+            print("{} {} tbd".format(i, len(rows[i].find_all('td'))))
     ofb.close(); ofs.close(); fp.close()
     # print("to: {} {}".format(bpath, spath))
     g0 = gini(np.array(bg0))
