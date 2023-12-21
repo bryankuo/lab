@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-12-09T03:27:00.050Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="UVWmoTmIuuc3ElY1V0S5" version="22.1.7" type="device">
+<mxfile host="app.diagrams.net" modified="2023-12-21T05:35:46.629Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="i95Z4BiH71wynk5wt20x" version="22.1.11" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
     <mxGraphModel dx="1674" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -184,7 +184,7 @@
         <mxCell id="1aOPPhWUjk9Jvw55mJIz-55" value="券商前一日&lt;br&gt;融資斷頭&lt;br&gt;強制賣出" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="85" y="1320" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="1aOPPhWUjk9Jvw55mJIz-56" value="09:45是Acer&lt;br&gt;買個股時間點&lt;br&gt;why?" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="1aOPPhWUjk9Jvw55mJIz-56" value="09:45是Acer&lt;br&gt;買個股時間點&lt;br&gt;(自由人:期貨開盤1hr)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="264" y="1430" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="1aOPPhWUjk9Jvw55mJIz-57" value="10:00" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -315,7 +315,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="oHpRg9md3wLFnEnmUBtU-1" value="檢視昨晚&lt;br&gt;台指期&lt;br&gt;夜盤市況" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1121" y="130" width="120" height="60" as="geometry" />
+          <mxGeometry x="1250" y="130" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="oHpRg9md3wLFnEnmUBtU-2" value="08:15之前&lt;br&gt;微調watchlist&lt;br&gt;警示threshold" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="993.5" y="350" width="120" height="60" as="geometry" />
@@ -325,9 +325,6 @@
         </mxCell>
         <mxCell id="oHpRg9md3wLFnEnmUBtU-5" value="成交明細&lt;br&gt;週五內容&lt;br&gt;直到週一" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1510" y="60" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="oHpRg9md3wLFnEnmUBtU-7" value="檢視&lt;br&gt;台積電收盤市況" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1250" y="130" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="EIKaltL1t2nEZBCoPQCg-1" value="檢視&lt;br&gt;國際原物料行情&lt;br&gt;( Mike醫生 )&lt;br&gt;學習其早起做功課" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="860" y="60" width="120" height="60" as="geometry" />
@@ -386,9 +383,6 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="epTYV4Ybzf9v4k0nqU3I-8" value="費城半導體指數&lt;br&gt;台積電ADR&lt;br&gt;台幣匯率" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="992" y="130" width="120" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="uUf7SwIcrRbk062ps47Q-1" value="觀察-歐美&lt;br&gt;Herd Mentality&lt;br&gt;週休前較清淡" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="976" y="1430" width="120" height="60" as="geometry" />
         </mxCell>
@@ -413,9 +407,6 @@
         </mxCell>
         <mxCell id="GH-1w8mA7oF2JXhBW_Fo-2" value="在較長周期的&lt;br&gt;支撐壓力點&lt;br&gt;小量分批低階布單" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="500" y="3258" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="S7bfzvFICszyBC6QiFmf-1" value="檢視昨晚&lt;br&gt;國際盤變化&lt;br&gt;台股收盤市況" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="861" y="130" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="6gzfmtyqNZQ534-2DVeN-1" value="scan 037策略&lt;br&gt;昨日外資操作異常&lt;br&gt;以及同買賣" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="861" y="350" width="120" height="60" as="geometry" />
@@ -1276,7 +1267,7 @@
           <mxGeometry x="1138.75" y="1270" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="74_snVE-PuJ4BUAT_Nuq-1" value="看起來&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;是否會想買?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="859.25" y="1890" width="80" height="80" as="geometry" />
+          <mxGeometry x="859.5" y="1670" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="74_snVE-PuJ4BUAT_Nuq-2" value="查看上一級別&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;時間週期K線&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;的表現 ( 趨勢 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="999.5" y="2475" width="120" height="60" as="geometry" />
@@ -1730,10 +1721,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bIZf1tpMwUQz6Nk7j6Sq-1" value="Mark M.&lt;br&gt;的階段分析" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="975.25" y="1900" width="120" height="60" as="geometry" />
+          <mxGeometry x="918.12" y="1770" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="bIZf1tpMwUQz6Nk7j6Sq-2" value="第二階段嗎?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1127.75" y="1890" width="80" height="80" as="geometry" />
+          <mxGeometry x="938.12" y="1872" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="bIZf1tpMwUQz6Nk7j6Sq-3" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;" parent="1" source="bIZf1tpMwUQz6Nk7j6Sq-1" target="bIZf1tpMwUQz6Nk7j6Sq-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -1743,7 +1734,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bIZf1tpMwUQz6Nk7j6Sq-4" value="交易醫生說的&lt;br&gt;位階分析" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="990" y="1949" width="120" height="60" as="geometry" />
+          <mxGeometry x="839.5" y="1982" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ZEdiwUFx5rHleK81hNN1-1" value="Ross提示&lt;br&gt;開盤前後兩小時&lt;br&gt;的momentum&lt;br&gt;呈現常態分佈" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="500" y="2691.75" width="120" height="60" as="geometry" />
@@ -1946,7 +1937,7 @@
           <mxGeometry x="1164" y="3600" width="260" height="20" as="geometry" />
         </mxCell>
         <mxCell id="8hNwp8EcKCbHMfozePGs-1" value="今天天氣&lt;br&gt;有沒有EDT?&lt;br&gt;( 例如颱風, 寒流 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1481" y="320" width="120" height="60" as="geometry" />
+          <mxGeometry x="1250" y="280" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wNveSlH9BX4uKTn2s_QC-1" value="布蘭特原油期貨" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="3050" y="90" width="120" height="60" as="geometry" />
@@ -2974,11 +2965,13 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="1sp2pD1m5rkF3YnGK2sL-9" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="74_snVE-PuJ4BUAT_Nuq-1" target="bIZf1tpMwUQz6Nk7j6Sq-1" edge="1">
+        <mxCell id="1sp2pD1m5rkF3YnGK2sL-9" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="74_snVE-PuJ4BUAT_Nuq-1" target="bIZf1tpMwUQz6Nk7j6Sq-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="909.25" y="1540" as="sourcePoint" />
             <mxPoint x="909.25" y="1900" as="targetPoint" />
-            <Array as="points" />
+            <Array as="points">
+              <mxPoint x="900" y="1800" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="1sp2pD1m5rkF3YnGK2sL-12" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;dashed=1;" parent="1" source="JmyKVLX4QJSauwlUitLX-1" target="ElGK-e0Sz3zHPUHR4-hW-5" edge="1">
@@ -3495,7 +3488,7 @@
         <mxCell id="DEZQU6jtzSXVpTPXyjAv-3" value="CNN&lt;br&gt;greedy fear index" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="3180" y="160" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="DEZQU6jtzSXVpTPXyjAv-5" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;entryX=0.817;entryY=1.017;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;entryPerimeter=0;" parent="1" source="mCX8aS_O3Q_4noS1LeP5-19" target="mCX8aS_O3Q_4noS1LeP5-11" edge="1">
+        <mxCell id="DEZQU6jtzSXVpTPXyjAv-5" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" parent="1" source="mCX8aS_O3Q_4noS1LeP5-19" target="mCX8aS_O3Q_4noS1LeP5-11" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1960" y="265" as="sourcePoint" />
             <mxPoint x="2070" y="340" as="targetPoint" />
