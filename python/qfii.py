@@ -586,10 +586,9 @@ try:
                         and int(full_tab[i][3]) < 0 ):
                         print( "qslu " + tkr )
                         full_tab[i][8] = 1
-                        rec = "{0}:{1}:{2}:{3}" \
+                        rec = "{0}:{1}:{2}" \
                             .format( \
-                            full_tab[i][0], full_tab[i][1], \
-                            full_tab[i][2], full_tab[i][3] )
+                            full_tab[i][0], full_tab[i][1], full_tab[i][3] )
                         outf3.write(rec +"\n")
 
                 # rule 37.4 qfii buy at limit down

@@ -131,3 +131,4 @@ us_ticker.py:
 gini_tkrbranch.sh: wrapper
 fetch_tkrbranch.py: scrap branch and figure gini
 ticker_branch.py: hs version
+uno_updateqslu.py:

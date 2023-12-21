@@ -11,7 +11,7 @@
 # \return OUTF0  txt file, a summary describe what qfii/fund buy and sell
 # \return OUTF2B txt file, summary describing both buy
 # \return OUTF2S txt file, summary describing both sell
-# \return OUTFQA txt file, summary describing when:
+# \return OFQSLU txt file, summary describing when:
 #   1.buy  when twse dip
 #   2.sell when twse rip
 # \return OUTF1 ods file, manual saved by calc
@@ -74,19 +74,17 @@ OUTF0="$DIR0/$NAME037.$DATE.txt"
 OUTF1="$DIR0/$NAME037.$DATE.ods"
 OUTF2B="$DIR0/$NAME037_1.$DATE.txt"
 OUTF2S="$DIR0/$NAME037_2.$DATE.txt"
-OUTFQA="$DIR0/$NAME037_3.$DATE.txt"
+OFQSLU="$DIR0/$NAME037_3.$DATE.txt"
 OFQBLD="$DIR0/$NAME037_4.$DATE.txt"
 
 O2B="$DIR0/$NAME037_1.$DATE.ods"
 O2S="$DIR0/$NAME037_2.$DATE.ods"
-OQA0="$DIR0/$NAME037_3.$DATE.ods"
+OQSLU="$DIR0/$NAME037_3.$DATE.ods"
 OQBLD="$DIR0/$NAME037_4.$DATE.ods"
 
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
-OUTFQA_SORTED="$DIR0/qa.$DATE.txt"
-# REMOTE_FOLDER="~/Dropbox/$DATE"
-# mkdir -p $REMOTE_FOLDER # // FIXME: python/~/Dropbox
+OFQSLU_SORTED="$DIR0/qa.$DATE.txt"
 
 FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
@@ -137,6 +135,21 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
+# // TODO:
+read -p "Press enter to continue $OFQSLU ..."
+python3 launch.py $OFQSLU
+# manual process here...
+while true ; do
+    if [ ! -f "$OQSLU" ]; then
+        read -p "Save $OFQSLU to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqslu.py $DATE
+echo -ne '\007'
+exit 0
+
 if true; then
     # // apply only today, history is not available
     get_limit_up
@@ -145,7 +158,7 @@ if true; then
 fi
 
 if true; then
-    trash $OUTF0 $OUTF1 $OUTF2B $OUTFQA $OUTF2S $O2B $O2S $OQA0
+    trash -v $OUTF0 $OUTF1 $OUTF2B $OFQSLU $OUTF2S $O2B $O2S $OQSLU
     if [ $ORIGIN -eq 0 ]; then
 	trash "$DIR0/qfii.$DATE.html"
 	trash "$DIR0/fund.$DATE.html"
@@ -174,12 +187,12 @@ TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 
 # @see https://superuser.com/a/246841
 echo "代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超:同步買超:同步賣超" \
-    ":外資操作異常" | cat - $OUTF0 > temp && mv temp $OUTF0
+    ":外資賣漲停" | cat - $OUTF0 > temp && mv temp $OUTF0
 echo '代  號:名  稱:外資買超:投信買超' \
     | cat - $OUTF2B > temp && mv temp $OUTF2B
 echo '代  號:名  稱:外資賣超:投信賣超' \
     | cat - $OUTF2S > temp && mv temp $OUTF2S
-echo '代  號:名  稱:外資買超:外資賣超' | cat - $OUTFQA > temp && mv temp $OUTFQA
+echo '代  號:名  稱:外資賣超' | cat - $OFQSLU > temp && mv temp $OFQSLU
 rm -f temp
 
 echo -ne '\007'
@@ -220,14 +233,13 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_update2s.py $DATE
 echo -ne '\007'
 
-
 # // TODO:
-read -p "Press enter to continue $OUTFQA ..."
-python3 launch.py $OUTFQA
+read -p "Press enter to continue $OFQSLU ..."
+python3 launch.py $OFQSLU
 # manual process here...
 while true ; do
-    if [ ! -f "$OQA0" ]; then
-        read -p "Save $OUTFQA to ods when ready ..."
+    if [ ! -f "$OQSLU" ]; then
+        read -p "Save $OFQSLU to ods when ready ..."
     else
 	break
     fi
@@ -255,16 +267,16 @@ mkdir -p ~/Dropbox/$DATE
 cp -v $OUTF1 ~/Dropbox/$DATE
 cp -v $O2B ~/Dropbox/$DATE
 cp -v $O2S ~/Dropbox/$DATE
-cp -v $OQA0 ~/Dropbox/$DATE
+cp -v $OQSLU ~/Dropbox/$DATE
 
 read -p "Press enter to continue $OUTF1 ..."
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
-# "$OUTF1" "$O2B" "$O2S" "$OQA0" \
+# "$OUTF1" "$O2B" "$O2S" "$OQSLU" \
 # --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
-./uno_launch.sh "$OUTF1" "$O2B" "$O2S" "$OQA0"
+./uno_launch.sh "$OUTF1" # "$O2B" "$O2S" "$OQSLU"
 
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
-    $OUTF2B $OUTF2S $OUTFQA
+    $OUTF2B $OUTF2S $OFQSLU
 
 echo "sort "$OUTF2B", "$OUTF2S" for new(b|s), 2day(b|s) ..."
 tail -n +2 $OUTF2B > temp; awk -F':' '{print $1}' temp | \
