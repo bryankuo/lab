@@ -43,7 +43,16 @@ path1  = os.path.join(DIR1, fname1)
 ofname1 = "log.txt"
 log_path = os.path.join(DIR2, ofname1)
 
+conn_list = [1] * len(sites.list); conn = 0
 def source_factory(ticker):
+    # url = random.choice(sites.list) + page
+    conn = random.randint(0, len(sites.list)-1)
+    while ( conn_list[conn] <= 0 ):
+        conn = random.randint(0, len(sites.list)-1)
+    page = "/z/zc/zca/zca_" + ticker + ".djhtm"
+    url = sites.list[conn] + page
+    return url
+    '''
     sources = [                                                         \
         "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
         # site is down "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
@@ -64,8 +73,7 @@ def source_factory(ticker):
     ]
     seed = random.randint(0, len(sources)-1)
     url = sources[seed]
-    return url
-
+    '''
 f = open(path1, 'r'); logf = open(log_path, 'w')
 session = None; count = 0; fname = ""; path = ""
 
@@ -108,6 +116,7 @@ for ticker in f:
         except requests.exceptions.ConnectionError:
             e = sys.exc_info()[0]
             print("Unexpected error:", sys.exc_info()[0])
+            conn_list[conn] = 0
             raise
 
         except:

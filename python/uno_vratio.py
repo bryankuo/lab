@@ -174,6 +174,8 @@ try:
 
     the_range = active_sheet.getCellRangeByName("BI:BL")
     the_range.Columns.OptimalWidth = True
+    the_range = active_sheet.getCellRangeByName("G:H")
+    the_range.Columns.IsVisible = True
 
 except:
     # traceback.format_exception(*sys.exc_info())
