@@ -583,6 +583,7 @@ try:
                 if ( lu_lst is not None and \
                     0 < len(lu_lst) ):
                     if ( int(tkr) in lu_lst \
+                if ( lu_lst is not None and \
                         and int(full_tab[i][3]) < 0 ):
                         print( "qslu " + tkr )
                         full_tab[i][8] = 1

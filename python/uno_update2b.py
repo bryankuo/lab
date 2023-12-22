@@ -110,7 +110,8 @@ for tkr in tkrs:
         new_sheet.getCellRangeByName("$C"+str(i)).NumberFormat = nl
         new_sheet.getCellRangeByName("$D"+str(i)).Value = int(fb[idx])
         new_sheet.getCellRangeByName("$D"+str(i)).NumberFormat = nl
-    idx += 1; i += 1;
+        i += 1
+    idx += 1
 
 # assume no more than 3000 listed.
 guessRange = new_sheet.getCellRangeByPosition(0, 1, 10, 3001)

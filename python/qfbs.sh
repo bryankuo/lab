@@ -135,21 +135,6 @@ get_limit_down() {
     echo "done, "$NUM_TKR" items."
 }
 
-# // TODO:
-read -p "Press enter to continue $OFQSLU ..."
-python3 launch.py $OFQSLU
-# manual process here...
-while true ; do
-    if [ ! -f "$OQSLU" ]; then
-        read -p "Save $OFQSLU to ods when ready ..."
-    else
-	break
-    fi
-done
-/Applications/LibreOffice.app/Contents/Resources/python uno_updateqslu.py $DATE
-echo -ne '\007'
-exit 0
-
 if true; then
     # // apply only today, history is not available
     get_limit_up
@@ -232,6 +217,7 @@ while true ; do
 done
 /Applications/LibreOffice.app/Contents/Resources/python uno_update2s.py $DATE
 echo -ne '\007'
+
 
 # // TODO:
 read -p "Press enter to continue $OFQSLU ..."
