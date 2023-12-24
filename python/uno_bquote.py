@@ -207,6 +207,10 @@ try:
     # what is dispatcher call? How to enable auto filters for a sheet
     # @see dispatcher.executeDispatch
     # https://ask.libreoffice.org/t/how-to-define-the-active-cell/11746/5
+    # run macro :
+    # https://stackoverflow.com/a/35777552
+    # 3rd way run macro
+    # https://forum.openoffice.org/en/forum/viewtopic.php?f=20&t=8232
 
 except:
     # traceback.format_exception(*sys.exc_info())
@@ -235,7 +239,7 @@ column = columns.getByName("BM")
 # column.Width = 3000
 # @see https://stackoverflow.com/a/50077601
 column.OptimalWidth = True
-# doc.store()
+doc.store()
 
 # olist = [ n_ticker, path0 ]
 # print(olist)

@@ -14,11 +14,11 @@ from datetime import datetime
 from com.sun.star.uno import RuntimeException
 # from datetime import date
 # test
-from com.sun.star.awt import MessageBoxButtons as MSG_BUTTONS
+from com.sun.star.beans import PropertyValue
 
 yyyymmdd = sys.argv[1]
-sheet_name = "外投同買賣及異常."+yyyymmdd
-print(sheet_name)
+# sheet_name = "外投同買賣及異常."+yyyymmdd
+# print(sheet_name)
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -39,7 +39,6 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # access the current writer document
 
 # desktop = XSCRIPTCONTEXT.getDesktop() # not defined
-
 doc = None
 numbers = None
 locale = None
@@ -59,11 +58,49 @@ try:
 except RuntimeException:
     nl = numbers.queryKey("###0.000", locale, False)
 
-active_sheet = doc.Sheets.getByName(sheet_name)
+# https://wiki.documentfoundation.org/Macros/Python_Guide/Useful_functions#Call_dispatch
+
+# document = XSCRIPTCONTEXT.getDocument()
+# print(document)
+
+
+'''
+def call_dispatch(doc, url, args=()):
+    frame = doc.getCurrentController().getFrame()
+    # dispatch = create_instance('com.sun.star.frame.DispatchHelper')
+    # dispatch = smgr.createInstanceWithContext( 'com.sun.star.frame.DispatchHelper', ctx)
+    # dispatch = smgr.createInstance( 'com.sun.star.frame.DispatchHelper' )
+    dispatch.executeDispatch(frame, url, '', 0, args)
+    return
+'''
+
+active_sheet = doc.Sheets.getByName("RS-history")
+doc.CurrentController.setActiveSheet(active_sheet)
+the_range = active_sheet.getCellRangeByName("A1:AMJ1048576")
+the_range.Columns.OptimalWidth = True
+doc.store()
+the_range = active_sheet.getCellRangeByName("A1:AMJ1048576")
+doc.CurrentController.select(the_range)
+
+properties = PropertyValue()
+properties.Name = 'ToPoint'
+properties.Value ='B7'
+
+dispatch = smgr.createInstanceWithContext( "com.sun.star.frame.DispatchHelper", ctx)
+frame = doc.getCurrentController().getFrame()
+# dispatch.executeDispatch(frame, url, '', 0, args)
+dispatch.executeDispatch(frame, ".uno:GoToCell", '', 0, properties)
+
+
+#call_dispatch(doc, ".uno:GoToCell", properties)
+
+print("done.")
+sys.exit(0)
+
 # doc.Sheets.insertNewByName("外投同買列表",    1) # works
 # doc.Sheets.insertNewByName("外投同賣列表",    2)
 # doc.Sheets.insertNewByName("外資賣漲停",     3)
-doc.Sheets.insertNewByName("外資買跌停",     4)
+# doc.Sheets.insertNewByName("外資買跌停",     4)
 doc.Sheets.insertNewByName("外資-大盤跌買入", 5)
 doc.Sheets.insertNewByName("外資-大盤漲賣出", 6)
 doc.Sheets.insertNewByName("外投同賣連2",     7)
@@ -88,10 +125,6 @@ n_ticker = ( last_row - 2 ) + 1
 
 # columns = active_sheet.getColumns()
 # column = columns.getByName("A") # one column
-the_range = active_sheet.getCellRangeByName("A:j")
-the_range.Columns.OptimalWidth = True
-doc.store()
-
 sys.exit(0)
 
 # import os
