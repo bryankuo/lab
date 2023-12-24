@@ -559,32 +559,32 @@ try:
         for i in range(0, len(full_tab)):
             tkr = full_tab[i][0].strip()
             # print(tkr)
-            if ( 0 < int(full_tab[i][2]) ) and ( 0 < int(full_tab[i][4]) ):
-                full_tab[i][6] = 1
-                rec = "{0}:{1}:{2}:{3}" \
-                    .format( \
-                    full_tab[i][0],
-                    full_tab[i][1], \
-                    full_tab[i][2], \
-                    full_tab[i][4] )
-                outf1.write(rec +"\n")
 
-            if ( int(full_tab[i][3]) < 0 ) and ( int(full_tab[i][5]) < 0 ):
-                full_tab[i][7] = 1
-                rec = "{0}:{1}:{2}:{3}" \
-                    .format( \
-                    full_tab[i][0], full_tab[i][1], \
-                    full_tab[i][3], full_tab[i][5] )
-                outf2.write(rec +"\n")
-
-            # in updown list and qfii doing reverse
             if ( len(tkr) <= 4 ):
+                # in updown list and qfii doing reverse
+                if ( 0 < int(full_tab[i][2]) ) \
+                    and ( 0 < int(full_tab[i][4]) ):
+                    full_tab[i][6] = 1
+                    rec = "{0}:{1}:{2}:{3}" \
+                        .format( \
+                        full_tab[i][0],
+                        full_tab[i][1], \
+                        full_tab[i][2], \
+                        full_tab[i][4] )
+                    outf1.write(rec +"\n")
+
+                if ( int(full_tab[i][3]) < 0 ) \
+                    and ( int(full_tab[i][5]) < 0 ):
+                    full_tab[i][7] = 1
+                    rec = "{0}:{1}:{2}:{3}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], \
+                        full_tab[i][3], full_tab[i][5] )
+                    outf2.write(rec +"\n")
+
                 # rule 37.3 qfii sell at limit up
-                if ( lu_lst is not None and \
-                    0 < len(lu_lst) ):
-                    if ( int(tkr) in lu_lst \
-                if ( lu_lst is not None and \
-                        and int(full_tab[i][3]) < 0 ):
+                if ( lu_lst is not None \
+                    and int(full_tab[i][3]) < 0 ):
                         print( "qslu " + tkr )
                         full_tab[i][8] = 1
                         rec = "{0}:{1}:{2}" \
@@ -599,10 +599,10 @@ try:
                         and 0 < int(full_tab[i][2]) ):
                         full_tab[i][8] = 1
                         print( "qbld " + tkr )
-                        rec = "{0}:{1}:{2}:{3}" \
+                        rec = "{0}:{1}:{2}" \
                             .format( \
                             full_tab[i][0], full_tab[i][1], \
-                            full_tab[i][2], full_tab[i][3] )
+                            full_tab[i][2] )
                         outf4.write(rec +"\n")
 
             # // TODO: another file, drop limit but stock qfii doing reverse

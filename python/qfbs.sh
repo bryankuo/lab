@@ -86,6 +86,20 @@ OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OFQSLU_SORTED="$DIR0/qa.$DATE.txt"
 
+read -p "Press enter to continue $OFQBLD ..."
+python3 launch.py $OFQBLD
+# manual process here...
+while true ; do
+    if [ ! -f "$OQBLD" ]; then
+        read -p "Save $OFQBLD to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqbld.py $DATE
+echo -ne '\007'
+exit 0
+
 FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
     echo "get_limit_up()+"
