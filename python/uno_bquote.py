@@ -240,6 +240,8 @@ column = columns.getByName("BM")
 # @see https://stackoverflow.com/a/50077601
 column.OptimalWidth = True
 doc.store()
+# sheet6 = doc.Sheets.getByName("Sheet7")
+# sheet6.IsVisible = False # works
 
 # olist = [ n_ticker, path0 ]
 # print(olist)
