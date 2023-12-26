@@ -197,6 +197,7 @@ if ( from_file ):
         # url0 = "https://tw.stock.yahoo.com/quote/" + tkr + ".TWO/news"
         # "https://tw.stock.yahoo.com/quote/2313.TWO/news"
         # "https://tw.stock.yahoo.com/quote/2313.TW/announcement"
+        # https://www.moneydj.com/kmdj/common/listnewarticles.aspx?svc=NW&a=TW.1102
         # type 5 n/a
         # print(url0)
         # webbrowser.open(url0)
@@ -211,6 +212,9 @@ if ( from_file ):
             + urllib.parse.urlencode(criteria)
         # url1 = "https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id="+tkr+ \
         #    "&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year="+yyy+"&month1=0&begin_day=1&end_day=1"
+
+        # selenium detach feature @see https://stackoverflow.com/a/51865955
+        # chrome_options.add_experimental_option("detach", True)
         print(url1)
         webbrowser.open(url1)
         sys.stdout.write('\a')

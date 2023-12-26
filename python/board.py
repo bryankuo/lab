@@ -88,3 +88,5 @@ sys.exit(0)
 # 股東會議案決議情形
 # https://mops.twse.com.tw/mops/web/t150sb04
 # 4.董監事選舉
+
+# https://concords.moneydj.com/z/zc/zcj/zcj_2330.djhtm
