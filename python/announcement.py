@@ -10,6 +10,7 @@ from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 
 ticker = sys.argv[1]
+
 # https://mops.twse.com.tw/mops/web/stapap1_all
 # board holdings, got valid data, 2 months earlier
 the_day = datetime.today() + relativedelta(months=-2)

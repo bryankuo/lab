@@ -177,24 +177,45 @@ if ( from_file ):
     cg0 = g0 - s0
     print("{} recent 20d cg0 {:0.3f} [{:f}]".format(tkr, cg0, cg0))
     THRESHOLD = 0.197 # free will
+    take_a_look = False
     if ( cg0 <= -THRESHOLD ):
         gf.write( "{:4}:{:0.3f}".format(tkr, cg0) + "\n" )
         print("assume in abundant supply: {}".format(cg0))
-        print("href: {}".format(top1s_href))
-        url = random.choice(sites.list) + top1s_href
-        print(url)
-        webbrowser.open(url)
+        take_a_look = True
 
     if ( THRESHOLD <= cg0 ):
         gf.write( "{:4}:{:0.3f}".format(tkr, cg0) + "\n" )
         print("assume in demand: ".format(cg0))
         print("href: {}".format(top1b_href))
+        take_a_look = True
+
+    if take_a_look :
         url = random.choice(sites.list) + top1s_href
         print(url)
         webbrowser.open(url)
 
-    sys.stdout.write('\a')
-    sys.stdout.flush()
+        # url0 = "https://tw.stock.yahoo.com/quote/" + tkr + ".TWO/news"
+        # "https://tw.stock.yahoo.com/quote/2313.TWO/news"
+        # "https://tw.stock.yahoo.com/quote/2313.TW/announcement"
+        # type 5 n/a
+        # print(url0)
+        # webbrowser.open(url0)
+
+        # @see announcement.py announcement_today.py
+        yyy=str(int(datetime.today().strftime("%Y")) - 1911)
+        criteria = {'co_id': tkr, 'step': 1, 'firstin': 'true', 'id': '', \
+            'key': '', 'TYPEK': '', 'Stp': 4, 'go': 'false', \
+            'keyWord': '', 'kewWord2': '', 'year': yyy, 'month1': 0, \
+            'begin_day': 1, 'end_day': 1}
+        url1 = "https://mops.twse.com.tw/mops/web/t51sb10_q1?" \
+            + urllib.parse.urlencode(criteria)
+        # url1 = "https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id="+tkr+ \
+        #    "&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year="+yyy+"&month1=0&begin_day=1&end_day=1"
+        print(url1)
+        webbrowser.open(url1)
+        sys.stdout.write('\a')
+        sys.stdout.flush()
+
 else:
 
     # https://just.honsec.com.tw/z/zc/zco/zco0/zco0.djhtm?a=2615&b=9677&BHID=9600

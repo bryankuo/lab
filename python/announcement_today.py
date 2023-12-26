@@ -35,6 +35,8 @@ webbrowser.open("a.txt")
 # table[2]
 sys.exit(0)
 
+# https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id=1260&step=1&firstin=true&id&key&TYPEK&Stp=4&go=false&keyWord&kewWord2&year=112&month1=0&begin_day=1&end_day=1
+
 #
 # https://mops.twse.com.tw/mops/web/t146sb10
 # https://mops.twse.com.tw/mops/web/t05st01
