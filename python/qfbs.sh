@@ -69,6 +69,12 @@ NAME037_1="外投同買列表"
 NAME037_2="外投同賣列表"
 NAME037_3="外資賣漲停"
 NAME037_4="外資買跌停"
+NAME037_5="外資-大盤跌買入"
+NAME037_6="外資-大盤漲賣出"
+NAME037_7="外投同賣連2"
+NAME037_8="外投同賣新增"
+NAME037_9="外投同買新增"
+NAME037_10="外投同買連2"
 
 OUTF0="$DIR0/$NAME037.$DATE.txt"
 OUTF1="$DIR0/$NAME037.$DATE.ods"
@@ -76,29 +82,19 @@ OUTF2B="$DIR0/$NAME037_1.$DATE.txt"
 OUTF2S="$DIR0/$NAME037_2.$DATE.txt"
 OFQSLU="$DIR0/$NAME037_3.$DATE.txt"
 OFQBLD="$DIR0/$NAME037_4.$DATE.txt"
+OFQBMD="$DIR0/$NAME037_5.$DATE.txt"
+OFQSMR="$DIR0/$NAME037_6.$DATE.txt"
 
 O2B="$DIR0/$NAME037_1.$DATE.ods"
 O2S="$DIR0/$NAME037_2.$DATE.ods"
 OQSLU="$DIR0/$NAME037_3.$DATE.ods"
 OQBLD="$DIR0/$NAME037_4.$DATE.ods"
+QBMD="$DIR0/$NAME037_5.$DATE.ods"
+QSMR="$DIR0/$NAME037_6.$DATE.ods"
 
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
 OFQSLU_SORTED="$DIR0/qa.$DATE.txt"
-
-read -p "Press enter to continue $OFQBLD ..."
-python3 launch.py $OFQBLD
-# manual process here...
-while true ; do
-    if [ ! -f "$OQBLD" ]; then
-        read -p "Save $OFQBLD to ods when ready ..."
-    else
-	break
-    fi
-done
-/Applications/LibreOffice.app/Contents/Resources/python uno_updateqbld.py $DATE
-echo -ne '\007'
-exit 0
 
 FROM_SROUCE=($(shuf -i 1-4 -n 1)) # @see https://shorturl.at/AOQU6
 get_limit_up() {
@@ -153,7 +149,6 @@ if true; then
     # // apply only today, history is not available
     get_limit_up
     get_limit_down
-    # ls -lt "$DIR0/"*.html "$DIR0/"*.csv | head -n 10
 fi
 
 if true; then
@@ -195,10 +190,9 @@ echo '代  號:名  稱:外資賣超' | cat - $OFQSLU > temp && mv temp $OFQSLU
 rm -f temp
 
 echo -ne '\007'
-read -p "Press enter to continue $OUTF0 ..."
 # python3 launch.py $OUTF0
 ./uno_launch.sh $OUTF0
-# manual process here...
+read -p "Press enter to continue $OUTF0 ..."
 while true ; do
     if [ ! -f "$OUTF1" ]; then
         read -p "Save $OUTF0  to ods when ready ..."
@@ -207,6 +201,7 @@ while true ; do
     fi
 done
 
+# 37.1
 read -p "Press enter to continue $OUTF2B ..."
 ./uno_launch.sh $OUTF2B # let calc parsing correctly instead of uno
 # manual process here...
@@ -220,8 +215,10 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_update2b.py $DATE
 echo -ne '\007'
 
-read -p "Press enter to continue $OUTF2S ..."
+# 37.2
 ./uno_launch.sh $OUTF2S
+echo -ne '\007'
+read -p "Press enter to continue $OUTF2S ..."
 while true ; do
     if [ ! -f "$O2S" ]; then
         read -p "Save $OUTF2S to ods when ready ..."
@@ -230,10 +227,9 @@ while true ; do
     fi
 done
 /Applications/LibreOffice.app/Contents/Resources/python uno_update2s.py $DATE
+
+# 37.3
 echo -ne '\007'
-
-
-# // TODO:
 read -p "Press enter to continue $OFQSLU ..."
 python3 launch.py $OFQSLU
 # manual process here...
@@ -247,7 +243,7 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_updateqslu.py $DATE
 echo -ne '\007'
 
-# // TODO:
+# 37.4
 read -p "Press enter to continue $OFQBLD ..."
 python3 launch.py $OFQBLD
 # manual process here...
@@ -261,7 +257,35 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_updateqbld.py $DATE
 echo -ne '\007'
 
-/Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
+# 37.5
+read -p "Press enter to continue $OFQBMD ..."
+python3 launch.py $OFQBMD
+# manual process here...
+while true ; do
+    if [ ! -f "$QBMD" ]; then
+        read -p "Save $OFQBMD to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqbmd.py $DATE
+echo -ne '\007'
+
+# 37.6
+read -p "Press enter to continue $OFQSMR ..."
+python3 launch.py $OFQSMR
+# manual process here...
+while true ; do
+    if [ ! -f "$QSMR" ]; then
+        read -p "Save $OFQSMR to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqsmr.py $DATE
+echo -ne '\007'
+
+# /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
 
 mkdir -p ~/Dropbox/$DATE
 cp -v $OUTF1 ~/Dropbox/$DATE

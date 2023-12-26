@@ -19,8 +19,6 @@ from com.sun.star.awt import MessageBoxButtons as MSG_BUTTONS
 yyyymmdd = sys.argv[1]
 DIR0="./datafiles/taiex/qfbs"
 NAME037="外投同買賣及異常"
-NAME037_1="外投同買列表"
-NAME037_2="外投同賣列表"
 NAME037_3="外資賣漲停"
 
 sheet_name = NAME037+"."+yyyymmdd
@@ -95,7 +93,7 @@ tkrs = [ x[0] for x in data ]
 name = [ x[1] for x in data ]
 qs   = [ x[2] for x in data ]
 checked  = [ 0 ] * len(tkrs)
-print("# lines {}".format(len(tkrs)))
+# print("# lines {}".format(len(tkrs)))
 
 new_sheet = doc.Sheets.getByName(NAME037_3)
 doc.CurrentController.setActiveSheet(new_sheet)

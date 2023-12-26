@@ -64,6 +64,8 @@ NAME037_1="外投同買列表"
 NAME037_2="外投同賣列表"
 NAME037_3="外資賣漲停"
 NAME037_4="外資買跌停"
+NAME037_5="外資-大盤跌買入"
+NAME037_6="外資-大盤漲賣出"
 
 theday = datetime.today().strftime('%Y%m%d')
 is_from_net = False
@@ -129,6 +131,12 @@ path3 = os.path.join(DIR0, qslu)
 
 qbld = NAME037_4 + "."  + yyyy + mm + dd + '.txt'
 path4 = os.path.join(DIR0, qbld)
+
+qbmd = NAME037_5 + "."  + yyyy + mm + dd + '.txt'
+path5 = os.path.join(DIR0, qbmd)
+
+qsmr = NAME037_6 + "."  + yyyy + mm + dd + '.txt'
+path6 = os.path.join(DIR0, qsmr)
 
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
@@ -555,6 +563,8 @@ try:
         outf2 = open(path2, 'wt')
         outf3 = open(path3, 'wt')
         outf4 = open(path4, 'wt')
+        outf5 = open(path5, 'wt')
+        outf6 = open(path6, 'wt')
 
         for i in range(0, len(full_tab)):
             tkr = full_tab[i][0].strip()
@@ -605,30 +615,24 @@ try:
                             full_tab[i][2] )
                         outf4.write(rec +"\n")
 
-            # // TODO: another file, drop limit but stock qfii doing reverse
+                # rule 37.5 market dip and qfii buy
+                if ( market == 2 and int(full_tab[i][3]) < 0 ):
+                    full_tab[i][8] = 1
+                    rec = "{0}:{1}:{2}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], full_tab[i][2] )
+                    outf5.write(rec +"\n")
 
-            # condition 1.
-            # market rip and qfii climax sell or
-            # market dip and qfii buy
-            if ( market == 1 and 0 < int(full_tab[i][2]) ):
-                full_tab[i][8] = 1
-                rec = "{0}:{1}:{2}:{3}" \
-                    .format( \
-                    full_tab[i][0], full_tab[i][1], \
-                    full_tab[i][2], full_tab[i][3] )
-                outf3.write(rec +"\n")
-            elif ( market == 2 and int(full_tab[i][3]) < 0 ):
-                full_tab[i][8] = 1
-                rec = "{0}:{1}:{2}:{3}" \
-                    .format( \
-                    full_tab[i][0], full_tab[i][1], \
-                    full_tab[i][2], full_tab[i][3] )
-                outf3.write(rec +"\n")
-            else:
-                # print("market is 0")
-                pass
-            # // TODO: index drop but stock qfii doing reverse
-
+                # rule 37.6 market rip and qfii climax sell or
+                elif ( market == 1 and 0 < int(full_tab[i][2]) ):
+                    full_tab[i][8] = 1
+                    rec = "{0}:{1}:{2}" \
+                        .format( \
+                        full_tab[i][0], full_tab[i][1], full_tab[i][3] )
+                    outf6.write(rec +"\n")
+                else:
+                    # print("market is 0")
+                    pass
 
             # condition 3. limit up and qfi sell for several days
 
@@ -643,6 +647,7 @@ try:
                 full_tab[i][8] )
 
         outf1.close(); outf2.close(); outf3.close(); outf4.close()
+        outf5.close(); outf6.close()
         return full_tab
 
     # // TODO: definition of high

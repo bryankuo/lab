@@ -90,7 +90,7 @@ name = [ x[1] for x in data ]
 qb   = [ x[2] for x in data ]
 fb   = [ x[3] for x in data ]
 checked  = [ 0 ] * len(tkrs)
-print("# lines {}".format(len(tkrs)))
+# print("# lines {}".format(len(tkrs)))
 
 sheet0 = doc.Sheets.getByName(sheet_name)
 doc.Sheets.insertNewByName(NAME037_1,    1) # works
