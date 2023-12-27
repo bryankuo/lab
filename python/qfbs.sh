@@ -26,7 +26,7 @@ if [ "$#" -lt 2 ]; then
     echo "       and let safari allow Remote Automation"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
-clear
+# clear
 
 # @see https://stackoverflow.com/a/428580
 YMD=$1
@@ -84,6 +84,7 @@ OFQSLU="$DIR0/$NAME037_3.$DATE.txt"
 OFQBLD="$DIR0/$NAME037_4.$DATE.txt"
 OFQBMD="$DIR0/$NAME037_5.$DATE.txt"
 OFQSMR="$DIR0/$NAME037_6.$DATE.txt"
+OQFS2="$DIR0/$NAME037_7.$DATE.txt"
 
 O2B="$DIR0/$NAME037_1.$DATE.ods"
 O2S="$DIR0/$NAME037_2.$DATE.ods"
@@ -91,6 +92,7 @@ OQSLU="$DIR0/$NAME037_3.$DATE.ods"
 OQBLD="$DIR0/$NAME037_4.$DATE.ods"
 QBMD="$DIR0/$NAME037_5.$DATE.ods"
 QSMR="$DIR0/$NAME037_6.$DATE.ods"
+QFS2="$DIR0/$NAME037_7.$DATE.ods"
 
 OUTF2B_SORTED="$DIR0/2b.$DATE.txt"
 OUTF2S_SORTED="$DIR0/2s.$DATE.txt"
@@ -152,11 +154,11 @@ if true; then
 fi
 
 if true; then
-    trash -v $OUTF0 $OUTF1 $OUTF2B $OFQSLU $OUTF2S $O2B $O2S $OQSLU
+    # trash -v $OUTF0 $OUTF1 $OUTF2B $OFQSLU $OUTF2S $O2B $O2S $OQSLU
     if [ $ORIGIN -eq 0 ]; then
-	trash "$DIR0/qfii.$DATE.html"
-	trash "$DIR0/fund.$DATE.html"
-	ls -ltr "$DIR0/"*$YR$MN$DAY*;
+	trash -v "$DIR0/qfii.$DATE.html"
+	trash -v "$DIR0/fund.$DATE.html"
+	ls -ltr "$DIR0/*$YMD*";
 	# rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
     fi
 
@@ -202,8 +204,8 @@ while true ; do
 done
 
 # 37.1
-read -p "Press enter to continue $OUTF2B ..."
 ./uno_launch.sh $OUTF2B # let calc parsing correctly instead of uno
+read -p "Press enter to continue $OUTF2B ..."
 # manual process here...
 while true ; do
     if [ ! -f "$O2B" ]; then
@@ -229,9 +231,9 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_update2s.py $DATE
 
 # 37.3
+./uno_launch.sh $OFQSLU
 echo -ne '\007'
 read -p "Press enter to continue $OFQSLU ..."
-python3 launch.py $OFQSLU
 # manual process here...
 while true ; do
     if [ ! -f "$OQSLU" ]; then
@@ -244,8 +246,9 @@ done
 echo -ne '\007'
 
 # 37.4
+./uno_launch.sh $OFQBLD
 read -p "Press enter to continue $OFQBLD ..."
-python3 launch.py $OFQBLD
+echo -ne '\007'
 # manual process here...
 while true ; do
     if [ ! -f "$OQBLD" ]; then
@@ -258,8 +261,9 @@ done
 echo -ne '\007'
 
 # 37.5
+./uno_launch.sh $OFQBMD
 read -p "Press enter to continue $OFQBMD ..."
-python3 launch.py $OFQBMD
+echo -ne '\007'
 # manual process here...
 while true ; do
     if [ ! -f "$QBMD" ]; then
@@ -272,8 +276,9 @@ done
 echo -ne '\007'
 
 # 37.6
+./uno_launch.sh $OFQSMR
 read -p "Press enter to continue $OFQSMR ..."
-python3 launch.py $OFQSMR
+echo -ne '\007'
 # manual process here...
 while true ; do
     if [ ! -f "$QSMR" ]; then
@@ -285,39 +290,52 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_updateqsmr.py $DATE
 echo -ne '\007'
 
+# 37.7
+./uno_launch.sh $OQFS2
+read -p "Press enter to continue $OQFS2 ..."
+echo -ne '\007'
+# manual process here...
+while true ; do
+    if [ ! -f "$QFS2" ]; then
+        read -p "Save $OQFS2 to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqfs2.py $DATE
+echo -ne '\007'
+
 # /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
 
 mkdir -p ~/Dropbox/$DATE
 cp -v $OUTF1 ~/Dropbox/$DATE
-cp -v $O2B ~/Dropbox/$DATE
-cp -v $O2S ~/Dropbox/$DATE
-cp -v $OQSLU ~/Dropbox/$DATE
 
 read -p "Press enter to continue $OUTF1 ..."
 # /Applications/LibreOffice.app/Contents/MacOS/soffice --calc \
 # "$OUTF1" "$O2B" "$O2S" "$OQSLU" \
 # --accept="socket,host=localhost,port=2002;urp;StarOffice.ServiceManager"
-./uno_launch.sh "$OUTF1" # "$O2B" "$O2S" "$OQSLU"
+./uno_launch.sh "$OUTF1"
 
 wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
     $OUTF2B $OUTF2S $OFQSLU
 
-echo "sort "$OUTF2B", "$OUTF2S" for new(b|s), 2day(b|s) ..."
+echo "sort $OUTF2B "
+echo "for new(b|s), 2day(b|s) ..."
 tail -n +2 $OUTF2B > temp; awk -F':' '{print $1}' temp | \
-    sort > $OUTF2B_SORTED; #cat $OUTF2B_SORTED
+    sort > $OUTF2B_SORTED
 rm -f temp
 
+echo "sort $OUTF2S "
 tail -n +2 $OUTF2S > temp; awk -F':' '{print $1}' temp | \
-    sort > $OUTF2S_SORTED; # cat $OUTF2S_SORTED
+    sort > $OUTF2S_SORTED;
 rm -f temp
 
 ./check_2b2s.sh $LAST_TRADE_DAY $DATE
 
 # generate 35 files
-ls -lt $DIR0/*$DATE*.{html,txt,csv,ods} | tail -n 35 # // FIXME:
+ls -lt $DIR0/*$DATE*.{html,txt,csv,ods} | tail -n 25
 echo -ne '\007'
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股
-# // TODO: mv -v datafiles/taiex/qfbs/*.20231002.* datafiles/taiex/qfbs/20231002
 exit 0
