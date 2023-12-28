@@ -93,7 +93,7 @@ tkrs = [ x[0] for x in data ]
 name = [ x[1] for x in data ]
 qb   = [ x[2] for x in data ]
 checked  = [ 0 ] * len(tkrs)
-print("# lines {}".format(len(tkrs)))
+# print("# lines {}".format(len(tkrs)))
 
 new_sheet = doc.Sheets.getByName(NAME037_4)
 doc.CurrentController.setActiveSheet(new_sheet)
