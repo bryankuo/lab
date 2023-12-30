@@ -556,8 +556,12 @@ try:
         for i in range(0, len(full_tab)):
             full_tab[i].append(0) # 2 b
             full_tab[i].append(0) # 2 s
-            full_tab[i].append(0) # qfii anomaly
-        print("highlight b2, s2, and qa ...")
+            full_tab[i].append(0) # col  8: 37.3 qslu
+            full_tab[i].append(0) # col  9: 37.4 qbld
+            full_tab[i].append(0) # col 10: 37.5 qbmd
+            full_tab[i].append(0) # col 11: 37.6 qsmr
+
+        print("highlight b2, s2, and qslu ...")
 
         outf1 = open(path1, 'wt')
         outf2 = open(path2, 'wt')
@@ -568,7 +572,6 @@ try:
 
         for i in range(0, len(full_tab)):
             tkr = full_tab[i][0].strip()
-            # print(tkr)
 
             if ( len(tkr) <= 4 ):
                 # in updown list and qfii doing reverse
@@ -595,56 +598,46 @@ try:
                 # rule 37.3 qfii sell at limit up
                 if ( lu_lst is not None \
                     and int(full_tab[i][3]) < 0 ):
-                        print( "qslu " + tkr )
                         full_tab[i][8] = 1
                         rec = "{0}:{1}:{2}" \
                             .format( \
                             full_tab[i][0], full_tab[i][1], full_tab[i][3] )
                         outf3.write(rec +"\n")
+                        print( "qslu " + tkr )
 
                 # rule 37.4 qfii buy at limit down
                 if ( ld_lst is not None and \
                     0 < len(ld_lst) ):
                     if ( int(tkr) in ld_lst \
                         and 0 < int(full_tab[i][2]) ):
-                        full_tab[i][8] = 1
-                        print( "qbld " + tkr )
+                        full_tab[i][9] = 1
                         rec = "{0}:{1}:{2}" \
                             .format( \
                             full_tab[i][0], full_tab[i][1], \
                             full_tab[i][2] )
                         outf4.write(rec +"\n")
+                        print( "qbld " + tkr )
 
                 # rule 37.5 market dip and qfii buy
-                if ( market == 2 and int(full_tab[i][3]) < 0 ):
-                    full_tab[i][8] = 1
+                if ( market == 2 and 0 < int(full_tab[i][2]) ):
+                    full_tab[i][10] = 1
                     rec = "{0}:{1}:{2}" \
                         .format( \
                         full_tab[i][0], full_tab[i][1], full_tab[i][2] )
                     outf5.write(rec +"\n")
+                    print( "qbmd " + tkr )
 
                 # rule 37.6 market rip and qfii climax sell or
-                elif ( market == 1 and 0 < int(full_tab[i][2]) ):
-                    full_tab[i][8] = 1
+                elif ( market == 1 and int(full_tab[i][3]) < 0 ):
+                    full_tab[i][11] = 1
                     rec = "{0}:{1}:{2}" \
                         .format( \
                         full_tab[i][0], full_tab[i][1], full_tab[i][3] )
                     outf6.write(rec +"\n")
+                    print( "qsmr " + tkr )
                 else:
                     # print("market is 0")
                     pass
-
-            # condition 3. limit up and qfi sell for several days
-
-            # more?
-
-            rec = "{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7}:{8}" \
-                .format( \
-                full_tab[i][0], full_tab[i][1], \
-                full_tab[i][2], full_tab[i][3], \
-                full_tab[i][4], full_tab[i][5], \
-                full_tab[i][6], full_tab[i][7], \
-                full_tab[i][8] )
 
         outf1.close(); outf2.close(); outf3.close(); outf4.close()
         outf5.close(); outf6.close()
@@ -733,10 +726,15 @@ try:
             fs   = tab[i][5]
             b2   = tab[i][6]
             s2   = tab[i][7]
-            qa   = tab[i][8] # qfii anomaly
+            qslu = tab[i][8]  # qfii sell the limit up
+            qbld = tab[i][9]  # qbld
+            qbmd = tab[i][10] # qbmd
+            qsmr = tab[i][11] # qsmr
+
             ofile.write(tkr+":"+name+":"+ \
                     str(qb)+":"+str(qs)+":"+str(fb)+":"+str(fs)+":"+ \
-                    str(b2)+":"+str(s2)+":"+str(qa)+"\n")
+                    str(b2)+":"+str(s2)+":"+str(qslu)+":"+str(qbld)+ ":"+ \
+                    str(qbmd)+":"+str(qsmr)+"\n")
         ofile.close()
     msg = "finish buying "+str(n1)+", and selling "+str(n2)+"."
     say(msg)

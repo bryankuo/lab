@@ -71,29 +71,18 @@ path0 = os.path.join(DIR0, nm0)
 inf0 = open(path0, 'r')
 data = list(csv.reader(inf0, delimiter=':'))
 tkrs = [ x[0] for x in data ]
-name = [ x[1] for x in data ]
-qs   = [ x[2] for x in data ]
-fs   = [ x[3] for x in data ]
 
 checked  = [ 0 ] * len(tkrs)
-print("# lines {}".format(len(tkrs)))
+# print("# lines {}".format(len(tkrs)))
 
 new_sheet = doc.Sheets.getByName(NAME037_7)
 doc.CurrentController.setActiveSheet(new_sheet)
 new_sheet.getCellRangeByName("$A1").String = "代  號"
-new_sheet.getCellRangeByName("$B1").String = "名  稱"
-new_sheet.getCellRangeByName("$C1").String = "外資賣超"
-new_sheet.getCellRangeByName("$D1").String = "投信賣超"
 
 idx = 0; i = 2
 for tkr in tkrs:
-    if ( 0 < idx and 4 == len(tkr) ):
+    if ( 0 <= idx and 4 == len(tkr) ):
         new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
-        new_sheet.getCellRangeByName("$B"+str(i)).String = name[idx]
-        new_sheet.getCellRangeByName("$C"+str(i)).Value = int(qs[idx])
-        new_sheet.getCellRangeByName("$C"+str(i)).NumberFormat = nl
-        new_sheet.getCellRangeByName("$D"+str(i)).Value = int(fs[idx])
-        new_sheet.getCellRangeByName("$D"+str(i)).NumberFormat = nl
         i += 1;
     idx += 1;
 

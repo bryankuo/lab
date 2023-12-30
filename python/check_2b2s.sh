@@ -42,13 +42,13 @@ N_CON2BUY=$(comm -12 \
     "$DIR0/$NAME037_1.$LAST_TRADE_DAY.txt" \
     "$DIR0/$NAME037_1.$DATE.txt" \
     | tee "$DIR0/$NAME037_10.$DATE.txt" | wc -l | cut -f7 -d' ' )
-echo "$NAME037_10.... $N_CON2BUY"
+echo "$NAME037_10..... $N_CON2BUY"
 
 # @see https://superuser.com/a/637330
-gvim +1 "$DIR0/$NAME037_7.$DATE.txt" \
-    +"tabnew +1 $DIR0/$NAME037_8.$DATE.txt" \
-    +"tabnew +1 $DIR0/$NAME037_9.$DATE.txt" \
-    +"tabnew +1 $DIR0/$NAME037_10.$DATE.txt"
+# gvim +1 "$DIR0/$NAME037_7.$DATE.txt" \
+#    +"tabnew +1 $DIR0/$NAME037_8.$DATE.txt" \
+#    +"tabnew +1 $DIR0/$NAME037_9.$DATE.txt" \
+#    +"tabnew +1 $DIR0/$NAME037_10.$DATE.txt"
 
 # cp -v "$DIR0/$NAME037_7.$DATE.txt" \
 #    "$DIR0/$NAME037_8.$DATE.txt" \

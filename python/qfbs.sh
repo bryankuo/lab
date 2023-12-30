@@ -85,6 +85,9 @@ OFQBLD="$DIR0/$NAME037_4.$DATE.txt"
 OFQBMD="$DIR0/$NAME037_5.$DATE.txt"
 OFQSMR="$DIR0/$NAME037_6.$DATE.txt"
 OQFS2="$DIR0/$NAME037_7.$DATE.txt"
+OQF2SN="$DIR0/$NAME037_8.$DATE.txt"
+OQF2BN="$DIR0/$NAME037_9.$DATE.txt"
+OQFB2="$DIR0/$NAME037_10.$DATE.txt"
 
 O2B="$DIR0/$NAME037_1.$DATE.ods"
 O2S="$DIR0/$NAME037_2.$DATE.ods"
@@ -93,6 +96,9 @@ OQBLD="$DIR0/$NAME037_4.$DATE.ods"
 QBMD="$DIR0/$NAME037_5.$DATE.ods"
 QSMR="$DIR0/$NAME037_6.$DATE.ods"
 QFS2="$DIR0/$NAME037_7.$DATE.ods"
+QF2SN="$DIR0/$NAME037_8.$DATE.ods"
+QF2BN="$DIR0/$NAME037_9.$DATE.ods"
+QFB2="$DIR0/$NAME037_10.$DATE.ods"
 
 OUTF2B="$DIR0/$NAME037_1.$DATE.txt"
 OUTF2S="$DIR0/$NAME037_2.$DATE.txt"
@@ -183,11 +189,16 @@ TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 
 # @see https://superuser.com/a/246841
 echo "代  號:名  稱:外資買超:外資賣超:投信買超:投信賣超:同步買超:同步賣超" \
-    ":外資賣漲停" | cat - $OUTF0 > temp && mv temp $OUTF0
+    ":外資賣漲停:外資買跌停:外資-大盤跌買入:外資-大盤漲賣出" \
+    ":外投同賣連2:外投同賣新增:外投同買新增:外投同買連2" \
+    | cat - $OUTF0 > temp && mv temp $OUTF0
+
 echo '代  號:名  稱:外資買超:投信買超' \
     | cat - $OUTF2B_UNSORTED > temp && mv temp $OUTF2B_UNSORTED
+
 echo '代  號:名  稱:外資賣超:投信賣超' \
     | cat - $OUTF2S_UNSORTED > temp && mv temp $OUTF2S_UNSORTED
+
 echo '代  號:名  稱:外資賣超' | cat - $OFQSLU > temp && mv temp $OFQSLU
 rm -f temp
 
@@ -323,17 +334,64 @@ done
 /Applications/LibreOffice.app/Contents/Resources/python uno_updateqfs2.py $DATE
 echo -ne '\007'
 
+# 37.8
+./uno_launch.sh $OQF2SN
+read -p "Press enter to continue $OQF2SN ..."
+echo -ne '\007'
+# manual process here...
+while true ; do
+    if [ ! -f "$QF2SN" ]; then
+        read -p "Save $OQF2SN to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqf2sn.py $DATE
+echo -ne '\007'
+
+# 37.9
+./uno_launch.sh $OQF2BN
+read -p "Press enter to continue $OQF2BN ..."
+echo -ne '\007'
+# manual process here...
+while true ; do
+    if [ ! -f "$QF2BN" ]; then
+        read -p "Save $OQF2BN to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqf2bn.py $DATE
+echo -ne '\007'
+
+# 37.10
+./uno_launch.sh $OQFB2
+read -p "Press enter to continue $OQFB2 ..."
+echo -ne '\007'
+# manual process here...
+while true ; do
+    if [ ! -f "$QFB2" ]; then
+        read -p "Save $OQFB2 to ods when ready ..."
+    else
+	break
+    fi
+done
+/Applications/LibreOffice.app/Contents/Resources/python uno_updateqfb2.py $DATE
+echo -ne '\007'
+
 # /Applications/LibreOffice.app/Contents/Resources/python uno_addsheets.py $DATE
 
 # generate 35 files
-ls -lt $DIR0/*$DATE*.{html,txt,csv,ods} | tail -n 25
+ls -lt $DIR0/*$DATE*.{html,txt,csv,ods}
+N_FILES=$(ls -lt $DIR0/*$DATE* | wc -l | xargs | cut -f 1)
+echo "there are $N_FILES files."
 echo -ne '\007'
 
-wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
-    $OUTF2B_UNSORTED $OUTF2S_UNSORTED $OFQSLU
+# wc -l $OUTFL1 $OUTFL1b $OUTFL1s $OUTFL2 $OUTFL2b $OUTFL2s $OUTF0 \
+#    $OUTF2B_UNSORTED $OUTF2S_UNSORTED $OFQSLU
 
-mkdir -p ~/Dropbox/$DATE
-cp -v $OUTF1 ~/Dropbox/$DATE
+# mkdir -p ~/Dropbox/$DATE
+# cp -v $OUTF1 ~/Dropbox/$DATE
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股
