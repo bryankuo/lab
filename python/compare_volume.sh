@@ -31,7 +31,7 @@ ls -lt "$DIR0/$1.vr.csv"
 # @see https://tinyurl.com/3e5j999v
 # Interface-oriented programming in OpenOffice / LibreOffice
 
-cp -v "$DIR0/$1.vr.csv" ~/Dropbox/昨量比.$1.csv
+# cp -v "$DIR0/$1.vr.csv" ~/Dropbox/昨量比.$1.csv
 # // TODO: 隔日沖券商檢驗
 
 # cut -d ":" -f1 datafiles/taiex/after.market/20231129.csv > datafiles/taiex/after.market/20231129.lst.csv

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 board.py 2330 [0|1]
+# python3 board.py [tkr] [0|1]
 # get board holdings.
 # \param in ticker
 # \param in flag
@@ -24,12 +24,14 @@ storage = "datafiles/taiex/majority/"
 if not os.path.exists(storage):
     os.mkdir(storage)
 
-# https://mops.twse.com.tw/mops/web/stapap1_all
-# board holdings, got valid data, until last month
-# 5日,15日 @see shorturl.at/bcAG2
-# url = "https://mops.twse.com.tw/mops/web/t51sb10_q1"
-# "https://mops.twse.com.tw/mops/web/t05sr01_1#"
+# 董事、監察人、經理人及大股東持股餘額彙總表
+# https://mops.twse.com.tw/mops/web/stapap1_all # step1
+# post, 2 steps, detailed...
+
+# type 2, 4
 # https://www.iqvalue.com/Frontend/stock/shareholding?stockId=1519
+
+# board holdings, got valid data, until last month
 # presume get at least one
 for i in range(0, 3):
     the_day = datetime.today() + relativedelta(months=-i)
@@ -89,4 +91,3 @@ sys.exit(0)
 # https://mops.twse.com.tw/mops/web/t150sb04
 # 4.董監事選舉
 
-# https://concords.moneydj.com/z/zc/zcj/zcj_2330.djhtm

@@ -25,4 +25,13 @@ echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP1 " looping end"
 echo -ne '\007'
 exit 0
+
+# to combine latest trade symbol:
+# @see https://shorturl.at/beips
+# sort 2 files first
+# comm -1 watchlist.sorted.txt listed_taiex.20231230.sorted.txt > watchlist.20231231.sorted.txt
+# cat watchlist.20231231.sorted.txt | xargs | tr " " "\n" | sort > watchlist.20231231.1631.txt
+# shuf watchlist.20231231.1631.txt > watchlist.20231231.1644.shuffled.txt
+#
 # to shuffle call update_watchlist.sh
+

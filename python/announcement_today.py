@@ -49,3 +49,5 @@ url = 'https://mops.twse.com.tw/mops/web/t51sb10_q1?co_id='+ticker+'&step=1&firs
 # // TODO: passing ticker and year as arguments
 webbrowser.open(url)
 sys.exit(0)
+
+# https://mops.twse.com.tw/mops/web/t05sr01_1

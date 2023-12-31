@@ -2,7 +2,9 @@
 
 # python3 chips.py [ticker] [type]
 # caller:
-
+# @see majority.sh
+# @see majority_2882.sh
+#
 import sys, requests, time, webbrowser
 import urllib.request
 from urllib.parse   import quote
@@ -34,7 +36,11 @@ if ( 3 <= len(sys.argv) ):
 else:
     monthly_turnaround = ""
 
+# source1: "https://tw.stock.yahoo.com/quote/2303.TW/major-holders"
 major_holders = "https://tw.stock.yahoo.com/quote/"+ticker+".TW/major-holders"
+
+# source2: https://histock.tw/stock/large.aspx?no=2301
+
 transfer_lastmonth = "https://concords.moneydj.com/z/ze/zei/zei.djhtm"
 # sii daily transfer
 # https://mops.twse.com.tw/mops/web/t56sb12_q1
@@ -62,7 +68,11 @@ histock_chips = "https://histock.tw/stock/branch.aspx?no="+ticker+"&day=7"
 share_outstanding = \
     "https://norway.twsthr.info/StockHolders.aspx?stock="+ticker
 
+# https://sjmain.esunsec.com.tw/z/zc/zcw/zcwg/zcwg.djhtm?id=2303
+# /z/js/zcwjs.djjs" # ??
 vol_profile = "https://www.esunsec.com.tw/tw-stock/z/zc/zcw/zcwg/zcwg.djhtm?id="+ticker
+# 分價圖 (volume profile)
+# https://sjmain.esunsec.com.tw/z/zc/zcw/zcwg/zcwg.djhtm?A=3105
 
 margin = "https://histock.tw/stock/chips.aspx?no="+ticker+"&m=mg"
 
@@ -91,3 +101,8 @@ for url in urls:
         input("Press Enter to continue...")
 
 sys.exit(0)
+
+
+# 籌碼流向
+# https://concords.moneydj.com/z/zc/zcj/zcj_2330.djhtm
+# 董監持股 佔股本比率
