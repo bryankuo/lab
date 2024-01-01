@@ -39,7 +39,7 @@ TICKER_ROR="$DIR1/ror.[0-9][0-9][0-9][0-9].html"
 # COMMAND="fetching"
 COMMAND="figuring"
 
-# watch -n 1 "ls -lt datafiles/taiex/rs/20231201/*.html | wc -l"
+# watch -n 1 "ls -lt datafiles/taiex/rs/20240101/*.html | wc -l"
 if [ "$COMMAND" = "fetching" ]; then
     # trash -v $TICKER_ROR # hard to fetch...
     echo "fetch ticker files..."
@@ -76,9 +76,9 @@ if [ "$COMMAND" = "fetching" ]; then
 # find ./datafiles/taiex/rs/20231222 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -print | wc -l | xargs | cut -d " " -f1
 
 # find those not matching criteria
-# find ./datafiles/taiex/rs/20231222 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | wc -l | xargs | cut -d " " -f1
+# find ./datafiles/taiex/rs/20240101 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | wc -l | xargs | cut -d " " -f1
 # into another round, torch it...
-# find ./datafiles/taiex/rs/20231222 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | cut -d '.' -f 3 > datafiles/watchlist.20231222.part4.txt
+# find ./datafiles/taiex/rs/20240101 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | cut -d '.' -f 3 > datafiles/watchlist.txt
 
 #find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -exec stat -f %Sm -t %Y%m%d%H%M%S \;
 

@@ -33,9 +33,6 @@ import sites # // TODO: as well as url
 DIR0="./datafiles/taiex/rs"
 DIR2 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
 
-ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
-o_path = os.path.join(DIR0, ofname)
-
 DIR1   = "./datafiles"
 fname1 = "watchlist.txt"
 path1  = os.path.join(DIR1, fname1)
@@ -52,28 +49,7 @@ def source_factory(ticker):
     page = "/z/zc/zca/zca_" + ticker + ".djhtm"
     url = sites.list[conn] + page
     return url
-    '''
-    sources = [                                                         \
-        "https://concords.moneydj.com/z/zc/zca/zca_" + ticker + ".djhtm", \
-        # site is down "http://jsjustweb.jihsun.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://trade.ftsi.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://just2.entrust.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "http://moneydj.emega.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://stock.capital.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://fund.hncb.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://just.honsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm", \
-        "https://sjmain.esunsec.com.tw/z/zc/zca/zca_" + ticker + ".djhtm"
-        # // TODO: to be verified
-        # "https://kgieworld.moneydj.com/z/con_CSA.htm?A=1227"
-        # "masterlink.com.tw"
-        # "cathaysec.com.tw"
-        # "www.yuanta.com.tw/eYuanta/Securities"
-    ]
-    seed = random.randint(0, len(sources)-1)
-    url = sources[seed]
-    '''
+
 f = open(path1, 'r'); logf = open(log_path, 'w')
 session = None; count = 0; fname = ""; path = ""
 

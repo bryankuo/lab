@@ -45,7 +45,7 @@ DIR1 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
 fname = "ror.twse.html"
 path = os.path.join(DIR1, fname)
 
-ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
+ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv' # 1st gen
 o_path = os.path.join(DIR0, ofname)
 
 is_from_net = True

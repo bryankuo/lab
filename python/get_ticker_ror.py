@@ -49,11 +49,10 @@ DIR1 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
 fname = "ror." + ticker + ".html"
 h_path = os.path.join(DIR1, fname)
 
-# // FIXME: date may be not today, but input from ror.sh
 ifname    = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
 i_path    = os.path.join(DIR0, ifname)
 
-ror_fname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv'
+ror_fname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv' # 2nd append
 ror_path  = os.path.join(DIR0, ror_fname)
 
 rs_fname  = "rs."  + datetime.today().strftime('%Y%m%d') + '.csv'
@@ -120,6 +119,7 @@ if ( r_1w.lower() != "N/A".lower() \
     rs_1m  = ( (float(r_1m) -float(t_1m) ) ) / abs(float(t_1m) )
     rs_3m  = ( (float(r_3m) -float(t_3m) ) ) / abs(float(t_3m) )
     rs_ytd = ( (float(r_ytd)-float(t_ytd)) ) / abs(float(t_ytd))
+    # // FIXME: division by zero on 20240101
     with open(rs_path, 'a') as ofile:
         # ofile.write("ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y\n")
         ofile.write(ticker+":n/a:n/a:"+"{:>.02f}".format(rs_1w )+ \
