@@ -124,9 +124,10 @@ last_row = len(cursor.Rows)
 fname0 = "pr34above75." + yyyymmdd + '.csv'
 path0 = os.path.join(DIR0, fname0)
 outf0 = open(path0, "w")
-outf0.write("ticker:pr1w:pr1m\n")
+outf0.write("ticker:pr1w:pr1m:pr3m:ytd\n")
 
 sheet1 = doc.Sheets.getByName(s1)
+sheet2 = doc.Sheets.getByName(s2)
 
 def check_rule_1(row_idx):
     i = row_idx
@@ -173,7 +174,19 @@ def check_rule_2(row_idx):
             + "{:3.3f}".format(rs_1w) + ":" \
             + "{:3.3f}".format(rs_1m) + ":" \
             + "{:3.3f}".format(rs_3m) + "\n")
-        # // TODO: fill it up to sheet2
+
+        range1 = sheet2.getCellRangeByPosition(0, 0, 4, 999) # topl, bottomr
+        cursor1 = sheet2.createCursorByRange(range1)
+        cursor1.gotoEndOfUsedArea(False)
+        cursor1.gotoStartOfUsedArea(True)
+        new_row = len(cursor1.Rows) + 1
+
+        # // TODO: format
+        sheet2.getCellRangeByName("A"+str(new_row)).String  = tkr
+        sheet2.getCellRangeByName("b"+str(new_row)).String  = rs_1w
+        sheet2.getCellRangeByName("c"+str(new_row)).String  = rs_1m
+        sheet2.getCellRangeByName("$d"+str(new_row)).String = rs_3m
+        sheet2.getCellRangeByName("$e"+str(new_row)).String = rs_ytd
 
 def set_formula_1w():
     addr = "$L1"

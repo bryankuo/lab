@@ -37,6 +37,6 @@ tput bel
 read -p "Press enter to continue copying ..."
 ls -lt datafiles/taiex/rs/*.$DATE.???
 
-cp -v $OUTF0 $OUTF1 $OUTF2 ~/Dropbox/
+cp -v $OUTF0 ~/Dropbox/
 
 exit 0

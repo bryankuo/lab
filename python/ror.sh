@@ -180,3 +180,7 @@ elif [ "$COMMAND" = "figuring" ]; then
 fi
 
 exit 0
+
+
+# 【投資人投資股票報酬率】月報
+# https://www.twse.com.tw/pcversion/zh/statistics/statisticsList?type=02&subType=207
