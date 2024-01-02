@@ -39,13 +39,18 @@ url = "https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059"
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
+if ( len(sys.argv) == 1 ):
+    yyyymmdd = datetime.today().strftime('%Y%m%d')
+elif ( len(sys.argv) == 2 ):
+    yyyymmdd = sys.argv[1]
+
 DIR0="./datafiles/taiex/rs"
-DIR1 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
+DIR1 = os.path.join(DIR0, yyyymmdd)
 
 fname = "ror.twse.html"
 path = os.path.join(DIR1, fname)
 
-ofname = "ror." + datetime.today().strftime('%Y%m%d') + '.csv' # 1st gen
+ofname = "ror." + yyyymmdd + '.csv' # 1st gen
 o_path = os.path.join(DIR0, ofname)
 
 is_from_net = True
@@ -97,6 +102,9 @@ f_6m   = figure.find_all("td", {})[5].text.strip().replace(',', '')
 f_1y   = figure.find_all("td", {})[6].text.strip().replace(',', '')
 f_ytd  = figure.find_all("td", {})[7].text.strip().replace(',', '')
 f_3y   = figure.find_all("td", {})[8].text.strip().replace(',', '')
+
+if ( float(f_ytd) == 0 ):
+    f_ytd = f_1y # fix ytd division by 0 issue @ start of yr
 
 olist = [ f_1d, f_1w, f_1m, "n/a", f_3m, f_6m, f_1y, f_ytd, f_3y ]
 print(olist)

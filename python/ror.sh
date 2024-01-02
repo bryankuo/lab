@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ./ror.sh
+# ./ror.sh [fetching|figuring] [yyyymmdd]
 # 1. scraping ror from a list,
 # 2. get twse as benchmark
 # 3. for each fetched html, generate rs into csv for calc.
@@ -11,33 +11,31 @@
 # \param out  rs.YYYYMMDD.csv
 # return
 
-clear
+if [ "$#" -lt 1 ]; then
+    echo "usage: ./ror.sh [fetching|figuring] [yyyymmdd]"
+    echo "       and let safari allow Remote Automation"
+    exit 22 # @see https://stackoverflow.com/a/50405954
+fi
 
-# echo "$#"
-# incase repeated: uniq -i datafiles/bountylist.txt
-# BOUNTY="datafiles/bountylist.txt"
-# BOUNTY="datafiles/taiex.watchlist.txt" # // FIXME: symbolic link
-# BOUNTY="datafiles/watchlist.txt"
-# NLINES=$(wc -l $BOUNTY | xargs | cut -d " " -f1)
-# START=$index
-# LEN=$NLINES
-# echo "start "$START" len "$NLINES
+COMMAND=$1
 
 DIR0="datafiles/taiex/rs"
 mkdir -p $DIR0
 
-DATE=`date '+%Y%m%d'`
-DIR1="$DIR0/$DATE" # to archive *.html
-mkdir -p $DIR1
+if [ "$#" -eq 1 ]; then
+    DATE=`date '+%Y%m%d'`
+    DIR1="$DIR0/$DATE" # to archive *.html
+    mkdir -p $DIR1
+elif [ "$#" -eq 2 ]; then
+    DATE=$2
+    DIR1="$DIR0/$DATE" # to archive *.html
+fi
 
 OUTF0="$DIR0/ror.$DATE.csv"
 OUTF1="$DIR0/rs.$DATE.csv"
 OUTF2="$DIR0/rs.$DATE.ods"
 TSE_ROR="$DIR1/ror.twse.html"
 TICKER_ROR="$DIR1/ror.[0-9][0-9][0-9][0-9].html"
-
-# COMMAND="fetching"
-COMMAND="figuring"
 
 # watch -n 1 "ls -lt datafiles/taiex/rs/20240101/*.html | wc -l"
 if [ "$COMMAND" = "fetching" ]; then
@@ -63,32 +61,30 @@ if [ "$COMMAND" = "fetching" ]; then
 
     ls -lt "$DIR1/log.txt"
 
-# yyyymmdd
-# stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/20231201/ror.[0-9][0-9][0-9][0-9].html
+    # yyyymmdd
+    # stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/20231201/ror.[0-9][0-9][0-9][0-9].html
 
-# in size
-# stat -f%z ./datafiles/taiex/rs/20231201/ror.[0-9][0-9][0-9][0-9].html
+    # in size
+    # stat -f%z ./datafiles/taiex/rs/20231201/ror.[0-9][0-9][0-9][0-9].html
 
-# fetched, today, size is normal, all
-# find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -print | wc -l | xargs | cut -d " " -f1
+    # fetched, today, size is normal, all
+    # find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -print | wc -l | xargs | cut -d " " -f1
 
-# fetched, today, size is normal, bigger than 20000 bytes
-# find ./datafiles/taiex/rs/20231222 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -print | wc -l | xargs | cut -d " " -f1
+    # fetched, today, size is normal, bigger than 20000 bytes
+    # find ./datafiles/taiex/rs/20231222 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -print | wc -l | xargs | cut -d " " -f1
 
-# find those not matching criteria
-# find ./datafiles/taiex/rs/20240101 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | wc -l | xargs | cut -d " " -f1
-# into another round, torch it...
-# find ./datafiles/taiex/rs/20240101 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | cut -d '.' -f 3 > datafiles/watchlist.txt
+    # find those not matching criteria
+    # find ./datafiles/taiex/rs/20240101 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | wc -l | xargs | cut -d " " -f1
+    # into another round, torch it...
+    # find ./datafiles/taiex/rs/20240101 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size -20000c -print | cut -d '.' -f 3 > datafiles/watchlist.txt
 
-#find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -exec stat -f %Sm -t %Y%m%d%H%M%S \;
+    #find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c -exec stat -f %Sm -t %Y%m%d%H%M%S \;
 
-# path
-# find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c
-    exit 0
-fi
+    # path
+    # find ./datafiles/taiex/rs/20231201 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c
 
-# watch -n 1 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
-if [ "$COMMAND" = "figuring" ]; then
+elif [ "$COMMAND" = "figuring" ]; then
+    # watch -n 1 "ls -lt datafiles/taiex/rs/*.csv | head -n 2"
     echo "clean up data files..."
     trash -v $OUTF0 $OUTF1 $OUTF2 $TSE_ROR
     BENCHMARK=""
@@ -96,7 +92,7 @@ if [ "$COMMAND" = "figuring" ]; then
 	echo "get twse ror..."
 	echo "ticker:name:1d:1w:1m:2m:3m:6m:1y:ytd:3y" > $OUTF0
 	# generate csv header and twse ror
-	BENCHMARK=($(python3 get_twse_ror.py | tr -d '[],'))
+	BENCHMARK=($(python3 get_twse_ror.py $DATE | tr -d '[],'))
     else
 	# // TODO: by reading from OUTF0
 	BENCHMARK=""
@@ -139,51 +135,48 @@ if [ "$COMMAND" = "figuring" ]; then
 
     echo $count"     parsed. "
     tput bel
+
+    read -p "Press enter to continue $OUTF1 ..."
+    # open via subprocess, can not modify from outside python
+    # python3 launch.py $OUTF1
+    ./uno_launch.sh $OUTF1
+    tput bel
+
+    # manual process here...
+    while true ; do
+	if [ ! -f "$OUTF2" ]; then
+	    read -p "Save $OUTF1 to ods when ready ..."
+	else
+	    break
+	fi
+    done
+
+    # ./uno_launch.sh $OUTF2
+    # assume ready and focused, uno_rs.sh adding formula
+    # ./uno_rs.sh $DATE # abandon ./uno_rs.sh
+    # // FIXME:     r_ytd = soup.findAll('table')[0] \
+    # IndexError: list index out of range
+    TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
+    /Applications/LibreOffice.app/Contents/Resources/python \
+	uno_formula.py $DATE
+    TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
+    echo "time: " $TIMESTAMP0 " looping start"
+    echo "time: " $TIMESTAMP  " looping end"
+    tput bel
+
+    echo "done, file name is $OUTF2"
+    cp -v $OUTF2 ~/Dropbox
+
+    # // TODO: housekeeping
+    # if moving old files, create yyyymmdd folder then move it
+    # stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/rs.*.csv | sort | tail -n 1
+    # FETCH_DATE=$(stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/rs.*.csv | sort | tail -n 1)
+    # mkdir -p datafiles/taiex/rs/20231105
+    # mkdir -p datafiles/taiex/rs/$FETCH_DATE
+    # mv ./datafiles/taiex/rs/ror.????.html ./datafiles/taiex/rs/$FETCH_DATE/
+    #
+    # python$ ./uno_launch.sh datafiles/taiex/rs/rs.20231112.ods
+    # python$ ./uno_rs.sh 20231112
 fi
-
-read -p "Press enter to continue $OUTF1 ..."
-# open via subprocess, can not modify from outside python
-# python3 launch.py $OUTF1
-./uno_launch.sh $OUTF1
-tput bel
-
-# manual process here...
-while true ; do
-    if [ ! -f "$OUTF2" ]; then
-        read -p "Save $OUTF1 to ods when ready ..."
-    else
-	break
-    fi
-done
-
-# ./uno_launch.sh $OUTF2
-# assume ready and focused, uno_rs.sh adding formula
-# ./uno_rs.sh $DATE # abandon ./uno_rs.sh
-# // FIXME:     r_ytd = soup.findAll('table')[0] \
-# IndexError: list index out of range
-TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-/Applications/LibreOffice.app/Contents/Resources/python \
-    uno_formula.py $DATE
-TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: " $TIMESTAMP0 " looping start"
-echo "time: " $TIMESTAMP  " looping end"
-tput bel
-
-# // TODO: seperate fetch and get
-echo "done, file name is "$OUTF2
-# echo "execute \"./uno_launch.sh $OUTF2 \" and "
-# echo "execute \"./uno_rs.sh $DATE \" to continue,"
-cp -v $OUTF2 ~/Dropbox
-
-# // TODO: housekeeping
-# if moving old files, create yyyymmdd folder then move it
-# stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/rs.*.csv | sort | tail -n 1
-# FETCH_DATE=$(stat -f %Sm -t %Y%m%d ./datafiles/taiex/rs/rs.*.csv | sort | tail -n 1)
-# mkdir -p datafiles/taiex/rs/20231105
-# mkdir -p datafiles/taiex/rs/$FETCH_DATE
-# mv ./datafiles/taiex/rs/ror.????.html ./datafiles/taiex/rs/$FETCH_DATE/
-#
-# python$ ./uno_launch.sh datafiles/taiex/rs/rs.20231112.ods
-# python$ ./uno_rs.sh 20231112
 
 exit 0

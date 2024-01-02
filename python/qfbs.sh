@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @see uno_stalk_story.sh
-# \param twse close mark @see uno_status.sh
+# \param twse mark @see uno_status.sh
 #
 # qfii.py yyyymmdd [net|file]
 # \param timestamp: yyyymmdd
@@ -165,7 +165,6 @@ if true; then
 	trash -v "$DIR0/qfii.$DATE.html"
 	trash -v "$DIR0/fund.$DATE.html"
 	ls -ltr "$DIR0/*$YMD*";
-	# rm -f "$DIR0/"*$YR$MN$DAY* # // TODO: verify limit up down not deleted
     fi
 
     OUTPUT=($(python3 get_twse_mark.py | tr -d '[],'))

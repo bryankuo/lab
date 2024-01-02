@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # ./get_file_ror.sh
-# loop specific file in directory and scraping ror,
+# loop specific file in directory
+# and scraping ror from out fetch_ticker_ror.py,
 # then generate rs into csv for calc.
 # \param out OUTF0 ror.YYYYMMDD.csv
 # \param out  rs.YYYYMMDD.csv
@@ -39,7 +40,7 @@ for filename in `ls -tUr $TKRS`; do
     echo $MSG
     arrIN=(${filename//./ }) # https://stackoverflow.com/a/5257398
     TICKER=${arrIN[1]}
-    python3 get_ticker_ror.py $TICKER ${OUTPUT[@]}
+    python3 get_ticker_ror.py $TICKER ${OUTPUT[@]} #
     index=$(($index+1))
     count=$(($count+1))
 done

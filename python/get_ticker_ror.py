@@ -2,7 +2,7 @@
 
 # python3 get_ticker_ror.py [ticker] [benchmark]
 # scraping from file fetched and compare with twse in rs
-# \param in out  ror.YYYYMMDD.csv
+# \param in out  ror.YYYYMMDD.csv, append, created by get_twse_ror.py
 # \param in      ror.yyyymmdd.csv 2nd line for twse ror
 # \param in      ror.[ticker].html
 # \param in      benchmark output from get_twse_ror.py
@@ -39,7 +39,7 @@ t_1m  = float(sys.argv[4].replace('\'',''))
 # t_2m  = float(twse_ror_figures[5]) # yet available
 t_3m  = float(sys.argv[6].replace('\'',''))
 #t_6m  = float(twse_ror_figures[7])
-# t_1y  = float(twse_ror_figures[8])
+t_1y  = float(sys.argv[8].replace('\'','')) # fix ytd division by 0 issue @ start of yr
 t_ytd = float(sys.argv[9].replace('\'',''))
 # t_3y  = float(twse_ror_figures[10])
 

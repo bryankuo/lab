@@ -4,7 +4,6 @@
 # fetch ticker ror html from broker, serving ror.sh
 # rotating user agent
 # \param in rs/yyyymmdd folder
-# \param out ror.YYYYMMDD.csv, append, created by get_twse_ror.py
 # \param out ror.[ticker].html
 # return 0
 
