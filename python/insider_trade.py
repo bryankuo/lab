@@ -49,9 +49,10 @@ last_sat = this_date - timedelta(7+idx-6)
 # url = "https://sjmain.esunsec.com.tw/z/ze/zei/zei.djhtm" # running
 # https://www.esunsec.com.tw/tw-rank/z/ZG/ZG_AB.djhtm # down
 # sites.test() # works
-url = random.choice(sites.list) + "/z/ze/zei/zei.djhtm"
 
 if ( is_from_net ):
+    url = random.choice(sites.list) + "/z/ze/zei/zei.djhtm"
+    print("from {}".format(url))
     if ( os.path.exists(path) ):
         os.remove(path) # clean up
     # response = requests.get(url)
@@ -61,6 +62,7 @@ if ( is_from_net ):
 
     # response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
+    print("to {}".format(path))
     with open(path, "w") as outfile2:
         outfile2.write(soup.prettify())
     outfile2.close()
@@ -73,9 +75,10 @@ rows = soup.find_all("table", {"class": "t01"})[0] \
 num_this_wk = 0
 last_ticker = 0
 num_ticker = 0
-for i in range(2, len(rows)):
+for i in range(2, len(rows)-1):
     mm = rows[i].find_all('td')[0].text.strip()[0:2]
     dd = rows[i].find_all('td')[0].text.strip()[3:5]
+    # // FIXME: end of year to a new one
     the_date = date( int(yyyymmdd[0:4]), int(mm), int(dd) )
     td = str(rows[i].find_all('td')[1])
     # @see https://stackoverflow.com/a/65561465

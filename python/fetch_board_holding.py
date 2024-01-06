@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
-# python3 fetch_board_holding.py
+# python3 fetch_board_holding.py [yyyymmdd]
 # fetch board holding from the net
 # rotating user agent
 # \param in watchlist
+# \param in yyyymmdd or today
 # \param out raw html
 # \param out log
 # return 0
@@ -35,12 +36,12 @@ import sites # // TODO: as well as url
 # DIR0="./datafiles"
 DIR0a = "./datafiles/taiex/board.holding"
 yyyymmdd = datetime.today().strftime('%Y%m%d')
+if ( 2 <= len(sys.argv) ):
+    yyyymmdd = sys.argv[1]
+
 DIR0 = os.path.join(DIR0a, yyyymmdd)
 if not os.path.exists(DIR0):
     os.mkdir(DIR0)
-
-ofname = "board.holding." + datetime.today().strftime('%Y%m%d') + '.csv'
-o_path = os.path.join(DIR0, ofname)
 
 path1  = "./datafiles/watchlist.txt"
 
@@ -79,7 +80,7 @@ for ticker in f:
         # if you have to do just a few requests,
         # Otherwise you'll want to manage sessions yourself.
 
-        fname = "board.holding." + ticker + ".html"
+        fname = ticker + ".html"
         path = os.path.join(DIR0, fname)
         try:
             if session is None:
@@ -118,7 +119,7 @@ for ticker in f:
             # print(datetime.fromtimestamp(float(d)))
             ts = datetime.fromtimestamp(float(d))
             sz = os.path.getsize(path) #
-            if ( sz < 3000 ):
+            if ( sz < 7000 ):
                 print("size {} !".format(sz))
             msg = "{} {:04} {:4} {} {:>5} {}" \
                 .format(ts, count, ticker, response.status_code, sz, url)
