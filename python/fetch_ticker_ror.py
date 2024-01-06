@@ -31,10 +31,10 @@ import sites # // TODO: as well as url
 
 DIR0="./datafiles/taiex/rs"
 DIR2 = os.path.join(DIR0, datetime.today().strftime('%Y%m%d'))
+if not os.path.exists(DIR2):
+    os.mkdir(DIR2)
 
-DIR1   = "./datafiles"
-fname1 = "watchlist.txt"
-path1  = os.path.join(DIR1, fname1)
+path1  = "./datafiles/watchlist.txt"
 
 ofname1 = "log.txt"
 log_path = os.path.join(DIR2, ofname1)
