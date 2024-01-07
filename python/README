@@ -89,6 +89,7 @@ get_twse_mark.py: get mark and volume.
 get_twse_ror.py: get ror history.
 fetch_ticker_ror.py: fetch ticker ror for further process.
 get_ticker_ror.py: scrap ticker ror and out rs.
+rs_wrt_twse.py: generate rs with respect to twse mark.
 get_file_ror.sh: loop specific file in directory and scraping ror,
 fetch_limit_updown.py: fetch limit up or limit down by date.
 get_limit_updown.py: extract limit up or down table by date.

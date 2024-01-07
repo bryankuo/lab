@@ -23,7 +23,7 @@ echo "sorting..."
 sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.unsorted.csv"
 # grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
 wc -l  "$DIR0/$DATE.csv"
-cp -v "$DIR0/$DATE.csv" ~/Dropbox/after.market.$DATE.csv
+# cp -v "$DIR0/$DATE.csv" ~/Dropbox/after.market.$DATE.csv
 # ./compare_volume.sh 20231129 20231128
 N_DAYS=$( ls -lt datafiles/taiex/after.market/????????.csv \
     | wc -l | xargs | cut -d " " -f1 )
