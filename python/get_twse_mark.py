@@ -32,12 +32,14 @@ rise = soup.find_all("li", {"class": "rise"})[0] \
         .find_all("span", {"class": "fwbig"})[0].text.strip().replace(',', '')
 volume = soup.find_all("li", {"class": "volume"})[0] \
         .find_all("span", {"class": "fwbig"})[0].text.strip().replace(',', '')
-olist = [ float(deal), change, rise, float(volume) ]
+olist = [ float(deal), change, rise, float(volume), path ]
 
-# // TODO: grep later
 with open(path, "w") as outf:
     outf.write(deal + ":" + change + ":" + rise + ":" + volume + "\n")
 outf.close()
 
 print(olist)
 sys.exit(0)
+# ls -lt ./datafiles/taiex/mark.202?????.csv
+# cat ./datafiles/taiex/mark.20231201.csv
+# find ./datafiles/taiex/mark.202?????.csv | sort -t: -n -k1

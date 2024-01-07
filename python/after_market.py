@@ -14,12 +14,14 @@ import sys, requests, datetime, time, numpy, random, csv, urllib
 import os, errno
 # import urllib.parse
 from bs4 import BeautifulSoup
+'''
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
+'''
 # // TODO: if selenium, click anchor of 1st th
 # of 1st tr of table CPHB1_gv, twice, to sort by ticker ascend
 from timeit import default_timer as timer
@@ -59,37 +61,51 @@ if ( from_file ):
     fname0 = yyyymmdd + '.unsorted.csv'
     path0 = os.path.join(DIR0, fname0)
     print(path0)
+
+    fname1 = yyyymmdd + '.full.csv'
+    path1 = os.path.join(DIR0, fname1)
+    print(path1)
+
     with open(html_path, 'r') as fp:
         soup = BeautifulSoup(fp, 'html.parser')
         rows = soup.find_all("table", {"id": "CPHB1_gv"})[0] \
             .find_all("tr")
         print("# rows: " + str(len(rows)))
         n_tickers = 0
-        with open(path0, 'w') as outfile0:
-            for i in range(1, len(rows)):
-                row = rows[i]
-                tds = row.find_all('td')
-                tkr = tds[0].text.strip()
-                nm = tds[1].text.strip()
-                close  = tds[2].text.strip()
-                chg  = tds[3].text.strip()
-                p_chg  = tds[4].text.strip() # // FIXME: "--"
-                wp_chg = tds[5].text.strip()
-                amp = tds[6].text.strip()
-                opn = tds[7].text.strip()
-                hi  = tds[8].text.strip()
-                low = tds[9].text.strip()
-                mark = tds[10].text.strip()
-                vol    = tds[11].text.strip().replace(',','')
-                turn   = tds[12].text.strip().replace(',','')
-                # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
-                if ( 4 == len(tkr) and 1101 <= int(tkr) and int(tkr) <= 9999 ):
-                    # print( tkr + " " + vol )
-                    outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
-                    n_tickers += 1
-            print("n_tickers: " + str(n_tickers) + "\n")
-            outfile0.close();
-        fp.close();
+        outfile0 = open(path0, 'w');
+        outfile1 = open(path1, 'w');
+        outfile1.write("{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}\n" \
+            .format( "代號","名稱","價格","漲跌","漲跌幅", \
+                "周漲跌","振幅","開盤","最高","最低", \
+                "昨收","成交量","成交值" ) )
+        for i in range(1, len(rows)):
+            row = rows[i]
+            tds = row.find_all('td')
+            tkr = tds[0].text.strip()
+            nm = tds[1].text.strip()
+            close  = tds[2].text.strip()
+            chg  = tds[3].text.strip()
+            p_chg  = tds[4].text.strip() # // FIXME: "--"
+            wp_chg = tds[5].text.strip()
+            amp = tds[6].text.strip()
+            opn = tds[7].text.strip()
+            hi  = tds[8].text.strip()
+            low = tds[9].text.strip()
+            mark = tds[10].text.strip()
+            vol    = tds[11].text.strip().replace(',','')
+            turn   = tds[12].text.strip().replace(',','')
+            # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
+            if ( 4 == len(tkr) and 1101 <= int(tkr) and int(tkr) <= 9999 ):
+                # print( tkr + " " + vol )
+                outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
+                outfile1.write("{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}\n" \
+                    .format( tkr,nm,close,chg,p_chg, \
+                        wp_chg,amp,opn,hi,low, \
+                        mark,vol,turn ) )
+                n_tickers += 1
+        print("n_tickers: " + str(n_tickers) + "\n")
+        outfile0.close(); outfile1.close();
+    fp.close();
 else:
     url = "https://histock.tw/stock/rank.aspx?p=all"
     print(url)
@@ -99,8 +115,8 @@ else:
     # response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
     print(html_path)
-    with open(html_path, "w") as outfile2:
-        outfile2.write(soup.prettify())
-        outfile2.close()
+    outfile2 = open(html_path, "w")
+    outfile2.write(soup.prettify())
+    outfile2.close()
 
 sys.exit(0)
