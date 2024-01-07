@@ -72,5 +72,4 @@ for i in range(1, len(tkrs)):
 in_csv.close()
 outf_rs.close()
 print("write to {}".format(rs_path))
-# sort -t: -nr -k2 ./datafiles/taiex/rs/rs.wrt.twse.20231206.price.desc.csv
 sys.exit(0)
