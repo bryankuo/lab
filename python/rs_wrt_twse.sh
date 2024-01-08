@@ -17,9 +17,14 @@ DIR0="./datafiles/taiex/rs"
 python3 after_market.py $DATE 1
 python3 rs_wrt_twse.py $DATE
 
-echo "sorting by RS..."
-sort -t: -nr -k2 "$DIR0/rs.wrt.twse.$DATE.price.desc.csv" \
-    > "$DIR0/rs.wrt.twse.$DATE.rs.desc.csv"
+# default sorting by price
+# echo "sorting by RS..."
+# sort -t: -nr -k2 "$DIR0/rs.wrt.twse.$DATE.price.desc.csv" \
+#    > "$DIR0/rs.wrt.twse.$DATE.rs.desc.csv"
+
+echo "sorting by ticker ascending..."
+sort -t: -n -k1 "$DIR0/rs.wrt.twse.$DATE.price.desc.csv" \
+    > "$DIR0/rs.wrt.twse.$DATE.ticker.asc.csv"
 
 ls -lt ./datafiles/taiex/rs/*$DATE*
 ls -lt ./datafiles/taiex/after.market/*$DATE*
