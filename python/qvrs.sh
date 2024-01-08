@@ -24,5 +24,12 @@ sort -t: -n -k1 "$DIR0/qvrs.$DATE.price.desc.csv" \
 
 ls -lt ./datafiles/taiex/rs/*$DATE*
 ls -lt ./datafiles/taiex/after.market/*$DATE*
+tput bel
+
+./uno_launch.sh "./datafiles/activity_watchlist.ods"
+read -p "Press enter to continue ..."
+
+/Applications/LibreOffice.app/Contents/Resources/python uno_qvrs.py $DATE
+tput bel
 
 exit 0
