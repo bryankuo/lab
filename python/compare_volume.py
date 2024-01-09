@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-# python3 compare_volume.py [dt1] [dt2]
+# python3 compare_volume.py [dt1] [dt0]
 # \param in dt1 yyyymmdd
-# \param in dt2 yyyymmdd, last day
+# \param in dt0 yyyymmdd, last day
 # \param out 3 column csv file
 # return 0
 
@@ -36,45 +36,45 @@ import pandas as pd
 # // TODO: using pandas inthe libreoffice python installation
 
 if ( len(sys.argv) < 2 ):
-    print("python3 compare_volume.py [dt1] [dt2]")
+    print("python3 compare_volume.py [dt1] [dt0]")
     sys.exit(0)
 
 dt1 = sys.argv[1]
-dt2 = sys.argv[2]
+dt0 = sys.argv[2]
 
 DIR0="./datafiles/taiex/after.market"
 
 fname1 = dt1 + ".csv"
 path1  = os.path.join(DIR0, fname1)
 
-fname2 = dt2 + ".csv"
-path2  = os.path.join(DIR0, fname2)
+fname0 = dt0 + ".csv"
+path0  = os.path.join(DIR0, fname0)
 
 ofname = dt1 + ".vr.csv"
 opath  = os.path.join(DIR0, ofname)
 
 print("comparing: ")
 print(path1 + " to")
-print(path2)
+print(path0)
 
 f1 = open(path1)
-f2 = open(path2)
+f0 = open(path0)
 
 # reader=csv.reader(f1, delimiter=':') #
 # df1=list(reader)
 
 df1a = pd.read_csv(path1, sep=':', header=None)
-df2a = pd.read_csv(path2, sep=':', header=None)
-if ( len(df1a) != len(df2a) ):
-    print("size is different, {:>4} and {:>4}".format(len(df1a), len(df2a)))
+df0a = pd.read_csv(path0, sep=':', header=None)
+if ( len(df1a) != len(df0a) ):
+    print("size is different, {:>4} and {:>4}".format(len(df1a), len(df0a)))
 # df1.sort_index(inplace=True)
 # df1=df1.sort_index()
 df1=df1a.sort_values(0).copy()
-df2=df2a.sort_values(0, ascending=True).copy()
-# df2.sort_values(0, inplace=True)
+df0=df0a.sort_values(0, ascending=True).copy()
+# df0.sort_values(0, inplace=True)
 
 tkr1 = df1[0].tolist()
-tkr2 = df2[0].tolist()
+tkr2 = df0[0].tolist()
 tkr1_only = []; tkr2_only = []
 if ( tkr1 != tkr2 ):
     tkr1_only = list(set(tkr1) - set(tkr2))
@@ -96,13 +96,13 @@ try:
     i2_start = 0
     for i1 in range(0, len(df1)):
         found = False
-        for i2 in range(i2_start, len(df2)):
-            if ( df1[0][i1] == df2[0][i2] ):
+        for i2 in range(i2_start, len(df0)):
+            if ( df1[0][i1] == df0[0][i2] ):
                 found = True
                 break
-            elif ( df1[0][i1] < df2[0][i2] ):
+            elif ( df1[0][i1] < df0[0][i2] ):
                 print( "{:>4d}".format(i1) + " " + str(df1[0][i1]) \
-                    + " " + str(df1[3][i1]) + " " + str(df2[3][i2]) )
+                    + " " + str(df1[3][i1]) + " " + str(df0[3][i2]) )
                 found = False
                 break
             # else:
@@ -111,9 +111,9 @@ try:
         if ( found ):
             # ternary op @see https://stackoverflow.com/a/394814
             r = [ "{:>04d}".format(int(df1[0][i1])) , \
-                float(df1[3][i1])/ float(df2[3][i2]) if ( df2[3][i2] != 0 ) else 1, \
+                float(df1[3][i1])/ float(df0[3][i2]) if ( df0[3][i2] != 0 ) else 1, \
                 df1[3][i1], \
-                df2[3][i2] ]
+                df0[3][i2] ]
             ratio.append(r)
             i2_start += 1
         else:
@@ -138,7 +138,7 @@ except:
 
 finally:
     # pass
-    f1.close(); f2.close()
+    f1.close(); f0.close()
 
 # t1 = time.time_ns()
 # print("{:>.0f} nanoseconds".format(t1-t0))
@@ -147,5 +147,5 @@ t1 = time.time()
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
 print( "time {:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
-
+print("ouput: " + opath)
 sys.exit(0)

@@ -2,7 +2,7 @@
 
 # python3 uno_vratio.py [today] [last day]
 # \param in dt1 today, yyyymmdd
-# \param in dt2 last day, yyyymmdd
+# \param in dt0 last day, yyyymmdd
 # return 0
 
 # @see https://tinyurl.com/y8442u6u
@@ -38,11 +38,11 @@ import uno
 from com.sun.star.uno import RuntimeException
 
 if ( len(sys.argv) < 2 ):
-    print("python3 uno_vratio.py [dt1] [dt2]")
+    print("python3 uno_vratio.py [dt1] [dt0]")
     sys.exit(0)
 
 dt1 = sys.argv[1]
-dt2 = sys.argv[2]
+dt0 = sys.argv[2]
 
 DIR0="./datafiles/taiex/after.market"
 
@@ -117,15 +117,15 @@ try:
     the_range.Columns.IsVisible = False
     the_range = active_sheet.getCellRangeByName("BH")
     the_range.Columns.IsVisible = False
-    '''
     the_range = active_sheet.getCellRangeByName("C:BG")
     the_range.Columns.IsVisible = False
+    '''
 
     i = 1
     active_sheet.getCellRangeByName(  VR+str(i)).String = "V. ratio"
     active_sheet.getCellRangeByName(  VR+str(i)).NumberFormat = nl
     active_sheet.getCellRangeByName( VOL+str(i)).String = "Vdt1.(" + dt1 + ")"
-    active_sheet.getCellRangeByName(LAST+str(i)).String = "Vdt0.(" + dt2 + ")"
+    active_sheet.getCellRangeByName(LAST+str(i)).String = "Vdt0.(" + dt0 + ")"
 
     tkrs = [ x[0] for x in data ]
     rtos = [ x[1] for x in data ]
@@ -145,14 +145,14 @@ try:
                 found = True
                 break
         if ( found ):
-            print("i {:0>4} j {:0>4} tkr {:0>4} found" \
+            print("i {:0>4} j {:0>4} tkr {:0>4} update" \
                 .format(i, j, tkr))
-            cell = active_sheet.getCellRangeByName(VR+str(i))
-            cell.NumberFormat = nl
-            if ( rtos[j] != "n/a" ):
-                cell.Value = rtos[j]
-            else:
-                cell.String = rtos[j]
+            # cell = active_sheet.getCellRangeByName(VR+str(i))
+            # cell.NumberFormat = nl
+            # if ( rtos[j] != "n/a" ):
+            #     cell.Value = rtos[j]
+            # else:
+            #     cell.String = rtos[j]
             active_sheet.getCellRangeByName(VOL+str(i)).Value  = vol[j]
             cell = active_sheet.getCellRangeByName(LAST+str(i))
             if ( last[j] != "n/a" ):
@@ -163,7 +163,7 @@ try:
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1; start0 = i + 1; start1 = j + 1
         else:
-            print("i {:0>4} j {:0>4} tkr {:0>4} not found in {}" \
+            print("i {:0>4} j {:0>4} tkr {:0>4} type 5 not found in {}" \
                 .format(i, j, tkr, ipath1))
             # // FIXME: some in list but not found in spreadsheet -> add one row
             # // FIXME: at the end, sort sheet then save

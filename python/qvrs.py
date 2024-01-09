@@ -41,8 +41,10 @@ pinfo = soup.find_all("div", {"class": "info-right ftR"})[0] \
 #     .find_all('span')[1].text.strip() )
 twse_chg = float( pinfo.find_all('li')[2] \
     .find_all('span')[1].text.strip().replace('%','') )
-# print(len(pinfo))
-# print(twse_chg)
+
+if ( twse_chg == 0 ):
+    twse_chg = 0.01 # workaround of ZeroDivisionError
+
 print("twse {}".format(twse_chg)) # works
 in_html.close()
 
@@ -58,8 +60,8 @@ outf_rs = open(rs_path, 'w')
 outf_rs.write("{}:{}:{}:{}\n".format("ticker","quote","volume","rs"))
 for i in range(1, len(tkrs)):
     if ( chgs[i] != "--" ):
-        ticker_chg = chgs[i].replace('%','')
-        ticker_rs = (float(ticker_chg)-float(twse_chg))/abs(float(twse_chg))
+        ticker_chg = float( chgs[i].replace('%','') )
+        ticker_rs = (ticker_chg - twse_chg) / abs(twse_chg)
     else:
         ticker_rs = "n/a"
     outf_rs.write("{}:{}:{}:{}\n" \

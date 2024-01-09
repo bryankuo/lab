@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# ./uno_vratio.sh [today] [last day]
+# ./uno_vratio.sh [t1] [t0]
 #
 # a wrapper of compare_volume.py
 #
 # \param in dt1 today, yyyymmdd
-# \param in dt2 last day, yyyymmdd
+# \param in dt0 last day, yyyymmdd
 
 if [ "$#" -lt 2 ]; then
-    echo "usage: ./uno_vratio.sh [today] [last day], date in yyyymmdd"
+    echo "usage: ./uno_vratio.sh [today,t1] [last day,t0], in yyyymmdd"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
 

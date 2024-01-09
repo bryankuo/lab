@@ -56,9 +56,10 @@ except RuntimeException:
 
 sheet0 = doc.Sheets.getByName(sheet_name)
 
-columns = ["C:F", "K:BC", "$BE1", "BF:BH", "BL:BW"]
+# columns = sheet0.getColumns()
+# columns.IsVisible = False # all hide
+columns = ["C1:F3000", "I1:I3000", "BF1:BF3000", "K1:BG3000", "$BL1:BW3000"]
 for cols in columns:
-    # print(cols)
     the_range = sheet0.getCellRangeByName(cols)
     doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = False
@@ -96,6 +97,8 @@ for i in range(start0, len(cursor.Rows)+1):
             found = True
             break
     if ( found ):
+        print("i {:0>4} j {:0>4} tkr {:0>4} update" \
+            .format(i, j, tkr))
         cell = sheet0.getCellRangeByName("$J"+str(i))
         cell.NumberFormat = nl
         cell.Value = float(quot[j])
@@ -112,7 +115,7 @@ for i in range(start0, len(cursor.Rows)+1):
             = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
         checked[j] = 1; start0 = i + 1; start1 = j + 1
     else:
-        print("i {:0>4} j {:0>4} tkr {:0>4} not found in {}" \
+        print("i {:0>4} j {:0>4} tkr {:0>4} type 5 not found in {}" \
             .format(i, j, tkr, path0))
         # // FIXME: some in list but not found in spreadsheet -> add one row
         # // FIXME: seems type 5 ticker
@@ -120,11 +123,11 @@ for i in range(start0, len(cursor.Rows)+1):
 
 columns = ["A:B", "G:J", "BD1", "BF1", "BI:BK", "BX1"]
 for cols in columns:
-    the_range = sheet0.getCellRangeByName("BM1")
+    the_range = sheet0.getCellRangeByName(cols)
     doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = True
     the_range.Columns.OptimalWidth = True
 
 doc.store()
-print("uno_qvrs.py-")
+# print("uno_qvrs.py-")
 sys.exit(0)
