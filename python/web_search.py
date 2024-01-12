@@ -163,6 +163,9 @@ pttstock_gossip = "https://www.google.com/search?q="+ticker+"+ptt+stock&client=s
 
 # 職缺, 公司全名
 hr104_search = "https://www.google.com/search?q="+quote("職缺")+quote(co_name)+"+104&client=safari&rls=en&sxsrf=AOaemvJQ_3UVNBgOgvmw8LgOPjMQ6ukDmw%3A1637394407406&ei=56eYYZ__F-DR2roPua-g6A4&ved=0ahUKEwjfjorAuab0AhXgqFYBHbkXCO0Q4dUDCA0&uact=5&oq="+ticker+"+104&gs_lcp=Cgdnd3Mtd2l6EAM6CAgAEAcQChAeOgQIABAeOgYIABAIEB46CAgAEAgQBxAeOgIIJjoGCAAQBxAeOgUIABCRAjoFCAAQgAQ6CwguEIAEEMcBEK8BOggIABAHEAUQHkoECEEYAVD-BFiPKGC1KmgCcAB4AIABcYgBkwWSAQM3LjKYAQCgAQHAAQE&sclient=gws-wiz"
+# // TODO: tracking href text change from the link, ex. 2330, 6530
+# https://www.104.com.tw/company/a5h92m0#info06
+# https://www.104.com.tw/company/603xdhs#info06
 
 revenue_yoy = \
     "http://fubon-ebrokerdj.fbs.com.tw/z/zc/zch/zch_" + ticker + ".djhtm"

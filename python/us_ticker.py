@@ -14,11 +14,12 @@ print "Hello World!";
 
 # Shares: Share outstanding
 # Float:
+# public float:
+# https://www.marketwatch.com/investing/stock/cccc
+# https://www.marketwatch.com/investing/stock/atak
 
 # Institutional Ownership and Shareholders
 # https://fintel.io/so/us/pltr
-# https://www.marketwatch.com/investing/stock/atak
-#
 
 # gwc -L datafiles/usa/all_tickers.txt
 # @see https://stackoverflow.com/questions/1655372/longest-line-in-a-file#comment64083424_3191708
