@@ -121,7 +121,7 @@ for i in range(start0, len(cursor.Rows)+1):
         # // FIXME: seems type 5 ticker
         missed += 1
 
-columns = ["A:B", "G:J", "BD1", "BF1", "BI:BK", "BX1"]
+columns = ["A:B", "G:J", "BD1", "BI:BK", "BX1"]
 for cols in columns:
     the_range = sheet0.getCellRangeByName(cols)
     doc.CurrentController.select(the_range)
