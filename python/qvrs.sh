@@ -22,7 +22,7 @@ python3 qvrs.py $DATE
 
 # echo "sorting by ticker ascending..."
 sort -t: -n -k1 -o "$DIR0/qvrs.$DATE.ticker.asc.csv" \
-    "$DIR0/qvrs.$DATE.price.desc.csv" \
+    "$DIR0/qvrs.$DATE.price.desc.csv"
 
 sort -k1 -n -t: -o "$DIR1/$DATE.csv" \
     "$DIR1/$DATE.unsorted.csv"

@@ -33,9 +33,16 @@ c_path = os.path.join(DIR0a, cname)
 cname1 = yyyymmdd + ".full.rs.csv"
 opath = os.path.join(DIR0a, cname1)
 
+rs_fname  = "qvrs."  + yyyymmdd + '.price.desc.csv'
+rs_path   = os.path.join(DIR0r, rs_fname)
+
+print("read {}".format(c_path))
 df = pd.read_csv(c_path, sep=':', header=0)
 print(df.shape)
 df['rs']=0
+# @see https://shorturl.at/uwDEM
+df['rs'] = df['rs'].astype(float)
+# print(df.dtypes)
 
 print("read {}".format(h_path))
 in_html = open(h_path, 'r')
@@ -51,31 +58,31 @@ twse_chg = float( pinfo.find_all('li')[2] \
 print("twse {}".format(twse_chg)) # works
 in_html.close()
 
-'''
+pd.options.display.float_format = '{:.3f}'.format
 for ind in df.index:
     # print(df['代號'][ind], df['漲跌幅'][ind], df['rs'][ind])
     if ( df['漲跌幅'][ind] != "--" ):
         ticker_chg = float( df['漲跌幅'][ind].replace('%','') )
         if ( twse_chg != 0 ):
             # workaround of ZeroDivisionError
+            # df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
             df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
+            # print("{}".format( float((ticker_chg - twse_chg) / abs(twse_chg)) ))
         else:
             df['rs'][ind] = ticker_chg # benchmark neutrual
+        # pd.to_numeric(df['rs'][ind], downcast="float")
     else:
-       df['rs'][ind] = 0 # "n/a"
+       df['rs'][ind] = "n/a"
+
+# print(df.loc[[ind]])
 
 df.sort_values(['代號'], ascending=[True])
 
-df.to_csv(opath, sep = ':', header=True, index=False)
-print("{} {}".format(df.shape, opath))
+df.to_csv(rs_path, sep = ':', header=True, index=False)
+print("{} write to {}".format(df.shape, rs_path))
 sys.exit(0)
-'''
-
-rs_fname  = "qvrs."  + yyyymmdd + '.price.desc.csv'
-rs_path   = os.path.join(DIR0r, rs_fname)
 
 
-print("read {}".format(c_path))
 in_csv = open(c_path, 'r')
 data  = list(csv.reader(in_csv, delimiter=':'))
 
