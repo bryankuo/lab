@@ -695,12 +695,12 @@ try:
 
         return [ limit_dlist, limit_ulist ]
 
-    # \param in yyyymmdd.full.csv
+    # \param in yyyymmdd.all.columns.csv
     # \param out list[ down, up ]
     # list those have been reached to limit up ( or down )
     #
     def parse_limit_updown_1():
-        cname = yyyy+mm+dd + ".full.csv"
+        cname = yyyy+mm+dd + ".all.columns.csv"
         c_path = os.path.join(DIR0a, cname)
         print("read {}".format(c_path))
         df = pd.read_csv(c_path, sep=':', skiprows=0, header=0)
@@ -713,6 +713,8 @@ try:
                     limit_ulist.append(int(df.loc[i,'代號']))
                 if ( r0 <= -l_threshold ):
                     limit_dlist.append(int(df.loc[i,'代號']))
+        pprint("u {} {}".format(len(limit_ulist), limit_ulist))
+        pprint("d {} {}".format(len(limit_dlist), limit_dlist))
         return [ limit_dlist, limit_ulist ]
 
     start = timer()

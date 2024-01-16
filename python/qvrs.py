@@ -3,7 +3,7 @@
 # python3 qvrs.py [yyyymmdd]
 # scraping from file fetched and compare with twse in rs
 # \param in     YYYYMMDD.html
-# \param in     YYYYMMDD.full.csv
+# \param in     YYYYMMDD.all.columns.csv
 # \param out    quote, volume, RS wrt. TWSE
 # return 0
 
@@ -28,7 +28,7 @@ DIR0a="./datafiles/taiex/after.market"
 fname = yyyymmdd + ".html"
 h_path = os.path.join(DIR0a, fname)
 
-cname = yyyymmdd + ".full.csv"
+cname = yyyymmdd + ".all.columns.csv"
 c_path = os.path.join(DIR0a, cname)
 cname1 = yyyymmdd + ".full.rs.csv"
 opath = os.path.join(DIR0a, cname1)

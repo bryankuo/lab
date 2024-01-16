@@ -62,7 +62,7 @@ if ( from_file ):
     path0 = os.path.join(DIR0, fname0)
     print(path0)
 
-    fname1 = yyyymmdd + '.full.csv'
+    fname1 = yyyymmdd + '.all.columns.csv'
     path1 = os.path.join(DIR0, fname1)
     print(path1)
 
