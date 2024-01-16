@@ -81,9 +81,9 @@ if ( tkr1 != tkr2 ):
     tkr2_only = list(set(tkr2) - set(tkr1))
     print("list is different:")
     print("tkr1 - tkr2: "+str(len(tkr1_only)))
-    print( tkr1_only )
+    pprint( tkr1_only )
     print("tkr2 - tkr1: "+str(len(tkr2_only)))
-    print( tkr2_only )
+    pprint( tkr2_only )
 
 # t0 = time.time_ns() / (10 ** 9)
 # t0 = time.time_ns()

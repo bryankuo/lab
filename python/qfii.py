@@ -30,6 +30,7 @@ from selenium.webdriver.support.ui import Select
 from timeit import default_timer as timer
 from datetime import timedelta, datetime
 from pprint import pprint
+import pandas as pd
 
 # source:
 # official, detailed, history, csv
@@ -59,6 +60,8 @@ def say(msg = "Finish", voice = "Victoria"):
 print( 'qfii.py+ ' + str(len(sys.argv)) )
 
 DIR0="./datafiles/taiex/qfbs"
+DIR0a="./datafiles/taiex/after.market"
+
 NAME037="外投同買賣及異常"
 NAME037_1="外投同買列表"
 NAME037_2="外投同賣列表"
@@ -596,27 +599,30 @@ try:
                     outf2.write(rec +"\n")
 
                 # rule 37.3 qfii sell at limit up
-                if ( lu_lst is not None \
+                if ( lu_lst is not None    \
+                    and 0 < len(lu_lst)    \
+                    and int(tkr) in lu_lst \
                     and int(full_tab[i][3]) < 0 ):
                         full_tab[i][8] = 1
-                        rec = "{0}:{1}:{2}" \
-                            .format( \
-                            full_tab[i][0], full_tab[i][1], full_tab[i][3] )
+                        rec = "{0}:{1}:{2}".format( \
+                            full_tab[i][0], \
+                            full_tab[i][1], \
+                            full_tab[i][3] )
                         outf3.write(rec +"\n")
-                        print( "qslu " + tkr )
+                        print( "37.3 qslu " + tkr )
 
                 # rule 37.4 qfii buy at limit down
-                if ( ld_lst is not None and \
-                    0 < len(ld_lst) ):
-                    if ( int(tkr) in ld_lst \
-                        and 0 < int(full_tab[i][2]) ):
+                if ( ld_lst is not None    \
+                    and 0 < len(ld_lst)    \
+                    and int(tkr) in ld_lst \
+                    and 0 < int(full_tab[i][2]) ):
                         full_tab[i][9] = 1
-                        rec = "{0}:{1}:{2}" \
-                            .format( \
-                            full_tab[i][0], full_tab[i][1], \
+                        rec = "{0}:{1}:{2}".format( \
+                            full_tab[i][0], \
+                            full_tab[i][1], \
                             full_tab[i][2] )
                         outf4.write(rec +"\n")
-                        print( "qbld " + tkr )
+                        print( "37.4 qbld " + tkr )
 
                 # rule 37.5 market dip and qfii buy
                 if ( market == 2 and 0 < int(full_tab[i][2]) ):
@@ -651,6 +657,9 @@ try:
             status = 2
         return status
 
+    # \param in limit.up.yyyymmdd.csv
+    # \param in limit.down.yyyymmdd.csv
+    # \param out list[ down, up ]
     def parse_limit_updown():
         limit_ulist = []; limit_dlist = [];
         u_fname = "limit.up" + "." +yyyy+mm+dd+ '.csv'
@@ -686,8 +695,29 @@ try:
 
         return [ limit_dlist, limit_ulist ]
 
+    # \param in yyyymmdd.full.csv
+    # \param out list[ down, up ]
+    # list those have been reached to limit up ( or down )
+    #
+    def parse_limit_updown_1():
+        cname = yyyy+mm+dd + ".full.csv"
+        c_path = os.path.join(DIR0a, cname)
+        print("read {}".format(c_path))
+        df = pd.read_csv(c_path, sep=':', skiprows=0, header=0)
+        for i in range(0, len(df.index)):
+            # print(df.loc[[i]])
+            if ( df.loc[i,'漲跌幅'] != "--" ):
+                r0 = float(df.loc[i,'漲跌幅'].replace('%',''))
+                l_threshold = 9.1
+                if ( l_threshold <= r0 ):
+                    limit_ulist.append(int(df.loc[i,'代號']))
+                if ( r0 <= -l_threshold ):
+                    limit_dlist.append(int(df.loc[i,'代號']))
+        return [ limit_dlist, limit_ulist ]
+
     start = timer()
-    n3 = parse_limit_updown()
+    # n3 = parse_limit_updown()
+    n3 = parse_limit_updown_1()
     end = timer()
     print("get limit updown list..."+yyyy+mm+dd+" done, takes " \
             +str(timedelta(seconds=end-start)))

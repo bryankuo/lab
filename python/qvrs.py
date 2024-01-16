@@ -65,14 +65,11 @@ for ind in df.index:
         ticker_chg = float( df['漲跌幅'][ind].replace('%','') )
         if ( twse_chg != 0 ):
             # workaround of ZeroDivisionError
-            # df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
             df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
-            # print("{}".format( float((ticker_chg - twse_chg) / abs(twse_chg)) ))
         else:
             df['rs'][ind] = ticker_chg # benchmark neutrual
-        # pd.to_numeric(df['rs'][ind], downcast="float")
     else:
-       df['rs'][ind] = "n/a"
+        df['rs'][ind] = "n/a"
 
 # print(df.loc[[ind]])
 
