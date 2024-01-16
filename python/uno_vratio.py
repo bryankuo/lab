@@ -99,7 +99,6 @@ n_ticker = len(cursor.Rows) - 1
 VR="BI"
 VOL="BJ"
 LAST="BK"
-UPTD = "$BH"
 
 # t0 = time.time_ns() / (10 ** 9)
 # t0 = time.time_ns()
@@ -159,7 +158,7 @@ try:
                 cell.Value = last[j]
             else:
                 cell.String = last[j]
-            cell = active_sheet.getCellRangeByName(UPTD + str(i))
+            cell = active_sheet.getCellRangeByName("$BH" + str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1; start0 = i + 1; start1 = j + 1
         else:
