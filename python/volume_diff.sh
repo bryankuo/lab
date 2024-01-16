@@ -17,19 +17,20 @@ echo "sorting..."
 sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.unsorted.csv"
 
 currenttime=$(date +%H:%M)
-cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.${currenttime:0:2}${currenttime:3:2}.csv"
+TIME=${currenttime:0:2}${currenttime:3:2}
+cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.$TIME.csv"
 ls -lt $DIR0/$DATE.????.csv | head -n 2
 # ls -lt datafiles/taiex/after.market/20231213.????.csv
-THIS_TIME=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
+RIGHT_NOW=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
     | cut -d '/' -f 5 | cut -c 1-13 | xargs | cut -d ' ' -f 1 )
 LAST_TIME=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
     | cut -d '/' -f 5 | cut -c 1-13 | xargs | cut -d ' ' -f 2 )
 
-./compare_volume.sh $THIS_TIME $LAST_TIME
+./compare_volume.sh $RIGHT_NOW $LAST_TIME
 ./uno_launch.sh "./datafiles/activity_watchlist.ods"
 tput bel
-echo "volume_diff.sh $THIS_TIME $LAST_TIME"
+echo "volume_diff.sh $RIGHT_NOW $LAST_TIME"
 read -p "Press enter to continue ..."
-./uno_vratio.sh $THIS_TIME $LAST_TIME
+./uno_vratio.sh $RIGHT_NOW $LAST_TIME
 
 exit 0

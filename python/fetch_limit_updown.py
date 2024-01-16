@@ -21,6 +21,7 @@ from datetime import timedelta,datetime
 from pprint import pprint
 from array import *
 
+# // TODO:
 # src1: plain request get ok
 # https://tw.stock.yahoo.com/rank/change-up?exchange=ALL
 # https://tw.stock.yahoo.com/rank/change-down?exchange=ALL
