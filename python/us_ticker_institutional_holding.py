@@ -35,5 +35,12 @@ outfile2 = open(html_path, "w", encoding='UTF-8')
 outfile2.write(soup.prettify())
 outfile2.close()
 print(html_path)
+ih = soup.find_all("table", {"class": "table table-sm"})[1] \
+    .find_all("tbody")[0] \
+    .find_all("tr")[0] \
+    .find_all("td")[1].text
+print(ih)
+
+# table class="table table-sm"
 
 sys.exit(0)
