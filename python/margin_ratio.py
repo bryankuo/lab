@@ -22,6 +22,9 @@ url = 'https://concords.moneydj.com/z/zc/zcn/zcn_' + ticker + '.djhtm'
 
 # https://histock.tw/stock/three.aspx?m=mg
 
+# security lending
+# https://www.twse.com.tw/zh/products/sbl/disclosures/t13sa710.html
+
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 rows = soup.findAll('tr')[10]
