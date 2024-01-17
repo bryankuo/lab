@@ -29,7 +29,7 @@ print(url)
 # response = requests.get(url, headers=headers)
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
-html_path = ticker + ".html"
+html_path = ticker + ".iholding.html"
 # print(soup.prettify())
 outfile2 = open(html_path, "w", encoding='UTF-8')
 outfile2.write(soup.prettify())

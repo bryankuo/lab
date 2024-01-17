@@ -46,7 +46,7 @@ read -p "Press enter open calc ..."
 ./uno_launch.sh "./datafiles/activity_watchlist.ods"
 
 tput bel
-read -p "Press enter update vt1,vt0,ratio ..."
+read -p "Press enter update vt1, vt0 ..."
 /Applications/LibreOffice.app/Contents/Resources/python \
     uno_vratio.py $RIGHT_NOW $LAST_TRADE_DAY
 
