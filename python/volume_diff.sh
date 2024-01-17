@@ -28,9 +28,12 @@ LAST_TIME=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
 
 ./compare_volume.sh $RIGHT_NOW $LAST_TIME
 ./uno_launch.sh "./datafiles/activity_watchlist.ods"
+
 tput bel
-echo "volume_diff.sh $RIGHT_NOW $LAST_TIME"
-read -p "Press enter to continue ..."
-./uno_vratio.sh $RIGHT_NOW $LAST_TIME
+read -p "Press enter update vt1,vt0,ratio $RIGHT_NOW $LAST_TIME"
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno_vratio.py $RIGHT_NOW $LAST_TIME
+
+tput bel
 
 exit 0
