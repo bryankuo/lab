@@ -390,7 +390,7 @@ echo -ne '\007'
 #    $OUTF2B_UNSORTED $OUTF2S_UNSORTED $OFQSLU
 
 # mkdir -p ~/Dropbox/$DATE
-cp -v $OUTF1 ~/Dropbox/$OUTF1
+cp -v $OUTF1 ~/Dropbox/
 
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=跌停股
 # // TODO: https://goodinfo.tw/tw2/StockList.asp?MARKET_CAT=智慧選股&INDUSTRY_CAT=漲停股
