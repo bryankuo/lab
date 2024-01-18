@@ -11,6 +11,7 @@
 # @see https://tinyurl.com/2cau7m5j
 
 import os, sys, time, csv
+# import pandas as pd # // FIXME:
 from pprint import pprint
 from datetime import datetime
 
@@ -54,9 +55,6 @@ f1 = open(ipath1)
 data = list(csv.reader(f1, delimiter=':')) # list from 2d csv
 # print(data[0])
 # print(data[1][4])
-
-# df1 = pd.read_csv(path1, sep=':', header=['ticker', 'ratio', 'last', 'volume'])
-# df2a = pd.read_csv(path2, sep=':', header=None)
 
 # df1=df1a.sort_values(0).copy()
 # print("size: " + str(len(df1)))

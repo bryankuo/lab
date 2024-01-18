@@ -44,7 +44,7 @@ df['rs']=0
 df['rs'] = df['rs'].astype(float)
 # print(df.dtypes)
 
-print("read {}".format(h_path))
+print("parse {}".format(h_path))
 in_html = open(h_path, 'r')
 soup = BeautifulSoup(in_html, 'html.parser')
 pinfo = soup.find_all("div", {"class": "info-right ftR"})[0] \

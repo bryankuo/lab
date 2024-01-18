@@ -44,45 +44,25 @@ dt0 = sys.argv[2]
 
 DIR0="./datafiles/taiex/after.market"
 
-fname1 = dt1 + ".csv"
-path1  = os.path.join(DIR0, fname1)
-
-fname0 = dt0 + ".csv"
-path0  = os.path.join(DIR0, fname0)
-
 ofname = dt1 + ".vr.csv"
 opath  = os.path.join(DIR0, ofname)
+
+path1  = os.path.join(DIR0, dt1+".all.columns.csv")
+df1 = pd.read_csv(path1, sep=':', skiprows=0, header=0)
+print("-loading {} {}".format(df1.shape, path1))
+
+path0  = os.path.join(DIR0, dt0+".all.columns.csv")
+df0 = pd.read_csv(path0, sep=':', skiprows=0, header=0)
+print("-loading {} {}".format(df0.shape, path0))
 
 print("comparing: ")
 print(path1 + " to")
 print(path0)
 
-f1 = open(path1)
-f0 = open(path0)
-
-# reader=csv.reader(f1, delimiter=':') #
-# df1=list(reader)
-
-df1a = pd.read_csv(path1, sep=':', header=None)
-df0a = pd.read_csv(path0, sep=':', header=None)
-if ( len(df1a) != len(df0a) ):
-    print("size is different, {:>4} and {:>4}".format(len(df1a), len(df0a)))
-# df1.sort_index(inplace=True)
-# df1=df1.sort_index()
-df1=df1a.sort_values(0).copy()
-df0=df0a.sort_values(0, ascending=True).copy()
-# df0.sort_values(0, inplace=True)
-
-tkr1 = df1[0].tolist()
-tkr2 = df0[0].tolist()
-tkr1_only = []; tkr2_only = []
-if ( tkr1 != tkr2 ):
-    tkr1_only = list(set(tkr1) - set(tkr2))
-    tkr2_only = list(set(tkr2) - set(tkr1))
-    print("list is different:")
-    print("tkr1 - tkr2: {} {}".format(len(tkr1_only), tkr1_only))
-    print("tkr2 - tkr1: {} {}".format(len(tkr2_only), tkr2_only))
-    # pprint( tkr2_only )
+df1.sort_values('代號', ascending=[True], inplace=True)
+df1 = df1.reset_index()  # make sure indexes pair with number of rows
+df0.sort_values('代號', ascending=[True], inplace=True)
+df0 = df0.reset_index()
 
 # t0 = time.time_ns() / (10 ** 9)
 # t0 = time.time_ns()
@@ -92,42 +72,40 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     ratio = []
-    i2_start = 0
-    for i1 in range(0, len(df1)):
+    i0_start = 0
+    # // FIXME: use others instead of iteration
+    # @see https://stackoverflow.com/a/55557758
+    for i1 in range(0, df1.shape[0]):
+        # print("{}".format(df1.loc[[i1]]))
         found = False
-        for i2 in range(i2_start, len(df0)):
-            if ( df1[0][i1] == df0[0][i2] ):
+        for i0 in range(i0_start, df0.shape[0]):
+            tk1 = df1.at[i1, "代號"]
+            tk0 = df0.at[i0, "代號"]
+            print("i1 {:>4} tk1 {:>4} tk0 {:>4}".format(i1, tk1, tk0))
+            if ( tk1 == tk0 ):
                 found = True
                 break
-            elif ( df1[0][i1] < df0[0][i2] ):
-                print( "{:>4d}".format(i1) + " " + str(df1[0][i1]) \
-                    + " " + str(df1[3][i1]) + " " + str(df0[3][i2]) )
+            elif ( tk1 < tk0 ):
                 found = False
                 break
-            # else:
-            #    continue
-
+        tk1 = df1.at[i1, "代號"]
+        v1  = df1.at[i1, "成交量"]
         if ( found ):
             # ternary op @see https://stackoverflow.com/a/394814
-            r = [ "{:>04d}".format(int(df1[0][i1])) , \
-                float(df1[3][i1])/ float(df0[3][i2]) if ( df0[3][i2] != 0 ) else 1, \
-                df1[3][i1], \
-                df0[3][i2] ]
-            ratio.append(r)
-            i2_start += 1
+            v0  = df0.at[i0, "成交量"]
+            r = [ "{:>04d}".format(tk1) , \
+                float(v1)/float(v0) if ( v0 != 0 ) else 1, v1, v0 ]
+            i0_start += 1
         else:
-            r = [ "{:>04d}".format(int(df1[0][i1])) , \
-                "n/a", \
-                df1[3][i1], \
-                "n/a" ]
-            ratio.append(r)
+            r = [ "{:>04d}".format(tk1) , "n/a", v1, "n/a" ]
+        ratio.append(r)
 
     df3 = pd \
         .DataFrame(ratio, columns=['ticker', 'ratio', 'volume', 'last'])
     df3 = df3.sort_values("ticker")
-    # pprint(df3)
-    # df3.to_csv(opath)
+    # print(df3.dtypes)
     df3.to_csv(opath, sep = ':',header=True, index=False)
+    # pprint(df3)
 
 except:
     # traceback.format_exception(*sys.exc_info())
@@ -136,8 +114,7 @@ except:
     raise
 
 finally:
-    # pass
-    f1.close(); f0.close()
+    pass
 
 # t1 = time.time_ns()
 # print("{:>.0f} nanoseconds".format(t1-t0))

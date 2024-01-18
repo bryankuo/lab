@@ -117,6 +117,7 @@ for i in range(start0, len(cursor.Rows)+1):
             cell.String = rs[j]
         cell = sheet0.getCellRangeByName("$B"+str(i))
         if ( len(cell.String) <= 0 ):
+            print("{} {}".format(j, nm[j]))
             cell.String = nm[j]
         sheet0.getCellRangeByName("$BH"+str(i)).String \
             = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]

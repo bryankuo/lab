@@ -18,6 +18,10 @@ DIR1="./datafiles/taiex/after.market"
 python3 after_market.py $DATE 0
 python3 after_market.py $DATE 1
 
+currenttime=$(date +%H:%M)
+TIME=${currenttime:0:2}${currenttime:3:2}
+cp -v "$DIR1/$DATE.all.columns.csv" "$DIR1/$DATE.$TIME.all.columns.csv"
+
 python3 qvrs.py $DATE
 
 # echo "sorting by ticker ascending..."
@@ -27,9 +31,11 @@ sort -t: -n -k1 -o "$DIR0/qvrs.$DATE.ticker.asc.csv" \
 sort -k1 -n -t: -o "$DIR1/$DATE.csv" \
     "$DIR1/$DATE.unsorted.csv"
 
-currenttime=$(date +%H:%M)
-TIME=${currenttime:0:2}${currenttime:3:2}
 cp -v "$DIR1/$DATE.csv" "$DIR1/$DATE.$TIME.csv"
+
+cp -v "$DIR0/qvrs.$DATE.ticker.asc.csv" \
+    "$DIR0/qvrs.$DATE.$TIME.ticker.asc.csv"
+
 cp -v "$DIR0/qvrs.$DATE.ticker.asc.csv" \
     "$DIR0/qvrs.$DATE.$TIME.ticker.asc.csv"
 
