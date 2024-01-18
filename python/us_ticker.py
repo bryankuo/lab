@@ -13,6 +13,8 @@ print "Hello World!";
 
 
 # Shares: Share outstanding
+# https://finviz.com/quote.ashx?t=PHUN&p=d # // TODO:
+
 # Float:
 # public float:
 # https://www.marketwatch.com/investing/stock/cccc

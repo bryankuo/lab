@@ -19,6 +19,7 @@ sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.unsorted.csv"
 currenttime=$(date +%H:%M)
 TIME=${currenttime:0:2}${currenttime:3:2}
 cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.$TIME.csv"
+
 ls -lt $DIR0/$DATE.????.csv | head -n 2
 # ls -lt datafiles/taiex/after.market/20231213.????.csv
 RIGHT_NOW=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
@@ -26,11 +27,16 @@ RIGHT_NOW=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
 LAST_TIME=$( ls -lt $DIR0/$DATE.????.csv | head -n 2 \
     | cut -d '/' -f 5 | cut -c 1-13 | xargs | cut -d ' ' -f 2 )
 
-./compare_volume.sh $RIGHT_NOW $LAST_TIME
-./uno_launch.sh "./datafiles/activity_watchlist.ods"
+python3 compare_volume.py $RIGHT_NOW $LAST_TIME
 tput bel
-echo "volume_diff.sh $RIGHT_NOW $LAST_TIME"
-read -p "Press enter to continue ..."
-./uno_vratio.sh $RIGHT_NOW $LAST_TIME
+read -p "open calc..."
+./uno_launch.sh "./datafiles/activity_watchlist.ods"
+
+tput bel
+read -p "Press enter update vt1, vt0, $RIGHT_NOW $LAST_TIME"
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno_vratio.py $RIGHT_NOW $LAST_TIME
+
+tput bel
 
 exit 0

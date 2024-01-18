@@ -29,11 +29,22 @@ print(url)
 # response = requests.get(url, headers=headers)
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
-html_path = ticker + ".html"
+html_path = ticker + ".iholding.html"
 # print(soup.prettify())
 outfile2 = open(html_path, "w", encoding='UTF-8')
 outfile2.write(soup.prettify())
 outfile2.close()
 print(html_path)
+tbs = soup.find_all("table", {"class": "table table-sm"})
+print("# tb {}".format(len(tbs)))
+
+if ( 3 <= len(tbs) ):
+    ih = tbs[1] \
+        .find_all("tbody")[0] \
+        .find_all("tr")[0] \
+        .find_all("td")[1].text
+    print(ih)
+else:
+    print("n/a")
 
 sys.exit(0)

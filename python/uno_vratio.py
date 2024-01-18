@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-# python3 uno_vratio.py [today] [last day]
-# \param in dt1 today, yyyymmdd
-# \param in dt0 last day, yyyymmdd
+# python3 uno_vratio.py [now] [then]
+# \param in dt1 now , yyyymmdd
+# \param in dt0 then, yyyymmdd
 # return 0
 
 # @see https://tinyurl.com/y8442u6u
@@ -110,10 +110,12 @@ try:
     columns = active_sheet.getColumns()
     # columns.IsVisible = False # all hide
 
+    the_range = active_sheet.getCellRangeByName("$BL1:bl2280") # // FIXME:
+    doc.CurrentController.select(the_range)
+    the_range.Columns.IsVisible = False
+
     # @see http://surl.li/nottj
     '''
-    the_range = active_sheet.getCellRangeByName("$BL") # // FIXME:
-    the_range.Columns.IsVisible = False
     the_range = active_sheet.getCellRangeByName("BH")
     the_range.Columns.IsVisible = False
     the_range = active_sheet.getCellRangeByName("C:BG")
@@ -171,9 +173,11 @@ try:
     # // FIXME: possible new in data, therefore search
     print("# file {:>4}, {:>4} missed, ".format(len(tkrs)-1, missed)) # // FIXME:
 
-    the_range = active_sheet.getCellRangeByName("BI:BL")
+    the_range = active_sheet.getCellRangeByName("BI:BK")
+    doc.CurrentController.select(the_range)
     the_range.Columns.OptimalWidth = True
     the_range = active_sheet.getCellRangeByName("G:H")
+    doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = True
 
 except:
