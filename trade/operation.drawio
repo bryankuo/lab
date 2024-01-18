@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-01-06T15:55:26.957Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="dZ87JMm14BOAY8vyYWHc" version="22.1.16" type="device">
+<mxfile host="app.diagrams.net" modified="2024-01-17T16:24:47.164Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="zZKr9wVEw2cJSLDI9NeW" version="22.1.18" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
     <mxGraphModel dx="1167" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -4044,8 +4044,11 @@
         <mxCell id="e4qM3FNqfgSUMK7Pzrod-2" value="float ratio ?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="2770" y="2541.5" width="100" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="3nMaZ5hvaL-xGITIbE6L-2" value="內容包含&lt;br&gt;價位 部位 方向&lt;br&gt;操作週期" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="3nMaZ5hvaL-xGITIbE6L-2" value="內容包含&lt;br&gt;價位 部位 方向&lt;br&gt;操作週期" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1181" y="660" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FF_zVOGQWapnrKRip_pH-1" value="使用&lt;br&gt;B. Band&lt;br&gt;趨勢訊號" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1583" y="951" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
