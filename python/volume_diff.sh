@@ -11,13 +11,15 @@ DIR0="./datafiles/taiex/after.market"
 python3 after_market.py $DATE 0
 python3 after_market.py $DATE 1
 
+currenttime=$(date +%H:%M)
+TIME=${currenttime:0:2}${currenttime:3:2}
+cp -v "$DIR0/$DATE.all.columns.csv" "$DIR0/$DATE.$TIME.all.columns.csv"
+
 echo "sorting..."
 # html sort by price descending
 # @see https://stackoverflow.com/a/26249359
 sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.unsorted.csv"
 
-currenttime=$(date +%H:%M)
-TIME=${currenttime:0:2}${currenttime:3:2}
 cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.$TIME.csv"
 
 ls -lt $DIR0/$DATE.????.csv | head -n 2
