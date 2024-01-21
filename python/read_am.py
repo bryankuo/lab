@@ -24,9 +24,14 @@ df = pd.read_csv(ipath, sep=':', skiprows=0, header=0)
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
-print("start: " + t_start)
-print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
+print("start: {}".format(t_start))
+print("takes: {:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 
 pprint(df)
 
 sys.exit(0)
+# for those date not having 'price.desc.csv' file, run once.
+# find $DIR0 -iname '*.html' ! -name '2024011[6789].html' \
+#    -exec bash -c 'f=$1; python3 after_market.py ${f:31:8} 1' _ {} \;
+#
+# ls -lt ????????.all.columns.csv | cut -d ' ' -f 12 | sort | cut -d '.' -f 1
