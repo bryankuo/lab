@@ -3,13 +3,15 @@
 # /Applications/LibreOffice.app/Contents/Resources/python
 #  uno_qvrs.py [yyyymmdd]
 #
-
+# \param in  qvrs.yyyymmdd.[hhnn].ticker.asc.csv, plus RS wrt. TWSE
+# \param out calc column B, J, BJ, BX
+#
 import uno, sys, time, os, csv
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
 
 yyyymmdd = sys.argv[1]
-DIR0="./datafiles/taiex/rs"
+DIR0r="./datafiles/taiex/rs"
 
 sheet_name = "20231211"
 print("uno_qvrs+ {}".format(yyyymmdd))
@@ -67,7 +69,7 @@ for cols in columns:
     the_range.Columns.IsVisible = True
     # the_range.Columns.OptimalWidth = True
 
-path0 = os.path.join(DIR0, "qvrs."+yyyymmdd+".ticker.asc.csv")
+path0 = os.path.join(DIR0r, "qvrs."+yyyymmdd+".ticker.asc.csv")
 inf0 = open(path0, 'r')
 data = list(csv.reader(inf0, delimiter=':'))
 tkrs = [  x[0] for x in data ]
@@ -107,11 +109,11 @@ for i in range(start0, len(cursor.Rows)+1):
         cell.NumberFormat = nl
         cell.Value = float(quot[j])
         cell = sheet0.getCellRangeByName("$BJ"+str(i))
-        # cell.NumberFormat = nl # predefined
+        # cell.NumberFormat = nl # already predefined
         cell.Value = float(vols[j])
         cell = sheet0.getCellRangeByName("$BX"+str(i))
         if ( rs[j] != "n/a" ):
-            # cell.NumberFormat = nl # predefined in calc
+            # cell.NumberFormat = nl # already predefined in calc
             cell.Value = float(rs[j])
         else:
             cell.String = rs[j]

@@ -12,37 +12,38 @@
 # fi
 
 DATE=$(date +%Y%m%d)
-DIR0="./datafiles/taiex/rs"
-DIR1="./datafiles/taiex/after.market"
+DIR0r="./datafiles/taiex/rs"
+DIR0a="./datafiles/taiex/after.market"
 
 python3 after_market.py $DATE 0
 python3 after_market.py $DATE 1
 
 currenttime=$(date +%H:%M)
 TIME=${currenttime:0:2}${currenttime:3:2}
-cp -v "$DIR1/$DATE.all.columns.csv" "$DIR1/$DATE.$TIME.all.columns.csv"
+cp -v "$DIR0a/$DATE.all.columns.csv" "$DIR0a/$DATE.$TIME.all.columns.csv"
 
 python3 qvrs.py $DATE
 
 # echo "sorting by ticker ascending..."
-sort -t: -n -k1 -o "$DIR0/qvrs.$DATE.ticker.asc.csv" \
-    "$DIR0/qvrs.$DATE.price.desc.csv"
+# sort -t: -n -k1 -o "$DIR0r/qvrs.$DATE.ticker.asc.csv" \
+#    "$DIR0r/qvrs.$DATE.price.desc.csv"
+# done by qvrs.py
 
-sort -k1 -n -t: -o "$DIR1/$DATE.csv" \
-    "$DIR1/$DATE.price.desc.csv"
+sort -k1 -n -t: -o "$DIR0a/$DATE.csv" \
+    "$DIR0a/$DATE.price.desc.csv"
 
-cp -v "$DIR1/$DATE.csv" "$DIR1/$DATE.$TIME.csv"
+cp -v "$DIR0a/$DATE.csv" "$DIR0a/$DATE.$TIME.csv"
 
-cp -v "$DIR0/qvrs.$DATE.ticker.asc.csv" \
-    "$DIR0/qvrs.$DATE.$TIME.ticker.asc.csv"
+cp -v "$DIR0r/qvrs.$DATE.ticker.asc.csv" \
+    "$DIR0r/qvrs.$DATE.$TIME.ticker.asc.csv"
 
-cp -v "$DIR0/qvrs.$DATE.ticker.asc.csv" \
-    "$DIR0/qvrs.$DATE.$TIME.ticker.asc.csv"
+cp -v "$DIR0r/qvrs.$DATE.ticker.asc.csv" \
+    "$DIR0r/qvrs.$DATE.$TIME.ticker.asc.csv"
 
-RIGHT_NOW=$( ls -lt $DIR1/$DATE.????.csv | head -n 2 \
+RIGHT_NOW=$( ls -lt $DIR0a/$DATE.????.csv | head -n 2 \
     | cut -d '/' -f 5 | cut -c 1-13 | xargs | cut -d ' ' -f 1 )
 
-LAST_TRADE_DAY=$( ls -lt $DIR1/????????.csv | head -n 2 \
+LAST_TRADE_DAY=$( ls -lt $DIR0a/????????.csv | head -n 2 \
     | cut -d '/' -f 5 | cut -c 1-8 | xargs | cut -d ' ' -f 2 )
 
 python3 compare_volume.py $RIGHT_NOW $LAST_TRADE_DAY

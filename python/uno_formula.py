@@ -202,7 +202,7 @@ def set_formula_1w():
         f = "=PERCENTRANK($D2:$D$"+str(last_row)+"; $D"+str(i)+")"
         cell.Formula = f
         cell.NumberFormat = nl
-        if ( 0.66 < cell.Value ):
+        if ( 0.70 < cell.Value ): # up to nikola the trader's filter
             cell.CellBackColor = 0x3faf46
         check_rule_1(i)
         check_rule_2(i)

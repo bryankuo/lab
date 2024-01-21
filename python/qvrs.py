@@ -4,7 +4,7 @@
 # scraping from file fetched and compare with twse in rs
 # \param in     YYYYMMDD.html
 # \param in     YYYYMMDD.all.columns.csv
-# \param out    quote, volume, RS wrt. TWSE
+# \param out    "qvrs.yyyymmdd.[hhnn].price.desc.csv, plus RS wrt. TWSE
 # return 0
 
 import sys, requests, time, os, numpy, random, csv
@@ -30,11 +30,8 @@ h_path = os.path.join(DIR0a, fname)
 
 cname = yyyymmdd + ".all.columns.csv"
 c_path = os.path.join(DIR0a, cname)
-cname1 = yyyymmdd + ".full.rs.csv"
-opath = os.path.join(DIR0a, cname1)
 
-rs_fname  = "qvrs."  + yyyymmdd + '.price.desc.csv'
-rs_path   = os.path.join(DIR0r, rs_fname)
+rs_path   = os.path.join(DIR0r, "qvrs."+yyyymmdd+".ticker.asc.csv")
 
 print("read {}".format(c_path))
 df = pd.read_csv(c_path, sep=':', header=0)
@@ -63,17 +60,21 @@ for ind in df.index:
     # print(df['代號'][ind], df['漲跌幅'][ind], df['rs'][ind])
     if ( df['漲跌幅'][ind] != "--" ):
         ticker_chg = float( df['漲跌幅'][ind].replace('%','') )
-        if ( twse_chg != 0 ):
-            # workaround of ZeroDivisionError
-            df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
-        else:
-            df['rs'][ind] = ticker_chg # benchmark neutrual
     else:
-        df['rs'][ind] = "n/a"
+        # @see https://stackoverflow.com/a/34794112
+        ticker_chg = 0
+    if ( twse_chg != 0 ):
+        df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
+    else:
+        df['rs'][ind] = ticker_chg # benchmark neutrual
 
 # print(df.loc[[ind]])
+df['rs'] = df['rs'].rank(ascending=False, pct=True)
+df.loc[:,'rs'] *= 100
 
-df.sort_values(['代號'], ascending=[True])
+df.sort_values(['代號'], ascending=[True], inplace=True)
+df.reset_index()
+# pprint(df)
 
 df.to_csv(rs_path, sep = ':', header=True, index=False)
 print("{} write to {}".format(df.shape, rs_path))
