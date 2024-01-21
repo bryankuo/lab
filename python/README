@@ -1,6 +1,7 @@
 hello.py: a simple example.
 hello_vscode.py: coding on vscode.
 hello_chrome.py: open chrome.
+hello_odf.py: poc test odfpy module.
 gmap_chrome.py: google map via selenium chrome driver and stealth,
 ofile.py: another example.
 web.py: scraping web example.
@@ -136,3 +137,5 @@ uno_updateqslu.py:
 fetch_board_holding.py: fetch bhr from the net
 get_bhr.py: extract
 bholding.sh: wrapper
+read_am.py: read csv from after_market.py 1
+rw_am.py: read from csv, convert type, write to csv
