@@ -58,7 +58,7 @@ html_path = os.path.join(DIR0, fname)
 
 if ( from_file ):
     # print(html_path)
-    fname0 = yyyymmdd + '.unsorted.csv' # // TODO: price.desc instead
+    fname0 = yyyymmdd + '.price.desc.csv'
     path0 = os.path.join(DIR0, fname0)
     print(path0)
 

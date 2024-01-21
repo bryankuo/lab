@@ -18,7 +18,7 @@ cp -v "$DIR0/$DATE.all.columns.csv" "$DIR0/$DATE.$TIME.all.columns.csv"
 echo "sorting..."
 # html sort by price descending
 # @see https://stackoverflow.com/a/26249359
-sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.unsorted.csv"
+sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.price.desc.csv"
 
 cp -v "$DIR0/$DATE.csv" "$DIR0/$DATE.$TIME.csv"
 

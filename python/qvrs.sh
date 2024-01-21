@@ -29,7 +29,7 @@ sort -t: -n -k1 -o "$DIR0/qvrs.$DATE.ticker.asc.csv" \
     "$DIR0/qvrs.$DATE.price.desc.csv"
 
 sort -k1 -n -t: -o "$DIR1/$DATE.csv" \
-    "$DIR1/$DATE.unsorted.csv"
+    "$DIR1/$DATE.price.desc.csv"
 
 cp -v "$DIR1/$DATE.csv" "$DIR1/$DATE.$TIME.csv"
 
