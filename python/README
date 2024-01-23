@@ -140,3 +140,4 @@ bholding.sh: wrapper
 read_am.py: read csv from after_market.py 1
 rw_am.py: read from csv, convert type, write to csv
 rw_qvrs.py:
+fetch_ix0118.py: fetch ix0118 components and weight
