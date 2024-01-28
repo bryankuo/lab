@@ -12,12 +12,13 @@ from timeit import default_timer as timer
 from datetime import timedelta,datetime
 from pprint import pprint
 
-url = "https://www.moneydj.com/warrant/xdjhtm/default.xdjhtm"
+# url = "https://www.moneydj.com/warrant/xdjhtm/default.xdjhtm"
 
 # warrant portal
-# https://www.moneydj.com/warrant/xdjhtm/default.xdjhtm
-# https://www.moneydj.com/warrant/xdjhtm/Quote.xdjhtm
+# https://www.moneydj.com/warrant/xdjhtm/default.xdjhtm # not getting table
+# url = "https://www.moneydj.com/warrant/xdjhtm/Quote.xdjhtm" # table n/a
 # https://www.moneydj.com/warrant/xdjhtm/Rank.xdjhtm?a=01
+url = "https://www.moneydj.com/warrant/xdjhtm/Rank.xdjhtm?a=04"
 
 print("fetch {}".format(url))
 # response = requests.get(url)
