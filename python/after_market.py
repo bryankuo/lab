@@ -108,6 +108,7 @@ if ( from_file ):
     fp.close();
 else:
     url = "https://histock.tw/stock/rank.aspx?p=all"
+    # // TODO: "https://histock.tw/stock/rank.aspx?t=dt"
     print(url)
     # response = requests.get(url)
     headers = {'User-Agent': random.choice(ua.list)}

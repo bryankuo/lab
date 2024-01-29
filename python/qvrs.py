@@ -63,13 +63,14 @@ for ind in df.index:
     else:
         # @see https://stackoverflow.com/a/34794112
         ticker_chg = 0
-    if ( twse_chg != 0 ):
-        df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
-    else:
-        df['rs'][ind] = ticker_chg # benchmark neutrual
+    # if ( twse_chg != 0 ):
+        # df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
+    df['rs'][ind] = (ticker_chg - twse_chg)
+    # else:
+    #    df['rs'][ind] = ticker_chg # benchmark neutrual
 
 # print(df.loc[[ind]])
-df['rs'] = df['rs'].rank(ascending=False, pct=True)
+df['rs'] = df['rs'].rank(ascending=True, pct=True)
 df.loc[:,'rs'] *= 100
 
 df.sort_values(['代號'], ascending=[True], inplace=True)
@@ -93,7 +94,7 @@ rs    = [ 0 ] * len(tkrs) # normalized // TODO:
 outf_rs = open(rs_path, 'w')
 outf_rs.write("{}:{}:{}:{}\n".format("ticker","quote","volume","rs"))
 for i in range(1, len(tkrs)):
-    if ( chgs[i] != "--" ):
+    if ( chgs[i] != "--" ): # -4.67
         ticker_chg = float( chgs[i].replace('%','') )
         if ( twse_chg != 0 ):
             # workaround of ZeroDivisionError

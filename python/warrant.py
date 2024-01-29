@@ -151,9 +151,24 @@ finally:
     browser.quit()
 
 sys.exit(0)
+#
 # @see https://www.twse.com.tw/zh/products/securities/warrant/infomation/stock.html
 # @see https://www.twse.com.tw/zh/announcement/punish.html
 # @see https://www.twse.com.tw/zh/announcement/notice.html
+#
 # warrant news
 # @see https://newjust.masterlink.com.tw/z/zx/zxf/zxf.djhtm?A=2023-12-4&B=13
+#
+# warrant search engine
+# https://tw.warrants.com/tc/warrant/search
+# https://www.cmoney.tw/finance/warrantsbystock.aspx
+#
+# warrant portal
+# https://www.moneydj.com/warrant/xdjhtm/default.xdjhtm
+# https://www.moneydj.com/warrant/xdjhtm/Quote.xdjhtm
 
+# https://warrant.capital.com.tw/market.jsp?
+# https://www.warrantwin.com.tw/eyuanta/Warrant/MarketStatistics.aspx
+# https://warrant.kgi.com/EDWebSite/Views/StrategyCandidate/MarketStatisticsIframe.aspx
+# https://warrant.sinotrade.com.tw/j/marketW.jsp?
+# http://warrant.concords.com.tw/index.aspx

@@ -127,7 +127,6 @@ for i in range(start0, len(cursor.Rows)+1):
     else:
         print("i {:0>4} j {:0>4} tkr {:0>4} type 5 not found in {}" \
             .format(i, j, tkr, path0))
-        # // FIXME: some in list but not found in spreadsheet -> add one row
         # // FIXME: seems type 5 ticker
         missed += 1
 

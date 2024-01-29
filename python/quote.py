@@ -56,11 +56,12 @@ if ( list_type == "tse_" or list_type == "otc_" ):
     headers = {'User-Agent': random.choice(ua.list)}
     frame = requests.get(url, headers=headers).json()
 
-    dump_frame = False
+    dump_frame = True
     if ( dump_frame ):
-        fname0 = "quote." + ticker + '.' + str(stamp) + '.txt'
+        # fname0 = "quote." + ticker + '.' + str(stamp) + '.txt'
+        fname0 = "quote.txt"
         path0 = os.path.join(DIR0, fname0)
-        # print(path0)
+        print("write to {}".format(path0))
         with open(path0, 'w') as outfile0:
             # print(json.dumps(frame, indent=1))
             # utf-16 @see https://stackoverflow.com/a/18337754
@@ -152,7 +153,7 @@ else:
 
 # olist = [ strike_s ]
 # olist = [ "{:>4.02f}".format(float(strike_s)) ]
-olist = [ float(strike_s) ]
-print(olist)
+# olist = [ float(strike_s) ]
+# print(olist)
 
 sys.exit(0)
