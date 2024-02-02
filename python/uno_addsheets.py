@@ -76,7 +76,7 @@ def call_dispatch(doc, url, args=()):
     return
 '''
 
-active_sheet = doc.Sheets.getByName("RS-history")
+active_sheet = doc.Sheets.getByName("RS-Daily")
 doc.CurrentController.setActiveSheet(active_sheet)
 the_range = active_sheet.getCellRangeByName("A1:AMJ1048576")
 the_range.Columns.OptimalWidth = True

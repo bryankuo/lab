@@ -6,6 +6,7 @@
 # \param out pandas df
 #
 # reading csv, assume post running "qvrs.sh", generate rs in percentile rank
+# on daily bases
 #
 # return 0
 
