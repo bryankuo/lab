@@ -63,11 +63,7 @@ for ind in df.index:
     else:
         # @see https://stackoverflow.com/a/34794112
         ticker_chg = 0
-    # if ( twse_chg != 0 ):
-        # df['rs'][ind] = (ticker_chg - twse_chg) / abs(twse_chg)
     df['rs'][ind] = (ticker_chg - twse_chg)
-    # else:
-    #    df['rs'][ind] = ticker_chg # benchmark neutrual
 
 # print(df.loc[[ind]])
 df['rs'] = df['rs'].rank(ascending=True, pct=True)
