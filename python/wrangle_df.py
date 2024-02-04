@@ -8,6 +8,13 @@
 #
 # compare 2 dfs
 #
+# Pandas Merging 101 @see https://stackoverflow.com/q/53645882
+#
+# @see books https://wesmckinney.com/book/data-wrangling
+#
+# @see exercising
+# https://www.w3schools.com/python/pandas/trypython.asp?filename=demo_ref_df_merge
+#
 # return 0
 
 import sys, os, time
@@ -60,11 +67,6 @@ try:
     # df0.set_index('代號', inplace=True)
 
     #
-    # df3 = pd.concat([df1, df0])
-    # print("union concat df3 shape {}".format(df3.shape))
-
-    # Pandas Merging 101 @see https://stackoverflow.com/q/53645882
-    #
     # df3 = pd.merge(df1, df0, on='代號', how='outer')
     # print("join merge df3 shape {}".format(df3.shape))
 
@@ -72,7 +74,6 @@ try:
     # print("join merge df3 shape {}".format(df3.shape))
     # cols_to_use = df1.columns.difference(df0.columns)
 
-    # @see books https://wesmckinney.com/book/data-wrangling
     # df3 = df1.join(df0, on='代號')
 
     #drop all columns except points and blocks
