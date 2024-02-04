@@ -81,9 +81,9 @@ try:
     # df3 = df1a.merge(df0a, on='代號', how='outer')
     # df3.sort_values("代號", inplace=True)
 
-    df3 = df1a.merge(df0a, on='代號', how='right', indicator=True)
-    df3 = df3.query('_merge == "right_only"').drop('_merge', 1)
-    print("減少:")
+    df3 = df1a.merge(df0a, on='代號', how='left', indicator=True)
+    df3 = df3.query('_merge == "left_only"').drop('_merge', 1)
+    print("新增:")
 
     t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
     t0 = time.time()
