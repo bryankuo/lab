@@ -71,7 +71,7 @@ df.loc[:,'rs'] *= 100
 
 df.sort_values(['代號'], ascending=[True], inplace=True)
 df.reset_index()
-# pprint(df)
+pprint(df[df['代號']==6695])
 
 df.to_csv(rs_path, sep = ':', header=True, index=False)
 print("{} write to {}".format(df.shape, rs_path))
@@ -106,3 +106,4 @@ in_csv.close()
 outf_rs.close()
 print("write to {}".format(rs_path))
 sys.exit(0)
+
