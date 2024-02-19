@@ -125,7 +125,8 @@ compare_volume.py: generate ratio by ticker,
 compare_volume.sh: a wrapper,
 uno_vratio.py: update vr to calc via UNO,
 sites.py:
-test.py: test how to run macro inside LO calc,
+test.py: test how to run macro inside LO calc, in dispatch function
+uno_addsheets.py: exercise dispatch function
 volume_diff.sh: against last time, intraday
 volume_ratio.sh: compare against last trade day
 uno_update2b.py: update 2b into calc instead of open manually,
@@ -141,3 +142,8 @@ read_am.py: read csv from after_market.py 1
 rw_am.py: read from csv, convert type, write to csv
 rw_qvrs.py:
 fetch_ix0118.py: fetch ix0118 components and weight
+wrangle_df.py: exercise pandas dataframe merge functions
+./datafiles/bkr.ods: calc broker list note, not complete
+./datafiles/taiex/ovt_bkr.txt: overnight trade broker candidates
+./datafiles/taiex/broker_list.ods:
+./datafiles/taiex/sii.ods: all ticker basic info

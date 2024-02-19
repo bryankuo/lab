@@ -95,7 +95,19 @@ dispatch.executeDispatch(frame, ".uno:GoToCell", '', 0, properties)
 
 
 #call_dispatch(doc, ".uno:GoToCell", properties)
-
+# LO python path:
+#
+# Python Scripts Organization and Location
+# @see https://help.libreoffice.org/latest/sq/text/sbasic/python/python_locations.html
+#
+# Application Macros
+# @see https://ask.libreoffice.org/t/python-macros-on-libreoffice-on-os-x/18135
+# ls -lt /Applications/LibreOffice.app/Contents/Resources/Scripts/python/
+#
+# My Macros
+#
+# Document macros
+#
 print("done.")
 sys.exit(0)
 
@@ -129,3 +141,277 @@ n_ticker = ( last_row - 2 ) + 1
 # column = columns.getByName("A") # one column
 '''
 sys.exit(0)
+
+remove security warning and backup basic dispatch here
+original activity_watchlist.ods, standard, module1
+1. LO preference set low macro security
+2. warning comes from setting, not checking if any macro in the path
+#
+REM  *****  BASIC  *****
+
+sub ShowAllColumns
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:ShowColumn", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:ShowColumn", "", 0, Array())
+
+
+end sub
+
+
+sub AutoFilterOptimalWidth
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:DataFilterAutoFilter", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dim args2(0) as new com.sun.star.beans.PropertyValue
+args2(0).Name = "aExtraWidth"
+args2(0).Value = 200
+
+dispatcher.executeDispatch(document, ".uno:SetOptimalColumnWidth", "", 0, args2())
+
+
+end sub
+
+
+sub GotoA1
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dim args1(0) as new com.sun.star.beans.PropertyValue
+args1(0).Name = "ToPoint"
+args1(0).Value = "$A$1"
+
+dispatcher.executeDispatch(document, ".uno:GoToCell", "", 0, args1())
+
+
+end sub
+
+
+sub SelectAll
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:SelectAll", "", 0, Array())
+
+
+end sub
+
+
+sub AutoFilter
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:DataFilterAutoFilter", "", 0, Array())
+
+
+end sub
+
+
+sub To1211
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dim args1(0) as new com.sun.star.beans.PropertyValue
+args1(0).Name = "Nr"
+args1(0).Value = 8
+
+dispatcher.executeDispatch(document, ".uno:JumpToTable", "", 0, args1())
+
+
+end sub
+
+sub optimalWidth
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:SelectAll", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dim args2(0) as new com.sun.star.beans.PropertyValue
+args2(0).Name = "aExtraWidth"
+args2(0).Value = 1930
+
+dispatcher.executeDispatch(document, ".uno:SetOptimalColumnWidth", "", 0, args2())
+
+rem ----------------------------------------------------------------------
+dim args3(0) as new com.sun.star.beans.PropertyValue
+args3(0).Name = "ToPoint"
+args3(0).Value = "$B$1164"
+
+dispatcher.executeDispatch(document, ".uno:GoToCell", "", 0, args3())
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:Save", "", 0, Array())
+
+
+end sub
+
+
+sub Restore5
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:SelectAll", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:ShowColumn", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dim args3(0) as new com.sun.star.beans.PropertyValue
+args3(0).Name = "aExtraWidth"
+args3(0).Value = 200
+
+dispatcher.executeDispatch(document, ".uno:SetOptimalColumnWidth", "", 0, args3())
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:DataFilterAutoFilter", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dim args5(0) as new com.sun.star.beans.PropertyValue
+args5(0).Name = "aExtraWidth"
+args5(0).Value = 200
+
+dispatcher.executeDispatch(document, ".uno:SetOptimalColumnWidth", "", 0, args5())
+
+dispatcher.executeDispatch(document, ".uno:DataSort", "", 0, Array())
+
+dim args9(0) as new com.sun.star.beans.PropertyValue
+args9(0).Name = "aExtraWidth"
+args9(0).Value = 200
+
+dispatcher.executeDispatch(document, ".uno:SetOptimalColumnWidth", "", 0, args9())
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:Save", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dim args11(0) as new com.sun.star.beans.PropertyValue
+args11(0).Name = "ToPoint"
+args11(0).Value = "$A$2"
+
+dispatcher.executeDispatch(document, ".uno:GoToCell", "", 0, args11())
+
+
+end sub
+
+sub SortColumnA1Ascending
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:SortAscending", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+rem dispatcher.executeDispatch(document, ".uno:Undo", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:SortAscending", "", 0, Array())
+
+
+end sub
+
+
+sub Restore6
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:DataFilterAutoFilter", "", 0, Array())
+
+rem ----------------------------------------------------------------------
+dispatcher.executeDispatch(document, ".uno:DataFilterAutoFilter", "", 0, Array())
+
+
+end sub
+
+
+sub SortAsc
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+rem ----------------------------------------------------------------------
+rem dispatcher.executeDispatch(document, ".uno:DataSort", "", 0, Array())
+
+
+end sub
+'''

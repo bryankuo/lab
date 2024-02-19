@@ -2,7 +2,7 @@
 
 # python3 rw_qvrs.py [yyyymmdd]
 #
-# \param in  qvrs.yyyymmdd.ticker.asc.csv
+# \param in  qvrs.yyyymmdd.ticker.asc.csv, from qvrs.sh
 # \param out pandas df
 #
 # reading csv, assume post running "qvrs.sh", generate rs in percentile rank
@@ -25,8 +25,8 @@ print("reading {} ...".format(ipath))
 
 t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 df = pd.read_csv(ipath, sep=':', skiprows=0, header=0)
-pprint(df)
-print(df.dtypes)
+# pprint(df)
+# print(df.dtypes)
 
 # df = df.convert_objects(convert_numeric=True)
 # "--" inside
@@ -35,9 +35,10 @@ print(df.dtypes)
 # df['rs'] = pd.to_numeric(df['rs'].str.replace('%',''), errors='coerce')
 # print(df.dtypes)
 # print(df.iloc[1]['rs'])
-df['rs'] = df['rs'].rank(ascending=False, pct=True)
+df['rs'] = df['rs'].rank(ascending=True, pct=True)
 df.loc[:,'rs'] *= 100
-pprint(df)
+# pprint(df)
+print(df.shape)
 
 opath = os.path.join(DIR0r, "qvrs." + yyyymmdd + '.ticker.asc.ods')
 print("writing {}".format(opath))
