@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-24T16:00:10.963Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="YRjjKk3qZJG70lHK-Jny" version="22.1.22" type="device">
+<mxfile host="app.diagrams.net" modified="2024-02-19T00:38:01.788Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="362WRRgkpRZ7vot0XtQS" version="23.1.5" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
-    <mxGraphModel dx="1674" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1167" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1288,7 +1288,7 @@
           <mxGeometry x="1490" y="1190" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="QZe4o9Y-4JV4LSsoZDq5-1" value="用五分K看趨勢&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;用1分K找進場點" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1160.5" y="2028" width="120" height="60" as="geometry" />
+          <mxGeometry x="1159.6299999999999" y="2000" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="QI0C76s3brkpD20tAsTN-1" value="觀察市場&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;成交明細&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;( 封包大小 )&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;( time and sales )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1655" y="1620" width="120" height="60" as="geometry" />
@@ -2461,12 +2461,12 @@
         <mxCell id="GjI4UPMo12ASEw5_QN27-6" value="&#xa;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;(Ａziz書)&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;一分鐘內&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;的成交量&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;超過10k?&lt;/span&gt;&#xa;&#xa;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1700.38" y="3520" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="GjI4UPMo12ASEw5_QN27-8" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="QZe4o9Y-4JV4LSsoZDq5-1" target="hXXd4guy7aN3LdQV21ma-1" edge="1">
+        <mxCell id="GjI4UPMo12ASEw5_QN27-8" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="QZe4o9Y-4JV4LSsoZDq5-1" target="hXXd4guy7aN3LdQV21ma-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1157" y="2201" as="sourcePoint" />
             <mxPoint x="1302.5" y="2141" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1175.5" y="2186" />
+              <mxPoint x="1240" y="2110" />
               <mxPoint x="2034" y="1910.75" />
             </Array>
           </mxGeometry>
@@ -4049,6 +4049,18 @@
         </mxCell>
         <mxCell id="FF_zVOGQWapnrKRip_pH-1" value="使用&lt;br&gt;B. Band&lt;br&gt;趨勢訊號" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1583" y="951" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gNQYfZuDC-HEiaQLoJGv-1" value="更改時間週期&lt;br&gt;1.市場參與者不同&lt;br&gt;2.近似簽賭的行為&lt;br&gt;3.當沖變隔代沖笑話" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1839" y="1340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gNQYfZuDC-HEiaQLoJGv-2" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="MnqP-o-DeZKw6A6olPe_-65" target="gNQYfZuDC-HEiaQLoJGv-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1700" y="1409" as="sourcePoint" />
+            <mxPoint x="1839" y="1370" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1770" y="1370" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
