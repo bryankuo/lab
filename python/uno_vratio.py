@@ -106,19 +106,13 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     columns = active_sheet.getColumns()
-    # columns.IsVisible = False # all hide
-
-    the_range = active_sheet.getCellRangeByName("$BL1:bl2280") # // FIXME:
-    doc.CurrentController.select(the_range)
-    the_range.Columns.IsVisible = False
+    hide_lst = ["C:F", "K:BC", "BE:BH", "bL:$Bw"]
+    for r in hide_lst:
+        the_range = active_sheet.getCellRangeByName(r)
+        doc.CurrentController.select(the_range)
+        the_range.Columns.IsVisible = False
 
     # @see http://surl.li/nottj
-    '''
-    the_range = active_sheet.getCellRangeByName("BH")
-    the_range.Columns.IsVisible = False
-    the_range = active_sheet.getCellRangeByName("C:BG")
-    the_range.Columns.IsVisible = False
-    '''
 
     i = 1
     active_sheet.getCellRangeByName(  VR+str(i)).String = "V. ratio"
@@ -173,10 +167,18 @@ try:
 
     the_range = active_sheet.getCellRangeByName("BI:BK")
     doc.CurrentController.select(the_range)
+    the_range.Columns.IsVisible = True
     the_range.Columns.OptimalWidth = True
+
     the_range = active_sheet.getCellRangeByName("G:H")
     doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = True
+    the_range.Columns.OptimalWidth = True
+
+    the_range = active_sheet.getCellRangeByName("BY1")
+    doc.CurrentController.select(the_range)
+    the_range.Columns.IsVisible = True
+    the_range.Columns.OptimalWidth = True
 
 except:
     # traceback.format_exception(*sys.exc_info())
