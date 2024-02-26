@@ -60,17 +60,17 @@ if ( from_file ):
     # print(html_path)
     fname0 = yyyymmdd + '.price.desc.csv'
     path0 = os.path.join(DIR0, fname0)
-    print(path0)
+    # print(path0)
 
     fname1 = yyyymmdd + '.all.columns.csv'
     path1 = os.path.join(DIR0, fname1)
-    print(path1)
+    # print(path1)
 
     with open(html_path, 'r') as fp:
         soup = BeautifulSoup(fp, 'html.parser')
         rows = soup.find_all("table", {"id": "CPHB1_gv"})[0] \
             .find_all("tr")
-        print("# rows: " + str(len(rows)))
+        # print("# rows: " + str(len(rows)))
         n_tickers = 0
         outfile0 = open(path0, 'w');
         outfile1 = open(path1, 'w');
@@ -103,19 +103,19 @@ if ( from_file ):
                         wp_chg,amp,opn,hi,low, \
                         mark,vol,turn ) )
                 n_tickers += 1
-        print("n_tickers: " + str(n_tickers) + "\n")
+        # print("n_tickers: " + str(n_tickers) + "\n")
         outfile0.close(); outfile1.close();
     fp.close();
 else:
     url = "https://histock.tw/stock/rank.aspx?p=all"
     # // TODO: "https://histock.tw/stock/rank.aspx?t=dt"
-    print(url)
+    # print(url)
     # response = requests.get(url)
     headers = {'User-Agent': random.choice(ua.list)}
     response = requests.get(url, headers=headers)
     # response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    print(html_path)
+    # print(html_path)
     outfile2 = open(html_path, "w")
     outfile2.write(soup.prettify())
     outfile2.close()
