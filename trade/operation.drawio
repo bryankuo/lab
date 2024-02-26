@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-02-19T00:38:01.788Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="362WRRgkpRZ7vot0XtQS" version="23.1.5" type="device">
+<mxfile host="app.diagrams.net" modified="2024-02-26T06:10:06.250Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="3ZsFvaDlZjQF7qlB3UpF" version="23.1.6" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
-    <mxGraphModel dx="1167" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1339" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -934,8 +934,8 @@
         <mxCell id="3I5Y8zIOKp_ng-i0djw_-19" value="每週檢視項目 :" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="200" y="3640" width="110" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="3I5Y8zIOKp_ng-i0djw_-20" value="每月檢視項目 :" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="360" y="3640.25" width="110" height="20" as="geometry" />
+        <mxCell id="3I5Y8zIOKp_ng-i0djw_-20" value="每月檢視項目 :&lt;br&gt;月初&lt;br&gt;月中&lt;br&gt;月底" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="360" y="3640.25" width="110" height="59.75" as="geometry" />
         </mxCell>
         <mxCell id="3I5Y8zIOKp_ng-i0djw_-21" value="每週末大股東&lt;br&gt;申報轉讓明細&lt;br&gt;( 阿魯米 )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="200" y="3991.5" width="120" height="60" as="geometry" />
@@ -3943,7 +3943,7 @@
           <mxGeometry x="40" y="3891.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="LGdFYQWolz3IL_4F6cOe-4" value="insider_trade.py" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="360" y="3919" width="120" height="60" as="geometry" />
+          <mxGeometry x="360" y="4060" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="LGdFYQWolz3IL_4F6cOe-5" value="每週末檢視&lt;br&gt;市值排名變化&lt;br&gt;( rank.sh )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="200" y="3750.25" width="120" height="60" as="geometry" />
@@ -4050,10 +4050,10 @@
         <mxCell id="FF_zVOGQWapnrKRip_pH-1" value="使用&lt;br&gt;B. Band&lt;br&gt;趨勢訊號" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1583" y="951" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="gNQYfZuDC-HEiaQLoJGv-1" value="更改時間週期&lt;br&gt;1.市場參與者不同&lt;br&gt;2.近似簽賭的行為&lt;br&gt;3.當沖變隔代沖笑話" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="gNQYfZuDC-HEiaQLoJGv-1" value="更改時間週期&lt;br&gt;1.市場參與者不同&lt;br&gt;2.近似簽賭的行為&lt;br&gt;3.當沖變隔代沖笑話" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1839" y="1340" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="gNQYfZuDC-HEiaQLoJGv-2" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="MnqP-o-DeZKw6A6olPe_-65" target="gNQYfZuDC-HEiaQLoJGv-1">
+        <mxCell id="gNQYfZuDC-HEiaQLoJGv-2" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" parent="1" source="MnqP-o-DeZKw6A6olPe_-65" target="gNQYfZuDC-HEiaQLoJGv-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1700" y="1409" as="sourcePoint" />
             <mxPoint x="1839" y="1370" as="targetPoint" />
@@ -4061,6 +4061,9 @@
               <mxPoint x="1770" y="1370" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="uvi4PMMqHO7I2ZovpRdf-1" value="每月底&lt;br&gt;台灣期貨交易所&lt;br&gt;更新市值排名" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="3919" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

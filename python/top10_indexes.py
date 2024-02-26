@@ -22,7 +22,7 @@ my10idx_list = [
 
 for url in my10idx_list:
     webbrowser.open(url)
-    input("Press Enter to continue...")
-    print('\a') # beep works
+    # input("Press Enter to continue...")
+    # print('\a') # beep works
 
 sys.exit(0)
