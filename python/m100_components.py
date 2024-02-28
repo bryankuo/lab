@@ -65,6 +65,7 @@ try:
 
         # url = "https://www.cmoney.tw/etf/e210.aspx?key=0051"
         url = "https://www.cmoney.tw/etf/tw/0051/fundholding"
+        print("from {}".format(url))
         browser.get(url)
         time.sleep(3) # wait until page fully loaded ( or redirected )
         page = browser.page_source
@@ -73,6 +74,7 @@ try:
         with open(path, "w") as outfile:
             outfile.write(soup.prettify())
         outfile.close()
+        print("to {}".format(path))
     else:
         with open(path) as fp:
             soup = BeautifulSoup(fp, 'html.parser')
@@ -125,11 +127,15 @@ with open(o_path, "w") as outfile:
         weight   = row[1]
         outfile.write( tkr_name + ":" + weight + '\n' )
 outfile.close()
+print("to {}".format(o_path))
 
 with open(o_path1, "w") as outfile:
     for row in new_table1:
         # tkr = row
         outfile.write( row + '\n' )
 outfile.close()
+print("to {}".format(o_path1))
+
+# ls -lt ./datafiles/taiex/m100.20240228.html ./datafiles/taiex/m100.20240228.csv ./datafiles/taiex/bountylist.m100.20240228.txt
 
 sys.exit(0)
