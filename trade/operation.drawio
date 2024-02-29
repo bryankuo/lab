@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-02-26T06:10:06.250Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="3ZsFvaDlZjQF7qlB3UpF" version="23.1.6" type="device">
+<mxfile host="app.diagrams.net" modified="2024-02-29T17:07:55.502Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="4nrLrcx0JcAeMa-2InMW" version="23.1.7" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
-    <mxGraphModel dx="1339" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1674" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -4062,8 +4062,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="uvi4PMMqHO7I2ZovpRdf-1" value="每月底&lt;br&gt;台灣期貨交易所&lt;br&gt;更新市值排名" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="uvi4PMMqHO7I2ZovpRdf-1" value="每月底&lt;br&gt;台灣期貨交易所&lt;br&gt;更新市值排名" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="3919" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EWFe4Vx5NCSehdK4SEkm-1" value="sell at&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;EMA6&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;EMA20&lt;br&gt;阿魯米台股參數" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2308.25" y="730" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
