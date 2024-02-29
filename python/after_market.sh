@@ -13,11 +13,12 @@
 
 DATE=$(date +%Y%m%d)
 DIR0="$HOME/github/python/datafiles/taiex/after.market"
+# instead of xcode command line
+PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
+export PATH
 
-/usr/local/bin/python3 $HOME/github/python/after_market.py $DATE 0
-exit 0
-
-/usr/local/bin/python3 $HOME/github/python/after_market.py $DATE 1
+python3 $HOME/github/python/after_market.py $DATE 0
+python3 $HOME/github/python/after_market.py $DATE 1
 
 currenttime=$(date +%H:%M)
 TIME=${currenttime:0:2}${currenttime:3:2}

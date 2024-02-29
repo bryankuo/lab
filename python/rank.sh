@@ -73,7 +73,7 @@ fi
 # ready to serve rank.sh, but // FIXME: output has changed
 if true; then
     echo "scrap m100 components..."
-    python3 m100_components.py $DATE
+    python3 m100_components.py $DATE 0
     num_file=$(ls -lt $OUTF5 | wc -l | xargs | cut -d " " -f1)
     num_lines=$(wc -l $OUTF7 | xargs | cut -d " " -f1)
     if [[ $num_file -eq 1 ]] ; then

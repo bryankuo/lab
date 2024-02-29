@@ -2,10 +2,19 @@
 
 # python3 get_mrkt_value.py [yyyymmdd]
 # source 1, top 100, update on daily basis
+# scrap top 100 market value, in the unit of million
+# serving rank.sh
 # https://stock.capital.com.tw/z/zm/zmd/zmdb.djhtm?MSCI=0
+# \param in  yyyymmdd
+# \param out top100_market_value...
 # return 0
 # 1:2330台積電:17,425,215:30.87%
+# // TODO: all type 4 market value, on daily basis
+# https://www.tpex.org.tw/web/stock/aftertrading/daily_mktval/mkt_result.php?l=zh-tw&d=113/02/29&s=0,asc,0&o=htm
+# // TODO: all type 2, 4 market value can be scraped from zcx, in the unit of
+# million, one by one, cf. basic.py, beta.py, or zca ( scrap ror fetched html )
 
+# // TODO: good info 300 per page, cf. revenue.py
 import sys, requests, time, re, os
 import urllib.request
 from datetime import timedelta,datetime

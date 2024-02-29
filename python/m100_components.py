@@ -3,8 +3,11 @@
 # python3 m100_components.py [yyyymmdd] [net|file]
 # \param in yyyymmdd
 # \param in net: 0, file: 1
+# \param out m100.yyyymmdd.html
+# \param out m100.yyyymmdd.csv
+# \param out bountylist.m100.yyyymmdd.txt
 # return 0
-# 138:3406玉晶光:555.55
+#
 # source 8, 5 pages, top 150, update everyday, market value, rank
 # use selenium, and firefox example:
 # https://stackoverflow.com/a/36027884
@@ -65,6 +68,7 @@ try:
 
         # url = "https://www.cmoney.tw/etf/e210.aspx?key=0051"
         url = "https://www.cmoney.tw/etf/tw/0051/fundholding"
+        print("from {}".format(url))
         browser.get(url)
         time.sleep(3) # wait until page fully loaded ( or redirected )
         page = browser.page_source
@@ -73,6 +77,7 @@ try:
         with open(path, "w") as outfile:
             outfile.write(soup.prettify())
         outfile.close()
+        print("to {}".format(path))
     else:
         with open(path) as fp:
             soup = BeautifulSoup(fp, 'html.parser')
@@ -95,7 +100,8 @@ for i in range(1, len(rows)-1 ):
     # print( tds[0].prettify() )
     if ( len( tds[0].text.strip() ) == 4 ):
         row=[]
-        row.append( tds[0].text.strip() + tds[1].text.strip() )
+        row.append( tds[0].text.strip() )
+        row.append( tds[1].text.strip() )
         row.append( tds[2].text.strip() )
         new_table.append(row)
         new_table1.append(tds[0].text.strip())
@@ -119,17 +125,22 @@ for i in range(1, len(rows)-1):
     index += 1
 
 with open(o_path, "w") as outfile:
-    outfile.write( "代號公司:權重%\n" )
+    outfile.write( "代號:公司:權重%\n" )
     for row in new_table:
-        tkr_name = row[0]
-        weight   = row[1]
-        outfile.write( tkr_name + ":" + weight + '\n' )
+        tkr = row[0]
+        name   = row[1]
+        weight = row[2]
+        outfile.write( tkr + ":" + name + ":" + weight + '\n' )
 outfile.close()
+print("to {}".format(o_path))
 
 with open(o_path1, "w") as outfile:
     for row in new_table1:
         # tkr = row
         outfile.write( row + '\n' )
 outfile.close()
+print("to {}".format(o_path1))
+
+# ls -lt ./datafiles/taiex/m100.20240228.html ./datafiles/taiex/m100.20240228.csv ./datafiles/taiex/bountylist.m100.20240228.txt
 
 sys.exit(0)
