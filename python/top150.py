@@ -2,6 +2,8 @@
 
 # python3 top150.py
 # serving rank.sh
+# get top 150 market value, in the unit of hundred million
+# \param out top150_market_value...
 # return 0
 # 138:3406玉晶光:555.55
 # source 8, 5 pages, top 150, update everyday, market value, rank
