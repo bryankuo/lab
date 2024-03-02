@@ -57,7 +57,7 @@ if [ "$COMMAND" = "fetching" ]; then
     n_effective=$(find $DIR1 -type f \
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
-    echo "effective: $n_effective"
+    echo "effective: $n_effective, market value is also ready to scrap"
 
     ls -lt "$DIR1/log.txt"
 
