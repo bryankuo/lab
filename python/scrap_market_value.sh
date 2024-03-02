@@ -15,25 +15,26 @@ if [ "$#" -lt 1 ]; then
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
 
+DIR00="datafiles/taiex"
 DIR0="datafiles/taiex/rs"
 mkdir -p $DIR0
 DATE=$1
 DIR1="$DIR0/$DATE" # to archive *.html
 mkdir -p $DIR1
 
-OUTF0="$DIR0/market_value.$DATE.csv"
+OUTF0="$DIR00/market_value.$DATE.csv"
 echo "scrap market value ..."
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 index=1
 count=0
-echo "ticker:name:market_value" > $OUTF0
+echo "ticker:name:market_value(M)" > $OUTF0
 # @see https://superuser.com/a/423086
 effective=$(find $DIR1 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -2 -size +20000c)
 for f in $effective; do
     TICKER=${f:32:4}
     MSG=$(printf "%04d %04d %s" $index $TICKER $f)
     echo $MSG
-    # python3 get_ticker_ror.py $TICKER ${BENCHMARK[@]}
+    python3 get_ticker_market_value.py $TICKER $DATE
     count=$(($count+1))
     index=$(($index+1))
 done
@@ -42,35 +43,16 @@ echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
 
 # notify user it's done
-echo -ne '\007'
+# echo -ne '\007'
 echo $count"     scraped. "
+# tput bel
+
+./uno_launch.sh "./datafiles/activity_watchlist.ods"
 tput bel
-exit 0
-
-# // TODO: launch activity ods
-read -p "Press enter to continue $OUTF0 ..."
-./uno_launch.sh $OUTF0
-tput bel
-
-# manual process here...
-while true ; do
-    if [ ! -f "$OUTF2" ]; then
-	read -p "Save $OUTF0 to ods when ready ..."
-    else
-	break
-    fi
-done
-
-# // load into calc
-
-# ./uno_launch.sh $OUTF2
-# assume ready and focused, uno_rs.sh adding formula
-# ./uno_rs.sh $DATE # abandon ./uno_rs.sh
-# // FIXME:     r_ytd = soup.findAll('table')[0] \
-# IndexError: list index out of range
+read -p "Press enter to loading calc ..." # let calc regain focus as well
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-# /Applications/LibreOffice.app/Contents/Resources/python \
-#     uno_load_market_value.py $DATE
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno_load_market_value.py $DATE
 TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
