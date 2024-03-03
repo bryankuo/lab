@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ./ror.sh [fetching|figuring] [yyyymmdd]
+# ./scrap_market_value.sh [yyyymmdd]
 # 1. scraping market value from ror.sh download files
 #
 # \param in 0: net, 1:file
