@@ -42,27 +42,21 @@ conn_list = [1] * len(sites.list)
 conn = 0
 
 def source_factory(ticker):
-    # url = random.choice(sites.list) + page
-
-    '''
     # update connectivity dynamically
     # if connection error then update to 0, avoid repeating error
     conn = random.randint(0, len(sites.list)-1)
     while ( conn_list[conn] <= 0 ):
         conn = random.randint(0, len(sites.list)-1)
-    '''
+
+    page = "/z/zc/zch/zch_" + ticker + ".djhtm"
+    url = sites.list[conn] + page
 
     '''
     # verify all sites in a round-robin way
-    conn += 1
-    if ( len(sites.list) <= conn ):
-        conn = 0
-    '''
-    page = "/z/zc/zch/zch_" + ticker + ".djhtm"
     for conn in range(0, len(sites.list)-1):
         url = sites.list[conn] + page
         print(url)
-    sys.exit(0)
+    '''
     return url
 
 f = open(path1, 'r'); logf = open(log_path, 'w'); lst = open(list_path, 'w')
@@ -70,7 +64,6 @@ session = None; count = 0; fname = ""; path = ""
 
 for ticker in f:
     ticker = ticker.replace('\n','')
-    print("{}".format(ticker))
     fetch_not_ok = True
     while fetch_not_ok:
         headers = {'User-Agent': random.choice(ua.list)}
@@ -121,9 +114,9 @@ for ticker in f:
                 count += 1
                 fetch_not_ok = False
                 lst.write(ticker+"\n")
-                # break
 
 # // @see https://stackoverflow.com/a/49253627
 session.close();
 f.close(); logf.close(); lst.close()
+print("total # fetched {}".format(count))
 sys.exit(0)
