@@ -324,6 +324,12 @@ set_formula_ytd()
 set_formula_3m()
 set_formula_1m()
 set_formula_1w()
+
+the_range = active_sheet.getCellRangeByName("A:Q")
+doc.CurrentController.select(the_range)
+# the_range.Columns.IsVisible = True
+the_range.Columns.OptimalWidth = True
+
 doc.store()
 outf0.close(); outf1.close()
 

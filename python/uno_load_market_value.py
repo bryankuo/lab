@@ -1,16 +1,13 @@
 #!/usr/bin/python3
 
-# python3 uno_load_m100_components.py [yyyymmdd]
+# python3 uno_load_market_value.py [yyyymmdd]
 # \param in yyyymmdd
 # return 0
 
 # @see https://tinyurl.com/y8442u6u
-# Volume Ratio Index
-# volume is the leading indicator of stock prices
 # @see https://tinyurl.com/2cau7m5j
 
 import os, sys, time, csv
-# import pandas as pd # // FIXME:
 from pprint import pprint
 from datetime import datetime
 
@@ -38,16 +35,16 @@ import uno
 from com.sun.star.uno import RuntimeException
 
 if ( len(sys.argv) < 2 ):
-    print("python3 uno_load_m100_components.py [yyyymmdd]")
+    print("python3 uno_load_market_value.py [yyyymmdd]")
     sys.exit(0)
 
 yyyymmdd = sys.argv[1]
 
 DIR0="./datafiles/taiex"
 
-ifname1 = "m100." + yyyymmdd + ".csv"
+ifname1 = "market_value." + yyyymmdd + ".csv"
 ipath1  = os.path.join(DIR0, ifname1)
-print("update calc loading: " + ipath1)
+# print("update calc loading: " + ipath1)
 f1 = open(ipath1)
 components = list(csv.reader(f1, delimiter=':')) # list from 2d csv
 # print(components[0])
@@ -91,8 +88,6 @@ cursor.gotoStartOfUsedArea(True)
 guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 n_ticker = len(cursor.Rows) - 1
 
-LAST="BK"
-
 # t0 = time.time_ns() / (10 ** 9)
 # t0 = time.time_ns()
 t0 = time.time()
@@ -101,7 +96,7 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     columns = active_sheet.getColumns()
-    hide_lst = ["C:$By"]
+    hide_lst = ["C:$By", "CA:CB"]
     for r in hide_lst:
         the_range = active_sheet.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
@@ -110,7 +105,7 @@ try:
     # @see http://surl.li/nottj
     tkrs    = [ x[0] for x in components ]
     name    = [ x[1] for x in components ]
-    weight  = [ x[2] for x in components ]
+    mktv    = [ x[2] for x in components ]
     checked  = [ 0 ] * len(tkrs)
 
     # brute force for 100 items, components list not sorted
@@ -125,22 +120,28 @@ try:
         if ( found ):
             print("i {:0>4} j {:0>4} tkr {:0>4} update" \
                 .format(i, j, tkr))
-            active_sheet.getCellRangeByName("CB"+str(i)).String = weight[j]
+            cell = active_sheet.getCellRangeByName("BZ"+str(i))
+            if ( mktv[j].isdigit() ) :
+                cell.Value = int(mktv[j])
+            else:
+                cell.String = "n/a"
+            # cell.CellHoriJustify = RIGHT # // FIXME:
+
             cell = active_sheet.getCellRangeByName("$BH" + str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1
             start0 = i + 1; start1 = 0
         else:
             # print("i {:0>4} j {:0>4} tkr {:0>4} type 5 not found in {}" \
-            #     .format(i, j, tkr, ipath1))
+            #    .format(i, j, tkr, ipath1))
             # // FIXME: some in list but not found in spreadsheet -> add one row
             # // FIXME: at the end, sort sheet then save
             missed += 1
 
     # // FIXME: possible new in data, therefore search
-    print("# file {:>4}, {:>4} missed, ".format(len(tkrs)-1, missed)) # // FIXME:
+    print("# file {:>4}".format(len(tkrs)-1)) # // FIXME:
 
-    opt_lst = ["A:B", "BZ:CB"]
+    opt_lst = ["A:B", "BZ1"]
     for r in opt_lst:
         the_range = active_sheet.getCellRangeByName(r)
         doc.CurrentController.select(the_range)

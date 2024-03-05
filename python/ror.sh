@@ -57,7 +57,7 @@ if [ "$COMMAND" = "fetching" ]; then
     n_effective=$(find $DIR1 -type f \
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
-    echo "effective: $n_effective"
+    echo "effective: $n_effective, market value is also ready to scrap"
 
     ls -lt "$DIR1/log.txt"
 
@@ -177,6 +177,8 @@ elif [ "$COMMAND" = "figuring" ]; then
     #
     # python$ ./uno_launch.sh datafiles/taiex/rs/rs.20231112.ods
     # python$ ./uno_rs.sh 20231112
+    # find . -type d -iname '*20231201*' -o -type f -iname '*20231201*'  -delete
+    # trash -v ./20231201
 fi
 
 exit 0

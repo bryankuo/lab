@@ -24,6 +24,8 @@ instant_quote.sh: get OHLC data frame periodically.
 board.py: get board holdings.
 basic.py: check if CB issued by scraping POST reply.
 get_mrkt_value.py: scrap ticker market values.
+scrap_market_value.sh: scrap each ticker market value from ror.sh download.
+uno_load_market_value.py: load into calc.
 transaction.py: parsing type 2 daily transaction by ticker symbol from bsr.
 transotc.py: parsing type 4 transactions from tpex.
 transaction.sh: streamline type 2 to calc.
