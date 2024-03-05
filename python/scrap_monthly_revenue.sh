@@ -39,13 +39,18 @@ TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
 /usr/bin/sort -k1 -n -t: -o "$DIR0/$DATE.csv" $OUTF0
-echo $count"     scraped. "
+echo $count"     scraped. $DIR0/$DATE.csv"
+# echo -ne '\007'
+tput bel
 exit 0 # to compare on daily bases
+# monthly_revenue$ find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02"
+
+# exclude "-" minus
+# find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -v "-"
 
 ./uno_launch.sh "./datafiles/activity_watchlist.ods"
 # notify user it's done
-# echo -ne '\007'
-tput bel
+
 read -p "Press enter to loading calc ..." # let calc regain focus as well
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 # /Applications/LibreOffice.app/Contents/Resources/python \
