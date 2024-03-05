@@ -39,7 +39,7 @@ TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
 /usr/bin/sort -k1 -n -t: -o "$DIR0/$DATE.csv" $OUTF0
-echo $count"     scraped. "
+echo $count"     scraped. $DIR0/$DATE.csv"
 exit 0 # to compare on daily bases
 
 ./uno_launch.sh "./datafiles/activity_watchlist.ods"

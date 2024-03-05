@@ -76,8 +76,7 @@ for ticker in f:
             else:
                 # response = session.get(url)
                 response = session.get(url, headers=headers)
-            # response.encoding = 'cp950'
-            # time.sleep(1) # // FIXME: random time
+            response.encoding = 'cp950'
             soup = BeautifulSoup(response.text, 'html.parser')
             fname = ticker + ".html"
             path = os.path.join(DIR2, fname)
