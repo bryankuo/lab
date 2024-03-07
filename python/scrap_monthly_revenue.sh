@@ -46,7 +46,10 @@ exit 0 # to compare on daily bases
 # monthly_revenue$ find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02"
 
 # exclude "-" minus
+# cd datafiles/taiex/monthly_revenue
 # find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -v "-"
+# find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -v "$DATE"
+# find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | wc -l
 
 ./uno_launch.sh "./datafiles/activity_watchlist.ods"
 # notify user it's done

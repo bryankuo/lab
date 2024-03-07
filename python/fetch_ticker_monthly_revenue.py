@@ -2,6 +2,7 @@
 
 # python3 fetch_ticker_monthly_revenue.py
 # fetch ticker monthly revenue html from sites.
+# serving scrap_monthly_revenue.sh
 # rotating user agents
 # \param in  datafiles/taiex/monthly_revenue/yyyymmdd folder
 # \param out [ticker].html
@@ -118,4 +119,5 @@ for ticker in f:
 session.close();
 f.close(); logf.close(); lst.close()
 print("total # fetched {}".format(count))
+print("./scrap_monthly_revenue.sh [yyyymmdd] to continue ...")
 sys.exit(0)
