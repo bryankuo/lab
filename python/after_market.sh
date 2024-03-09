@@ -6,12 +6,14 @@
 #
 # \param in yyyymmdd
 
-# if [ "$#" -lt 1 ]; then
+if [ "$#" -lt 1 ]; then
 #    echo "usage: ./after_market.sh [yyyymmdd]"
 #    exit 22 # @see https://stackoverflow.com/a/50405954
-# fi
+    DATE=$(date +%Y%m%d)
+else
+    DATE=$1
+fi
 
-DATE=$(date +%Y%m%d)
 DIR0="$HOME/github/python/datafiles/taiex/after.market"
 # instead of xcode command line
 PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
@@ -39,5 +41,9 @@ TIME=${currenttime:0:2}${currenttime:3:2}
 # ./uno_launch.sh datafiles/activity_watchlist.ods
 #read -p "save to ods, and let focus when ready ..."
 # ./uno_bquote.sh 20231201
+
+# // TODO: if market is closed, count # of up, down
+#if [[ "$currenttime" > "13:31" ]]; then
+# fi
 
 exit 0
