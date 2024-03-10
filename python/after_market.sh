@@ -38,16 +38,17 @@ TIME=${currenttime:0:2}${currenttime:3:2}
 #read -p "save to ods, and let focus when ready ..."
 # ./uno_bquote.sh 20231201
 
-# // TODO: if twse market is closed
-# 1. count # of up, down
-# 2. for each ticker, count # of days before its previous high
+# twse market is closed, including type 5
+if [[ "$currenttime" > "15:00" ]]; then
+    # 1.
+    ls -lt $DIR0/????????.csv | head -n 3
+    N_DAYS=$( ls -lt $DIR0/????????.csv | wc -l | xargs | cut -d " " -f1 )
+    echo "there are $N_DAYS trade days recorded."
 
-# N_DAYS=$( ls -lt datafiles/taiex/after.market/????????.csv \
-#     | wc -l | xargs | cut -d " " -f1 )
-# echo "there are $N_DAYS trade days recorded."
-# ls -lt $DIR0/????????.csv | head -n 3
+    # 2. count # of up, down
 
-# if [[ "$currenttime" > "13:31" ]]; then
-# fi
+    # 3. for each ticker, count # of days before its previous high
+
+fi
 
 exit 0
