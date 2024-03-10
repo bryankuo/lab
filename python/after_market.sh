@@ -32,18 +32,22 @@ TIME=${currenttime:0:2}${currenttime:3:2}
 /usr/bin/sort -k1 -n -t: -o "$DIR0/$DATE.csv" "$DIR0/$DATE.price.desc.csv"
 # grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
 # wc -l  "$DIR0/$DATE.csv"
-# N_DAYS=$( ls -lt datafiles/taiex/after.market/????????.csv \
-#     | wc -l | xargs | cut -d " " -f1 )
-# echo "there are $N_DAYS trade days recorded."
-# ls -lt $DIR0/????????.csv | head -n 3
 
 # ./after_market.sh 20231201
 # ./uno_launch.sh datafiles/activity_watchlist.ods
 #read -p "save to ods, and let focus when ready ..."
 # ./uno_bquote.sh 20231201
 
-# // TODO: if market is closed, count # of up, down
-#if [[ "$currenttime" > "13:31" ]]; then
+# // TODO: if twse market is closed
+# 1. count # of up, down
+# 2. for each ticker, count # of days before its previous high
+
+# N_DAYS=$( ls -lt datafiles/taiex/after.market/????????.csv \
+#     | wc -l | xargs | cut -d " " -f1 )
+# echo "there are $N_DAYS trade days recorded."
+# ls -lt $DIR0/????????.csv | head -n 3
+
+# if [[ "$currenttime" > "13:31" ]]; then
 # fi
 
 exit 0
