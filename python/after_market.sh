@@ -33,11 +33,6 @@ TIME=${currenttime:0:2}${currenttime:3:2}
 # grep -rnp --color="auto" -e "6669" ./datafiles/taiex/after.market/????????.csv
 # wc -l  "$DIR0/$DATE.csv"
 
-# ./after_market.sh 20231201
-# ./uno_launch.sh datafiles/activity_watchlist.ods
-#read -p "save to ods, and let focus when ready ..."
-# ./uno_bquote.sh 20231201
-
 # twse market is closed, including type 5
 if [[ "$currenttime" > "15:00" ]]; then
     # 1.
