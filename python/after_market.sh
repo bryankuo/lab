@@ -40,10 +40,24 @@ if [[ "$currenttime" > "15:00" ]]; then
     N_DAYS=$( ls -lt $DIR0/????????.csv | wc -l | xargs | cut -d " " -f1 )
     echo "there are $N_DAYS trade days recorded."
 
-    # 2. count # of up, down
+    # 2. count # of up, down, ratio
+    N_TICKERS=$( cat "$DIR0/$DATE.all.columns.csv" | cut -d ":" -f 5 \
+	| wc -l | xargs )
+    N_TICKERS=$((N_TICKERS-1))
+    N_UP=$( cat "$DIR0/$DATE.all.columns.csv" | cut -d ":" -f 5 \
+	| grep -e "+" | wc -l | xargs )
+    N_DOWN=$((N_TICKERS-N_UP))
+    UD_RATIO=$(( N_UP / N_DOWN )) # // FIXME: floating point math
+    # printf %.3f\\n "$((N_UP / N_DOWN))"
+    # echo "$DATE # ticker $N_TICKERS, up $N_UP, down $N_DOWN, ratio $UD_RATIO"
+    MSG=$( printf "%s # ticker %d, up %d, down %d, ratio %.3f" \
+	$DATE $TICKER $N_UP $N_DOWN $UD_RATIO )
+    echo $MSG
+    # cat "$DIR0/$DATE.all.columns.csv" | cut -d ":" -f 5 | head -n 10
 
     # 3. for each ticker, count # of days before its previous high
 
+    # 4. list 10 day low
 fi
 
 exit 0
