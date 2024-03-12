@@ -47,9 +47,7 @@ if [[ "$currenttime" > "15:00" ]]; then
     N_UP=$( cat "$DIR0/$DATE.all.columns.csv" | cut -d ":" -f 5 \
 	| grep -e "+" | wc -l | xargs )
     N_DOWN=$((N_TICKERS-N_UP))
-    UD_RATIO=$(( N_UP / N_DOWN )) # // FIXME: floating point math
-    # printf %.3f\\n "$((N_UP / N_DOWN))"
-    # echo "$DATE # ticker $N_TICKERS, up $N_UP, down $N_DOWN, ratio $UD_RATIO"
+    UD_RATIO=$( echo $N_UP / $N_DOWN | bc -l )
     MSG=$( printf "%s # ticker %d, up %d, down %d, ratio %.3f" \
 	$DATE $TICKER $N_UP $N_DOWN $UD_RATIO )
     echo $MSG
