@@ -39,6 +39,7 @@ TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
 /usr/bin/sort -k1 -n -t: -o "$DIR0/$DATE.csv" $OUTF0
+trash $OUTF0
 echo $count"     scraped. $DIR0/$DATE.csv"
 # echo -ne '\007'
 tput bel
@@ -52,9 +53,8 @@ exit 0 # to compare on daily bases
 # find . -type f -iname '20240309.csv' | xargs grep -rnp --color="auto" -e "113/02"  | grep -v "-" | wc -l
 # find . -type f -iname '20240?????.csv' | xargs grep -rnp --color="auto" -e "113/02" | cut -d ":" -f 1 | uniq | sort -r
 # find . -type f -iname '20240???.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -rnp --color="auto" -e "1236"
+# find . -type f -iname '202403??.csv' | xargs grep -rnp --color="auto" -e "^1236" | sort -r
 
-./uno_launch.sh "./datafiles/activity_watchlist.ods"
-# notify user it's done
 
 read -p "Press enter to loading calc ..." # let calc regain focus as well
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`

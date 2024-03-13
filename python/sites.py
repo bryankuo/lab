@@ -9,7 +9,9 @@ list = [ # the most comprehensive site list in project
     "https://stock.capital.com.tw", \
     "https://fund.hncb.com.tw", \
     "https://just.honsec.com.tw", \
-    "https://sjmain.esunsec.com.tw", \
+
+    # down
+    # "https://sjmain.esunsec.com.tw", \
 
     # site: kgieworld.moneydj.com 個股基本資料
     # https://kgieworld.moneydj.com/z/con_CSA.htm?a=
