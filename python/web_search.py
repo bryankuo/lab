@@ -344,7 +344,7 @@ sys.exit(0)
 # https://www.esunsec.com.tw/tw-stock/z/zc/zcx/zcxnewEsunsec.djhtm?id=3105
 # https://histock.tw/stock/3105
 
-# 菲神/標借 site:twse.com.tw / 標借證券明細表
+# borrow/菲神/標借 site:twse.com.tw / 標借證券明細表
 # type 2
 # https://www.twse.com.tw/rwd/zh/borrow/BFIB8U?response=html # 上市
 # type 4
