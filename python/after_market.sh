@@ -21,6 +21,8 @@ export PATH
 
 python3 $HOME/github/python/after_market.py $DATE 0
 python3 $HOME/github/python/after_market.py $DATE 1
+# count how many trade days for this month
+#ls -lt datafiles/taiex/after.market/202403??.all.columns.csv | wc -l
 
 currenttime=$(date +%H:%M)
 TIME=${currenttime:0:2}${currenttime:3:2}

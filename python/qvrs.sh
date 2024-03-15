@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# ./qvrs.sh [yyyymmdd]
+# ./qvrs.sh
 #
 # a wrapper of qvrs.py to determine q,v,rs quickly
 #
-# \param in yyyymmdd
+# \param in
 
 # if [ "$#" -lt 1 ]; then
 #    echo "usage: ./qvrs.sh [yyyymmdd]"
