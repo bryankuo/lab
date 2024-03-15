@@ -48,8 +48,15 @@ print(df.dtypes)
 # df1 = df.loc[:, ['代號', '創新高天數']]
 # df1 = df[['代號', '市值', '創新高天數']]
 # df1 = df[['代號']] # works
-# df1 = df[['市值']] # NG
-pprint(df[['代號', '市值', '創新高天數']]) # remark not allowed
+df1 = df[['代號', '創新高天數']] # remark not allowed
+pprint(df1)
+ts = datetime.now().strftime('%Y%m%d')
+ndays_high = "ndays_high." + ts + ".ods"
+opath = os.path.join(".", ndays_high) # DIR0
+print("writing {} ...".format(opath))
+doc = pd.ExcelWriter(opath, engine="odf")
+df1.to_excel(doc, sheet_name="創新高天數")
+doc.close()
 # 上一個比現在高的價格是出現在幾天之前
 # ( 負值表示創新低 )
 
