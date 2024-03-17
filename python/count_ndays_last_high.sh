@@ -15,6 +15,7 @@ TKR=$1
 
 # DIR0="$HOME/github/python/datafiles/taiex/after.market"
 DIR0="./datafiles/taiex/after.market"
+DIR1="./uno/unload"
 # ls -lt $DIR0/????????.all.columns.csv
 
 # N_DAYS=$( ls -lt $DIR0/????????.all.columns.csv \
@@ -45,7 +46,8 @@ d1=$( ls -lt $DIR0/????????.all.columns.csv | head -n 2 \
 
 d0=$( ls -lt $DIR0/????????.all.columns.csv | head -n 2 \
     | cut -d '/' -f 5 | cut -c 1-8 | xargs | cut -d ' ' -f 1 )
-python3 uno/unload/slice_last_high.py $d1 $d0
+
+python3 $DIR1/slice_last_high.py $d1 $d0
 
 exit 0
 
