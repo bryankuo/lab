@@ -14,6 +14,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 import pandas as pd
+import numpy as np
 from pprint import pprint
 from datetime import datetime
 
@@ -28,7 +29,6 @@ DIR0     = "datafiles"
 DIR0a    = "datafiles/taiex/after.market"
 activity = "activity_watchlist.ods"
 
-'''
 ipath = os.path.join(DIR0, activity)
 print("reading {} ...".format(ipath))
 # t0 = time.time_ns() / (10 ** 9)
@@ -46,19 +46,8 @@ hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
 # print("start: " + t_start)
 print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
-# print(df0.dtypes)
 df1 = df0[['代號', '創新高天數']] # remark inside cell makes trouble
-'''
-
-# ts = datetime.now().strftime('%Y%m%d')
-'''
-ndays_high = "ndays_high." + ts + ".ods"
-opath = os.path.join(".", ndays_high) # DIR0
-print("writing {} ...".format(opath))
-doc = pd.ExcelWriter(opath, engine="odf")
-df1.to_excel(doc, sheet_name="創新高天數")
-doc.close()
-'''
+# print(df0.dtypes)
 
 f1 = d1 + ".all.columns.csv"
 ipath1 = os.path.join(DIR0a, f1)
@@ -70,6 +59,7 @@ t0 = time.time()
 # t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 df2 = pd.read_csv(ipath1, sep=':', skiprows=0, header=0)
 dfd1 = df2[['代號', '最高']]
+print(len(dfd1))
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
@@ -94,7 +84,7 @@ hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
 # print("start: " + t_start)
 print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
-# print(dfd0.columns)
+print(len(dfd0))
 
 # diff = dfd1.compare(dfd0)
 # print(diff)
@@ -116,19 +106,41 @@ df4 = df4.query('_merge == "left_only"').drop('_merge', 1)
 print("de-listed:")
 print(df4)
 '''
-
+# print(df1.代號.type)
+# print(dfd1.代號.type)
 # iterate a dataframe @see https://stackoverflow.com/a/16476974
 dfd1 = dfd1.reset_index()
 print("iterate ...")
 t0 = time.time()
 for index, row in dfd1.iterrows():
-    # print(row['代號'], row['最高'])
     d1h = row['最高']
-    r = dfd0.loc[dfd1['代號'] == row['代號']] # .loc[0][2]
-    # print("{} {} {}".format(row['代號'], d1h, d0h))
-    tkr = row['代號'].astype(str)
-    d0h = r['最高'].values[1]
-    print("{} {} {}".format(tkr, d1h, d0h))
+    if ( index >= len(dfd0) ):
+        print("{} {}".format(index, len(dfd0)))
+        break
+    # try:
+    d0h = dfd0.loc[dfd1['代號'] == row['代號']]['最高'].values[0]
+    print("{} {} {}".format(row['代號'], d1h, d0h))
+    #except KeyError:
+    #    print("{} new on {}".format(str(tkr), d1))
+    tkr = row['代號'].astype(int)
+    s = df1.loc[df1['代號'].eq(tkr), '創新高天數']
+    try:
+        n = s.iat[0]
+        print(n)
+        if ( pd.isna(n) ):
+            df1['創新高天數'] = np.where(df1['代號'] == tkr, 1, df1['創新高天數'])
+            # given initial value 0 to calc instead
+        else:
+            if ( d0h < d1h ):
+                df1['創新高天數'] = np.where(df1['代號'] == tkr,  ( n + 1 ), df1['創新高天數'])
+            else:
+                # downward
+                df1['創新高天數'] = np.where(df1['代號'] == tkr, -( n + 1 ), df1['創新高天數'])
+    except IndexError:
+        print("{} absent in activity when {}".format(str(tkr), d1))
+
+    if ( index % 500 == 0 ):
+        print("{:04} {} {} {}".format(index, str(tkr), d1h, d0h))
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600); minutes, seconds = divmod(rem, 60)
 print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
@@ -139,5 +151,17 @@ print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 # 上一個比現在高的價格是出現在幾天之前
 # ( 負值表示創新低 )
 
+ts = datetime.now().strftime('%Y%m%d')
+# ndays_high = "ndays_high." + ts + ".ods"
+ndays_high = "ndays_high." + ts + ".csv"
+opath = os.path.join(".", ndays_high) # DIR0
+print("writing {} ...".format(opath))
+# doc = pd.ExcelWriter(opath, engine="odf")
+# df1.to_excel(doc, sheet_name="創新高天數")
+# doc.close()
+
+df1.to_csv(opath, sep = ':', header=True, index=False)
+
+pprint(df1)
 
 sys.exit(0)
