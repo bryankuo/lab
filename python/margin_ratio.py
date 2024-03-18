@@ -33,3 +33,7 @@ if ( rows is None ):
 td = rows.findAll('td')[13]
 print(ticker + " margin ratio: " + td.text)
 sys.exit(0)
+
+# enumeration of margin buying increasing
+# https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_E.djhtm
+# // TODO: by 09:30
