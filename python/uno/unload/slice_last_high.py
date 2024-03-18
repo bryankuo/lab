@@ -151,17 +151,18 @@ print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 # 上一個比現在高的價格是出現在幾天之前
 # ( 負值表示創新低 )
 
+pprint(df1)
+
+# open activity again, and adding data frame as new sheet
 ts = datetime.now().strftime('%Y%m%d')
 # ndays_high = "ndays_high." + ts + ".ods"
 ndays_high = "ndays_high." + ts + ".csv"
 opath = os.path.join(".", ndays_high) # DIR0
+# opath = ipath # presume file is closed
 print("writing {} ...".format(opath))
 # doc = pd.ExcelWriter(opath, engine="odf")
-# df1.to_excel(doc, sheet_name="創新高天數")
+# df1.to_excel(doc, sheet_name="ndaysHigh."+ts)
 # doc.close()
-
-df1.to_csv(opath, sep = ':', header=True, index=False)
-
-pprint(df1)
+df1.to_csv(opath, sep = ':', header=True, index=False) # verifying result
 
 sys.exit(0)
