@@ -9,7 +9,7 @@
 # http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
 
-import uno, sys, time, os
+import uno, sys, time, os, csv
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
 # from datetime import date
@@ -50,31 +50,40 @@ while doc is None:
     numbers = doc.NumberFormats # // FIXME: only when get focused, or touched
     locale = doc.CharLocale
 
-nameh = "創新高天數."+yyyymmdd
-doc.Sheets.insertNewByName(nameh, doc.Sheets.Count+1 )
-new_sheet = doc.Sheets.getByName(nameh)
-doc.CurrentController.setActiveSheet(new_sheet)
-new_sheet.getCellRangeByName("$A1").String = "代  號"
-new_sheet.getCellRangeByName("$B1").String = "創新高天數"
 
+try:
+    doc.Sheets.insertNewByName("創新高天數."+yyyymmdd, doc.Sheets.Count+1 )
+    new_sheet = doc.Sheets.getByName("創新高天數."+yyyymmdd)
+    doc.CurrentController.setActiveSheet(new_sheet)
+    new_sheet.getCellRangeByName("$A1").String = "代  號"
+    new_sheet.getCellRangeByName("$B1").String = "創新高天數"
 
-# path0 = os.path.join(DIR0, nm0)
-path0 = "./ndays_high.20240317.csv"
-inf0 = open(path0, 'r')
-data = list(csv.reader(inf0, delimiter=':'))
-tkrs = [ x[0] for x in data ]
-ndays= [ x[1] for x in data ]
-checked  = [ 0 ] * len(tkrs)
-idx = 0; i = 2
-for tkr in tkrs:
-    if ( 0 < idx and 4 == len(tkr) ):
-        new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
-        new_sheet.getCellRangeByName("$B"+str(i)).Value = int(ndays)
-        i += 1;
-    idx += 1;
+    # path0 = os.path.join(DIR0, nm0)
+    path0 = "./ndays_high.20240317.csv"
+    inf0 = open(path0, 'r')
+    data = list(csv.reader(inf0, delimiter=':'))
+    tkrs = [ x[0] for x in data ]
+    ndays= [ x[1] for x in data ]
+    checked  = [ 0 ] * len(tkrs)
+    idx = 0; i = 2
+    for tkr in tkrs:
+        if ( 0 < idx and 4 == len(tkr) ):
+            new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
+            new_sheet.getCellRangeByName("$B"+str(i)).Value = ndays[idx]
+            # print("{} {}\n".format(i, ndays))
+            i += 1;
+        idx += 1;
+except:
+    # traceback.format_exception(*sys.exc_info())
+    e = sys.exc_info()[0]
+    print("Unexpected error:", sys.exc_info()[0])
+    raise
+finally:
+    pass
 
 doc.store()
 # doc.close() // TODO: FIXME:
+print("done.\a\n")
 sys.exit(0)
 
 # instead of
