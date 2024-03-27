@@ -44,16 +44,16 @@ echo $HIGHS | tr " " "\n" | while read -r line; do
     echo $TDAY $DAY_HI
 done
 
+./uno_launch.sh "$DIR3/activity_watchlist.ods"
+
 # // TODO:
 d1=$( ls -lt $DIR2/????????.all.columns.csv | head -n 2 \
     | cut -d '/' -f 5 | cut -c 1-8 | xargs | cut -d ' ' -f 1 )
 
 d0=$( ls -lt $DIR2/????????.all.columns.csv | head -n 2 \
-    | cut -d '/' -f 5 | cut -c 1-8 | xargs | cut -d ' ' -f 1 )
+    | cut -d '/' -f 5 | cut -c 1-8 | xargs | cut -d ' ' -f 2 )
 
 python3 $DIR1/slice_last_high.py $d1 $d0
-
-./uno_launch.sh "$DIR3/activity_watchlist.ods"
 
 $DIR4/python "$HOME/github/python/uno/load/addsheet.py" $DATE
 

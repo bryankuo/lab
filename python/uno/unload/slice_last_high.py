@@ -54,7 +54,7 @@ ipath1 = os.path.join(DIR0a, f1)
 if ( not os.path.exists(ipath1) ):
     print("{} not found".format(ipath1))
     sys.exit(0)
-print("reading {} ...".format(ipath1))
+print("reading d1 {} ...".format(ipath1))
 t0 = time.time()
 # t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 df2 = pd.read_csv(ipath1, sep=':', skiprows=0, header=0)
@@ -72,7 +72,7 @@ ipath1 = os.path.join(DIR0a, f0)
 if ( not os.path.exists(ipath1) ):
     print("{} not found".format(ipath1))
     sys.exit(0)
-print("reading {} ...".format(ipath1))
+print("reading d0 {} ...".format(ipath1))
 t0 = time.time()
 # t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 df2 = pd.read_csv(ipath1, sep=':', skiprows=0, header=0)
@@ -110,23 +110,21 @@ print(df4)
 # print(dfd1.代號.type)
 # iterate a dataframe @see https://stackoverflow.com/a/16476974
 dfd1 = dfd1.reset_index()
-print("iterate ...")
+print("iterate ...") # d1 first priority
 t0 = time.time()
 for index, row in dfd1.iterrows():
     d1h = row['最高']
     if ( index >= len(dfd0) ):
         print("{} {}".format(index, len(dfd0)))
         break
-    # try:
-    d0h = dfd0.loc[dfd1['代號'] == row['代號']]['最高'].values[0]
-    print("{} {} {}".format(row['代號'], d1h, d0h))
-    #except KeyError:
-    #    print("{} new on {}".format(str(tkr), d1))
-    tkr = row['代號'].astype(int)
-    s = df1.loc[df1['代號'].eq(tkr), '創新高天數']
     try:
+        tkr = row['代號'].astype(int)
+        d0h = dfd0.loc[dfd0['代號']==tkr, '最高'].values[0]
+        # if ( tkr == 1101 ):
+        #    print("{} {} {}".format(tkr, d1h, d0h))
+        s = df1.loc[df1['代號'].eq(tkr), '創新高天數']
         n = s.iat[0]
-        print(n)
+        # print(n)
         if ( pd.isna(n) ):
             df1['創新高天數'] = np.where(df1['代號'] == tkr, 1, df1['創新高天數'])
             # given initial value 0 to calc instead
@@ -138,6 +136,8 @@ for index, row in dfd1.iterrows():
                 df1['創新高天數'] = np.where(df1['代號'] == tkr, -( n + 1 ), df1['創新高天數'])
     except IndexError:
         print("{} absent in activity when {}".format(str(tkr), d1))
+    except KeyError:
+        print("{} new on {}".format(str(tkr), d1))
 
     if ( index % 500 == 0 ):
         print("{:04} {} {} {}".format(index, str(tkr), d1h, d0h))
