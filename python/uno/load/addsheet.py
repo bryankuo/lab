@@ -17,8 +17,6 @@ from com.sun.star.uno import RuntimeException
 from com.sun.star.beans import PropertyValue
 
 yyyymmdd = sys.argv[1]
-# sheet_name = "外投同買賣及異常."+yyyymmdd
-# print(sheet_name)
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -52,6 +50,21 @@ while doc is None:
 
 
 try:
+    sheet_name = "20231211"
+    active_sheet = doc.Sheets.getByName(sheet_name)
+    hide_lst = ["C:I", "K:CB", "cD1"]
+    for r in hide_lst:
+        the_range = active_sheet.getCellRangeByName(r)
+        doc.CurrentController.select(the_range)
+        the_range.Columns.IsVisible = False
+
+    opt_lst = ["A:B", "$j1", "cC1"]
+    for r in opt_lst:
+        the_range = active_sheet.getCellRangeByName(r)
+        doc.CurrentController.select(the_range)
+        the_range.Columns.IsVisible = True
+        the_range.Columns.OptimalWidth = True
+
     doc.Sheets.insertNewByName("創新高天數."+yyyymmdd, doc.Sheets.Count+1 )
     new_sheet = doc.Sheets.getByName("創新高天數."+yyyymmdd)
     doc.CurrentController.setActiveSheet(new_sheet)
@@ -73,11 +86,13 @@ try:
             # print("{} {}\n".format(i, ndays))
             i += 1;
         idx += 1;
+
 except:
     # traceback.format_exception(*sys.exc_info())
     e = sys.exc_info()[0]
     print("Unexpected error:", sys.exc_info()[0])
     raise
+
 finally:
     pass
 

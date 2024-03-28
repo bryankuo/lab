@@ -68,14 +68,14 @@ print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 # print(dfd1.columns)
 
 f0 = d0 + ".all.columns.csv"
-ipath1 = os.path.join(DIR0a, f0)
-if ( not os.path.exists(ipath1) ):
-    print("{} not found".format(ipath1))
+ipath0 = os.path.join(DIR0a, f0)
+if ( not os.path.exists(ipath0) ):
+    print("{} not found".format(ipath0))
     sys.exit(0)
-print("reading d0 {} ...".format(ipath1))
+print("reading d0 {} ...".format(ipath0))
 t0 = time.time()
 # t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
-df2 = pd.read_csv(ipath1, sep=':', skiprows=0, header=0)
+df2 = pd.read_csv(ipath0, sep=':', skiprows=0, header=0)
 dfd0 = df2[['代號', '最高']]
 # print(dfd0.dtypes)
 # pprint(dfd0)
@@ -125,22 +125,25 @@ for index, row in dfd1.iterrows():
         s = df1.loc[df1['代號'].eq(tkr), '創新高天數']
         n = s.iat[0]
         # print(n)
+        mask = df1["代號"] == tkr # @see https://rb.gy/zd42s5
         if ( pd.isna(n) ):
-            df1['創新高天數'] = np.where(df1['代號'] == tkr, 1, df1['創新高天數'])
+            print("oops {}".format(tkr))
             # given initial value 0 to calc instead
+            df1.loc[mask, '創新高天數'] = 0
         else:
             if ( d0h < d1h ):
-                df1['創新高天數'] = np.where(df1['代號'] == tkr,  ( n + 1 ), df1['創新高天數'])
+                df1.loc[mask, '創新高天數'] = ( n + 1 )
             else:
                 # downward
-                df1['創新高天數'] = np.where(df1['代號'] == tkr, -( n + 1 ), df1['創新高天數'])
+                df1.loc[mask, '創新高天數'] = -( n + 1 )
     except IndexError:
         print("{} absent in activity when {}".format(str(tkr), d1))
     except KeyError:
         print("{} new on {}".format(str(tkr), d1))
 
-    if ( index % 500 == 0 ):
+    if ( tkr == 1101 or tkr == 1103 or tkr == 9962 ):
         print("{:04} {} {} {}".format(index, str(tkr), d1h, d0h))
+
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600); minutes, seconds = divmod(rem, 60)
 print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
@@ -164,5 +167,8 @@ print("writing {} ...".format(opath))
 # df1.to_excel(doc, sheet_name="ndaysHigh."+ts)
 # doc.close()
 df1.to_csv(opath, sep = ':', header=True, index=False) # verifying result
+
+print("d1 {}".format(ipath1))
+print("d0 {}".format(ipath0))
 
 sys.exit(0)
