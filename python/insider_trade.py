@@ -15,6 +15,7 @@ import sys, requests, time, os, re, random
 import urllib.request
 from datetime import timedelta, datetime, date
 from bs4 import BeautifulSoup
+from pprint import pprint
 sys.path.append(os.getcwd())
 import useragents as ua
 import sites
@@ -75,6 +76,7 @@ rows = soup.find_all("table", {"class": "t01"})[0] \
 num_this_wk = 0
 last_ticker = 0
 num_ticker = 0
+tkr_l = []
 for i in range(2, len(rows)-1):
     mm = rows[i].find_all('td')[0].text.strip()[0:2]
     dd = rows[i].find_all('td')[0].text.strip()[3:5]
@@ -88,10 +90,13 @@ for i in range(2, len(rows)-1):
         num_this_wk += 1
         if ( the_ticker != last_ticker ):
             num_ticker +=1
+            tkr_l.append(the_ticker)
             last_ticker = the_ticker
     else:
         break
 print("scan from " + last_sat.strftime('%Y%m%d') + " to " + this_date.strftime('%Y%m%d') )
 olist = [ num_this_wk, num_ticker, path, url ]
 print(olist)
+pprint(tkr_l)
+
 sys.exit(0)
