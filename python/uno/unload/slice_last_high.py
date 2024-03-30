@@ -12,8 +12,12 @@ import sys, os, time
 # @see https://stackoverflow.com/a/15778297
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+# warnings.simplefilter(action='ignore', category=SettingWithCopyWarning)
 
 import pandas as pd
+# @see https://stackoverflow.com/a/20627316
+pd.options.mode.chained_assignment = None  # default='warn'
+
 import numpy as np
 from pprint import pprint
 from datetime import datetime
@@ -114,35 +118,50 @@ print("iterate ...") # d1 first priority
 t0 = time.time()
 for index, row in dfd1.iterrows():
     d1h = row['最高']
+
     if ( index >= len(dfd0) ):
         print("{} {}".format(index, len(dfd0)))
         break
+
     try:
         tkr = row['代號'].astype(int)
-        d0h = dfd0.loc[dfd0['代號']==tkr, '最高'].values[0]
-        # if ( tkr == 1101 ):
-        #    print("{} {} {}".format(tkr, d1h, d0h))
-        s = df1.loc[df1['代號'].eq(tkr), '創新高天數']
-        n = s.iat[0]
-        # print(n)
-        mask = df1["代號"] == tkr # @see https://rb.gy/zd42s5
+        # tkr = row['代號']
+        # tkr = tkr.astype(int)
+        mask  = df1["代號"] == tkr # @see https://rb.gy/zd42s5
+        mask0 = dfd0["代號"] == tkr # @see https://rb.gy/zd42s5
+        d0h = dfd0.loc[mask0, '最高'].values[0]
+        # d0h = 0
+        n = df1.loc[mask, '創新高天數'].values[0]
+        # n = 0
+        # n = s.iat[0]
+        # n = 0
+        # print("{:0>4} {:0>4} {}".format(index, tkr, n))
         if ( pd.isna(n) ):
             print("oops {}".format(tkr))
             # given initial value 0 to calc instead
             df1.loc[mask, '創新高天數'] = 0
         else:
             if ( d0h < d1h ):
-                df1.loc[mask, '創新高天數'] = ( n + 1 )
+                n1 =  ( n + 1 )
             else:
                 # downward
-                df1.loc[mask, '創新高天數'] = -( n + 1 )
+                n1 = -( n + 1 )
+            df1.loc[mask, '創新高天數'] = n1
+            # @see https://stackoverflow.com/a/20627316
+            # df1 = df1.loc[mask]
+            # df1['創新高天數'] = n1
     except IndexError:
-        print("{} absent in activity when {}".format(str(tkr), d1))
-    except KeyError:
-        print("{} new on {}".format(str(tkr), d1))
+        print("{:04} {:04} absent in activity on date {}".format(index, tkr, d1))
 
-    if ( tkr == 1101 or tkr == 1103 or tkr == 9962 ):
-        print("{:04} {} {} {}".format(index, str(tkr), d1h, d0h))
+    except KeyError:
+        print("{:04} {:04} new on {}".format(index, tkr, d1))
+
+    finally:
+        # pass
+        if ( tkr == 1101 or tkr == 1103 or tkr == 9962 \
+            or index % 100 == 0):
+            print("{:04} tk {:04} n {:>3} n1 {:>3} d1 {:>4.2f} d0 {:>4.2f}" \
+                .format(index, tkr, n, n1, d1h, d0h))
 
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600); minutes, seconds = divmod(rem, 60)
