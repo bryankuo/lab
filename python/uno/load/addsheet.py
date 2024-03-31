@@ -8,7 +8,8 @@
 # reference doc:
 # http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
-
+# Python for LibreOffice
+# https://openoffice3.web.fc2.com/Python_Macro_Calc.html
 import uno, sys, time, os, csv
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
@@ -20,7 +21,7 @@ yyyymmdd = sys.argv[1]
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext() # works
-SM = localContext.getServiceManager()    # works
+# SM = localContext.getServiceManager()    # works
 # ctx = XSCRIPTCONTEXT.getComponentContext() # // FIXME:
 # print(ctx)
 
@@ -33,8 +34,8 @@ resolver = localContext.ServiceManager\
 ctx = resolver.resolve(
     "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
 smgr = ctx.ServiceManager                # different service manager
-# print(smgr)
 
+'''
 def create_instance(name, with_context=False):
     if with_context:
         # instance = SM.createInstanceWithContext(name, CTX)
@@ -42,18 +43,20 @@ def create_instance(name, with_context=False):
     else:
         instance = SM.createInstance(name)
     return instance
+'''
 
 # Dispatch commands by application
 # https://wiki.documentfoundation.org/Development/DispatchCommands#Base_slots_.28basslots.29
 # @see https://wiki.documentfoundation.org/Macros/Python_Guide/Useful_functions
 # list of uno commands @see
 # https://github.com/LibreOffice/help/blob/master/helpers/uno-commands.csv
-
+'''
 def call_dispatch(doc, url, args=()):
     frame = doc.getCurrentController().getFrame()
     dispatch = create_instance('com.sun.star.frame.DispatchHelper')
     dispatch.executeDispatch(frame, url, '', 0, args)
     return
+'''
 
 # get the central desktop object
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
@@ -120,82 +123,26 @@ except:
 finally:
     pass
 
-# properties = PropertyValue()
-# properties.Name = 'ToPoint'
-# properties.Value ='C2'
-oProp = PropertyValue()
-oProp.Name = 'ToPoint'
-oProp.Value = 'C2'
-properties = (oProp,)
-
-# dispatch = smgr.createInstanceWithContext( "com.sun.star.frame.DispatchHelper", ctx)
-# localContext
-# dispatch = SM.createInstanceWithContext( \
-#     "com.sun.star.frame.DispatchHelper", localContext)
 
 dispatch = smgr.createInstanceWithContext( \
     "com.sun.star.frame.DispatchHelper", localContext)
 
 frame = doc.CurrentController.getFrame()
-# frame = doc.getCurrentFrame() # @see
 # https://forum.openoffice.org/en/forum/viewtopic.php?t=63933
-
-# dispatch.executeDispatch(frame, url, '', 0, args)
-# dispatch.executeDispatch(frame, ".uno:GoToCell", '', 0, properties)
-# call_dispatch(doc, ".uno:GoToCell", properties)
-# ref @see https://stackoverflow.com/a/41598520
-# dispatch.executeDispatch(doc.CurrentController, ".uno:GoToCell", '', 0, properties)
-# can not convert exception
-# dispatch.executeDispatch(doc.CurrentController, ".uno:GoToCell", "", 0, properties)
-# type is not supported
-# dispatch.executeDispatch(doc, ".uno:GoToCell", "", 0, properties)
-# value does not implement
-dispatch.executeDispatch(frame, ".uno:GoToCell", "", 0, properties)
-# conversion not possible!
+# @see https://forum.openoffice.org/en/forum/viewtopic.php?p=283539#p283539
+oProp = PropertyValue()
+oProp.Name = 'ToPoint'
+oProp.Value = 'C2'
+properties = (oProp,)
+dispatch.executeDispatch(frame, ".uno:GoToCell", "", 0, properties) # works
 
 # with no parameters
-# dispatch.executeDispatch(doc.CurrentController, ".uno:GoToCell", '', 0)
-
+dispatch.executeDispatch(frame, ".uno:DataFilterAutoFilter", '', 0, ()) # works
 doc.store()
-# doc.close() // TODO: FIXME:
+# doc.close() // FIXME:
 print("done.\a\n")
 sys.exit(0)
 
-# instead of
-# @see https://ask.libreoffice.org/t/formatting-data-cell-from-macro-in-calc/23740
-# doc = XSCRIPTCONTEXT.getDocument()
-try:
-    nl = numbers.addNew( "###0.000",  locale )
-except RuntimeException:
-    nl = numbers.queryKey("###0.000", locale, False)
-
-# https://wiki.documentfoundation.org/Macros/Python_Guide/Useful_functions#Call_dispatch
-
-# document = XSCRIPTCONTEXT.getDocument()
-# print(document)
-
-
-'''
-def call_dispatch(doc, url, args=()):
-    frame = doc.getCurrentController().getFrame()
-    # dispatch = create_instance('com.sun.star.frame.DispatchHelper')
-    # dispatch = smgr.createInstanceWithContext( 'com.sun.star.frame.DispatchHelper', ctx)
-    # dispatch = smgr.createInstance( 'com.sun.star.frame.DispatchHelper' )
-    dispatch.executeDispatch(frame, url, '', 0, args)
-    return
-'''
-
-active_sheet = doc.Sheets.getByName("RS-Daily")
-doc.CurrentController.setActiveSheet(active_sheet)
-the_range = active_sheet.getCellRangeByName("A1:AMJ1048576")
-the_range.Columns.OptimalWidth = True
-doc.store()
-the_range = active_sheet.getCellRangeByName("A1:AMJ1048576")
-doc.CurrentController.select(the_range)
-
-
-
-#call_dispatch(doc, ".uno:GoToCell", properties)
 # LO python path:
 #
 # Python Scripts Organization and Location
@@ -209,22 +156,6 @@ doc.CurrentController.select(the_range)
 #
 # Document macros
 #
-print("done.")
-sys.exit(0)
-
-
-
-
-# assume no more than 3000 listed.
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
-# look up the actual used area within the guess area
-cursor = active_sheet.createCursorByRange(guessRange)
-cursor.gotoEndOfUsedArea(False)
-cursor.gotoStartOfUsedArea(True)
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
-# print(guessRange.getDataArray())
-last_row = len(cursor.Rows)
-n_ticker = ( last_row - 2 ) + 1
 
 # oCell = doc.getCurrentSelection()
 # oCell.String = "oops" # // FIXME: only when get focused
