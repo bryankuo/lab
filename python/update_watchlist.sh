@@ -1,16 +1,22 @@
 #!/bin/bash
 
+# \param in  listed_taiex.txt
+# \param out watchlist.$DATE.txt
+
 # // FIXME: use DIR0 instead
 # wc -l $(readlink datafiles/listed_taiex.txt) datafiles/watchlist.txt
 # comm -13 datafiles/watchlist.txt $(readlink datafiles/listed_taiex.txt)
 # comm -13 (sort datafiles/watchlist.txt) (sort $(readlink datafiles/listed_taiex.txt))
 
 DATE=`date '+%Y%m%d'`
-shuf $(readlink datafiles/listed_taiex.txt) > ./datafiles/watchlist.$DATE.txt
-ln -sf datafiles/watchlist.$DATE.txt datafiles/taiex.watchlist.txt
-cp -v ./datafiles/watchlist.$DATE.txt ./datafiles/watchlist.txt
-ls -lt ./datafiles/listed_taiex.txt $(readlink datafiles/listed_taiex.txt) \
-    ./datafiles/watchlist.$DATE.txt ./datafiles/watchlist.txt
+DIR0="./datafiles"
+trash -v $DIR/watchlist.0.txt
+cp -v $DIR0/watchlist.txt $DIR/watchlist.0.txt
+shuf $(readlink $DIR0/listed_taiex.txt) > ./$DIR0/watchlist.$DATE.txt
+ln -sf $DIR0/watchlist.$DATE.txt $DIR0/taiex.watchlist.txt
+cp -v $DIR0/watchlist.$DATE.txt $DIR0/watchlist.txt
+ls -lt $DIR0/listed_taiex.txt $(readlink $DIR0/listed_taiex.txt) \
+    $DIR0/watchlist.$DATE.txt $DIR0/watchlist.txt
 exit 0
 
 # sort datafiles/watchlist.txt > watchlist
@@ -37,5 +43,3 @@ exit 0
 # ls -lt ./datafiles/listed_taiex.20240216.txt \
 #    ./datafiles/watchlist.$DATE.txt datafiles/taiex.watchlist.txt \
 #    ./datafiles/watchlist.txt
-
-exit 0

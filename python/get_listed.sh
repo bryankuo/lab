@@ -1,4 +1,6 @@
 #!/bin/bash
+# \param out $DIR0/listed_taiex.$DATE.txt
+# \param out soft link $DIR0/listed_taiex.txt
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 DATE=`date '+%Y%m%d'`
 DIR0="./datafiles"
@@ -24,6 +26,7 @@ TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP1 " looping end"
 echo -ne '\007'
+echo "to shuffle call update_watchlist.sh"
 exit 0
 
 # to combine latest trade symbol:
@@ -33,5 +36,3 @@ exit 0
 # cat watchlist.20231231.sorted.txt | xargs | tr " " "\n" | sort > watchlist.20231231.1631.txt
 # shuf watchlist.20231231.1631.txt > watchlist.20231231.1644.shuffled.txt
 #
-# to shuffle call update_watchlist.sh
-
