@@ -19,7 +19,10 @@ from com.sun.star.beans import PropertyValue
 yyyymmdd = sys.argv[1]
 
 # get the uno component context from the PyUNO runtime
-localContext = uno.getComponentContext()
+localContext = uno.getComponentContext() # works
+SM = localContext.getServiceManager()    # works
+# ctx = XSCRIPTCONTEXT.getComponentContext() # // FIXME:
+# print(ctx)
 
 # create the UnoUrlResolver
 resolver = localContext.ServiceManager\
@@ -29,7 +32,28 @@ resolver = localContext.ServiceManager\
 # connect to the running office
 ctx = resolver.resolve(
     "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
-smgr = ctx.ServiceManager
+smgr = ctx.ServiceManager                # different service manager
+# print(smgr)
+
+def create_instance(name, with_context=False):
+    if with_context:
+        # instance = SM.createInstanceWithContext(name, CTX)
+         instance = SM.createInstanceWithContext(name, localContext)
+    else:
+        instance = SM.createInstance(name)
+    return instance
+
+# Dispatch commands by application
+# https://wiki.documentfoundation.org/Development/DispatchCommands#Base_slots_.28basslots.29
+# @see https://wiki.documentfoundation.org/Macros/Python_Guide/Useful_functions
+# list of uno commands @see
+# https://github.com/LibreOffice/help/blob/master/helpers/uno-commands.csv
+
+def call_dispatch(doc, url, args=()):
+    frame = doc.getCurrentController().getFrame()
+    dispatch = create_instance('com.sun.star.frame.DispatchHelper')
+    dispatch.executeDispatch(frame, url, '', 0, args)
+    return
 
 # get the central desktop object
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
@@ -96,6 +120,42 @@ except:
 finally:
     pass
 
+# properties = PropertyValue()
+# properties.Name = 'ToPoint'
+# properties.Value ='C2'
+oProp = PropertyValue()
+oProp.Name = 'ToPoint'
+oProp.Value = 'C2'
+properties = (oProp,)
+
+# dispatch = smgr.createInstanceWithContext( "com.sun.star.frame.DispatchHelper", ctx)
+# localContext
+# dispatch = SM.createInstanceWithContext( \
+#     "com.sun.star.frame.DispatchHelper", localContext)
+
+dispatch = smgr.createInstanceWithContext( \
+    "com.sun.star.frame.DispatchHelper", localContext)
+
+frame = doc.CurrentController.getFrame()
+# frame = doc.getCurrentFrame() # @see
+# https://forum.openoffice.org/en/forum/viewtopic.php?t=63933
+
+# dispatch.executeDispatch(frame, url, '', 0, args)
+# dispatch.executeDispatch(frame, ".uno:GoToCell", '', 0, properties)
+# call_dispatch(doc, ".uno:GoToCell", properties)
+# ref @see https://stackoverflow.com/a/41598520
+# dispatch.executeDispatch(doc.CurrentController, ".uno:GoToCell", '', 0, properties)
+# can not convert exception
+# dispatch.executeDispatch(doc.CurrentController, ".uno:GoToCell", "", 0, properties)
+# type is not supported
+# dispatch.executeDispatch(doc, ".uno:GoToCell", "", 0, properties)
+# value does not implement
+dispatch.executeDispatch(frame, ".uno:GoToCell", "", 0, properties)
+# conversion not possible!
+
+# with no parameters
+# dispatch.executeDispatch(doc.CurrentController, ".uno:GoToCell", '', 0)
+
 doc.store()
 # doc.close() // TODO: FIXME:
 print("done.\a\n")
@@ -114,8 +174,6 @@ except RuntimeException:
 # document = XSCRIPTCONTEXT.getDocument()
 # print(document)
 
-# DispatchCommands
-# https://wiki.documentfoundation.org/Development/DispatchCommands#Base_slots_.28basslots.29
 
 '''
 def call_dispatch(doc, url, args=()):
@@ -135,14 +193,6 @@ doc.store()
 the_range = active_sheet.getCellRangeByName("A1:AMJ1048576")
 doc.CurrentController.select(the_range)
 
-properties = PropertyValue()
-properties.Name = 'ToPoint'
-properties.Value ='B7'
-
-dispatch = smgr.createInstanceWithContext( "com.sun.star.frame.DispatchHelper", ctx)
-frame = doc.getCurrentController().getFrame()
-# dispatch.executeDispatch(frame, url, '', 0, args)
-dispatch.executeDispatch(frame, ".uno:GoToCell", '', 0, properties)
 
 
 #call_dispatch(doc, ".uno:GoToCell", properties)
@@ -162,16 +212,7 @@ dispatch.executeDispatch(frame, ".uno:GoToCell", '', 0, properties)
 print("done.")
 sys.exit(0)
 
-# doc.Sheets.insertNewByName("外投同買列表",    1) # works
-# doc.Sheets.insertNewByName("外投同賣列表",    2)
-# doc.Sheets.insertNewByName("外資賣漲停",     3)
-# doc.Sheets.insertNewByName("外資買跌停",     4)
-doc.Sheets.insertNewByName("外資-大盤跌買入", 5)
-doc.Sheets.insertNewByName("外資-大盤漲賣出", 6)
-doc.Sheets.insertNewByName("外投同賣連2",     7)
-doc.Sheets.insertNewByName("外投同賣新增",    8)
-doc.Sheets.insertNewByName("外投同買新增",    9)
-doc.Sheets.insertNewByName("外投同買連2",    10)
+
 
 
 # assume no more than 3000 listed.

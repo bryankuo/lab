@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# another way to run python
+# another way to run python, add to path, execute from calc menu
 # @see http://tinyurl.com/48xp8dun
 # Where to save macros?
 # ~/Library/Application Support/LibreOffice/4/user/Scripts/python/
