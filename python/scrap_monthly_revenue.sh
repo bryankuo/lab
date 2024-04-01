@@ -48,7 +48,7 @@ exit 0 # to compare on daily bases
 # exclude "-" minus
 # find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -v "-"
 # find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -v "$DATE"
-# kifind . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | wc -l
+# find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/03" | wc -l
 # find . -type f -iname '20240309.csv' | xargs grep -rnp --color="auto" -e "113/02"  | grep -v "-" | wc -l
 # find . -type f -iname '20240?????.csv' | xargs grep -rnp --color="auto" -e "113/02" | cut -d ":" -f 1 | uniq | sort -r
 # find . -type f -iname '20240???.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -rnp --color="auto" -e "1236"
