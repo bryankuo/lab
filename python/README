@@ -120,6 +120,9 @@ fetch_volume_ratio.py: scrap volume ratio of last trade day.
 after_market.py: scrap all volume by date.
 after_market.sh: wrapper of after_market.py,
 revenue.py: scrap monthly revenue growth.
+scrap_monthly_revenue.sh: scripting scrap actions
+get_ticker_monthly_revenue.py: pick
+fetch_ticker_monthly_revenue.py: fetch
 create_ticker_list: create a list from watchlist file,
 httpbin.py: playground of httpbin,
 useragents.py: user agents global variables,
@@ -155,4 +158,4 @@ wrangle_df.py: exercise pandas dataframe merge functions
 ./uno/unload: re-organizing
 ./uno/unload/slice_last_high.py: count n days since last high
 ./uno/load: re-organizing
-./uno/load/addsheet: adding a sheet
+./uno/load/addsheet: adding a sheet, trigger macro, adding filter, move to cell

@@ -9,7 +9,6 @@
 
 if [ "$#" -lt 1 ]; then
     echo "usage: ./scrap_monthly_revenue.sh [yyyymmdd]"
-    echo "       and let safari allow Remote Automation"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
 
