@@ -5,7 +5,7 @@
 # \param in activity_watchlist.ods
 # \param in d1
 # \param in d0
-# \param out
+# \param out "ndays_high." + ts + ".csv", sorted by ticker ascending
 
 import sys, os, time
 

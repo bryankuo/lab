@@ -345,8 +345,9 @@ sys.exit(0)
 # https://histock.tw/stock/3105
 
 # borrow/菲神/標借 site:twse.com.tw / 標借證券明細表
+# count the # of borrowing, compare with that of yesterday
 # type 2
 # https://www.twse.com.tw/rwd/zh/borrow/BFIB8U?response=html # 上市
-# type 4
-# https://www.tpex.org.tw/web/stock/margin_trading/lend/lend_result.php?sd=113/03/15&ed=113/03/15&stkno=&s=0,asc,1&o=htm
+# type 4 ( input is required )
+# https://www.tpex.org.tw/web/stock/margin_trading/lend/lend_result.php?sd=113/04/01&ed=113/04/01&stkno=&s=0,asc,1&o=htm
 

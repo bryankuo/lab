@@ -35,29 +35,6 @@ ctx = resolver.resolve(
     "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext" )
 smgr = ctx.ServiceManager                # different service manager
 
-'''
-def create_instance(name, with_context=False):
-    if with_context:
-        # instance = SM.createInstanceWithContext(name, CTX)
-         instance = SM.createInstanceWithContext(name, localContext)
-    else:
-        instance = SM.createInstance(name)
-    return instance
-'''
-
-# Dispatch commands by application
-# https://wiki.documentfoundation.org/Development/DispatchCommands#Base_slots_.28basslots.29
-# @see https://wiki.documentfoundation.org/Macros/Python_Guide/Useful_functions
-# list of uno commands @see
-# https://github.com/LibreOffice/help/blob/master/helpers/uno-commands.csv
-'''
-def call_dispatch(doc, url, args=()):
-    frame = doc.getCurrentController().getFrame()
-    dispatch = create_instance('com.sun.star.frame.DispatchHelper')
-    dispatch.executeDispatch(frame, url, '', 0, args)
-    return
-'''
-
 # get the central desktop object
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
@@ -75,19 +52,27 @@ while doc is None:
     numbers = doc.NumberFormats # // FIXME: only when get focused, or touched
     locale = doc.CharLocale
 
+# instead of
+# @see https://ask.libreoffice.org/t/formatting-data-cell-from-macro-in-calc/23740
+try:
+    nl = numbers.addNew( "###0",  locale )
+    # nl2 = numbers.addNew( "###0.000",  locale )
+except RuntimeException:
+    nl = numbers.queryKey("###0", locale, False)
+    # nl2 = numbers.addNew( "###0.000",  locale )
 
 try:
     sheet_name = "20231211"
-    active_sheet = doc.Sheets.getByName(sheet_name)
+    sheet0 = doc.Sheets.getByName(sheet_name)
     hide_lst = ["C:I", "K:CB", "cD1"]
     for r in hide_lst:
-        the_range = active_sheet.getCellRangeByName(r)
+        the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
         the_range.Columns.IsVisible = False
 
-    opt_lst = ["A:B", "$j1", "cC1"]
+    opt_lst = ["A:B", "$j1", "BH1", "cC1"]
     for r in opt_lst:
-        the_range = active_sheet.getCellRangeByName(r)
+        the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
         the_range.Columns.IsVisible = True
         the_range.Columns.OptimalWidth = True
@@ -98,21 +83,50 @@ try:
     new_sheet.getCellRangeByName("$A1").String = "代  號"
     new_sheet.getCellRangeByName("$B1").String = "創新高天數"
 
+    guessRange = sheet0.getCellRangeByPosition(0, 1, 3, 3001)
+    cursor = sheet0.createCursorByRange(guessRange)
+    cursor.gotoEndOfUsedArea(False)
+    cursor.gotoStartOfUsedArea(True)
+    guessRange = sheet0.getCellRangeByPosition(0, 1, 0, len(cursor.Rows))
+    # print(guessRange.getDataArray())
+    last_row = len(cursor.Rows)
+    n_ticker = ( last_row - 2 ) + 1
+    print("sheet0 # ticker {}".format(n_ticker))
+
     # path0 = os.path.join(DIR0, nm0)
-    path0 = "./ndays_high.20240317.csv"
+    path0 = "./ndays_high." + yyyymmdd + ".csv"
     inf0 = open(path0, 'r')
     data = list(csv.reader(inf0, delimiter=':'))
     tkrs = [ x[0] for x in data ]
     ndays= [ x[1] for x in data ]
     checked  = [ 0 ] * len(tkrs)
-    idx = 0; i = 2
+    idx = 0; i = 2; start0 = 2; missed = 0
     for tkr in tkrs:
         if ( 0 < idx and 4 == len(tkr) ):
-            new_sheet.getCellRangeByName("$A"+str(i)).Value = int(tkr)
+            tkr1 = int(tkr)
+            new_sheet.getCellRangeByName("$A"+str(i)).Value = tkr1
             new_sheet.getCellRangeByName("$B"+str(i)).Value = ndays[idx]
-            # print("{} {}\n".format(i, ndays))
-            i += 1;
-        idx += 1;
+            found = False
+            for i0 in range(start0, last_row+1):
+                tkr0 = int(sheet0.getCellRangeByName("$A"+str(i0)).Value)
+                print("idx {:0>4} tkr1 {:0>4} i0 {:0>4} tkr0 {:0>4}".format(idx, tkr1, i0, tkr0))
+                if ( checked[idx] == 0 and tkr0 == tkr1 ):
+                    found = True
+                    break
+            if ( found ):
+                cell0 = sheet0.getCellRangeByName("$Cc"+str(i0))
+                cell0.NumberFormat = nl
+                cell0.Value = ndays[idx] # float(quot[j])
+                sheet0.getCellRangeByName("$BH"+str(i0)).String \
+                    = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
+                checked[idx] = 1; start0 += 1;
+            else:
+                print("idx {:0>4} i0 {:0>4} tkr1 {:0>4} not found" \
+                    .format(idx, i0, tkr1 ) )
+                missed += 1
+            i += 1
+        idx += 1
+    # // TODO: faster way pyuno csv to sheet ?
 
 except:
     # traceback.format_exception(*sys.exc_info())
@@ -123,7 +137,6 @@ except:
 finally:
     pass
 
-
 dispatch = smgr.createInstanceWithContext( \
     "com.sun.star.frame.DispatchHelper", localContext)
 
@@ -132,14 +145,25 @@ frame = doc.CurrentController.getFrame()
 # @see https://forum.openoffice.org/en/forum/viewtopic.php?p=283539#p283539
 oProp = PropertyValue()
 oProp.Name = 'ToPoint'
-oProp.Value = 'C2'
+oProp.Value = '$a2'
 properties = (oProp,)
 dispatch.executeDispatch(frame, ".uno:GoToCell", "", 0, properties) # works
 
 # with no parameters
-dispatch.executeDispatch(frame, ".uno:DataFilterAutoFilter", '', 0, ()) # works
+# dispatch.executeDispatch(frame, ".uno:DataFilterAutoFilter", '', 0, ()) # works
+
+# Dispatch commands by application
+# https://wiki.documentfoundation.org/Development/DispatchCommands#Base_slots_.28basslots.29
+# @see https://wiki.documentfoundation.org/Macros/Python_Guide/Useful_functions
+# list of uno commands @see
+# https://github.com/LibreOffice/help/blob/master/helpers/uno-commands.csv
+
+# dispatch.executeDispatch(frame, ".uno:SortDescending", "", 0, ()) # works
+
 doc.store()
 # doc.close() // FIXME:
+# // TODO: delete new_sheet
+
 print("done.\a\n")
 sys.exit(0)
 
@@ -160,7 +184,7 @@ sys.exit(0)
 # oCell = doc.getCurrentSelection()
 # oCell.String = "oops" # // FIXME: only when get focused
 
-# columns = active_sheet.getColumns()
+# columns = sheet0.getColumns()
 # column = columns.getByName("A") # one column
 '''
 sys.exit(0)
