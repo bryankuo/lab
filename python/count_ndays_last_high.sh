@@ -57,4 +57,9 @@ python3 $DIR1/slice_last_high.py $d1 $d0
 
 $DIR4/python "$HOME/github/python/uno/load/addsheet.py" $DATE
 
+# starting from 20240116
+# ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | wc -l | xargs
+
+# d1=20240119; d0=20240118 // TODO: 20 -> d1
+
 exit 0

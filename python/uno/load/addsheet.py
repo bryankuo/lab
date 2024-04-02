@@ -109,7 +109,9 @@ try:
             found = False
             for i0 in range(start0, last_row+1):
                 tkr0 = int(sheet0.getCellRangeByName("$A"+str(i0)).Value)
-                print("idx {:0>4} tkr1 {:0>4} i0 {:0>4} tkr0 {:0>4}".format(idx, tkr1, i0, tkr0))
+                if ( idx % 100 == 0 ):
+                    print("idx {:0>4} tkr1 {:0>4} i0 {:0>4} tkr0 {:0>4}" \
+                        .format(idx, tkr1, i0, tkr0))
                 if ( checked[idx] == 0 and tkr0 == tkr1 ):
                     found = True
                     break
@@ -159,8 +161,12 @@ dispatch.executeDispatch(frame, ".uno:GoToCell", "", 0, properties) # works
 # https://github.com/LibreOffice/help/blob/master/helpers/uno-commands.csv
 
 # dispatch.executeDispatch(frame, ".uno:SortDescending", "", 0, ()) # works
+# find . -type f -iname '*.py' | xargs grep -rnp --color="auto" -e "uno command" -e "calc menu" -e "macro" -e "executeDispatch"
 
+doc.Sheets.removeByName("創新高天數."+yyyymmdd)
 doc.store()
+# ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | tail -n 3
+
 # doc.close() // FIXME:
 # // TODO: delete new_sheet
 
