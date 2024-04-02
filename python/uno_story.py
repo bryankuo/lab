@@ -36,8 +36,8 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
 # access the current writer document
 model = desktop.getCurrentComponent()
-# active_sheet = model.CurrentController.ActiveSheet
-active_sheet = model.Sheets.getByName("20231211")
+# sheet0 = model.CurrentController.ActiveSheet
+sheet0 = model.Sheets.getByName("20231211")
 '''
 sheet = model.Sheets.getByName("RS ranking") # works
 # sheet = model.Sheets.getByIndex(2)         # works
@@ -46,12 +46,12 @@ cell_q.Value = 8
 '''
 
 # assume no more than 3000 listed.
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, 3000)
 # look up the actual used area within the guess area
-cursor = active_sheet.createCursorByRange(guessRange)
+cursor = sheet0.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 last_row = len(cursor.Rows)
 
@@ -71,7 +71,7 @@ addr_bounty   = "AG1"
 new_story = ""
 
 def set_value():
-    cell_ticker = active_sheet.getCellRangeByName(addr_story)
+    cell_ticker = sheet0.getCellRangeByName(addr_story)
     cell_ticker.CellBackColor = 0xFFFF00
     prev_story  = cell_ticker.String
     if 0 < len(prev_story) :
@@ -84,14 +84,14 @@ def set_value():
     time.sleep(.3)
     cell_ticker.CellBackColor = 0xFFFFFF
     # new_story = cell_ticker.String
-    cell_q = active_sheet.getCellRangeByName(addr_q)
+    cell_q = sheet0.getCellRangeByName(addr_q)
     if ( len(cell_q.String) <= 0 ):
         cell_q.Value = 0
 
-cellq = active_sheet.getCellRangeByName(addr_q)
+cellq = sheet0.getCellRangeByName(addr_q)
 for i in range(2, last_row):
     addr_x = "A" + str(i)
-    cellx = active_sheet.getCellRangeByName(addr_x)
+    cellx = sheet0.getCellRangeByName(addr_x)
     if ( cellx.String == ticker ):
         addr_q        = "J"  + str(i)
         addr_story    = "AD" + str(i)
@@ -104,14 +104,14 @@ if ( addr_q == "J1" ):
     addr_q        = "J"  + str( last_row + 1 )
     addr_story    = "AD" + str( last_row + 1 )
     addr_bounty   = "AG" + str( last_row + 1 )
-    cell_ticker = active_sheet.getCellRangeByName(addr_x)
+    cell_ticker = sheet0.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
 
 set_value()
 
-# cellq = active_sheet.getCellRangeByName(addr_q)
+# cellq = sheet0.getCellRangeByName(addr_q)
 # cellq.String = quote
-cellb = active_sheet.getCellRangeByName(addr_bounty)
+cellb = sheet0.getCellRangeByName(addr_bounty)
 cellb.Value = 1
 
 out_of_spec = 0

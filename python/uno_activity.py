@@ -39,15 +39,15 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
 # access the current writer document
 model = desktop.getCurrentComponent()
-active_sheet = model.Sheets.getByName("20231211")
+sheet0 = model.Sheets.getByName("20231211")
 
 # assume no more than 3000 listed.
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, 3000)
 # look up the actual used area within the guess area
-cursor = active_sheet.createCursorByRange(guessRange)
+cursor = sheet0.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 last_row = len(cursor.Rows)
 
@@ -60,19 +60,19 @@ addr_retail = "E1"
 addr_5dtotal = "F1"
 
 def set_value():
-    cell_ticker = active_sheet.getCellRangeByName(addr_qdi)
+    cell_ticker = sheet0.getCellRangeByName(addr_qdi)
     cell_ticker.String = qdi
-    cell_ticker = active_sheet.getCellRangeByName(addr_fund)
+    cell_ticker = sheet0.getCellRangeByName(addr_fund)
     cell_ticker.String = fund
-    cell_ticker = active_sheet.getCellRangeByName(addr_retail)
+    cell_ticker = sheet0.getCellRangeByName(addr_retail)
     cell_ticker.String = retail
-    cell_ticker = active_sheet.getCellRangeByName(addr_5dtotal)
+    cell_ticker = sheet0.getCellRangeByName(addr_5dtotal)
     cell_ticker.String = d5total
 
-cellq = active_sheet.getCellRangeByName(addr_q)
+cellq = sheet0.getCellRangeByName(addr_q)
 for i in range(2, last_row):
     addr_x = "A" + str(i)
-    cellx = active_sheet.getCellRangeByName(addr_x)
+    cellx = sheet0.getCellRangeByName(addr_x)
     if ( cellx.String == ticker ):
         addr_q = "J" + str(i)
         addr_qdi = "C" + str(i)
@@ -89,13 +89,13 @@ if ( addr_q == "J1" ):
     addr_retail = "E" + str( last_row + 1 )
     addr_5dtotal = "F" + str( last_row + 1 )
     # addr_stalk = "AE" + str( last_row + 1 )
-    # cell_ticker = active_sheet.getCellRangeByName(addr_x)
+    # cell_ticker = sheet0.getCellRangeByName(addr_x)
     # cell_ticker.String = ticker
 
 set_value()
 
 out_of_spec = 0
-# cell_stalk = active_sheet.getCellRangeByName(addr_stalk)
+# cell_stalk = sheet0.getCellRangeByName(addr_stalk)
 # if ( out_of_spec ):
 #     cell_stalk.Value = 1
 # else:

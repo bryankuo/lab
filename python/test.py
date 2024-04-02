@@ -49,12 +49,12 @@ def context():
     # set global variables for context
     global desktop
     global model
-    global active_sheet
+    global sheet0
     # get the doc from the scripting context
     # which is made available to all scripts
     desktop = XSCRIPTCONTEXT.getDesktop()
     model = desktop.getCurrentComponent()
-    active_sheet = model.Sheets.getByName("20231211")
+    sheet0 = model.Sheets.getByName("20231211")
 '''
 
 # context()

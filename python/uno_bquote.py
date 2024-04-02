@@ -20,9 +20,7 @@ DIR0="./datafiles/taiex/after.market"
 fname0 = yyyymmdd + '.csv' # // sorted by after_market.sh
 path0 = os.path.join(DIR0, fname0)
 
-# sheet_name = "20231211"
 sheet_name = "20231211"
-print(sheet_name)
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext()
@@ -61,7 +59,7 @@ try:
 except RuntimeException:
     nl = numbers.queryKey("###0.00", locale, False)
 
-active_sheet = doc.Sheets.getByName(sheet_name) # interchangable
+sheet0 = doc.Sheets.getByName(sheet_name) # interchangable
 
 # take 53:20 to complete
 # now  00:42 by sorted data
@@ -73,12 +71,12 @@ active_sheet = doc.Sheets.getByName(sheet_name) # interchangable
 UPTD = "$BH"
 
 # assume no more than 3000 listed.
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, 3000)
 # look up the actual used area within the guess area
-cursor = active_sheet.createCursorByRange(guessRange)
+cursor = sheet0.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 n_ticker = len(cursor.Rows) - 1
 last_row = len(cursor.Rows)
@@ -116,17 +114,17 @@ data = list(csv.reader(infile0, delimiter=':'))
 # print(data[2][2])
 # pprint(data)
 
-# cell5 = active_sheet.getCellRangeByName(FLEN)
+# cell5 = sheet0.getCellRangeByName(FLEN)
 # cell5.Value = len(ilist)
 infile0.close()
 
-# cell = active_sheet.getCellRangeByName("$BI1")
+# cell = sheet0.getCellRangeByName("$BI1")
 # print( str(cell.getCellAddress().Column) + ", " + str(cell.getCellAddress().Row) )
 # print( cell.getCellAddress().Sheet )
 # print( cell.getCellAddress() )
 # print( cell.Formula )
 # cell.Value = len(doc.getSheets()) # OK
-columns = active_sheet.getColumns()
+columns = sheet0.getColumns()
 # cell.Value = len( columns )
 column = columns.getByName("B")
 # column.Width = 3500 # # 1.3590″, works, .7875" = 2000
@@ -136,11 +134,11 @@ column = columns.getByName("J")
 column.OptimalWidth = True
 
 
-the_range = active_sheet.getCellRangeByName("C:I")
+the_range = sheet0.getCellRangeByName("C:I")
 the_range.Columns.IsVisible = False
-the_range = active_sheet.getCellRangeByName("K:Bg")
+the_range = sheet0.getCellRangeByName("K:Bg")
 the_range.Columns.IsVisible = False
-the_range = active_sheet.getCellRangeByName("bI:$BL")
+the_range = sheet0.getCellRangeByName("bI:$BL")
 the_range.Columns.IsVisible = False
 
 # @see https://stackoverflow.com/a/72261886
@@ -155,7 +153,7 @@ try:
     checked  = [ 0 ] * len(tkrs)
     start0=2; start1 = 0; missed = 0
     for i in range(start0, len(cursor.Rows)+1):
-        tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
+        tkr = sheet0.getCellRangeByName("$A"+str(i)).String
         found = False
         for j in range(start1, len(tkrs)):
             tkr0 = tkrs[j]; q0 = closes[j]
@@ -164,10 +162,10 @@ try:
                 found = True
                 break
         if ( found ):
-            cell = active_sheet.getCellRangeByName("$J"+str(i))
+            cell = sheet0.getCellRangeByName("$J"+str(i))
             cell.NumberFormat = nl
             cell.Value = closes[j]
-            cell = active_sheet.getCellRangeByName(UPTD+str(i))
+            cell = sheet0.getCellRangeByName(UPTD+str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1; start0 = i + 1; start1 = j + 1
             # // FIXME: some in list but not found in spreadsheet -> add one row
@@ -191,14 +189,14 @@ try:
             print("add {:>4} to spreadsheet".format(tkr))
             # new row in spreadsheet
             last_row += 1
-            cell = active_sheet.getCellRangeByName("$A"+str(last_row))
+            cell = sheet0.getCellRangeByName("$A"+str(last_row))
             cell.Value = tkr
-            guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
+            guessRange = sheet0.getCellRangeByPosition(0, 2, 0, 3000)
             # look up the actual used area within the guess area
-            cursor = active_sheet.createCursorByRange(guessRange)
+            cursor = sheet0.createCursorByRange(guessRange)
             cursor.gotoEndOfUsedArea(False)
             cursor.gotoStartOfUsedArea(True)
-            guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+            guessRange = sheet0.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
             # print(guessRange.getDataArray())
             n_ticker = len(cursor.Rows) - 1
             last_row = len(cursor.Rows)
@@ -224,7 +222,7 @@ finally:
 t1 = time.time()
 # print("{:>.0f} nanoseconds".format(t1-t0))
 # print("{:,} nanoseconds".format(t1-t0))
-# cell0 = active_sheet.getCellRangeByName(TIKR)
+# cell0 = sheet0.getCellRangeByName(TIKR)
 # cell0.String = t_start
 # column.Width = 5000 # works .7875" = 2000
 print("t_start: " + t_start)
@@ -232,7 +230,7 @@ print("t_start: " + t_start)
 # @see https://stackoverflow.com/a/27780763
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
-# cell0 = active_sheet.getCellRangeByName(POS)
+# cell0 = sheet0.getCellRangeByName(POS)
 # cell0.String = "{:0>2}:{:0>2}:{:05.3f}".format(int(hours),int(minutes),seconds)
 print( "{:0>2}:{:0>2}:{:05.3f}".format(int(hours),int(minutes),seconds) )
 column = columns.getByName("BM")

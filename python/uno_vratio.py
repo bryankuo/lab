@@ -83,15 +83,14 @@ try:
 except RuntimeException:
     nl = numbers.queryKey("###0.000", locale, False)
 
-# sheet_name = "20231211"
 sheet_name = "20231211"
-active_sheet = doc.Sheets.getByName(sheet_name)
+sheet0 = doc.Sheets.getByName(sheet_name)
 
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
-cursor = active_sheet.createCursorByRange(guessRange)
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, 3000)
+cursor = sheet0.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 n_ticker = len(cursor.Rows) - 1
 
 VR="BI"
@@ -105,20 +104,20 @@ t0 = time.time()
 t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
-    columns = active_sheet.getColumns()
+    columns = sheet0.getColumns()
     hide_lst = ["C:F", "K:BC", "BE:BH", "bL:$Bw"]
     for r in hide_lst:
-        the_range = active_sheet.getCellRangeByName(r)
+        the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
         the_range.Columns.IsVisible = False
 
     # @see http://surl.li/nottj
 
     i = 1
-    active_sheet.getCellRangeByName(  VR+str(i)).String = "V. ratio"
-    active_sheet.getCellRangeByName(  VR+str(i)).NumberFormat = nl
-    active_sheet.getCellRangeByName( VOL+str(i)).String = "Vdt1.(" + dt1 + ")"
-    active_sheet.getCellRangeByName(LAST+str(i)).String = "Vdt0.(" + dt0 + ")"
+    sheet0.getCellRangeByName(  VR+str(i)).String = "V. ratio"
+    sheet0.getCellRangeByName(  VR+str(i)).NumberFormat = nl
+    sheet0.getCellRangeByName( VOL+str(i)).String = "Vdt1.(" + dt1 + ")"
+    sheet0.getCellRangeByName(LAST+str(i)).String = "Vdt0.(" + dt0 + ")"
 
     tkrs = [ x[0] for x in data ]
     rtos = [ x[1] for x in data ]
@@ -130,7 +129,7 @@ try:
 
     start0 = 2; start1 = 0; missed = 0
     for i in range(start0, len(cursor.Rows)+1):
-        tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
+        tkr = sheet0.getCellRangeByName("$A"+str(i)).String
         found = False
         for j in range(start1, len(tkrs)):
             # print("i {:0>4} j {:0>4} tkr {:0>4}".format(i, j, tkr))
@@ -140,19 +139,19 @@ try:
         if ( found ):
             print("i {:0>4} j {:0>4} tkr {:0>4} update" \
                 .format(i, j, tkr))
-            # cell = active_sheet.getCellRangeByName(VR+str(i))
+            # cell = sheet0.getCellRangeByName(VR+str(i))
             # cell.NumberFormat = nl
             # if ( rtos[j] != "n/a" ):
             #     cell.Value = rtos[j]
             # else:
             #     cell.String = rtos[j]
-            active_sheet.getCellRangeByName(VOL+str(i)).Value  = vol[j]
-            cell = active_sheet.getCellRangeByName(LAST+str(i))
+            sheet0.getCellRangeByName(VOL+str(i)).Value  = vol[j]
+            cell = sheet0.getCellRangeByName(LAST+str(i))
             if ( last[j] != "n/a" ):
                 cell.Value = last[j]
             else:
                 cell.String = last[j]
-            cell = active_sheet.getCellRangeByName("$BH" + str(i))
+            cell = sheet0.getCellRangeByName("$BH" + str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1; start0 = i + 1; start1 = j + 1
         else:
@@ -165,17 +164,17 @@ try:
     # // FIXME: possible new in data, therefore search
     print("# file {:>4}, {:>4} missed, ".format(len(tkrs)-1, missed)) # // FIXME:
 
-    the_range = active_sheet.getCellRangeByName("BI:BK")
+    the_range = sheet0.getCellRangeByName("BI:BK")
     doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = True
     the_range.Columns.OptimalWidth = True
 
-    the_range = active_sheet.getCellRangeByName("G:H")
+    the_range = sheet0.getCellRangeByName("G:H")
     doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = True
     the_range.Columns.OptimalWidth = True
 
-    the_range = active_sheet.getCellRangeByName("BY1")
+    the_range = sheet0.getCellRangeByName("BY1")
     doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = True
     the_range.Columns.OptimalWidth = True

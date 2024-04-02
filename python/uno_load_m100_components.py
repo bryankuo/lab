@@ -80,15 +80,14 @@ try:
 except RuntimeException:
     nl = numbers.queryKey("###0.000", locale, False)
 
-# sheet_name = "20231211"
 sheet_name = "20231211"
-active_sheet = doc.Sheets.getByName(sheet_name)
+sheet0 = doc.Sheets.getByName(sheet_name)
 
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
-cursor = active_sheet.createCursorByRange(guessRange)
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, 3000)
+cursor = sheet0.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 n_ticker = len(cursor.Rows) - 1
 
 LAST="BK"
@@ -100,10 +99,10 @@ t0 = time.time()
 t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
-    columns = active_sheet.getColumns()
+    columns = sheet0.getColumns()
     hide_lst = ["C:$By"]
     for r in hide_lst:
-        the_range = active_sheet.getCellRangeByName(r)
+        the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
         the_range.Columns.IsVisible = False
 
@@ -116,7 +115,7 @@ try:
     # brute force for 100 items, components list not sorted
     start0 = 2; start1 = 0; missed = 0
     for i in range(start0, len(cursor.Rows)+1):
-        tkr = active_sheet.getCellRangeByName("$A"+str(i)).String
+        tkr = sheet0.getCellRangeByName("$A"+str(i)).String
         found = False
         for j in range(start1, len(tkrs)):
             if ( checked[j] == 0 and tkrs[j] == tkr ):
@@ -125,8 +124,8 @@ try:
         if ( found ):
             print("i {:0>4} j {:0>4} tkr {:0>4} update" \
                 .format(i, j, tkr))
-            active_sheet.getCellRangeByName("CB"+str(i)).String = weight[j]
-            cell = active_sheet.getCellRangeByName("$BH" + str(i))
+            sheet0.getCellRangeByName("CB"+str(i)).String = weight[j]
+            cell = sheet0.getCellRangeByName("$BH" + str(i))
             cell.String = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
             checked[j] = 1
             start0 = i + 1; start1 = 0
@@ -142,7 +141,7 @@ try:
 
     opt_lst = ["A:B", "BZ:CB"]
     for r in opt_lst:
-        the_range = active_sheet.getCellRangeByName(r)
+        the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
         the_range.Columns.OptimalWidth = True
 

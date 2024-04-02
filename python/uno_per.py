@@ -40,15 +40,15 @@ desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
 # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
 # access the current writer document
 model = desktop.getCurrentComponent()
-active_sheet = model.Sheets.getByName("20231211")
+sheet0 = model.Sheets.getByName("20231211")
 
 # assume no more than 3000 listed.
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, 3000)
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, 3000)
 # look up the actual used area within the guess area
-cursor = active_sheet.createCursorByRange(guessRange)
+cursor = sheet0.createCursorByRange(guessRange)
 cursor.gotoEndOfUsedArea(False)
 cursor.gotoStartOfUsedArea(True)
-guessRange = active_sheet.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
+guessRange = sheet0.getCellRangeByPosition(0, 2, 0, len(cursor.Rows))
 # print(guessRange.getDataArray())
 last_row = len(cursor.Rows)
 
@@ -62,21 +62,21 @@ addr_per_peer = "R1"
 addr_bounty   = "AG1"
 
 def set_value():
-    cell_ticker = active_sheet.getCellRangeByName(addr_q)
+    cell_ticker = sheet0.getCellRangeByName(addr_q)
     cell_ticker.String = quote
-    cell_ticker = active_sheet.getCellRangeByName(addr_per)
+    cell_ticker = sheet0.getCellRangeByName(addr_per)
     cell_ticker.String = per
-    cell_ticker = active_sheet.getCellRangeByName(addr_per_h52)
+    cell_ticker = sheet0.getCellRangeByName(addr_per_h52)
     cell_ticker.String = per_hi52
-    cell_ticker = active_sheet.getCellRangeByName(addr_per_l52)
+    cell_ticker = sheet0.getCellRangeByName(addr_per_l52)
     cell_ticker.String = per_lo52
-    cell_ticker = active_sheet.getCellRangeByName(addr_per_peer)
+    cell_ticker = sheet0.getCellRangeByName(addr_per_peer)
     cell_ticker.String = per_peer
 
-cellq = active_sheet.getCellRangeByName(addr_q)
+cellq = sheet0.getCellRangeByName(addr_q)
 for i in range(2, last_row):
     addr_x = "A" + str(i)
-    cellx = active_sheet.getCellRangeByName(addr_x)
+    cellx = sheet0.getCellRangeByName(addr_x)
     if ( cellx.String == ticker ):
         addr_q        = "J" + str(i)
         addr_per      = "O" + str(i)
@@ -95,17 +95,17 @@ if ( addr_q == "J1" ):
     addr_per_l52  = "Q"  + str( last_row + 1 )
     addr_per_peer = "R"  + str( last_row + 1 )
     addr_bounty   = "AG" + str( last_row + 1 )
-    cell_ticker = active_sheet.getCellRangeByName(addr_x)
+    cell_ticker = sheet0.getCellRangeByName(addr_x)
     cell_ticker.String = ticker
 
 set_value()
 
-cellq = active_sheet.getCellRangeByName(addr_q)
+cellq = sheet0.getCellRangeByName(addr_q)
 cellq.String = quote
 cellq.CellBackColor = 0xFFFF00
 time.sleep(.3)
 cellq.CellBackColor = 0xFFFFFF
-cellb = active_sheet.getCellRangeByName(addr_bounty)
+cellb = sheet0.getCellRangeByName(addr_bounty)
 cellb.Value = 1
 
 out_of_spec = 0
