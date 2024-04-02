@@ -61,6 +61,7 @@ range52w.py: get quote, name, 52w range, and percent% of a ticker.
 status.sh: generate activity, per, range52w by listed type.
 uno.py: libreoffice integration.
 web_search.py: launch all web page search.
+borrowing_daily.py: open pages.
 a905_component.py: get all A905 index components.
 price_tags.py: show price tags on daily base.
 taxid.py: find tax id by ticker and title.
