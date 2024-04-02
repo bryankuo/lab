@@ -62,7 +62,7 @@ sheet0 = doc.Sheets.getByName(sheet_name)
 columns = sheet0.getColumns()
 columns.IsVisible = False # all hide
 # columns = ["C1:F3000", "I1:I3000", "BF1:BF3000", "K1:BG3000", "$BL1:BW3000"]
-columns = ["A:B", "G:J", "BD1", "BI:BK", "BX1"]
+columns = ["A:B", "G:J", "I1", "BD1", "BI:BK", "BX1"]
 for cols in columns:
     the_range = sheet0.getCellRangeByName(cols)
     doc.CurrentController.select(the_range)
@@ -103,8 +103,9 @@ for i in range(start0, len(cursor.Rows)+1):
             found = True
             break
     if ( found ):
-        print("i {:0>4} j {:0>4} tkr {:0>4}" \
-            .format(i, j, tkr))
+        if ( i % 100 == 0 ):
+            print("i {:0>4} j {:0>4} tkr {:0>4}" \
+                .format(i, j, tkr))
         cell = sheet0.getCellRangeByName("$J"+str(i))
         cell.NumberFormat = nl
         cell.Value = float(quot[j])
