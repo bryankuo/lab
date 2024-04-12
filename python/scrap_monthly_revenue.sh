@@ -45,10 +45,11 @@ tput bel
 exit 0 # to compare on daily bases
 # monthly_revenue$ find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02"
 # cd datafiles/taiex/monthly_revenue
+# find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/03" | wc -l | xargs
 # exclude "-" minus
 # find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -v "-"
 # find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -v "$DATE"
-# find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/03" | wc -l
+#
 # find . -type f -iname '20240309.csv' | xargs grep -rnp --color="auto" -e "113/02"  | grep -v "-" | wc -l
 # find . -type f -iname '20240?????.csv' | xargs grep -rnp --color="auto" -e "113/02" | cut -d ":" -f 1 | uniq | sort -r
 # find . -type f -iname '20240???.csv' | xargs grep -rnp --color="auto" -e "113/02" | grep -rnp --color="auto" -e "1236"

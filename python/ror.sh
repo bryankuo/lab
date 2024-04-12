@@ -1,18 +1,20 @@
 #!/bin/bash
 
-# ./ror.sh [fetching|figuring] [yyyymmdd]
+# ./ror.sh [fetching|figuring]
 # 1. scraping ror from a list,
 # 2. get twse as benchmark
 # 3. for each fetched html, generate rs into csv for calc.
 #
-# \param in 0: net, 1:file
-# \param in bountylist.txt
+# \param in  0: net, 1:file
+# \param in  bountylist.txt
+# \param out $DIR1/ror.[0-9][0-9][0-9][0-9].html (fetching)
+# \param out $DIR1/log.txt (fetching)
 # \param out OUTF0 ror.YYYYMMDD.csv
 # \param out  rs.YYYYMMDD.csv
 # return
 
 if [ "$#" -lt 1 ]; then
-    echo "usage: ./ror.sh [fetching|figuring] [yyyymmdd]"
+    echo "usage: ./ror.sh [fetching|figuring]"
     echo "       and let safari allow Remote Automation"
     exit 22 # @see https://stackoverflow.com/a/50405954
 fi
@@ -24,12 +26,11 @@ mkdir -p $DIR0
 
 if [ "$#" -eq 1 ]; then
     DATE=`date '+%Y%m%d'`
-    DIR1="$DIR0/$DATE" # to archive *.html
-    mkdir -p $DIR1
 elif [ "$#" -eq 2 ]; then
     DATE=$2
-    DIR1="$DIR0/$DATE" # to archive *.html
 fi
+DIR1="$DIR0/$DATE" # to archive *.html, by date
+mkdir -p $DIR1
 
 OUTF0="$DIR0/ror.$DATE.csv"
 OUTF1="$DIR0/rs.$DATE.csv"
