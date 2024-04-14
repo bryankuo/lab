@@ -28,8 +28,15 @@ fname = ticker + ".html"
 h_path = os.path.join(DIR1, fname)
 
 # gen by scrap_monthly_revenue.sh, then append one line at a time
-mr_fname = yyyymmdd + ".0.csv"
-m_path  = os.path.join(DIR0, mr_fname)
+mr_fname   = yyyymmdd + ".0.csv"
+m_path     = os.path.join(DIR0, mr_fname)
+
+mc3i_fname = yyyymmdd + ".0.csv"
+mc3i_path  = os.path.join(DIR0, mc3i_fname)
+
+yc3i_fname = yyyymmdd + ".0.csv"
+yc3i_path  = os.path.join(DIR0, yc3i_fname)
+
 q = open(h_path)
 soup = BeautifulSoup(q, 'html.parser') # // FIXME: chinese encoding
 
@@ -48,16 +55,43 @@ mr = rows[6] \
     .find_all('td')[1].text.strip().replace(',', '')
 # print("{}".format(mr))
 
-momp = rows[6] \
+momp0 = rows[6] \
     .find_all('td')[2].text.strip().replace(',', '') # .replace('%', '')
-# print("{}".format(momp))
+# print("{}".format(momp0))
 
-yoyp = rows[6] \
+yoyp0 = rows[6] \
     .find_all('td')[4].text.strip().replace(',', '') # .replace('%', '')
-# print("{}".format(yoyp))
+# print("{}".format(yoyp0))
+
+momp1 = rows[7] \
+    .find_all('td')[2].text.strip().replace(',', '')
+yoyp1 = rows[7] \
+    .find_all('td')[4].text.strip().replace(',', '')
+
+momp2 = rows[8] \
+    .find_all('td')[2].text.strip().replace(',', '')
+yoyp2 = rows[8] \
+    .find_all('td')[4].text.strip().replace(',', '')
 
 ofile = open(m_path, 'a')
-ofile.write(ticker+":"+name+":"+ym+":"+momp+":"+yoyp+":"+mr+"\n")
+ofile.write(ticker+":"+name+":"+ym+":"+momp0+":"+yoyp0+":"+mr+"\n")
 ofile.close()
+
+# // FIXME: mom ' '
+m2 = float(momp2.replace('%',''))
+m1 = float(momp1.replace('%',''))
+m0 = float(momp0.replace('%',''))
+if ( m2 <= m1 and m1 <= m0 ):
+    ofile = open(mc3i_path, 'a')
+    ofile.write(ticker+":"+name+":"+momp0+":"+momp1+":"+momp2+"\n")
+    ofile.close()
+
+y2 = float(yoyp2.replace('%',''))
+y1 = float(yoyp1.replace('%',''))
+y0 = float(yoyp0.replace('%',''))
+if ( y2 <= y1 and y1 <= y0 ):
+    ofile = open(yc3i_path, 'a')
+    ofile.write(ticker+":"+name+":"+yoyp0+":"+yoyp1+":"+yoyp2+"\n")
+    ofile.close()
 
 sys.exit(0)
