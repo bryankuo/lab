@@ -63,6 +63,7 @@ uno.py: libreoffice integration.
 web_search.py: launch all web page search.
 borrowing_daily.py: open pages.
 a905_component.py: get all A905 index components.
+gretai50.txt: scrap gretai50 components.
 price_tags.py: show price tags on daily base.
 taxid.py: find tax id by ticker and title.
 top150.py: get top 150 market value.

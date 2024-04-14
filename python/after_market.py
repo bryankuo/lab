@@ -14,18 +14,10 @@ import sys, requests, datetime, time, numpy, random, csv, urllib
 import os, errno
 # import urllib.parse
 from bs4 import BeautifulSoup
-'''
-from selenium import webdriver
-from selenium.common.exceptions import SessionNotCreatedException
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
-'''
 # // TODO: if selenium, click anchor of 1st th
 # of 1st tr of table CPHB1_gv, twice, to sort by ticker ascend
 from timeit import default_timer as timer
-from datetime import timedelta,datetime
+from datetime import timedelta, datetime
 from pprint import pprint
 from array import *
 sys.path.append(os.getcwd())
@@ -70,10 +62,9 @@ if ( from_file ):
         soup = BeautifulSoup(fp, 'html.parser')
         rows = soup.find_all("table", {"id": "CPHB1_gv"})[0] \
             .find_all("tr")
-        # print("# rows: " + str(len(rows)))
         n_tickers = 0
-        outfile0 = open(path0, 'w');
-        outfile1 = open(path1, 'w');
+        outfile0 = open(path0, 'w')
+        outfile1 = open(path1, 'w')
         outfile1.write("{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}\n" \
             .format( "代號","名稱","價格","漲跌","漲跌幅", \
                 "周漲跌","振幅","開盤","最高","最低", \

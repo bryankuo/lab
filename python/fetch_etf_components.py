@@ -8,6 +8,7 @@
 # \param out components.[id].[yyyymmdd].txt as bountylist.txt
 # \param out components.[id].html
 # return 0
+# // TODO: fetch_etf_component.sh instead
 
 import sys, requests, time, os, numpy, random, csv
 
@@ -66,6 +67,19 @@ sources = [ \
 # https://www.wantgoo.com/stock/etf/00905/constituent
 #    "https://www.wantgoo.com/stock/etf/" + etf_id + "/constituent" # // FIXME:
 
+# 富櫃50指數成分股資訊 gretai50.py
+# https://www.tpex.org.tw/web/stock/iNdex_info/gretai50/ingrid/r50cnstnt_result.php?l=zh-tw&s=0,asc,0&o=htm
+
+# 富櫃200指數成分股資訊
+# https://www.tpex.org.tw/web/stock/iNdex_info/tpex200/ingrid/r200cnstnt_result.php?l=zh-tw&s=0,asc,0&o=htm
+
+# 櫃買半導體領航報酬指數
+# https://www.tpex.org.tw/web/stock/iNdex_info/scl/ingrid/sclcnstnt_result.php?l=zh-tw&s=0,asc,0&o=htm
+
+# 櫃買技術通知
+# https://www.tpex.org.tw/web/stock/iNdex_info/gretai50/technicalreleases.php?l=zh-tw
+
+#
 # https://www.wantgoo.com/stock/etf/ranking/fund-size
 # https://www.wantgoo.com/stock/etf/ranking/fund-size?manager=國泰證券投資信託股份有限公司
 
@@ -104,6 +118,7 @@ if ( is_from_net ):
             # browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); # // FIXME:
             browser.implicitly_wait(20)
             browser.get(url)
+            print("from {}".format(url))
 
             #headers = {
             #    "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0"
