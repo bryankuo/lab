@@ -137,8 +137,9 @@ try:
                 found = True
                 break
         if ( found ):
-            print("i {:0>4} j {:0>4} tkr {:0>4} update" \
-                .format(i, j, tkr))
+            if ( i % 50 == 0 ):
+                print("i {:0>4} j {:0>4} tkr {:0>4} update" \
+                    .format(i, j, tkr))
             # cell = sheet0.getCellRangeByName(VR+str(i))
             # cell.NumberFormat = nl
             # if ( rtos[j] != "n/a" ):

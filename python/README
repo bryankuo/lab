@@ -161,3 +161,4 @@ wrangle_df.py: exercise pandas dataframe merge functions
 ./uno/unload/slice_last_high.py: count n days since last high
 ./uno/load: re-organizing
 ./uno/load/addsheet: adding a sheet, trigger macro, adding filter, move to cell
+./uno/load/gretai50_components.py: loading into calc

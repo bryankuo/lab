@@ -4,6 +4,7 @@
 # 1. scraping ror from a list,
 # 2. get twse as benchmark
 # 3. for each fetched html, generate rs into csv for calc.
+# 4. serving scrap_market_value.sh as input
 #
 # \param in  0: net, 1:file
 # \param in  bountylist.txt

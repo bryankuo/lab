@@ -3,6 +3,8 @@
 # python3 gretai50.py [yyyymmdd] [net|file]
 # \param in  富櫃50指數成分股資訊
 # \param out gretai50.txt
+# scrap_market_value.sh => call gretai50.py then uno/load/gretai50_component.py
+# instead
 # return 0
 
 import os, sys, requests, time, random, csv

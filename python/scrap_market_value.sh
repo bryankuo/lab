@@ -29,7 +29,8 @@ index=1
 count=0
 echo "ticker:name:market_value(M)" > $OUTF0
 # @see https://superuser.com/a/423086
-effective=$(find $DIR1 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c)
+# -mtime -1
+effective=$(find $DIR1 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -size +20000c)
 for f in $effective; do
     TICKER=${f:32:4}
     MSG=$(printf "%04d %04d %s" $index $TICKER $f)
