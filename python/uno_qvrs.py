@@ -103,7 +103,7 @@ for i in range(start0, len(cursor.Rows)+1):
             found = True
             break
     if ( found ):
-        if ( i % 100 == 0 ):
+        if ( i % 200 == 0 ):
             print("i {:0>4} j {:0>4} tkr {:0>4}" \
                 .format(i, j, tkr))
         cell = sheet0.getCellRangeByName("$J"+str(i))
