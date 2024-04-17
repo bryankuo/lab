@@ -166,8 +166,6 @@ sys.exit(0)
 
 # 主力進出比較圖
 # 主力進出
-# 融資融券明細
-# 融資維持率 計算 市值/融資餘額
 # 關鍵,地緣
 
 # wc -l branch.py transaction.py chips.py br.py

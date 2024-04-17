@@ -5,7 +5,7 @@
 #
 # \param in 0: net, 1:file
 # \param in bountylist.txt
-# \param out OUTF0 ror.YYYYMMDD.csv
+# \param out OUTF0 $DIR00/market_value.$DATE.csv
 # \param out  rs.YYYYMMDD.csv
 # return
 

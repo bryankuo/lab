@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 margin_ratio.py 2330
+# python3 margin_ratio.py [ticker]
 # get listed daily average volume for one year
 # return 0: not found, assume otc
 
@@ -21,9 +21,6 @@ url = 'https://concords.moneydj.com/z/zc/zcn/zcn_' + ticker + '.djhtm'
 # https://ebroker-dj.fbs.com.tw/z/zg/zg_E_0_-1.djhtm
 
 # https://histock.tw/stock/three.aspx?m=mg
-
-# security lending
-# https://www.twse.com.tw/zh/products/sbl/disclosures/t13sa710.html
 
 response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')

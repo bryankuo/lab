@@ -49,10 +49,6 @@ import pandas as pd
 #
 # government sponsored banks
 # https://histock.tw/stock/broker8.aspx?d=2023-01-11
-#
-# margin
-# https://concords.moneydj.com/z/zc/zcn/zcn_1101.djhtm
-# https://fubon-ebrokerdj.fbs.com.tw/z/zc/zcn/zcn_2881.djhtm
 
 def say(msg = "Finish", voice = "Victoria"):
     os.system(f'say -v {voice} {msg}')
