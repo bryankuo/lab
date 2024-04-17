@@ -49,10 +49,9 @@ fname = yyyymmdd + '.html'
 html_path = os.path.join(DIR0, fname)
 
 if ( from_file ):
-    # print(html_path)
+    print("parsing {}...".format(html_path))
     fname0 = yyyymmdd + '.price.desc.csv'
     path0 = os.path.join(DIR0, fname0)
-    # print(path0)
 
     fname1 = yyyymmdd + '.all.columns.csv'
     path1 = os.path.join(DIR0, fname1)
@@ -100,7 +99,7 @@ if ( from_file ):
 else:
     url = "https://histock.tw/stock/rank.aspx?p=all"
     # // TODO: "https://histock.tw/stock/rank.aspx?t=dt"
-    # print(url)
+    print("fetching {}...".format(url))
     # response = requests.get(url)
     headers = {'User-Agent': random.choice(ua.list)}
     response = requests.get(url, headers=headers)
