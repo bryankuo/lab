@@ -136,6 +136,7 @@ compare_volume.sh: a wrapper,
 uno_vratio.py: update vr to calc via UNO,
 sites.py:
 test.py: test how to run macro inside LO calc, in dispatch function
+menu.py: test adding standard filter LO uno calc
 uno_addsheets.py: exercise dispatch function
 volume_diff.sh: against last time, intraday
 volume_ratio.sh: compare against last trade day
