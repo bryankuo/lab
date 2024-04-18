@@ -201,8 +201,6 @@ try:
             n_ticker = len(cursor.Rows) - 1
             last_row = len(cursor.Rows)
     '''
-    # doc.CurrentController.select(guessRange) # works
-    # what is dispatcher call? How to enable auto filters for a sheet
     # @see dispatcher.executeDispatch
     # https://ask.libreoffice.org/t/how-to-define-the-active-cell/11746/5
     # run macro :
