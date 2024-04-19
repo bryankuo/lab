@@ -301,7 +301,10 @@ urls = [ \
     moneydj_profile, \
     google_gm_image, \
     google_chairman_image, \
-    google_search_competitors, \
+
+    # https://shorturl.at/cDGT3 "同業"股價表現
+    google_search_competitors, \ # peer, competitors,
+
     google_index_components, \
     google_map, \
     google_pledge ]

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 gpm.py 2330
+# python3 gpm.py [ticker]
 # get gross profit margin
 # return 0: success
 
