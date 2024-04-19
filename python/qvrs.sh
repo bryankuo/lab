@@ -62,7 +62,7 @@ read -p "Press enter update q,vt1,rs ..."
 /Applications/LibreOffice.app/Contents/Resources/python \
     uno_qvrs.py $RIGHT_NOW
 
-ls -lt ./datafiles/taiex/rs/*$DATE*
+# ls -lt ./datafiles/taiex/rs/*$DATE*
 ls -lt ./datafiles/taiex/after.market/*$DATE*
 tput bel
 

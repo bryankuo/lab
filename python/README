@@ -15,6 +15,8 @@ t50_component.py: scrap T50 components via selenium.
 margin_ratio.py: get margin ratio for a ticker.
 margin_ratio_cmp.sh: compare margin ration between tickers.
 fetch_margin_balance.py: fetch by ticker,
+scrap_margin_balance.sh: scraping,
+get_ticker_margin_balance.py:
 capital.py: get capital of a ticker.
 capital_cmp.sh: compare capital of tickers.
 beta.py: get beta, PE of a ticker.

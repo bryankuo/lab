@@ -81,7 +81,8 @@ try:
         for i0 in range(i0_start, df0.shape[0]):
             tk1 = df1.at[i1, "代號"]
             tk0 = df0.at[i0, "代號"]
-            print("i1 {:>4} tk1 {:>4} tk0 {:>4}".format(i1, tk1, tk0))
+            if ( i1 % 300 == 0 ):
+                print("i1 {:>4} tk1 {:>4} tk0 {:>4}".format(i1, tk1, tk0))
             if ( tk1 == tk0 ):
                 found = True
                 break

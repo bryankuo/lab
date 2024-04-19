@@ -106,4 +106,3 @@ in_csv.close()
 outf_rs.close()
 print("write to {}".format(rs_path))
 sys.exit(0)
-
