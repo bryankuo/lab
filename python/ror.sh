@@ -60,6 +60,8 @@ if [ "$COMMAND" = "fetching" ]; then
 	-iname 'ror.[0-9][0-9][0-9][0-9].html' -mtime -1 -size +20000c \
 	-print | wc -l | xargs | cut -d " " -f1)
     echo "effective: $n_effective, ror is also ready to scrap"
+    echo "scrap_market_value.sh is ready to serve"
+    echo "./fetch_margin_balance.py, too"
 
     ls -lt "$DIR1/log.txt"
 

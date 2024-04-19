@@ -2,7 +2,7 @@
 
 # python3 fetch_margin_balance.py
 # fetch ticker margin balance html from sites, on daily bases
-# serving scrap_monthly_revenue.sh // TODO:
+# serving scrap_market_value.sh // TODO:
 # rotating user agents
 # \param in  datafiles/taiex/margin_balance/yyyymmdd folder
 # \param out [ticker].html
