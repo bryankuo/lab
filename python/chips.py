@@ -38,6 +38,9 @@ else:
 
 # source1: "https://tw.stock.yahoo.com/quote/2303.TW/major-holders"
 major_holders = "https://tw.stock.yahoo.com/quote/"+ticker+".TW/major-holders"
+# zck 董監事經理人持股明細 申報轉讓 // TODO:
+# http://just2.entrust.com.tw/z/zc/zck/zck.djhtm?a=2450&b=1&c=2
+# @see insider_trade.py
 
 # source2: https://histock.tw/stock/large.aspx?no=2301
 
