@@ -96,7 +96,7 @@ for i in range(2, len(rows)-1):
         break
 print("scan from " + last_sat.strftime('%Y%m%d') + " to " + this_date.strftime('%Y%m%d') )
 olist = [ num_this_wk, num_ticker, path, url ]
-print(olist)
+print(pprint(olist))
 pprint(tkr_l)
 
 sys.exit(0)
