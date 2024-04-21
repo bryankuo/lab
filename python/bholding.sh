@@ -4,6 +4,7 @@
 #
 # 1. scraping ratio from a list,
 # 2. for each fetched html, scrapge ratio into csv.
+# // TODO: zck chips.py insider_trade.py
 
 if [ "$#" -lt 1 ]; then
     echo "usage: ./bholding.sh [yyyymmdd]"
@@ -34,9 +35,6 @@ for f in $effective; do
     count=$(($count+1))
     index=$(($index+1))
 done
-TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: " $TIMESTAMP0 " looping start"
-echo "time: " $TIMESTAMP  " looping end"
 
 # notify user it's done
 echo -ne '\007'

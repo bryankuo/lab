@@ -10,6 +10,8 @@
 # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
 # Python for LibreOffice
 # https://openoffice3.web.fc2.com/Python_Macro_Calc.html
+# uno-commands.csv
+# https://github.com/LibreOffice/help/blob/master/helpers/uno-commands.csv
 import uno, sys, time, os, csv
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
