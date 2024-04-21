@@ -13,14 +13,11 @@ if [ "$#" -lt 1 ]; then
 fi
 TKR=$1
 
-# DIR0="$HOME/github/python"
 DIR0="."
 DIR2="$DIR0/datafiles/taiex/after.market"
 DIR1="$DIR0/uno/unload"
 DIR3="$DIR0/datafiles"
 DIR4="/Applications/LibreOffice.app/Contents/Resources"
-
-# ls -lt $DIR2/????????.all.columns.csv
 
 # N_DAYS=$( ls -lt $DIR2/????????.all.columns.csv \
 #    | wc -l | xargs | cut -d " " -f1 )
@@ -58,8 +55,8 @@ python3 $DIR1/slice_last_high.py $d1 $d0
 $DIR4/python "$HOME/github/python/uno/load/addsheet.py" $DATE
 
 # starting from 20240116
-# ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | wc -l | xargs
-
+# ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | sort -r | wc -l | xargs
+$( ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | sort )
 # d1=20240119; d0=20240118 // TODO: 20 -> d1
 
 exit 0

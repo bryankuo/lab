@@ -7,6 +7,8 @@
 # \param in d0
 # \param out "ndays_high." + ts + ".csv", sorted by ticker ascending
 
+# trash -v ./ndays_high.*.csv
+
 import sys, os, time
 
 # @see https://stackoverflow.com/a/15778297
