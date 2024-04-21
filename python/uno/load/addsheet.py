@@ -3,6 +3,8 @@
 # /Applications/LibreOffice.app/Contents/Resources/python
 #  uno_addsheets.py
 #
+# \param "./ndays_high." + yyyymmdd + ".csv"
+
 # calc uno playground
 #
 # reference doc:
@@ -64,18 +66,12 @@ except RuntimeException:
 try:
     sheet_name = "20231211"
     sheet0 = doc.Sheets.getByName(sheet_name)
-    hide_lst = ["C:I", "K:CB", "cD1"]
-    for r in hide_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = False
-
-    opt_lst = ["A:B", "$j1", "BH1", "cC1"]
-    for r in opt_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = True
-        the_range.Columns.OptimalWidth = True
+    # hide_lst = ["C:I", "K:CB", "cD1"]
+    # for r in hide_lst:
+    #    the_range = sheet0.getCellRangeByName(r)
+    #    doc.CurrentController.select(the_range)
+    #    the_range.Columns.IsVisible = False
+    sheet0.getColumns().IsVisible = False
 
     doc.Sheets.insertNewByName("創新高天數."+yyyymmdd, doc.Sheets.Count+1 )
     new_sheet = doc.Sheets.getByName("創新高天數."+yyyymmdd)
@@ -93,8 +89,10 @@ try:
     n_ticker = ( last_row - 2 ) + 1
     print("sheet0 # ticker {}".format(n_ticker))
 
-    # path0 = os.path.join(DIR0, nm0)
-    path0 = "./ndays_high." + yyyymmdd + ".csv"
+    # DIR0="~/github/python" # // FIXME:
+    DIR0="/Users/chengchihkuo/github/python"
+    file0 = "ndays_high." + yyyymmdd + ".csv"
+    path0 = os.path.join(DIR0, file0)
     inf0 = open(path0, 'r')
     data = list(csv.reader(inf0, delimiter=':'))
     tkrs = [ x[0] for x in data ]
@@ -137,7 +135,13 @@ except:
     raise
 
 finally:
-    pass
+    # pass
+    opt_lst = ["A:B", "cC1"] # "$j1", "BH1",
+    for r in opt_lst:
+        the_range = sheet0.getCellRangeByName(r)
+        doc.CurrentController.select(the_range)
+        the_range.Columns.IsVisible = True
+        the_range.Columns.OptimalWidth = True
 
 dispatch = smgr.createInstanceWithContext( \
     "com.sun.star.frame.DispatchHelper", localContext)

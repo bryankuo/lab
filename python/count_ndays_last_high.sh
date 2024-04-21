@@ -56,7 +56,7 @@ $DIR4/python "$HOME/github/python/uno/load/addsheet.py" $DATE
 
 # starting from 20240116
 # ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | sort -r | wc -l | xargs
-$( ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | sort )
+# $( ls -lt $DIR2/????????.all.columns.csv | cut -d '/' -f 5 | cut -c 1-8 | sort )
 # d1=20240119; d0=20240118 // TODO: 20 -> d1
 
 exit 0

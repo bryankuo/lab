@@ -3,7 +3,7 @@
 # slice ticker and # days from last high
 #
 # \param in activity_watchlist.ods
-# \param in d1
+# \param in d1 newer
 # \param in d0
 # \param out "ndays_high." + ts + ".csv", sorted by ticker ascending
 
@@ -178,9 +178,9 @@ print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 pprint(df1)
 
 # open activity again, and adding data frame as new sheet
-ts = datetime.now().strftime('%Y%m%d')
+# ts = datetime.now().strftime('%Y%m%d')
 # ndays_high = "ndays_high." + ts + ".ods"
-ndays_high = "ndays_high." + ts + ".csv"
+ndays_high = "ndays_high." + d1 + ".csv"
 opath = os.path.join(".", ndays_high) # DIR0
 # opath = ipath # presume file is closed
 print("writing {} ...".format(opath))
