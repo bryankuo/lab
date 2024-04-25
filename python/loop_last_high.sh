@@ -33,17 +33,10 @@ for (( i=0; i<${#array[@]} ; i+=1 )) ; do
 	# echo "${array[i]}" "${array[i+1]}"
 	d1="${array[i+1]}"
 	d0="${array[i]}"
+	echo "$(date +"%T") loop_last_high.sh+ $d1 $d0"
 	python3 $DIR1/slice_last_high.py $d1 $d0
 	$DIR4/python "$HOME/github/python/uno/load/addsheet.py" $d1
     fi
 done
-# i=0
-# echo "${effective[0]}" "${effective[1]}"
-
-#while read -r d0 d1; do
-#    echo $d1 $d0
-#    # python3 $DIR1/slice_last_high.py $d1 $d0
-#    # $DIR4/python "$HOME/github/python/uno/load/addsheet.py" $d1
-#done < <(echo $effective | xargs -n2)
 
 exit 0

@@ -20,6 +20,7 @@ from com.sun.star.uno import RuntimeException
 from com.sun.star.beans import PropertyValue
 
 yyyymmdd = sys.argv[1]
+print("addsheet+ {}".format(yyyymmdd))
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext() # works
@@ -72,6 +73,12 @@ try:
     #    doc.CurrentController.select(the_range)
     #    the_range.Columns.IsVisible = False
     sheet0.getColumns().IsVisible = False
+    opt_lst = ["A:B", "cC1"] # "$j1", "BH1",
+    for r in opt_lst:
+        the_range = sheet0.getCellRangeByName(r)
+        doc.CurrentController.select(the_range)
+        the_range.Columns.IsVisible = True
+        the_range.Columns.OptimalWidth = True
 
     doc.Sheets.insertNewByName("創新高天數."+yyyymmdd, doc.Sheets.Count+1 )
     new_sheet = doc.Sheets.getByName("創新高天數."+yyyymmdd)
@@ -87,7 +94,7 @@ try:
     # print(guessRange.getDataArray())
     last_row = len(cursor.Rows)
     n_ticker = ( last_row - 2 ) + 1
-    print("sheet0 # ticker {}".format(n_ticker))
+    # print("sheet0 # ticker {}".format(n_ticker))
 
     # DIR0="~/github/python" # // FIXME:
     DIR0="/Users/chengchihkuo/github/python"
@@ -107,9 +114,9 @@ try:
             found = False
             for i0 in range(start0, last_row+1):
                 tkr0 = int(sheet0.getCellRangeByName("$A"+str(i0)).Value)
-                if ( idx % 100 == 0 ):
-                    print("idx {:0>4} tkr1 {:0>4} i0 {:0>4} tkr0 {:0>4}" \
-                        .format(idx, tkr1, i0, tkr0))
+                # if ( idx % 100 == 0 ):
+                #    print("idx {:0>4} tkr1 {:0>4} i0 {:0>4} tkr0 {:0>4}" \
+                #        .format(idx, tkr1, i0, tkr0))
                 if ( checked[idx] == 0 and tkr0 == tkr1 ):
                     found = True
                     break
@@ -121,8 +128,8 @@ try:
                     = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
                 checked[idx] = 1; start0 += 1;
             else:
-                print("idx {:0>4} i0 {:0>4} tkr1 {:0>4} not found" \
-                    .format(idx, i0, tkr1 ) )
+                # print("idx {:0>4} i0 {:0>4} tkr1 {:0>4} not found" \
+                #     .format(idx, i0, tkr1 ) )
                 missed += 1
             i += 1
         idx += 1
@@ -135,13 +142,7 @@ except:
     raise
 
 finally:
-    # pass
-    opt_lst = ["A:B", "cC1"] # "$j1", "BH1",
-    for r in opt_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = True
-        the_range.Columns.OptimalWidth = True
+    pass
 
 dispatch = smgr.createInstanceWithContext( \
     "com.sun.star.frame.DispatchHelper", localContext)
@@ -174,7 +175,8 @@ doc.store()
 # doc.close() // FIXME:
 # // TODO: delete new_sheet
 
-print("done.\a\n")
+# print("done.\a\n")
+print("addsheet- {}".format(yyyymmdd))
 sys.exit(0)
 
 # LO python path:

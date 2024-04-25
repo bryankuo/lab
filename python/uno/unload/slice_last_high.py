@@ -36,7 +36,7 @@ DIR0a    = "datafiles/taiex/after.market"
 activity = "activity_watchlist.ods"
 
 ipath = os.path.join(DIR0, activity)
-print("reading {} ...".format(ipath))
+# print("reading {} ...".format(ipath))
 # t0 = time.time_ns() / (10 ** 9)
 # t0 = time.time_ns()
 t0 = time.time()
@@ -50,8 +50,8 @@ df0 = pd.read_excel(ipath, sheet_name='20231211', engine="odf")
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
-# print("start: " + t_start)
-print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
+print("start: " + t_start)
+# print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 df1 = df0[['代號', '創新高天數']] # remark inside cell makes trouble
 # print(df0.dtypes)
 
@@ -60,17 +60,17 @@ ipath1 = os.path.join(DIR0a, f1)
 if ( not os.path.exists(ipath1) ):
     print("{} not found".format(ipath1))
     sys.exit(0)
-print("reading d1 {} ...".format(ipath1))
+# print("reading d1 {} ...".format(ipath1))
 t0 = time.time()
 # t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 df2 = pd.read_csv(ipath1, sep=':', skiprows=0, header=0)
 dfd1 = df2[['代號', '最高']]
-print(len(dfd1))
+# print(len(dfd1))
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
 # print("start: " + t_start)
-print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
+# print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 # print(dfd1.columns)
 
 f0 = d0 + ".all.columns.csv"
@@ -78,7 +78,7 @@ ipath0 = os.path.join(DIR0a, f0)
 if ( not os.path.exists(ipath0) ):
     print("{} not found".format(ipath0))
     sys.exit(0)
-print("reading d0 {} ...".format(ipath0))
+# print("reading d0 {} ...".format(ipath0))
 t0 = time.time()
 # t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 df2 = pd.read_csv(ipath0, sep=':', skiprows=0, header=0)
@@ -89,8 +89,8 @@ t1 = time.time()
 hours, rem = divmod(t1-t0, 3600)
 minutes, seconds = divmod(rem, 60)
 # print("start: " + t_start)
-print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
-print(len(dfd0))
+# print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
+# print(len(dfd0))
 
 # diff = dfd1.compare(dfd0)
 # print(diff)
@@ -116,7 +116,7 @@ print(df4)
 # print(dfd1.代號.type)
 # iterate a dataframe @see https://stackoverflow.com/a/16476974
 dfd1 = dfd1.reset_index()
-print("iterate ...") # d1 first priority
+# print("iterate ...") # d1 first priority
 t0 = time.time()
 for index, row in dfd1.iterrows():
     d1h = row['最高']
@@ -159,15 +159,15 @@ for index, row in dfd1.iterrows():
         print("{:04} {:04} new on {}".format(index, tkr, d1))
 
     finally:
-        # pass
-        if ( tkr == 1101 or tkr == 1103 or tkr == 9962 \
-            or index % 100 == 0):
-            print("{:04} tk {:04} n {:>3} n1 {:>3} d1 {:>4.2f} d0 {:>4.2f}" \
-                .format(index, tkr, n, n1, d1h, d0h))
+        pass
+        #if ( tkr == 1101 or tkr == 1103 or tkr == 9962 \
+        #    or index % 100 == 0):
+        #    print("{:04} tk {:04} n {:>3} n1 {:>3} d1 {:>4.2f} d0 {:>4.2f}" \
+        #        .format(index, tkr, n, n1, d1h, d0h))
 
 t1 = time.time()
 hours, rem = divmod(t1-t0, 3600); minutes, seconds = divmod(rem, 60)
-print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
+# print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 # r = dfd1.loc[dfd1['代號'] == 3661]
 # print(r.loc[0][2]) # high
 # print(r.loc[0])
@@ -175,7 +175,7 @@ print( "{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds) )
 # 上一個比現在高的價格是出現在幾天之前
 # ( 負值表示創新低 )
 
-pprint(df1)
+# pprint(df1)
 
 # open activity again, and adding data frame as new sheet
 # ts = datetime.now().strftime('%Y%m%d')
