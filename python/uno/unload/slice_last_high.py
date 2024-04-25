@@ -7,6 +7,12 @@
 # \param in d0
 # \param out "ndays_high." + ts + ".csv", sorted by ticker ascending
 
+# https://www.virtuemind.net/blog/20240309
+# 上一個比現在高的價格是出現在幾天之前
+# ( 負值表示創新低 )
+# https://www.xq.com.tw/xstrader/股價創新高後隔多久會再創新高/
+# 創新高前回檔休息天數
+
 # trash -v ./ndays_high.*.csv
 
 import sys, os, time
@@ -172,8 +178,6 @@ hours, rem = divmod(t1-t0, 3600); minutes, seconds = divmod(rem, 60)
 # print(r.loc[0][2]) # high
 # print(r.loc[0])
 # print(dfd1.loc[dfd1['代號'] == 3661].loc[0][2]) # works
-# 上一個比現在高的價格是出現在幾天之前
-# ( 負值表示創新低 )
 
 # pprint(df1)
 
