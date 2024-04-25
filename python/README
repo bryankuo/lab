@@ -148,7 +148,7 @@ gini_tkrbranch.sh: wrapper
 fetch_tkrbranch.py: scrap branch and figure gini
 ticker_branch.py: hs version
 count_ndays_last_high.sh: trial on counting number of days to reach high
-loop_last_high: loop counting last high,
+loop_last_high: loop counting last high, run once
 uno_updateqslu.py:
 fetch_board_holding.py: fetch bhr from the net
 get_bhr.py: extract
