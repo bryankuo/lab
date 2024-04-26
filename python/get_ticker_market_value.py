@@ -59,7 +59,7 @@ mktv = soup.findAll('table')[0] \
     .find_all('table')[0] \
     .find_all('tr')[6] \
     .find_all('td')[3].text.strip().replace('%', '').replace(',', '')
-# print("{}".format(mktv))
+print("{}".format(mktv))
 
 ofile = open(m_path, 'a')
 ofile.write(ticker+":"+name+":"+mktv+"\n")

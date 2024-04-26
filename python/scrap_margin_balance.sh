@@ -33,7 +33,7 @@ effective=$(find $DIR1 -type f -iname '[0-9][0-9][0-9][0-9].html' \
 for f in $effective; do
     TICKER=${f:40:4}
     MSG=$(printf "%04d %04d %s" $index $TICKER $f)
-    echo -n $MSG
+    echo -n "$MSG "
     python3 get_ticker_margin_balance.py $TICKER $DATE
     count=$(($count+1))
     index=$(($index+1))

@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # ./scrap_market_value.sh [yyyymmdd]
-# 1. scraping market value from ror.sh download files
+# scraping market value from ror.sh, load into calc
 #
-# \param in 0: net, 1:file
-# \param in bountylist.txt
+# \param in yyyymmdd, processing date
 # \param out OUTF0 $DIR00/market_value.$DATE.csv
 # \param out  rs.YYYYMMDD.csv
 # return
@@ -34,7 +33,7 @@ effective=$(find $DIR1 -type f -iname 'ror.[0-9][0-9][0-9][0-9].html' -size +200
 for f in $effective; do
     TICKER=${f:32:4}
     MSG=$(printf "%04d %04d %s" $index $TICKER $f)
-    echo $MSG
+    echo -n "$MSG "
     python3 get_ticker_market_value.py $TICKER $DATE
     count=$(($count+1))
     index=$(($index+1))
