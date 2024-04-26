@@ -43,20 +43,18 @@ echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP  " looping end"
 /usr/bin/sort -k1 -n -t: -o "$DIR0/$DATE.csv" $OUTF0
 echo $count"     scraped. $DIR0/$DATE.csv"
-
-trash $OUTF0
 # echo -ne '\007'
 tput bel
-exit 0 # to compare on daily bases
-# margin_balance$ find . -type f -iname '????????.csv' | xargs grep -rnp --color="auto" -e "113/02"
-
-read -p "Press enter to loading calc ..." # let calc regain focus as well
-TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
-# /Applications/LibreOffice.app/Contents/Resources/python \
-#    uno_load_margin_balance.py $DATE
-TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
-echo "time: " $TIMESTAMP0 " looping start"
-echo "time: " $TIMESTAMP  " looping end"
+./uno_launch.sh "./datafiles/activity_watchlist.ods"
+trash $OUTF0
 tput bel
+read -p "Press enter to load/focus calc ..." # let calc regain focus as well
+TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno/load/margin_balance.py $DATE
+TIMESTAMP=`date '+%Y/%m/%d %H:%M:%S'`
+echo "time: " $TIMESTAMP0 " loading start"
+echo "time: " $TIMESTAMP  " loading end"
 
+tput bel
 exit 0
