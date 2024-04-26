@@ -21,7 +21,7 @@ mkdir -p $DIR1
 OUTF0="$DIR0/$DATE.0.csv" # unsorted
 echo "ticker:margin_balance(lot)" > $OUTF0
 
-echo "scrap monthly revenue ..."
+echo "scrap margin balance ..."
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
 index=1
 count=0
@@ -33,7 +33,7 @@ effective=$(find $DIR1 -type f -iname '[0-9][0-9][0-9][0-9].html' \
 for f in $effective; do
     TICKER=${f:40:4}
     MSG=$(printf "%04d %04d %s" $index $TICKER $f)
-    echo $MSG
+    echo -n $MSG
     python3 get_ticker_margin_balance.py $TICKER $DATE
     count=$(($count+1))
     index=$(($index+1))

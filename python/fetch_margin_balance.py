@@ -124,5 +124,5 @@ for ticker in f:
 session.close();
 f.close(); logf.close(); lst.close()
 print("total # fetched {}".format(count))
-print("./scrap_monthly_revenue.sh [yyyymmdd] to continue ...")
+print("./scrap_margin_balance.sh [yyyymmdd] to continue ...")
 sys.exit(0)
