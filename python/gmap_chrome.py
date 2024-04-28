@@ -19,12 +19,13 @@ from pandas import ExcelWriter
 from shutil import which
 import sys
 
+# run on windows
 try:
     keyword = input("Name of companies (Example: Martial arts companies in the United States): ")
     chromedriver_autoinstaller.install()
     # selenium 4.10.0 @see https://stackoverflow.com/a/76550727
     # service1 = Service(executable_path='./chromedriver.exe')
-    service1 = Service()    
+    service1 = Service()
     options = webdriver.ChromeOptions()
 
     '''

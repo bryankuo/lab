@@ -9,7 +9,10 @@
 # \param out components.[id].html
 # return 0
 # // TODO: fetch_etf_component.sh instead
-
+# @see etf rank 市值排行 https://shorturl.at/cU289
+# 成分股 / 持股分佈 / 指數成分股資訊
+# https://www.twse.com.tw/zh/products/securities/etf/products/domestic.html
+#
 import sys, requests, time, os, numpy, random, csv
 
 # from raven import breadcrumbs # // FIXME:
@@ -93,6 +96,8 @@ sources = [ \
 # https://www.cmoney.tw/etf/tw/00733/fundholding
 # "https://www.cmoney.tw/etf/tw/" + etf_id + "/fundholding"
 
+# 00878 國泰永續高股息
+# , 00939, 00919
 ]
 
 # DIR0="./datafiles/taiex"

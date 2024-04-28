@@ -14,6 +14,7 @@
 
 # 融資融券明細
 # 融資維持率 計算 市值/融資餘額
+# filter between 140% - 120%
 #
 # margin
 # https://concords.moneydj.com/z/zc/zcn/zcn_1101.djhtm

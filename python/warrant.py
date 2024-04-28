@@ -5,14 +5,14 @@
 # return 0: listed 2,  otc 4, otcbb 5
 
 # find selenium version
-# python3 -c "import selenium; print(selenium.__version__)"
+# python3 -c "import selenium; print(selenium.__version__)" # 3.141.0
 # change version @see https://stackoverflow.com/a/49215247
 # pip uninstall selenium
 # pip install selenium==3.9
 # current working version on macos
 # Successfully uninstalled selenium-3.141.0
 # testing version 3.9 NG
-# 4.15.2 is the latest, NG,
+# 4.15.2 is the latest, NG, for what function NG?
 
 # install the latest version
 # pip3 uninstall selenium; pip3 install -U selenium
