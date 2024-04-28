@@ -58,6 +58,7 @@ sources = [ \
 #
 # https://www.moneydj.com/ETF/X/Basic/Basic0007B.xdjhtm?etfid=0056.TW
 "https://www.moneydj.com/ETF/X/Basic/Basic0007B.xdjhtm?etfid=0056.TW"
+"https://www.moneydj.com/ETF/X/Basic/Basic0007B.xdjhtm?etfid=00878.TW"
 # etfid=1102
 
 #
