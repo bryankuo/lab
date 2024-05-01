@@ -10,8 +10,8 @@
 
 DATE=`date '+%Y%m%d'`
 DIR0="./datafiles"
-trash -v $DIR/watchlist.0.txt
-cp -v $DIR0/watchlist.txt $DIR/watchlist.0.txt
+trash -v $DIR0/watchlist.0.txt
+cp -v $DIR0/watchlist.txt $DIR0/watchlist.0.txt
 shuf $(readlink $DIR0/listed_taiex.txt) > ./$DIR0/watchlist.$DATE.txt
 ln -sf $DIR0/watchlist.$DATE.txt $DIR0/taiex.watchlist.txt
 cp -v $DIR0/watchlist.$DATE.txt $DIR0/watchlist.txt
