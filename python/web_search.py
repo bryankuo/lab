@@ -346,3 +346,6 @@ sys.exit(0)
 # https://www.cmoney.tw/finance/3105/f00028
 # https://www.esunsec.com.tw/tw-stock/z/zc/zcx/zcxnewEsunsec.djhtm?id=3105
 # https://histock.tw/stock/3105
+
+# 暫停先賣後買當日沖銷交易標的預告表
+# https://www.twse.com.tw/zh/trading/day-trading/twtbau.html
