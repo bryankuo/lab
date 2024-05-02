@@ -36,6 +36,7 @@ DAY=${YMD:6:2}
 ORIGIN=$2
 DATE=$YR$MN$DAY
 if [[ $(date -j -f '%Y%m%d' "$DATE" +'%u') -eq 1 ]]; then
+    # // FIXME: use after market date instead
     LAST_TRADE_DAY=$(date -v-4d +%Y%m%d)
 else
     # LAST_TRADE_DAY=$(date -v-1d +%Y%m%d)

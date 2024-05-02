@@ -141,7 +141,7 @@ try:
     # // FIXME: possible new in data, therefore search
     print("# file {:>4}".format(len(tkrs)-1)) # // FIXME:
 
-    opt_lst = ["A:B", "BZ1"]
+    opt_lst = ["A:B", "BZ1", "BD1", "BH1", "cF:$Cg"]
     for r in opt_lst:
         the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
