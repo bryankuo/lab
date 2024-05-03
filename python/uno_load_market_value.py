@@ -96,7 +96,7 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     columns = sheet0.getColumns()
-    hide_lst = ["C:$By", "CA:CE"]
+    hide_lst = ["C:F", "I:BC", "$By", "CA:CI"]
     for r in hide_lst:
         the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
@@ -141,7 +141,7 @@ try:
     # // FIXME: possible new in data, therefore search
     print("# file {:>4}".format(len(tkrs)-1)) # // FIXME:
 
-    opt_lst = ["A:B", "BZ1", "BD1", "BH1", "cF:$Cg"]
+    opt_lst = ["A:B", "BZ1", "BD1", "BH1", "cF:$Ci"]
     for r in opt_lst:
         the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
