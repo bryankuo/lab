@@ -31,6 +31,7 @@ try:
 
     with open(path, 'wt') as ofile, open(path2, 'wt') as ofile2:
         ofile.write("排行:代號公司:總市值(E)\n")
+        # pagination? @see https://stackoverflow.com/q/76114701
         for i in range(1,6):
             # https://pchome.megatime.com.tw/rank/sto2/ock31_1.html
             url = 'https://pchome.megatime.com.tw/rank/sto2/'+ \
