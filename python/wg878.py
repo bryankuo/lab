@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 wg878.py
-# selenium tips on chrome driver, cookie features
+# selenium tips on chrome driver, cookie features, cloudfare undetection
 
 # safari headless 2020 unavailable, any solution?
 # recommended WebDriver packages for Selenium => install chrome
@@ -45,10 +45,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-# driver = webdriver.Chrome(ChromeDriverManager().install())
 from selenium_stealth import stealth
-# import chromedriver_autoinstaller
-# import webbrowser
 
 try:
     # chromedriver_autoinstaller.install()
@@ -66,6 +63,8 @@ try:
         "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
     chrome_options.add_argument('--headless')
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option('useAutomationExtension', False)
 
     driver = webdriver.Chrome( \
         executable_path = os.path.abspath("/usr/local/bin/chromedriver"), \
@@ -73,6 +72,16 @@ try:
     driver.implicitly_wait(20)
     driver.maximize_window()
     driver.switch_to.window(driver.current_window_handle)
+
+    # @see https://stackoverflow.com/a/73787668
+    stealth(driver,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True,
+    )
 
     url = "https://www.wantgoo.com/stock/etf/00878/constituent"
     # url = "https://zh-tw.facebook.com/peko.nurse"
@@ -91,18 +100,18 @@ try:
         cookies_dict[cookie['name']] = cookie['value']
     pprint(cookies_dict)
 
-    # secure cookies?
     # working with cookies
     # https://www.selenium.dev/documentation/webdriver/interactions/cookies/
     # pagination? @see https://stackoverflow.com/q/76114701
+    # secure cookies?
     # why cookies?
     # LAX? sameSite attribute?
 
-    driver.get(url)
-    cookies = pickle.load(open("cookies.pkl", "rb"))
-    for cookie in cookies:
-        driver.add_cookie(cookie)
-    print("add cookies")
+    # driver.get(url)
+    # cookies = pickle.load(open("cookies.pkl", "rb"))
+    # for cookie in cookies:
+    #     driver.add_cookie(cookie)
+    # print("add cookies")
 
     # time.sleep(10) # seconds
     id="holdingTable" # wait fully loaded
@@ -113,7 +122,9 @@ try:
     element = WebDriverWait(driver, 20) \
         .until(EC.element_to_be_clickable((By.XPATH, "//*[@id='holdingTable']/tr[1]")))
     print(element)
-    # // FIXME: TimeoutException
+    # // FIXME: TimeoutException cf_clearance cloudfare CDN bypass detection
+    # undetected selenium
+    # @see selenium stealth https://stackoverflow.com/a/73787668
 
     page = driver.page_source
     soup = BeautifulSoup(page, 'html.parser')
@@ -141,6 +152,7 @@ finally:
     driver.delete_all_cookies() # best practice?
     driver.minimize_window()
     driver.quit()
+    os.remove("cookies.pkl")
     print("finally")
 
 '''

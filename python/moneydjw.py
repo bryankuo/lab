@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 moneydjw.py
-# exercise selenium tips
+# exercise selenium tips on exception, element picking
 # \param in
 # \param out
 # return 0

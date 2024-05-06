@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 warrant.py [ticker]
-# with selenium tips as well as playground
+# selenium tips
 # return 0: listed 2,  otc 4, otcbb 5
 
 # find selenium version
@@ -172,3 +172,5 @@ sys.exit(0)
 # https://warrant.kgi.com/EDWebSite/Views/StrategyCandidate/MarketStatisticsIframe.aspx
 # https://warrant.sinotrade.com.tw/j/marketW.jsp?
 # http://warrant.concords.com.tw/index.aspx
+
+# @see https://shorturl.at/txMN1
