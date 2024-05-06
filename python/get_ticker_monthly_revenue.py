@@ -2,6 +2,8 @@
 
 # python3 get_ticker_monthly_revenue.py [ticker] [yyyymmdd]
 # scraping market value from file fetched ror html
+# serving ./scrap_monthly_revenue.sh $DATE
+#
 # \param in      ticker
 # \param in      yyyymmdd
 # \param in      [ticker].html by fetch_ticker_monthly_revenue.py
@@ -37,61 +39,75 @@ mc3i_path  = os.path.join(DIR0, mc3i_fname)
 yc3i_fname = yyyymmdd + ".0.csv"
 yc3i_path  = os.path.join(DIR0, yc3i_fname)
 
-q = open(h_path)
-soup = BeautifulSoup(q, 'html.parser') # // FIXME: chinese encoding
+try:
+    q = open(h_path)
+    soup = BeautifulSoup(q, 'html.parser') # // FIXME: chinese encoding
 
-rows = soup.find_all("table", {"id": "oMainTable", "class": "t01"})[0] \
-    .find_all("tr")
+    rows = soup.find_all("table", {"id": "oMainTable", "class": "t01"})[0] \
+        .find_all("tr")
 
-name = rows[0] \
-    .find_all('td')[0].text.split('(')[0].strip()
-# print("{}".format(name))
+    name = rows[0] \
+        .find_all('td')[0].text.split('(')[0].strip()
+    # print("{}".format(name))
 
-ym = rows[6] \
-    .find_all('td')[0].text.strip().replace(',', '')
-# print("{}".format(ym))
+    ym = rows[6] \
+        .find_all('td')[0].text.strip().replace(',', '')
+    # print("{}".format(ym))
 
-mr = rows[6] \
-    .find_all('td')[1].text.strip().replace(',', '')
-# print("{}".format(mr))
+    mr = rows[6] \
+        .find_all('td')[1].text.strip().replace(',', '')
+    # print("{}".format(mr))
 
-momp0 = rows[6] \
-    .find_all('td')[2].text.strip().replace(',', '') # .replace('%', '')
-# print("{}".format(momp0))
+    momp0 = rows[6] \
+        .find_all('td')[2].text.strip().replace(',', '') # .replace('%', '')
+    # print("{}".format(momp0))
 
-yoyp0 = rows[6] \
-    .find_all('td')[4].text.strip().replace(',', '') # .replace('%', '')
-# print("{}".format(yoyp0))
+    yoyp0 = rows[6] \
+        .find_all('td')[4].text.strip().replace(',', '') # .replace('%', '')
+    # print("{}".format(yoyp0))
 
-momp1 = rows[7] \
-    .find_all('td')[2].text.strip().replace(',', '')
-yoyp1 = rows[7] \
-    .find_all('td')[4].text.strip().replace(',', '')
+    momp1 = rows[7] \
+        .find_all('td')[2].text.strip().replace(',', '')
+    yoyp1 = rows[7] \
+        .find_all('td')[4].text.strip().replace(',', '')
 
-momp2 = rows[8] \
-    .find_all('td')[2].text.strip().replace(',', '')
-yoyp2 = rows[8] \
-    .find_all('td')[4].text.strip().replace(',', '')
+    momp2 = rows[8] \
+        .find_all('td')[2].text.strip().replace(',', '')
+    yoyp2 = rows[8] \
+        .find_all('td')[4].text.strip().replace(',', '')
 
-ofile = open(m_path, 'a')
-ofile.write(ticker+":"+name+":"+ym+":"+momp0+":"+yoyp0+":"+mr+"\n")
-ofile.close()
-
-# // FIXME: mom ' '
-m2 = float(momp2.replace('%',''))
-m1 = float(momp1.replace('%',''))
-m0 = float(momp0.replace('%',''))
-if ( m2 <= m1 and m1 <= m0 ):
-    ofile = open(mc3i_path, 'a')
-    ofile.write(ticker+":"+name+":"+momp0+":"+momp1+":"+momp2+"\n")
+    ofile = open(m_path, 'a')
+    ofile.write(ticker+":"+name+":"+ym+":"+momp0+":"+yoyp0+":"+mr+"\n")
     ofile.close()
 
-y2 = float(yoyp2.replace('%',''))
-y1 = float(yoyp1.replace('%',''))
-y0 = float(yoyp0.replace('%',''))
-if ( y2 <= y1 and y1 <= y0 ):
-    ofile = open(yc3i_path, 'a')
-    ofile.write(ticker+":"+name+":"+yoyp0+":"+yoyp1+":"+yoyp2+"\n")
-    ofile.close()
+    # // FIXME: mom ' '
+    m2 = float(momp2.replace('%',''))
+    m1 = float(momp1.replace('%',''))
+    m0 = float(momp0.replace('%',''))
+    if ( m2 <= m1 and m1 <= m0 ):
+        ofile = open(mc3i_path, 'a')
+        ofile.write(ticker+":"+name+":"+momp0+":"+momp1+":"+momp2+"\n")
+        ofile.close()
+
+    y2 = float(yoyp2.replace('%',''))
+    y1 = float(yoyp1.replace('%',''))
+    y0 = float(yoyp0.replace('%',''))
+    if ( y2 <= y1 and y1 <= y0 ):
+        ofile = open(yc3i_path, 'a')
+        ofile.write(ticker+":"+name+":"+yoyp0+":"+yoyp1+":"+yoyp2+"\n")
+        ofile.close()
+
+except:
+    # traceback.format_exception(*sys.exc_info())
+    e = sys.exc_info()[0]
+    print("Unexpected error:", sys.exc_info()[0])
+    # print("m2 {} momp2 {}".format(m2, momp2))
+    raise
+
+finally:
+    pass
+    # print("finally")
 
 sys.exit(0)
+# // TODO: consequtive 3 growth mom
+# // TODO: growth rate minus to positive
