@@ -33,10 +33,10 @@ h_path = os.path.join(DIR1, fname)
 mr_fname   = yyyymmdd + ".0.csv"
 m_path     = os.path.join(DIR0, mr_fname)
 
-mc3i_fname = yyyymmdd + ".0.csv"
+mc3i_fname = yyyymmdd + ".mom.c3i.csv"
 mc3i_path  = os.path.join(DIR0, mc3i_fname)
 
-yc3i_fname = yyyymmdd + ".0.csv"
+yc3i_fname = yyyymmdd + ".yoy.c3i.csv"
 yc3i_path  = os.path.join(DIR0, yc3i_fname)
 
 try:
