@@ -96,7 +96,7 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     columns = sheet0.getColumns()
-    hide_lst = ["C:F", "I:BC", "$By", "CA:CI"]
+    hide_lst = ["C:F", "I:BC", "$By1", "CA:Cj"]
     for r in hide_lst:
         the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
