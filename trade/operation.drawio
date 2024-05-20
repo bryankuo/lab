@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-27T21:31:40.275Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="7uqYVcEd79T_l1mXCOd1" version="24.3.0" type="device">
+<mxfile host="app.diagrams.net" modified="2024-05-20T01:48:04.258Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="lflPJStGoeq59VAp6tj-" version="24.3.1" type="device">
   <diagram id="Q4SLD9CEBwbsqWiLM6IJ" name="The Trade Day">
     <mxGraphModel dx="1434" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1248,7 +1248,7 @@
         <mxCell id="eCpT17Q3q1Tu3qyDgRwa-1" value="開啟並確認&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;hotkey設定" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1231.12" y="1360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="QZe4o9Y-4JV4LSsoZDq5-1" value="用五分K看趨勢&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;用1分K找進場點" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="QZe4o9Y-4JV4LSsoZDq5-1" value="用五分K看趨勢&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;用1分K找進場點&lt;div&gt;( 美股 )&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1159.6299999999999" y="2000" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="QI0C76s3brkpD20tAsTN-1" value="觀察市場&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;成交明細&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;( 封包大小 )&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;( time and sales )" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -4317,8 +4317,32 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="DT-B6razODhK1xNxWTxf-1" value="hinet&lt;div&gt;網路連線測試&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="DT-B6razODhK1xNxWTxf-1" value="hinet&lt;div&gt;網路連線測試&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="839.5" y="1330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7cGdYqQouOTQcgf4MpAk-1" value="用周K看趨勢&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;div&gt;( 台股 )&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1289.62" y="2000" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7cGdYqQouOTQcgf4MpAk-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="74_snVE-PuJ4BUAT_Nuq-2" target="7cGdYqQouOTQcgf4MpAk-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1382" y="2442" as="sourcePoint" />
+            <mxPoint x="1439" y="2682" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1350" y="2490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7cGdYqQouOTQcgf4MpAk-3" value="Dennis Podcast&lt;div&gt;台股市場的&lt;/div&gt;&lt;div&gt;機構投資人屬性高&lt;/div&gt;&lt;div&gt;( 賤芭樂 下班經濟學 )&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1381.1200000000001" y="2100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7cGdYqQouOTQcgf4MpAk-4" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;dashed=1;strokeWidth=1;dashPattern=1 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="7cGdYqQouOTQcgf4MpAk-1" target="7cGdYqQouOTQcgf4MpAk-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1800" y="3771.5" as="sourcePoint" />
+            <mxPoint x="1374.62" y="2169.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1450" y="2030" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
