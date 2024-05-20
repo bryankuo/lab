@@ -62,7 +62,7 @@ sheet0 = doc.Sheets.getByName(sheet_name)
 columns = sheet0.getColumns()
 columns.IsVisible = False # all hide
 # columns = ["C1:F3000", "I1:I3000", "BF1:BF3000", "K1:BG3000", "$BL1:BW3000"]
-columns = ["A:B", "G:J", "I1", "BD1", "BI:BK", "BX1"]
+columns = ["A:B", "G:J", "I1", "BD1", "BI:BK", "BX1", "BZ1", "CJ1"]
 for cols in columns:
     the_range = sheet0.getCellRangeByName(cols)
     doc.CurrentController.select(the_range)
