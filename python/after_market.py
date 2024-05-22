@@ -87,7 +87,8 @@ if ( from_file ):
             # @see https://www.twse.com.tw/downloads/zh/products/stock_cod.pdf
             if ( 4 == len(tkr) and 1101 <= int(tkr) and int(tkr) <= 9999 ):
                 # print( tkr + " " + vol )
-                outfile0.write( tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
+                outfile0.write( \
+                    tkr + ":" + close + ":" + p_chg + ":" + vol + "\n" )
                 outfile1.write("{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}\n" \
                     .format( tkr,nm,close,chg,p_chg, \
                         wp_chg,amp,opn,hi,low, \

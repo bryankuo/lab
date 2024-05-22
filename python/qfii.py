@@ -7,6 +7,7 @@
 #  dd: day, no leading zero
 # highlight both qfii and fund go in the same direction
 # red: same direction, green: opposite direction
+# \param in yyyy+mm+dd + ".all.columns.csv" from after_market.py
 # return 0: success
 
 import sys, requests, time, os, numpy, csv
@@ -701,13 +702,14 @@ try:
         print("read {}".format(c_path))
         df = pd.read_csv(c_path, sep=':', skiprows=0, header=0)
         for i in range(0, len(df.index)):
-            # print(df.loc[[i]])
             if ( df.loc[i,'漲跌幅'] != "--" ):
+                cls = float(df.loc[i,'價格'])
+                h   = float(df.loc[i,'最高'])
+                l   = float(df.loc[i,'最低'])
                 r0 = float(df.loc[i,'漲跌幅'].replace('%',''))
-                l_threshold = 9.1
-                if ( l_threshold <= r0 ):
+                if ( cls == h and l_threshold <= r0 ):
                     limit_ulist.append(int(df.loc[i,'代號']))
-                if ( r0 <= -l_threshold ):
+                if ( cls == l and r0 <= -l_threshold ):
                     limit_dlist.append(int(df.loc[i,'代號']))
         pprint("u {} {}".format(len(limit_ulist), limit_ulist))
         pprint("d {} {}".format(len(limit_dlist), limit_dlist))

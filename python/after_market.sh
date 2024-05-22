@@ -58,6 +58,10 @@ if [[ "$currenttime" > "13:30" ]]; then
     # 3. for each ticker, count # of days before its previous high
 
     # 4. list 10 day low
+
+    # 5. list # of limit up, and # of limit down
+    # cat "$DIR0/$DATE.all.columns.csv" | cut -d ":" -f 3,5,9,10
+    python3 count_n_luld.py $DATE
 fi
 
 exit 0
