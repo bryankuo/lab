@@ -141,7 +141,7 @@ path6 = os.path.join(DIR0, qsmr)
 try:
     full_tab = []; list1b = []; list1s = []; list2b = []; list2s = []
     limit_ulist = []; limit_dlist = [];
-
+    qslu_list = []; qbld_list = []; qbmd_list = []; qsmr_list = []
     def fetch():
         url_qfii = "https://www.twse.com.tw/zh/page/trading/fund/TWT38U.html"
         url_fund = "https://www.twse.com.tw/zh/page/trading/fund/TWT44U.html"
@@ -606,7 +606,8 @@ try:
                             full_tab[i][1], \
                             full_tab[i][3] )
                         outf3.write(rec +"\n")
-                        print( "37.3 qslu " + tkr )
+                        # print( "37.3 qslu " + tkr )
+                        qslu_list.append(tkr)
 
                 # rule 37.4 qfii buy at limit down
                 if ( ld_lst is not None    \
@@ -619,7 +620,8 @@ try:
                             full_tab[i][1], \
                             full_tab[i][2] )
                         outf4.write(rec +"\n")
-                        print( "37.4 qbld " + tkr )
+                        # print( "37.4 qbld " + tkr )
+                        qbld_list.append(tkr)
 
                 # rule 37.5 market dip and qfii buy
                 if ( market == 2 and 0 < int(full_tab[i][2]) ):
@@ -628,7 +630,8 @@ try:
                         .format( \
                         full_tab[i][0], full_tab[i][1], full_tab[i][2] )
                     outf5.write(rec +"\n")
-                    print( "qbmd " + tkr )
+                    # print( "qbmd " + tkr )
+                    qbmd_list.append(tkr)
 
                 # rule 37.6 market rip and qfii climax sell or
                 elif ( market == 1 and int(full_tab[i][3]) < 0 ):
@@ -637,13 +640,19 @@ try:
                         .format( \
                         full_tab[i][0], full_tab[i][1], full_tab[i][3] )
                     outf6.write(rec +"\n")
-                    print( "qsmr " + tkr )
+                    # print( "qsmr " + tkr )
+                    qsmr_list.append(tkr)
+
                 else:
                     # print("market is 0")
                     pass
 
         outf1.close(); outf2.close(); outf3.close(); outf4.close()
         outf5.close(); outf6.close()
+        pprint("qslu {} {}".format(len(qslu_list), qslu_list))
+        pprint("qbld {} {}".format(len(qbld_list), qbld_list))
+        pprint("qsmr {} {}".format(len(qsmr_list), qsmr_list))
+        pprint("qbmd {} {}".format(len(qbmd_list), qbmd_list))
         return full_tab
 
     # // TODO: definition of high
@@ -701,6 +710,7 @@ try:
         c_path = os.path.join(DIR0a, cname)
         print("read {}".format(c_path))
         df = pd.read_csv(c_path, sep=':', skiprows=0, header=0)
+        l_threshold = 9.66
         for i in range(0, len(df.index)):
             if ( df.loc[i,'漲跌幅'] != "--" ):
                 cls = float(df.loc[i,'價格'])
