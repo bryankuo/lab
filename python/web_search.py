@@ -349,3 +349,8 @@ sys.exit(0)
 
 # 暫停先賣後買當日沖銷交易標的預告表
 # https://www.twse.com.tw/zh/trading/day-trading/twtbau.html
+
+# P/B ratio 每日更新的PE/PB
+# https://www.twse.com.tw/zh/trading/historical/bwibbu-day.html
+# type 5
+# https://www.tpex.org.tw/web/stock/aftertrading/peratio_analysis/pera.php?l=zh-tw
