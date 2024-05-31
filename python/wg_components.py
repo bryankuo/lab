@@ -96,7 +96,8 @@ try:
         outfile.write(tkr+"\n" )
     outfile.close()
     print("to {}".format(o_path))
-    pprint("# {} \n{}".format(len(clist), clist))
+    print("# {} ".format(len(clist)))
+    pprint("{}".format(clist))
 
 except:
     # traceback.format_exception(*sys.exc_info())
@@ -114,3 +115,5 @@ finally:
 print("done.")
 
 sys.exit(0)
+
+# grep -rnp --color="auto" -e "2454" datafiles/taiex/etf_components/*.csv | cut -d '/' -f 4 | cut -d '.' -f 1 | xargs
