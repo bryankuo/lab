@@ -69,7 +69,8 @@ sources = [ \
 # https://www.wantgoo.com/stock/etf/00919/constituent
 # https://www.wantgoo.com/stock/etf/0050/constituent
 # https://www.wantgoo.com/stock/etf/00905/constituent
-#    "https://www.wantgoo.com/stock/etf/" + etf_id + "/constituent" # // FIXME:
+#    "https://www.wantgoo.com/stock/etf/" + etf_id + "/constituent"
+# @see wg_components.py scrap_wg_components.py
 
 # 富櫃50指數成分股資訊 gretai50.py
 # https://www.tpex.org.tw/web/stock/iNdex_info/gretai50/ingrid/r50cnstnt_result.php?l=zh-tw&s=0,asc,0&o=htm

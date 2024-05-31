@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
 # python3 scrap_wg_components.py [eid]
-#
+# POC test for wg_components.py
+
 # \param  in eid
-# \param out eid.csv
+# \param out datafiles/taiex/etf_components/[id].csv
 #
 # return 0
 

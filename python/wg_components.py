@@ -3,9 +3,10 @@
 # python3 wg_components.py [id]
 #
 # selenium tips on chrome driver, cookie features, cloudfare undetection
+# NOT serving ./scrap_wg_components.py
 #
 # \param  in id
-# \param out ror.YYYYMMDD.csv
+# \param out datafiles/taiex/etf_components/[id].csv
 #
 # return 0
 
@@ -86,13 +87,16 @@ try:
     rows = tables[0].find_all("tr")
     print("# tables {}, # rows {}".format(len(tables), len(rows)))
 
+    clist = []
     outfile = open(o_path, "w")
     for i in range(0, len(rows)-1 ):
         tkr = rows[i].find_all("td")[0].text.strip()
-        print("{}".format(tkr))
+        # print("{}".format(tkr))
+        clist.append(tkr)
         outfile.write(tkr+"\n" )
     outfile.close()
     print("to {}".format(o_path))
+    pprint("# {} \n{}".format(len(clist), clist))
 
 except:
     # traceback.format_exception(*sys.exc_info())
