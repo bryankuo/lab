@@ -6,6 +6,8 @@
 #
 # \param in ticker
 # \param in $DIR2/????????.all.columns.csv, on daily bases
+#
+# @see ./ndays_2new_high.sh
 
 DIR0="."
 DIR2="$DIR0/datafiles/taiex/after.market"

@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
-# slice ticker and # days from last high
+# slice calc ticker and # days from last high
+# serving count_ndays_last_high.sh
+# @see uno/load/addsheet.py
 #
 # \param in activity_watchlist.ods
 # \param in d1 newer

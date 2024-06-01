@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 # python3 count_n_luld.py [yyyymmdd]
+# count number of limit up ( down )
+#
 # \param in yyyy+mm+dd + ".all.columns.csv" from after_market.py
 
 import sys, requests, datetime, time, numpy, random, csv, urllib

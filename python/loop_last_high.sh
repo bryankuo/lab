@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ./loop_last_high.sh
+# serving count_ndays_last_high.sh, looper once
 #
 # loop counting # of (trade) days to get new high
 #
