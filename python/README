@@ -155,6 +155,7 @@ loop_last_high.sh: loop counting last high, run once
 ndays_2new_high.sh: counting by ticker
 ndays_last_hl.py: find peaks,
 peak_valley.py:
+peak_valley.sh: streamline,
 uno_updateqslu.py:
 fetch_board_holding.py: fetch bhr from the net
 get_bhr.py: extract

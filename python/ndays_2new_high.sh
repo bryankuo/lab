@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # ./ndays_2new_high.sh [ticker]
-#
+# ./peak_valley.sh [ticker]
+
 # count # of (trade) days to get new high (low)
 #
 # \param in ticker
