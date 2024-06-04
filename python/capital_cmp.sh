@@ -8,3 +8,5 @@ do
     python3 capital.py $ticker
 done
 exit 0
+# // TODO: 同業股價表現
+# @see https://www.moneydj.com/z/zh/zha/ZH00.djhtm?A=C012011
