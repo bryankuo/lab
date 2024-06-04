@@ -33,6 +33,8 @@ import sites # // TODO: as well as url
 # 臺灣加權指數與相關指數
 # https://www.moneydj.com/iquote/iQuoteChart.djhtm?a=AI001059 ( works )
 
+# 董監質設異動清單 ZEU
+
 # DIR0="./datafiles"
 DIR0a = "./datafiles/taiex/board.holding"
 yyyymmdd = datetime.today().strftime('%Y%m%d')

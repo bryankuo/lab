@@ -77,4 +77,5 @@ print("avg of last {} of # days to valley: {:.2f}" \
     .format( window, avg_valley_day ))
 pv_ratio = float ( avg_peak_day / avg_valley_day )
 print("peak/valley ratio {:.2f}, smaller tends more peak".format(pv_ratio))
+print("if close to 1, tends choppy")
 sys.exit(0)
