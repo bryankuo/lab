@@ -4,8 +4,9 @@
 # python3 load_trade_days.py [d0 d1 ...]
 
 import sys, os
-from datetime import datetime # timedelta,
+from datetime import datetime
 import pandas as pd
+from pprint import pprint
 
 DIR0="./datafiles/taiex/after.market"
 
@@ -25,13 +26,19 @@ for day in trade_days:
     dfs.append(df)
 
 tkrs = dfs[0]['代號'].tolist()
+today_10d_lows = []
 
-tkr = 5274; lows = []
-for df in dfs:
-    mask = df["代號"] == tkr
-    # print("{}".format(df.loc[mask, '最低'].squeeze()))
-    lows.append(df.loc[mask, '最低'].squeeze())
+for tkr in tkrs:
+    lows = []
+    for df in dfs:
+        mask = df["代號"] == tkr
+        # print("{}".format(df.loc[mask, '最低'].squeeze()))
+        lows.append(df.loc[mask, '最低'].squeeze())
+    val, idx = min((val, idx) for (idx, val) in enumerate(lows))
+    # print("v {} i {} date {}".format(val, idx, sys.argv[1+idx]))
+    if ( idx == 0 ):
+        today_10d_lows.append(tkr)
+print(today_10d_lows)
+print("total {}".format(len(today_10d_lows)))
 
-val, idx = min((val, idx) for (idx, val) in enumerate(lows))
-# print("v {} i {} date {}".format(val, idx, sys.argv[1+idx]))
 sys.exit(0)
