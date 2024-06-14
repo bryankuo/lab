@@ -11,7 +11,7 @@
 # return 0
 
 import sys, requests, time, os
-from datetime import timedelta, datetime
+from datetime import datetime
 from pprint import pprint
 from bs4 import BeautifulSoup
 
