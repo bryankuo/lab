@@ -35,6 +35,7 @@ opt='&map_action=map&zoom=0'
 # url='https://www.google.com/maps/@?api=1&map_action=map&zoom=17&basemap=terrain'+'&query='+quote(addr)
 url='https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=48.857832%2C2.295226&heading=-45&pitch=38&fov=80'
 # how to add a marker to newly opened google map?
+# how to export my google map? (takeout) export check kml
 # gmap package?
 # Geocoder python package?
 # gmplot library?

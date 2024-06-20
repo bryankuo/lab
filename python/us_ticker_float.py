@@ -32,7 +32,7 @@ html_path = os.path.join(DIR0, ofname1)
 
 # url = "https://www.marketwatch.com/investing/stock/"+ticker
 url = "https://www.marketwatch.com/investing/stock/" + ticker + "?mod=mw_quote_tab"
-# // FIXME:
+# // FIXME: selenium tips on CAPTCHA challenges
 # fetch https://www.marketwatch.com/investing/stock/ccm?mod=mw_quote_tab
 '''
 b'<html><head><title>marketwatch.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style></head><body style="margin:0"><p id="cmsg">Please enable JS and disable any ad blocker</p><script data-cfasync="false">var dd={\'rt\':\'c\',\'cid\':\'AHrlqAAAAAMA2TS8ar744H0AAatIwg==\',\'hsh\':\'D428D51E28968797BC27FB9153435D\',\'t\':\'fe\',\'s\':47891,\'e\':\'3f9d168fa96822b32c0d87716d52147e5d4ee74df1efd195dcddce6bbf57fa69\',\'host\':\'geo.captcha-delivery.com\'}</script><script data-cfasync="false" src="https://ct.captcha-delivery.com/c.js"></script></body></html>'

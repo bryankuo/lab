@@ -37,8 +37,7 @@ TIME=${currenttime:0:2}${currenttime:3:2}
 
 # twse market is closed, including type 5
 if [[ "$currenttime" > "13:30" ]]; then
-    # 1.
-    ls -lt $DIR0/????????.csv | head -n 3
+    # ls -lt $DIR0/????????.csv | head -n 3
     N_DAYS=$( ls -lt $DIR0/????????.csv | wc -l | xargs | cut -d " " -f1 )
     echo "there are $N_DAYS trade days recorded."
 
@@ -62,6 +61,13 @@ if [[ "$currenttime" > "13:30" ]]; then
     # 5. list # of limit up, and # of limit down
     # cat "$DIR0/$DATE.all.columns.csv" | cut -d ":" -f 3,5,9,10
     python3 count_n_luld.py $DATE
+
+    # 6. summary
+    python3 get_twse_mark.py
+fi
+
+if [[ "$currenttime" > "18:30" ]]; then
+    ./qfbs.sh $DATE 0
 fi
 
 exit 0
