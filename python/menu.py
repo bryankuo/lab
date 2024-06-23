@@ -75,6 +75,7 @@ except RuntimeException:
 
 try:
     sheet_name = "20231211"
+    # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets#Sheets
     sheet0 = doc.Sheets.getByName(sheet_name)
     columns = sheet0.getColumns()
     columns.IsVisible = False
@@ -116,13 +117,15 @@ try:
     # .uno:DataFilterStandardFilter
     # single filter
     # @see https://marc.info/?l=openoffice-users&m=111523270761630
-    # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/TableFilterField.html
+
     # https://wiki.documentfoundation.org/Documentation/DevGuide/Spreadsheet_Documents
 
     # createFilterDescriptor example
     # https://wiki.documentfoundation.org/Macros/Calc/ba026
     oFilterDesc = sheet0.createFilterDescriptor(True)
     # print(oFilterDesc) # ok
+
+    # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/TableFilterField.html
     # aFilterField = com.sun.star.sheet.TableFilterField
     aFilterField = TableFilterField()
     aFilterField.Field = 55 # BD
@@ -144,7 +147,13 @@ try:
     oFields = (aFilterField, aFilterField1,) # tuple
     oFilterDesc.setFilterFields(oFields)
     oFilterDesc.ContainsHeader = True
-    # sheet0.filter(oFilterDesc) # works
+    sheet0.filter(oFilterDesc) # works
+    '''
+    # Clear All Filters for a Sheet
+    # @see https://wiki.documentfoundation.org/Macros/Calc
+    oFilterDesc = sheet0.createFilterDescriptor(True)
+    sheet0.filter(oFilterDesc) # works
+    '''
 
     # dispatch.executeDispatch( \
     #    frame, ".uno:DataFilterStandardFilter", '', 0, oFields) # NG
