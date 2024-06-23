@@ -111,7 +111,7 @@ try:
     # with no parameters # works
     # dispatch.executeDispatch(frame, ".uno:DataFilterAutoFilter", '', 0, ())
     # 'clear' filter works, not filter criteria
-    dispatch.executeDispatch(frame, ".uno:DataFilterRemoveFilter", '', 0, ())
+    # dispatch.executeDispatch(frame, ".uno:DataFilterRemoveFilter", '', 0, ())
 
     # filter with criteria
     # .uno:DataFilterStandardFilter
@@ -122,6 +122,7 @@ try:
 
     # createFilterDescriptor example
     # https://wiki.documentfoundation.org/Macros/Calc/ba026
+    '''
     oFilterDesc = sheet0.createFilterDescriptor(True)
     # print(oFilterDesc) # ok
 
@@ -149,11 +150,11 @@ try:
     oFilterDesc.ContainsHeader = True
     sheet0.filter(oFilterDesc) # works
     '''
+
     # Clear All Filters for a Sheet
     # @see https://wiki.documentfoundation.org/Macros/Calc
     oFilterDesc = sheet0.createFilterDescriptor(True)
     sheet0.filter(oFilterDesc) # works
-    '''
 
     # dispatch.executeDispatch( \
     #    frame, ".uno:DataFilterStandardFilter", '', 0, oFields) # NG
