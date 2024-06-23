@@ -23,7 +23,11 @@ from com.sun.star.sheet import TableFilterField # SheetFilterDescriptor
 # @see https://ask.libreoffice.org/t/calc-macro-to-filter-column-by-text-background-color/89345/2
 from com.sun.star.sheet.FilterOperator \
     import EMPTY, EQUAL, GREATER_EQUAL, GREATER, \
-    TOP_VALUES, BOTTOM_VALUES, NOT_EQUAL, NOT_EMPTY
+    TOP_VALUES, BOTTOM_VALUES, NOT_EQUAL, NOT_EMPTY, \
+    LESS_EQUAL
+
+from com.sun.star.sheet.FilterConnection \
+    import AND, OR
 
 # yyyymmdd = sys.argv[1]
 
@@ -81,23 +85,6 @@ try:
         the_range.Columns.IsVisible = True
         the_range.Columns.OptimalWidth = True
 
-    '''
-    hide_lst = ["C:I", "K:CB", "cD1"]
-    for r in hide_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = False
-    '''
-
-    '''
-    opt_lst = ["A:B", "$j1", "BH1", "cC1"]
-    for r in opt_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = True
-        the_range.Columns.OptimalWidth = True
-    '''
-
     guessRange = sheet0.getCellRangeByPosition(0, 1, 3, 3001)
     cursor = sheet0.createCursorByRange(guessRange)
     cursor.gotoEndOfUsedArea(False)
@@ -120,31 +107,51 @@ try:
     properties = (oProp,)
     dispatch.executeDispatch(frame, ".uno:GoToCell", "", 0, properties) # works
 
-    # with no parameters
-    # dispatch.executeDispatch(frame, ".uno:DataFilterAutoFilter", '', 0, ()) # works
+    # with no parameters # works
+    # dispatch.executeDispatch(frame, ".uno:DataFilterAutoFilter", '', 0, ())
+    # 'clear' filter works, not filter criteria
+    dispatch.executeDispatch(frame, ".uno:DataFilterRemoveFilter", '', 0, ())
 
     # filter with criteria
     # .uno:DataFilterStandardFilter
-
     # single filter
     # @see https://marc.info/?l=openoffice-users&m=111523270761630
     # @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/TableFilterField.html
     # https://wiki.documentfoundation.org/Documentation/DevGuide/Spreadsheet_Documents
-    aFilterField = TableFilterField()
-    aFilterField.Field = 1
-    aFilterField.IsNumeric = True
-    # aFilterField.Operator = com.sun.star.sheet.FilterOperator.GREATER_EQUAL
-    aFilterField.Operator = EQUAL
-    aFilterField.NumericValue = 1102
-    properties = (aFilterField,)
 
-    dispatch.executeDispatch( \
-        frame, ".uno:DataFilterStandardFilter", '', 0, properties)
+    # createFilterDescriptor example
+    # https://wiki.documentfoundation.org/Macros/Calc/ba026
+    oFilterDesc = sheet0.createFilterDescriptor(True)
+    # print(oFilterDesc) # ok
+    # aFilterField = com.sun.star.sheet.TableFilterField
+    aFilterField = TableFilterField()
+    aFilterField.Field = 55 # BD
+    # aFilterField.Field = 0 # works, zero-based index
+    aFilterField.IsNumeric = True
+    aFilterField.Operator = GREATER_EQUAL
+    aFilterField.NumericValue = 2.0
+    # aFilterField.NumericValue = 1101
+    # print(aFilterField) # ok
+
+    aFilterField1 = TableFilterField()
+    aFilterField1.Connection = AND # ok
+    aFilterField1.Field = 55 # BD
+    aFilterField1.IsNumeric = True
+    aFilterField1.Operator = LESS_EQUAL
+    aFilterField1.NumericValue = 3.3
+    # print(aFilterField1)
+
+    oFields = (aFilterField, aFilterField1,) # tuple
+    oFilterDesc.setFilterFields(oFields)
+    oFilterDesc.ContainsHeader = True
+    # sheet0.filter(oFilterDesc) # works
+
+    # dispatch.executeDispatch( \
+    #    frame, ".uno:DataFilterStandardFilter", '', 0, oFields) # NG
 
     # ".uno:FilterExecute"
-    dispatch.executeDispatch(frame, ".uno:FilterExecute", '', 0, ())
+    # dispatch.executeDispatch(frame, ".uno:FilterExecute", '', 0, ())
 
-    # ".uno:DataFilterRemoveFilter"
 
     # Dispatch commands by application
     # https://wiki.documentfoundation.org/Development/DispatchCommands#Base_slots_.28basslots.29
