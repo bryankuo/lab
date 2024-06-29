@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-# 買賣日報表查詢系統
-# // TODO: improve by selenium with human intervention
-#
 # python3 br_ticker.py [ticker]
 # return 0: success
 
