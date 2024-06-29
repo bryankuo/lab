@@ -3,17 +3,12 @@
 # /Applications/LibreOffice.app/Contents/Resources/python
 #  pick_tickers.py [tickers]
 #
-# \param in a list of tickers
+# \param in  a list of tickers
+# \param out calc filtered by given tickers
 #
-# reference doc:
-# http://christopher5106.github.io/office/2015/12/06/openoffice-libreoffice-automate-your-office-tasks-with-python-macros.html#comment-3688991538
-# https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets
-# Python for LibreOffice
-# https://openoffice3.web.fc2.com/Python_Macro_Calc.html
-# uno-commands.csv
-# https://github.com/LibreOffice/help/blob/master/helpers/uno-commands.csv
 import uno, sys, time, os, csv
 from datetime import datetime
+from pprint import pprint
 from com.sun.star.uno import RuntimeException
 # from datetime import date
 # test
@@ -30,16 +25,12 @@ from com.sun.star.sheet.FilterConnection \
     import AND, OR
 
 tickers = sys.argv[1]
-print(tickers)
-sys.exit(0)
+tkr_l = tickers[1:-1].strip(' ').split(',')
+tkr_l = list(map(int, tkr_l))
+# pprint(tkr_l)
 
-# get the uno component context from the PyUNO runtime
-localContext = uno.getComponentContext() # works
-# SM = localContext.getServiceManager()    # works
-# ctx = XSCRIPTCONTEXT.getComponentContext() # // FIXME:
-# print(ctx)
+localContext = uno.getComponentContext()
 
-# create the UnoUrlResolver
 resolver = localContext.ServiceManager\
     .createInstanceWithContext( \
         "com.sun.star.bridge.UnoUrlResolver", localContext )
@@ -51,37 +42,27 @@ smgr = ctx.ServiceManager                # different service manager
 
 # get the central desktop object
 desktop = smgr.createInstanceWithContext( "com.sun.star.frame.Desktop",ctx)
-# @see https://www.openoffice.org/api/docs/common/ref/com/sun/star/sheet/module-ix.html
-# access the current writer document
 
-# desktop = XSCRIPTCONTEXT.getDesktop() # not defined
 doc = None
 numbers = None
 locale = None
 nl = None
-# trying:
-# @see https://ask.libreoffice.org/t/why-does-desktop-getcurrentcomponent-return-none-in-pyuno/59902/5
 while doc is None:
     doc = desktop.getCurrentComponent()
     numbers = doc.NumberFormats # // FIXME: only when get focused, or touched
     locale = doc.CharLocale
 
-# instead of
-# @see https://ask.libreoffice.org/t/formatting-data-cell-from-macro-in-calc/23740
 try:
     nl = numbers.addNew( "###0",  locale )
-    # nl2 = numbers.addNew( "###0.000",  locale )
 except RuntimeException:
     nl = numbers.queryKey("###0", locale, False)
-    # nl2 = numbers.addNew( "###0.000",  locale )
 
 try:
     sheet_name = "20231211"
-    # https://wiki.documentfoundation.org/Macros/Python_Guide/Calc/Calc_sheets#Sheets
     sheet0 = doc.Sheets.getByName(sheet_name)
     columns = sheet0.getColumns()
     columns.IsVisible = False
-    columns = ["A:B", "G:J", "I1", "BD1", "BI:BK", "BX1"]
+    columns = ["A:B", "G:J", "BD1", "BI:BJ", "BX1"]
     for cols in columns:
         the_range = sheet0.getCellRangeByName(cols)
         doc.CurrentController.select(the_range)

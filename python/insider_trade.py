@@ -11,7 +11,7 @@
 # \parm  out a list containing close price
 # \return 0: success
 
-import sys, requests, time, os, re, random
+import sys, requests, time, os, re, random, webbrowser
 import urllib.request
 from datetime import timedelta, datetime, date
 from bs4 import BeautifulSoup
@@ -53,7 +53,7 @@ last_sat = this_date - timedelta(7+idx-6)
 
 if ( is_from_net ):
     url = random.choice(sites.list) + "/z/ze/zei/zei.djhtm"
-    print("from {}".format(url))
+    # print("from {}".format(url))
     if ( os.path.exists(path) ):
         os.remove(path) # clean up
     # response = requests.get(url)
@@ -63,7 +63,7 @@ if ( is_from_net ):
 
     # response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    print("to {}".format(path))
+    # print("to {}".format(path))
     with open(path, "w") as outfile2:
         outfile2.write(soup.prettify())
     outfile2.close()
@@ -94,10 +94,12 @@ for i in range(2, len(rows)-1):
             last_ticker = the_ticker
     else:
         break
-print("scan from " + last_sat.strftime('%Y%m%d') + " to " + this_date.strftime('%Y%m%d') )
-olist = [ num_this_wk, num_ticker, path, url ]
-print(pprint(olist))
+# print("scan from " + last_sat.strftime('%Y%m%d') + " to " + this_date.strftime('%Y%m%d') )
+# olist = [ num_this_wk, num_ticker, path, url ]
+# print(pprint(olist))
 tkr_l = set(tkr_l)
-pprint("{}".format(tkr_l))
+print("{}".format(tkr_l))
+# inspection / confirmation purpose
+webbrowser.open(url)
 
 sys.exit(0)
