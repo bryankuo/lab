@@ -1,15 +1,12 @@
 #!/usr/bin/python3
 
-# python3 br_ticker.py [ticker]
+# minimum python function for shell script
+
+# python3 browse_url.py [url]
 # return 0: success
 
-import sys, requests, time, webbrowser
-import urllib.request
-from datetime import timedelta,datetime
-from dateutil.relativedelta import relativedelta
-from bs4 import BeautifulSoup
+import sys, webbrowser
 
-ticker = sys.argv[1]
-url = "https://bsr.twse.com.tw/bshtm/?TextBox_Stkno=" + ticker
-webbrowser.open(url)
+webbrowser.open(sys.argv[1])
+
 sys.exit(0)
