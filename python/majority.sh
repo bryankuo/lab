@@ -1,6 +1,15 @@
 #!/bin/bash
 
-
+# trend following major players:
+#
+# 1. qfii, fund, retail (qfii.py, qfbs.sh, basic.py, uno_activity.py)
+# 2. government banks (gbank_activities.py, gbank_histock.py)
+# 3. board holdings (board.py, bholding.sh)
+# 4. margin (fetch_margin_balance.py)
+# 5. etfs / indexes ( wg_components.py, scrap_wg_components.py)
+# 6. 國發基金 ( update frequency? )
+# 7. insider ( insider_trade.py )
+#
 clear
 
 TIMESTAMP0=`date '+%Y/%m/%d %H:%M:%S'`
