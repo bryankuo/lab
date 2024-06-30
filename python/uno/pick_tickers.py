@@ -108,6 +108,8 @@ try:
     oFilterDesc = sheet0.createFilterDescriptor(True)
     # print(oFilterDesc) # ok
 
+    # https://forum.openoffice.org/en/forum/viewtopic.php?p=519743&sid=d8177b32c6db9f8abd6a755cb0001399#p519743
+    # // TODO: add multiple to tuple
     # multiple tickers
     # @see https://forum.openoffice.org/en/forum/viewtopic.php?t=106854
     # oFields = (TableFilterField()) * len(tkr_l) # NG
