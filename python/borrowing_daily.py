@@ -31,4 +31,4 @@ for url in borrowing_daily_announcement:
     # print('\a') # beep works
 
 sys.exit(0)
-# // TODO: count # of lines, everyday
+# // TODO: for each type, count # of lines, and compare with last trade day

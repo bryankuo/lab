@@ -318,6 +318,7 @@ tail -n +2 $OUTF2S_UNSORTED > temp; awk -F':' '{print $1}' temp | \
 rm -f temp
 
 ./check_2b2s.sh $DATE $LAST_TRADE_DAY
+# // TODO: name, and amount by qfii and fund
 
 # 37.7
 ./uno_launch.sh $OQFS2
