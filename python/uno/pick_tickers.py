@@ -110,6 +110,8 @@ try:
 
     # https://forum.openoffice.org/en/forum/viewtopic.php?p=519743&sid=d8177b32c6db9f8abd6a755cb0001399#p519743
     # // TODO: add multiple to tuple
+    # @see https://stackoverflow.com/a/20736978
+    # tuple concatenation
     # multiple tickers
     # @see https://forum.openoffice.org/en/forum/viewtopic.php?t=106854
     # oFields = (TableFilterField()) * len(tkr_l) # NG
