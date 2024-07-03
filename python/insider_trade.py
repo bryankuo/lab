@@ -3,7 +3,7 @@
 # python3 insider_trade.py [yyyymmdd] [net|file]
 # get ticker close price by date
 # // TODO: automate updating activities
-#
+# // TODO: 從身份跟轉讓方式去分析哪些大戶特別擅長交易
 # \param in date in yyyymmdd
 # \param in 0: from internet, 1: from file
 # \param out datafiles/taiex/insider_trade.[yyyymmdd].html, assuming on Sat.
