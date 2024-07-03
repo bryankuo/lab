@@ -147,7 +147,8 @@ try:
     # // FIXME: possible new in data, therefore search
     print("# file {:>4} in {}".format(len(tkrs), ipath1))
 
-    opt_lst = ["A:B", col + "1"]
+    # all etf component columns
+    opt_lst = ["A:B", "CA:CB", "CE1", "CK:CP", "CR:CS"]
     print(opt_lst)
     for r in opt_lst:
         the_range = sheet0.getCellRangeByName(r)
