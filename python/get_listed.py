@@ -26,7 +26,8 @@
 # sites.py applies
 # https://stock.capital.com.tw/Z/ZH/ZHA/ZHA.djhtm
 # @see requests_url.py
-
+# https://stock.capital.com.tw/Z/ZH/ZHA/ZHA.djhtm
+#
 # return : num of line
 
 import sys, requests, time, re, os
