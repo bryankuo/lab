@@ -23,6 +23,9 @@
 
 # categorize by moneydj
 # https://www.moneydj.com/Z/ZH/ZHA/ZHA.djhtm
+# sites.py applies
+# https://stock.capital.com.tw/Z/ZH/ZHA/ZHA.djhtm
+# @see requests_url.py
 
 # return : num of line
 

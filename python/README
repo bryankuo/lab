@@ -5,6 +5,8 @@ hello_odf.py: poc test odfpy module.
 gmap_chrome.py: google map via selenium chrome driver and stealth,
 ofile.py: another example.
 web.py: scraping web example.
+browse_url.py: minimum open browser function for bash
+requests_url.py: minimum requests function for bash
 volume.sh: caller of volume*.py file.
 volume.py: scrap listed average daily volume for the last year.
 volume_otc.py: scrap otc average daily volume for the last year.
