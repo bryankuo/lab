@@ -52,6 +52,7 @@ update_watchlist.sh: add new symbol to watchlist,
 annual_report.py: browse latest annual report.
 simple_plot.py: simple matplotlib example.
 correlation.py: poc test correlating 2 or more US tickers
+xyplot.py: xyplot example
 activity.py: counting chips in recent 5 days,
 looping.py: looping listed companies.
 activities.sh: looping company activity by type.
