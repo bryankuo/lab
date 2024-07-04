@@ -158,6 +158,7 @@ ndays_2new_high.sh: counting by ticker
 ndays_last_hl.py: find peaks,
 peak_valley.py:
 peak_valley.sh: streamline,
+10d_low.sh: N days low and vol > 10k lots
 uno_updateqslu.py:
 fetch_board_holding.py: fetch bhr from the net
 get_bhr.py: extract
