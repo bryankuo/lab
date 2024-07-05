@@ -53,6 +53,7 @@ annual_report.py: browse latest annual report.
 simple_plot.py: simple matplotlib example.
 correlation.py: poc test correlating 2 or more US tickers
 xyplot.py: xyplot example
+plot_n_amplitude.py: plot number of tick in terms of amplitude
 activity.py: counting chips in recent 5 days,
 looping.py: looping listed companies.
 activities.sh: looping company activity by type.
