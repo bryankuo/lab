@@ -148,7 +148,7 @@ try:
     print("# file {:>4} in {}".format(len(tkrs), ipath1))
 
     # all etf component columns
-    opt_lst = ["A:B", "CA:CB", "CE1", "CK:CP", "CR:CS"]
+    opt_lst = ["A:B", "CA:CB", "CE1", "CK:CP", "CR:CT"]
     print(opt_lst)
     for r in opt_lst:
         the_range = sheet0.getCellRangeByName(r)
