@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 
 # python3 corp_addr.py
-# fetch company basic info from mops
+# fetch company basic info from mops, it's where sii.ods from
 # \param in TYPEK sii 2,  otc 4, rotc 5, pub ? for all "TYPEK", it applies
+# \param out around 42 columns,
 # return 0:
+
+# // TODO: parse and export to csv, by type
 
 import sys, requests, time, re
 import urllib.request
