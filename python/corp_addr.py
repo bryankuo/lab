@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
 # python3 corp_addr.py
-# return 0: sii 2,  otc 4, rotc 5, pub ?
+# fetch company basic info from mops
+# \param in TYPEK sii 2,  otc 4, rotc 5, pub ? for all "TYPEK", it applies
+# return 0:
 
 import sys, requests, time, re
 import urllib.request
@@ -16,7 +18,7 @@ data = {                     \
     "subMenuID": "[2,2001]", \
     "step": 1,               \
     "firstin": 1,            \
-    "TYPEK": "pub",          \
+    "TYPEK": "all",          \
     "code": "" }
 
 try:

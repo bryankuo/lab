@@ -173,7 +173,8 @@ wrangle_df.py: exercise pandas dataframe merge functions
 ./datafiles/bkr.ods: calc broker list note, not complete
 ./datafiles/taiex/ovt_bkr.txt: overnight trade broker candidates
 ./datafiles/taiex/broker_list.ods:
-./datafiles/taiex/sii.ods: all ticker basic info
+./datafiles/taiex/sii.ods: all ticker basic info, refer to corp_addr.py
+./datafiles/companies.kml:
 ./uno/unload: re-organizing
 ./uno/unload/slice_last_high.py: count n days since last high
 ./uno/load: re-organizing
