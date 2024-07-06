@@ -9,6 +9,9 @@
 # \param out list to diff day by day
 # return 0
 
+# source:
+# https://www.moneydj.com/z/ze/zen/zen_EB011000_0_1.djhtm
+
 import os, sys, requests, time, numpy, random, csv, timeit
 from bs4 import BeautifulSoup
 from timeit import default_timer as timer
