@@ -24,6 +24,7 @@ capital_cmp.sh: compare capital of tickers.
 beta.py: get beta, PE of a ticker.
 beta_cmp.sh: compare beta of tickers.
 cb.py: find if CB is issued for a ticker by webbrowser.
+corp_addr.py: fetch basic info.
 quote.py: get OHLC data frame.
 instant_quote.sh: get OHLC data frame periodically.
 board.py: get board holdings.
