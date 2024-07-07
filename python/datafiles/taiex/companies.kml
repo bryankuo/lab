@@ -564,7 +564,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>日電貿集團</name>
+        <name>3090日電貿</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -573,7 +573,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Yageo 國巨股份有限公司</name>
+        <name>2327國巨</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -582,7 +582,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Walsin Technology Corporation</name>
+        <name>2492華新科</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -591,7 +591,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Holy Stone Enterprise Corp.</name>
+        <name>3026禾伸堂</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -600,7 +600,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Prosperity Dielectrics Co., Ltd.</name>
+        <name>6173信昌電</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -618,7 +618,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>I-Chiun Precision Industry Co., Ltd.</name>
+        <name>2486一詮</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -627,7 +627,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>鐳洋科技股份有限公司</name>
+        <name>6980鐳洋科技</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -636,7 +636,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>合機電線電纜股份有限公司</name>
+        <name>1618合機</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -645,7 +645,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>雷笛克光學股份有限公司</name>
+        <name>5230雷笛克</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -654,16 +654,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>瑞譜科技有限公司</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            120.9949387,24.8351542,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>三芳化學工業股份有限公司</name>
+        <name>1307三芳</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -672,7 +663,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>宏洲纖維工業股份有限公司桃園工廠</name>
+        <name>1413宏洲</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -681,16 +672,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Taiwan 100 and Industrial Co., Ltd.</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            120.4893386,24.1325204,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>全訊科技股份有限公司(總部及一廠)</name>
+        <name>5222全訊</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -699,7 +681,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>華友聯集團總部</name>
+        <name>1436華友聯</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -708,7 +690,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>年興紡織股份有限公司</name>
+        <name>1451年興</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -717,7 +699,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Sun Race Sturmey-Archer Inc. 日馳企業股份有限公司</name>
+        <name>1526日馳</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -735,7 +717,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>喬福機械 (總公司) Roundtop Machinery Industries Co Ltd (Johnford)</name>
+        <name>1540喬福</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -744,7 +726,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>巧新科技工業股份有限公司斗六廠</name>
+        <name>1563巧新</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -753,34 +735,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>吉茂精密股份有限公司</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            120.3483781,23.9168451,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>No. 28, Gongqu Rd</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            120.347522,23.9148624,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>世豐螺絲股份有限公司</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            120.2408954,22.794668,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>艾姆勒科技股份有限公司 總部</name>
+        <name>2241艾姆勒</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -789,7 +744,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>逸達生物科技</name>
+        <name>6576逸達</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -798,7 +753,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>皇昌營造總公司</name>
+        <name>2543皇昌</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -807,7 +762,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>IN WIN Development Inc. Changhsing Factory</name>
+        <name>6117迎廣</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -816,7 +771,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>新復興微波通訊股份有限公司</name>
+        <name>4909新復興</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -825,7 +780,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>廣化科技股份有限公司</name>
+        <name>5297廣化</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -834,7 +789,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>協益電子股份有限公司</name>
+        <name>5356協益</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -843,7 +798,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>金利精密工業股份有限公司</name>
+        <name>5383金利</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -852,20 +807,11 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>穎崴科技股份有限公司</name>
+        <name>6515穎崴</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
             121.017649,24.842417,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Winway Technology Co., Ltd.</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            120.3008452,22.7129894,0
           </coordinates>
         </Point>
       </Placemark>
@@ -879,16 +825,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>金居開發股份有限公司-斗六三廠</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            120.5108373,23.7120594,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>聯上開發股份有限公司</name>
+        <name>2537聯上發</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -897,7 +834,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>聯上實業股份有限公司</name>
+        <name>4113聯上</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -906,7 +843,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Neousys Technology 宸曜科技</name>
+        <name>6922宸曜</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -915,7 +852,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Jung Shing Wire Industrial Co., Ltd.</name>
+        <name>1617榮星</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -924,7 +861,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>晶呈科技股份有限公司</name>
+        <name>4768晶呈科技</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -933,20 +870,11 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>醫影股份有限公司</name>
+        <name>6637醫影</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
             121.578971,25.041154,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>新復興微波通訊股份有限公司</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            121.0639579,24.9406809,0
           </coordinates>
         </Point>
       </Placemark>
@@ -960,7 +888,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>銘鈺精密工業股份有限公司</name>
+        <name>4545銘鈺</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -969,7 +897,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Wus Printed Electronics Co., Ltd.</name>
+        <name>2316楠梓電</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -987,20 +915,11 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>鈺緯科技</name>
+        <name>4153鈺緯</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
             121.4906014,25.003228,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>廣錠科技股份有限公司汐止廠</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            121.6853072,25.0717191,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1032,7 +951,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>8489三貝德數位文創股份有限公司</name>
+        <name>8489三貝德</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1050,7 +969,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>6021美好金融 台北總公司</name>
+        <name>6021美好證</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1059,7 +978,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>5468凱鈺科技股份有限公司</name>
+        <name>5468凱鈺</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1077,7 +996,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>8477創業家兄弟股份有限公司</name>
+        <name>8477創業家</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1086,7 +1005,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>3276宇環科技股份有限公司</name>
+        <name>3276宇環</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1095,7 +1014,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>8277商丞科技股份有限公司</name>
+        <name>8277商丞</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1131,7 +1050,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>4549FineTek Co., Ltd.</name>
+        <name>2482連宇</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1140,7 +1059,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>8374羅昇企業股份有限公司</name>
+        <name>8374羅昇</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1149,7 +1068,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>6834天二科技股份有限公司</name>
+        <name>6834天二科技</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1167,7 +1086,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>4915Primax Electronics Ltd.</name>
+        <name>4915致伸</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1176,7 +1095,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>6640均華土城廠GMM</name>
+        <name>6640均華</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1185,7 +1104,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>6451訊芯科技股份有限公司</name>
+        <name>6451訊芯-KY</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1194,7 +1113,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>6890來億興業股份有限公司(旺隆)</name>
+        <name>6890來億-KY</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1203,7 +1122,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>3483力致科技股份有限公司</name>
+        <name>3483力致</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1212,7 +1131,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>3374Xintec Technology Co., Ltd.</name>
+        <name>3374精材</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1221,7 +1140,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>4555臺灣氣立股份有限公司</name>
+        <name>4555氣立</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1230,7 +1149,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>5013強新工業股份有限公司</name>
+        <name>5013強新</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1248,7 +1167,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>6284INPAQ Technology Co., Ltd.</name>
+        <name>6284佳邦</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1257,7 +1176,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>2468Fortune Information</name>
+        <name>2468華經</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -1266,7 +1185,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>6535順天醫藥生技股份有限公司</name>
+        <name>6535順藥</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
           <coordinates>
@@ -3588,15 +3507,6 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>富鼎</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            121.018011,24.8415851,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>8034榮群</name>
         <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
         <Point>
@@ -4315,6 +4225,69 @@
         <Point>
           <coordinates>
             120.9235151,24.7527978,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4966譜瑞-KY</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            121.5750503,25.0776176,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1587吉茂</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            120.347522,23.9148624,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2065世豐</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            120.2687714,22.7382124,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8114振樺電</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            121.4162265,24.9596672,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6196帆宣</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            121.6119643,25.0568142,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6192巨路</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            121.6114924,25.0575824,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8096擎亞</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            121.6117096,25.0578189,0
           </coordinates>
         </Point>
       </Placemark>
