@@ -36,10 +36,6 @@ opt='&map_action=map&zoom=0'
 url='https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=48.857832%2C2.295226&heading=-45&pitch=38&fov=80'
 # how to add a marker to newly opened google map?
 
-# how to export my google map? (takeout) export check kml
-# distance between two points based on latitude/longitude
-# geopy
-
 # @see https://stackoverflow.com/a/43211266/969049
 #
 # gmap package?

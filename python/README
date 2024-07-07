@@ -86,6 +86,7 @@ uno_quotes.sh: batch updating quote.
 uno_eps.sh: looping eps.
 uno_activity.sh: looping activity.
 gmap.py: trigger jsfiddle show plots.
+rw_kml.py: read/write
 gtrend.py:
 geopy.py: add point to google map.
 br.py: fetch major transactions by (broker, date)
