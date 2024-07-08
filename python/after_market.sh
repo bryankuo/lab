@@ -64,6 +64,9 @@ if [[ "$currenttime" > "13:30" ]]; then
 
     # 6. summary
     python3 get_twse_mark.py
+
+    # 7.
+    ./10d_low.sh
 fi
 
 if [[ "$currenttime" > "18:30" ]]; then
