@@ -65,8 +65,8 @@ if [[ "$currenttime" > "13:30" ]]; then
     # 6. summary
     python3 get_twse_mark.py
 
-    # 7.
-    ./10d_low.sh
+    # 7. show 10 days low tickers
+    ./10d_low.sh 10
 fi
 
 if [[ "$currenttime" > "18:30" ]]; then
