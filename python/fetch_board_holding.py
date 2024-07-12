@@ -57,6 +57,8 @@ def source_factory(ticker):
     while ( conn_list[conn] <= 0 ):
         conn = random.randint(0, len(sites.list)-1)
     page = "/z/zc/zcj/zcj_"+ticker+".djhtm"
+    # // TODO: investiments  z/zc/zcg
+    # https://concords.moneydj.com/z/zc/zcg/zcg_1101.djhtm
     url = sites.list[conn] + page
     return url
 
