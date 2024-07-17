@@ -75,11 +75,18 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     columns = sheet0.getColumns()
-    hide_lst = ["C:$CT"]
+    hide_lst = ["A:$AMJ"]
     for r in hide_lst:
         the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
         the_range.Columns.IsVisible = False
+    # make it clean, visually
+    opt_lst = ["A:B", "CU:CV"] #; print(opt_lst)
+    for r in opt_lst:
+        the_range = sheet0.getCellRangeByName(r)
+        doc.CurrentController.select(the_range)
+        the_range.Columns.OptimalWidth = True
+
     tkrs       = [ x[0] for x in components ]
     longitudes = [ x[1] for x in components ]
     latitudes  = [ x[2] for x in components ]
@@ -116,13 +123,7 @@ try:
 
     # // FIXME: possible new in data, therefore search
     print("# file {:>4} in {}".format(len(tkrs), ipath1))
-
-    # all etf component columns
-    opt_lst = ["A:B", "CU:CV"] #; print(opt_lst)
-    for r in opt_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.OptimalWidth = True
+    print(len(columns))
 
 except:
     # traceback.format_exception(*sys.exc_info())
