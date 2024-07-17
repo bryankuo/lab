@@ -63,11 +63,12 @@ columns = sheet0.getColumns()
 columns.IsVisible = False # all hide
 # columns = ["C1:F3000", "I1:I3000", "BF1:BF3000", "K1:BG3000", "$BL1:BW3000"]
 columns = ["A:B", "G:J", "I1", "BD1", "BI:BK", "BX1", "BZ1", "CJ1"]
+
 for cols in columns:
     the_range = sheet0.getCellRangeByName(cols)
     doc.CurrentController.select(the_range)
     the_range.Columns.IsVisible = True
-    # the_range.Columns.OptimalWidth = True
+    the_range.Columns.OptimalWidth = True
 
 path0 = os.path.join(DIR0r, "qvrs."+yyyymmdd+".ticker.asc.csv")
 inf0 = open(path0, 'r')
@@ -130,13 +131,6 @@ for i in range(start0, len(cursor.Rows)+1):
             .format(i, j, tkr, path0))
         # // FIXME: seems type 5 ticker
         missed += 1
-
-# columns = ["A:B", "G:J", "BD1", "BI:BK", "BX1"]
-for cols in columns:
-    the_range = sheet0.getCellRangeByName(cols)
-    doc.CurrentController.select(the_range)
-    # the_range.Columns.IsVisible = True
-    the_range.Columns.OptimalWidth = True
 
 rows = sheet0.getRows()
 
