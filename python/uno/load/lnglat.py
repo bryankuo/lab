@@ -75,16 +75,12 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     columns = sheet0.getColumns()
-    hide_lst = ["A:$AMJ"]
-    for r in hide_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = False
-    # make it clean, visually
+    columns.IsVisible = False # all hide
     opt_lst = ["A:B", "CU:CV"] #; print(opt_lst)
     for r in opt_lst:
         the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
+        the_range.Columns.IsVisible = True
         the_range.Columns.OptimalWidth = True
 
     tkrs       = [ x[0] for x in components ]
