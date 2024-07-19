@@ -9,6 +9,7 @@
 import uno, sys, time, os, csv
 from datetime import datetime
 from com.sun.star.uno import RuntimeException
+from com.sun.star.beans import PropertyValue
 
 yyyymmdd = sys.argv[1]
 DIR0r="./datafiles/taiex/rs"
@@ -61,7 +62,6 @@ sheet0 = doc.Sheets.getByName(sheet_name)
 
 columns = sheet0.getColumns()
 columns.IsVisible = False # all hide
-# columns = ["C1:F3000", "I1:I3000", "BF1:BF3000", "K1:BG3000", "$BL1:BW3000"]
 columns = ["A:B", "G:J", "I1", "BD1", "BI:BK", "BX1", "BZ1", "CJ1"]
 
 for cols in columns:
@@ -133,7 +133,15 @@ for i in range(start0, len(cursor.Rows)+1):
         missed += 1
 
 rows = sheet0.getRows()
+dispatch = smgr.createInstanceWithContext( \
+        "com.sun.star.frame.DispatchHelper", localContext)
+
+frame = doc.CurrentController.getFrame()
+oProp = PropertyValue()
+oProp.Name = 'ToPoint'
+oProp.Value = '$a2'
+properties = (oProp,)
+dispatch.executeDispatch(frame, ".uno:GoToCell", "", 0, properties)
 
 doc.store()
-# print("uno_qvrs.py-")
 sys.exit(0)
