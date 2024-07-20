@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 # python3 insider_trade.py [yyyymmdd] [net|file]
-# get ticker close price by date
+# identify tickers with insider trade this week
 # // TODO: automate updating activities
-# // TODO: 從身份跟轉讓方式去分析哪些大戶特別擅長交易
+# // TODO: 從身份跟轉讓方式to identify those possible good at trading
 # \param in date in yyyymmdd
 # \param in 0: from internet, 1: from file
 # \param out datafiles/taiex/insider_trade.[yyyymmdd].html, assuming on Sat.
@@ -53,7 +53,7 @@ last_sat = this_date - timedelta(7+idx-6)
 
 if ( is_from_net ):
     url = random.choice(sites.list) + "/z/ze/zei/zei.djhtm"
-    # print("from {}".format(url))
+    print("from {}".format(url))
     if ( os.path.exists(path) ):
         os.remove(path) # clean up
     # response = requests.get(url)
@@ -67,12 +67,16 @@ if ( is_from_net ):
     with open(path, "w") as outfile2:
         outfile2.write(soup.prettify())
     outfile2.close()
+    # inspection / confirmation purpose
+    webbrowser.open(url)
+
 else:
     with open(path) as q:
         soup = BeautifulSoup(q, 'html.parser')
 
 rows = soup.find_all("table", {"class": "t01"})[0] \
         .find_all("tr")
+# print("# rows {}".format(len(rows)))
 num_this_wk = 0
 last_ticker = 0
 num_ticker = 0
@@ -86,20 +90,11 @@ for i in range(2, len(rows)-1):
     # @see https://stackoverflow.com/a/65561465
     the_ticker = int( re.search('\(([^)]+)', td).group(1) \
         .split(',')[0].split('\'')[1].split("AS")[1] )
-    if ( last_sat < the_date ):
-        num_this_wk += 1
-        if ( the_ticker != last_ticker ):
-            num_ticker +=1
-            tkr_l.append(the_ticker)
-            last_ticker = the_ticker
-    else:
-        break
-# print("scan from " + last_sat.strftime('%Y%m%d') + " to " + this_date.strftime('%Y%m%d') )
-# olist = [ num_this_wk, num_ticker, path, url ]
-# print(pprint(olist))
-tkr_l = set(tkr_l)
-print("{}".format(tkr_l))
-# inspection / confirmation purpose
-webbrowser.open(url)
+    # print("{:03d} {}".format(i, the_ticker))
+    tkr_l.append(the_ticker)
 
+tkr_l = set(tkr_l)
+print("in the order of date desc:")
+pprint("{}".format(tkr_l))
+# // TODO: recent day -7 d, date, ticker, whois, type of t. to df
 sys.exit(0)

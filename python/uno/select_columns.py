@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 
 # /Applications/LibreOffice.app/Contents/Resources/python
-#  select_columns.py "A:B","G:$j","AL1","BD1","Bi1","BX:BZ","CF:CG","CQ"
+#  select_columns.py
+#
+# qvrs "A:B","G:$j","AL1","BD1","Bi1","BX:BZ","CF:CG","CQ"
+# RR   "A:B","G:H","j1","$BD1","BG1"
 #
 # calc uno playground
 #
