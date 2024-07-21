@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # python3 fetch_ticker_ror.py
-# fetch ticker ror html from broker, serving ror.sh
+# fetch ticker ror from 基本資料,, serving ror.sh
 # rotating user agent
 # \param in rs/yyyymmdd folder
 # \param out ror.[ticker].html
@@ -72,6 +72,7 @@ for ticker in f:
         # if you have to do just a few requests,
         # Otherwise you'll want to manage sessions yourself.
         try:
+            time.sleep(5) # testing...
             if session is None:
                 # response = requests.get(url)
                 response = requests.get(url, headers=headers)
