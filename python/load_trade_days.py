@@ -47,10 +47,13 @@ for tkr in tkrs:
     if ( idx == 0 ):
         today_10d_lows.append(tkr)
 # print(today_10d_lows)
-print("# touch {} days low and v > {} on {}: {} \n{}" \
+print("# touch {} days low and v > {} on {}: {}" \
     .format(len(trade_days), volume_threshold, trade_days[0], \
-    len(today_10d_lows), today_10d_lows))
+    len(today_10d_lows)))
 
-# today_10d_lows = list(set(today_10d_lows)) # distinction
+# distinction
+today_10d_lows = set(today_10d_lows)
+print("in the order of date desc:")
+pprint("{}".format(today_10d_lows))
 
 sys.exit(0)
