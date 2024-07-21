@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # python3 announcement.py 2330
+# serving briefing.sh
 # return 0: success
 
 import sys, requests, time, webbrowser
