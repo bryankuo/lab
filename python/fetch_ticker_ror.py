@@ -96,6 +96,8 @@ for ticker in f:
             conn_list[conn] = 0
             raise
 
+        # // FIXME: TimeoutError
+
         except requests.exceptions.RequestException:
             e = sys.exc_info()[0]
             print("Unexpected error:", sys.exc_info()[0])
