@@ -72,7 +72,7 @@ for ticker in f:
         # if you have to do just a few requests,
         # Otherwise you'll want to manage sessions yourself.
         try:
-            time.sleep(5) # testing...
+            time.sleep(5) # testing... random time unnoticed
             if session is None:
                 # response = requests.get(url)
                 response = requests.get(url, headers=headers)
@@ -80,18 +80,31 @@ for ticker in f:
             else:
                 # response = session.get(url)
                 response = session.get(url, headers=headers)
+            # @see https://stackoverflow.com/a/62438659
+            response.raise_for_status()
             # response.encoding = 'cp950'
-            # time.sleep(1) # // FIXME: random time
             soup = BeautifulSoup(response.text, 'html.parser')
             fname = "ror." + ticker + ".html"
             path = os.path.join(DIR2, fname)
-            with open(path, "w") as outfile2:
-                outfile2.write(soup.prettify())
-                outfile2.close()
+            outfile2 = open(path, "w")
+            outfile2.write(soup.prettify())
+            outfile2.close()
 
         except requests.exceptions.ConnectionError:
             e = sys.exc_info()[0]
             print("Unexpected error:", sys.exc_info()[0])
+            conn_list[conn] = 0
+            raise
+
+        except requests.exceptions.RequestException:
+            e = sys.exc_info()[0]
+            print("Unexpected error:", sys.exc_info()[0])
+            # conn_list[conn] = 0
+            raise
+
+        except requests.HTTPError as e:
+            # e = sys.exc_info()[0]
+            # print("Unexpected error:", sys.exc_info()[0])
             conn_list[conn] = 0
             raise
 
