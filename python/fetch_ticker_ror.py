@@ -72,7 +72,7 @@ for ticker in f:
         # if you have to do just a few requests,
         # Otherwise you'll want to manage sessions yourself.
         try:
-            time.sleep(5) # testing... random time unnoticed
+            time.sleep(10) # testing... random time unnoticed
             if session is None:
                 # response = requests.get(url)
                 response = requests.get(url, headers=headers)
