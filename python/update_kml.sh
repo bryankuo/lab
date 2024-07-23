@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# a handy tool updating kml, focus 所在地,HQ,HR,FI location
+# a handy tool updating kml
+# term: group HQ, 營業地址, 營業登記地址
 
 # last N days
 DIR0="$HOME/github/python/datafiles/taiex"
