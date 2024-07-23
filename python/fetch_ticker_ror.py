@@ -97,6 +97,10 @@ for ticker in f:
             raise
 
         # // FIXME: TimeoutError
+        # // FIXME: urllib3.exceptions.ReadTimeoutError
+        # requests.exceptions.ReadTimeout: HTTPSConnectionPool
+        # emega twice within 10 seconds
+        # urllib3.exceptions.ProtocolError: ('Connection aborted.'
 
         except requests.exceptions.RequestException:
             e = sys.exc_info()[0]

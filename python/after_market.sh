@@ -71,6 +71,9 @@ if [[ "$currenttime" > "18:30" ]]; then
     # 7. mentioned today
     python3 announcement_today.py
 
+    # update calc
+    ./qvrs.sh $DATE 0
+
     ./qfbs.sh $DATE 0
 fi
 

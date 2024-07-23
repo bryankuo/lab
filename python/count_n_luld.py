@@ -40,8 +40,12 @@ for i in range(0, len(df.index)):
             if ( r0 <= -9.66 ):
                 limit_dlist.append(int(df.loc[i,'代號']))
 
-pprint("# limit day high {}, {}".format(len(limit_ulist), limit_ulist))
-pprint("# limit day low  {}, {}".format(len(limit_dlist), limit_dlist))
-pprint("# close day high {}".format(len(close_hlist)))
-pprint("# close day low  {}".format(len(close_llist)))
+print("# limit day high {}".format(len(limit_ulist)))
+pprint("{}".format(limit_ulist))
+
+print("# limit day low  {}".format(len(limit_dlist)))
+pprint("{}".format(limit_dlist))
+
+print("# close day high {}".format(len(close_hlist)))
+print("# close day low  {}".format(len(close_llist)))
 sys.exit(0)
