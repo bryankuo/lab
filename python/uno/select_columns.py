@@ -6,6 +6,7 @@
 
 # qvrs "A:B","G:$j","AL1","BD1","Bi1","BX:BZ","CF:CG","CQ"
 # RR   "A:B","G:H","j1","$BD1","BF1","BG1"
+# margin balance
 #
 # dollar sign not allowed
 #
