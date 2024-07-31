@@ -105,13 +105,13 @@ t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
     columns = sheet0.getColumns()
-    hide_lst = ["C:F", "K:BC", "BE:BH", "bL:$Bw"]
-    for r in hide_lst:
+    columns.IsVisible = False # all hide
+    opt_lst = ["A:B", "G:H", "BI:BK", "BY1"]
+    for r in opt_lst:
         the_range = sheet0.getCellRangeByName(r)
         doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = False
-
-    # @see http://surl.li/nottj
+        the_range.Columns.IsVisible = True
+        the_range.Columns.OptimalWidth = True
 
     i = 1
     sheet0.getCellRangeByName(  VR+str(i)).String = "V. ratio"
@@ -164,21 +164,6 @@ try:
 
     # // FIXME: possible new in data, therefore search
     print("# file {:>4}, {:>4} missed, ".format(len(tkrs)-1, missed)) # // FIXME:
-
-    the_range = sheet0.getCellRangeByName("BI:BK")
-    doc.CurrentController.select(the_range)
-    the_range.Columns.IsVisible = True
-    the_range.Columns.OptimalWidth = True
-
-    the_range = sheet0.getCellRangeByName("G:H")
-    doc.CurrentController.select(the_range)
-    the_range.Columns.IsVisible = True
-    the_range.Columns.OptimalWidth = True
-
-    the_range = sheet0.getCellRangeByName("BY1")
-    doc.CurrentController.select(the_range)
-    the_range.Columns.IsVisible = True
-    the_range.Columns.OptimalWidth = True
 
 except:
     # traceback.format_exception(*sys.exc_info())
