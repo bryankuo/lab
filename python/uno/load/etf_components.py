@@ -107,12 +107,16 @@ t0 = time.time()
 t_start = datetime.now().strftime('%Y%m%d %H:%M:%S.%f')[:-3]
 
 try:
+    sheet_name = "20231211"
+    sheet0 = doc.Sheets.getByName(sheet_name)
     columns = sheet0.getColumns()
-    hide_lst = ["C:$CQ"]
-    for r in hide_lst:
-        the_range = sheet0.getCellRangeByName(r)
+    columns.IsVisible = False
+    columns = ["A:B","G:H","AL1","BD1","BZ1","CA:CB","CE1","CK:CP","CR:CT"]
+    for cols in columns:
+        the_range = sheet0.getCellRangeByName(cols)
         doc.CurrentController.select(the_range)
-        the_range.Columns.IsVisible = False
+        the_range.Columns.IsVisible = True
+        the_range.Columns.OptimalWidth = True
 
     # @see http://surl.li/nottj
     tkrs    = [ x[0] for x in components ]
@@ -146,14 +150,6 @@ try:
 
     # // FIXME: possible new in data, therefore search
     print("# file {:>4} in {}".format(len(tkrs), ipath1))
-
-    # all etf component columns
-    opt_lst = ["A:B", "CA:CB", "CE1", "CK:CP", "CR:CT"]
-    print(opt_lst)
-    for r in opt_lst:
-        the_range = sheet0.getCellRangeByName(r)
-        doc.CurrentController.select(the_range)
-        the_range.Columns.OptimalWidth = True
 
 except:
     # traceback.format_exception(*sys.exc_info())

@@ -10,6 +10,9 @@
 # margin balance
 # latitude, longitude "A:B", "CU:CV"
 
+# ETF components:
+# "A:B","G:H","AL1","BD1","BZ1","CA:CB","CE1","CK:CP","CR:CT"
+
 # dollar sign not allowed
 #
 # calc uno playground
