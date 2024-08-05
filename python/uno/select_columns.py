@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 
 '''
-/Applications/LibreOffice.app/Contents/Resources/python uno/select_columns.py
+/Applications/LibreOffice.app/Contents/Resources/python \
+    uno/select_columns.py
 '''
 
 # qvrs "A:B","G:$j","AL1","BD1","Bi1","BX:BZ","CF:CG","CQ"
 # RR   "A:B","G:H","j1","$BD1","BF1","BG1"
 # margin balance
-#
+# latitude, longitude "A:B", "CU:CV"
+
 # dollar sign not allowed
 #
 # calc uno playground
@@ -47,7 +49,8 @@ if ( len(sys.argv) < 2 ):
 spec = sys.argv[1]
 # print(spec)
 specs = spec.split(',')
-# pprint(specs)
+pprint(specs)
+# sys.exit(0)
 
 # get the uno component context from the PyUNO runtime
 localContext = uno.getComponentContext() # works
@@ -96,7 +99,7 @@ try:
     sheet0 = doc.Sheets.getByName(sheet_name)
     columns = sheet0.getColumns()
     columns.IsVisible = False
-    columns = ["A:B", "G:J", "I1", "BD1", "BF1", "BI:BK", "BX1"]
+    # columns = ["A:B", "G:J", "I1", "BD1", "BF1", "BI:BK", "BX1"]
     columns = specs
     for cols in columns:
         the_range = sheet0.getCellRangeByName(cols)

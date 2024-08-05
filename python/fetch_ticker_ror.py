@@ -60,7 +60,7 @@ for ticker in f:
     while fetch_not_ok:
         # adopting rotating can help mask your scraping
         # @see https://rb.gy/uu497g
-        headers = {'User-Agent': random.choice(ua.list)}
+        # headers = {'User-Agent': random.choice(ua.list)}
 
         url = source_factory(ticker)
         # // TODO: update connectivity dynamically
@@ -74,14 +74,16 @@ for ticker in f:
         try:
             time.sleep(10) # testing... random time unnoticed
             if session is None:
-                # response = requests.get(url)
-                response = requests.get(url, headers=headers)
+                response = requests.get(url)
+                # response = requests.get(url, headers=headers)
                 session = requests.Session()
             else:
-                # response = session.get(url)
-                response = session.get(url, headers=headers)
+                response = session.get(url)
+                # response = session.get(url, headers=headers)
+
             # @see https://stackoverflow.com/a/62438659
-            response.raise_for_status()
+            # response.raise_for_status()
+
             # response.encoding = 'cp950'
             soup = BeautifulSoup(response.text, 'html.parser')
             fname = "ror." + ticker + ".html"
@@ -106,6 +108,17 @@ for ticker in f:
             e = sys.exc_info()[0]
             print("Unexpected error:", sys.exc_info()[0])
             # conn_list[conn] = 0
+            raise
+
+        except requests.exceptions.SSLError
+            conn_list[conn] = 0
+            raise
+
+        # 403 Client Error: Forbidden
+        except requests.exceptions.HTTPError as e:
+            # e = sys.exc_info()[0]
+            # print("Unexpected error:", sys.exc_info()[0])
+            conn_list[conn] = 0
             raise
 
         except requests.HTTPError as e:
