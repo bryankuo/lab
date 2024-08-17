@@ -63,11 +63,30 @@ def test():
             print("{:02d} {} {}".format(i, a, url))
             i += 1
 
-test()
+# test()
 
 '''
 00 403 https://concords.moneydj.com/z/zc/zca/zca_2885.djhtm
 01 C.Error https://trade.ftsi.com.tw/z/zc/zca/zca_2885.djhtm
+02 200 https://just2.entrust.com.tw/z/zc/zca/zca_2885.djhtm
+03 403 http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2885.djhtm
+04 200 https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_2885.djhtm
+05 200 http://moneydj.emega.com.tw/z/zc/zca/zca_2885.djhtm
+06 200 https://stock.capital.com.tw/z/zc/zca/zca_2885.djhtm
+07 200 https://fund.hncb.com.tw/z/zc/zca/zca_2885.djhtm
+08 200 https://just.honsec.com.tw/z/zc/zca/zca_2885.djhtm
+09 200 https://kgieworld.moneydj.com/z/zc/zca/zca_2885.djhtm
+10 200 https://djinfo.cathaysec.com.tw/z/zc/zca/zca_2885.djhtm
+11 200 http://tcfhcsec.moneydj.com/z/zc/zca/zca_2885.djhtm
+12 403 http://5850web.moneydj.com/z/zc/zca/zca_2885.djhtm
+13 200 https://jdata.yuanta.com.tw/z/zc/zca/zca_2885.djhtm
+14 403 https://newjust.masterlink.com.tw/z/zc/zca/zca_2885.djhtm
+'''
+
+'''
+20240817
+00 403 https://concords.moneydj.com/z/zc/zca/zca_2885.djhtm
+01 403 https://trade.ftsi.com.tw/z/zc/zca/zca_2885.djhtm
 02 200 https://just2.entrust.com.tw/z/zc/zca/zca_2885.djhtm
 03 403 http://fubon-ebrokerdj.fbs.com.tw/z/zc/zca/zca_2885.djhtm
 04 200 https://stockchannelnew.sinotrade.com.tw/z/zc/zca/zca_2885.djhtm
