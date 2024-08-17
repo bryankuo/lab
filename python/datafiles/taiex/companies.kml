@@ -9826,6 +9826,15 @@
           </coordinates>
         </Point>
       </Placemark>
+      <Placemark>
+        <name>3685元創精密</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            120.6357858,24.1622604,0
+          </coordinates>
+        </Point>
+      </Placemark>
     </Folder>
   </Document>
 </kml>
