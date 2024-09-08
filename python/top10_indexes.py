@@ -11,7 +11,7 @@ brent_crude = "https://tradingeconomics.com/commodity/brent-crude-oil"
 btcusd = "https://www.tradingview.com/chart/?symbol=BITSTAMP%3ABTCUSD"
 gold = "https://candlecharts.com/candlestick-chart-look-up/gold-candlestick-chart/"
 cnn_gfear = "https://edition.cnn.com/markets/fear-and-greed"
-# gheatmap = "https://finviz.com/map.ashx?t=geo"
+gheatmap = "https://finviz.com/map.ashx?t=geo"
 vixtwn = "https://www.wantgoo.com/index/vixtwn"
 sox = "https://www.investing.com/indices/phlx-semiconductor-candlestick#"
 twd_forex = \
