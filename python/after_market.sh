@@ -74,7 +74,8 @@ if [[ "$currenttime" > "18:30" ]]; then
     # update calc
     ./qvrs.sh $DATE 0
 
-    ./qfbs.sh $DATE 0
+    # takes long... skip temporarily
+    # ./qfbs.sh $DATE 0
 fi
 
 exit 0
