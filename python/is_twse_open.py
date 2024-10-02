@@ -5,6 +5,12 @@
 # generate trade days of the month
 # serving price.sh
 # // TODO: return yes or no instead
+# // TODO: use bash instead
+
+# // TODO: identify typhoon off
+# 證交所新聞
+# https://www.twse.com.tw/zh/about/news/news/list.html
+# keyword: "休市ㄧ天"
 
 # \param in date in yyyymmdd
 # \param out 0: yes
@@ -54,8 +60,42 @@ path0 = os.path.join(DIR0, fname0)
 fname0a = "trade.days."+yyyymmdd[0:6]+".txt"
 path0a = os.path.join(DIR0, fname0a)
 
+
 url = "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=" \
     + yyyymmdd + "&response=html"
+
+def is_typhoon_off():
+    is_off = False
+    url = "https://www.twse.com.tw/zh/about/news/news/list.html"
+    browser = webdriver.Safari( \
+        executable_path = '/usr/bin/safaridriver')
+    browser.implicitly_wait(10)
+    browser.get(url)
+    search =  WebDriverWait(browser, 10)                                \
+        .until(EC.element_to_be_clickable(                          \
+            (By.XPATH, '//button[text()="查尋"]')))
+    search.click()
+    time.sleep(1)
+    page1 = browser.page_source
+    soup = BeautifulSoup(page1, 'html.parser')
+    rows = soup.find_all("tbody", {})[0].find_all("tr")
+    print("len {}".format(len(rows)))
+    for row in rows:
+        # index = row.find_all("td")[0].text.strip()
+        title = row.find_all("td")[1].text.strip()
+        # dt    = row.find_all("td")[2].text.strip()
+        # print("{} {} {}".format(index, title, dt))
+        if ( "休市一天" in title ):
+            print("! {} {} {}".format(index, title, dt))
+            is_off = True
+
+    # path = "./a.html"
+    # outfile2 = open(path, "w")
+    # outfile2.write(soup.prettify())
+    # outfile2.close()
+    browser.quit()
+    return is_off
+    # // TODO: as an independent file
 
 date_to_search = date( \
     int(yyyymmdd[0:4]), int(yyyymmdd[4:6]), int(yyyymmdd[6:8]) )
@@ -161,6 +201,8 @@ for tr in rows:
                 continue
             else: # unlikely
                 time.sleep(1)
+
+is_typhoon_off() # test in progress
 
 print(olist)
 sys.exit(0)

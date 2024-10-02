@@ -8,7 +8,7 @@
 # \param in yyyymmdd
 # \param in 0 net 1 file
 # \param out csv file(ticker,close,volume)
-#
+# \param out html file
 
 import sys, requests, datetime, time, numpy, random, csv, urllib
 import os, errno
@@ -101,14 +101,14 @@ else:
     url = "https://histock.tw/stock/rank.aspx?p=all"
     # // TODO: "https://histock.tw/stock/rank.aspx?t=dt"
     print("fetching {}...".format(url))
-    # response = requests.get(url)
-    headers = {'User-Agent': random.choice(ua.list)}
-    response = requests.get(url, headers=headers)
+    # headers = {'User-Agent': random.choice(ua.list)}
+    # response = requests.get(url, headers=headers)
+    # stop using agent to histock and watching,
+    response = requests.get(url)
     # response.encoding = 'cp950'
     soup = BeautifulSoup(response.text, 'html.parser')
-    # print(html_path)
     outfile2 = open(html_path, "w")
     outfile2.write(soup.prettify())
     outfile2.close()
-
+    print("write to {}...".format(html_path))
 sys.exit(0)

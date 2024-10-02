@@ -22,17 +22,12 @@ cat $DIR0/listed_5.txt >> $DIR0/listed_taiex.$DATE.txt
 ln -sf $DIR0/listed_taiex.$DATE.txt $DIR0/listed_taiex.txt
 ls -lt $DIR0/listed_*.txt
 wc -l $(readlink "$DIR0/listed_taiex.txt")
+cat $DIR0/listed_taiex.$DATE.txt | uniq | sort \
+    > $DIR0/listed_taiex.$DATE.sorted.txt
+# // TODO: meld f1 f0
 TIMESTAMP1=`date '+%Y/%m/%d %H:%M:%S'`
 echo "time: " $TIMESTAMP0 " looping start"
 echo "time: " $TIMESTAMP1 " looping end"
 echo -ne '\007'
 echo "to shuffle call update_watchlist.sh"
 exit 0
-
-# to combine latest trade symbol:
-# @see https://shorturl.at/beips
-# sort 2 files first
-# comm -1 watchlist.sorted.txt listed_taiex.20231230.sorted.txt > watchlist.20231231.sorted.txt
-# cat watchlist.20231231.sorted.txt | xargs | tr " " "\n" | sort > watchlist.20231231.1631.txt
-# shuf watchlist.20231231.1631.txt > watchlist.20231231.1644.shuffled.txt
-#
